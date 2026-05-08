@@ -57,6 +57,7 @@ function keystone_recomposition_child_inject_schema() {
         $logo_url = 'https://keystonerecomposition.com/wp-content/uploads/logo.png';
     }
 
+    // === Organization Schema ===
     $schema = array(
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
@@ -67,6 +68,7 @@ function keystone_recomposition_child_inject_schema() {
         'logo' => $logo_url,
         'sameAs' => array(
             'https://www.youtube.com/@KeystoneRecomposition',
+            'https://www.youtube.com/@KeystoneProtocols',
             'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
             'https://audiomack.com/keystone-recomposition',
             'https://toolost.com'
@@ -82,12 +84,38 @@ function keystone_recomposition_child_inject_schema() {
                 'name' => 'Keystone Recomposition',
                 'url' => 'https://keystonerecomposition.com',
                 'description' => 'Specializing in health, wellness, and beauty recomposition. Explore GLP-1 weight loss solutions, fitness programs, and beauty enhancements.',
-                'keywords' => 'Keystone Recomposition, GLP-1, health, beauty, wellness, weight loss, fitness'
+                'keywords' => 'Keystone Recomposition, GLP-1, health, beauty, wellness, weight loss, fitness',
+                'founder' => array(
+                    '@type' => 'Person',
+                    'name' => 'Wayne Stevenson',
+                    'jobTitle' => 'Biohacking & Metabolic Health Authority'
+                )
             ),
             array(
-                '@type' => 'HomeAndConstructionBusiness',
+                '@type' => 'GeneralContractor',
                 'name' => 'Keystone Possibilities',
                 'url' => 'https://keystonepossibilities.ca',
+                'description' => 'Premium Construction Project Management and Civil Construction Services operating across the Sea-to-Sky and Greater Vancouver regions.',
+                'founder' => array(
+                    '@type' => 'Person',
+                    'name' => 'Wayne Stevenson',
+                    'jobTitle' => 'Certified BC Builder & Project Manager',
+                    'sameAs' => 'https://keystonerecomposition.com/about/'
+                ),
+                'areaServed' => array(
+                    array('@type' => 'City', 'name' => 'Whistler'),
+                    array('@type' => 'City', 'name' => 'West Vancouver'),
+                    array('@type' => 'City', 'name' => 'North Vancouver'),
+                    array('@type' => 'City', 'name' => 'Squamish')
+                ),
+                'hasOfferCatalog' => array(
+                    '@type' => 'OfferCatalog',
+                    'name' => 'Construction Services',
+                    'itemListElement' => array(
+                        array('@type' => 'Offer', 'itemOffered' => array('@type' => 'Service', 'name' => 'Luxury Custom Home Project Management')),
+                        array('@type' => 'Offer', 'itemOffered' => array('@type' => 'Service', 'name' => 'Civil Construction & Site Engineering'))
+                    )
+                ),
                 'identifier' => array(
                     '@type' => 'PropertyValue',
                     'propertyID' => 'BC Builder License',
@@ -109,6 +137,48 @@ function keystone_recomposition_child_inject_schema() {
     echo $json_schema . "\n";
     echo "</script>\n";
     echo "<!-- End Keystone Digital JSON-LD Schema -->\n";
+
+    // === Person Schema (Knowledge Panel Anchor) ===
+    $person_schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'Person',
+        'name' => 'Wayne Stevenson',
+        'alternateName' => array( 'Keystone Recomposition', 'Keystone Protocols' ),
+        'url' => 'https://keystonerecomposition.com',
+        'image' => $logo_url,
+        'jobTitle' => 'Health Researcher, Music Producer & Construction Project Manager',
+        'description' => 'Founder of Keystone Digital. Documents the intersection of GLP-1 metabolic health, peptide science, body recomposition, and longevity for men over 40. Also produces deep house music and manages luxury construction projects in the Sea-to-Sky corridor.',
+        'knowsAbout' => array(
+            'GLP-1 receptor agonists',
+            'metabolic health',
+            'body recomposition',
+            'peptide protocols',
+            'biohacking',
+            'deep house music production',
+            'construction project management'
+        ),
+        'sameAs' => array(
+            'https://www.youtube.com/@KeystoneRecomposition',
+            'https://www.youtube.com/@KeystoneProtocols',
+            'https://www.youtube.com/channel/UCxURlqMNhAtxUTpdXmlOYaw',
+            'https://keystonepossibilities.ca',
+            'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
+            'https://audiomack.com/keystone-recomposition'
+        ),
+        'worksFor' => array(
+            '@type' => 'Organization',
+            'name' => 'Keystone Digital',
+            'url' => 'https://keystonerecomposition.com'
+        )
+    );
+
+    $json_person = wp_json_encode( $person_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+
+    echo "<!-- Keystone Person Schema (Knowledge Panel) -->\n";
+    echo "<script type=\"application/ld+json\">\n";
+    echo $json_person . "\n";
+    echo "</script>\n";
+    echo "<!-- End Person Schema -->\n";
 }
 add_action( 'wp_head', 'keystone_recomposition_child_inject_schema' );
 
@@ -200,3 +270,48 @@ function keystone_recomposition_child_youtube_schema() {
     }
 }
 add_action( 'wp_head', 'keystone_recomposition_child_youtube_schema' );
+
+/**
+ * Patch Structural Site Leaks (404/Redirect Errors)
+ * Redirects 404 pages to the homepage with a 301 Moved Permanently status
+ * to preserve link equity and resolve Google Search Console 404 indexing errors.
+ */
+function keystone_recomposition_child_404_redirect() {
+    if ( is_404() ) {
+        wp_redirect( home_url(), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'keystone_recomposition_child_404_redirect' );
+
+/**
+ * Programmatic Injection of Rank Math Metadata
+ * Automates E-E-A-T optimization across project blog posts.
+ */
+add_filter( 'rank_math/frontend/description', 'keystone_recomposition_child_rankmath_description' );
+function keystone_recomposition_child_rankmath_description( $description ) {
+    if ( is_singular( 'post' ) ) {
+        global $post;
+        // If description is empty or default, generate a robust fallback
+        if ( empty( $description ) ) {
+            $excerpt = wp_trim_words( wp_strip_all_tags( $post->post_content ), 30, '...' );
+            if ( ! empty( $excerpt ) ) {
+                return $excerpt . ' - Expert metabolic health and structural engineering insights from Keystone Recomposition.';
+            }
+        }
+    }
+    return $description;
+}
+
+add_filter( 'rank_math/snippet/rich_snippet_article_entity', 'keystone_recomposition_child_rankmath_article_schema' );
+function keystone_recomposition_child_rankmath_article_schema( $entity ) {
+    if ( is_singular( 'post' ) ) {
+        // Enhance Article Schema with E-E-A-T specifics
+        $entity['author']['@type'] = 'Person';
+        $entity['author']['name']  = 'Keystone Architect';
+        $entity['author']['url']   = 'https://keystonerecomposition.com/about/';
+        $entity['publisher']['@type'] = 'Organization';
+        $entity['publisher']['name']  = 'Keystone Recomposition';
+    }
+    return $entity;
+}
