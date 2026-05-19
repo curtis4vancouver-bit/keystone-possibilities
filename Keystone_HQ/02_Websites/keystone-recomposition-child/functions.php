@@ -299,41 +299,47 @@ function keystone_recomposition_clean_json_ld( $data, $jsonld ) {
         return $data;
     }
 
-    // 1. Traverse and replace .cao typo and standardize instagram/youtube links
-    array_walk_recursive( $data, function( &$value, $key ) {
-        if ( is_string( $value ) ) {
-            // Fix keystonepossibilities TLD typo
-            $value = str_replace( 'keystonepossibilities.cao', 'keystonepossibilities.ca', $value );
-            
-            // Standardize Instagram post URLs to profile URL for sameAs consistency
-            if ( preg_match( '/instagram\.com\/p\/[a-zA-Z0-9_-]+/i', $value ) ) {
-                $value = 'https://www.instagram.com/keystonerecomposition';
-            }
-            
-            // Convert YouTube redirect/short URLs inside video schema player location to clean embed URLs
-            if ( preg_match( '/youtu\.be\/([a-zA-Z0-9_-]{11})/i', $value, $matches ) ) {
-                $value = 'https://www.youtube.com/embed/' . $matches[1];
-            }
-        }
-    });
-
-    // 2. Clean up duplicates in sameAs arrays
-    foreach ( $data as $block_key => &$block ) {
-        if ( is_array( $block ) && isset( $block['sameAs'] ) && is_array( $block['sameAs'] ) ) {
-            $block['sameAs'] = array_unique( $block['sameAs'] );
-            $block['sameAs'] = array_values( $block['sameAs'] );
-        }
-        if ( is_array( $block ) && isset( $block['@graph'] ) && is_array( $block['@graph'] ) ) {
-            foreach ( $block['@graph'] as &$graph_node ) {
-                if ( is_array( $graph_node ) && isset( $graph_node['sameAs'] ) && is_array( $graph_node['sameAs'] ) ) {
-                    $graph_node['sameAs'] = array_unique( $graph_node['sameAs'] );
-                    $graph_node['sameAs'] = array_values( $graph_node['sameAs'] );
-                }
-            }
+    // 1. Serialize to JSON to safely perform replacements on both arrays and objects
+    $is_object_mode = is_object( $data );
+    $json = wp_json_encode( $data );
+    if ( ! empty( $json ) ) {
+        // Fix keystonepossibilities TLD typo
+        $json = str_replace( 'keystonepossibilities.cao', 'keystonepossibilities.ca', $json );
+        
+        // Standardize Instagram post URLs
+        $json = preg_replace( '/https?:\/\/(?:www\.)?instagram\.com\/p\/[a-zA-Z0-9_-]+/i', 'https://www.instagram.com/keystonerecomposition', $json );
+        
+        // Convert YouTube redirect/short URLs inside video schema to clean embed URLs
+        $json = preg_replace( '/https?:\/\/youtu\.be\/([a-zA-Z0-9_-]{11})/i', 'https://www.youtube.com/embed/$1', $json );
+        
+        $decoded = json_decode( $json, !$is_object_mode );
+        if ( ! empty( $decoded ) ) {
+            $data = $decoded;
         }
     }
 
+    // 2. Clean up duplicates in sameAs arrays/objects recursively
+    keystone_recomposition_deduplicate_sameas( $data );
+
     return $data;
+}
+
+function keystone_recomposition_deduplicate_sameas( &$data ) {
+    if ( is_array( $data ) ) {
+        if ( isset( $data['sameAs'] ) && is_array( $data['sameAs'] ) ) {
+            $data['sameAs'] = array_values( array_unique( $data['sameAs'] ) );
+        }
+        foreach ( $data as &$item ) {
+            keystone_recomposition_deduplicate_sameas( $item );
+        }
+    } elseif ( is_object( $data ) ) {
+        if ( isset( $data->sameAs ) && is_array( $data->sameAs ) ) {
+            $data->sameAs = array_values( array_unique( $data->sameAs ) );
+        }
+        foreach ( get_object_vars( $data ) as $key => $val ) {
+            keystone_recomposition_deduplicate_sameas( $data->$key );
+        }
+    }
 }
 
 /**
