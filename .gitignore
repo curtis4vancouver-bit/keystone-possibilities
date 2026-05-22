@@ -1,0 +1,31 @@
+
+node_modules/
+.next/
+__pycache__/
+
+# Python Virtual Environments
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# IDE and local editor data
+.vscode/
+.idea/
+.history/
+.cursor/
+
+# Local cache and skills
+.gemini/
+.learnings/
+custom_skills/
+
+# Large third-party WordPress themes and media uploads
+Keystone_HQ/02_Websites/astra/
+Keystone_HQ/02_Websites/twentytwentyfour/
+Keystone_HQ/02_Websites/twentytwentytwo/
+Keystone_HQ/02_Websites/wp-uploads/
+
+# Media & Video directories
+Keystone_HQ/04_DaVinci_Resolve_Video
+
