@@ -63,19 +63,24 @@ if ( file_exists( $wp_load_path ) ) {
             $needs_update = false;
             foreach ( $wrong_urls as $wrong ) {
                 if ( strpos( $updated_content, $wrong ) !== false ) {
+                    echo "MATCH DETECTED IN POST ID " . $p->ID . " FOR WRONG URL: " . $wrong . "\n";
                     $updated_content = str_replace( $wrong, $correct_url, $updated_content );
                     $needs_update = true;
                 }
             }
             if ( $needs_update ) {
-                $wpdb->update(
+                $res = $wpdb->update(
                     $wpdb->posts,
                     array( 'post_content' => $updated_content ),
                     array( 'ID' => $p->ID )
                 );
-                clean_post_cache( $p->ID );
-                echo "UPDATED POST ID: " . $p->ID . "\n";
-                $posts_updated++;
+                if ( $res === false ) {
+                    echo "DB UPDATE FAILED FOR POST ID " . $p->ID . " | ERROR: " . $wpdb->last_error . "\n";
+                } else {
+                    echo "DB UPDATE SUCCESS FOR POST ID " . $p->ID . " (Rows affected: " . $res . ")\n";
+                    clean_post_cache( $p->ID );
+                    $posts_updated++;
+                }
             }
         }
         echo "TOTAL POSTS UPDATED: " . $posts_updated . "\n\n";
