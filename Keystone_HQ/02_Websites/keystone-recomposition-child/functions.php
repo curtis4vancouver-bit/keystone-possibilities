@@ -55,6 +55,19 @@ if ( isset( $_GET['check_rm_options'] ) ) {
         }
     }
     
+    echo "\n=== POST 1149 METADATA SCAN ===\n\n";
+    $meta1149 = get_post_meta( 1149 );
+    foreach ( $meta1149 as $key => $values ) {
+        foreach ( $values as $val_raw ) {
+            $val = maybe_unserialize( $val_raw );
+            $type = gettype( $val );
+            echo "META KEY: " . $key . " | TYPE: " . $type . "\n";
+            if ( $type === 'string' ) {
+                echo "  VALUE: " . substr($val, 0, 100) . "\n";
+            }
+        }
+    }
+    
     echo "\n=== SIMULATING RANK MATH ADMIN DATA ===\n\n";
     // Check if the class exists and what options it accesses
     if ( class_exists( 'RankMathPro\Schema\Admin' ) ) {
