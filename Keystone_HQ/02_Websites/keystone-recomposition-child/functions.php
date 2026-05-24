@@ -31,10 +31,24 @@ if ( isset( $_GET['check_rm_options'] ) ) {
         $val = maybe_unserialize( $row->option_value );
         $type = gettype( $val );
         echo "OPTION: " . $row->option_name . " | TYPE: " . $type . "\n";
-        if ( $type === 'string' ) {
-            echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 100) . "\n";
-        } elseif ( $type === 'array' ) {
-            echo "  COUNT: " . count($val) . "\n";
+    }
+    
+    echo "\n=== POST 1149 META SCAN ===\n\n";
+    $post_id = 1149;
+    $meta = get_post_meta( $post_id );
+    foreach ( $meta as $key => $values ) {
+        if ( strpos( $key, 'rank_math' ) !== false || strpos( $key, 'schema' ) !== false ) {
+            foreach ( $values as $val_raw ) {
+                $val = maybe_unserialize( $val_raw );
+                $type = gettype( $val );
+                echo "META KEY: " . $key . " | TYPE: " . $type . "\n";
+                if ( $type === 'string' ) {
+                    echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 200) . "\n";
+                } elseif ( $type === 'array' ) {
+                    echo "  COUNT: " . count($val) . "\n";
+                    echo "  VALUE: " . print_r($val, true) . "\n";
+                }
+            }
         }
     }
     exit;
