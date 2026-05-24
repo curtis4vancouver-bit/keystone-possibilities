@@ -4,3 +4,57 @@ Author: Keystone Architect
 Description: Child theme for Keystone Recomposition.
 Template: astra
 */
+
+/* ==========================================================================
+   Keystone Protocols - Premium Blog Archive Grid Layout Adjustments
+   ========================================================================== */
+
+.ast-blog-layout-4-grid .ast-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px !important;
+}
+
+@media (max-width: 992px) {
+  .ast-blog-layout-4-grid .ast-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ast-blog-layout-4-grid .ast-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.ast-blog-layout-4-grid .ast-row article {
+  width: 100% !important;
+  min-width: 0 !important;
+  float: none !important;
+  margin: 0px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.ast-blog-layout-4-grid .ast-row article .ast-article-inner {
+  flex: 1 1 0% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.ast-blog-layout-4-grid .ast-row article .post-content {
+  flex: 1 1 0% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Premium Card Featured Image Constraints */
+.ast-blog-layout-4-grid .ast-row article .post-thumb img {
+  height: 220px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0px !important;
+}
