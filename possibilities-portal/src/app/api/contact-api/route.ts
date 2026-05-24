@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
+// @ts-ignore
 import MailComposer from "nodemailer/lib/mail-composer";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB per-file
@@ -89,7 +90,7 @@ export async function POST(req: NextRequest) {
 
     const mailCompiler = new MailComposer(mailOptions);
     const rawCompiledMessage: Buffer = await new Promise((resolve, reject) => {
-      mailCompiler.compile().build((err, msg) => {
+      mailCompiler.compile().build((err: any, msg: any) => {
         if (err) return reject(err);
         resolve(msg);
       });
