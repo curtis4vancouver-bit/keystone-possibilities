@@ -25,12 +25,15 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
 
 if ( isset( $_GET['check_rm_options'] ) ) {
     global $wpdb;
-    $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE 'rank-math-%'" );
+    $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '%rank-math%' OR option_name LIKE '%rank_math%' OR option_name LIKE '%schema%'" );
     echo "=== DB RANK MATH OPTIONS SCAN ===\n\n";
     foreach ( $results as $row ) {
         $val = maybe_unserialize( $row->option_value );
         $type = gettype( $val );
         echo "OPTION: " . $row->option_name . " | TYPE: " . $type . "\n";
+        if ( $type === 'string' ) {
+            echo "  VALUE: " . substr($val, 0, 150) . "\n";
+        }
     }
     
     echo "\n=== RANK MATH SCHEMA POSTS SCAN ===\n\n";
