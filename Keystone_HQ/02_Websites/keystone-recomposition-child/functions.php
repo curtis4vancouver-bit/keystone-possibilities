@@ -23,6 +23,26 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['restore_mounjaro_post'] ) ) {
+    $file_path = __DIR__ . '/mounjaro_backup.txt';
+    if ( file_exists( $file_path ) ) {
+        $content = file_get_contents( $file_path );
+        $post_data = array(
+            'ID'           => 1149,
+            'post_content' => $content,
+        );
+        $res = wp_update_post( $post_data );
+        if ( is_wp_error( $res ) ) {
+            echo "ERROR RESTORING POST: " . $res->get_error_message();
+        } else {
+            echo "POST RESTORED SUCCESSFULLY: ID " . $res;
+        }
+    } else {
+        echo "BACKUP FILE NOT FOUND AT: " . $file_path;
+    }
+    exit;
+}
+
 if ( isset( $_GET['check_rm_options'] ) ) {
     global $wpdb;
     $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '%rank-math%' OR option_name LIKE '%rank_math%' OR option_name LIKE '%schema%'" );
@@ -213,7 +233,7 @@ function keystone_recomposition_child_inject_schema() {
         'sameAs' => array(
             'https://www.youtube.com/@KeystoneRecomposition',
             'https://www.youtube.com/@KeystoneProtocols',
-            'https://open.spotify.com/artist/keystone-recomposition',
+            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
             'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
             'https://audiomack.com/keystone-recomposition',
             'https://toolost.com',
@@ -308,7 +328,7 @@ function keystone_recomposition_child_inject_schema() {
             'https://www.youtube.com/@KeystoneProtocols',
             'https://www.youtube.com/channel/UCxURlqMNhAtxUTpdXmlOYaw',
             'https://keystonepossibilities.ca',
-            'https://open.spotify.com/artist/keystone-recomposition',
+            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
             'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
             'https://audiomack.com/keystone-recomposition',
             'https://www.facebook.com/profile.php?id=61554185128555',
