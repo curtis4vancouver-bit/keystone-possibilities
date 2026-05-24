@@ -315,8 +315,8 @@ Template: astra
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 80px !important;
-  height: 80px !important;
+  width: 54px !important;
+  height: 54px !important;
   background: rgba(8, 8, 8, 0.85) !important;
   border: 2px solid rgba(196, 162, 101, 0.5) !important;
   border-radius: 50% !important;
@@ -340,9 +340,9 @@ Template: astra
 }
 
 .luxury-video-facade .play-icon {
-  width: 28px !important;
-  height: 28px !important;
-  margin-left: 4px !important; /* Offset to center play triangle visually */
+  width: 20px !important;
+  height: 20px !important;
+  margin-left: 3px !important; /* Offset to center play triangle visually */
   transition: fill 0.4s ease !important;
 }
 
