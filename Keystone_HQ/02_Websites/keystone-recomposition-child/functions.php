@@ -161,7 +161,7 @@ function astra_child_keystone_enqueue_styles() {
     wp_enqueue_style( 'astra-parent-theme-css', get_template_directory_uri() . '/style.css' );
     
     // Enqueue Child customized style
-    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.0' );
+    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.2' );
     
     // Load typography fonts (Montserrat, Inter, Outfit)
     wp_enqueue_style( 'keystone-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&family=Outfit:wght@400;600;700;800&display=swap', array(), null );
