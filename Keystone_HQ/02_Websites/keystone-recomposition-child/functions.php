@@ -476,15 +476,24 @@ add_filter( 'rank_math/snippet/html', function( $html ) {
 }, 999 );
 
 add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
-    if ( isset( $data['video'] ) ) {
-        unset( $data['video'] );
+    foreach ( $data as $key => $val ) {
+        if ( in_array( strtolower( $key ), array( 'video', 'videoobject' ) ) ) {
+            unset( $data[$key] );
+        }
     }
     if ( isset( $data['@graph'] ) && is_array( $data['@graph'] ) ) {
         $other_nodes = array();
         foreach ( $data['@graph'] as $node ) {
             if ( isset( $node['@type'] ) ) {
                 $types = (array) $node['@type'];
-                if ( ! in_array( 'VideoObject', $types ) ) {
+                $has_video = false;
+                foreach ( $types as $t ) {
+                    if ( strtolower( $t ) === 'videoobject' ) {
+                        $has_video = true;
+                        break;
+                    }
+                }
+                if ( ! $has_video ) {
                     $other_nodes[] = $node;
                 }
             } else {
