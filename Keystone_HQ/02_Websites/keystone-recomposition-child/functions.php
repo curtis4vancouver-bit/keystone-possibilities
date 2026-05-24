@@ -24,12 +24,19 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
 }
 
 if ( isset( $_GET['check_rm_options'] ) ) {
-    $titles = get_option( 'rank-math-options-titles' );
-    $general = get_option( 'rank-math-options-general' );
-    echo "TITLES TYPE: " . gettype( $titles ) . "\n";
-    echo "TITLES VALUE: " . print_r( $titles, true ) . "\n\n";
-    echo "GENERAL TYPE: " . gettype( $general ) . "\n";
-    echo "GENERAL VALUE: " . print_r( $general, true ) . "\n";
+    global $wpdb;
+    $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE 'rank-math-%'" );
+    echo "=== DB RANK MATH OPTIONS SCAN ===\n\n";
+    foreach ( $results as $row ) {
+        $val = maybe_unserialize( $row->option_value );
+        $type = gettype( $val );
+        echo "OPTION: " . $row->option_name . " | TYPE: " . $type . "\n";
+        if ( $type === 'string' ) {
+            echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 100) . "\n";
+        } elseif ( $type === 'array' ) {
+            echo "  COUNT: " . count($val) . "\n";
+        }
+    }
     exit;
 }
 
