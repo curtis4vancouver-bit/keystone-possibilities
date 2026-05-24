@@ -468,6 +468,29 @@ add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
 add_filter( 'rank_math/video/parser_content', '__return_empty_string' );
 add_filter( 'rank_math/snippet/rich_snippet_video_entity', '__return_false' );
 
+// Programmatically disable Rank Math's video auto-detection settings on the fly
+add_filter( 'option_rank-math-options-titles', function( $options ) {
+    if ( is_array( $options ) ) {
+        foreach ( $options as $key => $val ) {
+            if ( strpos( $key, 'autodetect_video' ) !== false ) {
+                $options[$key] = 'off';
+            }
+        }
+    }
+    return $options;
+}, 999 );
+
+add_filter( 'option_rank-math-options-general', function( $options ) {
+    if ( is_array( $options ) ) {
+        foreach ( $options as $key => $val ) {
+            if ( strpos( $key, 'autodetect_video' ) !== false ) {
+                $options[$key] = 'off';
+            }
+        }
+    }
+    return $options;
+}, 999 );
+
 add_filter( 'rank_math/snippet/html', function( $html ) {
     if ( strpos( $html, 'VideoObject' ) !== false ) {
         return '';
