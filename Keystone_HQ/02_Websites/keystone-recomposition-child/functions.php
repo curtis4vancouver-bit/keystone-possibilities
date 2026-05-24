@@ -33,27 +33,34 @@ if ( isset( $_GET['check_rm_options'] ) ) {
         echo "OPTION: " . $row->option_name . " | TYPE: " . $type . "\n";
     }
     
-    echo "\n=== POST 1149 META SCAN ===\n\n";
-    $post_id = 1149;
-    $meta = get_post_meta( $post_id );
-    if ( empty( $meta ) ) {
-        echo "NO META FOUND FOR POST 1149\n";
-        // Let's also print the post object to verify it exists
-        $post_obj = get_post( $post_id );
-        echo "POST OBJECT: " . print_r( $post_obj, true ) . "\n";
-    } else {
+    echo "\n=== RANK MATH SCHEMA POSTS SCAN ===\n\n";
+    $schemas = get_posts( array(
+        'post_type'   => 'rank_math_schema',
+        'post_status' => 'any',
+        'posts_per_page' => -1
+    ) );
+    echo "SCHEMAS COUNT: " . count($schemas) . "\n";
+    foreach ( $schemas as $s ) {
+        echo "SCHEMA ID: " . $s->ID . " | TITLE: " . $s->post_title . "\n";
+        $meta = get_post_meta( $s->ID );
         foreach ( $meta as $key => $values ) {
             foreach ( $values as $val_raw ) {
                 $val = maybe_unserialize( $val_raw );
                 $type = gettype( $val );
-                echo "META KEY: " . $key . " | TYPE: " . $type . "\n";
+                echo "  META KEY: " . $key . " | TYPE: " . $type . "\n";
                 if ( $type === 'string' ) {
-                    echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 100) . "\n";
-                } elseif ( $type === 'array' ) {
-                    echo "  COUNT: " . count($val) . "\n";
+                    echo "    VALUE: " . substr($val, 0, 100) . "\n";
                 }
             }
         }
+    }
+    
+    echo "\n=== SIMULATING RANK MATH ADMIN DATA ===\n\n";
+    // Check if the class exists and what options it accesses
+    if ( class_exists( 'RankMathPro\Schema\Admin' ) ) {
+        echo "RankMathPro\\Schema\\Admin exists!\n";
+    } else {
+        echo "RankMathPro\\Schema\\Admin does NOT exist on frontend context.\n";
     }
     exit;
 }
