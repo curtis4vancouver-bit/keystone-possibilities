@@ -18,7 +18,7 @@ get_header();
 	<main id="main" class="site-main">
 
 		<!-- Article Header -->
-		<header class="entry-header" style="text-align: center; margin-bottom: 50px;">
+		<header class="entry-header" style="text-align: center; margin-bottom: 40px;">
 			<div class="entry-meta" style="font-family: 'Outfit', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #C4A265; margin-bottom: 15px;">
 				<span class="cat-links"><a href="#" style="color: #00CED1; font-weight: 600; text-decoration: none;">Metabolic Health</a></span>
 				<span class="sep"> | </span>
@@ -27,46 +27,22 @@ get_header();
 				<span class="read-time" style="color: #00CED1;">8 min read</span>
 			</div>
 			
-			<h1 class="entry-title" style="font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #e8e8e8; margin-bottom: 20px; line-height: 1.2;">
+			<h1 class="entry-title" style="font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 3.2vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.025em; color: #ffffff; margin-bottom: 15px; line-height: 1.25;">
 				The Structural Integrity of Weight Loss: <br>
 				<span style="color: #C4A265; font-weight: 400;">A Builder's Blueprint for Preventing Mounjaro Muscle Loss</span>
 			</h1>
 
-			<p class="subtitle" style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">
+			<p class="subtitle" style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin: 0;">
 				Keystone Recomposition | Clinical Case Study & Protocol Series — Episode 1
 			</p>
 		</header>
 
-		<!-- Disclosures Section -->
-		<div class="wp-block-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
-			<div class="wp-block-column" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15); padding: 25px; border-radius: 4px;">
-				<h3 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: #f59e0b; margin-top: 0; margin-bottom: 10px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
-				<p style="font-size: 0.8rem; color: #a3a3a3; line-height: 1.6; margin: 0; font-weight: 300;">
-					This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.
-				</p>
-			</div>
-
-			<div class="wp-block-column" style="background-color: rgba(196, 162, 101, 0.03); border: 1px solid rgba(196, 162, 101, 0.15); padding: 25px; border-radius: 4px;">
-				<h3 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: #C4A265; margin-top: 0; margin-bottom: 10px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Digital Twin Disclosure</h3>
-				<p style="font-size: 0.8rem; color: #a3a3a3; line-height: 1.6; margin: 0; font-weight: 300;">
-					The video content accompanying the Keystone Recomposition brand is hosted by a photorealistic, synthetic visual network representation (AI Digital Twin) of Wayne Stevenson. All real-world job site footage, personal clinical lab work, physical training logs, and research data are authentic and fully documented by the human creator.
-				</p>
-			</div>
+		<!-- Cinematic YouTube Facade (Primary GSC Video) -->
+		<div style="margin-bottom: 45px;">
+			<h4 style="font-family: 'Outfit', sans-serif; font-size: 13px; color: #666; text-align: center; margin-bottom: 15px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;">Official Episode 1 Video Stream</h4>
+			<?php echo do_shortcode('[keystone_video id="aXY9S_K88sk" type="youtube"]'); ?>
 		</div>
 
-		<!-- Cinematic YouTube Embed -->
-		<div class="wp-block-embed is-type-video" style="margin-bottom: 50px;">
-			<h4 style="font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: #666; text-align: center; margin-bottom: 15px; letter-spacing: 0.12em; text-transform: uppercase;">Official Episode 1 Video Stream</h4>
-			<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 2px solid rgba(196, 162, 101, 0.2); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-				<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-					src="https://www.youtube.com/embed/aXY9S_K88sk" 
-					title="I Lost 48 Lbs on Mounjaro — Here's How Much Was Muscle | Men Over 40"
-					frameborder="0" 
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-					allowfullscreen>
-				</iframe>
-			</div>
-		</div>
 
 		<!-- Article Body -->
 		<div class="entry-content" style="font-size: 1rem; line-height: 1.8; color: #e8e8e8; font-weight: 300; margin-bottom: 60px;">
@@ -292,6 +268,22 @@ get_header();
 				<h4 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: #00CED1; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.08em;">⏭️ NEXT EPISODE PREVIEW</h4>
 				<p style="font-size: 0.85rem; color: #a3a3a3; line-height: 1.7; margin: 0; font-weight: 300;">
 					<strong>Next week, in Episode 2 of our Recomposition Series, I am going deep into the regenerative peptide stack that completely changed my recovery on the job site: BPC-157 and Thymosin Beta-4 (The Wolverine Stack). We will analyze the molecular pathways, the clinical evidence, the legal regulatory landscape, and my personal research protocols.</strong>
+				</p>
+			</div>
+		</div>
+
+		<!-- Disclosures Section -->
+		<div class="kr-disclaimer-grid">
+			<div class="kr-disclaimer-box medical">
+				<div class="kr-disclaimer-title">⚠️ Medical Disclaimer</div>
+				<p class="kr-disclaimer-text">
+					This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.
+				</p>
+			</div>
+			<div class="kr-disclaimer-box twin">
+				<div class="kr-disclaimer-title">⚠️ Digital Twin Disclosure</div>
+				<p class="kr-disclaimer-text">
+					The video content accompanying the Keystone Recomposition brand is hosted by a photorealistic, synthetic visual network representation (AI Digital Twin) of Wayne Stevenson. All real-world job site footage, personal clinical lab work, physical training logs, and research data are authentic and fully documented by the human creator.
 				</p>
 			</div>
 		</div>

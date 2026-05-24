@@ -592,4 +592,49 @@ Template: astra
   font-weight: 300 !important;
 }
 
+/* ==========================================================================
+   Keystone Protocols - Single Post Title & Header Refinements (Quiet Luxury)
+   ========================================================================== */
+
+.single-post .entry-header {
+  text-align: center !important;
+  margin-top: 10px !important;
+  margin-bottom: 35px !important;
+  max-width: 850px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 10px !important;
+}
+
+.single-post h1.entry-title {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: clamp(24px, 3.8vw, 36px) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  color: #ffffff !important;
+  line-height: 1.25 !important;
+  margin-bottom: 15px !important;
+}
+
+.single-post .entry-meta,
+.single-post .entry-meta a {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: #c4a265 !important;
+  text-decoration: none !important;
+}
+
+.single-post .entry-meta .posted-on {
+  color: #a3a3a3 !important;
+}
+
+.single-post .entry-meta .author-name {
+  color: #00ced1 !important;
+  font-weight: 600 !important;
+}
+
+
 
