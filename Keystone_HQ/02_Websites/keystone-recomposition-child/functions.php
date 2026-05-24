@@ -40,6 +40,9 @@ if ( isset( $_GET['restore_mounjaro_post'] ) ) {
     } else {
         echo "BACKUP FILE NOT FOUND AT: " . $file_path;
     }
+    exit;
+}
+
 if ( isset( $_GET['list_revisions'] ) ) {
     $revisions = wp_get_post_revisions( 1149 );
     echo "=== REVISIONS FOR POST 1149 ===\n\n";
