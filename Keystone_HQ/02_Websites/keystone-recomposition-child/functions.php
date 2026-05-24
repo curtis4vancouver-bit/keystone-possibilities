@@ -36,17 +36,21 @@ if ( isset( $_GET['check_rm_options'] ) ) {
     echo "\n=== POST 1149 META SCAN ===\n\n";
     $post_id = 1149;
     $meta = get_post_meta( $post_id );
-    foreach ( $meta as $key => $values ) {
-        if ( strpos( $key, 'rank_math' ) !== false || strpos( $key, 'schema' ) !== false ) {
+    if ( empty( $meta ) ) {
+        echo "NO META FOUND FOR POST 1149\n";
+        // Let's also print the post object to verify it exists
+        $post_obj = get_post( $post_id );
+        echo "POST OBJECT: " . print_r( $post_obj, true ) . "\n";
+    } else {
+        foreach ( $meta as $key => $values ) {
             foreach ( $values as $val_raw ) {
                 $val = maybe_unserialize( $val_raw );
                 $type = gettype( $val );
                 echo "META KEY: " . $key . " | TYPE: " . $type . "\n";
                 if ( $type === 'string' ) {
-                    echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 200) . "\n";
+                    echo "  VALUE (Length " . strlen($val) . "): " . substr($val, 0, 100) . "\n";
                 } elseif ( $type === 'array' ) {
                     echo "  COUNT: " . count($val) . "\n";
-                    echo "  VALUE: " . print_r($val, true) . "\n";
                 }
             }
         }
