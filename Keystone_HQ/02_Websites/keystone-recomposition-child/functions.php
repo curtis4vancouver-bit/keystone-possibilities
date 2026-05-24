@@ -23,6 +23,16 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['check_rm_options'] ) ) {
+    $titles = get_option( 'rank-math-options-titles' );
+    $general = get_option( 'rank-math-options-general' );
+    echo "TITLES TYPE: " . gettype( $titles ) . "\n";
+    echo "TITLES VALUE: " . print_r( $titles, true ) . "\n\n";
+    echo "GENERAL TYPE: " . gettype( $general ) . "\n";
+    echo "GENERAL VALUE: " . print_r( $general, true ) . "\n";
+    exit;
+}
+
 /**
  * 1. Enqueue Parent Stylesheet and Google Fonts
  */
