@@ -213,6 +213,7 @@ function keystone_recomposition_child_inject_schema() {
         'sameAs' => array(
             'https://www.youtube.com/@KeystoneRecomposition',
             'https://www.youtube.com/@KeystoneProtocols',
+            'https://open.spotify.com/artist/keystone-recomposition',
             'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
             'https://audiomack.com/keystone-recomposition',
             'https://toolost.com',
@@ -307,6 +308,7 @@ function keystone_recomposition_child_inject_schema() {
             'https://www.youtube.com/@KeystoneProtocols',
             'https://www.youtube.com/channel/UCxURlqMNhAtxUTpdXmlOYaw',
             'https://keystonepossibilities.ca',
+            'https://open.spotify.com/artist/keystone-recomposition',
             'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
             'https://audiomack.com/keystone-recomposition',
             'https://www.facebook.com/profile.php?id=61554185128555',
