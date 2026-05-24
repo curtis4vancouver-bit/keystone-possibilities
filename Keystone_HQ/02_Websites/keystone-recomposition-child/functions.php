@@ -40,9 +40,6 @@ if ( isset( $_GET['restore_mounjaro_post'] ) ) {
     } else {
         echo "BACKUP FILE NOT FOUND AT: " . $file_path;
     }
-    exit;
-}
-
 if ( isset( $_GET['list_revisions'] ) ) {
     $revisions = wp_get_post_revisions( 1149 );
     echo "=== REVISIONS FOR POST 1149 ===\n\n";
@@ -50,6 +47,32 @@ if ( isset( $_GET['list_revisions'] ) ) {
         echo "REVISION ID: " . $rev->ID . " | DATE: " . $rev->post_date . " | TITLE: " . $rev->post_title . "\n";
         echo "  CONTENT LENGTH: " . strlen( $rev->post_content ) . "\n";
         echo "  SNIPPET: " . substr( wp_strip_all_tags( $rev->post_content ), 0, 150) . "\n\n";
+    }
+    exit;
+}
+
+if ( isset( $_GET['restore_revision_id'] ) ) {
+    $rev_id = intval( $_GET['restore_revision_id'] );
+    $rev = wp_get_post_revision( $rev_id );
+    if ( $rev ) {
+        $content = $rev->post_content;
+        
+        $old_url = "https://open.spotify.com/artist/keystone-recomposition";
+        $new_url = "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y";
+        $updated_content = str_replace( $old_url, $new_url, $content );
+        
+        $post_data = array(
+            'ID'           => 1149,
+            'post_content' => $updated_content,
+        );
+        $res = wp_update_post( $post_data );
+        if ( is_wp_error( $res ) ) {
+            echo "ERROR RESTORING REVISION: " . $res->get_error_message();
+        } else {
+            echo "REVISION " . $rev_id . " RESTORED & LINK UPDATED SUCCESSFULLY FOR POST 1149";
+        }
+    } else {
+        echo "REVISION ID " . $rev_id . " NOT FOUND";
     }
     exit;
 }
