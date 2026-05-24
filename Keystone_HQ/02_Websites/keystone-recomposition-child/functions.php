@@ -65,6 +65,12 @@ if ( isset( $_GET['check_rm_options'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['delete_corrupt_post'] ) ) {
+    $res = wp_delete_post( 807, true );
+    echo "DELETE POST 807 RESULT: " . ($res ? "SUCCESS" : "FAILED") . "\n";
+    exit;
+}
+
 /**
  * 1. Enqueue Parent Stylesheet and Google Fonts
  */
