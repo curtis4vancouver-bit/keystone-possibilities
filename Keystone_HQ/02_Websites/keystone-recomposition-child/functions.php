@@ -450,6 +450,13 @@ add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
 add_filter( 'rank_math/video/parser_content', '__return_empty_string' );
 add_filter( 'rank_math/snippet/rich_snippet_video_entity', '__return_false' );
 
+add_filter( 'rank_math/snippet/html', function( $html ) {
+    if ( strpos( $html, 'VideoObject' ) !== false ) {
+        return '';
+    }
+    return $html;
+}, 999 );
+
 add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
     if ( isset( $data['video'] ) ) {
         unset( $data['video'] );
