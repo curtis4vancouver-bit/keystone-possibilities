@@ -3,8 +3,6 @@
  * Standalone WordPress Post Auditor
  */
 
-header('Content-Type: application/json; charset=utf-8');
-
 $wp_load_path = dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/wp-load.php';
 if ( file_exists( $wp_load_path ) ) {
     require_once( $wp_load_path );
@@ -36,7 +34,12 @@ if ( file_exists( $wp_load_path ) ) {
         );
     }
     
+    header('Content-Type: text/html; charset=utf-8');
+    echo "<pre>";
     echo json_encode( $report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+    echo "</pre>";
+    exit;
 } else {
-    echo json_encode( array('error' => 'wp-load not found') );
+    echo "wp-load not found";
+    exit;
 }
