@@ -29,3 +29,25 @@ Keystone_HQ/02_Websites/wp-uploads/
 # Media & Video directories
 Keystone_HQ/04_DaVinci_Resolve_Video
 
+# Exclude large binary and archive extensions
+*.mov
+*.mp4
+*.m4v
+*.avi
+*.mkv
+*.zip
+*.tar.gz
+*.dmg
+*.exe
+
+# Exclude private Master Brain, credentials, and secrets
+Keystone_HQ/00_Master_Brain/
+*.pem
+*.key
+*token*.json
+*key*.json
+*.log
+
+# Exclude local developer utility and debug scripts in PWA
+Keystone_HQ/02_Websites/pwa/*.js
+

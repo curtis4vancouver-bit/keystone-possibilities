@@ -1,0 +1,231 @@
+/*
+Theme Name: Astra Child for Keystone
+Theme URI: https://keystoneprotocols.com/
+Description: Sleek, high-performance child theme customized for Wayne Stevenson's Keystone dual-brand empire. Built with premium typographical tokens, preconnecting optimization filters, dynamic video JSON-LD structured schemas, and PageSpeed-friendly lazy elements to completely bypass Google Search Console validation errors.
+Author: Antigravity AI
+Author URI: https://deepmind.google/
+Template: astra
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom-colors, custom-menu, featured-images, full-width-template, theme-options, translation-ready
+Text Domain: astra-child-keystone
+*/
+
+/* =====================================================================
+   THEME STYLING SYSTEM (Understated Rugged Luxury Guidelines)
+   ===================================================================== */
+
+/* 1. Global Visual Tokens */
+body {
+    background-color: #1A202C !important; /* Dark Slate Canvas */
+    color: #F7FAFC !important;      /* Warm Matte White text */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* Editorial Blockquotes */
+blockquote {
+    border-left: 4px solid #4A5568 !important; /* Muted Charcoal border */
+    background: #2D3748 !important;            /* Slate background */
+    padding: 20px !important;
+    font-style: italic;
+    color: #E2E8F0 !important;
+    border-radius: 4px;
+}
+
+/* Lower-Third Overlay Typography Compatibility */
+.lower-third-caption {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* Tracked precisely */
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* 2. Fast Lazy Video Player Canvas Styling (High-Performance Quiet Luxury Media Facades) */
+.luxury-video-facade {
+    position: relative;
+    width: 100%;
+    /* Explicit aspect ratio calculation preventing layout shifts (CLS avoidance) */
+    aspect-ratio: 16 / 9;
+    background-color: hsl(210, 12%, 10%); /* Pitch Black / Dark slate space */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    /* Spacing aligned to Astra standard margins */
+    margin: 2.5rem auto;
+    max-width: 100%;
+    
+    /* Hardware acceleration layer promotion (GPU rendering optimization) */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+/* Fluid Aspect Ratio Fallback for Legacy Browsers */
+@supports not (aspect-ratio: 16 / 9) {
+   .luxury-video-facade {
+        height: 0;
+        padding-bottom: 56.25%; /* Height = Width * (9 / 16) */
+    }
+}
+
+/* Spacing adjustments mapped to Astra Grid Breakpoints */
+@media (max-width: 921px) { /* Astra Tablet Breakpoint */
+   .luxury-video-facade {
+        margin: 1.75rem auto;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 544px) { /* Astra Mobile Breakpoint */
+   .luxury-video-facade {
+        margin: 1.25rem auto;
+        border-radius: 4px;
+    }
+}
+
+/* Background Image Desaturation (Quiet Luxury HSL Treatment) */
+.facade-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    /* Minimalist desaturated color grading matching squamish fjord bluffs */
+    filter: saturate(12%) contrast(102%) brightness(75%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+/* Interactive Hover States */
+.luxury-video-facade:hover .facade-background {
+    transform: scale(1.03) translate3d(0, 0, 0);
+    filter: saturate(20%) contrast(105%) brightness(80%);
+}
+
+/* Elegant Overlay and Glassmorphism Play Button */
+.facade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.play-button {
+    position: relative;
+    z-index: 3;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(18, 22, 28, 0.35);
+    
+    /* Glassmorphism blurring filter */
+    backdrop-filter: blur(16px) saturate(100%);
+    -webkit-backdrop-filter: blur(16px) saturate(100%);
+    color: hsl(0, 0%, 98%);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    
+    /* Composited translation transitions */
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, background-color, border-color, box-shadow, opacity;
+}
+
+.play-icon {
+    width: 26px;
+    height: 26px;
+    transform: translateX(2px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Play Button Hover Interaction */
+.luxury-video-facade:hover .play-button {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.75);
+    transform: scale(1.08) translate3d(0, 0, 0);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.luxury-video-facade:hover .play-button .play-icon {
+    transform: translateX(2px) scale(1.04);
+}
+
+/* Responsive Play Button Resizing */
+@media (max-width: 544px) {
+   .play-button {
+        width: 64px;
+        height: 64px;
+    }
+   .play-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Dynamic Iframe Container Mounting Style */
+.luxury-video-facade iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 4;
+    
+    /* Hardware accelerated layering upon creation */
+    transform: translate3d(0, 0, 0);
+    will-change: opacity;
+    animation: fadeInFrame 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeInFrame {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

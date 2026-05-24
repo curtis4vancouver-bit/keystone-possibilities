@@ -1,0 +1,614 @@
+/* ============================================
+   KEYSTONE RECOMPOSITION — Luxury Dark Theme CSS
+   Version: 1.0
+   Designed to match Keystone Possibilities aesthetic
+   Color Palette: Charcoal #111111, Gold #C4A265, Teal #00CED1, White #e8e8e8
+   Fonts: Inter (body) + Outfit (headings)
+   ============================================ */
+
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* === GLOBAL RESET === */
+body,
+.site {
+    background-color: #111111 !important;
+    color: #e8e8e8 !important;
+    font-family: 'Inter', -apple-system, sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.75;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.page-title,
+.wp-block-heading {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #e8e8e8 !important;
+}
+
+h1, .entry-title { font-size: clamp(2.2rem, 5vw, 3.5rem) !important; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem) !important; }
+h3 { font-size: clamp(1.4rem, 3vw, 2rem) !important; }
+
+/* Gold accent headings */
+.wp-block-heading:has(+ .wp-block-separator),
+.entry-content h2:first-of-type {
+    color: #C4A265 !important;
+}
+
+/* Subtitle/tagline style */
+.has-text-color.has-luminous-vivid-amber-color,
+.has-luminous-vivid-amber-color {
+    color: #C4A265 !important;
+}
+
+/* === HEADER / NAVIGATION === */
+.site-header,
+.ast-primary-header-bar,
+header.site-header,
+.main-header-bar {
+    background-color: #111111 !important;
+    border-bottom: 2px solid #C4A265 !important;
+}
+
+.ast-header-html-1,
+.site-header .site-branding,
+.ast-site-identity {
+    background-color: transparent !important;
+}
+
+/* Nav links */
+.main-navigation a,
+.ast-header-html-1 a,
+.menu-item a,
+.ast-nav-menu a,
+nav a {
+    color: #e8e8e8 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    font-size: 0.85rem !important;
+    transition: color 0.3s ease !important;
+}
+
+.main-navigation a:hover,
+.ast-nav-menu a:hover,
+nav a:hover,
+.menu-item.current-menu-item a,
+.current_page_item a {
+    color: #C4A265 !important;
+}
+
+/* Logo fix */
+.custom-logo-link img,
+.site-logo-img img,
+img.custom-logo {
+    background: transparent !important;
+    max-height: 65px !important;
+}
+
+/* === FOOTER === */
+.site-footer,
+footer,
+.ast-footer-overlay,
+.ast-small-footer {
+    background-color: #0a0a0a !important;
+    border-top: 2px solid #C4A265 !important;
+    color: #e8e8e8 !important;
+}
+
+.site-footer a,
+footer a {
+    color: #C4A265 !important;
+    transition: color 0.3s ease;
+}
+
+.site-footer a:hover,
+footer a:hover {
+    color: #00CED1 !important;
+}
+
+/* === HERO / COVER BLOCKS === */
+.wp-block-cover {
+    min-height: 550px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wp-block-cover__inner-container {
+    max-width: 900px;
+    text-align: center;
+}
+
+.wp-block-cover h1,
+.wp-block-cover h2 {
+    font-family: 'Outfit', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+}
+
+/* === BUTTONS === */
+.wp-block-button__link,
+.wp-block-button a,
+a.wp-block-button__link,
+.ast-custom-button,
+button.wp-element-button {
+    background-color: #C4A265 !important;
+    color: #111111 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 14px 36px !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button a:hover,
+a.wp-block-button__link:hover {
+    background-color: #00CED1 !important;
+    color: #111111 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 206, 209, 0.3) !important;
+}
+
+/* Outline/ghost buttons */
+.is-style-outline .wp-block-button__link,
+.wp-block-button.is-style-outline a {
+    background-color: transparent !important;
+    color: #C4A265 !important;
+    border: 2px solid #C4A265 !important;
+}
+
+.is-style-outline .wp-block-button__link:hover {
+    background-color: #C4A265 !important;
+    color: #111111 !important;
+}
+
+/* === CONTENT BLOCKS === */
+.entry-content,
+.page-content,
+article {
+    background-color: transparent !important;
+    color: #e8e8e8 !important;
+}
+
+/* Dark section blocks */
+.wp-block-group.has-background,
+.wp-block-columns.has-background {
+    background-color: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    padding: 40px 30px !important;
+}
+
+/* Gold bordered feature cards */
+.wp-block-column {
+    padding: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.wp-block-column:hover {
+    border-color: #C4A265 !important;
+}
+
+/* === TABLES (WORKOUT TABLES) === */
+.wp-block-table table,
+table {
+    background-color: #1a1a1a !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+    border: 1px solid #2a2a2a !important;
+}
+
+.wp-block-table table th,
+table th {
+    background-color: #C4A265 !important;
+    color: #111111 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em;
+    padding: 14px 18px !important;
+    font-size: 0.85rem !important;
+}
+
+.wp-block-table table td,
+table td {
+    color: #e8e8e8 !important;
+    padding: 12px 18px !important;
+    border-bottom: 1px solid #2a2a2a !important;
+    font-size: 0.9rem !important;
+}
+
+.wp-block-table table tr:hover td,
+table tr:hover td {
+    background-color: #222222 !important;
+}
+
+/* === SEPARATORS / DIVIDERS === */
+.wp-block-separator,
+hr {
+    border-color: #C4A265 !important;
+    border-width: 2px !important;
+    width: 80px !important;
+    margin: 40px auto !important;
+    opacity: 1 !important;
+}
+
+/* === LINKS === */
+.entry-content a,
+.page-content a,
+article a {
+    color: #C4A265 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.entry-content a:hover,
+article a:hover {
+    color: #00CED1 !important;
+    border-bottom-color: #00CED1 !important;
+}
+
+/* === BLOG / INTEL CARDS === */
+.ast-article-inner,
+.blog-layout-1 .post-content,
+article.post {
+    background-color: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 0 !important;
+    padding: 24px !important;
+    transition: all 0.3s ease !important;
+}
+
+article.post:hover {
+    border-color: #C4A265 !important;
+    box-shadow: 0 4px 20px rgba(196, 162, 101, 0.15) !important;
+}
+
+.ast-article-inner .entry-title a,
+article.post .entry-title a {
+    color: #e8e8e8 !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+.ast-article-inner .entry-title a:hover,
+article.post .entry-title a:hover {
+    color: #C4A265 !important;
+}
+
+/* Category labels */
+.cat-links a,
+.entry-meta .cat-links a {
+    color: #00CED1 !important;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* === EMAIL CAPTURE / LEAD MAGNET === */
+.wp-block-group.email-capture,
+.kr-email-capture {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f1f1f 100%) !important;
+    border: 2px solid #C4A265 !important;
+    padding: 50px 40px !important;
+    text-align: center;
+}
+
+/* === LIST STYLING === */
+.entry-content ul li,
+.entry-content ol li {
+    color: #e8e8e8 !important;
+    margin-bottom: 8px;
+}
+
+.entry-content ul li::marker {
+    color: #C4A265 !important;
+}
+
+/* === IMAGES === */
+.wp-block-image img {
+    border-radius: 0 !important;
+    transition: transform 0.3s ease;
+}
+
+.wp-block-image:hover img {
+    transform: scale(1.02);
+}
+
+/* === TEAL ACCENT ELEMENTS === */
+.kr-teal-accent,
+.has-vivid-cyan-blue-color {
+    color: #00CED1 !important;
+}
+
+.kr-teal-bg {
+    background-color: #00CED1 !important;
+    color: #111111 !important;
+}
+
+/* === INFOBOX CARDS (Homepage pillars) === */
+.wp-block-stackable-icon-box,
+.stk-block-icon-box {
+    background-color: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    padding: 30px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.wp-block-stackable-icon-box:hover,
+.stk-block-icon-box:hover {
+    border-color: #C4A265 !important;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(196, 162, 101, 0.2) !important;
+}
+
+/* === SOCIAL ICONS === */
+.wp-block-social-links .wp-social-link {
+    background-color: #C4A265 !important;
+    color: #111111 !important;
+}
+
+.wp-block-social-links .wp-social-link:hover {
+    background-color: #00CED1 !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    h1, .entry-title { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    
+    .wp-block-cover { min-height: 350px !important; }
+    
+    .wp-block-button__link,
+    a.wp-block-button__link {
+        padding: 12px 24px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .wp-block-table table th,
+    .wp-block-table table td {
+        padding: 8px 10px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .main-navigation a,
+    .ast-nav-menu a {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1, .entry-title { font-size: 1.5rem !important; }
+    .wp-block-cover { min-height: 280px !important; }
+    
+    .wp-block-column {
+        padding: 15px 10px;
+    }
+}
+
+/* === RANK MATH SEO BAR CLEANUP === */
+.rank-math-tooltip,
+#rank-math-analytics-stats-bar {
+    z-index: 99999;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C4A265;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00CED1;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.wp-block-cover__inner-container,
+.wp-block-group,
+.wp-block-columns {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* =====================================================================
+   THEME STYLING SYSTEM (Understated Rugged Luxury Guidelines)
+   ===================================================================== */
+
+/* Fast Lazy Video Player Canvas Styling (High-Performance Quiet Luxury Media Facades) */
+.luxury-video-facade {
+    position: relative;
+    width: 100%;
+    /* Explicit aspect ratio calculation preventing layout shifts (CLS avoidance) */
+    aspect-ratio: 16 / 9;
+    background-color: hsl(210, 12%, 10%); /* Pitch Black / Dark slate space */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    /* Spacing aligned to standard margins */
+    margin: 2.5rem auto;
+    max-width: 100%;
+    
+    /* Hardware acceleration layer promotion (GPU rendering optimization) */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+/* Fluid Aspect Ratio Fallback for Legacy Browsers */
+@supports not (aspect-ratio: 16 / 9) {
+   .luxury-video-facade {
+        height: 0;
+        padding-bottom: 56.25%; /* Height = Width * (9 / 16) */
+    }
+}
+
+/* Spacing adjustments mapped to Grid Breakpoints */
+@media (max-width: 921px) {
+   .luxury-video-facade {
+        margin: 1.75rem auto;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 544px) {
+   .luxury-video-facade {
+        margin: 1.25rem auto;
+        border-radius: 4px;
+    }
+}
+
+/* Background Image Desaturation (Quiet Luxury HSL Treatment) */
+.facade-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    /* Minimalist desaturated color grading matching squamish fjord bluffs */
+    filter: saturate(12%) contrast(102%) brightness(75%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+/* Interactive Hover States */
+.luxury-video-facade:hover .facade-background {
+    transform: scale(1.03) translate3d(0, 0, 0);
+    filter: saturate(20%) contrast(105%) brightness(80%);
+}
+
+/* Elegant Overlay and Glassmorphism Play Button */
+.facade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.play-button {
+    position: relative;
+    z-index: 3;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(18, 22, 28, 0.35);
+    
+    /* Glassmorphism blurring filter */
+    backdrop-filter: blur(16px) saturate(100%);
+    -webkit-backdrop-filter: blur(16px) saturate(100%);
+    color: hsl(0, 0%, 98%);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    
+    /* Composited translation transitions */
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, background-color, border-color, box-shadow, opacity;
+}
+
+.play-icon {
+    width: 26px;
+    height: 26px;
+    transform: translateX(2px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Play Button Hover Interaction */
+.luxury-video-facade:hover .play-button {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.75);
+    transform: scale(1.08) translate3d(0, 0, 0);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.luxury-video-facade:hover .play-button .play-icon {
+    transform: translateX(2px) scale(1.04);
+}
+
+/* Responsive Play Button Resizing */
+@media (max-width: 544px) {
+   .play-button {
+        width: 64px;
+        height: 64px;
+    }
+   .play-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Dynamic Iframe Container Mounting Style */
+.luxury-video-facade iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 4;
+    
+    /* Hardware accelerated layering upon creation */
+    transform: translate3d(0, 0, 0);
+    will-change: opacity;
+    animation: fadeInFrame 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeInFrame {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

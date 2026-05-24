@@ -1,0 +1,463 @@
+/* ==============================
+   KEYSTONE POSSIBILITIES
+   LUXURY DESIGN SYSTEM — v2
+   May 1, 2026
+   ============================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ============================
+   GLOBAL BODY — Dark Luxury
+   ============================ */
+body {
+  background-color: #111111 !important;
+  color: #e8e8e8 !important;
+}
+
+/* === GLOBAL TYPOGRAPHY === */
+body,
+.entry-content,
+.ast-single-post .entry-content,
+p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: #d4d4d4 !important;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.ast-archive-title,
+.page-title,
+.site-title {
+  font-family: 'Outfit', 'Inter', sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #ffffff !important;
+}
+
+/* === LOGO FIX — Transparent Background === */
+.custom-logo-link,
+.custom-logo-link img,
+.ast-site-identity img,
+.site-logo-img,
+img.custom-logo {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Remove any wrapper background on logo container */
+.ast-site-identity,
+.site-branding {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* === HEADER — Dark Luxury Sticky === */
+.ast-primary-header-bar,
+.main-header-bar,
+#ast-desktop-header,
+.ast-above-header,
+.ast-main-header-wrap,
+header.site-header,
+.ast-header-break-point .ast-primary-header-bar {
+  background-color: #111111 !important;
+  border-bottom: 1px solid rgba(196, 162, 101, 0.25) !important;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3) !important;
+}
+
+/* Header text / links */
+.main-header-bar .ast-sitename-text,
+.main-header-bar a,
+.ast-header-break-point .ast-sitename-text,
+.site-title a {
+  color: #ffffff !important;
+}
+
+/* Navigation links */
+.main-navigation a,
+.ast-nav-menu a,
+.ast-header-sections-navigation a,
+.main-header-menu > .menu-item > a {
+  color: #d4d4d4 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.main-navigation a:hover,
+.ast-nav-menu a:hover,
+.main-header-menu > .menu-item > a:hover,
+.main-header-menu > .menu-item.current-menu-item > a {
+  color: #C4A265 !important;
+}
+
+/* Mobile menu */
+.ast-mobile-popup-drawer,
+.ast-mobile-header-wrap,
+.ast-header-break-point .main-header-bar {
+  background-color: #111111 !important;
+}
+
+.ast-mobile-popup-drawer .menu-item a {
+  color: #d4d4d4 !important;
+  border-bottom-color: rgba(196, 162, 101, 0.15) !important;
+}
+
+/* === SECTION HEADERS — Luxury Treatment === */
+.entry-content h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #C4A265;
+  color: #ffffff !important;
+}
+
+.entry-content h3 {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  letter-spacing: 0.05em;
+  color: #C4A265 !important;
+  margin-top: 2.5rem;
+}
+
+/* === BUTTONS — Gold Accent === */
+.wp-block-button .wp-block-button__link,
+.ast-custom-button,
+a.wp-block-button__link {
+  background-color: #C4A265 !important;
+  color: #111111 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 36px !important;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.wp-block-button .wp-block-button__link:hover,
+a.wp-block-button__link:hover {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(196, 162, 101, 0.3);
+}
+
+/* Outlined Button Variant */
+.wp-block-button.is-style-outline .wp-block-button__link {
+  background-color: transparent !important;
+  color: #C4A265 !important;
+  border: 2px solid #C4A265 !important;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+  background-color: #C4A265 !important;
+  color: #111111 !important;
+}
+
+/* === COVER BLOCKS — Hero Sections === */
+.wp-block-cover {
+  min-height: 600px !important;
+  border-radius: 0 !important;
+}
+
+.wp-block-cover .wp-block-cover__inner-container {
+  max-width: 800px;
+  text-align: center;
+}
+
+.wp-block-cover h1,
+.wp-block-cover h2 {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff !important;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  border-bottom: none;
+}
+
+.wp-block-cover p {
+  color: rgba(255,255,255,0.9) !important;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === PAGE CONTENT AREA — Dark Background === */
+.ast-separate-container .ast-article-single,
+.ast-separate-container .ast-article-post,
+.ast-separate-container .ast-comment-list li,
+.ast-separate-container .comment-respond,
+.single .post-navigation,
+.ast-separate-container .entry-content .wp-block-group,
+.ast-plain-container,
+.site-content {
+  background-color: #111111 !important;
+}
+
+/* === NEGATIVE SPACE — Gallery Effect === */
+.entry-content > * {
+  margin-bottom: 2rem;
+}
+
+.wp-block-group {
+  padding: 4rem 2rem;
+}
+
+.wp-block-columns {
+  gap: 3rem !important;
+}
+
+/* === IMAGE TREATMENT === */
+.entry-content img,
+.wp-block-image img {
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.entry-content img:hover,
+.wp-block-image img:hover {
+  transform: scale(1.02);
+}
+
+/* Gallery Grid */
+.wp-block-gallery {
+  gap: 1rem !important;
+}
+
+.wp-block-gallery .wp-block-image {
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* === CONTENT BLOCKS & LUXURY CARDS === */
+.wp-block-group.has-background,
+.wp-block-columns.has-background {
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 0;
+  padding: 40px 30px !important;
+}
+
+/* Gold bordered feature cards */
+.wp-block-column {
+  padding: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.wp-block-column:hover {
+  border-color: #C4A265 !important;
+}
+
+/* === TABLES (FOR BLOG INFO / ROI) === */
+.wp-block-table table,
+table {
+  background-color: #1a1a1a !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  border: 1px solid #2a2a2a !important;
+}
+
+.wp-block-table table th,
+table th {
+  background-color: #C4A265 !important;
+  color: #111111 !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em;
+  padding: 14px 18px !important;
+  font-size: 0.85rem !important;
+}
+
+.wp-block-table table td,
+table td {
+  color: #e8e8e8 !important;
+  padding: 12px 18px !important;
+  border-bottom: 1px solid #2a2a2a !important;
+  font-size: 0.9rem !important;
+}
+
+.wp-block-table table tr:hover td,
+table tr:hover td {
+  background-color: #222222 !important;
+}
+
+/* === EMAIL CAPTURE / LEAD MAGNET CTA === */
+.wp-block-group.email-capture,
+.kp-email-capture {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f1f1f 100%) !important;
+  border: 2px solid #C4A265 !important;
+  padding: 50px 40px !important;
+  text-align: center;
+}
+
+/* === LIST STYLING === */
+.entry-content ul li::marker,
+.entry-content ol li::marker {
+  color: #C4A265 !important;
+}
+
+/* === FOOTER — Dark Luxury === */
+.ast-footer-overlay,
+.site-footer,
+.ast-small-footer,
+footer.site-footer,
+.ast-footer-copyright,
+.ast-small-footer .ast-footer-overlay,
+.ast-above-footer,
+.ast-above-footer-wrap,
+.ast-below-footer,
+.ast-below-footer-wrap,
+.site-below-footer-wrap,
+.site-primary-footer-wrap,
+.ast-builder-footer-grid-columns,
+.ast-footer-row-inline,
+.site-info {
+  background-color: #111111 !important;
+  color: #999 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.site-footer a,
+.ast-small-footer a {
+  color: #C4A265 !important;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover,
+.ast-small-footer a:hover {
+  color: #ffffff !important;
+}
+
+/* Footer headings/titles */
+.site-footer h1,
+.site-footer h2,
+.site-footer h3,
+.site-footer h4 {
+  color: #ffffff !important;
+}
+
+.site-footer p,
+.site-footer li {
+  color: #999 !important;
+}
+
+/* === SEPARATOR — Gold === */
+.wp-block-separator {
+  border-color: #C4A265 !important;
+  opacity: 0.4;
+  max-width: 100px;
+  margin: 3rem auto;
+}
+
+/* === BREADCRUMBS === */
+.ast-breadcrumbs,
+.ast-breadcrumbs a {
+  color: #666 !important;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.ast-breadcrumbs a:hover {
+  color: #C4A265 !important;
+}
+
+/* === LISTS — Readable on Dark === */
+.entry-content ul li,
+.entry-content ol li {
+  color: #d4d4d4 !important;
+}
+
+.entry-content a {
+  color: #C4A265 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.entry-content a:hover {
+  color: #ffffff !important;
+}
+
+/* === FORMS / INPUTS === */
+input, textarea, select {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333 !important;
+  color: #e8e8e8 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #C4A265 !important;
+  outline: none !important;
+}
+
+/* === SIDEBAR WIDGETS === */
+.sidebar-main .widget,
+#secondary .widget {
+  background-color: #1a1a1a !important;
+  border: 1px solid #222 !important;
+  padding: 1.5rem;
+}
+
+.sidebar-main .widget-title {
+  color: #C4A265 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+/* === BLOG CARDS === */
+.ast-article-post,
+.ast-article-inner {
+  background-color: #1a1a1a !important;
+  border: 1px solid #222 !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.ast-article-post:hover,
+.ast-article-inner:hover {
+  border-color: #C4A265 !important;
+  box-shadow: 0 4px 20px rgba(196, 162, 101, 0.15) !important;
+}
+
+.ast-article-post .entry-title a,
+.ast-article-inner .entry-title a {
+  color: #e8e8e8 !important;
+  transition: color 0.3s ease;
+}
+
+.ast-article-post .entry-title a:hover,
+.ast-article-inner .entry-title a:hover {
+  color: #C4A265 !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .wp-block-cover {
+    min-height: 400px !important;
+  }
+  .wp-block-group {
+    padding: 2rem 1rem;
+  }
+  .entry-content h2 {
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+  }
+}
