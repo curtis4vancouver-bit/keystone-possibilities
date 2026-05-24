@@ -68,6 +68,18 @@ if ( isset( $_GET['check_rm_options'] ) ) {
         }
     }
     
+    echo "\n=== ALL POSTS SCHEMA META SCAN ===\n\n";
+    $meta_rows = $wpdb->get_results( "SELECT post_id, meta_key, meta_value FROM $wpdb->postmeta WHERE meta_key LIKE 'rank_math_schema_%'" );
+    echo "TOTAL SCHEMA META ROWS: " . count($meta_rows) . "\n";
+    foreach ( $meta_rows as $row ) {
+        $val = maybe_unserialize( $row->meta_value );
+        $type = gettype( $val );
+        echo "POST ID: " . $row->post_id . " | META KEY: " . $row->meta_key . " | TYPE: " . $type . "\n";
+        if ( $type === 'string' ) {
+            echo "  VALUE: " . substr($val, 0, 100) . "\n";
+        }
+    }
+    
     echo "\n=== SIMULATING RANK MATH ADMIN DATA ===\n\n";
     // Check if the class exists and what options it accesses
     if ( class_exists( 'RankMathPro\Schema\Admin' ) ) {
