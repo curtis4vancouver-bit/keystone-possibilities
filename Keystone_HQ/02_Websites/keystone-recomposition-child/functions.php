@@ -23,6 +23,37 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['scan_all_spotify_links'] ) ) {
+    global $wpdb;
+    header('Content-Type: text/plain');
+    echo "=== DB POSTS SCAN FOR SPOTIFY ===\n\n";
+    $posts = $wpdb->get_results( "SELECT ID, post_title, post_content FROM $wpdb->posts WHERE post_content LIKE '%spotify%'" );
+    foreach ( $posts as $p ) {
+        echo "POST ID: " . $p->ID . " | TITLE: " . $p->post_title . "\n";
+        preg_match_all( '~https://open\.spotify\.com/[^\s\"\'<>]*~i', $p->post_content, $matches );
+        if ( ! empty( $matches[0] ) ) {
+            foreach ( $matches[0] as $m ) {
+                echo "  FOUND URL: " . $m . "\n";
+            }
+        } else {
+            echo "  (No direct URL regex match, check manually)\n";
+        }
+    }
+    
+    echo "\n=== DB OPTIONS SCAN FOR SPOTIFY ===\n\n";
+    $options = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_value LIKE '%spotify%'" );
+    foreach ( $options as $o ) {
+        echo "OPTION: " . $o->option_name . "\n";
+        preg_match_all( '~https://open\.spotify\.com/[^\s\"\'<>]*~i', $o->option_value, $matches );
+        if ( ! empty( $matches[0] ) ) {
+            foreach ( $matches[0] as $m ) {
+                echo "  FOUND URL: " . $m . "\n";
+            }
+        }
+    }
+    exit;
+}
+
 if ( isset( $_GET['restore_mounjaro_post'] ) ) {
     $file_path = __DIR__ . '/mounjaro_backup.txt';
     if ( file_exists( $file_path ) ) {
