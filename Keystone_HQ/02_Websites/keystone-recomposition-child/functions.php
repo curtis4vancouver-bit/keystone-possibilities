@@ -126,3 +126,36 @@ add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
     
     return $video;
 }, 10, 2 );
+
+/**
+ * 8. Intercept and Deduplicate Video Schema Graph (GSC "Watch Page" Optimization)
+ * Scans the Rank Math JSON-LD graph, extracts all VideoObjects, and preserves ONLY the 
+ * first primary VideoObject. This prevents GSC from rejecting the page due to duplicate 
+ * training soundtrack or social links.
+ */
+add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
+    if ( isset( $data['@graph'] ) && is_array( $data['@graph'] ) ) {
+        $video_nodes = array();
+        $other_nodes = array();
+        
+        foreach ( $data['@graph'] as $node ) {
+            if ( isset( $node['@type'] ) ) {
+                $types = (array) $node['@type'];
+                if ( in_array( 'VideoObject', $types ) ) {
+                    $video_nodes[] = $node;
+                } else {
+                    $other_nodes[] = $node;
+                }
+            } else {
+                $other_nodes[] = $node;
+            }
+        }
+        
+        // If multiple VideoObjects exist, keep only the first (primary article video)
+        if ( count( $video_nodes ) > 1 ) {
+            $other_nodes[] = $video_nodes[0];
+            $data['@graph'] = $other_nodes;
+        }
+    }
+    return $data;
+}, 999, 2 );
