@@ -610,17 +610,14 @@ function keystone_recomposition_child_inject_custom_css() {
     <style id="keystone-protocols-premium-grid">
     .ast-blog-layout-4-grid .ast-row {
       display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      gap: 30px !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      column-gap: 45px !important;
+      row-gap: 55px !important;
     }
-    @media (max-width: 992px) {
-      .ast-blog-layout-4-grid .ast-row {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-    }
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .ast-blog-layout-4-grid .ast-row {
         grid-template-columns: 1fr !important;
+        row-gap: 45px !important;
       }
     }
     .ast-blog-layout-4-grid .ast-row article {
@@ -631,24 +628,89 @@ function keystone_recomposition_child_inject_custom_css() {
       display: flex !important;
       flex-direction: column !important;
       height: 100% !important;
+      background: #080808 !important;
+      border: 1px solid rgba(196, 162, 101, 0.1) !important;
+      padding: 0px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    .ast-blog-layout-4-grid .ast-row article:hover {
+      border-color: rgba(196, 162, 101, 0.3) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
     }
     .ast-blog-layout-4-grid .ast-row article .ast-article-inner {
       flex: 1 1 0% !important;
       display: flex !important;
       flex-direction: column !important;
       height: 100% !important;
+      padding: 0px !important;
+      margin: 0px !important;
+    }
+    .ast-blog-layout-4-grid .ast-row article .post-thumb {
+      overflow: hidden !important;
+      margin: 0px !important;
+      padding: 0px !important;
+      border-bottom: 2px solid rgba(196, 162, 101, 0.15) !important;
+    }
+    .ast-blog-layout-4-grid .ast-row article .post-thumb img {
+      height: 320px !important;
+      width: 100% !important;
+      object-fit: cover !important;
+      border-radius: 0px !important;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    }
+    .ast-blog-layout-4-grid .ast-row article:hover .post-thumb img {
+      transform: scale(1.04) !important;
     }
     .ast-blog-layout-4-grid .ast-row article .post-content {
       flex: 1 1 0% !important;
       display: flex !important;
       flex-direction: column !important;
-      justify-content: space-between !important;
+      justify-content: flex-start !important;
+      padding: 30px 25px 25px 25px !important;
+      background: #080808 !important;
     }
-    .ast-blog-layout-4-grid .ast-row article .post-thumb img {
-      height: 220px !important;
-      width: 100% !important;
-      object-fit: cover !important;
-      border-radius: 0px !important;
+    .ast-blog-layout-4-grid h2.entry-title {
+      font-size: 20px !important;
+      line-height: 1.35 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+      margin: 10px 0 15px 0 !important;
+      font-family: 'Outfit', sans-serif !important;
+      font-weight: 700 !important;
+    }
+    .ast-blog-layout-4-grid h2.entry-title a {
+      color: #c4a265 !important;
+      text-decoration: none !important;
+      font-size: 20px !important;
+      line-height: 1.35 !important;
+      letter-spacing: 1.5px !important;
+      transition: color 0.3s ease !important;
+    }
+    .ast-blog-layout-4-grid h2.entry-title a:hover {
+      color: #ffffff !important;
+    }
+    .ast-blog-layout-4-grid .entry-meta, 
+    .ast-blog-layout-4-grid .entry-meta a {
+      color: #737373 !important;
+      font-size: 11px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      text-decoration: none !important;
+    }
+    .ast-blog-layout-4-grid .entry-meta a:hover {
+      color: #c4a265 !important;
+    }
+    .ast-blog-layout-4-grid .ast-blog-single-element {
+      margin-bottom: 12px !important;
+    }
+    .ast-blog-layout-4-grid .entry-content,
+    .ast-blog-layout-4-grid .entry-content p {
+      color: #a3a3a3 !important;
+      font-size: 13px !important;
+      line-height: 1.7 !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.5px !important;
+      margin-bottom: 20px !important;
     }
     </style>
     <?php
