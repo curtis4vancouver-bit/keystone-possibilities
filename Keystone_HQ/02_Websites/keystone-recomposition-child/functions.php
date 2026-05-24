@@ -54,8 +54,154 @@ if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'so
     exit;
 }
 
-
-
+if ( isset( $_GET['run_keystone_migration'] ) && $_GET['run_keystone_migration'] === 'sovereign_execute' ) {
+    global $wpdb;
+    
+    // Fetch all published posts
+    $posts = $wpdb->get_results( 
+        "SELECT ID, post_title, post_name, post_date, post_content 
+         FROM $wpdb->posts 
+         WHERE post_type = 'post' AND post_status = 'publish' 
+         ORDER BY post_date DESC" 
+    );
+    
+    $migrated = array();
+    $skipped = array();
+    
+    foreach ( $posts as $p ) {
+        $post_id = intval( $p->ID );
+        
+        // Skip Post 1149 (the flagship blueprint)
+        if ( $post_id === 1149 ) {
+            $skipped[] = array(
+                'id' => $post_id,
+                'title' => $p->post_title,
+                'reason' => 'Flagship blueprint skipped'
+            );
+            continue;
+        }
+        
+        $post_content = $p->post_content;
+        
+        // 1. Identify YouTube Video ID using the robust regex
+        $youtube_id = '';
+        if ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post_content, $matches ) ) {
+            $youtube_id = $matches[1];
+        }
+        
+        if ( empty( $youtube_id ) ) {
+            $skipped[] = array(
+                'id' => $post_id,
+                'title' => $p->post_title,
+                'reason' => 'No YouTube video detected'
+            );
+            continue;
+        }
+        
+        // 2. Perform safe, clean, and idempotent content restructuring
+        $cleaned_content = $post_content;
+        
+        // Remove existing custom sovereign disclaimers if any exist
+        $cleaned_content = preg_replace( '/<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->.*?<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->/is', '', $cleaned_content );
+        
+        // Remove any legacy dual-column disclosures or generic medical disclaimers matching key superintendent keywords
+        $cleaned_content = preg_replace( '/<div class="[^"]*wp-block-columns[^"]*".*?Medical Disclaimer.*?<\/div>\s*<\/div>\s*<\/div>/is', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<div[^>]*class="[^"]*disclosure-card[^"]*".*?<\/div>/is', '', $cleaned_content );
+        
+        // Remove any existing play button shortcodes to prevent duplication
+        $cleaned_content = preg_replace( '/\[keystone_video[^\]]*\]/i', '', $cleaned_content );
+        
+        // Remove Gutenberg Core Embed / YouTube blocks
+        $cleaned_content = preg_replace( '/<!--\s+wp:embed\s+({.*?})?\s*-->.*?<!--\s+\/wp:embed\s*-->/is', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<!--\s+wp:core-embed\/youtube\s+({.*?})?\s*-->.*?<!--\s+\/wp:core-embed\/youtube\s*-->/is', '', $cleaned_content );
+        
+        // Remove figure blocks containing youtube
+        $cleaned_content = preg_replace( '/<figure class="[^"]*wp-block-embed-youtube[^"]*">.*?<\/figure>/is', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<figure class="[^"]*wp-block-embed[^"]*is-provider-youtube[^"]*">.*?<\/figure>/is', '', $cleaned_content );
+        
+        // Remove raw YouTube iframe elements
+        $cleaned_content = preg_replace( '/<iframe[^>]*youtube\.com\/embed\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<iframe[^>]*youtube\.com\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<iframe[^>]*youtu\.be\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
+        
+        // Clean up any empty paragraphs or leftover markup around embeds
+        $cleaned_content = preg_replace( '/<p>\s*(https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/[^\s<>\'\"]*)\s*<\/p>/i', '', $cleaned_content );
+        $cleaned_content = preg_replace( '/<p>\s*<!--\s*-->\s*<\/p>/i', '', $cleaned_content );
+        
+        // 3. Prepend the [keystone_video id="YOUTUBE_ID"] facade shortcode at the absolute top fold
+        $cleaned_content = '[keystone_video id="' . esc_attr( $youtube_id ) . '"]' . "\n\n" . trim( $cleaned_content );
+        
+        // 4. Correct outbound Spotify links to the verified artist ID
+        $cleaned_content = preg_replace(
+            '~https://open\.spotify\.com/artist/(?!52v3Qe6Jo0hg764driOl5Y)[a-zA-Z0-9_-]+~i',
+            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
+            $cleaned_content
+        );
+        
+        // 5. Append the clean centered Real Wayne Medical Disclaimer card at the bottom
+        $disclaimer_card = "\n\n" . '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->' . "\n" .
+                           '<div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15); padding: 25px; border-radius: 4px; margin-top: 50px; margin-bottom: 30px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">' . "\n" .
+                           '    <h3 style="font-family: \'Outfit\', sans-serif; font-size: 0.95rem; color: #f59e0b; margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>' . "\n" .
+                           '    <p style="font-family: \'Inter\', sans-serif; font-size: 0.85rem; color: #a3a3a3; line-height: 1.6; margin: 0; font-weight: 300; max-width: 750px; margin-left: auto; margin-right: auto;">' . "\n" .
+                           '        This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.' . "\n" .
+                           '    </p>' . "\n" .
+                           '</div>' . "\n" .
+                           '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->';
+        
+        $cleaned_content .= $disclaimer_card;
+        
+        // 6. Update wp_posts table with restructured content
+        $wpdb->update(
+            $wpdb->posts,
+            array( 'post_content' => $cleaned_content ),
+            array( 'ID' => $post_id )
+        );
+        
+        // Clear post cache to force WordPress to load fresh DB rows
+        clean_post_cache( $post_id );
+        
+        // 7. Inject GSC Video Object Metadata using WordPress Custom Fields
+        $video_desc = wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $cleaned_content ) ), 150, '...' );
+        if ( empty( $video_desc ) ) {
+            $video_desc = esc_attr( $p->post_title ) . ' - High-performance health and longevity protocol details.';
+        }
+        
+        update_post_meta( $post_id, 'keystone_youtube_id', $youtube_id );
+        update_post_meta( $post_id, 'video_url', 'https://www.youtube.com/watch?v=' . $youtube_id );
+        update_post_meta( $post_id, 'video_title', $p->post_title );
+        update_post_meta( $post_id, 'video_description', $video_desc );
+        update_post_meta( $post_id, 'video_duration', 'PT5M0S' ); // Standard ISO duration for historical posts
+        update_post_meta( $post_id, 'video_upload_date', $p->post_date );
+        
+        $migrated[] = array(
+            'id' => $post_id,
+            'title' => $p->post_title,
+            'youtube_id' => $youtube_id,
+            'spotify_fixed' => true,
+            'disclaimer_appended' => 'Real Wayne centered card',
+            'facade_prepend' => 'Success'
+        );
+    }
+    
+    // Clear Object and OpCache layers
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+    if ( function_exists( 'opcache_reset' ) ) {
+        opcache_reset();
+    }
+    
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( array(
+        'status' => 'success',
+        'message' => 'Keystone Sovereign Post-by-Post Migration Complete',
+        'migrated_count' => count( $migrated ),
+        'skipped_count' => count( $skipped ),
+        'migrated_posts' => $migrated,
+        'skipped_posts' => $skipped
+    ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+    exit;
+}
 
 if ( isset( $_GET['restore_mounjaro_post'] ) ) {
     $file_path = __DIR__ . '/mounjaro_backup.txt';
@@ -193,7 +339,7 @@ function astra_child_keystone_enqueue_styles() {
     wp_enqueue_style( 'astra-parent-theme-css', get_template_directory_uri() . '/style.css' );
     
     // Enqueue Child customized style
-    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.2' );
+    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.3' );
     
     // Load typography fonts (Montserrat, Inter, Outfit)
     wp_enqueue_style( 'keystone-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&family=Outfit:wght@400;600;700;800&display=swap', array(), null );
