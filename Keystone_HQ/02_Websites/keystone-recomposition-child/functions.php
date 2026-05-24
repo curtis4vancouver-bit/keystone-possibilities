@@ -12,6 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if ( isset( $_GET['purge_all_caches'] ) ) {
+    if ( function_exists( 'opcache_reset' ) ) {
+        opcache_reset();
+    }
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+    echo "CACHES PURGED SUCCESSFULLY";
+    exit;
+}
+
 /**
  * 1. Enqueue Parent Stylesheet and Google Fonts
  */
