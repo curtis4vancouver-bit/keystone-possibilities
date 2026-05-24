@@ -28,23 +28,41 @@ function astra_child_keystone_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'astra_child_keystone_enqueue_styles' );
 
 /**
- * 2. Safe One-Time Database Purge of Cached Rank Math Video Schemas
- * Deletes the 'rank_math_schema_VideoObject' meta keys for all posts.
+ * 2. Safe One-Time Database Purge & Post Cache Flush
+ * Deletes the 'rank_math_schema_VideoObject' meta keys and flushes the WordPress object cache.
  * Triggered by visiting https://keystonerecomposition.com/?purge_rm_video_schemas=1 as an administrator.
  */
 add_action( 'init', function() {
     if ( is_user_logged_in() && current_user_can( 'manage_options' ) && isset( $_GET['purge_rm_video_schemas'] ) ) {
         global $wpdb;
-        $deleted_count = $wpdb->delete(
-            $wpdb->postmeta,
-            array( 'meta_key' => 'rank_math_schema_VideoObject' )
-        );
-        wp_die( sprintf( 'Database Purge Completed! Deleted %d cached video schemas from the database.', $deleted_count ) );
+        
+        $post_ids = $wpdb->get_col( $wpdb->prepare(
+            "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s",
+            'rank_math_schema_VideoObject'
+        ) );
+        
+        $deleted_count = 0;
+        if ( ! empty( $post_ids ) ) {
+            $deleted_count = $wpdb->delete(
+                $wpdb->postmeta,
+                array( 'meta_key' => 'rank_math_schema_VideoObject' )
+            );
+            
+            foreach ( $post_ids as $post_id ) {
+                clean_post_cache( $post_id );
+                wp_cache_delete( $post_id, 'post_meta' );
+            }
+        }
+        
+        clean_post_cache( 982 );
+        wp_cache_delete( 982, 'post_meta' );
+        
+        wp_die( sprintf( 'Database Purge & Cache Flush Completed! Cleared %d posts and deleted %d cached video schemas from the database.', count( $post_ids ), $deleted_count ) );
     }
 } );
 
 /**
- * 2. Preconnecting Web Fonts (Performance GSC optimization)
+ * 3. Preconnecting Web Fonts (Performance GSC optimization)
  */
 function astra_child_keystone_resource_hints( $urls, $relation_type ) {
     if ( 'dns-prefetch' === $relation_type || 'preconnect' === $relation_type ) {
