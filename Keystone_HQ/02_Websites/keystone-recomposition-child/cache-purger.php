@@ -50,7 +50,8 @@ if ( file_exists( $wp_load_path ) ) {
             'https://open.spotify.com/artist/keystone-recomposition',
             'https://open.spotify.com/artist/1a30328b-20b2-48bd-8e56-2884d3b040c0',
             'https://open.spotify.com/artist/0',
-            'https://open.spotify.com/artist/3hXpKBxUlhgoYkxGtzYNdU'
+            'https://open.spotify.com/artist/3hXpKBxUlhgoYkxGtzYNdU',
+            'https://open.spotify.com/artist/6P2k3S7n9jN3XQ8z4B1m5V'
         );
         $correct_url = 'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y';
         
