@@ -43,6 +43,17 @@ if ( isset( $_GET['restore_mounjaro_post'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['list_revisions'] ) ) {
+    $revisions = wp_get_post_revisions( 1149 );
+    echo "=== REVISIONS FOR POST 1149 ===\n\n";
+    foreach ( $revisions as $rev ) {
+        echo "REVISION ID: " . $rev->ID . " | DATE: " . $rev->post_date . " | TITLE: " . $rev->post_title . "\n";
+        echo "  CONTENT LENGTH: " . strlen( $rev->post_content ) . "\n";
+        echo "  SNIPPET: " . substr( wp_strip_all_tags( $rev->post_content ), 0, 150) . "\n\n";
+    }
+    exit;
+}
+
 if ( isset( $_GET['check_rm_options'] ) ) {
     global $wpdb;
     $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '%rank-math%' OR option_name LIKE '%rank_math%' OR option_name LIKE '%schema%'" );
