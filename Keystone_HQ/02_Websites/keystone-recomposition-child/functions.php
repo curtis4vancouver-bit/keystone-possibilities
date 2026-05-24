@@ -28,19 +28,20 @@ function astra_child_keystone_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'astra_child_keystone_enqueue_styles' );
 
 /**
- * TEMPORARY DIAGNOSTIC ACTION - DUMPS METADATA
+ * 2. Safe One-Time Database Purge of Cached Rank Math Video Schemas
+ * Deletes the 'rank_math_schema_VideoObject' meta keys for all posts.
+ * Triggered by visiting https://keystonerecomposition.com/?purge_rm_video_schemas=1 as an administrator.
  */
-add_action( 'wp_head', function() {
-    if ( is_singular( 'post' ) ) {
-        global $post;
-        if ( $post ) {
-            $meta = get_post_meta( $post->ID );
-            echo "<!-- POST METADATA DUMP:\\n";
-            print_r( $meta );
-            echo "-->\\n";
-        }
+add_action( 'init', function() {
+    if ( is_user_logged_in() && current_user_can( 'manage_options' ) && isset( $_GET['purge_rm_video_schemas'] ) ) {
+        global $wpdb;
+        $deleted_count = $wpdb->delete(
+            $wpdb->postmeta,
+            array( 'meta_key' => 'rank_math_schema_VideoObject' )
+        );
+        wp_die( sprintf( 'Database Purge Completed! Deleted %d cached video schemas from the database.', $deleted_count ) );
     }
-}, 1 );
+} );
 
 /**
  * 2. Preconnecting Web Fonts (Performance GSC optimization)
