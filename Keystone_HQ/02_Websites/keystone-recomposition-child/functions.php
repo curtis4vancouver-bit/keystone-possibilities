@@ -28,6 +28,21 @@ function astra_child_keystone_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'astra_child_keystone_enqueue_styles' );
 
 /**
+ * TEMPORARY DIAGNOSTIC ACTION - DUMPS METADATA
+ */
+add_action( 'wp_head', function() {
+    if ( is_singular( 'post' ) ) {
+        global $post;
+        if ( $post ) {
+            $meta = get_post_meta( $post->ID );
+            echo "<!-- POST METADATA DUMP:\\n";
+            print_r( $meta );
+            echo "-->\\n";
+        }
+    }
+}, 1 );
+
+/**
  * 2. Preconnecting Web Fonts (Performance GSC optimization)
  */
 function astra_child_keystone_resource_hints( $urls, $relation_type ) {
