@@ -1256,6 +1256,9 @@ function keystone_add_video_sitemap_to_index( $index ) {
     return $index;
 }
 
+// Disable Rank Math sitemap caching completely to ensure dynamic updates reflect immediately
+add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
+
 // Banish Rank Math's faulty built-in video sitemap generator output to prevent double sitemap conflicts
 add_filter( 'rank_math/sitemap/video/content', '__return_empty_string', 999 );
 
