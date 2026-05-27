@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( isset( $_GET['purge_all_caches'] ) ) {
+    global $wpdb;
+    $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_rank_math_sitemap_%' OR option_name LIKE '_transient_timeout_rank_math_sitemap_%'" );
+    
     if ( function_exists( 'opcache_reset' ) ) {
         opcache_reset();
     }
