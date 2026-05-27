@@ -1140,9 +1140,9 @@ add_action( 'init', 'keystone_video_sitemap_rewrite' );
 function keystone_video_sitemap_rewrite() {
     add_rewrite_rule( '^keystone-video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top' );
     // Check if flushed already, if not, flush once dynamically
-    if ( ! get_option( 'keystone_vsm_flushed_v1' ) ) {
+    if ( ! get_option( 'keystone_vsm_flushed_v2_final' ) ) {
         flush_rewrite_rules();
-        update_option( 'keystone_vsm_flushed_v1', true );
+        update_option( 'keystone_vsm_flushed_v2_final', true );
     }
 }
 
