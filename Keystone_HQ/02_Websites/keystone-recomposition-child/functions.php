@@ -23,43 +23,8 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     exit;
 }
 
-if ( isset( $_GET['keystone_flush_rules'] ) ) {
-    delete_option('rewrite_rules');
-    echo "REWRITE RULES OPTION DELETED SUCCESSFULLY";
-    exit;
-}
-
-if ( isset( $_GET['run_instant_indexing'] ) ) {
-    if ( class_exists( 'RankMath\\Instant_Indexing\\Api' ) ) {
-        echo "INSTANT INDEXING PLUGIN IS INSTALLED.\\n";
-        // Let's try to get the settings
-        $settings = get_option( 'rank_math_instant_indexing_settings' );
-        if ( !empty($settings['google_api_key']) ) {
-            echo "API KEY IS CONFIGURED.\\n";
-            // Get all post URLs
-            global $wpdb;
-            $posts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish'" );
-            $urls = array();
-            foreach ( $posts as $p ) {
-                $urls[] = get_permalink( $p->ID );
-            }
-            $api = new RankMath\\Instant_Indexing\\Api();
-            $response = $api->send_to_api( $urls, 'URL_UPDATED' );
-            echo "RESPONSE:\\n";
-            print_r( $response );
-        } else {
-            echo "API KEY IS NOT CONFIGURED.";
-        }
-    } else {
-        echo "INSTANT INDEXING PLUGIN IS NOT INSTALLED.";
-    }
-    exit;
-}
-
 if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'sovereign_view' ) {
     global $wpdb;
-    delete_option('rewrite_rules');
-
     $posts = $wpdb->get_results( 
         "SELECT ID, post_title, post_name, post_date, post_content 
          FROM $wpdb->posts 
@@ -87,18 +52,6 @@ if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'so
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode( $report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
     exit;
-}
-
-add_action( 'init', 'keystone_raw_post_fetcher' );
-function keystone_raw_post_fetcher() {
-    if ( isset( $_GET['get_raw_post'] ) ) {
-        global $wpdb;
-        $post_id = intval( $_GET['get_raw_post'] );
-        $post = $wpdb->get_row( $wpdb->prepare( "SELECT ID, post_content FROM $wpdb->posts WHERE ID = %d", $post_id ) );
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode( $post, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-        exit;
-    }
 }
 
 if ( isset( $_GET['run_keystone_migration'] ) && $_GET['run_keystone_migration'] === 'sovereign_execute' ) {
@@ -771,7 +724,7 @@ add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
         if ( $post ) {
             if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']]~', $post->post_content, $matches ) ) {
                 $youtube_id = $matches[1];
-            } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=|embed/)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post->post_content, $matches ) ) {
+            } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post->post_content, $matches ) ) {
                 $youtube_id = $matches[1];
             }
         }
@@ -1098,100 +1051,8 @@ function keystone_recomposition_child_inject_custom_css() {
     .single-post .entry-meta .author-name {
       color: #00ced1 !important;
       font-weight: 600 !important;
+    }
     </style>
     <?php
 }
 add_action( 'wp_head', 'keystone_recomposition_child_inject_custom_css', 150 );
-
-/**
- * 15. Automatically Append YouTube Subscribe Buttons to All Pages and Posts
- * Skips appending if the content already contains a sub_confirmation link.
- */
-function keystone_recomposition_child_append_subscribe_buttons( $content ) {
-    if ( is_singular() && is_main_query() ) {
-        // Prevent duplication if the user manually embedded them
-        if ( strpos( $content, 'sub_confirmation=1' ) === false ) {
-            $subscribe_html = '
-            <div class="keystone-global-subscribe-buttons" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:40px; margin-bottom: 40px; justify-content: center; align-items: center;">
-                <a href="https://www.youtube.com/@keystonerecomposition?sub_confirmation=1" target="_blank" rel="noopener" style="background-color:#cc0000; color:#fff; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 700; font-family: \'Outfit\', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.3s ease;">▶ Subscribe: Keystone Recomposition</a>
-                <a href="https://www.youtube.com/@keystoneprotocols?sub_confirmation=1" target="_blank" rel="noopener" style="background-color:#cc0000; color:#fff; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 700; font-family: \'Outfit\', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.3s ease;">▶ Subscribe: Keystone Protocols</a>
-            </div>';
-            $content .= $subscribe_html;
-        }
-    }
-    return $content;
-}
-add_filter( 'the_content', 'keystone_recomposition_child_append_subscribe_buttons', 99 );
-
-/**
- * 16. Fallback Post Thumbnail to YouTube Video Thumbnail
- * Provides a fake _thumbnail_id so all themes (including Astra) and plugins think there's a thumbnail.
- */
-add_filter( 'get_post_metadata', 'keystone_fallback_thumbnail_id', 10, 4 );
-function keystone_fallback_thumbnail_id( $value, $object_id, $meta_key, $single ) {
-    if ( '_thumbnail_id' === $meta_key ) {
-        // Prevent infinite recursion by temporarily removing the filter
-        remove_filter( 'get_post_metadata', 'keystone_fallback_thumbnail_id', 10 );
-        $real_id = get_post_meta( $object_id, '_thumbnail_id', true );
-        add_filter( 'get_post_metadata', 'keystone_fallback_thumbnail_id', 10, 4 );
-        
-        if ( ! empty( $real_id ) ) {
-            return $value;
-        }
-        
-        $youtube_id = get_post_meta( $object_id, 'keystone_youtube_id', true );
-        if ( empty( $youtube_id ) ) {
-            $post_obj = get_post( $object_id );
-            if ( $post_obj && ! empty( $post_obj->post_content ) ) {
-                if ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=|embed/)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post_obj->post_content, $matches ) ) {
-                    $youtube_id = $matches[1];
-                }
-            }
-        }
-        
-        if ( ! empty( $youtube_id ) ) {
-            // Store the youtube ID in a static cache to use later when the fake ID is requested
-            global $keystone_fake_thumbnails;
-            if ( ! isset( $keystone_fake_thumbnails ) ) {
-                $keystone_fake_thumbnails = array();
-            }
-            // Generate a deterministic fake attachment ID based on the post ID
-            $fake_id = - (int) $object_id;
-            $keystone_fake_thumbnails[ $fake_id ] = $youtube_id;
-            return $fake_id;
-        }
-    }
-    return $value;
-}
-
-add_filter( 'wp_get_attachment_image_src', 'keystone_fake_thumbnail_src', 10, 4 );
-function keystone_fake_thumbnail_src( $image, $attachment_id, $size, $icon ) {
-    global $keystone_fake_thumbnails;
-    if ( $attachment_id < 0 && isset( $keystone_fake_thumbnails[ $attachment_id ] ) ) {
-        $youtube_id = $keystone_fake_thumbnails[ $attachment_id ];
-        $url = "https://img.youtube.com/vi/{$youtube_id}/maxresdefault.jpg";
-        return array( $url, 1280, 720, false );
-    }
-    return $image;
-}
-
-add_filter( 'wp_get_attachment_image', 'keystone_fake_thumbnail_image', 10, 5 );
-function keystone_fake_thumbnail_image( $html, $attachment_id, $size, $icon, $attr ) {
-    global $keystone_fake_thumbnails;
-    if ( $attachment_id < 0 && isset( $keystone_fake_thumbnails[ $attachment_id ] ) ) {
-        $youtube_id = $keystone_fake_thumbnails[ $attachment_id ];
-        $url = "https://img.youtube.com/vi/{$youtube_id}/maxresdefault.jpg";
-        $alt = isset($attr['alt']) ? $attr['alt'] : '';
-        $class = isset($attr['class']) ? $attr['class'] : 'attachment-post-thumbnail size-post-thumbnail wp-post-image';
-        return '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '" class="' . esc_attr( $class ) . '" decoding="async" loading="lazy" style="width:100%; height:100%; object-fit:cover;" />';
-    }
-    return $html;
-}
-
-add_action( 'wp_footer', function() {
-    global $keystone_fake_thumbnails;
-    echo '<div style="background:red; color:white; padding:20px; text-align:center; position:relative; z-index:99999;">';
-    echo 'DEBUG FAKE THUMBNAILS: ';
-    var_dump($keystone_fake_thumbnails);
-    echo '</div>';
-});
