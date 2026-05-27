@@ -58,6 +58,8 @@ def create_video_sitemap():
     # Clean up XML string to ensure standard video prefixes are perfectly written
     pretty_xml = pretty_xml.replace("ns0:", "video:")
     pretty_xml = pretty_xml.replace("xmlns:ns0=", "xmlns:video=")
+    # Fix the XML declaration to include UTF-8 encoding (critical for GSC)
+    pretty_xml = pretty_xml.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
 
     # Save sitemap
     file_path = "video-sitemap.xml"
