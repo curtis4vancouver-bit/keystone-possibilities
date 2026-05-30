@@ -855,6 +855,38 @@ add_action( 'wp_head', 'keystone_recomposition_child_seo_noindex', 1 );
  * 12. Patch Structural Site Leaks (404/Redirect Errors)
  */
 function keystone_recomposition_child_404_redirect() {
+    $request_uri = $_SERVER['REQUEST_URI'];
+    
+    // Normalize request URI
+    $path = strtok( $request_uri, '?' ); // Strip query parameters
+    $path = '/' . trim( $path, '/' ) . '/'; // Standardize slashes
+    $path = str_replace( '//', '/', $path );
+
+    $redirects = array(
+        '/2026/01/23/mounjaro-kwikpen-the-official-click-to-mg-math-bible/' => '/2026/01/13/stop-chasing-skinny-week-14-recomposition-the-269-click-kwikpen-secret/',
+        '/2026/05/07/wolverine-stack-bpc-157-tb500-builder-blueprint/' => '/2026/05/07/wolverine-stack-bpc-157-tb-500-builder-blueprint/',
+        '/keystone_recomposition_/' => '/',
+        '/logo/' => '/',
+        '/keystone-recomposition-ltd/' => '/',
+        '/keystone_recomposition_ltd_invert-removebg-preview/' => '/',
+        '/logout/' => '/',
+        '/the-journey/' => '/',
+    );
+
+    // Exact matches
+    if ( isset( $redirects[ $path ] ) ) {
+        wp_redirect( home_url( $redirects[ $path ] ), 301 );
+        exit;
+    }
+    
+    // Wildcard matches
+    if ( strpos( $path, '/wp-content/themes/keystone-recomposition-child' ) !== false ||
+         preg_match( '~^/wp-.*\.php$~i', $path ) ||
+         ( strpos( $path, '/wp-admin' ) === false && preg_match( '~\.php$~i', $path ) ) ) {
+        wp_redirect( home_url(), 301 );
+        exit;
+    }
+
     if ( is_404() ) {
         wp_redirect( home_url(), 301 );
         exit;
