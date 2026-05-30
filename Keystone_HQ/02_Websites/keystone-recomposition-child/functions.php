@@ -1385,3 +1385,127 @@ if ( isset( $_GET['heal_video_meta'] ) && $_GET['heal_video_meta'] === 'sovereig
     exit;
 }
 
+/**
+ * 19. Read Single Post — Full content + meta for agent processing
+ * Trigger: https://keystonerecomposition.com/?read_post_full=POST_ID
+ */
+if ( isset( $_GET['read_post_full'] ) ) {
+    $post_id = intval( $_GET['read_post_full'] );
+    $p = get_post( $post_id );
+    if ( ! $p || $p->post_status !== 'publish' ) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => 'Post not found or not published', 'id' => $post_id ) );
+        exit;
+    }
+    
+    $meta = get_post_meta( $post_id );
+    $flat_meta = array();
+    foreach ( $meta as $key => $values ) {
+        $flat_meta[ $key ] = ( count( $values ) === 1 ) ? $values[0] : $values;
+    }
+    
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( array(
+        'id'             => $p->ID,
+        'title'          => $p->post_title,
+        'slug'           => $p->post_name,
+        'date'           => $p->post_date,
+        'content'        => $p->post_content,
+        'excerpt'        => $p->post_excerpt,
+        'permalink'      => get_permalink( $post_id ),
+        'content_length' => strlen( $p->post_content ),
+        'meta'           => $flat_meta
+    ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+    exit;
+}
+
+/**
+ * 20. Update Single Post — Sovereign one-by-one blog enhancement
+ * Trigger: POST to https://keystonerecomposition.com/?update_post_sovereign=1
+ * Body: JSON with post_id, content, excerpt, meta_description, focus_keyword,
+ *       video_duration, video_description, og_image
+ */
+if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+    $raw = file_get_contents('php://input');
+    $data = json_decode( $raw, true );
+    
+    if ( ! $data || empty( $data['post_id'] ) ) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => 'Invalid JSON or missing post_id' ) );
+        exit;
+    }
+    
+    $post_id = intval( $data['post_id'] );
+    $p = get_post( $post_id );
+    if ( ! $p || $p->post_status !== 'publish' ) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => 'Post not found', 'id' => $post_id ) );
+        exit;
+    }
+    
+    $updated = array();
+    
+    // Update post content if provided
+    if ( ! empty( $data['content'] ) ) {
+        wp_update_post( array( 'ID' => $post_id, 'post_content' => $data['content'] ) );
+        $updated[] = 'content';
+    }
+    
+    // Update excerpt if provided
+    if ( ! empty( $data['excerpt'] ) ) {
+        wp_update_post( array( 'ID' => $post_id, 'post_excerpt' => $data['excerpt'] ) );
+        $updated[] = 'excerpt';
+    }
+    
+    // Update video duration
+    if ( ! empty( $data['video_duration'] ) ) {
+        update_post_meta( $post_id, 'video_duration', sanitize_text_field( $data['video_duration'] ) );
+        $updated[] = 'video_duration';
+    }
+    
+    // Update video description
+    if ( ! empty( $data['video_description'] ) ) {
+        update_post_meta( $post_id, 'video_description', sanitize_text_field( $data['video_description'] ) );
+        $updated[] = 'video_description';
+    }
+    
+    // Update Rank Math meta description
+    if ( ! empty( $data['meta_description'] ) ) {
+        update_post_meta( $post_id, 'rank_math_description', sanitize_text_field( $data['meta_description'] ) );
+        $updated[] = 'rank_math_description';
+    }
+    
+    // Update Rank Math focus keyword
+    if ( ! empty( $data['focus_keyword'] ) ) {
+        update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $data['focus_keyword'] ) );
+        $updated[] = 'rank_math_focus_keyword';
+    }
+    
+    // Update OG image
+    if ( ! empty( $data['og_image'] ) ) {
+        update_post_meta( $post_id, 'rank_math_facebook_image', esc_url_raw( $data['og_image'] ) );
+        update_post_meta( $post_id, 'rank_math_twitter_cardType', 'summary_large_image' );
+        update_post_meta( $post_id, 'rank_math_twitter_image', esc_url_raw( $data['og_image'] ) );
+        $updated[] = 'og_image';
+    }
+    
+    // Update any custom meta fields
+    if ( ! empty( $data['custom_meta'] ) && is_array( $data['custom_meta'] ) ) {
+        foreach ( $data['custom_meta'] as $key => $value ) {
+            update_post_meta( $post_id, sanitize_key( $key ), $value );
+            $updated[] = 'custom:' . $key;
+        }
+    }
+    
+    clean_post_cache( $post_id );
+    
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( array(
+        'status'  => 'success',
+        'post_id' => $post_id,
+        'title'   => $p->post_title,
+        'updated_fields' => $updated
+    ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+    exit;
+}
+
