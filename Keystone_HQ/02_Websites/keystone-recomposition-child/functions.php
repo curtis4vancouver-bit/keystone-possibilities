@@ -38,8 +38,15 @@ if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'so
     $report = array();
     foreach ( $posts as $p ) {
         $youtube_id = '';
-        if ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $p->post_content, $matches ) ) {
+        // Check shortcode first (migration converted embeds to shortcodes)
+        if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']\]~', $p->post_content, $matches ) ) {
             $youtube_id = $matches[1];
+        } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $p->post_content, $matches ) ) {
+            $youtube_id = $matches[1];
+        }
+        // Also check post meta
+        if ( empty( $youtube_id ) ) {
+            $youtube_id = get_post_meta( $p->ID, 'keystone_youtube_id', true );
         }
         
         $report[] = array(
@@ -48,6 +55,7 @@ if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'so
             'slug' => $p->post_name,
             'date' => $p->post_date,
             'youtube_id' => $youtube_id,
+            'has_meta' => ! empty( get_post_meta( $p->ID, 'keystone_youtube_id', true ) ),
             'length' => strlen( $p->post_content )
         );
     }
@@ -811,12 +819,24 @@ add_action( 'template_redirect', function() {
 function keystone_recomposition_child_seo_noindex() {
     $should_noindex = false;
 
+    // Only noindex archive types that create duplicate content
     if ( is_date() || is_author() || is_tag() || is_search() ) {
         $should_noindex = true;
     }
 
-    if ( ! empty( $_GET ) ) {
-        $allowed_params = array( 'page', 'paged', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'ref' );
+    // Only noindex pages with truly junk query params — NOT internal WP or tracking params
+    if ( ! empty( $_GET ) && ! is_singular() ) {
+        $allowed_params = array(
+            'page', 'paged', 'p', 'page_id', 'cat', 'tag',
+            'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+            'gclid', 'fbclid', 'ref', 'mc_cid', 'mc_eid',
+            // Internal Keystone endpoints
+            'get_post_inventory', 'purge_all_caches', 'run_instant_indexing',
+            'run_keystone_migration', 'heal_video_meta', 'check_rm_options',
+            'keystone_video_sitemap',
+            // Rank Math / WP internals
+            'replytocom', 'preview', 'preview_id', 'preview_nonce'
+        );
         foreach ( $_GET as $key => $value ) {
             if ( ! in_array( $key, $allowed_params ) ) {
                 $should_noindex = true;
@@ -1271,5 +1291,97 @@ function keystone_add_video_sitemap_to_robots( $output, $public ) {
     $sitemap_url = home_url( '/keystone-video-sitemap.xml' );
     $output .= PHP_EOL . 'Sitemap: ' . $sitemap_url . PHP_EOL;
     return $output;
+}
+
+/**
+ * 18. Auto-Heal Video Meta — Backfills keystone_youtube_id for ALL posts
+ * Trigger: https://keystonerecomposition.com/?heal_video_meta=sovereign_execute
+ * Scans every published post, extracts YouTube ID from [keystone_video] shortcode
+ * or raw embed, and writes post meta if missing. This fixes the VideoObject schema
+ * and video sitemap for posts that were missed during migration.
+ */
+if ( isset( $_GET['heal_video_meta'] ) && $_GET['heal_video_meta'] === 'sovereign_execute' ) {
+    global $wpdb;
+    
+    $posts = $wpdb->get_results(
+        "SELECT ID, post_title, post_content 
+         FROM $wpdb->posts 
+         WHERE post_type = 'post' AND post_status = 'publish' 
+         ORDER BY post_date DESC"
+    );
+    
+    $healed = array();
+    $already_ok = array();
+    $no_video = array();
+    
+    foreach ( $posts as $p ) {
+        $post_id = intval( $p->ID );
+        $existing_yt = get_post_meta( $post_id, 'keystone_youtube_id', true );
+        
+        // Extract YouTube ID from content
+        $youtube_id = '';
+        if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']\]~', $p->post_content, $matches ) ) {
+            $youtube_id = $matches[1];
+        } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $p->post_content, $matches ) ) {
+            $youtube_id = $matches[1];
+        }
+        
+        if ( empty( $youtube_id ) ) {
+            $no_video[] = array( 'id' => $post_id, 'title' => $p->post_title );
+            continue;
+        }
+        
+        if ( ! empty( $existing_yt ) && $existing_yt === $youtube_id ) {
+            $already_ok[] = array( 'id' => $post_id, 'yt' => $youtube_id );
+            continue;
+        }
+        
+        // Backfill all video meta
+        $video_desc = wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $p->post_content ) ), 150, '...' );
+        if ( empty( $video_desc ) ) {
+            $video_desc = esc_attr( $p->post_title ) . ' - High-performance health and longevity protocol details.';
+        }
+        
+        update_post_meta( $post_id, 'keystone_youtube_id', $youtube_id );
+        update_post_meta( $post_id, 'video_url', 'https://www.youtube.com/watch?v=' . $youtube_id );
+        update_post_meta( $post_id, 'video_title', $p->post_title );
+        update_post_meta( $post_id, 'video_description', $video_desc );
+        
+        // Preserve existing duration if set, otherwise default
+        $existing_dur = get_post_meta( $post_id, 'video_duration', true );
+        if ( empty( $existing_dur ) ) {
+            update_post_meta( $post_id, 'video_duration', 'PT5M0S' );
+        }
+        
+        $existing_date = get_post_meta( $post_id, 'video_upload_date', true );
+        if ( empty( $existing_date ) ) {
+            $post_obj = get_post( $post_id );
+            update_post_meta( $post_id, 'video_upload_date', $post_obj->post_date );
+        }
+        
+        $healed[] = array(
+            'id' => $post_id,
+            'title' => $p->post_title,
+            'youtube_id' => $youtube_id,
+            'had_existing' => ! empty( $existing_yt ),
+            'old_yt' => $existing_yt
+        );
+    }
+    
+    // Clear caches
+    if ( function_exists( 'wp_cache_flush' ) ) { wp_cache_flush(); }
+    if ( function_exists( 'opcache_reset' ) ) { opcache_reset(); }
+    
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( array(
+        'status' => 'success',
+        'message' => 'Video Meta Auto-Heal Complete',
+        'healed_count' => count( $healed ),
+        'already_ok_count' => count( $already_ok ),
+        'no_video_count' => count( $no_video ),
+        'healed_posts' => $healed,
+        'no_video_posts' => $no_video
+    ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+    exit;
 }
 
