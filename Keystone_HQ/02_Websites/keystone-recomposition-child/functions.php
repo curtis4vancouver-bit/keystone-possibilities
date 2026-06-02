@@ -721,6 +721,42 @@ function keystone_recomposition_child_youtube_schema() {
 add_action( 'wp_head', 'keystone_recomposition_child_youtube_schema', 20 );
 
 /**
+ * 8.5 Dynamic MedicalWebPage Schema
+ */
+function keystone_recomposition_child_medical_schema() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+    
+    global $post;
+    
+    $medical_schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'MedicalWebPage',
+        'name' => esc_attr( get_the_title( $post->ID ) ),
+        'url' => esc_url( get_permalink( $post->ID ) ),
+        'lastReviewed' => esc_attr( get_the_modified_date( 'Y-m-d', $post->ID ) ),
+        'reviewedBy' => array(
+            '@type' => 'Person',
+            'name' => 'Wayne Stevenson',
+            'jobTitle' => 'Metabolic Researcher'
+        ),
+        'specialty' => 'https://schema.org/Endocrine',
+        'audience' => array(
+            '@type' => 'MedicalAudience',
+            'audienceType' => 'Health Enthusiasts and Patients'
+        )
+    );
+    
+    echo "\n<!-- Keystone MedicalWebPage Schema -->\n";
+    echo "<script type=\"application/ld+json\">\n";
+    echo wp_json_encode( $medical_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . "\n";
+    echo "</script>\n";
+    echo "<!-- End MedicalWebPage Schema -->\n\n";
+}
+add_action( 'wp_head', 'keystone_recomposition_child_medical_schema', 25 );
+
+/**
  * 9. Hook custom media metadata into Rank Math PRO's Video Sitemap Generator
  */
 add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
@@ -938,6 +974,9 @@ function keystone_lazy_video_shortcode( $atts ) {
                 <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
             </svg>
         </button>
+        <noscript>
+            <iframe src="https://www.youtube.com/embed/<?php echo $media_id; ?>?rel=0" width="100%" height="100%" style="position: absolute; top: 0; left: 0;" frameborder="0" allowfullscreen></iframe>
+        </noscript>
     </div>
     <?php
     return ob_get_clean();
@@ -1106,6 +1145,28 @@ function keystone_recomposition_child_inject_custom_css() {
 add_action( 'wp_head', 'keystone_recomposition_child_inject_custom_css', 150 );
 
 /**
+ * 14.5 E-E-A-T Author Credentials Block
+ */
+function keystone_recomposition_child_eeat_author_block( $content ) {
+    if ( is_singular( 'post' ) && is_main_query() ) {
+        $author_block = '
+        <div class="keystone-eeat-author-block" style="background-color: #0a0a0a; border-left: 4px solid #c4a265; padding: 25px; margin-top: 50px; margin-bottom: 30px; border-radius: 4px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="https://keystonerecomposition.com/wp-content/uploads/logo.png" alt="Wayne Stevenson" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+                <div>
+                    <h3 style="color: #ffffff; font-family: \'Outfit\', sans-serif; font-size: 1.2rem; margin: 0 0 5px 0;">Wayne Stevenson</h3>
+                    <p style="color: #c4a265; font-family: \'Outfit\', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0;">Certified BC Builder & Metabolic Researcher</p>
+                    <p style="color: #a3a3a3; font-family: \'Inter\', sans-serif; font-size: 0.85rem; line-height: 1.6; margin: 0;">This content is meticulously researched and documented for the preservation of male health and longevity. Operating under strict E-E-A-T principles for high-quality health information.</p>
+                </div>
+            </div>
+        </div>';
+        $content .= $author_block;
+    }
+    return $content;
+}
+add_filter( 'the_content', 'keystone_recomposition_child_eeat_author_block', 98 );
+
+/**
  * 15. Automatically Append YouTube Subscribe Buttons to All Pages and Posts
  */
 function keystone_recomposition_child_append_subscribe_buttons( $content ) {
@@ -1190,15 +1251,13 @@ function keystone_fake_thumbnail_image( $html, $attachment_id, $size, $icon, $at
  * Bypasses Rank Math's broken default modules while perfectly integrating into the Rank Math Sitemap Index.
  */
 
-// Register the custom rewrite rule for clean URL
+// ------------------------------------------------------------------
+// BULLETPROOF SITEMAP ROUTING
+// ------------------------------------------------------------------
+// Register the custom rewrite rule for clean URL (Legacy fallback)
 add_action( 'init', 'keystone_video_sitemap_rewrite' );
 function keystone_video_sitemap_rewrite() {
     add_rewrite_rule( '^keystone-video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top' );
-    // Check if flushed already, if not, flush once dynamically
-    if ( ! get_option( 'keystone_vsm_flushed_v2_final' ) ) {
-        flush_rewrite_rules();
-        update_option( 'keystone_vsm_flushed_v2_final', true );
-    }
 }
 
 // Register the query variable so WordPress recognizes it
@@ -1208,13 +1267,21 @@ function keystone_video_sitemap_query_vars( $vars ) {
     return $vars;
 }
 
-// Serve the video sitemap XML
-add_action( 'template_redirect', 'keystone_serve_video_sitemap' );
+// Serve the video sitemap XML via early interception
+add_action( 'template_redirect', 'keystone_serve_video_sitemap', 1 ); // priority 1 to intercept before anything else
 function keystone_serve_video_sitemap() {
-    $is_sitemap = get_query_var( 'keystone_video_sitemap' );
-    if ( ! $is_sitemap && isset( $_GET['keystone_video_sitemap'] ) ) {
+    $uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+    $is_sitemap = false;
+    
+    // 1. Bulletproof check: Does the URL strictly contain the filename?
+    if ( strpos( $uri, 'keystone-video-sitemap.xml' ) !== false ) {
+        $is_sitemap = true;
+    } 
+    // 2. Legacy fallback query vars
+    elseif ( get_query_var( 'keystone_video_sitemap' ) || isset( $_GET['keystone_video_sitemap'] ) ) {
         $is_sitemap = true;
     }
+    
     if ( ! $is_sitemap ) {
         return;
     }
@@ -1541,3 +1608,162 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
     exit;
 }
 
+/**
+ * 21. Update/Create Single Page — Sovereign one-by-one page deployment
+ * Trigger: POST to https://keystonerecomposition.com/?update_page_sovereign=1
+ * Body: JSON with slug (or page_slug or post_id), content, title, excerpt,
+ *       meta_description, focus_keyword, og_image, status
+ */
+if ( isset( $_GET['update_page_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+    $raw = file_get_contents('php://input');
+    $data = json_decode( $raw, true );
+    
+    if ( ! $data || ( empty( $data['post_id'] ) && empty( $data['slug'] ) && empty( $data['page_slug'] ) ) ) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => 'Invalid JSON or missing post_id/slug' ) );
+        exit;
+    }
+    
+    $post_id = 0;
+    if ( ! empty( $data['post_id'] ) ) {
+        $post_id = intval( $data['post_id'] );
+    } else {
+        $slug = ! empty( $data['slug'] ) ? sanitize_title( $data['slug'] ) : sanitize_title( $data['page_slug'] );
+        // Find page by slug
+        $pages = get_posts( array(
+            'name'        => $slug,
+            'post_type'   => 'page',
+            'post_status' => 'any',
+            'numberposts' => 1
+        ) );
+        if ( ! empty( $pages ) ) {
+            $post_id = $pages[0]->ID;
+        }
+    }
+    
+    $updated = array();
+    
+    $post_data = array(
+        'post_type'   => 'page',
+        'post_status' => ! empty( $data['status'] ) ? sanitize_text_field( $data['status'] ) : 'publish'
+    );
+    
+    if ( $post_id > 0 ) {
+        $post_data['ID'] = $post_id;
+    } else {
+        // Create new page if not found
+        if ( ! empty( $data['slug'] ) || ! empty( $data['page_slug'] ) ) {
+            $slug = ! empty( $data['slug'] ) ? sanitize_title( $data['slug'] ) : sanitize_title( $data['page_slug'] );
+            $post_data['post_name'] = $slug;
+        } else {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode( array( 'error' => 'Cannot create page without slug' ) );
+            exit;
+        }
+    }
+    
+    if ( ! empty( $data['content'] ) ) {
+        $post_data['post_content'] = $data['content'];
+        $updated[] = 'content';
+    }
+    
+    if ( ! empty( $data['title'] ) ) {
+        $post_data['post_title'] = $data['title'];
+        $updated[] = 'title';
+    } elseif ( $post_id === 0 ) {
+        // Fallback for new pages
+        $post_data['post_title'] = ucwords( str_replace( '-', ' ', $post_data['post_name'] ) );
+        $updated[] = 'title_default';
+    }
+    
+    if ( isset( $data['excerpt'] ) ) {
+        $post_data['post_excerpt'] = $data['excerpt'];
+        $updated[] = 'excerpt';
+    }
+    
+    // Insert or update page
+    if ( $post_id > 0 ) {
+        $res = wp_update_post( $post_data, true );
+    } else {
+        $res = wp_insert_post( $post_data, true );
+    }
+    
+    if ( is_wp_error( $res ) ) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => $res->get_error_message() ) );
+        exit;
+    }
+    
+    $post_id = $res;
+    
+    // Update Rank Math meta description
+    if ( ! empty( $data['meta_description'] ) ) {
+        update_post_meta( $post_id, 'rank_math_description', sanitize_text_field( $data['meta_description'] ) );
+        $updated[] = 'rank_math_description';
+    }
+    
+    // Update Rank Math focus keyword
+    if ( ! empty( $data['focus_keyword'] ) ) {
+        update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $data['focus_keyword'] ) );
+        $updated[] = 'rank_math_focus_keyword';
+    }
+    
+    // Update OG image
+    if ( ! empty( $data['og_image'] ) ) {
+        update_post_meta( $post_id, 'rank_math_facebook_image', esc_url_raw( $data['og_image'] ) );
+        update_post_meta( $post_id, 'rank_math_twitter_cardType', 'summary_large_image' );
+        update_post_meta( $post_id, 'rank_math_twitter_image', esc_url_raw( $data['og_image'] ) );
+        $updated[] = 'og_image';
+    }
+    
+    // Clear page caches
+    clean_post_cache( $post_id );
+    
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+    
+    // Flush rewrite rules so new page slugs resolve immediately
+    flush_rewrite_rules( false );
+    
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode( array(
+        'status'  => 'success',
+        'post_id' => $post_id,
+        'slug'    => get_post_field( 'post_name', $post_id ),
+        'permalink' => get_permalink( $post_id ),
+        'updated' => $updated
+    ) );
+    exit;
+}
+
+/**
+ * 22. GA4 Video Tracking Script
+ */
+function keystone_recomposition_child_ga4_tracking() {
+    if ( is_singular( 'post' ) ) {
+        ?>
+        <!-- GA4 Video Tracking -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var playButtons = document.querySelectorAll('.luxury-video-facade .play-button');
+            playButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var facade = this.closest('.luxury-video-facade');
+                    var videoId = facade ? facade.getAttribute('data-video-id') : 'unknown';
+                    
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'video_start', {
+                            'video_id': videoId,
+                            'event_category': 'Video Engagement',
+                            'event_label': 'YouTube Video Started'
+                        });
+                    }
+                });
+            });
+        });
+        </script>
+        <?php
+    }
+}
+add_action( 'wp_footer', 'keystone_recomposition_child_ga4_tracking', 100 );
