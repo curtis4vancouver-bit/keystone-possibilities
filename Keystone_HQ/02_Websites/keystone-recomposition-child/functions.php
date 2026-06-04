@@ -606,7 +606,7 @@ function keystone_recomposition_child_youtube_schema() {
     // Fallback: search for [keystone_video id="..."] or plain youtube URL in content
     if ( empty( $video_url ) ) {
         $content = $post->post_content;
-        if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']]~', $content, $matches ) ) {
+        if ( preg_match( '~\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]+)["\']~i', $content, $matches ) ) {
             $youtube_id = $matches[1];
             $video_url = 'https://www.youtube.com/watch?v=' . $youtube_id;
         } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $content, $matches ) ) {
@@ -769,7 +769,7 @@ add_filter( 'rank_math/sitemap/video/post', function( $video, $post_id ) {
     if ( empty( $youtube_id ) ) {
         $post = get_post( $post_id );
         if ( $post ) {
-            if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']]~', $post->post_content, $matches ) ) {
+            if ( preg_match( '~\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]+)["\']~i', $post->post_content, $matches ) ) {
                 $youtube_id = $matches[1];
             } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post->post_content, $matches ) ) {
                 $youtube_id = $matches[1];
@@ -807,6 +807,15 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
     foreach ( $data as $key => $val ) {
         if ( in_array( strtolower( $key ), array( 'video', 'videoobject' ) ) ) {
             unset( $data[$key] );
+        }
+        if ( is_array( $val ) && isset( $val['@type'] ) ) {
+            $types = (array) $val['@type'];
+            foreach ( $types as $t ) {
+                if ( strtolower( $t ) === 'videoobject' ) {
+                    unset( $data[$key] );
+                    break;
+                }
+            }
         }
     }
     if ( isset( $data['@graph'] ) && is_array( $data['@graph'] ) ) {
@@ -1767,3 +1776,25 @@ function keystone_recomposition_child_ga4_tracking() {
     }
 }
 add_action( 'wp_footer', 'keystone_recomposition_child_ga4_tracking', 100 );
+
+/**
+ * KEYSTONE SOVEREIGN: Register custom fields for REST API so Gutenberg can save them
+ */
+add_action( 'init', function() {
+    $meta_keys = array(
+        'keystone_youtube_id',
+        'video_url',
+        'video_title',
+        'video_description',
+        'video_duration',
+        'video_upload_date'
+    );
+    foreach ( $meta_keys as $key ) {
+        register_post_meta( 'post', $key, array(
+            'show_in_rest' => true,
+            'single'       => true,
+            'type'         => 'string',
+        ) );
+    }
+} );
+
