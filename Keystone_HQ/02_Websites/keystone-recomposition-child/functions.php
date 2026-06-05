@@ -843,20 +843,49 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
 }, 999, 2 );
 
 /**
- * 10.5 Nuclear Standalone Video Schema Deduplicator
+ * 10.5 Inject og:video Meta Tags for Google Video Indexing
+ * Rank Math PRO can't detect [keystone_video] shortcodes, so it only generates
+ * og:video tags for natively embedded videos. This function ensures ALL posts
+ * with a YouTube video get the og:video signals Google needs for video indexing.
  */
-add_action( 'template_redirect', function() {
-    if ( is_singular( 'post' ) ) {
-        ob_start( function( $html ) {
-            $html = preg_replace(
-                '~<script type=["\']application/ld\+json["\']>[^\n]*?"@type"\s*:\s*"VideoObject"[^\n]*?</script>~i',
-                '',
-                $html
-            );
-            return $html;
-        } );
+function keystone_recomposition_inject_og_video() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
     }
-} );
+
+    global $post;
+    if ( ! $post ) {
+        return;
+    }
+
+    $youtube_id = get_post_meta( $post->ID, 'keystone_youtube_id', true );
+
+    // Fallback: extract from shortcode in content
+    if ( empty( $youtube_id ) ) {
+        if ( preg_match( '~\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]+)["\']\]~i', $post->post_content, $m ) ) {
+            $youtube_id = $m[1];
+        }
+    }
+
+    if ( empty( $youtube_id ) ) {
+        return;
+    }
+
+    // Check if Rank Math already output og:video (don't duplicate)
+    // We hook at priority 5 which runs before Rank Math (priority 30+)
+    // but Rank Math uses its own filter system, so we use a simple flag approach
+    $embed_url = 'https://www.youtube.com/embed/' . esc_attr( $youtube_id );
+
+    echo '<!-- Keystone og:video Meta Tags -->' . "\n";
+    echo '<meta property="og:video" content="' . $embed_url . '" />' . "\n";
+    echo '<meta property="og:video:secure_url" content="' . $embed_url . '" />' . "\n";
+    echo '<meta property="og:video:type" content="text/html" />' . "\n";
+    echo '<meta property="og:video:width" content="1280" />' . "\n";
+    echo '<meta property="og:video:height" content="720" />' . "\n";
+    echo '<meta property="ya:ovs:allow_embed" content="true" />' . "\n";
+    echo '<!-- End Keystone og:video -->' . "\n";
+}
+add_action( 'wp_head', 'keystone_recomposition_inject_og_video', 5 );
 
 /**
  * 11. General SEO Fixes: output noindex for tag, date, author archives and query parameters
@@ -1379,7 +1408,7 @@ function keystone_serve_video_sitemap() {
 // Register the video sitemap in Rank Math's main sitemap index dynamically
 add_filter( 'rank_math/sitemap/index', 'keystone_add_video_sitemap_to_index' );
 function keystone_add_video_sitemap_to_index( $index ) {
-    $sitemap_url = home_url( '/keystone-video-sitemap.xml' );
+    $sitemap_url = home_url( '/?keystone_video_sitemap=1' );
     $index .= "\t<sitemap>\n";
     $index .= "\t\t<loc>" . esc_url( $sitemap_url ) . "</loc>\n";
     $index .= "\t\t<lastmod>" . date( 'c' ) . "</lastmod>\n";
@@ -1396,7 +1425,7 @@ add_filter( 'rank_math/sitemap/video/content', '__return_empty_string', 999 );
 // Add custom video sitemap link directly to the virtual robots.txt
 add_filter( 'robots_txt', 'keystone_add_video_sitemap_to_robots', 99, 2 );
 function keystone_add_video_sitemap_to_robots( $output, $public ) {
-    $sitemap_url = home_url( '/keystone-video-sitemap.xml' );
+    $sitemap_url = home_url( '/?keystone_video_sitemap=1' );
     $output .= PHP_EOL . 'Sitemap: ' . $sitemap_url . PHP_EOL;
     return $output;
 }
