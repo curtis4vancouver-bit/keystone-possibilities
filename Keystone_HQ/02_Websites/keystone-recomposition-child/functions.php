@@ -22,6 +22,9 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     if ( function_exists( 'wp_cache_flush' ) ) {
         wp_cache_flush();
     }
+    if ( function_exists( 'flush_rewrite_rules' ) ) {
+        flush_rewrite_rules();
+    }
     echo "CACHES PURGED SUCCESSFULLY";
     exit;
 }
