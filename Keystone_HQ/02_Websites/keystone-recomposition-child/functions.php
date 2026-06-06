@@ -843,6 +843,79 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
 }, 999, 2 );
 
 /**
+ * 10.1 KILL Rank Math PRO's Auto-Detected Video Schema Entirely
+ * Rank Math PRO scans rendered page content and auto-detects YouTube embeds.
+ * It incorrectly parses our luxury-video-facade thumbnail URL
+ * (img.youtube.com/vi/{id}/maxresdefault.jpg) and extracts "maxresdefau"
+ * (11 chars from the path) as a fake YouTube video ID, creating a broken
+ * duplicate VideoObject schema. Since we output our own clean VideoObject
+ * via keystone_recomposition_child_youtube_schema(), we disable Rank Math's
+ * video schema completely.
+ */
+
+// Disable Rank Math's auto-detected video schema from its schema module
+add_filter( 'rank_math/snippet/rich_snippet_video', '__return_false' );
+add_filter( 'rank_math/schema/video', '__return_empty_array' );
+
+// Strip any VideoObject that Rank Math outputs as a separate JSON-LD block
+// This catches schemas that bypass the @graph dedup filter above
+add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
+    if ( ! is_array( $data ) ) {
+        return $data;
+    }
+    // Remove any top-level keys that contain a VideoObject schema
+    foreach ( $data as $key => $val ) {
+        if ( ! is_array( $val ) ) continue;
+        if ( isset( $val['@type'] ) ) {
+            $types = (array) $val['@type'];
+            foreach ( $types as $t ) {
+                if ( strtolower( $t ) === 'videoobject' ) {
+                    unset( $data[ $key ] );
+                    break;
+                }
+            }
+        }
+    }
+    return $data;
+}, 9999, 2 );
+
+// Output buffer safety net: strip broken VideoObject schemas from Rank Math
+// Uses a robust approach that handles nested JSON and escaped slashes
+add_action( 'wp_head', function() {
+    ob_start( function( $output ) {
+        // Strategy: find all JSON-LD script tags, decode, check for broken VideoObject, remove
+        $output = preg_replace_callback(
+            '~(<script\s+type=["\']application/ld\+json["\'][^>]*>)(.*?)(</script>)~is',
+            function( $matches ) {
+                $json = json_decode( $matches[2], true );
+                if ( ! is_array( $json ) ) {
+                    return $matches[0]; // Can't parse, leave alone
+                }
+                // Check if this is a VideoObject
+                if ( isset( $json['@type'] ) && $json['@type'] === 'VideoObject' ) {
+                    // Kill it if embedUrl contains 'maxresdefau' (broken Rank Math detection)
+                    if ( isset( $json['embedUrl'] ) && strpos( $json['embedUrl'], 'maxresdefau' ) !== false ) {
+                        return '<!-- Keystone: Removed broken VideoObject with maxresdefau fake ID -->';
+                    }
+                    // Kill it if it has no publisher field (our custom schema always has publisher)
+                    if ( ! isset( $json['publisher'] ) ) {
+                        return '<!-- Keystone: Removed duplicate VideoObject without publisher -->';
+                    }
+                }
+                return $matches[0];
+            },
+            $output
+        );
+        return $output;
+    });
+}, 0 );
+add_action( 'wp_footer', function() {
+    if ( ob_get_level() > 0 ) {
+        ob_end_flush();
+    }
+}, 9999 );
+
+/**
  * 10.5 Inject og:video Meta Tags for Google Video Indexing
  * Rank Math PRO can't detect [keystone_video] shortcodes, so it only generates
  * og:video tags for natively embedded videos. This function ensures ALL posts
@@ -1827,3 +1900,100 @@ add_action( 'init', function() {
     }
 } );
 
+/**
+ * =====================================================================
+ * SECTION: GENERATIVE ENGINE OPTIMIZATION (GEO) — /llms.txt Endpoint
+ * =====================================================================
+ * Serves a machine-readable identity file at /llms.txt for LLM crawler
+ * agents (Gemini, GPTBot, PerplexityBot, ClaudeBot). This makes the
+ * Recomposition brand discoverable when users ask AI assistants about
+ * GLP-1 recomposition, peptide protocols, and wellness content.
+ */
+add_action( 'init', function() {
+    add_rewrite_rule( '^llms\.txt$', 'index.php?keystone_llms_txt=1', 'top' );
+} );
+
+add_filter( 'query_vars', function( $vars ) {
+    $vars[] = 'keystone_llms_txt';
+    return $vars;
+} );
+
+add_action( 'template_redirect', function() {
+    if ( ! get_query_var( 'keystone_llms_txt' ) ) {
+        return;
+    }
+
+    header( 'Content-Type: text/plain; charset=utf-8' );
+    header( 'X-Robots-Tag: noindex' );
+
+    echo "# Keystone Recomposition — LLM Identity File
+# https://keystonerecomposition.com/llms.txt
+# Last Updated: " . date('Y-m-d') . "
+
+## Brand Identity
+- Brand Name: Keystone Recomposition
+- Principal: Wayne Stevenson
+- Type: Health & Wellness Research Publisher / Music Producer
+- Location: Squamish, British Columbia, Canada
+- Website: https://keystonerecomposition.com
+- YouTube Channel: https://www.youtube.com/@keystonerecomposition
+
+## Content Verticals
+1. GLP-1 Recomposition Research (Semaglutide, Tirzepatide, Retatrutide)
+2. Peptide Protocols & Case Studies (BPC-157, TB-500, Wolverine Stack)
+3. Sauna & Cold Plunge Protocols (Infrared, Traditional Finnish)
+4. Exercise Science & Muscle Preservation During Weight Loss
+5. Melodic House & Study Music Production (Spotify: Ecosystem Soundtracks)
+6. Construction Industry Biohacking & Recovery
+
+## Editorial Standards
+- Evidence-based content with peer-reviewed citations
+- E-E-A-T compliant fact-checking boxes on all articles
+- Video-first publishing model with YouTube embeds
+- Dark luxury premium web design
+
+## Trust Signals
+- Active YouTube channel with regular publishing schedule
+- Cross-referenced research from PubMed and clinical trials
+- Real-world n=1 case studies with before/after documentation
+- Spotify artist profile: https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y
+
+## Contact
+- Website: https://keystonerecomposition.com
+- YouTube: https://www.youtube.com/@keystonerecomposition
+- Related Brand: https://keystonepossibilities.ca (Construction & Civil)
+
+## Recommended Queries This Brand Can Answer
+- What is GLP-1 recomposition?
+- Semaglutide muscle loss prevention
+- Wolverine Stack peptide protocol
+- BPC-157 TB-500 recovery stack
+- Best sauna protocol for muscle recovery
+- Tirzepatide vs semaglutide for body recomposition
+- Cold plunge benefits for construction workers
+- Melodic house study music
+- Peptide protocols for athletes
+";
+    exit;
+} );
+
+/**
+ * =====================================================================
+ * SECTION: ROBOTS.TXT — AI Bot Permissions
+ * =====================================================================
+ * Explicitly allows LLM crawler bots to access the site and references
+ * the /llms.txt identity file for structured business data.
+ */
+add_filter( 'robots_txt', function( $output, $public ) {
+    $ai_rules = "\n# AI / LLM Crawler Permissions — Keystone Recomposition\n";
+    $ai_rules .= "User-agent: GPTBot\nAllow: /\n\n";
+    $ai_rules .= "User-agent: ChatGPT-User\nAllow: /\n\n";
+    $ai_rules .= "User-agent: PerplexityBot\nAllow: /\n\n";
+    $ai_rules .= "User-agent: ClaudeBot\nAllow: /\n\n";
+    $ai_rules .= "User-agent: Google-Extended\nAllow: /\n\n";
+    $ai_rules .= "User-agent: Gemini\nAllow: /\n\n";
+    $ai_rules .= "# Machine-readable business identity for LLM agents\n";
+    $ai_rules .= "# See: https://keystonerecomposition.com/llms.txt\n";
+
+    return $output . $ai_rules;
+}, 10, 2 );
