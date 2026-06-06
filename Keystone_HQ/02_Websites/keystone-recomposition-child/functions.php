@@ -21,10 +21,12 @@ add_action( 'init', function() {
         $p1 = $_SERVER['DOCUMENT_ROOT'] . '/llms.txt';
         $p2 = ABSPATH . 'llms.txt';
         $p3 = ABSPATH . '../llms.txt';
+        $p4 = $_SERVER['DOCUMENT_ROOT'] . '/robots.txt';
         
         echo "p1 ($p1): exists=" . (file_exists($p1)?'yes':'no') . ", writable=" . (is_writable(dirname($p1))?'yes':'no') . "\n";
         echo "p2 ($p2): exists=" . (file_exists($p2)?'yes':'no') . ", writable=" . (is_writable(dirname($p2))?'yes':'no') . "\n";
         echo "p3 ($p3): exists=" . (file_exists($p3)?'yes':'no') . ", writable=" . (is_writable(dirname($p3))?'yes':'no') . "\n";
+        echo "p4 ($p4): exists=" . (file_exists($p4)?'yes':'no') . ", writable=" . (is_writable($p4)?'yes':'no') . "\n";
         exit;
     }
     if ( isset( $_GET['purge_all_caches'] ) ) {
