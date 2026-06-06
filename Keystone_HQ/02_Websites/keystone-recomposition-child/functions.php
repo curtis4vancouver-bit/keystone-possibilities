@@ -27,6 +27,10 @@ add_action( 'init', function() {
         echo "p2 ($p2): exists=" . (file_exists($p2)?'yes':'no') . ", writable=" . (is_writable(dirname($p2))?'yes':'no') . "\n";
         echo "p3 ($p3): exists=" . (file_exists($p3)?'yes':'no') . ", writable=" . (is_writable(dirname($p3))?'yes':'no') . "\n";
         echo "p4 ($p4): exists=" . (file_exists($p4)?'yes':'no') . ", writable=" . (is_writable($p4)?'yes':'no') . "\n";
+        
+        echo "\n--- DYNAMIC ROBOTS.TXT ---\n";
+        $initial_robots = "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n";
+        echo apply_filters( 'robots_txt', $initial_robots, true );
         exit;
     }
     if ( isset( $_GET['purge_all_caches'] ) ) {
