@@ -2004,6 +2004,27 @@ add_action( 'init', function() {
             @file_put_contents( $normalized_path, $llms_content );
         }
     }
+
+    // Programmatically write static physical robots.txt file
+    $robots_paths = array();
+    if ( isset( $_SERVER['DOCUMENT_ROOT'] ) && ! empty( $_SERVER['DOCUMENT_ROOT'] ) ) {
+        $robots_paths[] = rtrim( $_SERVER['DOCUMENT_ROOT'], '/' ) . '/robots.txt';
+    }
+    if ( defined( 'ABSPATH' ) ) {
+        $robots_paths[] = ABSPATH . 'robots.txt';
+        $robots_paths[] = rtrim( ABSPATH, '/' ) . '/../robots.txt';
+    }
+
+    $robots_paths = array_unique( $robots_paths );
+    $initial_robots = "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n";
+    $robots_content = apply_filters( 'robots_txt', $initial_robots, true );
+
+    foreach ( $robots_paths as $path ) {
+        $normalized_path = wp_normalize_path( $path );
+        if ( ! file_exists( $normalized_path ) || md5_file( $normalized_path ) !== md5( $robots_content ) ) {
+            @file_put_contents( $normalized_path, $robots_content );
+        }
+    }
 } );
 
 /**
