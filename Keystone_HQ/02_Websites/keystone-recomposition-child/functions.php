@@ -2021,4 +2021,4 @@ add_filter( 'robots_txt', function( $output, $public ) {
     $ai_rules .= "# See: https://keystonerecomposition.com/llms.txt\n";
 
     return $output . $ai_rules;
-}, 10, 2 );
+}, 99999, 2 );
