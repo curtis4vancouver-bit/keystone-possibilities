@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'init', function() {
+    if ( isset( $_GET['dump_server'] ) ) {
+        header('Content-Type: text/plain; charset=utf-8');
+        print_r( $_SERVER );
+        exit;
+    }
     if ( isset( $_GET['purge_all_caches'] ) ) {
         global $wpdb;
         $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_rank_math_sitemap_%' OR option_name LIKE '_transient_timeout_rank_math_sitemap_%'" );
