@@ -15,7 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'init', function() {
     if ( isset( $_GET['dump_server'] ) ) {
         header('Content-Type: text/plain; charset=utf-8');
-        print_r( $_SERVER );
+        echo "DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'] . "\n";
+        echo "ABSPATH: " . ABSPATH . "\n";
+        
+        $p1 = $_SERVER['DOCUMENT_ROOT'] . '/llms.txt';
+        $p2 = ABSPATH . 'llms.txt';
+        $p3 = ABSPATH . '../llms.txt';
+        
+        echo "p1 ($p1): exists=" . (file_exists($p1)?'yes':'no') . ", writable=" . (is_writable(dirname($p1))?'yes':'no') . "\n";
+        echo "p2 ($p2): exists=" . (file_exists($p2)?'yes':'no') . ", writable=" . (is_writable(dirname($p2))?'yes':'no') . "\n";
+        echo "p3 ($p3): exists=" . (file_exists($p3)?'yes':'no') . ", writable=" . (is_writable(dirname($p3))?'yes':'no') . "\n";
         exit;
     }
     if ( isset( $_GET['purge_all_caches'] ) ) {
