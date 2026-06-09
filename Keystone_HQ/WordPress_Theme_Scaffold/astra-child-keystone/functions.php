@@ -1433,3 +1433,141 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
     exit;
 }
 
+/**
+ * Fix Rank Math JSON-LD Schema to resolve B2B entity conflicts, staging URLs,
+ * duplicate organization entries, and remove cross-brand pollution.
+ */
+add_filter( 'rank_math/json_ld', 'keystone_possibilities_fix_json_ld_schema', 999, 2 );
+function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
+    if ( ! is_array( $data ) ) {
+        return $data;
+    }
+
+    // Replace all occurrences of staging domain in the entire schema array
+    $json_string = wp_json_encode( $data );
+    $json_string = str_replace(
+        'staging-a826-keystonepossibilities.wpcomstaging.com',
+        'keystonepossibilities.ca',
+        $json_string
+    );
+    $data = json_decode( $json_string, true );
+
+    if ( ! isset( $data['@graph'] ) || ! is_array( $data['@graph'] ) ) {
+        return $data;
+    }
+
+    $new_graph = array();
+    $possibilities_org = null;
+
+    foreach ( $data['@graph'] as $node ) {
+        if ( ! isset( $node['@type'] ) ) {
+            $new_graph[] = $node;
+            continue;
+        }
+
+        $types = (array) $node['@type'];
+        
+        // Identify Organization or Corporation nodes for Keystone Possibilities
+        $is_possibilities_org = false;
+        foreach ( $types as $t ) {
+            if ( in_array( strtolower( $t ), array( 'organization', 'corporation' ) ) ) {
+                if ( isset( $node['@id'] ) && strpos( $node['@id'], 'keystonepossibilities.ca' ) !== false ) {
+                    $is_possibilities_org = true;
+                    break;
+                }
+            }
+        }
+
+        if ( $is_possibilities_org ) {
+            if ( ! $possibilities_org ) {
+                // Initialize the merged organization node
+                $possibilities_org = $node;
+            } else {
+                // Merge properties from duplicate organization nodes
+                $possibilities_org = array_merge( $possibilities_org, $node );
+            }
+            // Standardize type
+            $possibilities_org['@type'] = array( 'Organization', 'Corporation' );
+        } else {
+            // Keep other nodes (Person, WebSite, WebPage, etc.)
+            $new_graph[] = $node;
+        }
+    }
+
+    // If we found organization node(s), configure the perfect B2B organization entity
+    if ( $possibilities_org ) {
+        $possibilities_org['@id'] = 'https://keystonepossibilities.ca/#organization';
+        $possibilities_org['name'] = 'Keystone Possibilities Ltd.';
+        $possibilities_org['legalName'] = 'Keystone Possibilities Ltd.';
+        $possibilities_org['url'] = 'https://keystonepossibilities.ca';
+        
+        // Correct Area Served
+        $possibilities_org['areaServed'] = array(
+            array(
+                '@type' => 'City',
+                'name' => 'Squamish',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            ),
+            array(
+                '@type' => 'City',
+                'name' => 'Whistler',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            ),
+            array(
+                '@type' => 'City',
+                'name' => 'West Vancouver',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            ),
+            array(
+                '@type' => 'City',
+                'name' => 'North Vancouver',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            ),
+            array(
+                '@type' => 'City',
+                'name' => 'Pemberton',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            ),
+            array(
+                '@type' => 'City',
+                'name' => 'Lions Bay',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia'
+                )
+            )
+        );
+
+        // Correct Business Description (Option A: Lead with local, end with international retreats)
+        $possibilities_org['description'] = 'Keystone Possibilities Ltd is a licensed BC residential builder (#52603) and BC Hydro registered civil contractor providing general contracting, project management, and custom home building across the Sea-to-Sky corridor. Led by Wayne Stevenson with 20+ years of experience, we specialize in transparent flat-fee project management with real-time digital dashboards, BC Energy Step Code compliance, and WBI 2-5-10 warranty backed construction in Squamish, Whistler, West Vancouver, and North Vancouver. We also develop premium retreat properties in Mexico and Italy through our sweat-equity joint venture model.';
+
+        // Correct SameAs (remove music/recomposition, keep possibilities social and clean links)
+        $possibilities_org['sameAs'] = array(
+            'https://www.facebook.com/profile.php?id=61554185128555',
+            'https://www.youtube.com/@KeystonePossibilities',
+            'https://www.instagram.com/keystonepossibilities'
+        );
+
+        $new_graph[] = $possibilities_org;
+    }
+
+    $data['@graph'] = $new_graph;
+    return $data;
+}
+
+
