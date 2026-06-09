@@ -639,5 +639,49 @@ Template: astra
   font-weight: 600 !important;
 }
 
+/* WordPress Block Table Custom Styling for Dark Mode */
+.wp-block-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 35px 0 !important;
+  color: #e8e8e8 !important;
+}
+
+.wp-block-table th {
+  background-color: rgba(196, 162, 101, 0.2) !important; /* Premium Gold tint */
+  color: #c4a265 !important; /* Gold text */
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 15px 20px !important;
+  border: 1px solid rgba(196, 162, 101, 0.15) !important;
+}
+
+.wp-block-table td {
+  padding: 15px 20px !important;
+  border: 1px solid rgba(196, 162, 101, 0.15) !important;
+  color: #e8e8e8 !important;
+  font-size: 15px !important;
+}
+
+/* Override Gutenberg stripes to fit Quiet Luxury Dark Theme */
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background-color: #161616 !important; /* Dark alternating row */
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(even) {
+  background-color: #0b0b0b !important; /* Base background row */
+}
+
+/* Ensure all links and text inside table are visible */
+.wp-block-table td,
+.wp-block-table th,
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) td,
+.wp-block-table.is-style-stripes tbody tr:nth-child(even) td {
+  color: #e8e8e8 !important;
+}
+
+
 
 

@@ -375,7 +375,7 @@ function astra_child_keystone_enqueue_styles() {
     wp_enqueue_style( 'astra-parent-theme-css', get_template_directory_uri() . '/style.css' );
     
     // Enqueue Child customized style
-    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.3' );
+    wp_enqueue_style( 'astra-child-keystone-css', get_stylesheet_directory_uri() . '/style.css', array( 'astra-parent-theme-css' ), '1.0.4' );
     
     // Load typography fonts (Montserrat, Inter, Outfit)
     wp_enqueue_style( 'keystone-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&family=Outfit:wght@400;600;700;800&display=swap', array(), null );
@@ -1924,6 +1924,217 @@ add_action( 'init', function() {
         ) );
     }
 } );
+
+/**
+ * =====================================================================
+ * SECTION: GEO — Auto-Generated FAQPage Schema for AI Search Citation
+ * =====================================================================
+ * Extracts H2/H3 question-like headings from post content and generates
+ * FAQPage JSON-LD schema. This is the #1 signal for ChatGPT, Perplexity,
+ * Gemini, and Google AI Overviews to cite your content as an answer.
+ */
+function keystone_recomposition_child_faq_schema() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+
+    global $post;
+    if ( ! $post ) {
+        return;
+    }
+
+    $content = $post->post_content;
+
+    // Strategy 1: Extract headings that look like questions (contain ? or start with how/what/why/when/can/is/do/does/should/will)
+    $faq_items = array();
+
+    // Match H2 and H3 headings followed by their content
+    if ( preg_match_all( '~<h[23][^>]*>(.*?)</h[23]>(.*?)(?=<h[23]|$)~is', $content, $matches, PREG_SET_ORDER ) ) {
+        foreach ( $matches as $match ) {
+            $heading = wp_strip_all_tags( $match[1] );
+            $answer_raw = $match[2];
+
+            // Check if heading is question-like
+            $is_question = (
+                strpos( $heading, '?' ) !== false ||
+                preg_match( '~^(how|what|why|when|can|is|do|does|should|will|are|could|would|which)\b~i', $heading )
+            );
+
+            if ( ! $is_question ) {
+                continue;
+            }
+
+            // Clean the answer — take first paragraph or first 300 chars
+            $answer_clean = wp_strip_all_tags( strip_shortcodes( $answer_raw ) );
+            $answer_clean = preg_replace( '~\s+~', ' ', trim( $answer_clean ) );
+
+            if ( strlen( $answer_clean ) < 30 ) {
+                continue; // Skip if answer is too short
+            }
+
+            // Cap at 500 chars for clean schema
+            if ( strlen( $answer_clean ) > 500 ) {
+                $answer_clean = wp_html_excerpt( $answer_clean, 500, '...' );
+            }
+
+            // Ensure heading ends with ? for proper FAQ formatting
+            if ( strpos( $heading, '?' ) === false ) {
+                $heading .= '?';
+            }
+
+            $faq_items[] = array(
+                '@type' => 'Question',
+                'name' => esc_attr( $heading ),
+                'acceptedAnswer' => array(
+                    '@type' => 'Answer',
+                    'text' => esc_attr( $answer_clean )
+                )
+            );
+
+            // Cap at 8 FAQ items (Google recommends max 10)
+            if ( count( $faq_items ) >= 8 ) {
+                break;
+            }
+        }
+    }
+
+    // Strategy 2: If no question headings found, auto-generate from title
+    if ( empty( $faq_items ) ) {
+        $title = get_the_title( $post->ID );
+        $excerpt = get_the_excerpt( $post->ID );
+        if ( empty( $excerpt ) ) {
+            $excerpt = wp_trim_words( wp_strip_all_tags( strip_shortcodes( $content ) ), 60, '...' );
+        }
+
+        if ( ! empty( $excerpt ) ) {
+            // Generate a contextual Q&A pair from the title
+            $faq_items[] = array(
+                '@type' => 'Question',
+                'name' => 'What is ' . esc_attr( $title ) . '?',
+                'acceptedAnswer' => array(
+                    '@type' => 'Answer',
+                    'text' => esc_attr( $excerpt )
+                )
+            );
+        }
+    }
+
+    if ( empty( $faq_items ) ) {
+        return;
+    }
+
+    $faq_schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faq_items
+    );
+
+    echo "\n<!-- Keystone GEO: Auto-Generated FAQPage Schema -->\n";
+    echo "<script type=\"application/ld+json\">\n";
+    echo wp_json_encode( $faq_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . "\n";
+    echo "</script>\n";
+    echo "<!-- End FAQPage Schema -->\n\n";
+}
+add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
+
+/**
+ * =====================================================================
+ * SECTION: GEO — Speakable Schema for Voice Search & Google Assistant
+ * =====================================================================
+ * Tells Google which sections of the page are suitable for text-to-speech
+ * playback via Google Assistant, Gemini, and other voice interfaces.
+ * Uses CSS selectors pointing to the main content area.
+ */
+function keystone_recomposition_child_speakable_schema() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+
+    global $post;
+    if ( ! $post ) {
+        return;
+    }
+
+    $speakable_schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'WebPage',
+        'name' => esc_attr( get_the_title( $post->ID ) ),
+        'url' => esc_url( get_permalink( $post->ID ) ),
+        'speakable' => array(
+            '@type' => 'SpeakableSpecification',
+            'cssSelector' => array(
+                '.entry-title',
+                '.entry-content p:first-of-type',
+                '.entry-content p:nth-of-type(2)',
+                '.entry-content p:nth-of-type(3)',
+                '.entry-content h2',
+                '.entry-content h3'
+            )
+        ),
+        'datePublished' => get_the_date( 'c', $post->ID ),
+        'dateModified' => get_the_modified_date( 'c', $post->ID ),
+        'author' => array(
+            '@type' => 'Person',
+            'name' => 'Wayne Stevenson',
+            'url' => 'https://keystonerecomposition.com'
+        )
+    );
+
+    echo "\n<!-- Keystone GEO: Speakable Schema for Voice Search -->\n";
+    echo "<script type=\"application/ld+json\">\n";
+    echo wp_json_encode( $speakable_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . "\n";
+    echo "</script>\n";
+    echo "<!-- End Speakable Schema -->\n\n";
+}
+add_action( 'wp_head', 'keystone_recomposition_child_speakable_schema', 35 );
+
+/**
+ * =====================================================================
+ * SECTION: GEO — Citation Meta Tags for AI Search Engines
+ * =====================================================================
+ * Adds meta tags that AI search engines (ChatGPT, Perplexity, Gemini)
+ * use to properly attribute and cite content. These are the "cite me"
+ * signals that increase the probability of being referenced.
+ */
+function keystone_recomposition_child_geo_citation_meta() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+
+    global $post;
+    if ( ! $post ) {
+        return;
+    }
+
+    $author = 'Wayne Stevenson';
+    $published = get_the_date( 'Y-m-d', $post->ID );
+    $modified = get_the_modified_date( 'Y-m-d', $post->ID );
+    $title = get_the_title( $post->ID );
+    $permalink = get_permalink( $post->ID );
+
+    echo "\n<!-- Keystone GEO: Citation Meta Tags for AI Search Engines -->\n";
+    // Dublin Core metadata (used by Perplexity, academic crawlers)
+    echo "<meta name=\"DC.title\" content=\"" . esc_attr( $title ) . "\" />\n";
+    echo "<meta name=\"DC.creator\" content=\"" . esc_attr( $author ) . "\" />\n";
+    echo "<meta name=\"DC.date\" content=\"" . esc_attr( $published ) . "\" />\n";
+    echo "<meta name=\"DC.publisher\" content=\"Keystone Recomposition\" />\n";
+    echo "<meta name=\"DC.language\" content=\"en\" />\n";
+    echo "<meta name=\"DC.type\" content=\"Article\" />\n";
+    echo "<meta name=\"DC.identifier\" content=\"" . esc_url( $permalink ) . "\" />\n";
+    // Citation metadata (used by Google Scholar, AI models)
+    echo "<meta name=\"citation_title\" content=\"" . esc_attr( $title ) . "\" />\n";
+    echo "<meta name=\"citation_author\" content=\"" . esc_attr( $author ) . "\" />\n";
+    echo "<meta name=\"citation_publication_date\" content=\"" . esc_attr( $published ) . "\" />\n";
+    echo "<meta name=\"citation_journal_title\" content=\"Keystone Recomposition\" />\n";
+    echo "<meta name=\"citation_public_url\" content=\"" . esc_url( $permalink ) . "\" />\n";
+    // Article metadata (OpenGraph extensions for AI)
+    echo "<meta property=\"article:author\" content=\"" . esc_attr( $author ) . "\" />\n";
+    echo "<meta property=\"article:published_time\" content=\"" . esc_attr( get_the_date( 'c', $post->ID ) ) . "\" />\n";
+    echo "<meta property=\"article:modified_time\" content=\"" . esc_attr( get_the_modified_date( 'c', $post->ID ) ) . "\" />\n";
+    echo "<meta property=\"article:section\" content=\"Health &amp; Wellness\" />\n";
+    echo "<!-- End GEO Citation Meta -->\n\n";
+}
+add_action( 'wp_head', 'keystone_recomposition_child_geo_citation_meta', 3 );
 
 /**
  * =====================================================================
