@@ -527,6 +527,13 @@ function keystone_recomposition_child_post_title_after( $after ) {
  * 7. Inject Premium Organization & Person JSON-LD Schema (Knowledge Panel Anchor)
  */
 function keystone_recomposition_child_inject_schema() {
+    // SITE-AWARE: Skip Recomposition/Digital schema injection on the Possibilities site.
+    // The Possibilities site uses its own Rank Math filter for clean B2B construction schema.
+    // Without this gate, Recomposition Organization + Person nodes pollute the Possibilities
+    // Knowledge Panel with music/wellness entities that confuse Google's entity resolution.
+    if ( strpos( home_url(), 'keystonepossibilities' ) !== false ) {
+        return;
+    }
     $custom_logo_id = get_theme_mod( 'custom_logo' );
     $logo_url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
     if ( ! $logo_url ) {
@@ -1434,8 +1441,16 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
 }
 
 /**
- * Fix Rank Math JSON-LD Schema to resolve B2B entity conflicts, staging URLs,
- * duplicate organization entries, and remove cross-brand pollution.
+ * Fix Rank Math JSON-LD Schema for Keystone Possibilities — NUCLEAR VERSION
+ * Resolves: staging URLs, duplicate Organization nodes, cross-brand entity pollution,
+ * logo URL contamination, and Recomposition/music sameAs leakage.
+ *
+ * This filter runs at priority 999 (after all other Rank Math filters) and:
+ * 1. Replaces ALL staging domain references in the entire schema
+ * 2. STRIPS any Recomposition/music entities from the @graph
+ * 3. MERGES duplicate Organization nodes into one authoritative entity
+ * 4. Explicitly sets the correct logo, description, sameAs, and areaServed
+ * 5. Cleans up Person nodes to remove cross-brand references
  */
 add_filter( 'rank_math/json_ld', 'keystone_possibilities_fix_json_ld_schema', 999, 2 );
 function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
@@ -1443,7 +1458,7 @@ function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
         return $data;
     }
 
-    // Replace all occurrences of staging domain in the entire schema array
+    // Step 1: Nuclear staging domain replacement across the ENTIRE serialized schema
     $json_string = wp_json_encode( $data );
     $json_string = str_replace(
         'staging-a826-keystonepossibilities.wpcomstaging.com',
@@ -1466,12 +1481,20 @@ function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
         }
 
         $types = (array) $node['@type'];
-        
-        // Identify Organization or Corporation nodes for Keystone Possibilities
+        $node_id = isset( $node['@id'] ) ? $node['@id'] : '';
+
+        // STRIP: Remove ANY entity with a keystonerecomposition.com @id.
+        // These are music/wellness/protocol entities that do NOT belong on a B2B construction site.
+        // Their presence causes Google to confuse the Possibilities Knowledge Panel with Recomposition.
+        if ( strpos( $node_id, 'keystonerecomposition.com' ) !== false ) {
+            continue; // Drop this node entirely
+        }
+
+        // MERGE: Consolidate all Organization/Corporation nodes for keystonepossibilities.ca
         $is_possibilities_org = false;
         foreach ( $types as $t ) {
             if ( in_array( strtolower( $t ), array( 'organization', 'corporation' ) ) ) {
-                if ( isset( $node['@id'] ) && strpos( $node['@id'], 'keystonepossibilities.ca' ) !== false ) {
+                if ( strpos( $node_id, 'keystonepossibilities.ca' ) !== false ) {
                     $is_possibilities_org = true;
                     break;
                 }
@@ -1480,94 +1503,157 @@ function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
 
         if ( $is_possibilities_org ) {
             if ( ! $possibilities_org ) {
-                // Initialize the merged organization node
                 $possibilities_org = $node;
             } else {
-                // Merge properties from duplicate organization nodes
                 $possibilities_org = array_merge( $possibilities_org, $node );
             }
-            // Standardize type
-            $possibilities_org['@type'] = array( 'Organization', 'Corporation' );
         } else {
-            // Keep other nodes (Person, WebSite, WebPage, etc.)
             $new_graph[] = $node;
         }
     }
 
-    // If we found organization node(s), configure the perfect B2B organization entity
+    // Step 2: Build the ONE authoritative Keystone Possibilities Organization entity
     if ( $possibilities_org ) {
-        $possibilities_org['@id'] = 'https://keystonepossibilities.ca/#organization';
-        $possibilities_org['name'] = 'Keystone Possibilities Ltd.';
-        $possibilities_org['legalName'] = 'Keystone Possibilities Ltd.';
-        $possibilities_org['url'] = 'https://keystonepossibilities.ca';
-        
-        // Correct Area Served
-        $possibilities_org['areaServed'] = array(
+        $possibilities_org['@type'] = array( 'Organization', 'Corporation' );
+        $possibilities_org['@id']  = 'https://keystonepossibilities.ca/#organization';
+        $possibilities_org['name'] = 'Keystone Possibilities Ltd';
+        $possibilities_org['legalName'] = 'Keystone Possibilities Ltd';
+        $possibilities_org['url']  = 'https://keystonepossibilities.ca';
+        $possibilities_org['email'] = 'keystonepossibilities@gmail.com';
+
+        // Explicit logo override — do NOT rely on string replace alone,
+        // because Rank Math can regenerate the ImageObject after our str_replace runs.
+        $possibilities_org['logo'] = array(
+            '@type'      => 'ImageObject',
+            '@id'        => 'https://keystonepossibilities.ca/#logo',
+            'url'        => 'https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-03-at-2.30.29-pm-1.png',
+            'contentUrl' => 'https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-03-at-2.30.29-pm-1.png',
+            'caption'    => 'Keystone Possibilities Ltd',
+            'inLanguage' => 'en-US',
+            'width'      => '1630',
+            'height'     => '1420'
+        );
+
+        // Correct Contact Point
+        $possibilities_org['contactPoint'] = array(
             array(
-                '@type' => 'City',
-                'name' => 'Squamish',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
-            ),
-            array(
-                '@type' => 'City',
-                'name' => 'Whistler',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
-            ),
-            array(
-                '@type' => 'City',
-                'name' => 'West Vancouver',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
-            ),
-            array(
-                '@type' => 'City',
-                'name' => 'North Vancouver',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
-            ),
-            array(
-                '@type' => 'City',
-                'name' => 'Pemberton',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
-            ),
-            array(
-                '@type' => 'City',
-                'name' => 'Lions Bay',
-                'containedInPlace' => array(
-                    '@type' => 'AdministrativeArea',
-                    'name' => 'British Columbia'
-                )
+                '@type'       => 'ContactPoint',
+                'telephone'   => '+1-604-848-9688',
+                'contactType' => 'customer support'
             )
         );
 
-        // Correct Business Description (Option A: Lead with local, end with international retreats)
-        $possibilities_org['description'] = 'Keystone Possibilities Ltd is a licensed BC residential builder (#52603) and BC Hydro registered civil contractor providing general contracting, project management, and custom home building across the Sea-to-Sky corridor. Led by Wayne Stevenson with 20+ years of experience, we specialize in transparent flat-fee project management with real-time digital dashboards, BC Energy Step Code compliance, and WBI 2-5-10 warranty backed construction in Squamish, Whistler, West Vancouver, and North Vancouver. We also develop premium retreat properties in Mexico and Italy through our sweat-equity joint venture model.';
+        // Correct Address
+        $possibilities_org['address'] = array(
+            '@type'           => 'PostalAddress',
+            'streetAddress'   => '1 Watts Point Road',
+            'addressLocality' => 'Squamish',
+            'addressRegion'   => 'BC',
+            'postalCode'      => 'V8B 0B1',
+            'addressCountry'  => 'CA'
+        );
 
-        // Correct SameAs (remove music/recomposition, keep possibilities social and clean links)
+        // Correct Area Served — Sea-to-Sky corridor cities
+        $possibilities_org['areaServed'] = array(
+            array( '@type' => 'City', 'name' => 'Squamish', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
+            array( '@type' => 'City', 'name' => 'Whistler', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
+            array( '@type' => 'City', 'name' => 'West Vancouver', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
+            array( '@type' => 'City', 'name' => 'North Vancouver', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
+            array( '@type' => 'City', 'name' => 'Pemberton', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
+            array( '@type' => 'City', 'name' => 'Lions Bay', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) )
+        );
+
+        // Correct Business Description — pure B2B construction, no investor pitch
+        $possibilities_org['description'] = 'Keystone Possibilities Ltd is a licensed BC residential builder (#52603) and BC Hydro registered civil contractor providing general contracting, project management, and custom home building across the Sea-to-Sky corridor. Led by Wayne Stevenson with 20+ years of experience, we specialize in transparent flat-fee project management with real-time digital dashboards, BC Energy Step Code compliance, and WBI 2-5-10 warranty backed construction in Squamish, Whistler, West Vancouver, and North Vancouver.';
+
+        // Correct Credentials
+        $possibilities_org['hasCredential'] = array(
+            array(
+                '@type'              => 'EducationalOccupationalCredential',
+                'credentialCategory' => 'Licensed Residential Builder',
+                'identifier'         => '52603',
+                'recognizedBy'       => array( '@type' => 'Organization', 'name' => 'BC Housing' )
+            ),
+            array(
+                '@type'              => 'EducationalOccupationalCredential',
+                'credentialCategory' => 'Registered BC Hydro Civil Contractor',
+                'recognizedBy'       => array( '@type' => 'Organization', 'name' => 'BC Hydro' )
+            )
+        );
+
+        // Correct Founder (reference within this site, not recomposition)
+        $possibilities_org['founder'] = array(
+            '@type'    => 'Person',
+            'name'     => 'Wayne Stevenson',
+            'jobTitle' => 'Founder & Licensed BC Builder (#52603)'
+        );
+
+        // Clean SameAs — Possibilities social links ONLY (no Recomposition, no Spotify, no music)
         $possibilities_org['sameAs'] = array(
             'https://www.facebook.com/profile.php?id=61554185128555',
             'https://www.youtube.com/@KeystonePossibilities',
             'https://www.instagram.com/keystonepossibilities'
         );
 
+        // Remove cross-brand contamination keys that may have been merged in
+        unset( $possibilities_org['subOrganization'] );
+        unset( $possibilities_org['identifier'] );
+        unset( $possibilities_org['location'] ); // replaced by explicit address above
+
         $new_graph[] = $possibilities_org;
     }
+
+    // Step 3: Clean up Person nodes — fix Wayne's WP author entity
+    foreach ( $new_graph as &$node ) {
+        if ( isset( $node['@type'] ) ) {
+            $node_types = (array) $node['@type'];
+            if ( in_array( 'Person', $node_types ) && isset( $node['name'] ) && $node['name'] === 'Wayne' ) {
+                // Ensure this Person references the Possibilities org, not Recomposition
+                $node['worksFor'] = array( '@id' => 'https://keystonepossibilities.ca/#organization' );
+                // Strip wordpress.com and recomposition.com from sameAs
+                if ( isset( $node['sameAs'] ) ) {
+                    $clean_urls = array();
+                    foreach ( (array) $node['sameAs'] as $url ) {
+                        if ( strpos( $url, 'wordpress.com' ) === false && strpos( $url, 'keystonerecomposition' ) === false ) {
+                            $clean_urls[] = $url;
+                        }
+                    }
+                    $node['sameAs'] = ! empty( $clean_urls ) ? $clean_urls : array( 'https://keystonepossibilities.ca' );
+                }
+            }
+        }
+    }
+    unset( $node );
+
+    // Step 4: Also strip any standalone ImageObject nodes that reference staging URLs
+    foreach ( $new_graph as &$img_node ) {
+        if ( isset( $img_node['@type'] ) && $img_node['@type'] === 'ImageObject' ) {
+            if ( isset( $img_node['@id'] ) && strpos( $img_node['@id'], 'wpcomstaging.com' ) !== false ) {
+                $img_node['@id'] = str_replace( 'staging-a826-keystonepossibilities.wpcomstaging.com', 'keystonepossibilities.ca', $img_node['@id'] );
+            }
+            if ( isset( $img_node['url'] ) && strpos( $img_node['url'], 'wpcomstaging.com' ) !== false ) {
+                $img_node['url'] = str_replace( 'staging-a826-keystonepossibilities.wpcomstaging.com', 'keystonepossibilities.ca', $img_node['url'] );
+            }
+        }
+    }
+    unset( $img_node );
 
     $data['@graph'] = $new_graph;
     return $data;
 }
 
-
+/**
+ * Nuclear Output Buffer: Final-pass safety net to catch ANY remaining staging domain
+ * references in the fully-rendered HTML (from Rank Math, Jetpack CDN, or any plugin).
+ * Runs at priority 1 (earliest) on template_redirect.
+ */
+add_action( 'template_redirect', 'keystone_possibilities_staging_url_buffer', 2 );
+function keystone_possibilities_staging_url_buffer() {
+    ob_start( function( $html ) {
+        return str_replace(
+            'staging-a826-keystonepossibilities.wpcomstaging.com',
+            'keystonepossibilities.ca',
+            $html
+        );
+    });
+}
