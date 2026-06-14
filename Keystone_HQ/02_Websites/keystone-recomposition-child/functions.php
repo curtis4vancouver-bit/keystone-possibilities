@@ -46,6 +46,12 @@ add_action( 'init', function() {
         if ( function_exists( 'flush_rewrite_rules' ) ) {
             flush_rewrite_rules();
         }
+        
+        $p1 = $_SERVER['DOCUMENT_ROOT'] . '/llms.txt';
+        $p4 = $_SERVER['DOCUMENT_ROOT'] . '/robots.txt';
+        if ( file_exists( $p1 ) ) { @unlink( $p1 ); }
+        if ( file_exists( $p4 ) ) { @unlink( $p4 ); }
+
         echo "CACHES PURGED SUCCESSFULLY";
         exit;
     }
