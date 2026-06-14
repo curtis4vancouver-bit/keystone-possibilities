@@ -1562,6 +1562,13 @@ function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
             'addressCountry'  => 'CA'
         );
 
+        // Correct GeoCoordinates for Squamish Office
+        $possibilities_org['geo'] = array(
+            '@type'     => 'GeoCoordinates',
+            'latitude'  => '49.7016',
+            'longitude' => '-123.1558'
+        );
+
         // Correct Area Served — Sea-to-Sky corridor cities
         $possibilities_org['areaServed'] = array(
             array( '@type' => 'City', 'name' => 'Squamish', 'containedInPlace' => array( '@type' => 'AdministrativeArea', 'name' => 'British Columbia' ) ),
