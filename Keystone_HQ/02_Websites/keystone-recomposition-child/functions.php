@@ -1436,6 +1436,7 @@ function keystone_serve_video_sitemap() {
         return;
     }
 
+    status_header( 200 );
     header( 'Content-Type: application/xml; charset=UTF-8' );
     header( 'X-Robots-Tag: noindex, follow' );
 
