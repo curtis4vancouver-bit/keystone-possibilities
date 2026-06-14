@@ -43,16 +43,12 @@ add_action( 'init', function() {
         if ( function_exists( 'wp_cache_flush' ) ) {
             wp_cache_flush();
         }
-        if ( function_exists( 'flush_rewrite_rules' ) ) {
-            flush_rewrite_rules();
-        }
-        
         $p1 = $_SERVER['DOCUMENT_ROOT'] . '/llms.txt';
         $p4 = $_SERVER['DOCUMENT_ROOT'] . '/robots.txt';
-        if ( file_exists( $p1 ) ) { @unlink( $p1 ); }
-        if ( file_exists( $p4 ) ) { @unlink( $p4 ); }
+        $u1 = file_exists( $p1 ) ? (unlink( $p1 ) ? 'deleted' : 'failed') : 'not found';
+        $u4 = file_exists( $p4 ) ? (unlink( $p4 ) ? 'deleted' : 'failed') : 'not found';
 
-        echo "CACHES PURGED SUCCESSFULLY";
+        echo "CACHES PURGED SUCCESSFULLY. llms.txt: $u1, robots.txt: $u4";
         exit;
     }
 }, 20 );
