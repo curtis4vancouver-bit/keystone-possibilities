@@ -1068,10 +1068,9 @@ function keystone_recomposition_child_404_redirect() {
     }
     
     // Wildcard matches
-    if ( strpos( $path, 'create-missing-watch-pages.php' ) === false && (
-         strpos( $path, '/wp-content/themes/keystone-recomposition-child' ) !== false ||
+    if ( strpos( $path, '/wp-content/themes/keystone-recomposition-child' ) !== false ||
          preg_match( '~^/wp-.*\.php$~i', $path ) ||
-         ( strpos( $path, '/wp-admin' ) === false && preg_match( '~\.php$~i', $path ) ) ) ) {
+         ( strpos( $path, '/wp-admin' ) === false && preg_match( '~\.php$~i', $path ) ) ) {
         wp_redirect( home_url(), 301 );
         exit;
     }
