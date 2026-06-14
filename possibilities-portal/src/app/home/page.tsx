@@ -59,8 +59,21 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12 text-center text-zinc-600 text-xs tracking-widest uppercase border-t border-white/5 bg-black">
-        © {new Date().getFullYear()} Keystone Possibilities. All Rights Reserved.
+      <footer className="w-full py-12 text-center text-zinc-600 text-xs tracking-widest uppercase border-t border-white/5 bg-black space-y-4">
+        <div>
+          © {new Date().getFullYear()} Keystone Possibilities. All Rights Reserved.
+        </div>
+        <div className="text-[10px] text-zinc-500 normal-case tracking-normal">
+          Partner Brand:{' '}
+          <a
+            href="https://keystonerecomposition.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-400 hover:text-white transition-colors duration-300"
+          >
+            Keystone Recomposition (Health & Music)
+          </a>
+        </div>
       </footer>
     </div>
   );

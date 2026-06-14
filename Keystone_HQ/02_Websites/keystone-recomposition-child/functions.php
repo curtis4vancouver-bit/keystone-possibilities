@@ -474,14 +474,15 @@ function keystone_recomposition_child_inject_schema() {
         $logo_url = 'https://keystonerecomposition.com/wp-content/uploads/logo.png';
     }
 
-    // === Organization Schema ===
+    // === Organization Schema (Keystone Recomposition Wellness Brand) ===
     $schema = array(
         '@context' => 'https://schema.org',
-        '@type' => 'Organization',
-        'name' => 'Keystone Digital',
+        '@type' => array( 'Organization', 'HealthAndBeautyBusiness' ),
+        '@id' => 'https://keystonerecomposition.com/#organization',
+        'name' => 'Keystone Recomposition',
         'url' => 'https://keystonerecomposition.com',
-        'description' => 'A multifaceted digital organization managing health, beauty, construction, and entertainment projects, including deep house music and record labels.',
-        'keywords' => 'Keystone Digital, deep house music, music label, digital organization, entertainment, record label',
+        'description' => 'Specializing in high-performance metabolic health, biohacking, and deep house music protocols.',
+        'keywords' => 'Keystone Recomposition, GLP-1, health, beauty, wellness, weight loss, fitness, deep house music',
         'logo' => $logo_url,
         'sameAs' => array(
             'https://www.youtube.com/@KeystoneRecomposition',
@@ -497,55 +498,8 @@ function keystone_recomposition_child_inject_schema() {
             'propertyID' => 'Too Lost Catalog Reference ID',
             'value' => 'TOOLOST3000939655'
         ),
-        'subOrganization' => array(
-            array(
-                '@type' => 'HealthAndBeautyBusiness',
-                'name' => 'Keystone Recomposition',
-                'url' => 'https://keystonerecomposition.com',
-                'description' => 'Specializing in health, wellness, and beauty recomposition. Explore GLP-1 weight loss solutions, fitness programs, and beauty enhancements.',
-                'keywords' => 'Keystone Recomposition, GLP-1, health, beauty, wellness, weight loss, fitness',
-                'founder' => array(
-                    '@type' => 'Person',
-                    'name' => 'Wayne Stevenson',
-                    'jobTitle' => 'Biohacking & Metabolic Health Authority'
-                )
-            ),
-            array(
-                '@type' => 'GeneralContractor',
-                'name' => 'Keystone Possibilities',
-                'url' => 'https://keystonepossibilities.ca',
-                'description' => 'Premium Construction Project Management and Civil Construction Services operating across the Sea-to-Sky and Greater Vancouver regions.',
-                'founder' => array(
-                    '@type' => 'Person',
-                    'name' => 'Wayne Stevenson',
-                    'jobTitle' => 'Certified BC Builder & Project Manager',
-                    'sameAs' => 'https://keystonerecomposition.com/about/'
-                ),
-                'areaServed' => array(
-                    array('@type' => 'City', 'name' => 'Whistler'),
-                    array('@type' => 'City', 'name' => 'West Vancouver'),
-                    array('@type' => 'City', 'name' => 'North Vancouver'),
-                    array('@type' => 'City', 'name' => 'Squamish')
-                ),
-                'hasOfferCatalog' => array(
-                    '@type' => 'OfferCatalog',
-                    'name' => 'Construction Services',
-                    'itemListElement' => array(
-                        array('@type' => 'Offer', 'itemOffered' => array('@type' => 'Service', 'name' => 'Luxury Custom Home Project Management')),
-                        array('@type' => 'Offer', 'itemOffered' => array('@type' => 'Service', 'name' => 'Civil Construction & Site Engineering'))
-                    )
-                ),
-                'identifier' => array(
-                    '@type' => 'PropertyValue',
-                    'propertyID' => 'BC Builder License',
-                    'value' => '52603'
-                ),
-                'memberOf' => array(
-                    '@type' => 'Organization',
-                    'name' => 'WBI Home Warranty',
-                    'url' => 'https://wbihomewarranty.com/'
-                )
-            )
+        'founder' => array(
+            '@id' => 'https://www.keystonepossibilities.com/wayne-stevenson/#person'
         )
     );
 
@@ -557,41 +511,101 @@ function keystone_recomposition_child_inject_schema() {
     echo "</script>\n";
     echo "<!-- End Keystone Digital JSON-LD Schema -->\n";
 
-    // === Person Schema (Knowledge Panel Anchor) ===
+    // === Person Schema (Wayne Stevenson - Knowledge Panel Anchor) ===
     $person_schema = array(
         '@context' => 'https://schema.org',
-        '@type' => 'Person',
-        'name' => 'Wayne Stevenson',
-        'alternateName' => array( 'Keystone Recomposition', 'Keystone Protocols' ),
-        'url' => 'https://keystonerecomposition.com',
-        'image' => $logo_url,
-        'jobTitle' => 'Health Researcher, Music Producer & Construction Project Manager',
-        'description' => 'Founder of Keystone Digital. Documents the intersection of GLP-1 metabolic health, peptide science, body recomposition, and longevity for men over 40. Also produces deep house music and manages luxury construction projects in the Sea-to-Sky corridor.',
-        'knowsAbout' => array(
-            'GLP-1 receptor agonists',
-            'metabolic health',
-            'body recomposition',
-            'peptide protocols',
-            'biohacking',
-            'deep house music production',
-            'construction project management'
-        ),
-        'sameAs' => array(
-            'https://www.youtube.com/@KeystoneRecomposition',
-            'https://www.youtube.com/@KeystoneProtocols',
-            'https://www.youtube.com/channel/UCxURlqMNhAtxUTpdXmlOYaw',
-            'https://keystonepossibilities.ca',
-            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
-            'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
-            'https://audiomack.com/keystone-recomposition',
-            'https://www.facebook.com/profile.php?id=61554185128555',
-            'https://www.instagram.com/p/DO9FsCKj5Cb/',
-            'https://www.tiktok.com/@keystonerecomposition'
-        ),
-        'worksFor' => array(
-            '@type' => 'Organization',
-            'name' => 'Keystone Digital',
-            'url' => 'https://keystonerecomposition.com'
+        '@graph' => array(
+            array(
+                '@type' => 'Person',
+                '@id' => 'https://www.keystonepossibilities.com/wayne-stevenson/#person',
+                'name' => 'Wayne Stevenson',
+                'alternateName' => array( 'Keystone Recomposition', 'Keystone Protocols' ),
+                'url' => 'https://keystonerecomposition.com/about/',
+                'image' => array(
+                    '@type' => 'ImageObject',
+                    'url' => $logo_url
+                ),
+                'jobTitle' => 'Founder & Managing Director',
+                'description' => 'Founder of Keystone Recomposition. Documents the intersection of GLP-1 metabolic health, peptide science, body recomposition, and longevity for men over 40. Also produces deep house music protocols.',
+                'knowsAbout' => array(
+                    array(
+                        '@type' => 'Thing',
+                        'name' => 'Custom Luxury Home Construction',
+                        'sameAs' => 'https://en.wikipedia.org/wiki/General_contractor'
+                    ),
+                    array(
+                        '@type' => 'Thing',
+                        'name' => 'Metabolic Health Optimization',
+                        'sameAs' => 'https://en.wikipedia.org/wiki/Metabolism'
+                    ),
+                    array(
+                        '@type' => 'Thing',
+                        'name' => 'Peptide Therapeutics',
+                        'sameAs' => 'https://en.wikipedia.org/wiki/Peptide'
+                    ),
+                    array(
+                        '@type' => 'Thing',
+                        'name' => 'Solfeggio Soundscapes',
+                        'sameAs' => 'https://en.wikipedia.org/wiki/Solfeggio'
+                    )
+                ),
+                'sameAs' => array(
+                    'https://www.linkedin.com/in/wayne-stevenson',
+                    'https://open.spotify.com/artist/4zV1iPj3R9g16B3WwM7Y5m',
+                    'https://www.youtube.com/channel/UCMn1f9DTF_iybKmv5WlTm9Q',
+                    'https://keystonepossibilities.ca',
+                    'https://www.youtube.com/@KeystoneRecomposition',
+                    'https://www.youtube.com/@KeystoneProtocols',
+                    'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
+                    'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
+                    'https://audiomack.com/keystone-recomposition',
+                    'https://www.facebook.com/profile.php?id=61554185128555',
+                    'https://www.instagram.com/p/DO9FsCKj5Cb/',
+                    'https://www.tiktok.com/@keystonerecomposition'
+                ),
+                'worksFor' => array(
+                    array(
+                        '@type' => 'OrganizationRole',
+                        'worksFor' => array(
+                            '@type' => 'Organization',
+                            '@id' => 'https://www.keystonepossibilities.com/#organization',
+                            'name' => 'Keystone Possibilities Ltd.'
+                        ),
+                        'roleName' => 'Managing Director & Chief Builder',
+                        'startDate' => '2018'
+                    ),
+                    array(
+                        '@type' => 'OrganizationRole',
+                        'worksFor' => array(
+                            '@type' => 'Organization',
+                            '@id' => 'https://keystonerecomposition.com/#organization',
+                            'name' => 'Keystone Recomposition'
+                        ),
+                        'roleName' => 'Founder & Metabolic Health Researcher',
+                        'startDate' => '2021'
+                    )
+                ),
+                'hasCredential' => array(
+                    '@id' => 'https://www.keystonepossibilities.com/wayne-stevenson/#license-52603'
+                )
+            ),
+            array(
+                '@type' => 'EducationalOccupationalCredential',
+                '@id' => 'https://www.keystonepossibilities.com/wayne-stevenson/#license-52603',
+                'name' => 'BC Residential Builder License #52603',
+                'credentialCategory' => 'Professional Provincial License',
+                'credentialNumber' => '52603',
+                'recognizedBy' => array(
+                    '@type' => 'GovernmentOrganization',
+                    'name' => 'BC Housing Licensing and Consumer Services',
+                    'url' => 'https://www.bchousing.org/'
+                ),
+                'validIn' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'British Columbia',
+                    'sameAs' => 'https://en.wikipedia.org/wiki/British_Columbia'
+                )
+            )
         )
     );
 
@@ -1454,7 +1468,13 @@ function keystone_serve_video_sitemap() {
             continue; 
         }
 
-        $permalink = get_permalink( $post_id );
+        // Try to locate a corresponding watch page (slug: watch-{post_slug})
+        $watch_page = get_page_by_path( 'watch-' . $p->post_name, OBJECT, 'page' );
+        if ( $watch_page && 'publish' === $watch_page->post_status ) {
+            $permalink = get_permalink( $watch_page->ID );
+        } else {
+            $permalink = get_permalink( $post_id );
+        }
         
         // Symmetrical metadata extraction
         $title = get_post_meta( $post_id, 'video_title', true );
@@ -2258,3 +2278,18 @@ add_filter( 'robots_txt', function( $output, $public ) {
 
     return $output . $ai_rules;
 }, 99999, 2 );
+
+/**
+ * =====================================================================
+ * SECTION: CROSS-BRAND BACKLINK — Partner Link
+ * =====================================================================
+ * Adds a premium, styled partner backlink in the footer to pass link authority
+ * to the sister site (Keystone Possibilities Construction).
+ */
+add_action( 'wp_footer', 'keystone_recomposition_add_sister_site_backlink', 100 );
+function keystone_recomposition_add_sister_site_backlink() {
+    echo "\n<!-- Keystone Cross-Brand Backlink -->\n";
+    echo '<div class="keystone-partner-backlink" style="text-align: center; padding: 15px 0; font-size: 11px; font-family: sans-serif; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); background: #000; color: #555;">';
+    echo 'Partner Brand: <a href="https://keystonepossibilities.ca" target="_blank" rel="noopener" style="color: #c4a265; text-decoration: none; transition: color 0.3s ease;">Keystone Possibilities Construction</a>';
+    echo '</div>' . "\n";
+}

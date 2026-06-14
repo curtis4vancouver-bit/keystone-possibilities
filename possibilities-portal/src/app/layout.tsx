@@ -13,8 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Keystone Possibilities LTD",
-  description: "High-End Residential Project Management in West Vancouver and the Sea-to-Sky corridor.",
+  title: "Keystone Possibilities LTD — Client Portal",
+  description: "Licensed residential builder and fiduciary construction project manager serving Squamish, Whistler, West Vancouver, and the Sea-to-Sky corridor. BC Builder License #52603.",
+  openGraph: {
+    title: "Keystone Possibilities LTD — Client Portal",
+    description: "Licensed residential builder and fiduciary construction project manager serving the Sea-to-Sky corridor. BC Builder License #52603.",
+    url: "https://keystonepossibilities.ca",
+    siteName: "Keystone Possibilities LTD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Keystone Possibilities LTD — Client Portal",
+    description: "Licensed residential builder and fiduciary construction project manager. BC Builder License #52603.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -24,40 +40,53 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "name": "Keystone Possibilities LTD",
-    "alternateName": "Keystone Recomposition",
-    "url": "https://keystonepossibilities.ca",
-    "logo": "https://keystonepossibilities.ca/assets/charcoal-gold-logo.png",
-    "image": "https://keystonepossibilities.ca/assets/squamish-luxury-build.jpg",
-    "founder": {
-      "@type": "Person",
-      "name": "Wayne Curtis Stevenson",
-      "birthDate": "1983-03-26",
-      "jobTitle": "General Contractor & Site Superintendent"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Squamish",
-      "addressRegion": "BC",
-      "addressCountry": "CA"
-    },
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "Licensed Residential Builder",
-      "issuingAuthority": "BC Housing",
-      "credentialNumber": "52603"
-    },
-    "sameAs": [
-      "https://www.youtube.com/channel/UCMn1f9DTF_iybKmv5WlTm9Q",
-      "https://open.spotify.com/artist/KeystoneRecomposition",
-      "https://keystonerecomposition.com"
-    ],
-    "knowsAbout": [
-      "Residential Project Management",
-      "Biophilic Design",
-      "Subterranean Luxury Construction",
-      "Metabolic Recomposition"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://keystonepossibilities.ca/#organization",
+        "name": "Keystone Possibilities LTD",
+        "url": "https://keystonepossibilities.ca",
+        "logo": "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-03-at-2.30.29-pm-1.png",
+        "description": "Licensed residential builder and fiduciary construction project manager serving Squamish, Whistler, West Vancouver, and the Sea-to-Sky corridor in British Columbia, Canada. BC Builder License #52603.",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://keystonepossibilities.ca/#person",
+          "name": "Wayne Stevenson",
+          "jobTitle": "Founder & Certified BC Builder"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Watts Point Road",
+          "addressLocality": "Squamish",
+          "addressRegion": "BC",
+          "postalCode": "V8B 0B1",
+          "addressCountry": "CA"
+        },
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Licensed Residential Builder",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "BC Housing"
+          },
+          "identifier": "52603"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Squamish", "sameAs": "https://en.wikipedia.org/wiki/Squamish,_British_Columbia" },
+          { "@type": "City", "name": "Whistler", "sameAs": "https://en.wikipedia.org/wiki/Whistler,_British_Columbia" },
+          { "@type": "City", "name": "West Vancouver", "sameAs": "https://en.wikipedia.org/wiki/West_Vancouver" },
+          { "@type": "City", "name": "North Vancouver" },
+          { "@type": "City", "name": "Sunshine Coast" }
+        ],
+        "sameAs": [
+          "https://www.youtube.com/@KeyStoneRecomposition",
+          "https://www.youtube.com/@KeystoneProtocols",
+          "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y",
+          "https://keystonerecomposition.com",
+          "https://www.facebook.com/profile.php?id=61554185128555",
+          "https://www.instagram.com/keystonerecomposition"
+        ]
+      }
     ]
   };
 
