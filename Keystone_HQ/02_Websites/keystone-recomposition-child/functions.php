@@ -2296,3 +2296,77 @@ function keystone_recomposition_add_sister_site_backlink() {
     echo 'Partner Brand: <a href="https://keystonepossibilities.ca" target="_blank" rel="noopener" style="color: #c4a265; text-decoration: none; transition: color 0.3s ease;">Keystone Possibilities Construction</a>';
     echo '</div>' . "\n";
 }
+
+/**
+ * =====================================================================
+ * SECTION: AUTOMATIC WATCH PAGE CREATOR
+ * =====================================================================
+ * Automatically creates a corresponding watch- page when a video blog post
+ * is published. This ensures all future video posts are automatically indexed.
+ */
+add_action( 'transition_post_status', 'keystone_auto_create_watch_page', 10, 3 );
+function keystone_auto_create_watch_page( $new_status, $old_status, $post ) {
+    // Only run when a standard post is published
+    if ( 'publish' !== $new_status || 'post' !== $post->post_type ) {
+        return;
+    }
+
+    // Check if the post contains a video (shortcode or YouTube link)
+    $youtube_id = '';
+    if ( preg_match( '~\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]+)["\']~i', $post->post_content, $matches ) ) {
+        $youtube_id = $matches[1];
+    } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^\"&?/ ]{11})~i', $post->post_content, $matches ) ) {
+        $youtube_id = $matches[1];
+    }
+
+    // If no video, do nothing
+    if ( empty( $youtube_id ) ) {
+        return;
+    }
+
+    $watch_slug = 'watch-' . $post->post_name;
+
+    // Check if the watch page already exists (to prevent duplicates)
+    $existing = get_page_by_path( $watch_slug, OBJECT, 'page' );
+    if ( $existing ) {
+        return;
+    }
+
+    // Build the watch page content
+    $blog_permalink = get_permalink( $post->ID );
+    
+    // Strip any existing [keystone_video ...] shortcodes from copied content
+    $clean_content = preg_replace( '~\[keystone_video[^\]]*\]~i', '', $post->post_content );
+    
+    $content = '';
+    $content .= '[keystone_video id="' . esc_attr( $youtube_id ) . '" type="youtube"]' . "\n\n";
+    $content .= $clean_content . "\n\n";
+    $content .= '<p class="wp-block-paragraph" style="text-align:center; margin-top:45px; margin-bottom:45px;">';
+    $content .= '<a href="' . esc_url( $blog_permalink ) . '" style="background-color: #c4a265; color: #000; padding: 15px 30px; border-radius: 4px; text-decoration: none; font-weight: bold; font-family: \'Outfit\', sans-serif; display: inline-block; text-transform: uppercase; letter-spacing: 1px;">Read the Full Protocol →</a>';
+    $content .= '</p>';
+
+    // Unhook this action to prevent infinite loops
+    remove_action( 'transition_post_status', 'keystone_auto_create_watch_page', 10 );
+
+    // Insert the watch page
+    $page_id = wp_insert_post( array(
+        'post_title'    => 'Watch: ' . $post->post_title,
+        'post_name'     => $watch_slug,
+        'post_content'  => $content,
+        'post_status'   => 'publish',
+        'post_type'     => 'page',
+        'post_author'   => $post->post_author
+    ) );
+
+    if ( ! is_wp_error( $page_id ) ) {
+        update_post_meta( $page_id, 'keystone_youtube_id', $youtube_id );
+        // Force-clear cache if purger function exists
+        if ( function_exists( 'purge_all_caches' ) ) {
+            purge_all_caches();
+        }
+    }
+
+    // Re-hook
+    add_action( 'transition_post_status', 'keystone_auto_create_watch_page', 10, 3 );
+}
+
