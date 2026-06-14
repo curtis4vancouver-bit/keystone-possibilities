@@ -79,12 +79,14 @@ export default function RootLayout({
           { "@type": "City", "name": "Sunshine Coast" }
         ],
         "sameAs": [
-          "https://www.youtube.com/@KeyStoneRecomposition",
-          "https://www.youtube.com/@KeystoneProtocols",
-          "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y",
-          "https://keystonerecomposition.com",
-          "https://www.facebook.com/profile.php?id=61554185128555",
-          "https://www.instagram.com/keystonerecomposition"
+          "https://www.youtube.com/@KeystonePossibilities",
+          "https://www.facebook.com/KeystonePossibilities",
+          "https://www.instagram.com/keystonepossibilities",
+          "https://www.linkedin.com/company/keystone-possibilities",
+          "https://homestars.com/companies/keystone-possibilities",
+          "https://www.houzz.com/pro/keystone-possibilities",
+          "https://www.bbb.org/ca/bc/squamish/profile/general-contractor/keystone-possibilities",
+          "https://renoquotes.com/en/contractors/keystone-possibilities"
         ]
       }
     ]
