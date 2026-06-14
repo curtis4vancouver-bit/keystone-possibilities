@@ -1527,7 +1527,7 @@ function keystone_serve_video_sitemap() {
 // Register the video sitemap in Rank Math's main sitemap index dynamically
 add_filter( 'rank_math/sitemap/index', 'keystone_add_video_sitemap_to_index' );
 function keystone_add_video_sitemap_to_index( $index ) {
-    $sitemap_url = home_url( '/?keystone_video_sitemap=1' );
+    $sitemap_url = home_url( '/keystone-video-sitemap.xml' );
     $index .= "\t<sitemap>\n";
     $index .= "\t\t<loc>" . esc_url( $sitemap_url ) . "</loc>\n";
     $index .= "\t\t<lastmod>" . date( 'c' ) . "</lastmod>\n";
@@ -1544,7 +1544,7 @@ add_filter( 'rank_math/sitemap/video/content', '__return_empty_string', 999 );
 // Add custom video sitemap link directly to the virtual robots.txt
 add_filter( 'robots_txt', 'keystone_add_video_sitemap_to_robots', 99, 2 );
 function keystone_add_video_sitemap_to_robots( $output, $public ) {
-    $sitemap_url = home_url( '/?keystone_video_sitemap=1' );
+    $sitemap_url = home_url( '/keystone-video-sitemap.xml' );
     $output .= PHP_EOL . 'Sitemap: ' . $sitemap_url . PHP_EOL;
     return $output;
 }
