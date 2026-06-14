@@ -19,6 +19,10 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     if ( function_exists( 'wp_cache_flush' ) ) {
         wp_cache_flush();
     }
+    // Delete Rank Math sitemap transients to force regenerate
+    global $wpdb;
+    $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_rank_math_sitemap_%' OR option_name LIKE '_transient_timeout_rank_math_sitemap_%'" );
+    
     echo "CACHES PURGED SUCCESSFULLY";
     exit;
 }
@@ -1603,27 +1607,57 @@ function keystone_possibilities_fix_json_ld_schema( $data, $jsonld ) {
         $new_graph[] = $possibilities_org;
     }
 
-    // Step 3: Clean up Person nodes — fix Wayne's WP author entity
+    // Step 3: Clean up Person nodes — triangulate Wayne Stevenson entity
     foreach ( $new_graph as &$node ) {
         if ( isset( $node['@type'] ) ) {
             $node_types = (array) $node['@type'];
-            if ( in_array( 'Person', $node_types ) && isset( $node['name'] ) && $node['name'] === 'Wayne' ) {
-                // Ensure this Person references the Possibilities org, not Recomposition
-                $node['worksFor'] = array( '@id' => 'https://keystonepossibilities.ca/#organization' );
-                // Strip wordpress.com and recomposition.com from sameAs
-                if ( isset( $node['sameAs'] ) ) {
-                    $clean_urls = array();
-                    foreach ( (array) $node['sameAs'] as $url ) {
-                        if ( strpos( $url, 'wordpress.com' ) === false && strpos( $url, 'keystonerecomposition' ) === false ) {
-                            $clean_urls[] = $url;
-                        }
-                    }
-                    $node['sameAs'] = ! empty( $clean_urls ) ? $clean_urls : array( 'https://keystonepossibilities.ca' );
-                }
+            if ( in_array( 'Person', $node_types ) && isset( $node['name'] ) && ( stripos( $node['name'], 'Wayne' ) !== false ) ) {
+                $node['@id'] = 'https://www.keystonepossibilities.com/wayne-stevenson/#person';
+                $node['name'] = 'Wayne Stevenson';
+                $node['alternateName'] = array( 'Keystone Recomposition', 'Keystone Protocols' );
+                $node['jobTitle'] = 'Managing Director & Founder';
+                $node['worksFor'] = array(
+                    array(
+                        '@type' => 'OrganizationRole',
+                        'worksFor' => array(
+                            '@type' => 'Organization',
+                            '@id' => 'https://keystonepossibilities.ca/#organization',
+                            'name' => 'Keystone Possibilities Ltd.'
+                        ),
+                        'roleName' => 'Managing Director & Chief Builder',
+                        'startDate' => '2018'
+                    ),
+                    array(
+                        '@type' => 'OrganizationRole',
+                        'worksFor' => array(
+                            '@type' => 'Organization',
+                            '@id' => 'https://keystonerecomposition.com/#organization',
+                            'name' => 'Keystone Recomposition'
+                        ),
+                        'roleName' => 'Founder & Metabolic Health Researcher',
+                        'startDate' => '2021'
+                    )
+                );
+                $node['sameAs'] = array(
+                    'https://www.linkedin.com/in/wayne-stevenson',
+                    'https://open.spotify.com/artist/4zV1iPj3R9g16B3WwM7Y5m',
+                    'https://www.youtube.com/channel/UCMn1f9DTF_iybKmv5WlTm9Q',
+                    'https://keystonepossibilities.ca',
+                    'https://www.youtube.com/@KeystonePossibilities',
+                    'https://www.youtube.com/@KeystoneRecomposition',
+                    'https://www.youtube.com/@KeystoneProtocols',
+                    'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
+                    'https://musicbrainz.org/label/30027d0e-6aeb-4704-8792-a031c936c62a',
+                    'https://audiomack.com/keystone-recomposition',
+                    'https://www.facebook.com/profile.php?id=61554185128555',
+                    'https://www.instagram.com/keystonepossibilities',
+                    'https://www.tiktok.com/@keystonerecomposition'
+                );
             }
         }
     }
     unset( $node );
+
 
     // Step 4: Also strip any standalone ImageObject nodes that reference staging URLs
     foreach ( $new_graph as &$img_node ) {
@@ -1657,3 +1691,215 @@ function keystone_possibilities_staging_url_buffer() {
         );
     });
 }
+
+/**
+ * =====================================================================
+ * SECTION: AUTOMATED GOOGLE INDEXING API PUSH & SITEMAP CACHE BYPASS
+ * =====================================================================
+ * Authenticates with the Google Indexing API via a pure-PHP OAuth2 JWT
+ * generator and automatically pushes new/updated pages to Googlebot.
+ * Also disables sitemap caching to keep SEO listings fresh.
+ */
+
+add_action( 'init', 'keystone_handle_gcs_key_update' );
+/**
+ * Listen for secure POST requests to ingest the GCS service account key
+ * into the WordPress database options table.
+ */
+function keystone_handle_gcs_key_update() {
+    if ( isset( $_GET['update_gcs_key'] ) ) {
+        if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+            wp_send_json_error( array( 'message' => 'Method not allowed' ), 405 );
+        }
+
+        $auth_header = isset( $_SERVER['HTTP_X_KEYSTONE_AUTH'] ) ? $_SERVER['HTTP_X_KEYSTONE_AUTH'] : '';
+        $expected_token = 'keystone_possibilities_gcs_key_push_token_2026_06_14';
+
+        if ( empty( $auth_header ) || $auth_header !== $expected_token ) {
+            wp_send_json_error( array( 'message' => 'Unauthorized' ), 401 );
+        }
+
+        $raw_body = file_get_contents( 'php://input' );
+        $key_data = json_decode( $raw_body, true );
+
+        if ( ! is_array( $key_data ) || empty( $key_data['client_email'] ) || empty( $key_data['private_key'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid GCS key JSON format' ), 400 );
+        }
+
+        update_option( 'keystone_gcs_key_json', $raw_body );
+        wp_send_json_success( array( 'message' => 'GCS service account key updated successfully' ) );
+    }
+}
+
+/**
+ * Signs a JWT with the GCS service account key, exchanges it for an OAuth2
+ * access token, and requests instant indexing from Googlebot.
+ *
+ * @param string $url The page URL to be crawled/indexed.
+ * @return bool True on success, false on failure.
+ */
+function keystone_push_to_google_indexing( $url ) {
+    if ( ! function_exists( 'openssl_sign' ) ) {
+        error_log( '[Keystone Indexing API] Error: OpenSSL extension is not enabled in PHP.' );
+        return false;
+    }
+
+    $gcs_key_json = get_option( 'keystone_gcs_key_json' );
+    if ( ! $gcs_key_json ) {
+        error_log( '[Keystone Indexing API] Error: No GCS key stored in database.' );
+        return false;
+    }
+
+    $key_data = json_decode( $gcs_key_json, true );
+    if ( empty( $key_data['client_email'] ) || empty( $key_data['private_key'] ) ) {
+        error_log( '[Keystone Indexing API] Error: Invalid GCS key format.' );
+        return false;
+    }
+
+    $client_email = $key_data['client_email'];
+    $private_key  = $key_data['private_key'];
+    $token_uri    = isset( $key_data['token_uri'] ) ? $key_data['token_uri'] : 'https://oauth2.googleapis.com/token';
+
+    $now = time();
+    $header = json_encode( array( 'alg' => 'RS256', 'typ' => 'JWT' ) );
+    $claims = json_encode( array(
+        'iss'   => $client_email,
+        'scope' => 'https://www.googleapis.com/auth/indexing',
+        'aud'   => $token_uri,
+        'exp'   => $now + 3600,
+        'iat'   => $now
+    ) );
+
+    $base64_url_header = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $header ) );
+    $base64_url_claims = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $claims ) );
+
+    $payload = $base64_url_header . '.' . $base64_url_claims;
+    $signature = '';
+
+    if ( ! openssl_sign( $payload, $signature, $private_key, OPENSSL_ALGO_SHA256 ) ) {
+        error_log( '[Keystone Indexing API] Error: OpenSSL signing failed.' );
+        return false;
+    }
+
+    $base64_url_signature = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $signature ) );
+    $assertion = $payload . '.' . $base64_url_signature;
+
+    $response = wp_remote_post( $token_uri, array(
+        'body' => array(
+            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+            'assertion'  => $assertion
+        )
+    ) );
+
+    if ( is_wp_error( $response ) ) {
+        error_log( '[Keystone Indexing API] OAuth Error: ' . $response->get_error_message() );
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body( $response );
+    $token_data = json_decode( $body, true );
+
+    if ( empty( $token_data['access_token'] ) ) {
+        error_log( '[Keystone Indexing API] OAuth Error: Failed to retrieve access token. Response: ' . $body );
+        return false;
+    }
+
+    $access_token = $token_data['access_token'];
+
+    $api_url = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
+    $api_response = wp_remote_post( $api_url, array(
+        'headers' => array(
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer ' . $access_token
+        ),
+        'body'    => json_encode( array(
+            'url'  => $url,
+            'type' => 'URL_UPDATED'
+        ) )
+    ) );
+
+    if ( is_wp_error( $api_response ) ) {
+        error_log( '[Keystone Indexing API] Publish Error for ' . $url . ': ' . $api_response->get_error_message() );
+        return false;
+    }
+
+    $api_body = wp_remote_retrieve_body( $api_response );
+    $status_code = wp_remote_retrieve_response_code( $api_response );
+
+    if ( 200 !== $status_code ) {
+        error_log( '[Keystone Indexing API] Publish Error ' . $status_code . ' for ' . $url . ': ' . $api_body );
+        return false;
+    }
+
+    error_log( '[Keystone Indexing API] Success: Pushed ' . $url . ' to Google Indexing API.' );
+    return true;
+}
+
+add_action( 'transition_post_status', 'keystone_auto_index_on_publish', 20, 3 );
+/**
+ * Automatically triggers Google Indexing API when a post or page is published.
+ */
+function keystone_auto_index_on_publish( $new_status, $old_status, $post ) {
+    if ( 'publish' !== $new_status || 'publish' === $old_status ) {
+        return;
+    }
+
+    $allowed_post_types = array( 'post', 'page' );
+    if ( ! in_array( $post->post_type, $allowed_post_types ) ) {
+        return;
+    }
+
+    $permalink = get_permalink( $post->ID );
+    if ( $permalink && strpos( $post->post_name, 'auto-draft' ) === false ) {
+        keystone_push_to_google_indexing( $permalink );
+    }
+}
+
+add_action( 'post_updated', 'keystone_index_on_post_update', 10, 3 );
+/**
+ * Automatically triggers Google Indexing API when an already-published post/page is updated.
+ */
+function keystone_index_on_post_update( $post_id, $post_after, $post_before ) {
+    if ( 'publish' !== $post_after->post_status ) {
+        return;
+    }
+
+    $allowed_post_types = array( 'post', 'page' );
+    if ( ! in_array( $post_after->post_type, $allowed_post_types ) ) {
+        return;
+    }
+
+    if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+        return;
+    }
+
+    if ( $post_after->post_content === $post_before->post_content &&
+         $post_after->post_title === $post_before->post_title &&
+         $post_after->post_name === $post_before->post_name ) {
+        return;
+    }
+
+    $permalink = get_permalink( $post_id );
+    if ( $permalink && strpos( $post_after->post_name, 'auto-draft' ) === false ) {
+        keystone_push_to_google_indexing( $permalink );
+    }
+}
+
+// Disable Rank Math sitemap caching completely to ensure dynamic updates reflect immediately
+add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
+
+/**
+ * =====================================================================
+ * SECTION: CROSS-BRAND BACKLINK — Sister Site Partner Link
+ * =====================================================================
+ * Adds a premium, styled partner backlink in the footer to pass link authority
+ * to the sister site (Keystone Recomposition - Health & Music).
+ */
+add_action( 'wp_footer', 'keystone_possibilities_add_sister_site_backlink', 100 );
+function keystone_possibilities_add_sister_site_backlink() {
+    echo "\n<!-- Keystone Cross-Brand Backlink -->\n";
+    echo '<div class="keystone-partner-backlink" style="text-align: center; padding: 15px 0; font-size: 11px; font-family: sans-serif; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); background: #000; color: #555;">';
+    echo 'Partner Brand: <a href="https://keystonerecomposition.com" target="_blank" rel="noopener" style="color: #c4a265; text-decoration: none; transition: color 0.3s ease;">Keystone Recomposition (Health & Music)</a>';
+    echo '</div>' . "\n";
+}
+
