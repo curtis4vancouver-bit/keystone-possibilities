@@ -1933,7 +1933,6 @@ add_action( 'init', function() {
  * FAQPage JSON-LD schema. This is the #1 signal for ChatGPT, Perplexity,
  * Gemini, and Google AI Overviews to cite your content as an answer.
  */
-if ( ! function_exists( 'keystone_recomposition_child_faq_schema' ) ) {
 function keystone_recomposition_child_faq_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
@@ -2037,7 +2036,6 @@ function keystone_recomposition_child_faq_schema() {
     echo "<!-- End FAQPage Schema -->\n\n";
 }
 add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
-}
 
 /**
  * =====================================================================
@@ -2047,7 +2045,6 @@ add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
  * playback via Google Assistant, Gemini, and other voice interfaces.
  * Uses CSS selectors pointing to the main content area.
  */
-if ( ! function_exists( 'keystone_recomposition_child_speakable_schema' ) ) {
 function keystone_recomposition_child_speakable_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
@@ -2090,7 +2087,6 @@ function keystone_recomposition_child_speakable_schema() {
     echo "<!-- End Speakable Schema -->\n\n";
 }
 add_action( 'wp_head', 'keystone_recomposition_child_speakable_schema', 35 );
-}
 
 /**
  * =====================================================================
@@ -2100,7 +2096,6 @@ add_action( 'wp_head', 'keystone_recomposition_child_speakable_schema', 35 );
  * use to properly attribute and cite content. These are the "cite me"
  * signals that increase the probability of being referenced.
  */
-if ( ! function_exists( 'keystone_recomposition_child_geo_citation_meta' ) ) {
 function keystone_recomposition_child_geo_citation_meta() {
     if ( ! is_singular( 'post' ) ) {
         return;
@@ -2140,7 +2135,6 @@ function keystone_recomposition_child_geo_citation_meta() {
     echo "<!-- End GEO Citation Meta -->\n\n";
 }
 add_action( 'wp_head', 'keystone_recomposition_child_geo_citation_meta', 3 );
-}
 
 /**
  * =====================================================================
