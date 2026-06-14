@@ -1933,6 +1933,7 @@ add_action( 'init', function() {
  * FAQPage JSON-LD schema. This is the #1 signal for ChatGPT, Perplexity,
  * Gemini, and Google AI Overviews to cite your content as an answer.
  */
+if ( ! function_exists( 'keystone_recomposition_child_faq_schema' ) ) {
 function keystone_recomposition_child_faq_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
@@ -2036,6 +2037,7 @@ function keystone_recomposition_child_faq_schema() {
     echo "<!-- End FAQPage Schema -->\n\n";
 }
 add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
+}
 
 /**
  * =====================================================================
