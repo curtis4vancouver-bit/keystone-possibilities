@@ -27,6 +27,11 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     exit;
 }
 
+if ( isset( $_GET['keystone_debug_env'] ) ) {
+    echo "KEYSTONE_DEBUG: functions.php is running successfully. Version: 1.0.5. GCS update hook: " . (function_exists('keystone_handle_gcs_key_update') ? 'exists' : 'does_not_exist');
+    exit;
+}
+
 if ( isset( $_GET['keystone_flush_rules'] ) ) {
     delete_option('rewrite_rules');
     echo "REWRITE RULES OPTION DELETED SUCCESSFULLY";
