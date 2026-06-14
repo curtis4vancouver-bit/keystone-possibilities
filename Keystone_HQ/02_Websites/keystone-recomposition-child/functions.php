@@ -2370,3 +2370,196 @@ function keystone_auto_create_watch_page( $new_status, $old_status, $post ) {
     add_action( 'transition_post_status', 'keystone_auto_create_watch_page', 10, 3 );
 }
 
+/**
+ * =====================================================================
+ * SECTION: AUTOMATED GOOGLE INDEXING API PUSH
+ * =====================================================================
+ * Authenticates with the Google Indexing API via a pure-PHP OAuth2 JWT
+ * generator and automatically pushes new/updated pages to Googlebot.
+ */
+
+add_action( 'init', 'keystone_handle_gcs_key_update' );
+/**
+ * Listen for secure POST requests to ingest the GCS service account key
+ * into the WordPress database options table.
+ */
+function keystone_handle_gcs_key_update() {
+    if ( isset( $_GET['update_gcs_key'] ) ) {
+        if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+            wp_send_json_error( array( 'message' => 'Method not allowed' ), 405 );
+        }
+
+        $auth_header = isset( $_SERVER['HTTP_X_KEYSTONE_AUTH'] ) ? $_SERVER['HTTP_X_KEYSTONE_AUTH'] : '';
+        $expected_token = 'keystone_gcs_key_push_token_2026_06_14';
+
+        if ( empty( $auth_header ) || $auth_header !== $expected_token ) {
+            wp_send_json_error( array( 'message' => 'Unauthorized' ), 401 );
+        }
+
+        $raw_body = file_get_contents( 'php://input' );
+        $key_data = json_decode( $raw_body, true );
+
+        if ( ! is_array( $key_data ) || empty( $key_data['client_email'] ) || empty( $key_data['private_key'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid GCS key JSON format' ), 400 );
+        }
+
+        update_option( 'keystone_gcs_key_json', $raw_body );
+        wp_send_json_success( array( 'message' => 'GCS service account key updated successfully' ) );
+    }
+}
+
+/**
+ * Signs a JWT with the GCS service account key, exchanges it for an OAuth2
+ * access token, and requests instant indexing from Googlebot.
+ *
+ * @param string $url The page URL to be crawled/indexed.
+ * @return bool True on success, false on failure.
+ */
+function keystone_push_to_google_indexing( $url ) {
+    if ( ! function_exists( 'openssl_sign' ) ) {
+        error_log( '[Keystone Indexing API] Error: OpenSSL extension is not enabled in PHP.' );
+        return false;
+    }
+
+    $gcs_key_json = get_option( 'keystone_gcs_key_json' );
+    if ( ! $gcs_key_json ) {
+        error_log( '[Keystone Indexing API] Error: No GCS key stored in database.' );
+        return false;
+    }
+
+    $key_data = json_decode( $gcs_key_json, true );
+    if ( empty( $key_data['client_email'] ) || empty( $key_data['private_key'] ) ) {
+        error_log( '[Keystone Indexing API] Error: Invalid GCS key format.' );
+        return false;
+    }
+
+    $client_email = $key_data['client_email'];
+    $private_key  = $key_data['private_key'];
+    $token_uri    = isset( $key_data['token_uri'] ) ? $key_data['token_uri'] : 'https://oauth2.googleapis.com/token';
+
+    $now = time();
+    $header = json_encode( array( 'alg' => 'RS256', 'typ' => 'JWT' ) );
+    $claims = json_encode( array(
+        'iss'   => $client_email,
+        'scope' => 'https://www.googleapis.com/auth/indexing',
+        'aud'   => $token_uri,
+        'exp'   => $now + 3600,
+        'iat'   => $now
+    ) );
+
+    $base64_url_header = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $header ) );
+    $base64_url_claims = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $claims ) );
+
+    $payload = $base64_url_header . '.' . $base64_url_claims;
+    $signature = '';
+
+    if ( ! openssl_sign( $payload, $signature, $private_key, OPENSSL_ALGO_SHA256 ) ) {
+        error_log( '[Keystone Indexing API] Error: OpenSSL signing failed.' );
+        return false;
+    }
+
+    $base64_url_signature = str_replace( array( '+', '/', '=' ), array( '-', '_', '' ), base64_encode( $signature ) );
+    $assertion = $payload . '.' . $base64_url_signature;
+
+    $response = wp_remote_post( $token_uri, array(
+        'body' => array(
+            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+            'assertion'  => $assertion
+        )
+    ) );
+
+    if ( is_wp_error( $response ) ) {
+        error_log( '[Keystone Indexing API] OAuth Error: ' . $response->get_error_message() );
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body( $response );
+    $token_data = json_decode( $body, true );
+
+    if ( empty( $token_data['access_token'] ) ) {
+        error_log( '[Keystone Indexing API] OAuth Error: Failed to retrieve access token. Response: ' . $body );
+        return false;
+    }
+
+    $access_token = $token_data['access_token'];
+
+    $api_url = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
+    $api_response = wp_remote_post( $api_url, array(
+        'headers' => array(
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer ' . $access_token
+        ),
+        'body'    => json_encode( array(
+            'url'  => $url,
+            'type' => 'URL_UPDATED'
+        ) )
+    ) );
+
+    if ( is_wp_error( $api_response ) ) {
+        error_log( '[Keystone Indexing API] Publish Error for ' . $url . ': ' . $api_response->get_error_message() );
+        return false;
+    }
+
+    $api_body = wp_remote_retrieve_body( $api_response );
+    $status_code = wp_remote_retrieve_response_code( $api_response );
+
+    if ( 200 !== $status_code ) {
+        error_log( '[Keystone Indexing API] Publish Error ' . $status_code . ' for ' . $url . ': ' . $api_body );
+        return false;
+    }
+
+    error_log( '[Keystone Indexing API] Success: Pushed ' . $url . ' to Google Indexing API.' );
+    return true;
+}
+
+add_action( 'transition_post_status', 'keystone_auto_index_on_publish', 20, 3 );
+/**
+ * Automatically triggers Google Indexing API when a post or page is published.
+ */
+function keystone_auto_index_on_publish( $new_status, $old_status, $post ) {
+    if ( 'publish' !== $new_status || 'publish' === $old_status ) {
+        return;
+    }
+
+    $allowed_post_types = array( 'post', 'page' );
+    if ( ! in_array( $post->post_type, $allowed_post_types ) ) {
+        return;
+    }
+
+    $permalink = get_permalink( $post->ID );
+    if ( $permalink && strpos( $post->post_name, 'auto-draft' ) === false ) {
+        keystone_push_to_google_indexing( $permalink );
+    }
+}
+
+add_action( 'post_updated', 'keystone_index_on_post_update', 10, 3 );
+/**
+ * Automatically triggers Google Indexing API when an already-published post/page is updated.
+ */
+function keystone_index_on_post_update( $post_id, $post_after, $post_before ) {
+    if ( 'publish' !== $post_after->post_status ) {
+        return;
+    }
+
+    $allowed_post_types = array( 'post', 'page' );
+    if ( ! in_array( $post_after->post_type, $allowed_post_types ) ) {
+        return;
+    }
+
+    if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+        return;
+    }
+
+    if ( $post_after->post_content === $post_before->post_content &&
+         $post_after->post_title === $post_before->post_title &&
+         $post_after->post_name === $post_before->post_name ) {
+        return;
+    }
+
+    $permalink = get_permalink( $post_id );
+    if ( $permalink && strpos( $post_after->post_name, 'auto-draft' ) === false ) {
+        keystone_push_to_google_indexing( $permalink );
+    }
+}
+
+
