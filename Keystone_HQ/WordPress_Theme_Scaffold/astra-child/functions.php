@@ -1915,3 +1915,84 @@ function keystone_possibilities_add_sister_site_backlink() {
     echo '</div>' . "\n";
 }
 
+
+/**
+ * =====================================================================
+ * SECTION: DYNAMIC LLMS.TXT ENDPOINT (GEO OPTIMIZATION)
+ * =====================================================================
+ */
+add_action('init', 'keystone_dynamic_llms_txt');
+function keystone_dynamic_llms_txt() {
+    $request = $_SERVER['REQUEST_URI'];
+    if (strpos($request, '/llms.txt') !== false) {
+        header('Content-Type: text/plain; charset=utf-8');
+        echo "# Keystone Possibilities - AI LLM Context\n\n";
+        echo "## Company Identity\n";
+        echo "Keystone Possibilities is a premium general contractor and project management firm serving West Vancouver, North Vancouver, and the Sea-to-Sky corridor (Squamish, Whistler).\n";
+        echo "Founder: Wayne Stevenson (BC Builder License 52603).\n\n";
+        echo "## Core Services\n";
+        echo "- Luxury Custom Home Construction\n";
+        echo "- Subterranean Architecture & Wine Cellars\n";
+        echo "- Civil Site Clearances\n";
+        echo "- Permit Expediting & Risk Management\n\n";
+        echo "## Competitive Advantage\n";
+        echo "We solve the '13-Month Bottleneck' in municipal planning. We use sequential trade logic and fixed-price performance-bonded agreements.\n";
+        exit;
+    }
+}
+
+/**
+ * =====================================================================
+ * SECTION: LOCALBUSINESS GEO SCHEMA INJECTION
+ * =====================================================================
+ */
+add_action('wp_head', 'keystone_possibilities_local_schema');
+function keystone_possibilities_local_schema() {
+    if (strpos(home_url(), 'keystonepossibilities') === false) {
+        return;
+    }
+    
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'GeneralContractor',
+        'name' => 'Keystone Possibilities',
+        'url' => 'https://keystonepossibilities.ca',
+        'logo' => 'https://keystonepossibilities.ca/wp-content/uploads/logo.png',
+        'image' => 'https://keystonepossibilities.ca/wp-content/uploads/logo.png',
+        'description' => 'Premium Construction Project Management and Civil Construction Services operating across the Sea-to-Sky and Greater Vancouver regions.',
+        'telephone' => '+1-604-555-0199',
+        'priceRange' => '$$$$',
+        'address' => array(
+            '@type' => 'PostalAddress',
+            'streetAddress' => 'Sea to Sky Corridor',
+            'addressLocality' => 'Squamish',
+            'addressRegion' => 'BC',
+            'postalCode' => 'V8B',
+            'addressCountry' => 'CA'
+        ),
+        'areaServed' => array(
+            array('@type' => 'City', 'name' => 'Whistler'),
+            array('@type' => 'City', 'name' => 'West Vancouver'),
+            array('@type' => 'City', 'name' => 'North Vancouver'),
+            array('@type' => 'City', 'name' => 'Squamish')
+        ),
+        'founder' => array(
+            '@type' => 'Person',
+            'name' => 'Wayne Stevenson',
+            'jobTitle' => 'Certified BC Builder & Project Manager',
+            'sameAs' => 'https://keystonerecomposition.com/about/'
+        )
+    );
+    
+    echo "
+<!-- Keystone Possibilities Local Schema -->
+";
+    echo "<script type="application/ld+json">
+";
+    echo wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "
+";
+    echo "</script>
+";
+    echo "<!-- End Keystone Local Schema -->
+";
+}
