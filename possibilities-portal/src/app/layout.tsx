@@ -42,11 +42,14 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "GeneralContractor", "LocalBusiness"],
         "@id": "https://keystonepossibilities.ca/#organization",
         "name": "Keystone Possibilities LTD",
         "url": "https://keystonepossibilities.ca",
         "logo": "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-03-at-2.30.29-pm-1.png",
+        "image": "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-03-at-2.30.29-pm-1.png",
+        "telephone": "1-800-555-0199",
+        "priceRange": "$$$",
         "description": "Licensed residential builder and fiduciary construction project manager serving Squamish, Whistler, West Vancouver, and the Sea-to-Sky corridor in British Columbia, Canada. BC Builder License #52603.",
         "founder": {
           "@type": "Person",
