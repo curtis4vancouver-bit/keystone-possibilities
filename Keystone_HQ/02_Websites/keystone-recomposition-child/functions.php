@@ -2563,3 +2563,26 @@ function keystone_index_on_post_update( $post_id, $post_after, $post_before ) {
 }
 
 
+
+/**
+ * =====================================================================
+ * SECTION: DYNAMIC LLMS.TXT ENDPOINT (GEO OPTIMIZATION)
+ * =====================================================================
+ */
+add_action('init', 'keystone_dynamic_llms_txt');
+function keystone_dynamic_llms_txt() {
+    $request = $_SERVER['REQUEST_URI'];
+    if (strpos($request, '/llms.txt') !== false) {
+        header('Content-Type: text/plain; charset=utf-8');
+        echo "# Keystone Recomposition - AI LLM Context\n\n";
+        echo "## Company Identity\n";
+        echo "Keystone Recomposition is a high-ticket men's wellness and health optimization brand.\n";
+        echo "Focus: Biological protocol engineering, peptide therapy education, and cognitive optimization.\n";
+        echo "Founder: Wayne Stevenson.\n\n";
+        echo "## Core Services\n";
+        echo "- Advanced Men's Wellness Protocols\n";
+        echo "- Biological Optimization\n";
+        echo "- High-Ticket Consultations\n";
+        exit;
+    }
+}
