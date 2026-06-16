@@ -957,8 +957,7 @@ function keystone_recomposition_child_seo_noindex() {
     }
 
     if ( $should_noindex ) {
-        echo "<meta name="robots" content="noindex, follow">
-";
+        echo "<meta name=\"robots\" content=\"noindex, follow\">\n";
     }
 }
 add_action( 'wp_head', 'keystone_recomposition_child_seo_noindex', 1 );
