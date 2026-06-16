@@ -628,7 +628,7 @@ function keystone_recomposition_child_inject_schema() {
 
     echo "<!-- Keystone Digital JSON-LD Schema -->
 ";
-    echo "<script type="application/ld+json">
+    echo "<script type=\"application/ld+json\">
 ";
     echo $json_schema . "
 ";
@@ -679,7 +679,7 @@ function keystone_recomposition_child_inject_schema() {
 
     echo "<!-- Keystone Person Schema (Knowledge Panel) -->
 ";
-    echo "<script type="application/ld+json">
+    echo "<script type=\"application/ld+json\">
 ";
     echo $json_person . "
 ";
@@ -825,7 +825,7 @@ function keystone_recomposition_child_youtube_schema() {
     echo "
 <!-- Keystone Digital VideoObject Schema for YouTube -->
 ";
-    echo "<script type="application/ld+json">
+    echo "<script type=\"application/ld+json\">
 ";
     echo $json_video_schema . "
 ";
@@ -2019,3 +2019,4 @@ function keystone_local_schema() {
         echo "<!-- End Keystone Local Schema -->\n";
     }
 }
+
