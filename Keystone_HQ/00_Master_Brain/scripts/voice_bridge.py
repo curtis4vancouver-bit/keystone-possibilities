@@ -96,6 +96,7 @@ def _load_bridge_config():
     return cfg
 
 _cfg = _load_bridge_config()
+_last_config_mtime = os.path.getmtime(VOICE_BRIDGE_CONFIG_PATH)
 
 AGENTAPI_ENV = {
     "ANTIGRAVITY_AGENT": "1",
@@ -109,9 +110,38 @@ AGENTAPI_EXE = os.path.join(
 )
 AGENTAPI_CONVERSATION = _cfg.get("conversation_id", "")
 
+def check_and_reload_config():
+    global _cfg, AGENTAPI_ENV, AGENTAPI_CONVERSATION, _last_config_mtime
+    try:
+        if not os.path.exists(VOICE_BRIDGE_CONFIG_PATH):
+            return False
+        mtime = os.path.getmtime(VOICE_BRIDGE_CONFIG_PATH)
+        if mtime > _last_config_mtime:
+            _last_config_mtime = mtime
+            with open(VOICE_BRIDGE_CONFIG_PATH, 'r') as f:
+                new_cfg = json.load(f)
+            
+            changed = (
+                _cfg.get("conversation_id") != new_cfg.get("conversation_id") or
+                _cfg.get("ls_address") != new_cfg.get("ls_address") or
+                _cfg.get("csrf_token") != new_cfg.get("csrf_token")
+            )
+            if changed:
+                _cfg = new_cfg
+                AGENTAPI_ENV["ANTIGRAVITY_LS_ADDRESS"] = _cfg.get("ls_address", "localhost:51790")
+                AGENTAPI_ENV["ANTIGRAVITY_CSRF_TOKEN"] = _cfg.get("csrf_token", "")
+                AGENTAPI_ENV["ANTIGRAVITY_PROJECT_ID"] = _cfg.get("project_id", "")
+                AGENTAPI_CONVERSATION = _cfg.get("conversation_id", "")
+                print(f"\n[Config] Config changed! Reloaded. Conversation: {AGENTAPI_CONVERSATION[:12]}...")
+                return True
+    except Exception as e:
+        print(f"Error checking config: {e}")
+    return False
+
 print(f"[Config] Conversation: {AGENTAPI_CONVERSATION[:12]}...")
 print(f"[Config] LS Address:   {AGENTAPI_ENV['ANTIGRAVITY_LS_ADDRESS']}")
 print(f"[Config] Outbox:       {VOICE_OUTBOX_PATH}")
+
 
 def _agentapi_send(content: str) -> tuple:
     """Send a message to Antigravity via agentapi. Returns (success: bool, output: str)."""
@@ -204,20 +234,23 @@ TOOL_FUNCTIONS = {
     "get_antigravity_status": get_antigravity_status,
 }
 
-SYSTEM_INSTRUCTION = """
-You are Chronos, the Keystone Master Brain AI orchestration system. 
-You manage Wayne Stevenson's dual-brand empire: Keystone Possibilities (construction/PM) and Keystone Recomposition (health protocols, music, wellness).
-You are talking to Wayne right now in real-time through his headset.
+SYSTEM_INSTRUCTION_PTT = """
+You are a voice-to-text routing bridge for the Antigravity coding agent.
+Your ONLY job is to transcribe the user's voice input and send it to the agent on the screen using the `talk_to_antigravity(message)` tool.
 
 RULES:
-1. Be concise. Since you are speaking out loud, keep your answers extremely brief and conversational. Never read out large blocks of code or long lists.
-2. Use your tools. If Wayne asks about a project or a topic, use `search_master_brain`. If he tells you to assign a task, use `route_task`.
-3. **CRITICAL**: If Wayne gives instructions, requests, or questions to his coding AI, programmer agent, or Antigravity (the agent on his screen), you MUST immediately call the `talk_to_antigravity(message)` tool. This includes phrases like "ask the programmer to...", "tell Antigravity...", "ask the agent on screen...", "have the coding agent...". Do not try to answer these yourself; call the tool to pass the message to the screen.
-4. **READ AGENT MESSAGES**: If the input message is prefixed with "AGENT_OUTBOX:", this is a message from the coding agent (Antigravity) to Wayne. You must read the message after "AGENT_OUTBOX:" out loud to Wayne. Do NOT call any tools for AGENT_OUTBOX messages. Just speak the text.
-5. **STOP COMMAND**: If Wayne says "stop", "halt", "cancel", "stop the agent", call `stop_antigravity(reason)`.
-6. You have 13 agents under your command (Possibilities Brand, Webmaster, Executive Assistant, etc.).
-7. Do not talk like a robot. Speak like a highly competent, fast-moving Chief of Staff.
+1. You MUST call the `talk_to_antigravity(message)` tool for ANY voice input, request, or comment from the user. Use the user's exact words as the message.
+2. If the user says stop, halt, cancel, or tells you/the agent to stop, call the `stop_antigravity(reason)` tool immediately.
+3. Never respond with conversational text. Do not explain, do not say hello, do not say "I don't know". You must only execute a tool call.
 """
+
+SYSTEM_INSTRUCTION_OUTBOX = """
+You are a Text-to-Speech reader.
+When you receive a message starting with "AGENT_OUTBOX:", speak the text following that prefix exactly, word-for-word.
+Do NOT say "AGENT_OUTBOX:". Do NOT say "I don't know". Do NOT add any introduction, explanations, or remarks.
+Speak the provided message verbatim.
+"""
+
 
 # ──────────────────────────────────────────────────────────
 # Configuration
@@ -266,6 +299,7 @@ class BridgeState:
         self.last_voice_ts = 0.0
         self.has_spoken = False
         self.speech_ended = False
+        self.speech_ended_time = None
         self.should_quit = False
         self.gemini_queue = queue.Queue()
         self.outbox_queue = queue.Queue()  # For messages waiting to be spoken
@@ -281,6 +315,7 @@ class BridgeState:
                 self.last_voice_ts = time.time()
                 self.has_spoken = False
                 self.speech_ended = False
+                self.speech_ended_time = None
                 self.wake_event.set()
                 return True
             return False
@@ -292,6 +327,7 @@ class BridgeState:
                 self.trigger = None
                 self.has_spoken = False
                 self.speech_ended = False
+                self.speech_ended_time = None
                 # Set wake_event so the main loop can wake up and handle the exit/disconnection
                 self.wake_event.set()
                 while not self.gemini_queue.empty():
@@ -337,6 +373,7 @@ def on_key_release(key):
             print("\n[MIC] [F8 RELEASE] Processing...")
             with bridge.lock:
                 bridge.speech_ended = True
+                bridge.speech_ended_time = time.time()
 
 hotkey_listener = kb.Listener(on_press=on_key_press, on_release=on_key_release)
 hotkey_listener.daemon = True
@@ -347,11 +384,13 @@ print("Push-to-talk ready on F8.")
 # Audio Callback
 # ──────────────────────────────────────────────────────────
 def audio_callback(indata, frames, time_info, status):
-    if bridge.is_listening:
+    if bridge.is_listening and bridge.trigger == "ptt":
         audio_bytes = indata.copy().tobytes()
         bridge.gemini_queue.put(audio_bytes)
         rms = np.sqrt(np.mean(indata.astype(np.float32) ** 2))
         print(f"  [Volume RMS: {rms:.1f}]  ", end="\r", flush=True)
+        if rms > 200:
+            bridge.last_voice_ts = time.time()
 
 # ──────────────────────────────────────────────────────────
 # Raw WebSocket Gemini Live API (Official Pattern)
@@ -457,17 +496,52 @@ async def gemini_session_loop():
         # Wait for activation
         bridge.wake_event.wait(timeout=1.0)
         if not bridge.is_listening:
+            check_and_reload_config()
             continue
 
         print("[*] Connecting to Master Brain Voice API...")
         try:
             async with connect(WS_URI, additional_headers={}) as ws:
                 # ── Step 1: Send setup message ──
+                if bridge.trigger == "ptt":
+                    response_modalities = ["TEXT"]
+                    sys_instruction = SYSTEM_INSTRUCTION_PTT
+                    tools = [{
+                        "functionDeclarations": [
+                            {
+                                "name": "talk_to_antigravity",
+                                "description": "Send a direct message or instruction to the active coding AI agent (Antigravity) on the computer screen.",
+                                "parameters": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "message": {"type": "STRING", "description": "The instruction to send to the Antigravity AI agent."}
+                                    },
+                                    "required": ["message"]
+                                }
+                            },
+                            {
+                                "name": "stop_antigravity",
+                                "description": "Urgently stop the Antigravity coding agent from whatever it is currently doing. Use when Wayne says stop, halt, cancel, or expresses displeasure with what the agent is doing.",
+                                "parameters": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "reason": {"type": "STRING", "description": "Why Wayne wants to stop. E.g. 'Wayne does not like the current approach'"}
+                                    },
+                                    "required": ["reason"]
+                                }
+                            }
+                        ]
+                    }]
+                else:
+                    response_modalities = ["AUDIO"]
+                    sys_instruction = SYSTEM_INSTRUCTION_OUTBOX
+                    tools = []
+
                 setup_msg = {
                     "setup": {
                         "model": f"models/{WS_MODEL}",
                         "generationConfig": {
-                            "responseModalities": ["AUDIO"],
+                            "responseModalities": response_modalities,
                             "speechConfig": {
                                 "voiceConfig": {
                                     "prebuiltVoiceConfig": {
@@ -482,36 +556,13 @@ async def gemini_session_loop():
                             }
                         },
                         "systemInstruction": {
-                            "parts": [{"text": SYSTEM_INSTRUCTION}]
-                        },
-                        "tools": [{
-                            "functionDeclarations": [
-                                {
-                                    "name": "talk_to_antigravity",
-                                    "description": "Send a direct message or instruction to the active coding AI agent (Antigravity) on the computer screen.",
-                                    "parameters": {
-                                        "type": "OBJECT",
-                                        "properties": {
-                                            "message": {"type": "STRING", "description": "The instruction to send to the Antigravity AI agent."}
-                                        },
-                                        "required": ["message"]
-                                    }
-                                },
-                                {
-                                    "name": "stop_antigravity",
-                                    "description": "Urgently stop the Antigravity coding agent from whatever it is currently doing. Use when Wayne says stop, halt, cancel, or expresses displeasure with what the agent is doing.",
-                                    "parameters": {
-                                        "type": "OBJECT",
-                                        "properties": {
-                                            "reason": {"type": "STRING", "description": "Why Wayne wants to stop. E.g. 'Wayne does not like the current approach'"}
-                                        },
-                                        "required": ["reason"]
-                                    }
-                                }
-                            ]
-                        }]
+                            "parts": [{"text": sys_instruction}]
+                        }
                     }
                 }
+                if tools:
+                    setup_msg["setup"]["tools"] = tools
+                
                 await ws.send(json.dumps(setup_msg))
                 
                 # Wait for setup response
@@ -524,12 +575,15 @@ async def gemini_session_loop():
                     """Stream mic audio to Gemini with manual PTT activity signals."""
                     was_listening = False
                     while not bridge.should_quit and bridge.is_listening:
+                        if bridge.trigger != "ptt":
+                            await asyncio.sleep(0.05)
+                            continue
                         # User is speaking or session is active
                         if not was_listening and not bridge.speech_ended:
                             was_listening = True
                             try:
                                 await ws.send(json.dumps({"realtimeInput": {"activityStart": {}}}))
-                                print("  [→ activity_start sent]")
+                                print("  [-> activity_start sent]")
                             except Exception as e:
                                 print(f"[!] Error sending activity_start: {e}")
                         
@@ -540,7 +594,7 @@ async def gemini_session_loop():
                                 try:
                                     await ws.send(json.dumps({"realtimeInput": {"audioStreamEnd": True}}))
                                     await ws.send(json.dumps({"realtimeInput": {"activityEnd": {}}}))
-                                    print("\n  [→ audio_stream_end & activity_end sent — waiting for response]")
+                                    print("\n  [-> audio_stream_end & activity_end sent - waiting for response]")
                                 except Exception as e:
                                     print(f"[!] Error sending end signals: {e}")
                             await asyncio.sleep(0.05)
@@ -632,7 +686,7 @@ async def gemini_session_loop():
                                 else:
                                     result = f"Unknown tool: {name}"
                                 
-                                print(f"  → Result: {result[:200]}")
+                                print(f"  -> Result: {result[:200]}")
                                 fr = {"name": name, "response": {"result": result}}
                                 if call_id:
                                     fr["id"] = call_id
@@ -645,6 +699,11 @@ async def gemini_session_loop():
                                 }
                             }
                             await ws.send(json.dumps(tool_resp_msg))
+                            
+                            # If this was a PTT session, deactivate immediately after sending response
+                            if bridge.trigger == "ptt":
+                                print("\n[*] Tool response sent in PTT mode - deactivating immediately.")
+                                bridge.deactivate()
                             continue
 
                         # Handle server content (audio / text / turn signals - support both casings)
@@ -660,9 +719,9 @@ async def gemini_session_loop():
                             if part.get("thought", False):
                                 continue
 
-                            # Audio response
+                            # Audio response - ONLY play audio when in outbox mode (strict TTS read)
                             inline_data = part.get("inlineData") or part.get("inline_data")
-                            if inline_data:
+                            if inline_data and bridge.trigger == "outbox":
                                 audio_b64 = inline_data.get("data", "")
                                 if audio_b64:
                                     try:
@@ -682,7 +741,7 @@ async def gemini_session_loop():
                             turn_complete = server_content.get("turn_complete", False)
                         if turn_complete:
                             if not bridge.f8_held:
-                                print("\n[*] Turn complete — deactivating voice session.")
+                                print("\n[*] Turn complete - deactivating voice session.")
                                 bridge.deactivate()
 
                 async def send_outbox_text():
@@ -693,7 +752,7 @@ async def gemini_session_loop():
                             print(f"\n[OUTBOX -> VOICE] Sending to Gemini: {line[:100]}")
                             text_msg = {
                                 "clientContent": {
-                                    "turns": [{"role": "user", "parts": [{"text": f"AGENT_OUTBOX: {line}"}]}],
+                                    "turns": [{"role": "user", "parts": [{"text": f"Please read the following text verbatim out loud now. Do not add any comment, do not reply to it, just read it word-for-word: \"{line}\""}]}],
                                     "turnComplete": True
                                 }
                             }
@@ -706,7 +765,21 @@ async def gemini_session_loop():
 
                 async def session_monitor():
                     while not bridge.should_quit and bridge.is_listening:
-                        await asyncio.sleep(0.1)
+                        await asyncio.sleep(0.5)
+                        if check_and_reload_config():
+                            print("[*] Config change detected during active session. Reconnecting...")
+                            bridge.deactivate()
+                            break
+                        
+                        # Safety timeout for stuck PTT connections (5 seconds after speech ended)
+                        if bridge.trigger == "ptt" and bridge.speech_ended:
+                            with bridge.lock:
+                                ended_time = bridge.speech_ended_time
+                            if ended_time and (time.time() - ended_time > 5.0):
+                                print("\n[*] PTT session timeout waiting for response - deactivating.")
+                                bridge.deactivate()
+                                break
+                                
                     print("[*] Deactivation detected. Closing WebSocket connection...")
                     try:
                         await ws.close()
