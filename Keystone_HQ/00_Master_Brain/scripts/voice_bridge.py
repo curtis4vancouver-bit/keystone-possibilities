@@ -504,7 +504,7 @@ async def gemini_session_loop():
             async with connect(WS_URI, additional_headers={}) as ws:
                 # ── Step 1: Send setup message ──
                 if bridge.trigger == "ptt":
-                    response_modalities = ["TEXT"]
+                    response_modalities = ["AUDIO"]
                     sys_instruction = SYSTEM_INSTRUCTION_PTT
                     tools = [{
                         "functionDeclarations": [
