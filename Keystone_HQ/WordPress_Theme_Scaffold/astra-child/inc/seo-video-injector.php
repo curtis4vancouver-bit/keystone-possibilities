@@ -339,3 +339,33 @@ function keystone_lazy_video_shortcode( $atts ) {
 }
 add_shortcode( 'keystone_video', 'keystone_lazy_video_shortcode' );
 }
+
+/**
+ * Automatically prepends the [keystone_video] shortcode to the post content on the front-end
+ * if a YouTube ID is set in the metadata.
+ */
+add_filter( 'the_content', 'keystone_possibilities_dynamic_video_injector', 5 );
+function keystone_possibilities_dynamic_video_injector( $content ) {
+    if ( ! is_single() || ! is_main_query() ) {
+        return $content;
+    }
+    
+    $post_id = get_the_ID();
+    $youtube_id = get_post_meta( $post_id, 'keystone_youtube_id', true );
+    
+    if ( ! empty( $youtube_id ) ) {
+        // Strip any existing YouTube embeds or iframes from the post content to prevent duplicates
+        $content = preg_replace( '/<iframe[^>]*youtube\.com\/embed\/[^>]*>.*?<\/iframe>/is', '', $content );
+        $content = preg_replace( '/<iframe[^>]*youtube\.com\/[^>]*>.*?<\/iframe>/is', '', $content );
+        $content = preg_replace( '/<iframe[^>]*youtu\.be\/[^>]*>.*?<\/iframe>/is', '', $content );
+        $content = preg_replace( '/<figure class="[^"]*wp-block-embed-youtube[^"]*">.*?<\/figure>/is', '', $content );
+        $content = preg_replace( '/<p>\s*(https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/[^\s<>\'\"]*)\s*<\/p>/i', '', $content );
+        
+        // If the shortcode is not already in the content, prepend it
+        if ( strpos( $content, '[keystone_video' ) === false ) {
+            $content = '[keystone_video id="' . esc_attr( $youtube_id ) . '"]' . "\n\n" . $content;
+        }
+    }
+    
+    return $content;
+}
