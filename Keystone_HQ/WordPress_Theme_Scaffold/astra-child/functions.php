@@ -1325,127 +1325,153 @@ if ( isset( $_GET['update_page_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
  * Body: JSON with post_id (optional), slug, content, title, excerpt, meta_description, focus_keyword, youtube_id
  */
 if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
-    $raw = file_get_contents('php://input');
-    $data = json_decode( $raw, true );
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     
-    if ( ! $data || ( empty( $data['post_id'] ) && empty( $data['slug'] ) ) ) {
+    set_error_handler(function($severity, $message, $file, $line) {
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode( array( 'error' => 'Invalid JSON or missing post_id/slug' ) );
+        echo json_encode(array('error' => "PHP Error: $message in $file on line $line"));
         exit;
-    }
+    });
     
-    $post_id = 0;
-    if ( ! empty( $data['post_id'] ) ) {
-        $post_id = intval( $data['post_id'] );
-    } else {
-        $slug = sanitize_title( $data['slug'] );
-        $posts = get_posts( array(
-            'name'        => $slug,
-            'post_type'   => 'post',
-            'post_status' => 'any',
-            'numberposts' => 1
-        ) );
-        if ( ! empty( $posts ) ) {
-            $post_id = $posts[0]->ID;
+    register_shutdown_function(function() {
+        $error = error_get_last();
+        if ($error !== NULL && in_array($error['type'], array(E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR))) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('error' => "PHP Fatal: " . $error['message'] . " in " . $error['file'] . " on line " . $error['line']));
+            exit;
         }
-    }
-    
-    $post_data = array(
-        'post_type'   => 'post',
-        'post_status' => 'publish'
-    );
-    
-    if ( $post_id > 0 ) {
-        $post_data['ID'] = $post_id;
-    } else {
-        if ( ! empty( $data['slug'] ) ) {
-            $post_data['post_name'] = sanitize_title( $data['slug'] );
+    });
+
+    try {
+        $raw = file_get_contents('php://input');
+        $data = json_decode( $raw, true );
+        
+        if ( ! $data || ( empty( $data['post_id'] ) && empty( $data['slug'] ) ) ) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode( array( 'error' => 'Invalid JSON or missing post_id/slug' ) );
+            exit;
         }
-    }
-    
-    if ( ! empty( $data['content'] ) ) {
-        $post_data['post_content'] = $data['content'];
-    }
-    if ( ! empty( $data['title'] ) ) {
-        $post_data['post_title'] = $data['title'];
-    }
-    if ( isset( $data['excerpt'] ) ) {
-        $post_data['post_excerpt'] = $data['excerpt'];
-    }
-    
-    if ( $post_id > 0 ) {
-        $res = wp_update_post( $post_data, true );
-    } else {
-        $res = wp_insert_post( $post_data, true );
-    }
-    
-    if ( is_wp_error( $res ) ) {
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode( array( 'error' => $res->get_error_message() ) );
-        exit;
-    }
-    
-    $post_id = $res;
-    
-    if ( ! empty( $data['youtube_id'] ) ) {
-        update_post_meta( $post_id, 'keystone_youtube_id', sanitize_text_field( $data['youtube_id'] ) );
-    }
-    if ( ! empty( $data['meta_description'] ) ) {
-        update_post_meta( $post_id, 'rank_math_description', sanitize_text_field( $data['meta_description'] ) );
-    }
-    if ( ! empty( $data['focus_keyword'] ) ) {
-        update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $data['focus_keyword'] ) );
-    }
-    
-    // Update categories if provided
-    if ( ! empty( $data['categories'] ) ) {
-        $cat_ids = array();
-        if ( is_string( $data['categories'] ) ) {
-            $cat_names = array_map( 'trim', explode( ',', $data['categories'] ) );
-        } elseif ( is_array( $data['categories'] ) ) {
-            $cat_names = $data['categories'];
+        
+        $post_id = 0;
+        if ( ! empty( $data['post_id'] ) ) {
+            $post_id = intval( $data['post_id'] );
         } else {
-            $cat_names = array();
-        }
-        foreach ( $cat_names as $cat_name ) {
-            $term = get_term_by( 'name', $cat_name, 'category' );
-            if ( $term ) {
-                $cat_ids[] = $term->term_id;
-            } else {
-                $inserted = wp_insert_term( $cat_name, 'category' );
-                if ( ! is_wp_error( $inserted ) && isset( $inserted['term_id'] ) ) {
-                    $cat_ids[] = $inserted['term_id'];
-                } elseif ( is_wp_error( $inserted ) && $inserted->get_error_code() === 'term_exists' ) {
-                    $cat_ids[] = intval( $inserted->get_error_data() );
-                }
+            $slug = sanitize_title( $data['slug'] );
+            $posts = get_posts( array(
+                'name'        => $slug,
+                'post_type'   => 'post',
+                'post_status' => 'any',
+                'numberposts' => 1
+            ) );
+            if ( ! empty( $posts ) ) {
+                $post_id = $posts[0]->ID;
             }
         }
-        if ( ! empty( $cat_ids ) ) {
-            wp_set_post_categories( $post_id, $cat_ids );
+        
+        $post_data = array(
+            'post_type'   => 'post',
+            'post_status' => 'publish'
+        );
+        
+        if ( $post_id > 0 ) {
+            $post_data['ID'] = $post_id;
+        } else {
+            if ( ! empty( $data['slug'] ) ) {
+                $post_data['post_name'] = sanitize_title( $data['slug'] );
+            }
         }
-    }
+        
+        if ( ! empty( $data['content'] ) ) {
+            $post_data['post_content'] = $data['content'];
+        }
+        if ( ! empty( $data['title'] ) ) {
+            $post_data['post_title'] = $data['title'];
+        }
+        if ( isset( $data['excerpt'] ) ) {
+            $post_data['post_excerpt'] = $data['excerpt'];
+        }
+        
+        if ( $post_id > 0 ) {
+            $res = wp_update_post( $post_data, true );
+        } else {
+            $res = wp_insert_post( $post_data, true );
+        }
+        
+        if ( is_wp_error( $res ) ) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode( array( 'error' => $res->get_error_message() ) );
+            exit;
+        }
+        
+        $post_id = $res;
+        
+        if ( ! empty( $data['youtube_id'] ) ) {
+            update_post_meta( $post_id, 'keystone_youtube_id', sanitize_text_field( $data['youtube_id'] ) );
+        }
+        if ( ! empty( $data['meta_description'] ) ) {
+            update_post_meta( $post_id, 'rank_math_description', sanitize_text_field( $data['meta_description'] ) );
+        }
+        if ( ! empty( $data['focus_keyword'] ) ) {
+            update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $data['focus_keyword'] ) );
+        }
+        
+        // Update categories if provided
+        if ( ! empty( $data['categories'] ) ) {
+            $cat_ids = array();
+            if ( is_string( $data['categories'] ) ) {
+                $cat_names = array_map( 'trim', explode( ',', $data['categories'] ) );
+            } elseif ( is_array( $data['categories'] ) ) {
+                $cat_names = $data['categories'];
+            } else {
+                $cat_names = array();
+            }
+            
+            foreach ( $cat_names as $cat_name ) {
+                $term = get_term_by( 'name', $cat_name, 'category' );
+                if ( $term ) {
+                    $cat_ids[] = $term->term_id;
+                } else {
+                    $inserted = wp_insert_term( $cat_name, 'category' );
+                    if ( ! is_wp_error( $inserted ) && isset( $inserted['term_id'] ) ) {
+                        $cat_ids[] = $inserted['term_id'];
+                    } elseif ( is_wp_error( $inserted ) && $inserted->get_error_code() === 'term_exists' ) {
+                        $cat_ids[] = intval( $inserted->get_error_data() );
+                    }
+                }
+            }
+            if ( ! empty( $cat_ids ) ) {
+                wp_set_post_categories( $post_id, $cat_ids );
+            }
+        }
 
-    // Update featured image if provided
-    if ( ! empty( $data['featured_image'] ) ) {
-        keystone_set_featured_image_from_url( $post_id, $data['featured_image'] );
-    } elseif ( ! empty( $data['youtube_id'] ) ) {
-        $yt_thumb = "https://img.youtube.com/vi/" . sanitize_text_field( $data['youtube_id'] ) . "/maxresdefault.jpg";
-        keystone_set_featured_image_from_url( $post_id, $yt_thumb );
-    }
+        // Update featured image if provided
+        if ( ! empty( $data['featured_image'] ) ) {
+            keystone_set_featured_image_from_url( $post_id, $data['featured_image'] );
+        } elseif ( ! empty( $data['youtube_id'] ) ) {
+            $yt_thumb = "https://img.youtube.com/vi/" . sanitize_text_field( $data['youtube_id'] ) . "/maxresdefault.jpg";
+            keystone_set_featured_image_from_url( $post_id, $yt_thumb );
+        }
 
-    clean_post_cache( $post_id );
-    if ( function_exists( 'wp_cache_flush' ) ) {
-        wp_cache_flush();
+        clean_post_cache( $post_id );
+        if ( function_exists( 'wp_cache_flush' ) ) {
+            wp_cache_flush();
+        }
+        
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array(
+            'status'  => 'success',
+            'post_id' => $post_id,
+            'slug'    => get_post_field( 'post_name', $post_id ),
+            'permalink' => get_permalink( $post_id )
+        ) );
+        exit;
+    } catch (Exception $e) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode( array( 'error' => 'Exception: ' . $e->getMessage() ) );
+        exit;
     }
-    
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( array(
-        'status'  => 'success',
-        'post_id' => $post_id,
-        'slug'    => get_post_field( 'post_name', $post_id ),
-        'permalink' => get_permalink( $post_id )
-    ) );
-    exit;
 }
 
 /**
