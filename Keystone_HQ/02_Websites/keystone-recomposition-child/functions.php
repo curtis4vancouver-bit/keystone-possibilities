@@ -1841,6 +1841,7 @@ if ( isset( $_GET['update_page_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
     }
     
     // Insert or update page
+    kses_remove_filters();
     if ( $post_id > 0 ) {
         $res = wp_update_post( $post_data, true );
     } else {
