@@ -1481,12 +1481,18 @@ function keystone_set_featured_image_from_url( $post_id, $image_url ) {
     if ( empty( $image_url ) ) return;
     
     global $wpdb;
-    $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid = %s AND post_type = 'attachment'", $image_url ) );
     
-    if ( ! $attachment_id ) {
-        $filename = basename( preg_replace( '/\?.*/', '', $image_url ) );
-        $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s", '%' . $filename ) );
+    // Construct a unique filename if it is a YouTube thumbnail
+    $filename = basename( preg_replace( '/\?.*/', '', $image_url ) );
+    if ( strpos( $image_url, 'img.youtube.com/vi/' ) !== false ) {
+        preg_match( '/\/vi\/([^\/]+)\//', $image_url, $matches );
+        if ( ! empty( $matches[1] ) ) {
+            $filename = 'youtube-' . $matches[1] . '-' . $filename;
+        }
     }
+    
+    // Check if we already have an attachment with this unique filename
+    $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s", '%' . $filename ) );
     
     if ( ! $attachment_id ) {
         require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -1496,7 +1502,7 @@ function keystone_set_featured_image_from_url( $post_id, $image_url ) {
         $tmp = download_url( $image_url );
         if ( ! is_wp_error( $tmp ) ) {
             $file_array = array(
-                'name'     => basename( $image_url ),
+                'name'     => $filename,
                 'tmp_name' => $tmp
             );
             $attachment_id = media_handle_sideload( $file_array, $post_id );
