@@ -1019,56 +1019,7 @@ function keystone_recomposition_child_404_redirect() {
 }
 add_action( 'template_redirect', 'keystone_recomposition_child_404_redirect' );
 
-/**
- * 13. Shortcode to render our fast, PageSpeed-optimized lazy YouTube/Spotify media facade
- * Usage: [keystone_video id="YOUTUBE_ID" type="youtube" placeholder_img="OPTIONAL_URL"]
- */
-function keystone_lazy_video_shortcode( $atts ) {
-    $args = shortcode_atts( array(
-        'id'   => '',
-        'type' => 'youtube',
-        'placeholder_img' => '',
-    ), $atts );
 
-    if ( empty( $args['id'] ) ) {
-        return '<p style="color: #FC8181; font-family: monospace;">[Error] Media Asset ID is missing.</p>';
-    }
-
-    $media_id   = esc_attr( $args['id'] );
-    $media_type = esc_attr( strtolower( $args['type'] ) );
-    
-    $bg_img = '';
-    if ( ! empty( $args['placeholder_img'] ) ) {
-        $bg_img = esc_url( $args['placeholder_img'] );
-    } elseif ( $media_type === 'youtube' ) {
-        $bg_img = 'https://img.youtube.com/vi/' . $media_id . '/maxresdefault.jpg';
-    } else {
-        $bg_img = 'https://keystonerecomposition.com/wp-content/uploads/video-placeholder.jpg';
-    }
-
-    wp_enqueue_script( 'keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '1.0.0', true );
-
-    ob_start();
-    ?>
-    <div class="luxury-video-facade" 
-         data-video-id="<?php echo $media_id; ?>" 
-         data-video-type="<?php echo $media_type; ?>" 
-         role="region" 
-         aria-label="Video Player Placeholder">
-        
-        <div class="facade-background" style="background-image: url('<?php echo $bg_img; ?>');"></div>
-        <div class="facade-overlay"></div>
-        
-        <button class="play-button" aria-label="Play Embedded Video">
-            <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
-            </svg>
-        </button>
-    </div>
-    <?php
-    return ob_get_clean();
-}
-add_shortcode( 'keystone_video', 'keystone_lazy_video_shortcode' );
 
 /**
  * 14. Inject Premium Grid Alignment Custom CSS directly in wp_head
