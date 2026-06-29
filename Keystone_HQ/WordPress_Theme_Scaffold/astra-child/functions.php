@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+require_once get_stylesheet_directory() . '/inc/seo-video-injector.php';
+
 if ( isset( $_GET['purge_all_caches'] ) ) {
     if ( function_exists( 'opcache_reset' ) ) {
         opcache_reset();
