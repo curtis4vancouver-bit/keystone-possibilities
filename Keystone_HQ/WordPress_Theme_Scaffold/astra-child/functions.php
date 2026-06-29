@@ -1407,14 +1407,17 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
         } else {
             $cat_names = array();
         }
-        
         foreach ( $cat_names as $cat_name ) {
-            $cat_id = get_cat_ID( $cat_name );
-            if ( $cat_id == 0 ) {
-                $cat_id = wp_create_category( $cat_name );
-            }
-            if ( $cat_id > 0 ) {
-                $cat_ids[] = $cat_id;
+            $term = get_term_by( 'name', $cat_name, 'category' );
+            if ( $term ) {
+                $cat_ids[] = $term->term_id;
+            } else {
+                $inserted = wp_insert_term( $cat_name, 'category' );
+                if ( ! is_wp_error( $inserted ) && isset( $inserted['term_id'] ) ) {
+                    $cat_ids[] = $inserted['term_id'];
+                } elseif ( is_wp_error( $inserted ) && $inserted->get_error_code() === 'term_exists' ) {
+                    $cat_ids[] = intval( $inserted->get_error_data() );
+                }
             }
         }
         if ( ! empty( $cat_ids ) ) {
