@@ -1952,6 +1952,7 @@ function keystone_dynamic_llms_txt() {
             echo "We solve the '13-Month Bottleneck' in municipal planning. We use sequential trade logic and fixed-price performance-bonded agreements.\n";
         }
         exit;
+    }
 }
 
 /**
