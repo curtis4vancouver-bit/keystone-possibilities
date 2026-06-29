@@ -110,9 +110,15 @@ function keystone_raw_post_fetcher() {
     if ( isset( $_GET['get_raw_post'] ) ) {
         global $wpdb;
         $post_id = intval( $_GET['get_raw_post'] );
-        $post = $wpdb->get_row( $wpdb->prepare( "SELECT ID, post_content FROM $wpdb->posts WHERE ID = %d", $post_id ) );
+        $results = $wpdb->get_results( $wpdb->prepare( 
+            "SELECT ID, post_title, post_content, post_type, post_parent, post_date 
+             FROM $wpdb->posts 
+             WHERE ID = %d OR (post_parent = %d AND post_type = 'revision')
+             ORDER BY post_date DESC", 
+            $post_id, $post_id 
+        ) );
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode( $post, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+        echo json_encode( $results, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
         exit;
     }
 }
