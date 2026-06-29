@@ -243,5 +243,44 @@
     "timestamp": "2026-06-25T05:51:00Z",
     "resolved": true,
     "skill_updated": true
+  },
+  {
+    "id": "CJ-3d8087e5",
+    "tried": "Deploying theme updates to GitHub repositories",
+    "wrong_because": "GitHub repository paths were mapped backwards between Keystone Possibilities and Keystone Recomposition",
+    "fix": "Map Keystone Recomposition to the second-website repository, and Keystone Possibilities to the construction-website repository.",
+    "prevention_rule": "Map Keystone Recomposition to the second-website repository, and Keystone Possibilities to the construction-website repository.",
+    "category": "orchestration",
+    "severity": "medium",
+    "agent": "master",
+    "timestamp": "2026-06-29T14:02:06.766478",
+    "resolved": true,
+    "skill_updated": true
+  },
+  {
+    "id": "CJ-5e5c2170",
+    "tried": "Updating WordPress themes via WP Pusher",
+    "wrong_because": "Themes failed to update due to WP Pusher license expiration or directory locks, throwing critical errors",
+    "fix": "Access WordPress Recovery Mode via the admin email link, update the WP Pusher plugin/license to restore connection, and verify the push.",
+    "prevention_rule": "Access WordPress Recovery Mode via the admin email link, update the WP Pusher plugin/license to restore connection, and verify the push.",
+    "category": "orchestration",
+    "severity": "medium",
+    "agent": "master",
+    "timestamp": "2026-06-29T14:02:09.401419",
+    "resolved": true,
+    "skill_updated": true
+  },
+  {
+    "id": "CJ-826a1db5",
+    "tried": "Embedding video players with raw custom HTML blocks in WordPress",
+    "wrong_because": "Raw HTML blocks are brittle, bypass theme styling controls, and require manual maintenance of iframe player layouts",
+    "fix": "Use the native shortcode [keystone_video id='YOUTUBE_ID'] to dynamically render responsive, styled video players.",
+    "prevention_rule": "Use the native shortcode [keystone_video id='YOUTUBE_ID'] to dynamically render responsive, styled video players.",
+    "category": "orchestration",
+    "severity": "medium",
+    "agent": "master",
+    "timestamp": "2026-06-29T14:02:12.116324",
+    "resolved": true,
+    "skill_updated": true
   }
 ]
