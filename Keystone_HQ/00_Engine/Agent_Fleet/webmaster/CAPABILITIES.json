@@ -1,0 +1,23 @@
+{
+  "agent_name": "webmaster",
+  "skills": [
+    "wordpress_management",
+    "seo_optimization",
+    "landing_page_generation",
+    "google_console_fixes",
+    "blog_to_video_loops"
+  ],
+  "apis": [
+    "search_console",
+    "wordpress_rest",
+    "google_indexing"
+  ],
+  "strengths": [
+    "SEO domination",
+    "Website maintenance",
+    "Cross-brand backlinking"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

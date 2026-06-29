@@ -1,0 +1,36 @@
+[
+  {
+    "block_index": 0,
+    "timestamp": "2026-05-21T18:31:49.348540Z",
+    "filename": "GENESIS_BLOCK",
+    "file_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "metadata": {
+      "system": "Keystone Sovereign Audio Archiver",
+      "version": "1.0.0",
+      "legal_compliance": "CEA Section 31.2 & BC Supreme Court Rule 11-6"
+    },
+    "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "block_hash": "7c460e891a7bad22c3cc4da713c1fde64cc46305f82a3bdfd062452f15b81166"
+  },
+  {
+    "block_index": 1,
+    "timestamp": "2026-05-21T18:31:49.358700Z",
+    "filename": "demo_site_recording.wav",
+    "file_hash": "cfc6b206e99b298a229480f020e61d2b22a791e08a840fdd40ef62d8bd78b155",
+    "metadata": {
+      "file_size_bytes": 176444,
+      "os_created_time": "2026-05-21T18:31:49.349069Z",
+      "os_modified_time": "2026-05-21T18:31:49.349573Z",
+      "format": "WAV",
+      "channels": 1,
+      "sample_width_bytes": 2,
+      "sample_rate_hz": 44100,
+      "total_frames": 88200,
+      "duration_seconds": 2.0,
+      "device_id": "OMI-COMPANION-01",
+      "recorded_by": "Wayne Stevenson"
+    },
+    "previous_hash": "7c460e891a7bad22c3cc4da713c1fde64cc46305f82a3bdfd062452f15b81166",
+    "block_hash": "a518da4ea966048c89ffb23af5422f7b1394bba97fdef766daec1c167b90292e"
+  }
+]

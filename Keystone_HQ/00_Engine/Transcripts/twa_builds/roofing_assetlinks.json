@@ -1,0 +1,37 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.keystone.possibilities.roofing",
+            "sha256_cert_fingerprints": [
+                "DE:AD:BE:EF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF:00:FF"
+            ]
+        },
+        "relation_extensions": {
+            "delegate_permission/common.handle_all_urls": {
+                "dynamic_app_link_components": [
+                    {
+                        "/": "/products/*"
+                    },
+                    {
+                        "/": "/estimate",
+                        "?": {
+                            "diagnostic": "true"
+                        }
+                    },
+                    {
+                        "/": "/admin/*",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/out-of-scope/*",
+                        "exclude": true
+                    }
+                ]
+            }
+        }
+    }
+]

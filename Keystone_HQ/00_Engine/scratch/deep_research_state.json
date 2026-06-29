@@ -1,0 +1,35 @@
+{
+  "current_sweep": 1,
+  "pages": [
+    {
+      "page_id": 8,
+      "sweep": 1,
+      "tab": 1,
+      "title": "Getting YouTube videos indexed and ranking in Google Search results via Google Search Console in 2026",
+      "status": "running",
+      "topic": "Getting YouTube videos indexed and ranking in Google Search results via Google Search Console in 2026: What are the specific steps to make embedded YouTube videos appear in Google's video carousel and search results? Cover Video structured data (VideoObject schema), video sitemap creation, embedding best practices, Search Console video indexing report, and the specific requirements for Google to show video thumbnails in search results. Include WordPress implementation with code examples.",
+      "domain": "SEO",
+      "output_file": "49_youtube_video_indexing.md"
+    },
+    {
+      "page_id": 9,
+      "sweep": 1,
+      "tab": 2,
+      "title": "Local SEO domination strategy for construction companies in the Sea-to-Sky corridor",
+      "status": "running",
+      "topic": "Local SEO domination strategy for construction companies in the Sea-to-Sky corridor (Squamish, Whistler, Pemberton) BC Canada in 2026: What are the most effective local SEO tactics for a construction project management company? Cover Google Business Profile optimization, local citation building (exact NAP consistency), review generation strategies, local keyword targeting, Google Maps ranking factors, and how to dominate the local 3-pack. Include specific directories and citation sources for Canadian construction companies.",
+      "domain": "SEO",
+      "output_file": "50_local_seo_domination.md"
+    },
+    {
+      "page_id": 10,
+      "sweep": 1,
+      "tab": 3,
+      "title": "",
+      "status": "idle",
+      "topic": "",
+      "domain": "",
+      "output_file": ""
+    }
+  ]
+}

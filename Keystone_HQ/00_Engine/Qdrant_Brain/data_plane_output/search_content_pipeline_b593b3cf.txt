@@ -1,0 +1,39 @@
+Found 5 matches in 'content_pipeline':
+
+--- Result 1 (Source: 12_corporate_asset_shielding_model.md, VecScore: 0.500) ---
+Domestically, the enterprise must also navigate the Tax on Split Income (TOSI) rules, which aim to prevent business owners from inappropriately splitting income with family members through complex corporate shareholding structures and non-arm's length dividends.   
+
+Finally, the commodity tax implications of these internal flows must be managed. Intercompany equipment lease payments are considered taxable supplies for the purposes of the Goods and Services Tax / Harmonized Sales Tax (GST/HST). In provinces like Ontario, this dictates that a 13% HST must be collected and remitted on each periodic lease payment as it falls due, rather than assessing the tax on the full capital value of the contract upfront. The place of supply for tangible personal property is generally dictated by the province where the lessee takes physical delivery of the equipment. A GST/HST-registered OpCo utilizing the leased equipment in its commercial activities can subsequently claim Input Tax Credits (ITCs) to 
+
+
+--- Result 2 (Source: 3_3_Knowledge_Panel.md, VecScore: 0.333) ---
+ed tactical maneuver for Canadian corporate entities involves exploiting specific identifier properties within the schema vocabulary to inject federal validation directly into the code. Standard Organization schema supports several identification properties, notably vatID, taxID, and iso6523Code.   
+
+The Canadian Business Number (BN) represents the ultimate verified federal identifier. The ISO/IEC 6523 standard provides a robust framework for the precise specification of international organization identifiers, designed to be significantly less ambiguous than generic tax fields. By incorporating the Canadian BN into the JSON-LD markup via the iso6523Code property (or utilizing the taxID property if strictly formatted according to national prefixes), the entity provides Google with absolute, legally verifiable disambiguation. This ensures the company is recognized not merely as a marketing concept, but as a rigid, incontrovertible, federally registered node within the global Knowledge Gr
+
+
+--- Result 3 (Source: 12_corporate_asset_shielding_model.md, VecScore: 0.250) ---
+ing IP within a Canadian-controlled IPCo provides profound tax advantages in the context of corporate exits and succession planning. Individual Canadian residents may utilize the Lifetime Capital Gains Exemption (LCGE), which allows for tax-free treatment on up to $1.25 million of capital gains realized from the sale of shares of a Qualified Small Business Corporation (QSBC). To achieve QSBC status, strict asset tests apply. At the time of sale, at least 90% of the corporation's assets must be used principally in an active business carried on primarily in Canada. Furthermore, throughout the preceding 24 months, more than 50% of the corporation's assets must meet this active Canadian business test, and the shares must have been owned by the vendor or a related party.   
+
+If a Canadian enterprise expands globally, holding foreign operations within the main corporate structure can dilute the percentage of Canadian active business assets, instantly disqualifying the shares from the lucrati
+
+
+--- Result 4 (Source: 12_corporate_asset_shielding_model.md, VecScore: 0.200) ---
+ complete a one-time registration to cover all subsequent personal property leases entered into from time to time with the specific OpCo, ensuring continuous perfection and super-priority protection across a dynamic fleet of assets.   
+
+Intercompany Agreements, Transfer Pricing, and GST/HST Compliance
+
+Beyond the public registration of security interests, the substantive drafting of the intercompany lease agreements themselves must be meticulously handled to satisfy the Canada Revenue Agency (CRA). A frequent error in structuring these internal agreements is the inclusion of a nominal buyout option—for example, granting the OpCo a $1 purchase option at the end of a five-year equipment lease.   
+
+The CRA almost universally treats a lease with a nominal buyout option as a disguised finance lease or conditional sales contract, rather than a true lease. This administrative recharacterization drastically alters the tax treatment for both entities. It prevents the OpCo (lessee) from simply d
+
+
+--- Result 5 (Source: 3_3_Knowledge_Panel.md, VecScore: 0.167) ---
+nsufficient by the algorithm, Google initiates a rigorous manual review process. This requires the corporate representative to submit highly sensitive corporate documentation—such as government-issued identification, formal articles of incorporation, or utility bills that perfectly match the Canadian Business Number registration data—to prove legal authorization beyond any doubt.   
+
+Dictating Panel Attributes and Aesthetic Data
+
+Once verification is securely established, the entity transitions from a passive subject to an authoritative influencer over the panel's contents, allowing the company to append specific data or override certain algorithmic assumptions.   
+
+Logo and Imagery Integration: The Knowledge Panel’s primary visual presentation is paramount for brand equity and user trust. A verified corporate representative possesses the authority to designate a featured image or an official corporate logo, which supersedes the often random, automatically sourced images scraped by the
+

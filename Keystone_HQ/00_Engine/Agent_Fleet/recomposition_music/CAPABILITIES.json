@@ -1,0 +1,19 @@
+{
+  "agent_name": "recomposition_music",
+  "skills": [
+    "youtube_upload",
+    "playlist_management",
+    "music_video_assembly"
+  ],
+  "apis": [
+    "youtube_data_v3_oac"
+  ],
+  "strengths": [
+    "YouTube music channel management",
+    "Playlist curation",
+    "Video assembly"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "music"
+}

@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "26c038e5634fe425",
+    "type": "split",
+    "children": [
+      {
+        "id": "4a45a2a867ad5bf3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f65488627ab84f8c",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "884ce61672a76b32",
+    "type": "split",
+    "children": [
+      {
+        "id": "4cb88681c4c58181",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3512c46ff81bb37a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "c8591acaabe9e898",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "35693d5aeecd8ea8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "3a77797830a9cfaf",
+    "type": "split",
+    "children": [
+      {
+        "id": "a516447bc9110d93",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "01839c6132e47351",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "3f610f09daba7b9a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "5cd6b2027e132a11",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "96f2717fc878a59c",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "5370a5dd55ac62f5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f65488627ab84f8c",
+  "lastOpenFiles": [
+    "09_YouTube_Operations/Metadata_Drafts/tirzepatide_fatigue_metadata.md",
+    "03_Recomposition_Protocol/keystone_8min_glp1_masterpiece.md",
+    "03_Recomposition_Protocol/glp1_sarcopenia_10s_modular_script.md",
+    "03_Recomposition_Protocol/ghk_cu_ozempic_face_broll_prompts.md",
+    "03_Recomposition_Protocol/ghk_cu_ozempic_face_8m30s_studio_black.md",
+    "03_Recomposition_Protocol/cjc_dac_vs_tesamorelin_broll_prompts.md",
+    "03_Recomposition_Protocol/klow_vs_glow_blog_post.md",
+    "03_Recomposition_Protocol/fda_peptide_ban_hearings_blog_post.md",
+    "05_Marketing_and_Distribution/video_blueprint_today.md",
+    "01_System_Directives/README.md",
+    "01_System_Directives/03_SEO_GEO_WEBSITE_IMPLEMENTATION.md",
+    "01_System_Directives/02_SKILLS_IMPLEMENTATION_AND_DOCUMENTATION.md",
+    "01_System_Directives/01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md",
+    "01_System_Directives/Vertex_AI_Agent_Garden_Blueprint.md",
+    "06_Research_and_Development/veo_3_filmmaking_guide.md",
+    "01_System_Directives/STATE_OF_THE_EMPIRE.md",
+    "05_Marketing_and_Distribution/SPONSORSHIP_PITCH_DECK.md",
+    "01_System_Directives/SPARK_INSTRUCTIONS.md",
+    "01_System_Directives/SOCIAL_API_PORTAL_GUIDE.md",
+    "01_System_Directives/OVERNIGHT_BUILD_INSTRUCTIONS.md",
+    "01_System_Directives/MEDIA_PRODUCTION_MCP_BLUEPRINT.md",
+    "01_System_Directives/Keystone_Sovereign_Implementation_Plan.md",
+    "05_Marketing_and_Distribution/KDP_EBook_Packaging_Guide.md",
+    "06_Research_and_Development/imagen_3_photorealism_guide.md",
+    "01_System_Directives/Google_IO_2026_Subscription_Analysis.md",
+    "01_System_Directives/Google_Cloud_MCP_Integration_Plan.md",
+    "03_Recomposition_Protocol/ywQRKkVFRc4_The Handshake Shot _ My 5_30 AM Protocol at 43.txt",
+    "03_Recomposition_Protocol/uZlqpWEKH6k_Retatrutide Hits 3 Receptors At Once.txt",
+    "05_Marketing_and_Distribution/UBfloJPy3lo_Why Your Belly Fat Won_t Budge _The Fix_.txt",
+    "03_Recomposition_Protocol/tyDHSl55MX0_Retatrutide vs Tirzepatide_ The FDA_s Next Move Changes Everything.txt",
+    "05_Marketing_and_Distribution/rzxpWi2yBLQ_The Silent GLP-1 Muscle Leak_.txt",
+    "05_Marketing_and_Distribution/QHqNce1p7x4_Mounjaro Muscle Loss_ The 4-Pillar Protocol.txt",
+    "03_Recomposition_Protocol/oXZy5mSPR1w_The Dangerous Mistake I Made Stacking CJC-1295 with GHK-Cu.txt",
+    "03_Recomposition_Protocol/ov51ES_PcKk_Retatrutide Phase 3 Data_ The Most Powerful GLP-1 Ever.txt",
+    "03_Recomposition_Protocol/ohMgTNrlz0Y_CJC-1295 DAC vs_ Tesamorelin_ The Visceral Belly Fat Battle.txt",
+    "03_Recomposition_Protocol/o9fIpKUUXWE_I Tried The Wolverine Stack For 30 Days.txt",
+    "AIDA/dist/AIDA_App/_internal/frontend/public/icons.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/public/favicon.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/src/assets/hero.png",
+    "AIDA/dist/AIDA_App/_internal/frontend/src/assets/vite.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/src/assets/react.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/dist/assets/aida.png",
+    "AIDA/dist/AIDA_App/_internal/frontend/dist/favicon.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/dist/icons.svg",
+    "AIDA/dist/AIDA_App/_internal/frontend/assets/aida.png",
+    "AIDA/frontend/src/assets/react.svg"
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "prompt": "Advanced RAG and vector database optimization techniques specifically for PostgreSQL using pgvector. Focus on HNSW index optimization, sliding-window chunking strategies, and minimizing latency for agentic LLM architectures.",
+    "batch_name": "Brain_Optimization",
+    "status": "processing",
+    "error": "Timeout 30000ms exceeded."
+  },
+  {
+    "prompt": "How to completely automate the DaVinci Resolve rendering queue and export process using the official Python API. Give exact script examples for adding a timeline to the render queue and starting the render automatically.",
+    "batch_name": "DaVinci_Automation",
+    "status": "processing",
+    "error": "Timeout 30000ms exceeded."
+  },
+  {
+    "prompt": "Deep dive into the Sweat Equity General Partner (GP) model for residential construction under British Columbia Bill 44 (Multiplex legislation). Focus on joint-venture contract structures between PMs and senior homeowners, and Vancity multiplex financing options.",
+    "batch_name": "BC_Multiplex_Strategy",
+    "status": "processing",
+    "error": "Timeout 30000ms exceeded."
+  }
+]

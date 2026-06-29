@@ -1,0 +1,11 @@
+{
+  "messages": [
+    {
+      "from": "chronos_master",
+      "date": "2026-05-28",
+      "priority": "info",
+      "message": "Agent Fleet initialized. Welcome site_superintendent. Read Brand_Constitution/ on boot.",
+      "action_required": false
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "brand": "possibilities",
+        "platforms": [
+            "linkedin",
+            "facebook"
+        ],
+        "title": "",
+        "content": "Managing a  multiplex project in Squamish while executing a metabolic protocol requires physical resilience. In this week's update, I share my personal titration schedule and stack designed to protect structural muscle.",
+        "media_url": "",
+        "scheduled_time": "2026-05-20 12:06:48",
+        "status": "Published",
+        "published_at": "2026-05-20 12:06:52",
+        "logs": [
+            {
+                "timestamp": "2026-05-20 12:06:52",
+                "platform": "linkedin",
+                "log": "[Dry-Run] LinkedIn Post to brand 'possibilities': 'Managing a  multiplex project in Squamish while executing a metabolic case study requires physical resilience. In this week's update, I share my personal titration schedule and combinatorial model designed to protect structural muscle.'"
+            },
+            {
+                "timestamp": "2026-05-20 12:06:52",
+                "platform": "facebook",
+                "log": "[Dry-Run] Facebook Post to brand 'possibilities': 'Managing a  multiplex project in Squamish while executing a metabolic case study requires physical resilience. In this week's update, I share my personal titration schedule and combinatorial model designed to protect structural muscle.'"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "brand": "recomposition",
+        "platforms": [
+            "facebook",
+            "instagram",
+            "tiktok"
+        ],
+        "title": "The GLP-1 Muscle Trap (Don't Ignore Your Frame) 🚨",
+        "content": "If you're on a GLP-1 and ignoring your muscle mass, you are literally building a house on a crumbling foundation. The weight drops, but so does your structural integrity. You're burning through lean tissue, your metabolism slows way down, and your survival switch flips. \n\nWe have to fix the frame. Check out the full 8-minute masterclass on the exact Builder's Recomposition Protocol to stop the loss on our channel.\n\n#GLP1 #Sarcopenia #MuscleLoss #OzempicWeightLoss #KeystoneProtocols\n\n---\n🔗 KEYSTONE OFFICIAL RESOURCES:\n* TikTok: https://www.tiktok.com/@keystonerecomposition\n* Spotify Official Artist Profile: https://open.spotify.com/artist/WayneStevenson\n* High-Performance Wellness Blueprint: https://keystonerecomposition.com\n* Real Estate & Project Management: https://keystonepossibilities.com\n\n🚨 CLINICAL DISCLAIMER:\nStrictly for scientific study, educational, and research purposes. Not medical advice.\n\n🤖 SYNTHETIC MEDIA DISCLOSURE:\nA high-fidelity AI digital twin avatar has been used to present this scientific research.",
+        "media_url": "C:\\Users\\Curtis\\Desktop\\short 2.mov",
+        "scheduled_time": "2026-05-24 21:32:49",
+        "status": "Partially Published",
+        "published_at": null,
+        "logs": [
+            {
+                "timestamp": "2026-05-24 21:33:25",
+                "platform": "facebook",
+                "log": "Error: Targeted Facebook Page for brand 'recomposition' (ID: 61583823506176) is not accessible under these credentials. Found pages: ['Keystone Possibilities Ltd']."
+            },
+            {
+                "timestamp": "2026-05-24 21:35:09",
+                "platform": "instagram",
+                "log": "Success: Published Reels Video to Instagram Business Feed (Post ID: 18005189156870805)."
+            },
+            {
+                "timestamp": "2026-05-24 21:35:47",
+                "platform": "tiktok",
+                "log": "TikTok Video Initialization Failed: HTTP 401: Unauthorized - {\"data\":{},\"error\":{\"code\":\"scope_not_authorized\",\"message\":\"The user did not authorize the scope required for completing this request.\",\"log_id\":\"20260525123547E0FC1FBA9C86D2D54F72\"}}"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "brand": "recomposition",
+        "platforms": [
+            "facebook",
+            "instagram",
+            "tiktok"
+        ],
+        "title": "",
+        "content": "Are you hitting the gym but still carrying a stubborn gut? Visceral fat doesn't behave like normal subcutaneous fat—it acts like an endocrine organ that poisons your metabolism. In this short, we break down why you need to repair your biological infrastructure and how growth hormone secretagogues like CJC-1295 and Tesamorelin act as the heavy machinery to demolish visceral fat. Watch the full protocol breakdown on YouTube! 🔗 #VisceralFat #BodyRecomposition #PeptideProtocols",
+        "media_url": "C:\\Users\\Curtis\\Desktop\\short 20.mov",
+        "scheduled_time": "2026-05-26 23:05:09",
+        "status": "Failed",
+        "published_at": null,
+        "logs": [
+            {
+                "timestamp": "2026-05-26 23:06:27",
+                "platform": "facebook",
+                "log": "Error: Targeted Facebook Page for brand 'recomposition' (ID: 61583823506176) is not accessible under these credentials. Found pages: ['Keystone Possibilities Ltd']."
+            },
+            {
+                "timestamp": "2026-05-26 23:07:26",
+                "platform": "instagram",
+                "log": "Error: Targeted Meta Page for brand 'recomposition' (ID: 61583823506176) is not accessible for Instagram routing."
+            },
+            {
+                "timestamp": "2026-05-26 23:08:33",
+                "platform": "tiktok",
+                "log": "TikTok Video Initialization Failed: HTTP 401: Unauthorized - {\"data\":{},\"error\":{\"code\":\"scope_not_authorized\",\"message\":\"The user did not authorize the scope required for completing this request.\",\"log_id\":\"20260527140832D0A335AF407187CABB95\"}}"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "brand": "recomposition",
+        "platforms": [
+            "tiktok",
+            "instagram",
+            "facebook"
+        ],
+        "title": "Demolish Stubborn Belly Fat 🏗️🔥",
+        "content": "Stop wasting hours on the treadmill and killing your joints. Cardio only burns the surface. If you want to demolish stubborn visceral gut fat, you have to bring in the demolition crew. 🏗️🔥\n\nWatch the full breakdown on my YouTube channel now! (Link in bio) 👇\n\n#KeystoneRecomposition #BellyFatDemolition #Over40Fitness #VisceralFat #PeptideTherapy #MensHealth #CJC1295 #Tesamorelin #Biohacking #FatLossTips #HighEndFitness #TestosteroneOptimization",
+        "media_url": "C:\\Users\\Curtis\\Desktop\\short 2.mov",
+        "scheduled_time": "2026-05-27 22:03:12",
+        "status": "Failed",
+        "published_at": null,
+        "logs": [
+            {
+                "timestamp": "2026-05-27 22:03:50",
+                "platform": "tiktok",
+                "log": "TikTok Video Initialization Failed: HTTP 401: Unauthorized - {\"data\":{},\"error\":{\"code\":\"scope_not_authorized\",\"message\":\"The user did not authorize the scope required for completing this request.\",\"log_id\":\"202605281303517ECE9418D7966B83C9C8\"}}"
+            },
+            {
+                "timestamp": "2026-05-27 22:04:26",
+                "platform": "instagram",
+                "log": "Error: Targeted Meta Page for brand 'recomposition' (ID: 61583823506176) is not accessible for Instagram routing."
+            },
+            {
+                "timestamp": "2026-05-27 22:05:07",
+                "platform": "facebook",
+                "log": "Error: Targeted Facebook Page for brand 'recomposition' (ID: 61583823506176) is not accessible under these credentials. Found pages: ['Keystone Possibilities Ltd']."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "brand": "recomposition",
+        "platforms": [
+            "instagram",
+            "facebook"
+        ],
+        "title": "Demolish Stubborn Belly Fat 🏗️🔥",
+        "content": "Stop wasting hours on the treadmill and killing your joints. Cardio only burns the surface. If you want to demolish stubborn visceral gut fat, you have to bring in the demolition crew. 🏗️🔥\n\nWatch the full breakdown on my YouTube channel now! (Link in bio) 👇\n\n#KeystoneRecomposition #BellyFatDemolition #Over40Fitness #VisceralFat #PeptideTherapy #MensHealth #CJC1295 #Tesamorelin #Biohacking #FatLossTips #HighEndFitness #TestosteroneOptimization",
+        "media_url": "C:\\Users\\Curtis\\Desktop\\short 2.mov",
+        "scheduled_time": "2026-05-27 22:10:07",
+        "status": "Failed",
+        "published_at": null,
+        "logs": [
+            {
+                "timestamp": "2026-05-27 22:10:46",
+                "platform": "instagram",
+                "log": "Error: Targeted Meta Page for brand 'recomposition' (ID: 61583823506176) is not accessible for Instagram routing."
+            },
+            {
+                "timestamp": "2026-05-27 22:11:15",
+                "platform": "facebook",
+                "log": "Error: Targeted Facebook Page for brand 'recomposition' (ID: 61583823506176) is not accessible under these credentials. Found pages: ['Keystone Possibilities Ltd']."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "brand": "recomposition",
+        "platforms": [
+            "facebook",
+            "instagram",
+            "tiktok"
+        ],
+        "title": "The FDA Just Changed Everything for Peptides 🧬",
+        "content": "The FDA just pulled 11 peptides off the do-not-compound list — but REMOVED ≠ APPROVED. 🧬\n\nBPC-157, TB-500, GHK-Cu, MOTS-c, Semax, Epitalon, DSIP, KPV — all removed from Category 2.\n\nBut the PCAC hearing isn't until end of July 2026. Your pharmacy still can't compound them legally.\n\nDon't fall for the clickbait. Watch the full breakdown on our channel. (Link in bio) 👇\n\n#peptides #bpc157 #tb500 #fda #biohacking #menshealth #over40 #testosterone #ghk #peptidetherapy #keystoneprotocols",
+        "media_url": "C:\\Users\\Curtis\\Desktop\\short 1.mov",
+        "scheduled_time": "2026-06-03 22:50:43",
+        "status": "Failed",
+        "published_at": null,
+        "logs": [
+            {
+                "timestamp": "2026-06-03 22:51:29",
+                "platform": "facebook",
+                "log": "BROWSER_AUTOMATION_FALLBACK_REQUIRED: {\"text\": \"The FDA just pulled 11 metabolic compounds off the do-not-compound list \\u2014 but REMOVED \\u2260 APPROVED. \\ud83e\\uddec\\n\\ncompound BPC, compound TB, GHK-Cu, MOTS-c, Semax, Epitalon, DSIP, KPV \\u2014 all removed from Category 2.\\n\\nBut the PCAC hearing isn't until end of July 2026. Your pharmacy still can't compound them legally.\\n\\nDon't fall for the clickbait. Watch the full breakdown on our channel. (Link in bio) \\ud83d\\udc47\\n\\n#metabolic compounds #compound BPC #compound TB #fda #biohacking #menshealth #over40 #testosterone #ghk #peptidetherapy #keystoneprotocols\", \"media_path\": \"C:\\\\Users\\\\Curtis\\\\Desktop\\\\short 1.mov\", \"brand\": \"recomposition\", \"platform\": \"facebook\", \"page_id\": \"898671469990393\", \"business_id\": \"1512692486433786\"}"
+            },
+            {
+                "timestamp": "2026-06-03 22:51:29",
+                "platform": "instagram",
+                "log": "BROWSER_AUTOMATION_FALLBACK_REQUIRED: {\"text\": \"The FDA just pulled 11 metabolic compounds off the do-not-compound list \\u2014 but REMOVED \\u2260 APPROVED. \\ud83e\\uddec\\n\\ncompound BPC, compound TB, GHK-Cu, MOTS-c, Semax, Epitalon, DSIP, KPV \\u2014 all removed from Category 2.\\n\\nBut the PCAC hearing isn't until end of July 2026. Your pharmacy still can't compound them legally.\\n\\nDon't fall for the clickbait. Watch the full breakdown on our channel. (Link in bio) \\ud83d\\udc47\\n\\n#metabolic compounds #compound BPC #compound TB #fda #biohacking #menshealth #over40 #testosterone #ghk #peptidetherapy #keystoneprotocols\", \"media_path\": \"C:\\\\Users\\\\Curtis\\\\Desktop\\\\short 1.mov\", \"brand\": \"recomposition\", \"platform\": \"instagram\", \"page_id\": \"898671469990393\", \"business_id\": \"1512692486433786\"}"
+            },
+            {
+                "timestamp": "2026-06-03 22:52:44",
+                "platform": "tiktok",
+                "log": "TikTok Video Initialization Failed: HTTP 401: Unauthorized - {\"data\":{},\"error\":{\"code\":\"scope_not_authorized\",\"message\":\"The user did not authorize the scope required for completing this request.\",\"log_id\":\"20260604135244CEC3651BAEACB67E559E\"}}"
+            }
+        ]
+    }
+]

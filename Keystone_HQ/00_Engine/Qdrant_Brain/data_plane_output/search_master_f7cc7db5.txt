@@ -1,0 +1,138 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: PWA_CLONE_FACTORY.md, VecScore: 0.500) ---
+ternal requests to the dynamic tenant directory
+  url.pathname = `/apps/${tenantSlug}${url.pathname}`;
+  return NextResponse.rewrite(url);
+}
+
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};
+```
+
+---
+
+<!-- CONTEXT: Pwa Clone Factory / 2. Dynamic Styling & Theme Injection (Tailwind CSS v4) -->
+## 2. Dynamic Styling & Theme Injection (Tailwind CSS v4)
+
+Tailwind CSS v4 introduces a streamlined compiler that deprecates `tailwind.config.js` in favor of standard CSS variables directly within the main CSS entry point.
+
+<!-- CONTEXT: Pwa Clone Factory / Global Stylesheet Mapping (`src/app/globals.css`) -->
+### Global Stylesheet Mapping (`src/app/globals.css`)
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-bg: var(--brand-bg);
+  --font-brand: var(--brand-font);
+  --radius-brand: var(--brand-radius);
+}
+```
+
+<!-- CONTEXT: Pwa Clone Factory / Brand 
+
+
+--- Result 2 (Source: PWA_CLONE_FACTORY.md, VecScore: 0.500) ---
+t work orders, falls back to cache if offline in the field.
+*   **Media Library (`Network-Only`):** Completely bypasses local cache to prevent local storage bloat from drone photos/videos.
+
+---
+
+<!-- CONTEXT: Pwa Clone Factory / 4. Bubblewrap TWA Compilation Pipeline -->
+## 4. Bubblewrap TWA Compilation Pipeline
+
+A Trusted Web Activity (TWA) wraps the PWA in an Android container. Use Google Chrome Labs' `Bubblewrap` utility:
+
+```bash
+# 1. Install CLI
+npm install -g @bubblewrap/cli
+
+# 2. Initialize project pointing to your dynamic manifest
+bubblewrap init --manifest https://roofing.platform.com/manifest.webmanifest
+
+# 3. Compile project
+bubblewrap build
+
+# 4. Sideload for testing
+bubblewrap install
+```
+
+<!-- CONTEXT: Pwa Clone Factory / Keystore Artifacts Produced: -->
+### Keystore Artifacts Produced:
+*   `app-release-signed.apk`: Optimized for local side-loading and physical device testing.
+*   `app-release-bundle.aab`: Production Android App Bundle required for Google Play uploads.
+
+-
+
+
+--- Result 3 (Source: deep_research_targets.md, VecScore: 0.333) ---
+ Analyze the best practices for building an offline-first Progressive Web App (PWA) using Next.js, Service Workers, and Supabase. The PWA is for construction tradesmen to check off tasks on-site without internet. Provide the exact Service Worker caching strategies, IndexedDB syncing logic to push updates to Supabase once reconnected, and the optimal push notification architecture."*
+
+**8. Advanced Peptide & Health Protocol Synthesis (Keystone Protocols)**
+> *"Activate Deep Research. Search the latest clinical trials, FDA rulings (specifically the Sept 2023 Cat 2 ruling and July 2026 PCAC review), and peer-reviewed literature regarding BPC-157, TB-500, and GLP-1 agonists. Provide a master synthesis of the most current, legally compliant phrasing and disclaimers required for discussing these peptides on YouTube to avoid channel strikes, while maximizing the SEO authority of the content."*
+
+
+---
+📁 **See also:** [[Master_Docs/INDEX|← Directory Index]]
+
+
+
+--- Result 4 (Source: PWA_CLONE_FACTORY.md, VecScore: 0.333) ---
+style.setProperty("--brand-secondary", theme.secondary);
+    root.style.setProperty("--brand-bg", theme.bg);
+    root.style.setProperty("--brand-font", theme.font);
+    root.style.setProperty("--brand-radius", theme.radius);
+  }, [theme]);
+
+  return (
+    <ThemeContext.Provider value={{ theme }}>
+      <div style={{ fontFamily: "var(--brand-font)", backgroundColor: "var(--brand-bg)" }} className="min-h-screen">
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
+}
+```
+
+---
+
+<!-- CONTEXT: Pwa Clone Factory / 3. Dynamic Manifests & Serwist Offline Optimization -->
+## 3. Dynamic Manifests & Serwist Offline Optimization
+
+<!-- CONTEXT: Pwa Clone Factory / Dynamic Manifest Route (`src/app/manifest.ts`) -->
+### Dynamic Manifest Route (`src/app/manifest.ts`)
+```typescript
+import { MetadataRoute } from "next";
+import { headers } from "next/headers";
+
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const headersList = await headers();
+  const host = he
+
+
+--- Result 5 (Source: 17_OPERATIONAL_BLUEPRINT_FOR_CROSS_ENTITY_AUTHORITY.md, VecScore: 0.283) ---
+alized push notifications.   
+
+For an e-commerce platform built on Shopify, converting the storefront into a PWA is highly straightforward:   
+1.  **Select a PWA Solution:** Install a dedicated PWA app from the Shopify App Store (e.g., PWA by Ampify Me or PWA for Shopify).   
+2.  **Configure the Web App Manifest:** Customize the manifest JSON file to define the app’s [[Brand_Constitution/protocol/IDENTITY|identity]], including the Keystone logo, brand colors, and clean home-screen icons.   
+3.  **Enable Service Workers:** Activate the app's service workers to handle automatic background caching and data synchronization. This ensures product and landing pages load in under one second even on slow connections.   
+4.  **Deploy and Track:** Monitor performance using Google Search Console and Google Analytics to track page speeds and search rankings.   
+
+By funneling organic KDP readers directly to a fast-loading PWA, the brand bypasses paid ads, captures high-value email addresses, and pre
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+Secondary Contextual Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (joint recovery:PROCESS) ──[targets]──> (shoulder injuries:MEDICAL_CONDITION)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+

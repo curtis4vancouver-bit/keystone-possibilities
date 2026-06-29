@@ -590,6 +590,9 @@ function keystone_recomposition_child_inject_schema() {
                 'name' => 'Keystone Possibilities',
                 'url' => 'https://keystonepossibilities.ca',
                 'description' => 'Premium Construction Project Management and Civil Construction Services operating across the Sea-to-Sky and Greater Vancouver regions.',
+                'sameAs' => array(
+                    'https://www.squamishchamber.com/'
+                ),
                 'founder' => array(
                     '@type' => 'Person',
                     'name' => 'Wayne Stevenson',
@@ -1949,9 +1952,20 @@ function keystone_dynamic_llms_txt() {
             echo "We solve the '13-Month Bottleneck' in municipal planning. We use sequential trade logic and fixed-price performance-bonded agreements.\n";
         }
         exit;
-    }
 }
 
+/**
+ * =====================================================================
+ * SECTION: ROBOTS.TXT AI BOT ALLOWANCES
+ * =====================================================================
+ * Explicitly whitelist major AI crawlers to ensure the deep structure
+ * is ingested by ChatGPT, Perplexity, Claude, and Apple.
+ */
+add_filter( 'robots_txt', 'keystone_allow_ai_bots', 10, 2 );
+function keystone_allow_ai_bots( $output, $public ) {
+    $ai_bots = "User-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: anthropic-ai\nAllow: /\n\nUser-agent: Applebot-Extended\nAllow: /\n\n";
+    return $output . "\n\n" . $ai_bots;
+}
 /**
  * =====================================================================
  * SECTION: LOCALBUSINESS GEO SCHEMA INJECTION
@@ -2004,6 +2018,22 @@ function keystone_local_schema() {
                 array('@type' => 'City', 'name' => 'North Vancouver'),
                 array('@type' => 'City', 'name' => 'Squamish')
             ),
+            'sameAs' => array(
+                'https://www.facebook.com/profile.php?id=61554185128555',
+                'https://www.youtube.com/@KeystonePossibilities',
+                'https://www.instagram.com/keystonepossibilities',
+                'https://www.squamishchamber.com/',
+                'https://business.whistlerchamber.com/',
+                'https://www.whistler.ca/',
+                'https://www.westvancouver.ca/',
+                'https://www.squamish.ca/',
+                'https://orgbook.gov.bc.ca/',
+                'https://www.bcregistry.gov.bc.ca/',
+                'https://whitespark.ca/local-citation-finder/',
+                'https://www.brightlocal.com/resources/top-citation-sites/location/canada/',
+                'https://homestars.com/',
+                'https://houzz.ca/'
+            ),
             'founder' => array(
                 '@type' => 'Person',
                 'name' => 'Wayne Stevenson',
@@ -2019,3 +2049,19 @@ function keystone_local_schema() {
     }
 }
 
+
+
+// Activate Rank Math video sitemap module
+add_action('init', function() {
+    if (isset($_GET['activate_rm_video_sitemap'])) {
+        $modules = get_option('rank_math_modules', array());
+        if (!in_array('video-sitemap', $modules)) {
+            $modules[] = 'video-sitemap';
+            update_option('rank_math_modules', $modules);
+            echo "Video Sitemap Module Activated!";
+        } else {
+            echo "Video Sitemap Module already active.";
+        }
+        exit;
+    }
+});

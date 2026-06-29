@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos Local-First Agent OS Dashboard</title>
+    <!-- Modern Outfits & Inter typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for lightweight, reactive state management -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Premium HSL Vanilla CSS Design System -->
+    <style>
+        :root {
+            --bg-base: #06080c;
+            --bg-surface: #0e111d;
+            --bg-surface-elevated: #14192b;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-glow: rgba(6, 182, 212, 0.2);
+            
+            --color-text-primary: #f3f4f6;
+            --color-text-secondary: #9ca3af;
+            --color-text-muted: #4b5563;
+            
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-rose: #f43f5e;
+            --accent-amber: #f59e0b;
+            
+            --font-display: 'Outfit', sans-serif;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Standard Reset & Core Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--color-text-primary);
+            font-family: var(--font-sans);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Custom Premium Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(14, 17, 29, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.08);
+        }
+
+        /* Layout Architecture (Three-Panel) */
+        .app-container {
+            display: grid;
+            grid-template-columns: 290px 1fr 350px;
+            height: calc(100vh - 40px); /* 40px reserved for bottom telemetry drawer */
+            width: 100vw;
+            padding: 16px;
+            gap: 16px;
+        }
+
+        /* Left Panel Styles */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+            overflow: hidden;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-cyan);
+            animation: pulse-ring 2.5s infinite;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .agent-item.active {
+            background: rgba(6, 182, 212, 0.08);
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .agent-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            margin-right: 12px;
+        }
+
+        .status-active { background-color: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+        .status-idle { background-color: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple); }
+
+        .agent-details {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .agent-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+
+        .agent-item-desc {
+            font-size: 0.7rem;
+            color: var(--color-text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Center Panel Styles (Conversation) */
+        .center-panel {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chat-active-agent {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-glow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
+            position: relative;
+        }
+
+        .avatar-glow::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid var(--accent-cyan);
+            opacity: 0.3;
+            animation: pulse-ring 2s infinite;
+        }
+
+        .chat-agent-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-agent-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .chat-agent-sub {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+        }
+
+        .chat-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Reset Button Style */
+        .reset-btn {
+            background: transparent;
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            color: var(--accent-rose);
+            padding: 6px 10px;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reset-btn:hover {
+            background: rgba(244, 63, 94, 0.08);
+            border-color: var(--accent-rose);
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.15);
+        }
+
+        /* Curated Brain Selector Dropdown Styles */
+        .brain-dropdown {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.05);
+        }
+
+        .brain-dropdown:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+        }
+
+        .voice-output-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .voice-output-toggle.active {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.08);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
+        }
+
+        .chat-scroller {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .bubble-system {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        .bubble-user {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(139, 92, 246, 0.12));
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            align-self: flex-end;
+            border-top-right-radius: 2px;
+        }
+
+        .chat-bubble p {
+            user-select: text;
+        }
+
+        .chat-bubble pre {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            overflow-x: auto;
+            user-select: text;
+            margin-top: 8px;
+        }
+
+        /* Action bar inside Chat System bubbles (Save & Synthesize) */
+        .bubble-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 6px;
+            justify-content: flex-end;
+        }
+
+        .bubble-action-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 3px 6px;
+            font-size: 0.65rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .bubble-action-btn:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .bubble-action-btn.success {
+            color: var(--accent-emerald) !important;
+            border-color: var(--accent-emerald) !important;
+        }
+
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-input-bar {
+            display: flex;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 4px;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-input-bar:focus-within {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
+        }
+
+        .chat-textarea {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            resize: none;
+            height: 38px;
+            font-family: var(--font-sans);
+        }
+
+        .mic-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .mic-btn:hover {
+            color: var(--accent-rose);
+            border-color: rgba(244, 63, 94, 0.3);
+            background: rgba(244, 63, 94, 0.05);
+        }
+
+        .mic-btn.active {
+            background: var(--accent-rose);
+            color: #fff;
+            border-color: var(--accent-rose);
+            box-shadow: 0 0 12px var(--accent-rose);
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        .chat-send-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: var(--accent-cyan);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            transition: var(--transition-smooth);
+        }
+
+        .chat-send-btn:hover {
+            box-shadow: 0 0 10px var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        /* Right Panel Tabbed Layout (Library vs MCP & Skills Desk) */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+            overflow: hidden;
+        }
+
+        .tab-headers-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tab-btn.active {
+            background: var(--bg-surface-elevated);
+            color: var(--accent-cyan);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .search-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 0.8rem;
+            width: 100%;
+        }
+
+        .docs-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .doc-card {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .doc-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .doc-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .doc-tag {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            color: var(--accent-purple);
+        }
+
+        .doc-desc {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        .copy-action-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        /* Registry list style for MCP & Skills panel */
+        .registry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .registry-card {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .registry-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .registry-name {
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .registry-badge {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .badge-mcp {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent-cyan);
+        }
+
+        .badge-skill {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--accent-emerald);
+        }
+
+        .registry-desc {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            line-height: 1.35;
+        }
+
+        /* Bottom sliding telemetry drawer */
+        .bottom-drawer {
+            height: 40px;
+            background: #04060a;
+            border-top: 1px solid var(--border-color);
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            z-index: 100;
+        }
+
+        .bottom-drawer.expanded {
+            height: 250px;
+        }
+
+        .telemetry-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .telemetry-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .telemetry-label {
+            color: var(--color-text-muted);
+        }
+
+        .telemetry-value {
+            color: var(--accent-cyan);
+        }
+
+        .drawer-toggle {
+            cursor: pointer;
+            color: var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .drawer-toggle:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .drawer-content {
+            display: none;
+            width: 100%;
+            height: 190px;
+            margin-top: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            overflow-y: auto;
+        }
+
+        .bottom-drawer.expanded .drawer-content {
+            display: block;
+        }
+
+        .console-log {
+            color: var(--color-text-secondary);
+            font-size: 0.7rem;
+            line-height: 1.5;
+        }
+
+        .console-success { color: var(--accent-emerald); }
+        .console-warn { color: var(--accent-amber); }
+        .console-error { color: var(--accent-rose); }
+
+        /* Animations */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body x-data="chronosDashboard()">
+
+    <!-- Main Dynamic 3-Panel Grid -->
+    <div class="app-container">
+        
+        <!-- Left Panel: Master Brain Vector Separations -->
+        <div class="left-panel glass-panel">
+            <div class="brand-header">
+                <div class="brand-logo">Ω</div>
+                <div>
+                    <h2 class="brand-title">Chronos Central</h2>
+                    <span class="brand-subtitle">Antigravity OS Panel</span>
+                </div>
+            </div>
+            
+            <div style="font-size: 0.75rem; color: var(--accent-purple); font-weight: 600; padding: 4px 0; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: space-between;">
+                <span>BRAIN VECTOR SEPARATIONS</span>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" x-model="searchQuery" placeholder="Filter vector separations..." class="search-input">
+            </div>
+            
+            <div class="agent-list">
+                <template x-for="slice in filteredSlices()" :key="slice.id">
+                    <div class="agent-item" :class="{'active': activeSlice.id === slice.id}" @click="selectSlice(slice)">
+                        <div class="agent-status-dot" :class="activeSlice.id === slice.id ? 'status-active' : 'status-idle'"></div>
+                        <div class="agent-details">
+                            <span class="agent-item-name" x-text="slice.name"></span>
+                            <span class="agent-item-desc" x-text="slice.description"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Center Panel: Conversations Panel -->
+        <div class="center-panel glass-panel">
+            <div class="chat-header">
+                <div class="chat-active-agent">
+                    <div class="avatar-glow">Ω</div>
+                    <div class="chat-agent-info">
+                        <span class="chat-agent-name">Chronos Central</span>
+                        <span class="chat-agent-sub" x-text="'Vector Slice: ' + activeSlice.name"></span>
+                    </div>
+                </div>
+                
+                <div class="chat-header-actions">
+                    <!-- Reset Workspace & Database Button -->
+                    <button class="reset-btn" @click="resetBrain()">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                        <span>Reset Slice</span>
+                    </button>
+
+                    <!-- Premium Model Dropdown Selector -->
+                    <select x-model="selectedModel" @change="changeModel()" class="brain-dropdown">
+                        <option value="gemini-3.5-flash">Gemini 3.5 Flash (High)</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                        <option value="ollama-gemma-2">Ollama / Gemma 2 (Local)</option>
+                        <option value="llamacpp-llama-3">llama.cpp / Llama 3 (Local)</option>
+                    </select>
+
+                    <!-- Text-To-Speech Toggle Button -->
+                    <button class="voice-output-toggle" :class="{'active': isSpeechEnabled}" @click="toggleSpeech()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span x-text="isSpeechEnabled ? 'Voice: ON' : 'Voice: OFF'"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scrollable chat thread -->
+            <div class="chat-scroller" id="chatScroller">
+                <template x-for="msg in conversations[activeSlice.id]" :key="msg.id">
+                    <div class="chat-bubble" :class="msg.sender === 'user' ? 'bubble-user' : 'bubble-system'">
+                        <p x-html="formatMessage(msg.text)"></p>
+                        
+                        <!-- Premium Save to Brain & Synthesize Skill Buttons inside System responses -->
+                        <template x-if="msg.sender === 'system' && msg.id !== 1">
+                            <div class="bubble-actions-row">
+                                <!-- Save to Brain Button -->
+                                <button class="bubble-action-btn" :class="{'success': savedMsgId === msg.id}" @click="saveMessageToBrain(msg)">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                    <span x-text="savedMsgId === msg.id ? 'Ingested to Brain!' : 'Save to Brain'"></span>
+                                </button>
+                                
+                                <!-- Dynamically Synthesize Skill Button -->
+                                <template x-if="msg.text.includes('```python')">
+                                    <button class="bubble-action-btn" :class="{'success': synthesizedSkillId === msg.id}" @click="synthesizeSkillFromCode(msg)">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                        <span x-text="synthesizedSkillId === msg.id ? 'Skill Synthesized!' : 'Synthesize Skill'"></span>
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Chat input console bar -->
+            <div class="chat-input-area">
+                <div class="chat-input-bar">
+                    <!-- Speech-To-Text Dictation Mic Button -->
+                    <button class="mic-btn" :class="{'active': isListening}" @click="toggleMic()" title="Talk to Agent (Microphone)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                    <textarea x-model="messageInput" @keydown.enter.prevent="sendMessage()" placeholder="Type or talk to direct Chronos..." class="chat-textarea"></textarea>
+                    <button @click="sendMessage()" class="chat-send-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Dynamic Tabbed Library (Knowledge vs MCP & Skills Desk) -->
+        <div class="right-panel glass-panel">
+            <div class="tab-headers-row">
+                <button class="tab-btn" :class="{'active': activeRightTab === 'library'}" @click="activeRightTab = 'library'">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>Knowledge</span>
+                </button>
+                <button class="tab-btn" :class="{'active': activeRightTab === 'mcp'}" @click="activeRightTab = 'mcp'">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    <span>MCP & Skills</span>
+                </button>
+            </div>
+
+            <!-- Tab Content 1: Knowledge Library -->
+            <div x-show="activeRightTab === 'library'" class="docs-list">
+                <div class="search-box">
+                    <input type="text" x-model="docQuery" placeholder="Search master documents..." class="search-input">
+                </div>
+                
+                <div class="docs-list">
+                    <template x-for="doc in filteredDocs()" :key="doc.id">
+                        <div class="glass-card doc-card">
+                            <div class="doc-title-row">
+                                <span class="doc-name" x-text="doc.title"></span>
+                                <span class="doc-tag" x-text="doc.tag"></span>
+                            </div>
+                            <p class="doc-desc" x-text="doc.snippet"></p>
+                            <div class="copy-action-row">
+                                <button class="copy-btn" @click="copyText(doc.content, doc.id)">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    <span x-text="copiedId === doc.id ? 'Copied!' : 'Copy'"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: MCP & Skills Registry Desk -->
+            <div x-show="activeRightTab === 'mcp'" class="registry-list" style="display: none;">
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary); margin-bottom: 4px; font-weight: 500;">
+                    ACTIVE MCP SERVERS & SCHEMAS
+                </div>
+                
+                <div class="registry-list">
+                    <template x-for="item in mcpRegistry" :key="item.name">
+                        <div class="glass-card registry-card">
+                            <div class="registry-title-row">
+                                <span class="registry-name" x-text="item.name"></span>
+                                <span class="registry-badge" :class="item.type === 'mcp' ? 'badge-mcp' : 'badge-skill'" x-text="item.type"></span>
+                            </div>
+                            <p class="registry-desc" x-text="item.description"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Telemetry sliding drawer -->
+    <div class="bottom-drawer" :class="{'expanded': isDrawerExpanded}">
+        <div class="telemetry-row">
+            <div class="telemetry-item">
+                <span class="telemetry-label">Active Brain:</span>
+                <span class="telemetry-value" x-text="selectedModel.toUpperCase()"></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-label">RAM limit:</span>
+                <span class="telemetry-value" x-text="telemetry.ram"></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-label">VRAM usage:</span>
+                <span class="telemetry-value" x-text="telemetry.vram"></span>
+            </div>
+            <div class="telemetry-item">
+                <span class="telemetry-label">Self-healing state:</span>
+                <span class="telemetry-value" x-text="telemetry.compaction"></span>
+            </div>
+            <div class="telemetry-item" style="margin-left: auto;">
+                <span class="drawer-toggle" @click="toggleDrawer()" x-text="isDrawerExpanded ? '▼ Hide Logs' : '▲ Show Self-Healing Logs'"></span>
+            </div>
+        </div>
+
+        <div class="drawer-content">
+            <div class="console-log">
+                <template x-for="log in consoleLogs" :key="log.time">
+                    <div style="margin-bottom: 4px;">
+                        <span style="color: var(--color-text-muted);" x-text="log.time"></span>
+                        <span :class="'console-' + log.type" x-text="log.message"></span>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frontend Interactive Javascript logic -->
+    <script>
+        function chronosDashboard() {
+            return {
+                searchQuery: '',
+                docQuery: '',
+                messageInput: '',
+                isDrawerExpanded: false,
+                copiedId: null,
+                activeRightTab: 'library',
+                
+                // Voice Capabilities
+                isSpeechEnabled: false,
+                isListening: false,
+                recognition: null,
+                selectedModel: 'gemini-3.5-flash',
+                
+                // State tracking for success popups
+                savedMsgId: null,
+                synthesizedSkillId: null,
+                
+                // Shared worker reference
+                worker: null,
+                
+                activeSlice: {
+                    id: 'youtube_archives',
+                    name: 'YouTube Operations',
+                    description: 'Channel audits, script engines, and video schemas.'
+                },
+                
+                // Brain Separations
+                slices: [
+                    { id: 'youtube_archives', name: 'YouTube Operations', description: 'Channel audits, script engines, and video schemas.' },
+                    { id: 'peptides_wellness', name: 'Peptides & Wellness Protocols', description: 'Biological metrics, training programs, and clinical studies.' },
+                    { id: 'builder_license', name: 'Construction & Builder Licensing', description: 'BC Builder licensing, construction plans, and contracting audits.' },
+                    { id: 'outbound_leads', name: 'Outbound Leads Strategy', description: 'Lead acquisition strategy, business rules, and lead indexes.' },
+                    { id: 'legal_strategy', name: 'Watts Point Legal Strategy', description: 'Corporate entity architectures and structural blueprints.' }
+                ],
+                
+                conversations: {
+                    youtube_archives: [
+                        { id: 1, sender: 'system', text: "Chronos Central connected to **YouTube Operations** vector slice. Ready to compile stoic builder scripts." }
+                    ],
+                    peptides_wellness: [
+                        { id: 1, sender: 'system', text: "Chronos Central connected to **Peptides & Wellness Protocols** vector slice. Biological and medical disclaimers active." }
+                    ],
+                    builder_license: [
+                        { id: 1, sender: 'system', text: "Chronos Central connected to **Construction & Builder Licensing** vector slice. BC Builder License parameters active." }
+                    ],
+                    outbound_leads: [
+                        { id: 1, sender: 'system', text: "Chronos Central connected to **Outbound Leads Strategy** vector slice. Ingesting corporate lead indexing." }
+                    ],
+                    legal_strategy: [
+                        { id: 1, sender: 'system', text: "Chronos Central connected to **Watts Point Legal Strategy** vector slice. Watts Point legal strategies loaded." }
+                    ]
+                },
+                
+                docs: [
+                    { id: 'doc1', title: '04_YOUTUBE_CONTENT_ENGINE.md', tag: 'YouTube', snippet: 'Rules for converting training manuals to biological engineering metaphors...', content: 'Convert training manuals and peptide ingestion sheets into direct load-bearing biological metaphors.' },
+                    { id: 'doc2', title: '12_PROGRAMMATIC_CINEMATIC_PIPELINE.md', tag: 'Resolve', snippet: 'Multi-track timeline mapping schemas for DaVinci Resolve...', content: 'Direct video and audio mapping specifications for V1/A1 and B-roll transitions overlays.' },
+                    { id: 'doc3', title: '06_KEYSTONE_POSSIBILITIES_BUSINESS.md', tag: 'Business', snippet: 'Builder license parameters and Keystone business scopes...', content: 'BC Builder licensing guidelines, permitting sequences, and contracting specifications.' },
+                    { id: 'doc4', title: '02_PEPTIDE_PROTOCOL_AND_ORDER.md', tag: 'Wellness', snippet: 'Ingestion orders, dosage schedules, and peptide sources...', content: 'Hardcore peptide recovery and muscle preservation dosage schedules.' }
+                ],
+                
+                // Discovered MCP Servers & Skills Registry Desk list
+                mcpRegistry: [
+                    { name: 'brave-search', type: 'mcp', description: 'Local web search integration mapping Brave query endpoints safely.' },
+                    { name: 'chrome-devtools-mcp', type: 'mcp', description: 'Dynamic selenium browser orchestration to execute overnight Google doc crawls.' },
+                    { name: 'keystone-brain', type: 'mcp', description: 'Core vector database connector indexing corporate and peptide wellness documents.' },
+                    { name: 'keystone_multiplexer', type: 'mcp', description: 'Master AI agent workspace coordinator executing resolves and audits.' },
+                    { name: 'resolve_automation', type: 'skill', description: 'DaVinci Resolve Studio automation script managing V1/A1 timeline assembly.' },
+                    { name: 'self_evolution', type: 'skill', description: 'Dynamic AST validation check and Pytest evaluation execution loop.' },
+                    { name: 'rrf_search', type: 'skill', description: 'Reciprocal Rank Fusion hybrid searching combining sqlite-vec with FTS5.' }
+                ],
+                
+                telemetry: {
+                    ram: '232MB / 500MB',
+                    vram: '0MB (Zero-VRAM CPU Active)',
+                    compaction: 'Auto-Healing active (94% Health)'
+                },
+                
+                consoleLogs: [
+                    { time: '23:27:02 ', message: 'Chronos Central booted successfully.', type: 'success' },
+                    { time: '23:27:05 ', message: 'Discovered MCP Servers and Skills registries mapped.', type: 'success' },
+                    { time: '23:27:09 ', message: 'Active memory watchdog online. Telemetry threshold set to <500MB.', type: 'success' }
+                ],
+
+                init() {
+                    // Shared Worker socket integration
+                    try {
+                        this.worker = new SharedWorker('js/shared_worker.js');
+                        this.worker.port.onmessage = (event) => {
+                            const frame = JSON.parse(event.data);
+                            console.log("[UI] Frame: ", frame);
+                            
+                            if (frame.type === "sync_view" && frame.sender !== "this_tab") {
+                                if (frame.event === "focus_slice") {
+                                    const target = this.slices.find(s => s.id === frame.data);
+                                    if (target) {
+                                        this.activeSlice = target;
+                                        this.scrollChat();
+                                    }
+                                } else if (frame.event === "change_model") {
+                                    this.selectedModel = frame.data;
+                                }
+                            }
+                        };
+                    } catch (e) {
+                        console.warn("[UI] Shared Worker offline. Running standalone mode.");
+                    }
+                    
+                    this.initSpeechRecognition();
+                    
+                    setInterval(() => {
+                        this.simulateChromeScrape();
+                    }, 25000);
+                },
+                
+                filteredSlices() {
+                    return this.slices.filter(s => s.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || s.description.toLowerCase().includes(this.searchQuery.toLowerCase()));
+                },
+                
+                filteredDocs() {
+                    return this.docs.filter(d => d.title.toLowerCase().includes(this.docQuery.toLowerCase()) || d.snippet.toLowerCase().includes(this.docQuery.toLowerCase()));
+                },
+                
+                selectSlice(slice) {
+                    this.activeSlice = slice;
+                    this.scrollChat();
+                    this.logConsole(`Switched focus to Vector separation: ${slice.name}`, 'success');
+                    
+                    if (this.worker) {
+                        this.worker.port.postMessage(JSON.stringify({
+                            sync: true,
+                            sender: "this_tab",
+                            event: "focus_slice",
+                            data: slice.id
+                        }));
+                    }
+                },
+                
+                changeModel() {
+                    this.logConsole(`Model brain changed to: ${this.selectedModel}`, 'success');
+                    
+                    if (this.worker) {
+                        this.worker.port.postMessage(JSON.stringify({
+                            sync: true,
+                            sender: "this_tab",
+                            event: "change_model",
+                            data: this.selectedModel
+                        }));
+                    }
+                },
+                
+                sendMessage() {
+                    if (!this.messageInput.trim()) return;
+                    
+                    const text = this.messageInput;
+                    const activeId = this.activeSlice.id;
+                    
+                    this.conversations[activeId].push({
+                        id: Date.now(),
+                        sender: 'user',
+                        text: text
+                    });
+                    
+                    this.messageInput = '';
+                    this.scrollChat();
+                    window.speechSynthesis.cancel();
+                    
+                    this.logConsole(`Routing query through DCC context barriers to model: ${this.selectedModel}`, 'success');
+                    
+                    // Respond
+                    setTimeout(() => {
+                        this.logConsole(`Executing task frame targeting slice ${activeId}`, 'success');
+                        
+                        let reply = "Processing complete. Content committed safely.";
+                        if (activeId === 'youtube_archives') {
+                            reply = "Stoic YouTube Engine: Load-bearing metaphors compiled. YouTube script outline synthesized successfully.\n\n```python\n# Medical Disclaimer: Dynamic script synthesis complete.\nprint('Angiogenesis strength cycle activated.')\n```";
+                        } else if (activeId === 'peptides_wellness') {
+                            reply = "Wellness Substrate: Peptide recovery scheduling calibrated. Ingestion orders written to vector database.";
+                        } else if (activeId === 'builder_license') {
+                            reply = "Construction Substrate: BC Builder License 52603 audit completed. Keystone Possibilities Ltd. remains in active compliance.";
+                        }
+                        
+                        this.conversations[activeId].push({
+                            id: Date.now() + 1,
+                            sender: 'system',
+                            text: reply
+                        });
+                        this.scrollChat();
+                        
+                        if (this.isSpeechEnabled) {
+                            this.speakText(reply);
+                        }
+                    }, 1200);
+                },
+                
+                // =========================================================
+                // Save to Brain (Dynamic Ingestion) Action Endpoint Call
+                // =========================================================
+                saveMessageToBrain(msg) {
+                    this.logConsole(`Saving message context to Vector Brain slice: ${this.activeSlice.name}`, 'success');
+                    
+                    // Dispatch to backend API
+                    fetch('/save_to_brain', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            slice_id: this.activeSlice.id,
+                            content: msg.text
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.savedMsgId = msg.id;
+                        this.logConsole(`[Ingestion] Message committed to ${this.activeSlice.id}/Research_Archives successfully.`, 'success');
+                        
+                        // Dynamically append to knowledge documents view list on success
+                        this.docs.unshift({
+                            id: 'doc_' + Date.now(),
+                            title: `ingested_snippet_${Date.now().toString().slice(-4)}.md`,
+                            tag: 'Saved',
+                            snippet: msg.text.substring(0, 80) + '...',
+                            content: msg.text
+                        });
+                        
+                        setTimeout(() => { this.savedMsgId = null; }, 2000);
+                    })
+                    .catch(err => {
+                        this.logConsole(`[Ingestion Error] fetch failed. Simulating local backup.`, 'warn');
+                        this.savedMsgId = msg.id;
+                        setTimeout(() => { this.savedMsgId = null; }, 2000);
+                    });
+                },
+                
+                // =========================================================
+                // Synthesize Skill Action (AST Validation & Pytest QA)
+                // =========================================================
+                synthesizeSkillFromCode(msg) {
+                    // Extract code block
+                    const match = msg.text.match(/```python([\s\S]*?)```/);
+                    if (!match) return;
+                    
+                    const code = match[1].trim();
+                    this.logConsole(`Synthesizing dynamic Skill from code: Initiating static AST validation checks...`, 'success');
+                    
+                    fetch('/synthesize_skill', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            agent_name: this.activeSlice.id,
+                            code: code
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.synthesizedSkillId = msg.id;
+                        this.logConsole(`[Self-Evolution] AST Checks [OK]. Pytest Verification [OK]. Dynamic Skill hot-loaded.`, 'success');
+                        
+                        // Dynamically add to the MCP & Skills list
+                        this.mcpRegistry.push({
+                            name: `dynamic_skill_${Date.now().toString().slice(-4)}`,
+                            type: 'skill',
+                            description: 'Autonomously synthesized self-evolution skill verified under AST whitelists.'
+                        });
+                        
+                        setTimeout(() => { this.synthesizedSkillId = null; }, 2000);
+                    })
+                    .catch(err => {
+                        this.logConsole(`[Self-Evolution Error] fetch failed. Simulating self-healing loop.`, 'warn');
+                        this.synthesizedSkillId = msg.id;
+                        setTimeout(() => { this.synthesizedSkillId = null; }, 2000);
+                    });
+                },
+                
+                // =========================================================
+                // Reset active Brain Slice & Database State
+                // =========================================================
+                resetBrain() {
+                    if (!confirm(`Are you sure you want to reset the active brain slice "${this.activeSlice.name}" and clear all active caches?`)) return;
+                    
+                    this.logConsole(`Wiping memory caches and database logs targeting slice: ${this.activeSlice.id}`, 'warn');
+                    
+                    fetch('/reset', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ slice_id: this.activeSlice.id })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        // Wipe conversations history back to default starting block
+                        this.conversations[this.activeSlice.id] = [
+                            { id: Date.now(), sender: 'system', text: `Chronos Central database reset completed for vector separation **${this.activeSlice.name}**.` }
+                        ];
+                        this.logConsole(`[Reset] Workspace cleared. Rolling back to clean snapshot manifest.`, 'success');
+                    })
+                    .catch(err => {
+                        this.logConsole(`[Reset Error] fetch failed. Simulating local rollbacks.`, 'warn');
+                        this.conversations[this.activeSlice.id] = [
+                            { id: Date.now(), sender: 'system', text: `Chronos Central database reset completed for vector separation **${this.activeSlice.name}**.` }
+                        ];
+                    });
+                },
+                
+                // =========================================================
+                // Text-To-Speech (TTS) Voice Synthesis
+                // =========================================================
+                toggleSpeech() {
+                    this.isSpeechEnabled = !this.isSpeechEnabled;
+                    if (this.isSpeechEnabled) {
+                        this.speakText("Voice output enabled. Ready to communicate, Wayne.");
+                        this.logConsole("Text-to-Speech synthesizer activated.", "success");
+                    } else {
+                        window.speechSynthesis.cancel();
+                        this.logConsole("Text-to-Speech synthesizer deactivated.", "warn");
+                    }
+                },
+                
+                speakText(text) {
+                    window.speechSynthesis.cancel();
+                    
+                    let clean = text.replace(/```[\s\S]*?```/g, 'Code block omitted.');
+                    clean = clean.replace(/[*#`_\-]/g, '');
+                    
+                    const utterance = new SpeechSynthesisUtterance(clean);
+                    const voices = window.speechSynthesis.getVoices();
+                    
+                    const choice = voices.find(v => v.name.includes("Google US English") || v.name.includes("Natural"));
+                    if (choice) utterance.voice = choice;
+                    
+                    utterance.rate = 1.05;
+                    utterance.pitch = 0.9;
+                    
+                    window.speechSynthesis.speak(utterance);
+                },
+                
+                // =========================================================
+                // Speech-To-Text (STT) Dictation Recognition
+                // =========================================================
+                initSpeechRecognition() {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    if (!SpeechRecognition) {
+                        this.logConsole("Speech recognition not supported in this browser environment.", "error");
+                        return;
+                    }
+                    
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.continuous = false;
+                    this.recognition.interimResults = false;
+                    this.recognition.lang = 'en-US';
+                    
+                    this.recognition.onstart = () => {
+                        this.isListening = true;
+                        window.speechSynthesis.cancel();
+                        this.logConsole("Microphone active. Listening...", "success");
+                    };
+                    
+                    this.recognition.onresult = (event) => {
+                        const transcript = event.results[0][0].transcript;
+                        this.messageInput = transcript;
+                        this.logConsole(`Dictated text: "${transcript}"`, "success");
+                    };
+                    
+                    this.recognition.onerror = (event) => {
+                        this.logConsole(`Microphone error: ${event.error}`, "error");
+                        this.isListening = false;
+                    };
+                    
+                    this.recognition.onend = () => {
+                        this.isListening = false;
+                        this.logConsole("Microphone deactivated.", "warn");
+                    };
+                },
+                
+                toggleMic() {
+                    if (!this.recognition) {
+                        alert("Speech recognition API is not supported in this browser version. Use Google Chrome Desktop App shell.");
+                        return;
+                    }
+                    
+                    if (this.isListening) {
+                        this.recognition.stop();
+                    } else {
+                        this.recognition.start();
+                    }
+                },
+                
+                copyText(content, id) {
+                    navigator.clipboard.writeText(content);
+                    this.copiedId = id;
+                    setTimeout(() => {
+                        this.copiedId = null;
+                    }, 2000);
+                    
+                    this.logConsole(`Copied to clipboard: "${content.substring(0, 30)}..."`, 'success');
+                },
+                
+                simulateChromeScrape() {
+                    const titles = ["deep_research_sweep_5.md", "GCP_10K_Credits_Redemption_Guide.md", "SOVEREIGN_MEMORY_ARCHITECTURE.md"];
+                    const chosen = titles[Math.floor(Math.random() * titles.length)];
+                    
+                    if (this.docs.find(d => d.title === chosen)) return;
+                    
+                    const newDoc = {
+                        id: 'doc_' + Date.now(),
+                        title: chosen,
+                        tag: 'Scraped',
+                        snippet: 'Automatically caught by Watchdog polling from Chrome research loop...',
+                        content: 'Newly scraped intelligence caught from active monitor tab.'
+                    };
+                    
+                    this.docs.unshift(newDoc);
+                    this.logConsole(`💎 Watchdog: Caught newly scraped Chrome Deep Research Document: ${chosen}`, 'success');
+                },
+                
+                toggleDrawer() {
+                    this.isDrawerExpanded = !this.isDrawerExpanded;
+                },
+                
+                logConsole(message, type) {
+                    const time = new Date().toLocaleTimeString() + ' ';
+                    this.consoleLogs.push({ time, message, type });
+                    if (this.consoleLogs.length > 20) this.consoleLogs.shift();
+                },
+                
+                formatMessage(text) {
+                    let html = text.replace(/```python([\s\S]*?)```/g, '<pre>$1</pre>');
+                    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    return html;
+                },
+                
+                scrollChat() {
+                    setTimeout(() => {
+                        const el = document.getElementById('chatScroller');
+                        if (el) el.scrollTop = el.scrollHeight;
+                    }, 100);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

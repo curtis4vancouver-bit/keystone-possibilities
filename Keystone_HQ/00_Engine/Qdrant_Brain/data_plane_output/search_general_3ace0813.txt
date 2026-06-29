@@ -1,0 +1,69 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 20260522_autonomous_skill_creation_patterns.md, VecScore: 0.500) ---
+-resolve-mcp/docs/SKILL|skill]]?" when it detects a recurring, automatable pattern
+- **Compatibility**: Hermes skills follow the agentskills.io standard, making them portable
+
+### Alongside [[davinci-resolve-mcp/docs/SKILL|Skill]] Memory
+
+Hermes maintains three forms of persistent memory:
+- `MEMORY.md`: [[general|General]] knowledge and learnings
+- `USER.md`: User preferences and environment quirks
+- `~/.hermes/skills/`: Procedural knowledge (the [[davinci-resolve-mcp/docs/SKILL|skill]] library)
+
+---
+
+## 3. The Antigravity Workflow-[[davinci-resolve-mcp/docs/SKILL|Skill]]-Creator Plugin
+
+The `workflow-[[davinci-resolve-mcp/docs/SKILL|skill]]-creator` plugin (installed locally in the Keystone system) provides a structured, human-in-the-loop approach to [[davinci-resolve-mcp/docs/SKILL|skill]] distillation. Unlike fully autonomous extraction, it operates in **four phases**:
+
+### Phase 1: Brainstorming (Mandatory)
+
+An iterative conversation across 5 rounds:
+- **Round 1**: Understand the w
+
+
+--- Result 2 (Source: 20260609_AGENT_ARCH_research_the_hermes_autonomous_ai_agent_concept_and_similar_.md, VecScore: 0.333) ---
+prevent profile conflicts, platform adapters utilize token locks, calling acquire_scoped_lock() upon connection to ensure two gateway instances do not consume the same bot credentials simultaneously.   
+
+Terminal execution is equally versatile, supporting local, Docker, SSH, Singularity, Modal, and Daytona backends. Daytona and Modal provide serverless persistence, where the agent's environment hibernates when idle and wakes on demand, rendering infrastructure costs negligible between active sessions.   
+
+Enterprise Multi-Agent Orchestration Frameworks
+
+While Hermes serves as the apex persistent personal agent and gateway, large-scale enterprise workflows require specialized multi-agent orchestration frameworks. As of 2026, the ecosystem has stratified into clear use-cases based on determinism, scale, and observability.   
+
+LangGraph: The Deterministic [[STATE|State]] Machine (Version 1.1.6)
+
+For the backbone of the Keystone Sovereign system—where the failure of an autonomous supply ch
+
+
+--- Result 3 (Source: 20260522_hermes_vs_antigravity_comparison.md, VecScore: 0.250) ---
+skills define behavioral rules but no dedicated personality file. **Minor gap.** |
+
+**Verdict:** Roughly equivalent. Both systems support hierarchical project context.
+
+### 1.6 Tooling and Extensibility
+
+| Capability | Hermes Agent | Keystone/Antigravity |
+|:---|:---|:---|
+| **Built-in tools** | 70+ tools across toolsets (web search, browser automation, vision, image gen, TTS, file ops) | Antigravity provides file I/O, code editing, shell execution, sub-[[AGENTS|agents]], web search, browser (via MCP). We also have 40+ science skills, keystone-brain, postgres, chrome-devtools, brave-search. **Comparable or superior.** |
+| **MCP support** | Not native -- Hermes uses its own tool registry | Antigravity has **first-class MCP support** with lazy/eager loading, multiplexer, and schema discovery. **We are ahead.** |
+| **Model flexibility** | Model-agnostic: supports OpenAI, Nous Portal, OpenRouter, local models (vLLM/Ollama), credential pooling, auto-fallback | Locked to Gemini ecosystem. **
+
+
+--- Result 4 (Source: 03_Multi_Agent_Link_Building.md, VecScore: 0.200) ---
+mentary automated email sequencers is the capacity for continuous, contextual learning. When systems like Hermes complete a complex, multi-step task requiring numerous tool calls, they document the precise execution path as a reusable skill. These skills are written to persistent memory files, such as memory.md. When presented with a similar objective in the future, the agent retrieves the documented skill, circumventing the need to rebuild the logic from scratch. This mechanism reduces processing latency, slashes API compute costs, and drives extraordinary consistency across varied campaigns. By keeping skills narrow before expanding their scope, testing and trust verification become highly reliable.   \n\nFurthermore, Hermes serves as a modular operating system designed for developer extensibility and rapid iteration. Beyond outreach, the core framework is equipped with a vast suite of built-in tools. These capabilities include browser automation for navigating dynamic web applicatio
+
+
+--- Result 5 (Source: 20260522_hermes_vs_antigravity_comparison.md, VecScore: 0.167) ---
+ | No hard cap. Correction journal grows unbounded. No consolidation mechanism. |
+
+**Verdict:** Keystone has a comparable 3-layer approach (correction journal = curated, brain DB = episodic, skills = procedural). However, we lack **Honcho-style user modeling** and **memory consolidation/pruning on the curated layer**.
+
+### 1.2 Self-Learning and Self-Evolution
+
+| Capability | Hermes Agent | Keystone/Antigravity |
+|:---|:---|:---|
+| **Autonomous [[davinci-resolve-mcp/docs/SKILL|skill]] creation** | After 5+ tool-call tasks, auto-extracts successful workflows into [[davinci-resolve-mcp/docs/SKILL|SKILL]].md files stored in `~/.hermes/skills/` | `self_evolution.py` can deploy dynamic skills, but requires explicit invocation -- not automatic. Skills go to `dynamic_skills/` dir. |
+| **GEPA prompt evolution** | Genetic-Pareto Prompt Evolution -- evolutionary algorithm that mutates prompts/skills using LLM reflection, selects via Pareto frontier. 35x more sample-efficient than RL. Runs offline
+

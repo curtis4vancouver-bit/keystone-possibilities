@@ -1,0 +1,101 @@
+[keystone_video id="zFUwRvTI7EU"]
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>At 43 years old, after two decades of heavy construction work, recovery had become the bottleneck. Joints ached every morning. Training sessions that used to take 48 hours to recover from stretched into five days. Sleep was compromised. Motivation was slipping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Then the research started.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The Wolverine Stack — a combination of two peptides, BPC-157 and TB-500 — had been generating attention across the biohacking, functional medicine, and athletic performance communities for years. But in September 2023, the FDA placed BPC-157 on the Category 2 list, restricting compounding pharmacies from producing it. The peptide landscape changed overnight.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the Builder Blueprint — a systematic case study documenting what the published clinical research says, what the FDA ruling actually means, and how a 43-year-old construction project manager approached the data.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"> What Is the Wolverine Stack?</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Wolverine Stack combines two peptides that target different layers of tissue repair:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>BPC-157 (Body Protection Compound 157)</strong>&nbsp;is a synthetic 15-amino-acid peptide derived from a protective protein found naturally in human gastric juice. In animal studies, it has demonstrated the ability to accelerate tendon, ligament, muscle, and gut lining repair. Key mechanisms include angiogenesis (the formation of new blood vessels), nitric oxide modulation, and growth factor signaling.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>TB-500</strong>&nbsp;is a synthetic peptide derived from the active region of Thymosin Beta-4, a naturally occurring 43-amino-acid protein in the human body. TB-500 specifically contains the 7-amino-acid actin-binding domain that promotes cell migration and reduces inflammation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In construction terms: BPC-157 is the plumber — running new supply lines to damaged areas. TB-500 is the electrician — directing the repair crew to the exact location of the problem.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"> The FDA Category 2 Ruling — What Actually Happened</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In September 2023, the FDA moved BPC-157, TB-500, and over a dozen other peptides to the Category 2 list under Section 503A of the Federal Food, Drug, and Cosmetic Act. This meant compounding pharmacies could no longer produce these compounds for patients.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Category 2 does not mean "banned." It means the FDA determined there is insufficient human clinical trial data to confirm safety for bulk compounding. The distinction matters.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A coalition of physicians and compounding pharmacies are actively fighting to restore BPC-157 to Category 1. The FDA has scheduled the Pharmacy Compounding Advisory Committee (PCAC) to meet on&nbsp;<strong>July 23, 2026</strong>&nbsp;to review BPC-157 and TB-500 for potential reinstatement.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In Canada, the regulatory environment is different but the result is similar — BPC-157 is not an approved drug for human use under Health Canada, meaning physicians cannot legally prescribe it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"> The Builder Blueprint Approach</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Builder Blueprint treats the body the same way a construction project manager treats a structural renovation — with a blueprint, a timeline, and systematic inspection of every system.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This case study documented the experience of a 43-year-old male subject undergoing a broader metabolic rebuild. The Wolverine Stack was one variable in a larger system that included:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Structured resistance training</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>GLP-1 body recomposition protocol</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Cold exposure</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Sleep architecture optimizatio

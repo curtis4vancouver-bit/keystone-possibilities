@@ -1,0 +1,22 @@
+{
+  "agent_name": "analytics_reporting",
+  "skills": [
+    "youtube_analytics",
+    "search_console_reporting",
+    "social_media_analytics",
+    "performance_dashboards"
+  ],
+  "apis": [
+    "youtube_analytics",
+    "search_console",
+    "meta_insights"
+  ],
+  "strengths": [
+    "Performance tracking",
+    "Trend identification",
+    "Actionable recommendations"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

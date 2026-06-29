@@ -1,0 +1,3 @@
+### June 22, 2026 - AIDA Frontend Restore
+- **Discovery**: AIDA's original frontend with the voice talker and system monitors is bundled in a PyInstaller dist folder (dist/AIDA/_internal/frontend).
+- **Action**: Do not overwrite the AIDA/frontend output with Vite build without preserving js and css directories. The Vite build emptyOutDir: true will delete them. To restore the frontend, copy the backup from the dist directory.

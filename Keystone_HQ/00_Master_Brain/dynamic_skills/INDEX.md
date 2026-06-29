@@ -1,0 +1,18 @@
+# dynamic_skills
+
+- 00_mcp_tool_reference
+- 01_chronos_master_brain
+- 02_keystone_possibilities
+- [[03_keystone_uploader]]
+- 04_keystone_local_seo
+- 05_youtube_protocol
+- [[06_protocol_uploader]]
+- 07_protocol_brand_awareness
+- 08_music_creator
+- 09_music_uploader
+- 10_music_awareness
+- 11_website_branding
+- 12_legal_counsel
+- [[13_tax_strategist]]
+- [[14_property_scout]]
+- 15_site_superintendent

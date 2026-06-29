@@ -1,0 +1,219 @@
+Found 15 matches in 'general':
+
+--- Result 1 (Source: 00_CHRONOS_MASTER_SYSTEM_PROMPT.md, Score: 0.749) ---
+**Current [[.agents/rules/workspace|Workspace]] Context:**
+You are operating from `c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain`. Use the `keystone-architect-orchestration` [[.agents/skills/seo-geo/SKILL|skill]] if you need the directory map.
+
+
+--- Result 2 (Source: Master_Docs/Gemini_Pro_Instructions/03_SEO_GEO_WEBSITE_IMPLEMENTATION.md, Score: 0.724) ---
+### Method 2: Theme Functions.php
+```php
+function keystone_add_schema_markup() {
+    // Only add Organization schema to homepage
+    if (is_front_page()) {
+        ?>
+        <script type="application/ld+json">
+        {
+            // ... Organization schema here
+        }
+        </script>
+        <?php
+    }
+}
+add_action('wp_head', 'keystone_add_schema_markup');
+```
+
+
+--- Result 3 (Source: Master_Docs/Gemini_Pro_Instructions/03_SEO_GEO_WEBSITE_IMPLEMENTATION.md, Score: 0.715) ---
+### Websites:
+- **Keystone Possibilities**: keystonepossibilities.com (WordPress) — Construction business
+- **Keystone Recomposition**: keystonerecomposition.com (WordPress) — Health/wellness/music
+
+
+--- Result 4 (Source: .agents/rules/workspace.md, Score: 0.712) ---
+# Keystone Workspace
+- Root: c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\
+- Brand: Keystone Possibilities (construction) + Keystone Recomposition (health/music)
+- Owner: Wayne Stevenson
+- Location: Sea-to-Sky Corridor, BC, Canada
+- Email: curtis4vancouver@gmail.com
+
+
+--- Result 5 (Source: Master_Docs/Gemini_Pro_Instructions/01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, Score: 0.712) ---
+# Keystone Workspace
+- Root: c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\
+- Brand: Keystone Possibilities (construction) + Keystone Recomposition (health/music)
+- Owner: Wayne Stevenson
+- Location: Sea-to-Sky Corridor, BC, Canada
+- Email: curtis4vancouver@gmail.com
+```
+
+
+--- Result 6 (Source: Research_Archives/12_Branding_Marketing/20260522_low_cost_organic_branding.md, Score: 0.704) ---
+# file: p_seo_generator.py
+import os
+import csv
+
+TEMPLATE = """---
+title: Premium Construction & Safety Services in {city}, BC
+description: Looking for certified commercial contractors or safety compliance audits in {city}? Keystone delivers high-performance builds.
+layout: location_page
+---
+
+
+--- Result 7 (Source: Research_Archives/05_Video_Production/AI_Video_Reference_Photo_Pipeline_Deep_Research.md, Score: 0.696) ---
+## KEYSTONE-SPECIFIC APPLICATION
+
+
+--- Result 8 (Source: Research_Archives/Recovered_From_Qdrant/directory_listings_walkthrough_2026-06-07.md, Score: 0.696) ---
+## Still TODO for Recomposition brand:
+- Set up directory listings for Keystone Recomposition (music/protocols)
+- Push music via YouTube, Spotify, GEO optimization
+- AI search engine optimization (ChatGPT, Perplexity, Gemini visibility)
+- Houzz equivalent directories for wellness/music if applicable
+
+ directories for wellness/music if applicable
+
+
+--- Result 9 (Source: dynamic_skills/11_website_branding.md, Score: 0.694) ---
+### Keystone Possibilities (B2B)
+- **Tone**: Professional, authoritative, data-driven
+- **Palette**: Premium dark tones, gold accents, clean typography
+- **Content Focus**: Construction PM insights, project case studies, Bill 44 guides
+- **Schema**: LocalBusiness + ProfessionalService + Certification (License #52603)
+- **CI/CD**: GitHub + WP Pusher (auto-deploys on merge to main)
+- **Child Theme**: astra-child-keystone
+
+
+--- Result 10 (Source: .learnings/insights/gemini_pro_execution_log_20260610.md, Score: 0.694) ---
+## Set 05: SEO/GEO — Keystone RECOMPOSITION Website
+- **Status:** Pending
+
+
+--- Result 11 (Source: Master_Docs/Gemini_Pro_Instructions/05_RECOMPOSITION_WEBSITE_SEO_GEO.md, Score: 0.691) ---
+### Website:
+- **Keystone Recomposition**: keystonerecomposition.com (WordPress) — Health/wellness/music brand
+- **NOT** keystonepossibilities.com — that's the construction brand (covered in Set 03)
+
+
+--- Result 12 (Source: Master_Docs/Gemini_Pro_Instructions/02_SKILLS_IMPLEMENTATION_AND_DOCUMENTATION.md, Score: 0.689) ---
+### 3.1: Create `keystone-geo-deployment` [[.agents/skills/seo-geo/SKILL|skill]]
+Location: `C:\Users\Curtis\.gemini\config\skills\keystone-geo-deployment\SKILL.md`
+
+This [[.agents/skills/seo-geo/SKILL|skill]] handles deploying GEO optimizations to LIVE websites:
+```yaml
+---
+name: keystone-geo-deployment
+description: Deploy Generative Engine Optimization (GEO) to Keystone websites. Schema markup, sameAs links, FAQ schema, structured data, AI bot access. Use when implementing SEO/GEO changes on live WordPress sites.
+---
+```
+
+Content should include:
+1. Pre-deployment checklist (backup, staging test)
+2. sameAs schema template for Keystone Possibilities:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Keystone Possibilities",
+  "url": "https://keystonepossibilities.com",
+  "sameAs": [
+    "https://www.google.com/maps/place/...",
+    "https://www.linkedin.com/company/...",
+    "https://www.facebook.com/...",
+    "https://www.youtube.com/@...",
+    "https://www.wikidata.org/wiki/Q..."
+  ]
+}
+```
+3. FAQPage schema template
+4. robots.txt AI bot whitelist (GPTBot, PerplexityBot, ClaudeBot, ChatGPT-User, anthropic-ai)
+5. WordPress deployment method (header injection vs plugin)
+6. Verification steps (Google Rich Results Test, Schema Validator)
+7. **SAFETY:** Always test on staging first, never push directly to production
+
+
+--- Result 13 (Source: Research_Archives/05_Video_Production/DaVinci_Resolve_Timeline_Automation.md, Score: 0.688) ---
+output_directory
+    )
+    target_frame = harvester.get_thumbnail_frame_index()
+    thumbnail_path = harvester.extract_thumbnail_as_image(target_frame, "cover_thumbnail.png")
+    
+    print("====================================================")
+    print("PIPELINE AUTOMATION RUN SUCCESSFUL")
+    print(f"Timeline Name: {engine.blueprint['timelineName']}")
+    print(f"Captions Exported: {srt_output_path}")
+    print(f"Thumbnail Captured: {thumbnail_path}")
+    print("====================================================")
+
+if __name__ == "__main__":
+    # Example Blueprint Generation for verification
+    demo_blueprint = {
+        "timelineName": "Keystone_Recomposition_Short_01",
+        "framerate": 24.0,
+        "width": 1080,
+        "height": 1920,
+        "audioTracks": [
+          {
+            "trackIndex": 1,
+            "clips": [
+              {
+                "filePath": r"c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\scratch\demo_site_recording.wav",
+                "clipName": "voiceover_part1",
+                "timelineStartFrame": 0,
+                "sourceStartFrame": 0,
+                "sourceDurationFrames": 120,
+                "markers": [
+                  {
+                    "offsetFrame": 10,
+                    "duration": 48,
+                    "color": "Cyan",
+                    "title": "SUB: Welcome to Keystone Recomposition.",
+                    "note": "Welcome to Keystone Recomposition. Here is where the master builders connect."
+
+
+--- Result 14 (Source: Research_Archives/05_Video_Production/20260522_davinci_resolve_timeline_assembly.md, Score: 0.688) ---
+output_directory
+    )
+    target_frame = harvester.get_thumbnail_frame_index()
+    thumbnail_path = harvester.extract_thumbnail_as_image(target_frame, "cover_thumbnail.png")
+    
+    print("====================================================")
+    print("PIPELINE AUTOMATION RUN SUCCESSFUL")
+    print(f"Timeline Name: {engine.blueprint['timelineName']}")
+    print(f"Captions Exported: {srt_output_path}")
+    print(f"Thumbnail Captured: {thumbnail_path}")
+    print("====================================================")
+
+if __name__ == "__main__":
+    # Example Blueprint Generation for verification
+    demo_blueprint = {
+        "timelineName": "Keystone_Recomposition_Short_01",
+        "framerate": 24.0,
+        "width": 1080,
+        "height": 1920,
+        "audioTracks": [
+          {
+            "trackIndex": 1,
+            "clips": [
+              {
+                "filePath": r"c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\scratch\demo_site_recording.wav",
+                "clipName": "voiceover_part1",
+                "timelineStartFrame": 0,
+                "sourceStartFrame": 0,
+                "sourceDurationFrames": 120,
+                "markers": [
+                  {
+                    "offsetFrame": 10,
+                    "duration": 48,
+                    "color": "Cyan",
+                    "title": "SUB: Welcome to Keystone Recomposition.",
+                    "note": "Welcome to Keystone Recomposition. Here is where the master builders connect."
+
+
+--- Result 15 (Source: Master_Docs/Gemini_Pro_Instructions/01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, Score: 0.688) ---
+### Current bootstrap [[.agents/skills/seo-geo/SKILL|skill]] location:
+```
+C:\Users\Curtis\.gemini\config\skills\keystone-session-bootstrap\SKILL.md
+```
+

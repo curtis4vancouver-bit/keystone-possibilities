@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: n8n-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-n8n}
+      POSTGRES_USER: ${POSTGRES_USER:-n8n}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-n8n_secure_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n-workflow-engine
+    user: "1000:1000"
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB:-n8n}
+      - DB_POSTGRESDB_USER=${POSTGRES_USER:-n8n}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD:-n8n_secure_password}
+      - N8N_PORT=5678
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - /home/curtis/Keystone_HQ/00_Master_Brain:/vault
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+  sanity-gravity:
+    image: kasmweb/ubuntu-jammy-desktop:1.15.0
+    container_name: sanity-gravity-desktop
+    ports:
+      - "8444:6901"
+    environment:
+      - VNC_PW=vnc_secure_password
+    cap_drop:
+      - ALL
+    volumes:
+      - sandbox_workspace:/home/kasm_user/workspace
+      - /home/curtis/Keystone_HQ/00_Master_Brain:/vault:ro
+    restart: unless-stopped
+
+  neo4j:
+    image: neo4j:5.20-community
+    container_name: neo4j-graph-memory
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/keystonesovereign
+    volumes:
+      - neo4j_data:/data
+      - neo4j_import:/import
+      - neo4j_logs:/logs
+      - /home/curtis/Keystone_HQ/00_Master_Brain:/vault:ro
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  n8n_data:
+  sandbox_workspace:
+  neo4j_data:
+  neo4j_import:
+  neo4j_logs:

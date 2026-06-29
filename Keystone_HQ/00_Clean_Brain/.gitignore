@@ -1,0 +1,47 @@
+# ─── Secrets & Credentials (NEVER commit these) ───
+.env
+.env.*
+*.env
+social_tokens.json
+**/social_tokens.json
+*_tokens.json
+*_secrets.json
+oauth_credentials.json
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Node.js ───
+node_modules/
+npm-debug.log*
+
+# ─── IDE ───
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── OS Files ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Scratch & Temp ───
+scratch/
+*.tmp
+*.log
+
+# ─── Qdrant local storage (large binary data) ───
+qdrant_storage/
+qdrant_clone_storage/
+
+# ─── Archive ───
+deprecated_scripts/

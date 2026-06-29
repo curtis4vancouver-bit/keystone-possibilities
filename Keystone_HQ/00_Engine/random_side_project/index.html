@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Particle Sim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Construction Particle Sim</h1>
+        <div class="controls">
+            <button class="tool active" data-tool="1" style="background-color: #ffd700; color: black;">Sand</button>
+            <button class="tool" data-tool="2" style="background-color: #4169e1; color: white;">Water</button>
+            <button class="tool" data-tool="4" style="background-color: #808080; color: white;">Concrete</button>
+            <button class="tool" data-tool="3" style="background-color: #8b4513; color: white;">Wood</button>
+            <button class="tool" data-tool="0" style="background-color: #000; color: white;">Eraser</button>
+            <button id="clear">Clear Canvas</button>
+        </div>
+        <canvas id="simCanvas" width="500" height="500"></canvas>
+        <p>Instructions: Click and drag on the canvas to draw materials.<br>Concrete will harden into solid walls over time!</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

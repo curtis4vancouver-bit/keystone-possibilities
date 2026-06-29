@@ -1,0 +1,58 @@
+# Keystone .antigravityignore — Reduce AI credit consumption
+# by excluding files that don't need to be in the agent's context
+
+# Build output and dependencies
+node_modules/
+.next/
+dist/
+build/
+coverage/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Large data directories
+Qdrant_Brain/storage/
+Deep_Research_Results/
+Research_Archives/
+Transcripts/
+
+# Binary and media files
+*.mp4
+*.mp3
+*.wav
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.svg
+*.ico
+*.pdf
+*.zip
+*.tar.gz
+
+# Deprecated scripts (kept for reference only)
+deprecated_scripts/
+
+# Temporary files
+scratch/
+*.tmp
+*.log
+
+# Docker volumes
+qdrant_data/
+
+# IDE and system files
+.vs/
+.vscode/
+*.suo
+*.user
+Thumbs.db
+desktop.ini
+
+# Git internals
+.git/
+
+# Large snapshot files
+*.snapshot

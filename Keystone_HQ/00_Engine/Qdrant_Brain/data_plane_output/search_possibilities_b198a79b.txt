@@ -1,0 +1,56 @@
+Found 5 matches in ['possibilities']:
+
+--- Result 1 (Source: 16_biophilic_resort_jv_blueprint.md, VecScore: 0.700) ---
+S, ZONING & ENVIRONMENTAL GEOTECHNICAL COMPLIANCE (SQUAMISH)
+Building biophilic structures on steep, rocky granite terrain in Squamish is a highly regulated undertaking governed by provincial laws and the District of Squamish (DoS) Official Community Plan (OCP). Bypassing these hurdles requires specific, engineering-led planning.
+
+### 1. DISTRICT OF SQUAMISH ZONING & MUNICIPAL CODES
+*   **The Zoning Bylaw No. 2200, 2011 Compliance:**
+    *   *Permitted Use Hurdle:* Traditional residential or agricultural zones do not permit commercial wellness resorts or multiplex short-term lodges.
+    *   *The CD (Comprehensive Development) Solution:* Rather than attempting to fit into rigid **C-4 (Tourist Commercial)** or **MGR (Marine, Golf & Resort)** zones, the optimal, high-converting strategy is applying for a site-specific **Comprehensive Development (CD) Zone**. This allows us to write a custom zoning bylaw tailored specifically to our micro-cabins.
+    *   *Density Optimization (FAR):* We de
+
+
+--- Result 2 (Source: 3_2_Content_Strategy_AI.md, VecScore: 0.533) ---
+fic Squamish construction cluster must address exact pain points:
+
+Q: What is the current Step Code requirement for a new home in Squamish?
+
+A: As of 2026, the District of Squamish requires new Part 9 single-family homes to meet Level 4 of the Zero Carbon Step Code (EL-4). However, there is a temporary relaxation in place that allows the building envelope's energy efficiency to be constructed to Step 3 standards, requiring an airtightness of 2.5 ACH50.   
+
+Q: At what stage must an Energy Advisor be involved in a Squamish build?
+
+A: A Registered Energy Advisor must be engaged during the pre-construction design stage. They must model the home in HOT2000 and provide a Section 9B Pre-Construction Compliance Report, which is a mandatory requirement to even submit a building permit application to the District of Squamish.   
+
+By applying this rigorous, mathematically driven knowledge architecture—ruthlessly eliminating narrative bloat, concentrating verifiable factual density, executing flaw
+
+
+--- Result 3 (Source: spark_update_2026-06-21, VecScore: 0.500) ---
+Government Road Townhome Adoption (June 16, 2026): Squamish Council unanimously adopted the zoning amendment for a 26-unit townhouse development at 40279 Government Road. The builder committed to a cash-in-lieu-of-amenities contribution of $502,380 (~$19,300 per unit, aligning with the ACC benchmark rate of $19,000 adopted in February 2026) and legally committed to complete electrification (no natural gas hookups allowed).
+Garibaldi Estates Neighbourhood Plan Adoption (June 16, 2026): Council formally approved OCP Amendment Bylaw No. 3135, 2024 (Garibaldi Estates Neighbourhood Plan) to diversify housing via infill townhomes and mixed-use b. A key feature is the Small-Scale Commercial Unit (SCU) framework, allowing owners to operate small commercial spaces up to 60 square meters directly from their residential property with zero off-street parking mandates.
+BC Building Code 2024 Handouts of Changes (June 18, 2026): The Building Officials' Association of BC (BOABC) released official updated handouts of changes for the 2024 BC Building Code. These handouts standardize technical interpretations of 2024 revisions (including adaptable dwellings, seismic design, and mass timber regulations), expediting municipal plan reviews.
+
+
+--- Result 4 (Source: 3_2_Content_Strategy_AI.md, VecScore: 0.424) ---
+building codes, and building science physics.
+
+Step 1: Mapping the Entity and Constructing the Topic Cluster
+
+Instead of writing a single, sprawling, keyword-stuffed blog post vaguely titled "Building Codes in Squamish," the digital strategist must construct a comprehensive, multi-page topic cluster utilizing rigid bidirectional internal linking. This cluster maps the entire entity ecosystem of "Sustainable Construction in the Sea-to-Sky."
+
+The [[master|Master]] Pillar Page: A comprehensive, authoritative guide covering the overarching "2026 BC Building Code and Energy Step Code Requirements in the Sea-to-Sky Corridor." This page establishes the macro-entities.   
+
+Cluster Page 1: Municipal Carbon Bylaws & ZCSC EL-4. A dedicated semantic chunk detailing the District of Squamish's specific, localized adoption of the Zero Carbon Step Code (ZCSC). This page must clearly outline the mandate for Level 4 (EL-4) compliance, while explaining the nuanced, temporary relaxation provisions that al
+
+
+--- Result 5 (Source: 3_2_Content_Strategy_AI.md, VecScore: 0.333) ---
+of the BC Building Code in Squamish, builders must prioritize sealing five critical failure points: the bottom plate-to-subfloor connection, complex rim and band joist assemblies, continuous ceiling-plane air barriers under heavy snow-load roofs, service penetrations, and window rough openings. Failing to seal these points, particularly in high-wind exposures like the Squamish estuary, frequently results in failed blower door tests.".   
+
+This paragraph acts as a mathematically perfect semantic chunk. It defines the core metrics (2.5 ACH50, Step 3), establishes the geographic context (Squamish estuary, snow-load roofs), and lists the precise technical actions required.
+
+Step 3: Comparison Content for Material Selection
+
+To capture evaluative AI queries, the builder must deploy highly structured comparison content. A prime example in this niche is comparing Insulated Concrete Forms (ICF) against traditional wood-framing in the wet, coastal BC climate.
+
+The content must directly referenc
+

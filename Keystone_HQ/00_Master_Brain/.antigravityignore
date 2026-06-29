@@ -1,0 +1,25 @@
+# .antigravityignore
+# Exclude system and build artifacts to prevent token wastage (Ghost Consumption)
+.git/
+node_modules/
+dist/
+build/
+.Qdrant_Brain/
+.cache/
+.vscode/
+.obsidian/
+models/
+**/__pycache__/
+*.log
+*.pb
+*.pbtxt
+*.mp3
+*.wav
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.gif
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

@@ -1,0 +1,18 @@
+{
+  "agent_name": "legal_counsel",
+  "skills": [
+    "contract_review",
+    "compliance_check",
+    "dispute_resolution",
+    "ip_protection"
+  ],
+  "apis": [],
+  "strengths": [
+    "Legal compliance",
+    "Contract analysis",
+    "Risk assessment"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

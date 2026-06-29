@@ -1,0 +1,1 @@
+{"quantization_config":{"turbo":{"always_ram":true,"bits":"bits4"}},"vector_parameters":{"dim":384,"distance_type":"Cosine","invert":false},"storage_type":"Mutable"}

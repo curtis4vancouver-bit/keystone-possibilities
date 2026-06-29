@@ -1,0 +1,110 @@
+Found 5 matches in ['webmaster']:
+
+--- Result 1 (Source: webmaster/tactics/gutenberg_rankmath_injection, VecScore: 0.750) ---
+When injecting high-end blog posts into the Keystone Recomposition WordPress site via Chrome DevTools:
+1. Always wrap the entire content in the `<div class="keystone-blog-container">` custom HTML template, matching the site's `.keystone-video-wrapper` and `keystone-eeat-author-block` CSS classes. Do NOT rely on raw Gutenberg blocks, as they default to basic un-styled text.
+2. To update the Rank Math SEO Snippet Editor via DevTools `evaluate_script`, you MUST use React's native property setter to bypass the overridden `.value` setter. Example:
+```javascript
+const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+setter.call(document.getElementById('rank-math-editor-title'), 'New Title');
+document.getElementById('rank-math-editor-title').dispatchEvent(new Event('input', { bubbles: true }));
+```
+Doing this ensures Title, Permalink, and Description limits are perfectly filled and registered by Rank Math's state manager.
+
+
+--- Result 2 (Source: webmaster/seo/gutenberg_styling_automation_2026, VecScore: 0.500) ---
+Every WordPress blog post published on keystonerecomposition.com should follow the premium styling guidelines (accent gold headings, striped tables, author signature cards with linear gradients and gold borders, medical and digital twin disclaimers in container blocks) and list direct citations to primary clinical literature (PubMed/NCBI links in target="_blank" rel="noopener"). For headless publishing, always use direct Gutenberg and Rank Math Redux API states (wp.data.dispatch('core/editor') and wp.data.dispatch('rank-math')) to reliably set title, content, SEO keywords, SEO title, meta description, slug, categories, tags, and media library uploads.
+
+
+--- Result 3 (Source: deep_research/20260624_ai_agent_mcp_tool_integration, VecScore: 0.500) ---
+e": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-workspace"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "CHROME_DEBUG_PORT": "9222"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "content-engine": {
+      "command": "node",
+      "args": ["/opt/content-engine/dist/index.js"],
+      "timeout": 30000
+    }
+  }
+}
+
+Configuration Nuances for Reliable Discovery
+
+The provided configuration highlights several critical best practices necessary for eliminating tool ignorance at the infrastructure level.
+
+First, the handling of sensitive environment variables requires stric
+
+
+--- Result 4 (Source: spark_webmaster_seo_geo_intel (1), VecScore: 0.333) ---
+===============================================================================
+                       NIGHTLY SEO, GEO & AI INTEL REPORT
+===============================================================================
+Report Date: June 15, 2026 (Local Time: 2026-06-15T22:00:32-07:00)
+Target Directory: Keystone_Spark_Bridge/spark_inbox/
+Filename: webmaster_seo_geo_intel.txt
+===============================================================================
+
+-------------------------------------------------------------------------------
+1. TRADITIONAL SEO (BC CONSTRUCTION & PROJECT MANAGEMENT)
+-------------------------------------------------------------------------------
+* NEW Google Search Documentation Update (June 15, 2026):
+  - Google updated its Search Central documentation today to add a dedicated section 
+    named **"Guidance on third-party SEO tools, services, and advice."** 
+  - Significance: This update explicitly warns webmasters that programmatic SEO template 
+    builders and unverified third-party "auto-optimization" tools can trigger Google's 
+    deceptive/spam filters. It stresses that human-led first-person experience (E-E-A-T) 
+    is the ultimate ranking foundation, directly aligning with your expert-led content strategy.
+
+* Core Update Volatility & Let-The-Dust-Settle Phase:
+  - Ranking fluctuations continue to be reported in the SEO community as Google's 
+    May Core Update settles. Analysts strongly advise waiting until the end of June
+
+
+--- Result 5 (Source: spark_webmaster_seo_geo_intel, VecScore: 0.200) ---
+===============================================================================
+                       NIGHTLY SEO, GEO & AI INTEL REPORT
+===============================================================================
+Report Date: June 14, 2026 (Local Time: 2026-06-14T22:00:05-07:00)
+Target Directory: Keystone_Spark_Bridge/spark_inbox/
+Filename: webmaster_seo_geo_intel.txt
+===============================================================================
+
+-------------------------------------------------------------------------------
+1. TRADITIONAL SEO (BC CONSTRUCTION & PROJECT MANAGEMENT)
+-------------------------------------------------------------------------------
+* CRITICAL ALERT: Google Search Console Indexing Fixes FAILED (June 14, 2026):
+  - Google sent a critical notification today (6:57 AM PDT) indicating that 
+    **"Some fixes failed for Page indexing issues on site https://keystonerecomposition.com/"**.
+  - Significance: This means your requested validation for previously flagged page 
+    indexing issues has failed Google's automated re-crawling checks. This blocks 
+    high-value metabolic health and peptide articles from ranking.
+  - Actionable Troubleshooting Steps:
+      1. Inspect the affected URLs directly in GSC to isolate the specific error class:
+         - Check if a "noindex" robots tag is still present in the page headers/CMS settings.
+         - Check for canonical link mismatch (e.g., http vs. https or www vs. non-www redirects).
+
+
+
+⚠️ GraphRAG lookup disabled: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+

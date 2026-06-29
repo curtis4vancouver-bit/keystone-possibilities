@@ -1,0 +1,23 @@
+{
+    "aesthetic_paradigm": "Quiet Luxury Editorial Print",
+    "font_selections": {
+        "primary_display": "Red Hat Display",
+        "body_text": "Montserrat",
+        "editorial_fallback": "Inter"
+    },
+    "styling_parameters": {
+        "color_palette": {
+            "background": "Warm Charcoal / Semi-transparent (#121212BB)",
+            "text_primary": "Pure White (#FFFFFF)",
+            "biomarker_highlight": "Muted Antique Gold (#D4AF37)",
+            "clinical_callout": "Electric Teal (#00A3E0)"
+        },
+        "letter_spacing_tracking": "+0.15em (generous tracking)",
+        "case_formatting": "Sentence Case for detailed terms, tracked Uppercase for names"
+    },
+    "alignment_and_safe_margins": {
+        "safe_zone": "Lower Left quadrant",
+        "bottom_margin_px": 120,
+        "rationale": "Leaves substantial margins clear of native platform closed captions and overlay UIs"
+    }
+}

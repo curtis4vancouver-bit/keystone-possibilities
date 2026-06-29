@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-06-13T03:53:01.580674+00:00",
+  "duplicates_found": 0,
+  "duplicates_removed": 0,
+  "stale_entries": 0,
+  "stale_removed": 0,
+  "empty_entries": 0,
+  "empty_removed": 0,
+  "namespaces_scanned": [
+    "content_pipeline_v2"
+  ],
+  "errors": []
+}

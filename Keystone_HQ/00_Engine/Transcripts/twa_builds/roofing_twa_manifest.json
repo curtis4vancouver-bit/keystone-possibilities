@@ -1,0 +1,36 @@
+{
+    "jdkPath": "/usr/lib/jvm/java-17-openjdk",
+    "androidSdkPath": "/usr/local/lib/android/sdk",
+    "packagename": "com.keystone.possibilities.roofing",
+    "name": "Keystone Roofing App",
+    "launcherName": "Keystone Roo",
+    "host": "roofing.keystonepossibilities.ca",
+    "startUrl": "/apps/roofing",
+    "themeColor": "#0A0A0A",
+    "navigationColor": "#0A0A0A",
+    "navigationColorDark": "#0A0A0A",
+    "navigationDividerColor": "#000000",
+    "navigationDividerColorDark": "#000000",
+    "backgroundColor": "#0A0A0A",
+    "enableNotifications": true,
+    "splashScreenFadeOutDuration": 300,
+    "display": "standalone",
+    "orientation": "default",
+    "signingKey": {
+        "path": "/vault/keystores/roofing_signing_key.jks",
+        "alias": "roofing_key_alias"
+    },
+    "appVersionCode": 1,
+    "appVersionName": "1.0.0",
+    "fallbackType": "customtabs",
+    "features": {
+        "playBilling": {
+            "enabled": true
+        }
+    },
+    "alphaDependencies": {
+        "enabled": false
+    },
+    "enableSiteSettingsShortcut": true,
+    "isQuestCompat": false
+}

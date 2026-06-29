@@ -1,0 +1,21 @@
+{
+  "leads": [
+    {
+      "name": "John Smith",
+      "company": "West Coast Builders",
+      "email": "john@wcb.ca",
+      "source": "linkedin",
+      "status": "new",
+      "conversation_history": [
+        {
+          "date": "2026-06-25T13:00:00",
+          "sender": "Wayne Stevenson",
+          "body": "Hi John, saw your Squamish project. Let me know if you need PM support."
+        }
+      ],
+      "last_contact": "2026-06-25T13:00:00",
+      "follow_up_date": "2026-06-28T09:00:00",
+      "notes": "Interested in PM for Squamish project"
+    }
+  ]
+}

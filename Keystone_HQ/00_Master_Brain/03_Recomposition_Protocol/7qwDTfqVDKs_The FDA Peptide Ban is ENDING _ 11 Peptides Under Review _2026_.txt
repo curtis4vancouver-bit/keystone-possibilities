@@ -1,0 +1,49 @@
+# FDA Peptide Regulatory Update (2026 Shift)
+
+## Context & Regulatory Status
+On April 15, 2026, the FDA removed 11 peptides from the Category 2 "Do Not Compound" list. This regulatory shift ends the blanket prohibition established in 2023, moving these compounds from an outright ban into a formal review phase (regulatory limbo).
+
+*   **Current Status**: They are no longer banned under Category 2, but they are not yet fully cleared for legal compounding. A formal PCAC (Pharmacy Compounding Advisory Committee) review and subsequent rulemaking process must occur before pharmacies can compound them legally.
+*   **The Hazard**: The 2023 ban forced patients to source from unregulated research chemical markets lacking sterility standards, batch testing, and quality control. Transitioning back to a regulated framework ensures purity, sterility, and accurate dosing.
+
+---
+
+## Peptides Under Active Review & Specific Indications
+Once approved for these specific indications, physicians can legally prescribe them off-label for broader therapeutic applications.
+
+1.  **BPC-157**
+    *   **Under Review For**: Ulcerative colitis and gut healing.
+    *   **Off-Label Utility**: Tendon, ligament, and systemic inflammation repair.
+2.  **TB-500 (Thymosin Beta-4)**
+    *   **Under Review For**: Wound healing.
+    *   **Utility**: Systemic actin-binding tissue repair ("Wolverine Stack").
+3.  **KPV**
+    *   **Under Review For**: Wound healing and inflammatory conditions.
+4.  **MOTS-c**
+    *   **Under Review For**: Obesity and osteoporosis.
+5.  **Semax**
+    *   **Under Review For**: Cerebral ischemia (stroke, migraines, trigeminal neuralgia).
+6.  **Epitalon**
+    *   **Under Review For**: Insomnia.
+7.  **DSIP (Delta Sleep Inducing Peptide)**
+    *   **Under Review For**: Opioid withdrawal, chronic insomnia, and narcolepsy.
+
+### Batch 2 Review (Scheduled for February 2027)
+*   Melanotan II
+*   Dihexa
+*   LL-37
+*   GHK-Cu (Injectable formulation)
+
+---
+
+## Critical Regulatory Timeline & Action Items
+
+*   **July 9, 2026**: FDA Docket public comment period closes. 
+    *   **Action**: Submit real, measurable clinical outcomes to **Docket No. FDA-2025-N6895** at regulations.gov.
+*   **End of July 2026**: PCAC formal hearing for BPC-157 and TB-500.
+*   **Post-July 2026**: Expected rulemaking process and public feedback period. Anticipate several months before licensed pharmacies receive a green light to compound.
+
+### Immediate Action Plan for Quality Control
+1.  **Demand Verification**: If currently utilizing research-grade peptides, demand an independent third-party Certificate of Analysis (COA) from the vendor. Reject any batch scoring below **99% purity**.
+2.  **Provider Integration**: Establish clinical relationships with progressive, licensed healthcare providers now so prescriptions can be fast-tracked once the compounding channel formally opens.
+3.  **Core Framework Alignment**: This regulatory shift validates the clinical relevance of our core frameworks, including the growth hormone secretagogue protocols (CJC-1295 / IPAM) and the cellular-level tissue repair protocols (Wolverine Stack: BPC-157 + TB-500).

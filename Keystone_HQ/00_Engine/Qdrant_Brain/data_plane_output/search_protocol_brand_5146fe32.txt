@@ -1,0 +1,136 @@
+Found 5 matches in 'protocol_brand':
+
+--- Result 1 (Source: 20260613_YOUTUBE_GROWTH_youtube_data_api_v3_upload_automation_in_2026.md, VecScore: 0.500) ---
+dy = {
+            "snippet": {
+                "title": metadata.get('title'),
+                "description": metadata.get('description'),
+                "tags": metadata.get('tags',),
+                "categoryId": metadata.get('category_id', '22') # Default to People & Blogs
+            },
+            "status": {
+                "privacyStatus": metadata.get('privacy_status', 'private'),
+                "selfDeclaredMadeForKids": metadata.get('made_for_kids', False) # COPPA compliance
+            }
+        }
+
+        # If algorithmic scheduling is required, inject the ISO 8601 timestamp
+        if 'publish_at' in metadata:
+            body['status']['publishAt'] = metadata['publish_at']
+            body['status'] = 'private' # Mandatory paradox for scheduled videos
+
+        # chunksize=-1 loads file into memory and attempts a single TCP stream for maximum throughput, 
+        # while retaining the safety of the resumable protocol upon connection failure.
+        media = MediaFileUpl
+
+
+--- Result 2 (Source: 06_protocol_uploader.md, VecScore: 0.333) ---
+---
+name: 06_protocol_uploader
+description: "Uploads Protocol/Recomposition videos to Instagram, Facebook, TikTok, and YouTube."
+---
+
+# 06 Protocol Uploader Agent
+
+## [[Brand_Constitution/protocol/IDENTITY|Identity]] & Scope
+You upload completed media for the **Recomposition and Protocol brands**. You receive finished content from `[[dynamic_skills/05_youtube_protocol|05_YouTube_Protocol]]` and push it to the correct channels.
+
+**You own:**
+- YouTube uploads to the Recomposition channel (Protocol content goes here too)
+- Facebook Page posts to Keystone Recomposition
+- Instagram posts to @keystonerecomposition
+- TikTok posts (single shared account)
+
+**You do NOT do:**
+- Upload to [[possibilities|Possibilities]] channels (that's `[[dynamic_skills/03_keystone_uploader|03_Keystone_Uploader]]`)
+- Upload [[music|music]] (that's `[[dynamic_skills/09_music_uploader|09_Music_Uploader]]`)
+- Create content (that's `[[dynamic_skills/05_youtube_protocol|05_YouTube_Protocol]]`)
+
+## MCP Tool Access
+-
+
+
+--- Result 3 (Source: 20260522_youtube_algorithm_youtube_algorithm_changes_may_2026_and_optimization_strategi.md, VecScore: 0.250) ---
+oad of video binaries and programmatic assignment of metadata."""
+    try:
+        # Define the metadata payload structure
+        body = {
+            "snippet": {
+                "title": title,
+                "description": description,
+                "tags": tags,
+                "categoryId": category_id
+            },
+            "status": {
+                "privacyStatus": privacy,
+                "selfDeclaredMadeForKids": False
+            }
+        }
+
+        # Initialize the resumable media upload protocol
+        media = MediaFileUpload(file_path, chunksize=-1, resumable=True)
+
+        # Execute the API insert request
+        request = youtube_service.videos().insert(
+            part="snippet,status",
+            body=body,
+            media_body=media
+        )
+        
+        response = None
+        print("Initiating file upload sequence...")
+        while response is None:
+            status, response = request.next_chunk()
+            if status:
+                prin
+
+
+--- Result 4 (Source: 20260613_YOUTUBE_GROWTH_youtube_data_api_v3_upload_automation_in_2026.md, VecScore: 0.200) ---
+-1 loads file into memory and attempts a single TCP stream for maximum throughput, 
+        # while retaining the safety of the resumable protocol upon connection failure.
+        media = MediaFileUpload(file_path, mimetype='video/*', chunksize=-1, resumable=True)
+
+        insert_request = self.youtube.videos().insert(
+            part="snippet,status",
+            body=body,
+            media_body=media
+        )
+
+        response = self.execute_with_backoff(insert_request, "Video Upload")
+        video_id = response.get('id')
+        print(f"SUCCESS: Video uploaded successfully. API Video ID: {video_id}")
+        return video_id
+
+    def set_thumbnail(self, video_id, thumbnail_path):
+        """
+        Uploads and attaches a custom thumbnail, consuming 50 quota units.
+        File must be < 2MB.
+        """
+        print(f"Uploading 1280x720 thumbnail for video ID: {video_id}")
+        media = MediaFileUpload(thumbnail_path, mimetype='image/jpeg', resumable=True)
+        request = s
+
+
+--- Result 5 (Source: 06_protocol_uploader.md, VecScore: 0.167) ---
+l Rules (From Correction Journal)
+- **CJ-001**: ALWAYS verify YouTube channel = "KeyStone Recomposition" before uploading
+- **CJ-002**: TikTok needs `video.publish` scope, not just `video.upload`
+- **CJ-003**: Verify Meta `/me/accounts` returns the Recomposition page
+- **CJ-005**: Refresh TikTok token BEFORE every publish session (24hr expiry)
+- **CJ-006**: Case-insensitive playlist name matching
+
+## Token Map
+| Platform | Token Source | Token File / Key |
+|----------|-------------|-----------------|
+| YouTube | Direct | `youtube_token_oac.json` |
+| Facebook | Direct | `social_tokens.json` → `recomposition.meta.user_access_token` |
+| Instagram | Linked to FB Page | Via Recomposition Facebook Page |
+| TikTok | Direct | `social_tokens.json` → `recomposition.tiktok.access_token` |
+| LinkedIn | Direct | `social_tokens.json` → `recomposition.linkedin.access_token` |
+
+**Protocol has NO separate tokens** — it always inherits from Recomposition.
+
+## Standard Operating Procedures
+
+### Pre-Uploa
+

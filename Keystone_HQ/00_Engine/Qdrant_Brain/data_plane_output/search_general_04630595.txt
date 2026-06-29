@@ -1,0 +1,65 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: Research_Archives/02_MCP_Tools/20260609_MCP_TOOLS_research_mcp_servers_for_web_scraping,_data_extraction,_and_.md, Score: 0.739) ---
+Firecrawl's capabilities have proven particularly advantageous in the context of complex enterprise data migration tasks, such as transitioning between Content Management Systems (CMS). In scenarios where legacy data is trapped within dynamic rendering layers and inconsistent URL structures, Firecrawl's automated crawl API can autonomously navigate site hierarchies, respect restrictive robots.txt [[DIRECTIVES|directives]], and systematically extract metadata, media assets, and body text into a uniform, predefined structured schema. The server is easily integrated into popular development environments like Cursor IDE and Windsurf via a simple command-line installation (npx -y firecrawl-mcp) and standard environment variable configuration for API keys. Pricing models are structured around usage credits, with introductory tiers providing adequate capacity for localized testing before scaling to production volumes.   
+
+Browserbase: Cloud-Native Headless Orchestration
+
+While Firecrawl focuses intensely on the final serialization of extracted data, Browserbase provides AI agents with complete, persistent control over cloud-hosted headless browser infrastructures. Operating natively on the Model Context Protocol, the Browserbase server is fundamentally engineered upon Stagehand, a robust framework highly optimized for AI-powered web automation. The Stagehand framework has seen significant adoption, surpassing alternatives like Browser Use in enterprise production environments.
+
+
+--- Result 2 (Source: Research_Archives/13_Chrome_Automation/20260522_chrome_automation_browser_tab_lifecycle_management_for_long-running_automation.md, Score: 0.721) ---
+Coordinating hundreds of parallel agents executing simultaneously across the construction, YouTube, and health domains requires an incredibly robust, deeply integrated backend architecture. The open-source GoClaw project masterfully illustrates the necessary structural design required for a highly secure, multi-tenant AI gateway. Built entirely in Go, this massive architectural gateway exposes both WebSocket RPC and HTTP REST interfaces, effectively decoupling the agent's core operational logic from any specific LLM provider.   
+
+In a complex system like Keystone Sovereign, individual agents must share context and historical data without ever violating strict tenant isolation. GoClaw achieves this complex requirement by enforcing a strict, immutable tenant_id scope across all PostgreSQL database queries and internal context flows. It implements a sophisticated three-tier memory system—categorized into working, episodic, and semantic memory—backed by a hybrid search infrastructure that seamlessly combines BM25 full-text indexing with pgvector for highly precise semantic retrieval.
+
+
+--- Result 3 (Source: Research_Archives/13_Chrome_Automation/20260522_chrome_automation_browser_tab_lifecycle_management_for_long-running_automation.md, Score: 0.720) ---
+The framework uniquely combines this HTML structure extraction with direct computer vision analysis, allowing the LLM to simultaneously "see" the page layout and understand its code. When the reasoning LLM outputs a natural language directive (e.g., "Click the 'Upload Video' button to proceed"), browser-use instantaneously resolves the assigned ID into a mathematically precise XPath locator and executes the corresponding Playwright action. The framework natively supports complex multi-tab management across parallel async functions, provided the architect instantiates a global Browser singleton to prevent the catastrophic memory overhead of inadvertently spawning dozens of simultaneous Chromium processes.   
+
+The TypeScript Ecosystem: Stagehand v3
+
+However, relying on continuous, iterative LLM inference for every single click and navigation introduces significant execution latency and incredibly high API costs, making it wholly suboptimal for navigating highly repetitive B2B construction portals or uploading standard YouTube [[.agents/skills/banner-creator/references/formats|formats]]. For TypeScript-native codebases prioritizing extreme production scalability and cost-efficiency, the Stagehand framework (specifically version 3), developed by Browserbase, represents the state-of-the-art approach.
+
+
+--- Result 4 (Source: SCRAPED_GOOGLE_DOCS.md, Score: 0.718) ---
+## Untitled document
+
+http://127.0.0.1:18789/chat?session=agent%3Amain%3Amain
+
+Keystone Recomposition: OpenClaw Local Pipeline SOP
+
+Hardware Target: RTX 5060 Ti (16GB VRAM) / 32GB DDR5 Engine: ollama/gemma4:e4b (9.6GB Local) Purpose: Zero-cost local processing for DaVinci Resolve scripts and YouTube SEO schemas.
+
+Phase 1: Total Site Demolition
+
+If the system is acting up, never try to patch it. Raze it to the ground and pour a clean foundation.
+
+1. Kill the core program: npm uninstall -g openclaw
+
+2. Vaporize the ghost files: Remove-Item -Recurse -Force "$env:APPDATA\npm\node_modules\openclaw"
+
+3. Verify the kill: openclaw --version (It must throw a red error saying the term is not recognized. If it doesn't, repeat steps 1 and 2).
+
+Phase 2: The Clean Pour
+
+1. Pull the fresh framework: powershell -c "irm https://openclaw.ai/install.ps1 | iex" (Let the spinner finish entirely until it drops you back to the command line).
+
+Phase 3: Hardwiring the Breaker Box
+
+Do NOT run the openclaw onboard setup wizard. It crashes and corrupts the configuration. Hardcode the blueprints directly into the terminal.
+
+1. Lock the server to the local machine: openclaw config set gateway.mode local
+
+2. Bolt the primary engine to the 5060 Ti: openclaw config set agents.defaults.model.primary "ollama/gemma4:e4b"
+
+3. Forge the master security key: openclaw config set gateway.token "keystone-admin"
+
+Phase 4: Ignition
+
+1. Fire up the background server: openclaw gateway (Leave this PowerShell window running. Do not close it).
+
+
+--- Result 5 (Source: Research_Archives/07_Coding_Optimization/20260522_incremental_ingestion.md, Score: 0.714) ---
+## 11. Framework Approaches: LlamaIndex and LangChain
+

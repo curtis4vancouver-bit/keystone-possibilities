@@ -1,0 +1,16 @@
+[
+  {
+    "input": {
+      "tempo": 128,
+      "frequency": 440.0
+    },
+    "assertions": [
+      {
+        "type": "schema",
+        "keys": [
+          "layers"
+        ]
+      }
+    ]
+  }
+]

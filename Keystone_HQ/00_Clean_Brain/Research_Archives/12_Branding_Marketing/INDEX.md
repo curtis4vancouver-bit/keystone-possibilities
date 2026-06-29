@@ -1,0 +1,17 @@
+# Research_Archives > 12_Branding_Marketing
+
+- [[20260521_low_cost_branding_testing_low-budget_meta_and_youtube_ads_for_local_and_digita]]
+- [[20260521_shopify_audiobook_marketing_shopify_seo_and_high-intent_organic_traffic_acquisition_stra]]
+- [[20260522_low_cost_branding_automated_pr_pitching_and_local_media_coverage_acquisition_s]]
+- [[20260522_low_cost_branding_programmatic_micro-influencer_outreach_and_automated_brand_a]]
+- [[20260522_low_cost_branding_programmatic_seo_and_viral_short-form_video_correlation_for_]]
+- [[20260522_low_cost_organic_branding]]
+- [[20260522_shopify_audiobook_funnel]]
+- [[20260522_shopify_audiobook_marketing_shopify_email_marketing_automation_and_customer_lifetime_val]]
+- [[20260522_shopify_audiobook_marketing_shopify_headless_commerce_integrations_and_landing_page_perf]]
+- [[20260522_shopify_audiobook_marketing_shopify_subscription_models_and_recurring_revenue_funnels_fo]]
+- [[20260612_email_marketing_mcps]]
+- [[AI_Advertising_Strategy_Deep_Research]]
+- [[Hybrid_AI_Human_Strategy_Deep_Research]]
+- [[Opus_Level_Copywriting_Framework]]
+- [[creative_media_playbook]]

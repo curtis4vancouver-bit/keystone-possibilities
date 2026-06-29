@@ -1,0 +1,16 @@
+[
+  {
+    "input": {
+      "weight_lbs": 210.0,
+      "training_intensity": 0.95
+    },
+    "assertions": [
+      {
+        "type": "schema",
+        "keys": [
+          "threshold_lbs"
+        ]
+      }
+    ]
+  }
+]

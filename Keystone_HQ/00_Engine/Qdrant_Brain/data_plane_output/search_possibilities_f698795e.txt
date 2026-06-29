@@ -1,0 +1,137 @@
+Found 5 matches in ['possibilities']:
+
+--- Result 1 (Source: CURRENT_DIRECTION.md, VecScore: 1.000) ---
+l:** Own the search results for Bill 44 and ADU-related queries in the Sea-to-Sky corridor.
+
+#### Target Audience
+
+- **Sea-to-Sky homeowners** — Squamish, Whistler, Pemberton, Lions Bay
+- Property owners considering secondary suites, laneway homes, or coach houses
+- Homeowners confused about what Bill 44 means for their lot
+- People searching for local builders who understand the new regulations
+
+#### Content Funnel: Blog → Video → Shorts
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   SEO Blog  │────→│  YouTube    │────→│   Shorts /  │
+│   (1500+    │     │  Long-form  │     │   Reels /   │
+│    words)   │     │  (8-15 min) │     │   TikTok    │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                   │                    │
+       ▼                   ▼                    ▼
+   Organic Search     YouTube Search      Social Discovery
+   + Google Maps      + Suggested         + Algorithm
+                                            Reach
+```
+
+####
+
+
+--- Result 2 (Source: POSS_001_BC_HYDRO_CIVIL_CONTRACTOR.md, VecScore: 0.333) ---
+ave to complete all of BC Hydro's mandatory training and technical standards."
+
+**[B-ROLL @ 1:22: 2-sec Google Flow still — Close-up of safety documentation, COR certificate, hard hat and clipboard on a job site table. Ken Burns.]**
+
+> "That is a high bar. Most contractors cannot meet those requirements. Keystone can. And you can verify it yourself on BC Hydro's website. I will leave the link in the description."
+
+---
+
+### 🎬 SEGMENT 5: THE $36 BILLION COMING TO SEA-TO-SKY (1:40 – 2:19)
+
+**[VISUAL: Construction site. Data slides — BC Hydro capital plan map, dollar figures highlighted.]**
+
+**Wayne:**
+> "Here is the bigger picture. BC Hydro just announced a thirty-six billion dollar capital spending plan over the next decade. And five hundred million dollars of that is going directly into the Sea-to-Sky corridor and North Shore."
+
+**[B-ROLL @ 1:55: 2-sec Google Flow still — BC Hydro substation, power transmission lines against mountain backdrop, Squamish area. Ken Burns zoom-out.]**
+
+> "N
+
+
+--- Result 3 (Source: BRAND_VOICE.md, VecScore: 0.333) ---
+yard. Here's how." | "In this article, we will explore the implications of Bill 44." |
+| YouTube hook     | "Your lot might already be approved for a second dwelling."      | "Welcome back to our channel! Today we're discussing ADUs."    |
+| Instagram caption| "3 things Bill 44 means for Sea-to-Sky homeowners 👇"           | "Exciting news in the construction industry! #blessed"         |
+
+<!-- CONTEXT: Brand Voice / Vocabulary -->
+### Vocabulary
+
+- **Say:** addition, secondary suite, ADU, laneway home, coach house, build
+- **Don't say:** project, development, unit (too clinical)
+- **Say:** homeowner, folks, neighbours
+- **Don't say:** consumers, clients, end-users
+
+---
+
+<!-- CONTEXT: Brand Voice / 3 · Protocol / Recomposition Voice -->
+## 3 · Protocol / Recomposition Voice
+
+**Brand persona:** The no-BS performance coach who reads the studies so you don't have to.
+
+<!-- CONTEXT: Brand Voice / Core Attributes -->
+### Core Attributes
+
+- **Science-backed but not academic.** Cite studies, b
+
+
+--- Result 4 (Source: CURRENT_DIRECTION.md, VecScore: 0.327) ---
+     ▼                    ▼
+   Organic Search     YouTube Search      Social Discovery
+   + Google Maps      + Suggested         + Algorithm
+                                            Reach
+```
+
+#### Active Content Priorities
+
+1. **"What Bill 44 Means for Sea-to-Sky Homeowners"** — flagship blog + video
+2. **ADU cost breakdowns** by municipality (Squamish vs. Whistler vs. Pemberton)
+3. **STEP Code explainers** — what energy requirements apply to new ADUs
+4. **Before/after project showcases** — completed builds with cost and timeline data
+5. **Permit process walkthroughs** — step-by-step for each municipality
+
+#### SEO Targets
+
+| Keyword Cluster                          | Current Rank | Target |
+|------------------------------------------|-------------|--------|
+| bill 44 bc adu                           | Tracking    | Top 3  |
+| secondary suite squamish                 | Tracking    | Top 3  |
+| laneway home cost bc                     | Tracking    | Top 5  |
+| keystone possibilitie
+
+
+--- Result 5 (Source: GEO_AEO_IMPLEMENTATION_PLAYBOOK.md, VecScore: 0.278) ---
+Sea-to-Sky mountain construction challenges
+- Transparent pricing with detailed scope documents
+- Digital twin project visualization
+- PM / Bill 44 housing density specialists
+
+## Content & Media
+- Blog: https://keystonepossibilities.com/blog
+- YouTube: [Keystone Possibilities YouTube Channel]
+- Google Business Profile: [GMB Link]
+
+## Trust Signals
+- [X] years in business
+- [X] completed projects
+- Google Reviews: [Rating] stars ([Count] reviews)
+- BBB Accredited: [Yes/No]
+```
+
+#### 2. Implement Heavy Schema Markup
+Deploy JSON-LD structured data across every page:
+
+**Homepage:**
+- `LocalBusiness` schema with full NAP, geo coordinates, service area
+- `Organization` schema with logo, social profiles
+- `WebSite` schema with search action
+
+**Service Pages:**
+- `Service` schema for each service offered
+- `HowTo` schema for process descriptions
+- `FAQPage` schema for common questions
+
+**Blog Posts:**
+- `Article` schema with author, datePublished, dateModified
+- `FAQPage` schema embedded in e
+

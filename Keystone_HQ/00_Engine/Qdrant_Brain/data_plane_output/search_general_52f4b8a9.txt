@@ -1,0 +1,96 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: Research_Archives/09_Social_Media/20260521_self_correction_tonight_meta_graph_api_facebook_page_selection_during_oauth_re-authe.md, Score: 0.665) ---
+When the Keystone AI's self_correction_tonight module dispatches an OAuth URL, it must demand this exact matrix of scopes. If the user successfully selects the new asset but manually unchecks pages_manage_posts during the permission confirmation step, the AI will detect the missing scope in the return_scopes=true payload and must instantly invalidate the token, logging a critical error requiring human intervention.
+
+The Enterprise Standard: Facebook Login for Business (FBLb)
+
+As of mid-2026, Meta has aggressively deprecated the reliance on the standard Facebook Login product for applications that manage enterprise business assets such as Pages, Ad Accounts, and WhatsApp phone numbers. The modern, rigorously required approach for an enterprise AI agent like Keystone Sovereign is Facebook Login for Business (FBLb).   
+
+The Shift to config_id Driven Architecture
+
+The Facebook Login for Business product shifts the configuration of requested permissions and asset types entirely away from the client-side code—abandoning the URL scope parameter—and centralizes it within the Meta App Dashboard. Developers must create a specific "Configuration" in the dashboard, explicitly select the required assets (Pages, Instagram Accounts, Messaging pipelines), and map the required permissions. Meta then generates a unique, static config_id.
+
+
+--- Result 2 (Source: Research_Archives/09_Social_Media/20260612_social_media_automation_mcps.md, Score: 0.656) ---
+For enterprise environments requiring simultaneous, synchronized brand management across YouTube, Instagram, TikTok, Facebook, and LinkedIn, multi-platform aggregators represent the most efficient architectural deployment. These servers consolidate authentication mechanisms, allowing language models to dictate cross-platform campaigns through unified tool schemas.
+
+OmniSocials Server Architecture
+
+The OmniSocials MCP server represents a leading cloud-backed aggregation infrastructure, providing connectivity to eleven distinct networks, encompassing the core requisites of Facebook, Instagram, LinkedIn (both personal profiles and company pages), TikTok, and YouTube. This server is engineered for seamless ingestion into AI clients without demanding localized code compilation.
+
+
+--- Result 3 (Source: Research_Archives/09_Social_Media/20260521_self_correction_tonight_meta_graph_api_facebook_page_selection_during_oauth_re-authe.md, Score: 0.651) ---
+This exhaustive report details the exact mechanics, programmatic workarounds, and current best practices for enforcing Facebook Page selection during OAuth re-authentication. It provides a complete architectural blueprint for implementing auth_type=rerequest parameters, leveraging the modern config_id Business Login flows, managing token exchanges, and executing programmatic de-authorization via HTTP DELETE requests to ensure seamless, self-correcting asset management for the Keystone Sovereign system's self_correction_tonight operational domain.
+
+Architectural Context: The Keystone Sovereign AI System
+
+The Keystone Sovereign system operates as an autonomous, self-correcting entity managing distinct, high-value business verticals. Each vertical relies on an interconnected web of social media assets, ad accounts, and messaging pipelines that require continuous, uninterrupted API access.
+
+
+--- Result 4 (Source: Research_Archives/09_Social_Media/20260522_social_token_rotation_monitoring.md, Score: 0.645) ---
+### 7.2 Re-Auth URL Generator
+
+```python
+OAUTH_URLS = {
+    "tiktok": (
+        "https://www.tiktok.com/v2/auth/authorize/"
+        "?client_key={client_key}"
+        "&scope=user.info.basic,video.publish"
+        "&response_type=code"
+        "&redirect_uri={redirect_uri}"
+        "&state={state}"
+    ),
+    "meta": (
+        "https://www.facebook.com/v21.0/dialog/oauth"
+        "?client_id={app_id}"
+        "&redirect_uri={redirect_uri}"
+        "&scope=pages_manage_posts,pages_read_engagement"
+        "&state={state}"
+    ),
+    "linkedin": (
+        "https://www.linkedin.com/oauth/v2/authorization"
+        "?response_type=code"
+        "&client_id={client_id}"
+        "&redirect_uri={redirect_uri}"
+        "&scope=w_member_social"
+        "&state={state}"
+    ),
+}
+
+def generate_oauth_url(brand: str, platform: str) -> str:
+    import secrets
+    state = secrets.token_urlsafe(32)
+    template = OAUTH_URLS.get(platform, "")
+    # Fill in brand-specific credentials from env vars
+    # ... (customize per brand)
+    return template
+```
+
+---
+
+
+--- Result 5 (Source: Research_Archives/09_Social_Media/20260521_self_correction_tonight_meta_graph_api_facebook_page_selection_during_oauth_re-authe.md, Score: 0.645) ---
+The most prevalent failure when forcing page selection via Business Login SUAT flows is the abrupt termination of the OAuth dialog, replaced by a blank white screen or a Meta-styled error module stating "It looks like this app isn't available" (Internal Error Code: 1349220). As of the current May 2026 [[Brand_Constitution/shared/PLATFORM_STANDARDS|platform standards]], this catastrophic failure is rarely an issue with the constructed URL or the frontend code itself, but rather a symptom of a configuration mismatch within the Meta Developer Dashboard.   
+
+The AI agent must output the following diagnostic checklist to the human administrator when Error 1349220 is detected:
+
+Diagnostic Check	Required Dashboard Configuration	Rationale for Failure
+Application Mode	
+
+The application toggle must be set to "Live" rather than "Development".
+
+	
+
+SUAT generation and Business Login configurations fail silently in Development mode for any user who is not explicitly listed as a registered Developer or Tester in the App Roles panel.
+
+
+Login Product Settings	
+
+Under "Facebook Login for Business," both "Client OAuth Login" and "Web OAuth Login" must be enabled.
+
+	Without these toggles enabled, Meta's servers will reject the redirect_uri validation phase, assuming the request is an unauthorized hijacking attempt.
+Ghost Permissions	
+
+All rejected permissions must be entirely deleted from the "Permissions and Features" tab.
+

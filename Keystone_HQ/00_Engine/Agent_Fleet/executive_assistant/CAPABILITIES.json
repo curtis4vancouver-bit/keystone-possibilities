@@ -1,0 +1,22 @@
+{
+  "agent_name": "executive_assistant",
+  "skills": [
+    "email_management",
+    "calendar_coordination",
+    "document_organization",
+    "reply_drafting"
+  ],
+  "apis": [
+    "gmail",
+    "google_docs",
+    "google_calendar"
+  ],
+  "strengths": [
+    "Email triage",
+    "Meeting scheduling",
+    "Document management"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

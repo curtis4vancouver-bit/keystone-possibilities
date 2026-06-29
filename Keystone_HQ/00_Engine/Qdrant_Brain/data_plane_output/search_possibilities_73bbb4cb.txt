@@ -1,0 +1,74 @@
+Found 5 matches in ['possibilities']:
+
+--- Result 1 (Source: 20260522_google_deep_research_automation.md, VecScore: 0.500) ---
+, timeout=600000)
+```
+
+### Chrome DevTools Protocol (CDP) Approach
+
+```bash
+# Launch Chrome with remote debugging
+chrome.exe --remote-debugging-port=9222 --user-data-dir=C:\temp\chrome-debug
+```
+
+Use the Chrome DevTools MCP server (`github.com/ChromeDevTools/chrome-devtools-mcp`) to give AI [[AGENTS|agents]] access to DOM, console, network requests.
+
+### Recommendation
+
+**Use the official Interactions API instead.** Browser automation should only be considered if you need to interact with the Gemini web UI for features not yet exposed via API.
+
+---
+
+## 6. Prompt Engineering for Deep Research
+
+### The 5Ps Framework
+
+1. **Purpose**: What is the primary goal? ("Create a competitive analysis for...")
+2. **People**: Who is the audience? ("Executive board" vs "technical team")
+3. **Process**: What specific areas must be explored?
+4. **Platform**: What sources to prioritize? ("Peer-reviewed journals, data from 2024-2026")
+5. **Performance**: What output format? ("2,000-word report with execut
+
+
+--- Result 2 (Source: 20260610_VIDEO_PROD_deep_research_into_google_flow_batch_processing_and_automati.md, VecScore: 0.500) ---
+who prefer minimizing bespoke cloud infrastructure, or for systems operating in a semi-autonomous capacity, turnkey workflow automation tools have emerged in the Chrome extension ecosystem by mid-2026. Extensions such as AutoFlow and Flow [[master|Master]] offer streamlined interfaces for batch-processing directly on top of the Google Flow interface.   
+
+AutoFlow permits users to paste scripts comprising 5 to 500 prompts directly into a side panel. The tool's parser auto-detects scene numbers, queues the generation tasks locally within the browser memory, and systematically commands the Google Flow UI to execute them. It manages the waiting periods, automatically handles the necessary retries if the Google servers delay the rendering, and ultimately scans the Google Flow media library to batch download the final 4K videos to the local disk upon completion. Flow Master provides similar functionality, allowing for the ingestion of prompts via Excel or CSV uploads, seamlessly marrying tex
+
+
+--- Result 3 (Source: 20260610_VIDEO_PROD_deep_research_into_google_flow_batch_processing_and_automati.md, VecScore: 0.333) ---
+data, and writes the output directly to the local disk, abstracting this architectural complexity away from the commanding AI agent.   
+
+While highly cost-effective and capable of maintaining complex character consistency pipelines via its internal database tracking of _video_media_id UUIDs, FlowKit's reliance on a physical Chrome window presents [[Limitations|limitations]]. The Chrome extension must be loaded and actively connected; if the browser crashes or is closed, the entire generation pipeline halts immediately. Furthermore, if Google detects an anomaly and throws a PUBLIC_ERROR_UNUSUAL_ACTIVITY flag, the agent must execute a diagnostic command to clear cookies and force a manual re-authentication. Consequently, while FlowKit is a powerful local tool, it is better suited for dedicated, monitored local rendering workstations rather than purely ephemeral, headless cloud server deployments.   
+
+Queuing 70+ Prompts: Advanced Batch Processing Architecture
+
+The core operational challe
+
+
+--- Result 4 (Source: 20260522_chrome_automation_efficient_dom_snapshot_parsing_for_data_extraction.md, VecScore: 0.333) ---
+le asynchronous JavaScript execution, and penetrate opaque browser structures such as Shadow DOMs and out-of-process iframes. For a system such as Keystone Sovereign to achieve reliable operational autonomy, the underlying extraction architecture must bypass high-level browser abstractions and interface directly with the Chromium engine.
+
+This architectural imperative necessitates a mastery of the Chrome DevTools Protocol (CDP), high-performance memory-safe HTML parsing, and algorithmic content pruning. As of May 2026, the convergence of tools including Playwright v1.60, the CDP DOMSnapshot domain, Selectolax v0.4.9, and Large Language Model (LLM) optimized extractors such as Crawl4AI v0.8.6 provides a mature, highly scalable foundation for building these systems. The subsequent analysis provides an exhaustive technical blueprint for configuring, executing, and scaling this perception layer to support the multifaceted operational domains of the Keystone Sovereign architecture.   
+
+The 
+
+
+--- Result 5 (Source: 20260522_chrome_automation_efficient_dom_snapshot_parsing_for_data_extraction.md, VecScore: 0.250) ---
+# Deep Research: Efficient DOM snapshot parsing for data extraction
+**Domain:** Chrome Automation
+**Researched:** 2026-05-22 00:27
+**Source:** Google Deep Research via Chrome Automation
+
+---
+
+Autonomous Web Perception: Efficient DOM Snapshot Parsing and Data Extraction [[ARCHITECTURE|Architecture]]
+
+The deployment of autonomous AI [[AGENTS|agents]] across diverse commercial vectors—spanning construction procurement, digital media property management, and health informatics—demands a perception layer capable of deterministic, high-throughput, and noise-free environmental modeling. Traditional web scraping paradigms, reliant on brittle CSS selectors and synchronous HTTP clients, are categorically insufficient for autonomous systems that must dynamically reason about varying page states, handle asynchronous JavaScript execution, and penetrate opaque browser structures such as Shadow DOMs and out-of-process iframes. For a system such as Keystone Sovereign to achieve reliable operational au
+
+
+
+⚠️ GraphRAG lookup disabled: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+

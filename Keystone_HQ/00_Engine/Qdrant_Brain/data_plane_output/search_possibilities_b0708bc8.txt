@@ -1,0 +1,105 @@
+Found 5 matches in 'possibilities':
+
+--- Result 1 (Source: 09_reddit_competitor_intelligence.md, Score: 0.758) ---
+ential clients are voicing in online forums.
+
+The provincial enactment of Bill 44, formally known as the Housing Statutes (Residential Development) Amendment Act of 2023, alongside the subsequent clarifying Bill 25, the Housing and Municipal Affairs Statutes Amendment Act of 2025, represents the most significant residential rezoning event in British Columbia's modern history. Municipalities face a hard deadline of June 30, 2026, to update their local bylaws to comply with these mandates, which effectively abolish single-family exclusive zoning in municipalities with populations exceeding 5,000 residents. This legislation is designed to unlock specific density thresholds that completely redefine project feasibility for custom home builders, design-build firms, and [[general|general]] contractors operating in the region.   
+
+The baseline density requirements stipulate that a minimum of three residential units must be permitted on lots measuring 280 square meters (approximately 3,014 squa
+
+
+--- Result 2 (Source: 4_2_Blog_Content_Strategy.md, Score: 0.716) ---
+tion that falls below the 5,000-person threshold for mandatory Bill 44 compliance, voluntarily opted into the legislation. This strategic decision enabled Pemberton to secure $2.7 million from the federal Housing Accelerator Fund (HAF), prompting updates to their Official Community Plan (OCP) to facilitate missing-middle infrastructure and generate nearly 100 new housing units.   
+
+Cluster 2: Single Egress Stairs (SES) and Building Code Evolution
+
+Closely aligned with the missing-middle densification authorized by Bill 44 is the highly significant August 2024 update to the British Columbia Building Code (BCBC). Through Ministerial Order BA 2024 03, the province officially permitted Single Egress Stair (SES) designs in residential buildings up to six storeys in height. Previously, B.C.'s building code, which had remained largely unchanged on this matter since 1998, mandated at least two egress stairwells for any building three storeys or higher.   
+
+This code update presents a massive c
+
+
+--- Result 3 (Source: POSS_001_BC_HYDRO_CIVIL_CONTRACTOR.md, Score: 0.710) ---
+duit installation BC,
+electrical service connection,
+Whistler contractor,
+Pemberton construction,
+Lions Bay builder,
+West Vancouver contractor,
+BC Housing licensed builder,
+Bill 44 BC,
+ADU construction Squamish,
+laneway home builder,
+STEP Code BC,
+WorkSafeBC contractor,
+COR certified contractor,
+Woodfibre LNG construction,
+BC Hydro capital plan,
+Sea-to-Sky builder,
+residential construction Squamish,
+Wayne Stevenson builder
+```
+
+---
+
+## 4. HASHTAG SETS
+
+**Long-Form Description (10):**
+```
+#BCHydro #CivilContractor #Squamish #SeaToSky #ConstructionBC #KeystonePossibilities #BCBuilder #UndergroundElectrical #Bill44 #LicensedBuilder
+```
+
+**Shorts Cross-Post (5):**
+```
+#Shorts #BCHydro #CivilContractor #Squamish #SeaToSky
+```
+
+---
+
+## 5. FULL DESCRIPTION TEMPLATE (Copy-Paste Ready)
+
+```
+Since September 2024, BC Hydro requires ALL civil underground electrical construction to be performed by a Registered Civil Contractor. If your contractor is not on the list — they cannot legally do the work
+
+
+--- Result 4 (Source: BRAND_VOICE.md, Score: 0.708) ---
+, not the ego.
+- **Plain-language building code.** Translate BC Building Code, Bill 44, STEP Code into language a homeowner can act on.
+- **Sea-to-Sky corridor focus.** Reference Squamish, Whistler, Pemberton, Lions Bay — the communities Wayne serves.
+- **Solution-first.** Every piece of content should answer: "What should the homeowner do next?"
+
+<!-- CONTEXT: Brand Voice / Content Voice Examples -->
+### Content Voice Examples
+
+| Context          | Good ✅                                                         | Bad ❌                                                        |
+|------------------|-----------------------------------------------------------------|---------------------------------------------------------------|
+| Blog intro       | "Bill 44 just changed everything for your backyard. Here's how." | "In this article, we will explore the implications of Bill 44." |
+| YouTube hook     | "Your lot might already be approved for a second dwelling."      | "Welcome back to our chan
+
+
+--- Result 5 (Source: CURRENT_DIRECTION.md, Score: 0.707) ---
+l:** Own the search results for Bill 44 and ADU-related queries in the Sea-to-Sky corridor.
+
+#### Target Audience
+
+- **Sea-to-Sky homeowners** — Squamish, Whistler, Pemberton, Lions Bay
+- Property owners considering secondary suites, laneway homes, or coach houses
+- Homeowners confused about what Bill 44 means for their lot
+- People searching for local builders who understand the new regulations
+
+#### Content Funnel: Blog → Video → Shorts
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   SEO Blog  │────→│  YouTube    │────→│   Shorts /  │
+│   (1500+    │     │  Long-form  │     │   Reels /   │
+│    words)   │     │  (8-15 min) │     │   TikTok    │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                   │                    │
+       ▼                   ▼                    ▼
+   Organic Search     YouTube Search      Social Discovery
+   + Google Maps      + Suggested         + Algorithm
+                                            Reach
+```
+
+####
+

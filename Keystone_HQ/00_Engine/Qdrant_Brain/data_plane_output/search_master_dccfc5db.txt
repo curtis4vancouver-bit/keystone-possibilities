@@ -1,0 +1,122 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: 01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, VecScore: 0.533) ---
+reness** — can't differentiate new vs old information
+
+---
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / PHASE 1: AUDIT THE CURRENT BRAIN [[STATE|STATE]] -->
+## PHASE 1: AUDIT THE CURRENT BRAIN [[STATE|STATE]]
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Step 1.1: Verify Qdrant is running -->
+### Step 1.1: Verify Qdrant is running
+```bash
+docker ps | findstr qdrant
+```
+Expected: `keystone_qdrant_brain` container running on ports 6333-6334.
+
+If not running:
+```bash
+docker start keystone_qdrant_brain
+```
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Step 1.2: Check current collections -->
+### Step 1.2: Check current collections
+```python
+from qdrant_client import QdrantClient
+client = QdrantClient(host="localhost", port=6333)
+collections = client.get_collections()
+for c in collections.collections:
+    info = client.get_collection(c.name)
+    print(f"Collection: {c.name}")
+    print(f"  Vectors: {info.points_count}")
+    print(f"  Dimensions: {info.config.params.vectors}")
+  
+
+
+--- Result 2 (Source: Ultimate_To_Do_List.md, VecScore: 0.500) ---
+---
+id: doc-ultimatetodolist
+title: Ultimate To Do List
+type: document
+summary: '> Last updated: 2026-06-10 | Audit sweep by Chronos Master Brain'
+entities:
+- DaVinci
+- DaVinci Resolve
+- GMB
+- Keystone Possibilities
+- Keystone Recomposition
+- Sea-to-Sky
+- Spotify
+- Suno
+- YouTube
+created: '2026-05-09T18:34:38.613391'
+updated: '2026-06-14T19:57:36.071516'
+---
+# THE KEYSTONE AUTONOMOUS ENTERPRISE: [[master|MASTER]] ROADMAP
+> Last updated: 2026-06-10 | Audit sweep by Chronos Master Brain
+
+This roadmap outlines the complete [[ARCHITECTURE|architecture]] required to transition Keystone from a human-operated entity to a fully automated, multi-silo AI enterprise.
+
+<!-- CONTEXT: Ultimate To Do List / 1. Core Infrastructure & File Management -->
+## 1. Core Infrastructure & File Management
+- [x] **The "Brain" (Vector Memory):** Qdrant vector DB operational — 28 namespaces, ~14K+ vectors, hybrid search (BGE-small + Splade). Docker containers running (6333-6334 primary, 7333-7334 backup). *(Supaba
+
+
+--- Result 3 (Source: CONSOLIDATED_BRAIN_HISTORY_DIGEST.md, VecScore: 0.500) ---
+ocks: -->
+### 💻 Restored Code & Config Blocks:
+#### Block 1:
+```python
+mermaid
+10: graph TD
+11:     User([Human User]) <-->|Tailwind & Alpine.js UI| Chronos[Chronos Central Orchestrator Daemon]
+12:     Chronos <-->|A2A JSON-RPC Client| Spoke1[YouTube Scriptwriter Starlette Port 8001]
+13:     Chronos <-->|A2A JSON-RPC Client| Spoke2[Creative Media Asset Starlette Port 8002]
+14:     Chronos <-->|A2A JSON-RPC Client| Spoke3[B2B Operations Starlette Port 8003]
+15: 
+16:     subgraph LLM VRAM Orchestrator
+17:         Chronos <-->|Inference Gatekeeper Queue| LlamaSwap[llama-swap Proxy Gateway]
+18:         LlamaSwap <-->|Model Hot-Swap / TTL| LocalLLM[(llama.cpp / Ollama Engine)]
+19:         style LlamaSwap fill:#f96,stroke:#333,stroke-width:2px
+20:     end
+21: 
+22:     subgraph Sandboxed Spoke Environments
+23:         Spoke1 <-->|Decontextualized Brand Slice| GlobalBB[(global_brand_brain.json)]
+24:         Spoke1 <-->|Pure C Vector Memory| SQLiteVec1[(SQLite-Vec / FTS5 DB)]
+25:         Spoke1
+
+
+--- Result 4 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.333) ---
+Root Cause: Windows enterprise environments frequently deploy rigorous SSL inspection proxies, corporate firewalls, or strict execution policies that interfere with npx dynamically fetching and executing unvetted packages from the public npm registry.
+Resolution: To bypass dynamic execution blocking, system administrators must provision the package statically. The package should be installed globally using a corporate-approved npm registry proxy (npm install -g chrome-devtools-mcp). Subsequently, the MCP configuration payload must be modified to call the globally installed binary executable directly, rather than relying on the npx -y dynamic fetch mechanism. Additionally, Claude Code provides specific troubleshooting skills and workarounds for corporate HTTPS connectivity issues.   
+
+Failure Mode 4: Silent Failure to Spawn on Windows 11
+Symptom: The agent receives a prompt requiring browser interaction. It acknowledges the task but fails silently, never triggering the Windows UI approval prompt and never launching a Chrome instance if one was absent.
+Root Cause: Sub-process execution timeouts prevalent in Windows 11 environments. Heavy enterprise endpoint detection and response (EDR) software aggressively scans .cmd batch executions (such as npx.cmd). This scanning overhead frequently causes the startup process to exceed the default, rigid timeout windows hardcoded into many AI clients.
+
+
+--- Result 5 (Source: OVERNIGHT_BUILD_INSTRUCTIONS.md, VecScore: 0.250) ---
+VERIFICATION CHECKLIST -->
+## VERIFICATION CHECKLIST
+- [ ] [[STATE|state]].db created and queryable
+- [ ] FTS5 search returns relevant results
+- [ ] Session chaining works (parent → child)
+- [ ] Auto-[[davinci-resolve-mcp/docs/SKILL|skill]] generator creates valid [[davinci-resolve-mcp/docs/SKILL|SKILL]].md files
+- [ ] [[davinci-resolve-mcp/docs/SKILL|Skill]] validator catches malformed files
+- [ ] Usage tracking writes to .usage.json
+- [ ] Memory recall returns relevant context
+- [ ] Conversation compression preserves head + tail
+- [ ] Iterative summaries build on previous
+- [ ] Error classifier categorizes common errors correctly
+- [ ] Self-repair recovers from intentional corruption
+- [ ] Self-knowledge entries persist across sessions
+- [ ] All core/ modules import cleanly
+- [ ] Existing self_evolution.py still works
+- [ ] [[wiki/index|INDEX]].md updated
+
+
+---
+📁 **See also:** [[Master_Docs/INDEX|← Directory Index]]
+
+

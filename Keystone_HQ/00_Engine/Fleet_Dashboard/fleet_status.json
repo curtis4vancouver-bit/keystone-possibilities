@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-05-28T21:52:18.781469",
+  "total_agents": 13,
+  "active": 0,
+  "idle": 13,
+  "unknown": 0,
+  "agents": {
+    "analytics_reporting": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "chronos_master": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "executive_assistant": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "legal_counsel": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "local_seo": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "possibilities"
+    },
+    "music_brand": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "music"
+    },
+    "possibilities_brand": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "possibilities"
+    },
+    "protocol_brand": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "protocol"
+    },
+    "recomposition_music": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "music"
+    },
+    "research_scout": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "site_superintendent": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "possibilities"
+    },
+    "tax_strategist": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    },
+    "webmaster": {
+      "status": "idle",
+      "last_active": null,
+      "current_task": null,
+      "outputs_count": 0,
+      "topics_claimed": 0,
+      "brand": "all"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+I've terminated all background MCP servers and the supervisor. Only the AIDA server and the voice bridge are running now.

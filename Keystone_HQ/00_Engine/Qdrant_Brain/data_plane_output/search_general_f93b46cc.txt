@@ -1,0 +1,68 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 20260615_SYS_drive_to_notebooklm_sync_automation.md, VecScore: 0.500) ---
+es, and forces their transpilation into Google Docs. Because these files are now recognized as native objects, any modifications synchronized via rclone will theoretically be absorbed by NotebookLM's background synchronization engine. However, the background engine's polling interval introduces latency that can span several minutes. Therefore, instantaneous updates require active programmatic triggers within the NotebookLM interface itself.   
+
+Front-End Browser Automation via Playwright and Puppeteer
+
+While coercing Markdown into Google Docs resolves the background update limitation, users must initially establish the connection by adding these coerced files to a specific NotebookLM project. Furthermore, users relying on external web uniform resource locators, or those who require instantaneous synchronization without waiting for the background engine to poll, must force an immediate refresh action. Because Google did not release an official, public-facing application programming inte
+
+
+--- Result 2 (Source: 20260615_SYS_drive_to_notebooklm_sync_automation.md, VecScore: 0.333) ---
+re cloud [[Master_Docs/00_DIRECTORY_STRUCTURE|directory structure]]. However, for enterprise security environments where NotebookLM synchronization must be isolated, the drive.file scope is far superior. This restricted scope ensures that the automated rclone daemon can only read, view, and modify the specific files and folders it creates itself, rendering all other confidential data in the user's Drive invisible to the automation scripts.   
+
+The synchronization command itself relies on a precise combination of execution parameters to achieve differential transport and format coercion simultaneously. The primary parameters include the --drive-import-formats flag, which instructs the backend to intercept specific local file extensions, and the --drive-allow-import-name-change flag. Because the application programming interface converts the Markdown file into a native Google Doc, the resulting file entity in the cloud technically sheds its traditional .md extension. If the allow name ch
+
+
+--- Result 3 (Source: 20260522_overnight_scheduler_daemon.md, VecScore: 0.250) ---
+()
+            
+            with open(queue_json_path, "w", encoding="utf-8") as f:
+                json.dump(q, f, indent=2, ensure_ascii=False)
+            logging.info(f"Synced '{topic_name}' to learning_queue.json.")
+        except Exception as e:
+            logging.warning(f"Error syncing task back to learning_queue.json: {e}")
+
+    def run_main_loop(self):
+        """The main autonomous loop running scheduling checks and releases."""
+        logging.info("Starting PersistentScheduler main background loop...")
+        
+        while self.is_running:
+            try:
+                task = self.fetch_next_task()
+                if task:
+                    self.execute_task_subprocess(task)
+                    
+                    # Apply staggered quota conservation sleep with jitter
+                    # In production, set this to 120-240 seconds to prevent TPM spikes
+                    stagger_time = random.randint(5, 15)  # 5-15s for demo, increase in prod
+                   
+
+
+--- Result 4 (Source: 20260522_overnight_scheduler_daemon.md, VecScore: 0.200) ---
+eue_json_path = os.path.join(PROJECT_ROOT, "learning_queue.json")
+        if not os.path.exists(queue_json_path):
+            return
+        try:
+            with open(queue_json_path, "r", encoding="utf-8") as f:
+                q = json.load(f)
+            
+            for d in q.get("queue", []):
+                if d["domain"] == domain_name:
+                    if topic_name not in d.get("completed", []):
+                        d.setdefault("completed", []).append(topic_name)
+                    if len(d.get("completed", [])) >= len(d.get("topics", [])):
+                        d["status"] = "completed"
+                    break
+            
+            q["completed_topics"] = sum(len(x.get("completed", [])) for x in q["queue"])
+            q["last_updated"] = datetime.now().isoformat()
+            
+            with open(queue_json_path, "w", encoding="utf-8") as f:
+                json.dump(q, f, indent=2, ensure_ascii=False)
+            logging.info(f"Synced '{topic_name}' to le
+
+
+--- Result 5 (Source: 01_Advanced_SEO_AI_Agents_2026.md, VecScore: 0.167) ---
+nd legacy blog drafts—and drops them into a dedicated NotebookLM instance. These notebooks are meticulously named after specific topical clusters (e.g., AI-Automation-Small-Business) to compel the AI to organize data hierarchically.   \n\nLayer 2: Generate: Operating through the Agent OS, the user selects the desired output formats (e.g., long-form articles, video scripts, audio podcast files, or interactive slide decks). The OS directly communicates with NotebookLM Studio to trigger multi-modal generation via a single command.   \n\nLayer 3: Memory: Every generated output, structure, and keyword cluster is automatically exported to the Obsidian vault. This ensures the AI's long-term memory incorporates the newly created assets, preventing future content from contradicting or duplicating existing work.   \n\nLayer 4: Loop: As market dynamics shift, new details are fed into NotebookLM. This automatically triggers a regeneration loop, dynamically updating the content stored in the Obsidi
+

@@ -1,0 +1,18 @@
+# Research_Archives > 09_Social_Media
+
+- [[20260521_self_correction_tonight_meta_graph_api_facebook_page_selection_during_oauth_re-authe]]
+- [[20260522_meta_reels_publishing_complete]]
+- [[20260522_social_media_automation_catbox.moe_and_alternative_video_hosting_for_api-based_socia]]
+- [[20260522_social_media_automation_facebook_reels_publishing_via_graph_api_video_upload_from_ur]]
+- [[20260522_social_media_automation_instagram_reels_programmatic_publishing_with_custom_cover_fr]]
+- [[20260522_social_media_automation_multi-brand_social_media_token_management_and_automatic_refr]]
+- [[20260522_social_media_automation_tiktok_content_posting_api_v2_direct_publish_flow_complete_g]]
+- [[20260522_social_token_rotation_monitoring]]
+- [[20260522_tiktok_content_posting_api_complete]]
+- [[20260612_social_media_automation_mcps]]
+- [[9_1_YouTube_Upload_Metadata_AI_Disclosure]]
+- [[9_2_YouTube_Shorts_2026_Optimization]]
+- [[9_3_TikTok_Upload_Requirements]]
+- [[9_4_Instagram_Reels_Requirements]]
+- [[9_5_Facebook_Video_Requirements]]
+- [[9_6_Multi_Platform_Upload_Automation]]

@@ -1,0 +1,18 @@
+{
+  "agent_name": "tax_strategist",
+  "skills": [
+    "tax_optimization",
+    "deduction_tracking",
+    "financial_structuring",
+    "corp_structure"
+  ],
+  "apis": [],
+  "strengths": [
+    "Tax strategy",
+    "Write-off identification",
+    "Financial planning"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

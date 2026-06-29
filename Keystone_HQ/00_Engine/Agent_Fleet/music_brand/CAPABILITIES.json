@@ -1,0 +1,22 @@
+{
+  "agent_name": "music_brand",
+  "skills": [
+    "suno_music_generation",
+    "spotify_distribution",
+    "isrc_cataloging",
+    "ambient_composition"
+  ],
+  "apis": [
+    "spotify",
+    "musicbrainz",
+    "suno"
+  ],
+  "strengths": [
+    "Music production",
+    "Ambient healing frequencies",
+    "Cross-brand audio"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "music"
+}

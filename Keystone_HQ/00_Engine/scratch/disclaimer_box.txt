@@ -1,0 +1,34 @@
+Found kr-disclaimer-grid:
+           </p>
+        </div>
+    </div>
+
+    <!-- Collapsible Research Panels -->
+    <div class="kr-disclaimer-grid">
+        <div class="kr-disclaimer-box medical">
+            <div class="kr-disclaimer-title">⚠️ Medical Disclaimer</div>
+            <p class="kr-disclaimer-text">
+                This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.
+            </p>
+        </div>
+        <div class="kr-disclaimer-box twin">
+            <div class="kr-disclaimer-title">⚠️ Digital Twin Disclosure</div>
+            <p class="kr-disclaimer-text">
+                The video content accompanying the Keystone Recomposition brand is hosted by a photorealistic, synthetic visual network representation (AI Digital Twin) of Wayne Stevenson. All real-world job site footage, personal clinical lab work, physical training logs, and research data are authentic and fully documented by the human creator.
+            </p>
+        </div>
+    </div><div class="kr-accordion">
+        <details class="kr-accordion-item">
+            <summary>🔬 Scientific Literature &amp; Clinical Studies Cited</summary>
+            <div class="kr-accordion-content">
+                <p><strong>1. STEP-1 Trial:</strong> Wilding, J. P. H., et al. “Once-Weekly Semaglutide in Adults with Overweight or Obesity.” <em>New England Journal of Medicine</em>, vol. 384, no. 11, 2021, pp. 989-1002.
+                <br><a class="kr-research-link" href="https://www.nejm.org/doi/full/10.1056/NEJMoa2032183" target="_blank" rel="noopener noreferrer">View Study on NEJM ↗</a></p>
+                
+                <hr style="border-color: rgba(196,162,101,0.1); margin: 15px 0;">
+                
+                <p><strong>2. SURMOUNT-1 Trial:</strong> Jastreboff, A. M., et al. “Tirzepatide Once Weekly for the Treatment of Obesity.” <em>New England Journal of Medicine</em>, vol. 387, no. 3, 2022, pp. 205-217.
+                <br><a class="kr-research-link" href="https://www.nejm.org/doi/full/10.1056/NEJMoa2206038" target="_blank" rel="noopener noreferrer">View Study on NEJM ↗</a></p>
+                
+                <hr style="border-color: rgba(196,162,101,0.1); margin: 15px 0;">
+                
+                <p><strong>3. Lean Mass Meta-Analysis:</strong> “Body composition changes and lean mass loss across GLP-1 receptor agonist therap

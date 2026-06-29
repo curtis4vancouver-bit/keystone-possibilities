@@ -1,0 +1,190 @@
+Found 10 matches in ['master']:
+
+--- Result 1 (Source: 17_OPERATIONAL_BLUEPRINT_FOR_CROSS_ENTITY_AUTHORITY.md, VecScore: 0.500) ---
+x]]
+
+
+
+--- Result 2 (Source: deep_research_targets.md, VecScore: 0.500) ---
+ogical hooks."*
+
+**6. Automated Advertising Funnel & Copywriting Pipeline**
+> *"Activate Deep Research. Design an autonomous advertising blueprint. How can a Google Workspace MCP agent (Gmail/Docs) perfectly maintain a specific, highly-curated '[[Brand_Constitution/BRAND_VOICE|Brand Voice]]' when writing cold outreach emails and LinkedIn posts for a luxury construction firm (Keystone [[possibilities|Possibilities]])? Detail the exact system prompts, few-shot learning examples, and advertising psychology frameworks (like AIDA or PAS) required to generate high-converting copy with zero human review."*
+
+<!-- CONTEXT: Deep Research Targets / Group 4: Web & Development -->
+## Group 4: Web & Development
+**7. Progressive Web App (PWA) Offline Sync & Trade Integration**
+> *"Activate Deep Research. Analyze the best practices for building an offline-first Progressive Web App (PWA) using Next.js, Service Workers, and Supabase. The PWA is for construction tradesmen to check off tasks on-site witho
+
+
+--- Result 3 (Source: 17_OPERATIONAL_BLUEPRINT_FOR_CROSS_ENTITY_AUTHORITY.md, VecScore: 0.333) ---
+SR) down and signaling strong relevance to Amazon’s recommendation algorithms.   
+*   **Strategic Call-to-Action (CTA):** Within the first 10% of the book (which is viewable in Amazon's free "Look Inside" preview) and at the very end of the manuscript, the author must incorporate a highly compelling CTA. This CTA should offer reader-focused, printable resources—such as a PDF companion workbook, a structural calculation spreadsheet, or a peptide reconstitution calculator.   
+
+<!-- CONTEXT: Operational Blueprint For Cross Entity Authority / Navigating Amazon's Linking Policies -->
+### Navigating Amazon's Linking Policies
+To prevent book rejection, filter suppression, or permanent account termination, the external links embedded within the Kindle manuscript must adhere to Amazon's strict hyperlink guidelines:   
+*   **Permitted Links:** Links to previous or subsequent books in a series, links to multimedia content directly related to the title, and links to additional ancillary material (
+
+
+--- Result 4 (Source: imagen_3_photorealism_guide.md, VecScore: 0.333) ---
+ifacts.
+
+*   **Quality & Technical:** `blurry, pixelated, low resolution, grainy, distorted, noise, compression artifacts, jpeg artifacts, glitches.`
+*   **Structural & Geometric:** `warped edges, floating objects, inconsistent shadows, curved walls, impossible geometry, distorted perspective, repeating patterns.`
+*   **Synthetic & Artistic Bias:** `--no illustration, painting, drawing, 3d render, computer generated, cartoon, anime, sketch, CGI, vector art, oversaturated, artificial lighting, glossy surfaces.`
+*   **Biological & Anatomical:** `--no plastic skin, waxy skin, airbrushed, zero smoothing, doll, unnatural skin, asymmetric face, poorly drawn face, extra limbs, deformed hands, extra fingers.`
+*   **Dataset Watermark:** `watermark, text, logo, signature, copyright, blurry text.`
+
+<!-- CONTEXT: Imagen 3 Photorealism Guide / Text Rendering and Typographic Integration -->
+## Text Rendering and Typographic Integration
+
+Nano Banana Pro excels at accurate text rendering. Distinctly s
+
+
+--- Result 5 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.250) ---
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+    console.log('[ElevenLabs] Extracting word and character alignment maps');
+
+    const form = new FormData();
+    form.append('file', audioBuffer, { filename: 'narration.mp3', contentType: 'audio/mpeg' });
+    form.append('text', transcript);
+
+    try {
+      const response = await axios.post(endpoint, form, {
+        headers: {
+          ...form.getHeaders(),
+          'xi-api-key': this.elevenLabsApiKey
+        }
+      });
+
+      return response.data; // Structure: { characters: [], words: [], loss: double }
+    } catch (err) {
+      console.error('[ElevenLabs Error] Alignment mapping execution failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Orchestrates the complete automated timeline execution sequence
+   */
+  async executeOrchestrationPipeline(sceneBriefs) {
+    console.log(
+
+
+--- Result 6 (Source: BLOG_001_MOUNJARO_MUSCLE_LOSS_PROTOCOL.md, VecScore: 0.250) ---
+l translation. A common mistake among health commentators is assuming that "lean mass loss" on a Dual-Energy X-ray Absorptiometry (DEXA) scan translates entirely to shredded skeletal muscle. 
+
+It does not.
+
+Research published by **Dr. Keith Baar at the University of California, Davis**, highlighted a major diagnostic twist. A significant portion of the "lean mass" recorded as lost during GLP-1/GIP therapy is actually derived from **visceral organ shrinkage and localized intracellular water loss**—not purely skeletal muscle.
+
+```
+DEXA "LEAN MASS" COMPOSITION:
+┌────────────────────────────────────────────────────────┐
+│  Skeletal Muscle (Arms, Legs, Torso Frame)            │ ◄── The "load-bearing beam"
+├──────────────────────────────┬─────────────────────────┤
+│  Organ Volume (Liver/Kidneys)│  Intracellular Hydration│ ◄── Visceral organ shrinkage
+└──────────────────────────────┴─────────────────────────┘
+```
+
+* **The Liver Effect:** GLP-1 and GIP peptides aggressively clear ectopic fat s
+
+
+--- Result 7 (Source: 17_OPERATIONAL_BLUEPRINT_FOR_CROSS_ENTITY_AUTHORITY.md, VecScore: 0.200) ---
+s | Domain Authority (DA) / Domain Rating (DR) |
+| :--- | :--- | :--- | :--- |
+| **Squamish Chamber of Commerce** | Enhanced Member Listing | Squamish and Sea-to-Sky corridor business directory | High Local Relevance |
+| **Tourism Squamish** | Local Business Directory | Regional visitor, construction, and wellness directory | High Regional Authority |
+| **Canada411 / Yellow Pages Canada** | National Structured Listing | General Canadian business validation and NAP consistency | DR 71 |
+| **411.ca** | National Structured Listing | General Canadian business [[wiki/index|index]] | DA 65 |
+| **Cylex Canada** | Structured Business Profile | Regional general contracting and services indexing | DR 44 |
+| **MisterWhat Canada** | Structured Business Directory | National search engine verification and backlinking | DA 50 |
+| **ShowMeLocal Canada** | Structured Business Directory | National [[wiki/index|index]] database | DA 60 |
+
+Any inconsistencies in the NAP format—such as writing "Road" inste
+
+
+--- Result 8 (Source: 04_SEVENTY_NEW_RESEARCH_TOPICS.md, VecScore: 0.200) ---
+etect infinite loops, no-progress states, and repeated error fingerprints in long-running agent tasks. Include the three diagnostic heuristics: No-Progress Trigger, Same-Error Fingerprint (hash-based), and Token Decline Metric. Compare implementations in LangGraph, ADK 2.0, and the-architect system. Include code examples for Python.
+```
+
+<!-- CONTEXT: Seventy New Research Topics / 4. 🟡 [AGENT_ARCH] A2A Protocol (Agent-to-Agent) Implementation -->
+### 4. 🟡 [AGENT_ARCH] A2A Protocol (Agent-to-Agent) Implementation
+```
+Deep research into Google's Agent-to-Agent (A2A) protocol released at Cloud Next 2026. How do autonomous agents discover, authenticate with, and delegate tasks to other agents across organizational boundaries? Include the complete handshake protocol, capability advertisement, task delegation patterns, and security isolation between agents. Compare with MCP for tool access vs A2A for agent coordination.
+```
+
+<!-- CONTEXT: Seventy New Research Topics / 5. 🟡 [AGENT_ARCH] Dynam
+
+
+--- Result 9 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.167) ---
+point = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+    console.log(`[ElevenLabs] Synthesizing narrative stream: "${text.substring(0, 40)}..."`);
+
+    try {
+      const response = await axios.post(endpoint, {
+        text,
+        model_id: 'eleven_flash_v2_5', // Flash 2.5 optimized for sub-100ms latency execution
+        voice_settings: {
+          stability: 0.8,
+          similarity_boost: 0.85,
+          style: 0.5
+        }
+      }, {
+        headers: {
+          'xi-api-key': this.elevenLabsApiKey,
+          'Content-Type': 'application/json'
+        },
+        responseType: 'arraybuffer'
+      });
+
+      return Buffer.from(response.data);
+    } catch (err) {
+      console.error('[ElevenLabs Error] Text-to-Speech transaction failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+
+
+--- Result 10 (Source: 05_RECOMPOSITION_WEBSITE_SEO_GEO.md, VecScore: 0.167) ---
+. It is not intended to be a 
+  substitute for professional medical advice, diagnosis, or treatment. Always 
+  seek the advice of your physician or other qualified health provider with 
+  any questions you may have regarding a medical condition. Never disregard 
+  professional medical advice or delay in seeking it because of something 
+  you have read on this website.</p>
+</div>
+```
+
+<!-- CONTEXT: Recomposition Website Seo Geo / Step 3.2: Per-page disclaimers for protocol content -->
+### Step 3.2: Per-page disclaimers for protocol content
+Any page discussing specific compounds (BPC-157, TB-500, Semaglutide, etc.) needs an ADDITIONAL prominent disclaimer at the top:
+```html
+<div class="protocol-disclaimer" style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 8px;">
+  <p>⚠️ <strong>Important:</strong> This article discusses research findings 
+  for educational purposes only. The compounds discussed are NOT approved by 
+  Health Canada or th
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+Secondary Contextual Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (joint recovery:PROCESS) ──[targets]──> (shoulder injuries:MEDICAL_CONDITION)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+

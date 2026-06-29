@@ -1,0 +1,51 @@
+{{ CHECKPOINT 25 }}
+ **The earlier parts of this conversation have been truncated due to its long length. The following content summarizes the truncated context so that you may continue your work. **
+
+
+# User Requests
+The following were user requests from the truncated conversation in chronological order:
+1. Okay, that makes sense. So, you got to save this all to your skill set. Make sure it's 100% in there with all the avatars, everything that we made tonight, how we did it, the pipeline, everything that goes along with it. Um, so that it's in the brain. If I do a new new chat or whatever, it's there. It's not fucking hard to find. Everything is written out properly, ready to go. And um, we need to make two more desktop folders that need to be in there, one for long form and one for the music. And once we're finished, the old pictures need to be deleted off, or the pictures and videos need to be deleted out of the folders for the new ones to go in. Um, always check to make sure that that's done. Right now, they're in there, so you can delete them now to get it prepped for the next one. 
+2. All right, so go write the script for um 4 minutes should be enough and I'll lap it. Um for Anna Stevenson DJing. Just make sure that they kind of flow into each other. So, when you're writing it out, uh the zooming in on the cameras and all that kind of stuff for when it's DJing. Just um put some thought into the end and the beginning of the next one, so that they transfer properly. That make sense? So, go write up all the prompts so that it's needed. Now, the only difference is when you go into Google Flow, um for some reason I can't get these characters into a new thing, so we have to keep on using the one uh folder or whatever. Uh over and over again. So, we need to delete everything out except for the avatars each time. If that makes sense. And it's not avatars, it's characters. So, Anna Stevenson's a DJ, Victoria's the other one. It's in characters. I'll set it up on the on the page. But right now, just go make all the p
+<truncated 7765 bytes>
+///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/scratch/check_wav_files.py
+Last Edited: 2026-06-09T06:48:09Z
+
+[ARTIFACT: import_all_music]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/scratch/import_all_music.py
+Last Edited: 2026-06-09T06:48:16Z
+
+[ARTIFACT: organize_videos]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/scratch/organize_videos.py
+Last Edited: 2026-06-09T06:40:46Z
+
+[ARTIFACT: set_timeline_music]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/scratch/set_timeline_music.py
+Last Edited: 2026-06-09T06:48:25Z
+
+[ARTIFACT: spark_brain_diagnostic]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/spark_brain_diagnostic.md
+Last Edited: 2026-06-08T15:41:56Z
+
+[ARTIFACT: spark_research_breakdown]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/spark_research_breakdown.md
+Last Edited: 2026-06-08T23:11:31Z
+
+[ARTIFACT: task]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/task.md
+Last Edited: 2026-06-09T06:41:37Z
+
+[ARTIFACT: walkthrough]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/walkthrough.md
+Last Edited: 2026-06-09T06:41:41Z
+
+[ARTIFACT: youtube_growth_strategy]
+Path: file:///C:/Users/Curtis/.gemini/antigravity/brain/1e6f6dcb-f962-45d1-982e-f314e3a4c053/youtube_growth_strategy.md
+Last Edited: 2026-06-08T21:24:35Z
+
+# Conversation Logs
+
+Reference the following log files for the full, untruncated conversation:
+
+- C:\Users\Curtis\.gemini\antigravity\brain\1e6f6dcb-f962-45d1-982e-f314e3a4c053\.system_generated\logs\transcript.jsonl
+
+**IMPORTANT: this summary is just for your reference. You may respond to my previous and future messages, but DO NOT ACKNOWLEDGE THIS CHECKPOINT MESSAGE. JUST READ IT BUT DO NOT MENTION IT, RESPOND TO IT, OR TAKE ACTION BECAUSE OF IT.**

@@ -1,0 +1,87 @@
+Found 5 matches in ['content_pipeline']:
+
+--- Result 1 (Source: deep_research_webmcp_chrome_extension_google_flow_2026-06-25, VecScore: 1.000) ---
+Google Flow utilizes a complex user interface for image references, internally referred to as "Ingredients" or character consistencies. Automating this interaction without WebMCP typically requires a script to manipulate coordinate-based drag-and-drop actions via remote debugging, a process notoriously prone to failure due to responsive design shifts and varying viewport dimensions.   
+
+The WebMCP content script circumvents this visual brittleness by synthetically constructing a DataTransfer object and programmatically dispatching native drag-and-drop events directly to the React-based dropzone component. When the AI agent calls the inject_avatar_reference tool with a local file path or base64 payload, the content script fetches the local asset, creates a JavaScript File object, and constructs a mock DataTransfer payload before firing the necessary dragenter, dragover, and drop events.   
+
+JavaScript
+// content_webmcp.js
+document.modelContext.registerTool({
+    name: 'inject_avatar_reference',
+    description: 'Uploads a character reference image into Google Flow via synthetic drag-and-drop.',
+    inputSchema: {
+        type: 'object',
+        properties: {
+            base64Image: { type: 'string', description: 'Base64 encoded image data' },
+            fileName: { type: 'string', description: 'Name of the file (e.g., avatar.png)' }
+        },
+        required: ['base64Image', 'fileName']
+    }
+}, async (params) => {
+    try {
+        const res = await fetch(params.base64Image);
+
+
+--- Result 2 (Source: deep_research_webmcp_chrome_extension_google_flow_2026-06-25, VecScore: 0.450) ---
+Architecting AI-Driven Browser Automation: A Deep Dive into WebMCP Extensions for Google Flow
+
+The landscape of browser automation and artificial intelligence integration has undergone a profound paradigm shift in 2026. The reliance on heuristic Document Object Model (DOM) scraping, brittle Cascading Style Sheets (CSS) selectors, and simulated human inputs has historically plagued web automation frameworks. The introduction of the Web Model Context Protocol (WebMCP) as an experimental web standard in Google Chrome marks the transition from treating the browser as a visual document viewer to a formalized semantic capability surface.   
+
+This comprehensive report details the design, architecture, and implementation of a custom WebMCP-powered Google Chrome extension built specifically to interface with Google Flow (labs.google/fx/tools/flow). By executing natively within the browser's JavaScript environment, this architecture allows local Artificial Intelligence (AI) agents to directly discover, call, and execute structured operations—ranging from the programmatic drag-and-drop of avatar reference images to advanced asset organization—while gracefully bypassing standard bot detection mechanisms.   
+
+1. The WebMCP Experimental Standard in Chrome
+1.1. Conceptual Framework and the End of DOM Scraping
+
+
+
+--- Result 3 (Source: deep_research_webmcp_chrome_extension_google_flow_2026-06-25, VecScore: 0.341) ---
+The deployment of WebMCP content scripts offers profound structural and operational advantages over traditional, heuristic-based automation frameworks like Playwright or Puppeteer. These advantages are particularly pronounced when interfacing with modern, dynamically rendered, and highly localized platforms like Google Flow.   
+
+5.1. Stability and Evasion of UI Volatility
+
+Standard DOM selector-based automation is inherently fragile. Google Flow is architected utilizing the Radix UI library and Material Symbols, which dynamically render UI elements based on the active session's localized account settings. For instance, a primary submission button may render its text as "Create" in English, "Criar" in Portuguese, or "Nouveau projet" in French.   
+
+When traditional Playwright scripts rely on localized text matching or shifting CSS classes (e.g., targeting aria-label*="Create"), they suffer from immense maintenance debt and catastrophic silent failures upon minor frontend updates deployed by Google. Conversely, WebMCP architecture is fundamentally decoupled from the visual rendering of the UI. By formalizing operations as deterministic JavaScript functions registered directly within the browser's API, the execution contract is immutable. Changes to Google Flow's CSS layout, button placement, or localization strings have zero impact on the capture_generated_media WebMCP tool, yielding unparalleled long-term stability in production pipelines.   
+
+
+
+--- Result 4 (Source: deep_research_webmcp_chrome_extension_google_flow_2026-06-25, VecScore: 0.333) ---
+            tools_response = await session.call_tool("list_webmcp_tools", arguments={})
+            print("Discovered Tools on Page:", tools_response.content.text)
+
+            # 2. Prepare the payload for Avatar Injection based on the discovered schema
+            avatar_payload = {
+                "base64Image": "data:image/png;base64,iVBORw0KGgo...",
+                "fileName": "hero_character_v2.png"
+            }
+
+            # 3. Execute the injected WebMCP tool via the DevTools bridge
+            result = await session.call_tool(
+                "execute_webmcp_tool",
+                arguments={
+                    "toolName": "inject_avatar_reference",
+                    "input": json.dumps(avatar_payload)
+                }
+            )
+            
+            # The structured result is parsed and returned to the controlling LLM
+            print(f"Tool Execution Result: {result.content.text}")
+
+if __name__ == "__main__":
+    asyncio.run(run_flow_automation())
+
+
+This Python implementation establishes a highly robust, bidirectional automation pipeline. The local LLM processes the user's overarching intent, dynamically formats the required JSON schema parameters, and pipes the commands through standard input/output streams. The chrome-devtools-mcp server then securely marshals the request over WebSockets via CDP, triggering the native JavaScript execution inside the browser's context without relying on visual coordinate clicks.   
+
+5. Comparative Analysis: WebMCP vs. Playwright and Puppeteer
+
+
+
+--- Result 5 (Source: 7_3_Character_Consistency_AI_Video.md, VecScore: 0.333) ---
+eference images, style guides, audio profiles, and environment anchors becomes a significant logistical challenge. A disorganized workspace inevitably leads to the accidental utilization of incorrect reference seeds, immediately introducing drift into the project. Google Flow implements robust, centralized asset management systems to ensure that Ingredients remain organized and instantly accessible across disparate scenes and entirely different projects.
+
+Once a character's visual design is finalized via the two-image cap system, it must be formally codified into the platform's database. By navigating to the "Characters" menu, a creator can bundle the visual references, the character's designated name, their textual metadata, and an associated, customized voice profile into a single, cohesive, and reusable entity.   
+
+To manage these digital assets effectively, creators are encouraged to utilize the Google Flow Agent and the platform's Collections framework. The Google Flow Agent, powe
+

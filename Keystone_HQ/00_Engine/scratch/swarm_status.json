@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-06-14T20:16:30",
+  "swarm": [
+    {
+      "id": "3865be44-93d5-492f-8516-81f2855ba60e",
+      "name": "yt_checker_recomposition",
+      "channel": "oac",
+      "role": "YouTube Recomposition Checker",
+      "status": "running"
+    },
+    {
+      "id": "f7d3c965-1505-4077-99aa-5f01c2cc8734",
+      "name": "yt_checker_protocols",
+      "channel": "protocols",
+      "role": "YouTube Protocols Checker",
+      "status": "running"
+    },
+    {
+      "id": "0941ca43-0987-4f4e-857d-e80882e4a632",
+      "name": "yt_checker_possibilities",
+      "channel": "possibilities",
+      "role": "YouTube Possibilities Checker",
+      "status": "running"
+    },
+    {
+      "id": "2b019aa1-5df1-4796-8761-2c4701481df2",
+      "name": "competitor_researcher",
+      "role": "Competitor Researcher",
+      "status": "running"
+    },
+    {
+      "id": "e1497648-66f4-4196-9d3a-660149891ef5",
+      "name": "metadata_specialist",
+      "role": "Metadata Strategist",
+      "status": "running"
+    },
+    {
+      "id": "015adc94-440c-4e76-88d9-3379d1aaaa00",
+      "name": "niche_bender",
+      "role": "Niche Bending Strategist",
+      "status": "running"
+    },
+    {
+      "id": "1c87b913-b714-4239-94d9-ed4b756a5c38",
+      "name": "podcast_structure_analyst",
+      "role": "Podcast Format Analyst",
+      "status": "running"
+    }
+  ]
+}

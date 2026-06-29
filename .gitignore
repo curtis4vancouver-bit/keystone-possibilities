@@ -40,8 +40,14 @@ Keystone_HQ/04_DaVinci_Resolve_Video
 *.dmg
 *.exe
 
-# Exclude private Master Brain, credentials, and secrets
-Keystone_HQ/00_Master_Brain/
+# Exclude private Master Brain databases, builds, and logs, but keep source code and docs
+Keystone_HQ/00_Master_Brain/.Qdrant_Brain/
+Keystone_HQ/00_Master_Brain/AIDA/build/
+Keystone_HQ/00_Master_Brain/AIDA/dist/
+Keystone_HQ/00_Master_Brain/AIDA/*.spec
+Keystone_HQ/00_Master_Brain/.learnings/
+Keystone_HQ/00_Master_Brain/**/*.log
+Keystone_HQ/00_Master_Brain/**/__pycache__/
 *.pem
 *.key
 *token*.json

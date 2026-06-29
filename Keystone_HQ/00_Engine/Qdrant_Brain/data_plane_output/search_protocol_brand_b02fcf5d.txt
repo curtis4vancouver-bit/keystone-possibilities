@@ -1,0 +1,117 @@
+Found 5 matches in ['protocol_brand']:
+
+--- Result 1 (Source: LONG_005_RETATRUTIDE_FINAL_FLOW.md, VecScore: 0.625) ---
+itles.
+```
+
+### 📋 CLIP A31 — WAYNE (MINE)
+
+```
+THIS IS THE SCRIPT:
+Wayne says: Think of it as cellular mortar. When you demolish fat aggressively, your tendons take collateral damage. The Wolverine Stack repairs at the tissue level.
+
+THIS IS THE VIDEO PROMPT:
+Wayne. KEEP EXACT CLOTHES ON THE AVATAR, DO NOT CHANGE THEM. Standing at a 30-degree angle or less, facing mostly front. Pure black background. Camera holds steady. Hands illustrating mortar being spread. No subtitles.
+```
+
+### 📋 CLIP A32 — VICTORIA
+
+```
+THIS IS THE SCRIPT:
+Victoria says: Important flag here. B-P-C one fifty-seven evidence is almost entirely preclinical. Rodent models. No large human trials. This is a case study.
+
+THIS IS THE VIDEO PROMPT:
+Victoria. KEEP EXACT CLOTHES ON THE AVATAR, DO NOT CHANGE THEM. Standing at a 30-degree angle or less, facing mostly front. Pure black background. Close-up zoom in. Serious responsible tone, active hand gestures. No subtitles.
+```
+
+### 📋 CLIP A33 — WAYNE (MINE)
+
+```
+THIS IS THE 
+
+
+--- Result 2 (Source: 20260522_competitor_tag_hijack_analysis.md, VecScore: 0.500) ---
+yth-busting format, orthopedic surgeon authority |
+| 4 | "BPC-157: Everything You Need to Know" | Dr. Quinn Stillson MD | ~200K+ | Comprehensive explainer, high retention |
+| 5 | "Taking The BPC-157 & TB-500 WOLVERINE STACK" | Thomas DeLauer (clip) | ~80K+ | Short-form clip from Matt Kaeberlein collab |
+| 6 | "I Took The Wolverine Stack & My Thoughts" | San Diego Sports Rehab (Dr. Josh) | ~50K+ | Personal experience + clinical perspective |
+| 7 | "The Wolverine Protocol - Accelerated Injury Recovery" | Various practitioners | ~44K | Morpheus Fields format |
+| 8 | "Best Dose Of BPC-157 For Injury Healing (Wolverine Factor)" | Biohacking channels | ~30K+ | Dosing-focused content |
+| 9 | "What Is the Wolverine Stack? BPC-157, TB-500 and the Evidence" | Prof. Gordon Slater | ~25K+ | Orthopaedic surgeon deep-dive |
+| 10 | "Peptide of the Week: Wolverine Stack – Elite Recovery" | Niche peptide channels | ~15K+ | Weekly series format |
+
+### Common Title Patterns
+- "The Truth About..." (eviden
+
+
+--- Result 3 (Source: 20260522_competitor_tag_hijack_analysis.md, VecScore: 0.444) ---
+ptimization, performance, recovery protocol
+```
+
+### TOPIC-SPECIFIC POWER TAGS
+
+#### Wolverine Stack Tags
+```
+wolverine stack, BPC-157, TB-500, BPC 157, TB 500, Thymosin Beta 4,
+body protection compound, tendon healing, ligament repair, joint health,
+wolverine protocol, peptide healing, injury recovery peptides
+```
+
+#### CJC/IPA Tags
+```
+CJC-1295, ipamorelin, CJC 1295 no DAC, growth hormone, HGH, GHRH, GHRP,
+growth hormone releasing, growth hormone peptide, sleep improvement,
+hormone optimization, IGF-1, pituitary
+```
+
+#### GHK-Cu Tags
+```
+GHK-Cu, copper peptide, copper peptide skincare, collagen peptide,
+skin rejuvenation, hair growth peptide, wound healing, stem cells,
+age reversal, ozempic face solution, collagen production
+```
+
+#### GLP-1 Tags
+```
+ozempic, semaglutide, tirzepatide, mounjaro, wegovy, zepbound,
+ozempic muscle loss, ozempic face, GLP-1 muscle loss, lean mass,
+sarcopenia, weight loss medication, body composition, DEXA scan,
+ozempic side effects, ozempic results, GLP-1 
+
+
+--- Result 4 (Source: keystone_8min_glp1_masterpiece.md, VecScore: 0.417) ---
+# 🎬 KEYSTONE PROTOCOLS — VIDEO 1: WOLVERINE STACK (8:20)
+*V8 Production Build — 2026-05-21*
+
+---
+
+## 📝 FULL SCRIPT (Read-Through — Copy & Paste in One Go)
+
+```text
+Stop taking B P C until you understand exactly how this compound heals your joints. Most people waste money injecting compounds they do not understand, and their results completely stall. I could barely walk up stairs. My back, shoulders, and knees were completely structurally destroyed. Today I hold two hundred ten pounds and feel lighter and stronger than my twenties. I am not a doctor. Talk to yours before implementing anything you hear in this. Here is exactly what changed. I will break the full science down in eight minutes. The Wolverine Stack pairs B P C with T B five-hundred for deep tissue repair. B P C activates endothelial growth factor receptors, building new blood vessels into damaged joints. Tendons and ligaments have almost zero blood supply, which is why injuries heal so slowly. T B five-hundred binds G-actin
+
+
+--- Result 5 (Source: protocols_channel_analytics_2026-06-16, VecScore: 0.333) ---
+## Video Performance Data (sorted by views)
+1. 45 LB Body Recomposition | No Muscle Lost — 283 views, 3 likes (May 6) ← BEST PERFORMER
+2. I Lost 48 Lbs on Mounjaro — How Much Was Muscle — 39 views (May 23)
+3. FDA Peptide Ban is ENDING — 11 Peptides Under Review — 32 views, 1 like (Jun 4)
+4. 4 Pillars To Survive Any GLP-1 (Short) — 14 views (Jun 13)
+5. GHK-Cu Injection Sting BPC-157 Stack (Short) — 11 views (Jun 16, same day)
+6. Wolverine Stack 30 Days BPC-157 TB-500 — 10 views (May 18)
+7. Retatrutide Phase 3 Data — 8 views (Jun 12)
+8. I Lost 38 lbs Mounjaro While Building Houses — 6 views (May 4)
+
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+Secondary Contextual Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (joint recovery:PROCESS) ──[targets]──> (shoulder injuries:MEDICAL_CONDITION)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+

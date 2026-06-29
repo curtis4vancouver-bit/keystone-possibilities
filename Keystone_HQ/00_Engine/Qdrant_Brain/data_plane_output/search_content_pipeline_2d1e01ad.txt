@@ -1,0 +1,60 @@
+Found 5 matches in ['content_pipeline']:
+
+--- Result 1 (Source: deep_research_google_flow_chrome_automation_2026-06-25, VecScore: 0.750) ---
+If the failure originates from the Veo 3.1 backend itself (e.g., a "Generation Failed" error message painted into the DOM), the timing of the retry is critical. Immediate retries are acceptable for one-off experimental failures, as transient GPU allocation errors frequently resolve within seconds. However, if consecutive backend failures are detected, it indicates severe pipeline strain or aggressive server-side rate limiting. Under these conditions, the automation should throttle the queue pacing, dropping from 4 active threads to 1, or suspending operations entirely if the failure occurs during peak global traffic periods (such as weekend evenings, which overlap with high consumer usage).   
+
+In extreme scenarios where the Chrome instance itself becomes unstable, memory leaks occur, or the CDP connection hangs irretrievably, the automation must employ a total reset. The flow_disconnect tool should be executed to gracefully tear down the browser process and clear zombie connections, followed by a complete re-initialization of the flow_connect sequence and a restoration of the remaining job queue.   
+
+Computational Economics: Tracking Google Flow Credits
+
+
+
+--- Result 2 (Source: deep_research/20260624_prompt_11_google_flow_automation_via_chrome_devtools_protocol, VecScore: 0.500) ---
+algorithm. The server should exponentially increase the delay between retry attempts (e.g., 2 seconds, 4 seconds, 8 seconds) to respect the server's load balancing while preserving the queue.   
+
+Content Policy Violations: Generative AI platforms employ strict safety and content moderation filters. If a specific user prompt triggers these filters, the tRPC response payload will return a definitive policy violation error code. A standard automation script would continuously retry this flagged prompt, resulting in an endless loop or, more severely, triggering a shadow-ban or suspension of the user's Google account. The sophisticated state machine must actively parse the JSON error body, identify the moderation flag, mark the specific prompt as FAILED_FATAL, and permanently skip it to protect the account's standing.
+
+DOM and React Desynchronization: If the MCP server fails to locate the target __reactFiber$ node or the Jotai Provider during the INJECTING phase, it indicates that the Singl
+
+
+--- Result 3 (Source: deep_research_fastapi_websocket_chat_streaming_2026-06-25, VecScore: 0.333) ---
+1000	Normal Closure	The client explicitly navigated away or logged out.
+1001	Going Away	The server is shutting down or the browser tab was closed.
+1008	Policy Violation	
+
+Used when JWT authentication fails or CSRF tokens are invalid. 
+
+
+1011	Internal Error	An unhandled exception crashed the Python route handler.
+  
+
+A robust implementation wraps the entire communication cycle in a try...except...finally structure. The try block handles the core messaging logic. The except WebSocketDisconnect block handles expected client departures gracefully. The except Exception block catches unforeseen errors (e.g., database failures, JSON parsing errors) and explicitly calls await websocket.close(code=1011) to inform the client of the crash. Crucially, the finally block is executed unconditionally, ensuring that regardless of how the connection ends—gracefully, abruptly, or via an internal crash—the manager.disconnect() function is called to purge the socket from memory and background tasks are canceled.   
+
+Horizontal Scaling: Distributed WebSockets with Redis Pub/Sub
+
+The fundamental limitation of the architectural patterns discussed thus far is that the ConnectionManager stores active sockets within a standard Python dictionary (self._rooms). This in-memory tracking rigidly restricts the application's real-time capabilities to a single process running on a single server.   
+
+
+
+--- Result 4 (Source: deep_research/20260624_prompt_11_google_flow_automation_via_chrome_devtools_protocol, VecScore: 0.333) ---
+d for re-injection.	429, 500, or 503 HTTP status codes detected via CDP.
+FAILED_FATAL	Generation halted due to non-recoverable error. Permanently skipped.	Policy violation flags or total credit depletion detected.
+
+Idempotency Verification: Before the MCP server initiates a generation cycle for a PENDING prompt, it forces the browser to evaluate the actual state of the Google Flow project. It does this by querying the embedded project.getProject tRPC stub. This guarantees the workspace is active and authenticated before proceeding.   
+
+Execution and Locking: The server advances the cursor, transitions the prompt's state to INJECTING, and utilizes the CDP techniques outlined previously to traverse the React Fiber tree, populate the Jotai Store, and invoke the onChange __reactProps$ to insert the cinematic text.
+
+Network Validation: The server triggers the native click event to finalize the generation. It immediately sets the state to GENERATING and inextricably links the active database
+
+
+--- Result 5 (Source: 20260522_social_media_automation_facebook_reels_publishing_via_graph_api_video_upload_from_ur.md, VecScore: 0.250) ---
+citly enabled at the edge. If the CDN only supports IPv4, DNS resolution timeouts may occur sporadically during the fetch operation, leading to unpredictable failure rates.   
+
+6. Telemetry, [[STATE|State]] Polling, and Error Mitigation Strategies
+
+Given the inherently asynchronous nature of cloud-based transcoding and content moderation, executing Phase 3 (the Publishing command) does not indicate that the video is instantly available to the public. Once the command is received, Meta's infrastructure must fully decode the file, scan it against global copyright violation databases, apply dynamic compression algorithms, and encode the video into various adaptive bitrate streams for mobile delivery.   
+
+6.1 The Polling Microservice
+
+An autonomous system cannot operate blindly; it must continuously monitor the lifecycle of the uploaded video to update its internal content databases and verify successful algorithmic delivery. This requires implementing a dedicated polling microservice that
+

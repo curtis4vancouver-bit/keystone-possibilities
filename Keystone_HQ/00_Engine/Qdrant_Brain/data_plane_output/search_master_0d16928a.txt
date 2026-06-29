@@ -1,0 +1,74 @@
+Found 5 matches in 'master' (reranked):
+
+--- Result 1 (Source: brain_status_dashboard.md, VecScore: 0.500, Rerank: -2.059) ---
+tered. All systems healthy.* ✅
+
+---
+
+<!-- CONTEXT: Brain Status Dashboard / 📈 4. Active Goals Checklist (Overnight Progress) -->
+## 📈 4. Active Goals Checklist (Overnight Progress)
+- [x] Upgraded AST Security sandbox whitelist to allow advanced Convergent Loop Solvers
+- [x] Compiled & deployed production CCB & Tax Optimum Calculator as FastMCP tool
+- [x] Sweep 2 client acquisition and SEO Deep Research scraping (Completed)
+- [x] Sweep 3 custom voice and corporate asset shielding (Completed)
+
+
+---
+📁 **See also:** [[Master_Docs/INDEX|← Directory Index]]
+
+
+
+--- Result 2 (Source: 00_INFRASTRUCTURE_AND_EVOLUTION.md, VecScore: 0.167, Rerank: -7.242) ---
+urnal (error→fix mappings), daily digest consolidation, stale error pruning, health scoring, weekly log compaction. CLI: `--health`, `--digest`, `--compact`, `--prune`, `--patterns`, `--test`.
+- **evaluation_harness** — Sandboxed test execution for dynamic skills. Runs fixture assertions in isolated subprocesses.
+- **security_sandbox** — AST-level code validator. Blocks dangerous imports, network calls, and file mutations before any dynamic code is deployed.
+- **prompt_refiner** — DSPy-inspired auto-refinement of prevention rules from the correction journal. Generates `refined_prevention_rules.json`.
+
+<!-- CONTEXT: Infrastructure And Evolution / Memory & Knowledge -->
+## Memory & Knowledge
+- **dream_engine** — Biologically-inspired memory consolidation (Ebbinghaus forgetting curves). Scores, consolidates, prunes, and promotes memories overnight. CLI: `--dream`, `--score`, `--consolidate`, `--prune`, `--report`.
+- **working_memory** — Ephemeral key-value store with TTL expiration. SQLit
+
+
+--- Result 3 (Source: Keystone_Sovereign_Implementation_Plan.md, VecScore: 0.067, Rerank: -8.462) ---
+overeign Coordinator:** Code the master coordinator script `sovereign_coordinator.py` that delegates goals to the sub-[[AGENTS|agents]] and maintains shared memory.
+5.  **[ ] Verify Health & Dev Tools:** Run test runs on the clinical science tools (PubMed, FDA) and developer tools (android-cli) to guarantee they are fully integrated.
+
+---
+
+<!-- CONTEXT: Keystone Sovereign Implementation Plan / Verification Plan: -->
+### Verification Plan:
+*   **Path Validation:** Run directory checks to verify all 10 folder systems exist and are readable/writable.
+*   **Multiplexer Test Run:** Execute `node [[wiki/index|index]].js` in the multiplexer directory to ensure all [[AGENTS|agents]] are correctly mapped and can toggle without warning errors.
+*   **YMYL Compliance Scrub:** Run a programmatic text parser across your draft scripts to verify that banned phrases ("protocol", "dosing") are automatically replaced with safe terms ("case study", "titration schedule").
+
+
+---
+📁 **See also:** [[Master_Doc
+
+
+--- Result 4 (Source: 13_ENTITY_INDEXING_AND_KNOWLEDGE_GRAPH_RESTORATION.md, VecScore: 0.077, Rerank: -10.199) ---
+alidate Fix**. This starts the tracking process and initiates an immediate, real-time check of sample URLs. The validation then transitions through a series of automated status gates:
+
+```
+┌──────────────┐      ┌───────────────┐      ┌──────────────┐      ┌────────────┐
+│ Not Started  ├─────►│    Started    ├─────►│ Looking Good ├─────►│   Passed   │
+└──────────────┘      └───────┬───────┘      └──────────────┘      └────────────┘
+                              │
+                              ▼
+                      ┌───────────────┐
+                      │    Failed     │ (Requires inspection and re-validation)
+                      └───────────────┘
+```
+
+*   **Not Started:** GSC has logged the error, and no active validation attempt has been requested.
+*   **Started:** The initial sweep of a small subset of the affected pages has passed, and Google has placed the remaining URLs into a queue for systematic recrawling.
+*   **Looking Good:** Googlebot’s continuous checks are passing with
+
+
+--- Result 5 (Source: brain_status_dashboard.md, VecScore: 0.125, Rerank: -10.528) ---
+d_click-through_optimiz]].md)
+- **[99]** [[Research_Archives/04_YT_Analytics/20260522_youtube_algorithm_viral_hook_patterns_analysis_for_health_and_construction_con|20260522_youtube_algorithm_viral_hook_patterns_analysis_for_health_and_construction_con]].md](file:///Research_Archives/[[Research_Archives/04_YT_Analytics/20260522_youtube_algorithm_viral_hook_patterns_analysis_for_health_and_construction_con|20260522_youtube_algorithm_viral_hook_patterns_analysis_for_health_and_construction_con]].md)
+- **[100]** [[Research_Archives/04_YT_Analytics/20260522_youtube_algorithm_youtube_algorithm_changes_may_2026_and_optimization_strategi|20260522_youtube_algorithm_youtube_algorithm_changes_may_2026_and_optimization_strategi]].md](file:///Research_Archives/[[Research_Archives/04_YT_Analytics/20260522_youtube_algorithm_youtube_algorithm_changes_may_2026_and_optimization_strategi|20260522_youtube_algorithm_youtube_algorithm_changes_may_2026_and_optimization_strategi]].md)
+- **[101]** [[Research_
+

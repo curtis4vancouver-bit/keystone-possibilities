@@ -1,0 +1,24 @@
+# fastlane/Fastfile
+default_platform(:android)
+
+platform :android do
+  desc "Execute dynamic compilation and upload sequence for white-label tenants"
+  lane :deploy_tenant do |options|
+    # Validate isolated multi-tenant parameters
+    UI.user_error!("Tenant package identifier is required") unless options[:package_name]
+    UI.user_error!("Path to tenant API service key is required") unless options[:json_key_path]
+    UI.user_error!("Path to target AAB binary is required") unless options[:aab_path]
+
+    # Execute Google Play upload sequence via Supply in non-interactive CI
+    supply(
+      package_name: options[:package_name],
+      json_key: options[:json_key_path],
+      aab: options[:aab_path],
+      track: options[:track] || "internal",
+      release_status: "completed",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end

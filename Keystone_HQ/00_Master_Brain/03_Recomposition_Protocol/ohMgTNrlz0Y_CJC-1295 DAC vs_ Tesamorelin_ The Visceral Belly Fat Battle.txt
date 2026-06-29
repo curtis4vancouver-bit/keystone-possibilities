@@ -1,0 +1,31 @@
+# Protocol: CJC-1295 with DAC vs. Tesamorelin (Visceral Belly Fat & Recomposition)
+
+## 1. Overview
+This protocol compares the heavyweights of growth hormone secretagogues (GHRHs) for targeting deep abdominal visceral adipose tissue (VAT) and optimizing body recomposition: CJC-1295 with DAC versus Tesamorelin.
+
+## 2. CJC-1295 with DAC (Drug Affinity Complex)
+* **Mechanism of Action**: Uses a drug affinity complex linker (maleimidopropionic acid) to bind covalently to circulating human serum albumin.
+* **Half-Life**: Extended from 30 minutes to 6–8 days, requiring only 1–2 injections per week.
+* **The Biological Cost (The "GH Bleed")**: Because it permanently binds to albumin, GHRH receptors remain continuously activated 24/7. The baseline growth hormone trough never drops back to zero.
+* **Pathological Risks (Self-Healing / Failed Pathway Warning)**: Chronic GH elevation mimics acromegaly. Over weeks and months, this leads to insulin resistance, severe water retention, joint/hand swelling, and left ventricular cardiac thickening (cardiovascular damage). 
+* **Verdict**: The weekly convenience of CJC-DAC presents an unacceptable biological risk to cardiovascular health.
+
+## 3. Tesamorelin (The Clinical Gold Standard)
+* **Mechanism of Action**: A 44-amino-acid GHRH analog stabilized with a hexanoyl group on the N-terminal tyrosine. It does not bind to albumin.
+* **Half-Life**: ~30 minutes, with a biological activity window of 4–5 hours. It clears the system quickly, preserving the pituitary gland's natural pulsatile feedback loops and preventing receptor desensitization.
+* **Clinical Efficacy Data**:
+  * **Visceral Fat (JAMA, 2014)**: Demonstrated a 15% to 18% reduction in deep visceral adipose tissue (VAT) over 26 weeks.
+  * **Liver Fat (Lancet HIV)**: Achieved a 37% relative reduction in liver fat over 12 months, actively halting the progression of liver fibrosis.
+  * **Muscle Retention**: Increases lean skeletal muscle mass simultaneously without dropping total body weight.
+
+## 4. Advanced Recomposition Stack Integration
+* **The Synergistic Pulse**: Pair daily **Tesamorelin** (GHRH signal) with **Ipamorelin** (ghrelin receptor agonist/GHS) to trigger a clean, robust growth hormone pulse without elevating cortisol or prolactin.
+* **Timing**: Administer before bed in a strictly fasted state (minimum of 2 hours since your last meal).
+* **Foundation Anchors**:
+  * **Protein Floor**: 2 grams of protein per kilogram of lean body mass daily.
+  * **Resistance Training**: 4 heavy strength/hypertrophy training sessions per week.
+  * **Audio Anchor**: Stream the *Keystone Recomposition Recovery* tracks on Spotify to lock in training focus and autonomic recovery.
+
+## 5. Regulatory & Sourcing Landscape
+* **CJC-1295 Status**: On December 4, 2024, the FDA advisory committee formally voted against keeping CJC-1295 on the compounded bulk substances list, pushing it into strict gray-market research status.
+* **Tesamorelin Status**: Remains FDA approved. Must be sourced through a licensed physician and a registered 503A compounding pharmacy to guarantee purity and safety. Avoid unregulated gray-market research websites.

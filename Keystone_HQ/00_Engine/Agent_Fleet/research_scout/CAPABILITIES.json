@@ -1,0 +1,21 @@
+{
+  "agent_name": "research_scout",
+  "skills": [
+    "deep_research",
+    "opportunity_discovery",
+    "threat_identification",
+    "trend_analysis"
+  ],
+  "apis": [
+    "brave_search",
+    "chrome_devtools"
+  ],
+  "strengths": [
+    "Proactive research",
+    "Market intelligence",
+    "Competitor analysis"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "all"
+}

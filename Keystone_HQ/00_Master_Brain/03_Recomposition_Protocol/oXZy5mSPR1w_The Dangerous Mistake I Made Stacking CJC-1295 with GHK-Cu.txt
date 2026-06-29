@@ -1,0 +1,43 @@
+# Protocol Study: CJC-1295 & GHK-Cu Antagonist Conflict (The Zinc-Copper Trap)
+
+## Context: GLP-1 Structural Collapse
+Rapid weight loss from GLP-1 agonists (such as Semaglutide) can result in up to 40% of the lost weight coming from lean muscle tissue. This shifts the metabolic set point downward while severely degrading the body's structural foundation (tendons, joints, and skeletal muscle).
+
+---
+
+## The Reconstruction Protocol (Targeted Phases)
+
+1. **Structural Reinforcement (Wolverine Stack)**:
+   * **Compounds**: BPC-157 + TB-500
+   * **Purpose**: Acts as biological rebar to reinforce damaged tendons, ligaments, and muscle tissues.
+2. **Hypertrophy Signal (Growth Hormone Protocol)**:
+   * **Compounds**: CJC-1295 + Ipamorelin
+   * **Dosing**: 5 days on, 2 days off (mimics natural GH pulses to stimulate tissue building).
+   * **Duration**: Structured as a finite hypertrophy phase; cycle off completely once muscle is restored.
+3. **Skin Elasticity (Glow Protocol)**:
+   * **Compound**: GHK-Cu (Copper Peptide) injections
+   * **Purpose**: Restores skin tautness and elasticity after rapid weight loss.
+
+---
+
+## FAILED PATHWAY: The CJC-1295 + GHK-Cu Conflict (Critical Self-Healing Log)
+* **The Mistake**: Running CJC-1295 pulses and GHK-Cu injections concurrently without mineral balancing.
+* **Symptoms Experienced**: Intense neuromuscular soreness, profound physical exhaustion, and worsening joint stiffness.
+* **Biochemical Failure Mechanism**:
+  1. **Zinc Depletion**: CJC-1295 pulses the pituitary gland, which rapidly drains the body's elemental zinc reserves. Zinc is the primary mineral needed for testosterone synthesis, recovery, and structural integrity.
+  2. **Copper Antagonism**: Exogenous GHK-Cu introduces high levels of copper. Copper is a direct antagonist to zinc absorption.
+  3. **The Result**: The system was simultaneously draining zinc through pituitary stimulation and actively blocking remaining zinc absorption with copper, leading to severe relative copper toxicity and a total failure of muscle/nerve recovery mechanisms.
+
+---
+
+## The Pivot & Corrective Actions
+1. **Immediate Cessation**: Dropped GHK-Cu entirely from the protocol to remove the antagonist.
+2. **Aggressive Zinc Replenishment**: Supplemented with **50 mg of elemental zinc daily** to rapidly refill depleted systemic reserves.
+3. **Results**: Neuromuscular soreness and exhaustion vanished within days. Once the foundational mineral balance was restored, the Wolverine stack and CJC-1295 began functioning optimally.
+
+---
+
+## Core System Directives for Peptide Stacking
+* **Order of Operations**: Never run high-voltage wiring without a proper ground. Zinc is the biological grounding wire. Only run copper (GHK-Cu) protocols when systemic zinc levels are highly saturated and stable.
+* **Tools, Not Crutches**: Peptides are tools used to repair a broken foundation, not long-term crutches. Indefinite use of growth hormone secretagogues risks **tachyphylaxis** (receptor downregulation, causing the body to stop responding to the signals entirely).
+* **Order of Progression**: Rebuild the tendon/joint base (Wolverine Stack) -> Trigger hypertrophy and recovery (CJC-1295/Ipamorelin) -> Remodel skin (GHK-Cu post-reconstruction) -> Transition to drug-free maintenance.

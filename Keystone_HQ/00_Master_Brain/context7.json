@@ -1,0 +1,16 @@
+{
+  "projectTitle": "Keystone Sovereign Master Brain",
+  "description": "Autonomous AI orchestration system for Wayne Stevenson's dual-brand empire.",
+  "branch": "main",
+  "excludeFolders": [
+    "node_modules",
+    "dist",
+    "build",
+    ".cache",
+    ".vscode",
+    ".Qdrant_Brain"
+  ],
+  "excludeFiles": [
+    "*.log"
+  ]
+}

@@ -1,0 +1,118 @@
+=== post_1080.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 6 occurrences of 'disclaimer':
+  - <p>⚠️ <strong>Medical Disclaimer:</strong> I am not a medical professional. Nothing on this page constitutes medical advice, diagnos
+  - <p>⚠️ <strong>Disclaimer:</strong> The content on this page is for educational and informational purposes only. It is not in
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_1149.json ===
+Found 3 occurrences of 'twin':
+  - <div class="kr-disclaimer-box twin">
+  - <div class="kr-disclaimer-title">⚠️ Digital Twin Disclosure</div>
+  - omposition brand is hosted by a photorealistic, synthetic visual network representation (AI Digital Twin) of Wayne Stevenson. All real-world job site footage, personal clinical lab work, physical training
+Found 0 occurrences of 'display: none':
+Found 7 occurrences of 'disclaimer':
+  - <div class="kr-disclaimer-grid">
+  - <div class="kr-disclaimer-box medical">
+  - <div class="kr-disclaimer-title">⚠️ Medical Disclaimer</div>
+  - <p class="kr-disclaimer-text">
+  - <div class="kr-disclaimer-box twin">
+  - <div class="kr-disclaimer-title">⚠️ Digital Twin Disclosure</div>
+  - <p class="kr-disclaimer-text">
+
+=== post_1178.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 0 occurrences of 'disclaimer':
+
+=== post_688.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 4 occurrences of 'disclaimer':
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_698.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 4 occurrences of 'disclaimer':
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_703.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 4 occurrences of 'disclaimer':
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_712.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 4 occurrences of 'disclaimer':
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_721.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 4 occurrences of 'disclaimer':
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_747.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 6 occurrences of 'disclaimer':
+  - <h2 class="wp-block-heading"><strong>Mission, Disclaimer, &amp; Stats Blocks</strong></h2>
+  - <p><strong>The Disclaimer:</strong> I am a Content Architect, not a Medical Inspector. These technical discussions regarding
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_763.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 5 occurrences of 'disclaimer':
+  - <p class="wp-block-paragraph"><strong>SITE SAFETY NOTICE / MEDICAL DISCLAIMER:</strong> <em>The content provided by Wayne Stevenson and the Keystone Recomposition brand is stric
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_974.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 5 occurrences of 'disclaimer':
+  - <p><em>Disclaimer: This post reflects my personal experience with a medication prescribed by my physician. Mounjaro (
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+
+=== post_982.json ===
+Found 0 occurrences of 'twin':
+Found 0 occurrences of 'display: none':
+Found 6 occurrences of 'disclaimer':
+  - <h3 class="wp-block-heading">Disclaimer Block</h3>
+  - <p><em>⚠️ Disclaimer: This article is educational content reviewing published clinical research. The author is not a med
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->
+  - <div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15)
+  - margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>
+  - <!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->
+

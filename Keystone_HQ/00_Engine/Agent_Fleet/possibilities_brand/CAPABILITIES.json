@@ -1,0 +1,24 @@
+{
+  "agent_name": "possibilities_brand",
+  "skills": [
+    "google_flow_prompting",
+    "youtube_upload",
+    "blog_writing",
+    "seo_optimization",
+    "omi_scripting"
+  ],
+  "apis": [
+    "youtube_data_v3",
+    "search_console",
+    "meta_graph"
+  ],
+  "strengths": [
+    "Construction content",
+    "PM/Bill 44 expertise",
+    "Local SEO",
+    "Sea-to-Sky corridor"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "possibilities"
+}

@@ -1,0 +1,138 @@
+{
+  "name": "Keystone Facebook Page Router",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "publish-facebook",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "webhook-trigger",
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json.body;\nconst pageMap = {\n  'possibilities': '166025896601563',\n  'recomposition': '898671469990393',\n  'protocol': '898671469990393'\n};\nreturn {\n  brand: input.brand,\n  text: input.text,\n  media_url: input.media_url,\n  page_id: pageMap[input.brand] || '166025896601563'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "brand-router",
+      "name": "Route Brand"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v20.0/me/accounts?access_token={{$credentials.metaSystemUserToken}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        400,
+        0
+      ],
+      "id": "get-page-tokens",
+      "name": "Get Page Tokens"
+    },
+    {
+      "parameters": {
+        "jsCode": "const accounts = $json.data || [];\nconst targetPageId = $('Route Brand').item.json.page_id;\nconst match = accounts.find(a => a.id === targetPageId);\nif (!match) {\n  throw new Error('Target Facebook Page ID ' + targetPageId + ' not found in accounts.');\n}\nreturn match;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        0
+      ],
+      "id": "filter-target-page",
+      "name": "Filter Page"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v20.0/{{$json.id}}/feed",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "=$('Route Brand').item.json.text"
+            },
+            {
+              "name": "access_token",
+              "value": "=$json.access_token"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        800,
+        0
+      ],
+      "id": "post-to-feed",
+      "name": "Publish to Page"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Route Brand",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Brand": {
+      "main": [
+        [
+          {
+            "node": "Get Page Tokens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Page Tokens": {
+      "main": [
+        [
+          {
+            "node": "Filter Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Page": {
+      "main": [
+        [
+          {
+            "node": "Publish to Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

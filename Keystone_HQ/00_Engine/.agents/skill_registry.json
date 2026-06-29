@@ -1,0 +1,233 @@
+{
+  "version": "2026-06-10",
+  "skills": [
+    {
+      "name": "00_keystone_foundation",
+      "location": "global",
+      "description": "UNIVERSAL FOUNDATION \u2014 auto-loads for every Keystone agent. Provides brand identity, full MCP tool inventory with exact call syntax, workspace paths, and operating rules. Token-efficient by design.",
+      "auto_load": true
+    },
+    {
+      "name": "01_chronos_master_brain",
+      "location": "global",
+      "description": "Master Brain orchestrator. Loops through all agents, checks status, triggers self-healing, and coordinates the entire Keystone empire.",
+      "auto_load": false
+    },
+    {
+      "name": "02_possibilities_brand",
+      "location": "global",
+      "description": "Master Full-cycle Keystone Possibilities Agent. Researches PM/Bill 44, writes Omi-optimized scripts, generates Google Flow + B-roll prompts, assembles DaVinci timelines, writes website blogs, and uploads everywhere (YouTube, LinkedIn, FB, IG, Google Knowledge Panel). Avoids overlap by checking Research_Archives.",
+      "auto_load": false
+    },
+    {
+      "name": "03_keystone_uploader",
+      "location": "global",
+      "description": "Uploads media to Keystone Possibilities YouTube, Facebook, and Instagram accounts.",
+      "auto_load": false
+    },
+    {
+      "name": "04_keystone_local_seo",
+      "location": "global",
+      "description": "Local SEO domination for Keystone Possibilities. GMB optimization, citation building, and ranking strategies for the Sea-to-Sky corridor.",
+      "auto_load": false
+    },
+    {
+      "name": "05_protocol_script_studio",
+      "location": "global",
+      "description": "APOLLO \u2014 Full-cycle Protocol/Recomposition content engine. Researches peptide science & wellness trends, writes serialized scripts, generates Google Flow & B-roll prompts, assembles DaVinci timelines, publishes to YouTube Protocols and Recomposition socials, and writes website blogs. Self-learning with brain memory.",
+      "auto_load": false
+    },
+    {
+      "name": "06_protocol_uploader",
+      "location": "global",
+      "description": "Uploads Protocol/Recomposition videos to Instagram, Facebook, TikTok, and YouTube.",
+      "auto_load": false
+    },
+    {
+      "name": "07_protocol_brand_awareness",
+      "location": "global",
+      "description": "Broader PR and brand campaigns for the Protocol/Recomposition brand. Ranks it #1 in the health/wellness space.",
+      "auto_load": false
+    },
+    {
+      "name": "08_music_brand",
+      "location": "global",
+      "description": "Full-cycle Keystone Recomposition music production, signature Google Flow female avatar generation, personalized lyrics writing, MusicBrainz cataloging, and automated multi-platform publishing.",
+      "auto_load": false
+    },
+    {
+      "name": "09_youtube_operations",
+      "location": "global",
+      "description": "Consolidates YouTube upload, research, and strategy into a single unified skill. Integrates youtube-manager and youtube-researcher MCPs for automated channel scheduling and competitive analysis.",
+      "auto_load": false
+    },
+    {
+      "name": "10_content_pipeline",
+      "location": "global",
+      "description": "Master End-to-End Content Pipeline Orchestrator. Coordinates script drafting, research verification, asset generation, DaVinci Resolve assembly, upload quality checks, and automated blogging traffic loops.",
+      "auto_load": false
+    },
+    {
+      "name": "11_webmaster",
+      "location": "global",
+      "description": "Keystone Webmaster \u2014 SEO domination, landing page generation, Google Console fixes, Knowledge Panel management, blog-to-video traffic loops, and cross-brand backlinking for both Possibilities and Recomposition sites. Self-learning, self-fixing.",
+      "auto_load": false
+    },
+    {
+      "name": "12_legal_counsel",
+      "location": "global",
+      "description": "Dedicated to legal matters, compliance, contract review, and dispute resolution for the Keystone empire.",
+      "auto_load": false
+    },
+    {
+      "name": "13_tax_strategist",
+      "location": "global",
+      "description": "Focuses on tax strategies, deductions, and financial structuring for Keystone Possibilities and Recomposition.",
+      "auto_load": false
+    },
+    {
+      "name": "14_property_scout",
+      "location": "global",
+      "description": "Finds properties for retreats, visualizes layouts with Gemini 3D, and researches real estate opportunities.",
+      "auto_load": false
+    },
+    {
+      "name": "15_site_superintendent",
+      "location": "global",
+      "description": "Strictly for active job sites. Checks blueprints, handles STEP code requirements, and ensures construction site compliance.",
+      "auto_load": false
+    },
+    {
+      "name": "16_research_scout",
+      "location": "global",
+      "description": "Proactive self-learning research agent. Autonomously discovers opportunities, identifies threats, and presents curated recommendations across all Keystone verticals. Asks permission before deep research.",
+      "auto_load": false
+    },
+    {
+      "name": "17_analytics_reporting",
+      "location": "global",
+      "description": "Unified performance analytics across all Keystone channels. Pulls YouTube, Spotify, Search Console, and social data. Generates weekly cross-brand performance reports.",
+      "auto_load": false
+    },
+    {
+      "name": "18_executive_assistant",
+      "location": "global",
+      "description": "Wayne's personal Executive Assistant. Manages Gmail, sorts emails into folders, drafts replies for review, and organizes Google Docs.",
+      "auto_load": false
+    },
+    {
+      "name": "google-flow-automation",
+      "location": "global",
+      "description": ">",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-client-acquisition",
+      "location": "global",
+      "description": "Automated client acquisition for Keystone Possibilities construction. LinkedIn leads, local citations, PR pitching, competitor intelligence. Use when finding new construction clients in Sea-to-Sky corridor.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-geo-deployment",
+      "location": "global",
+      "description": "Deploy Generative Engine Optimization (GEO) to Keystone websites. Schema markup, sameAs links, FAQ schema, structured data, AI bot access. Use when implementing SEO/GEO changes on live WordPress sites.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-self-documentation",
+      "location": "global",
+      "description": "Auto-document new skills, workflows, and learnings into the Master Brain. Use after completing any task to ensure the system remembers what it learned.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-architect-orchestration",
+      "location": "global",
+      "description": "Master orchestration instruction set for Wayne Stevenson's Keystone dual-brand empire. ACTIVATE when operating in Keystone_HQ/00_Master_Brain to coordinate sub-agents, execute tasks, or fetch historical documents.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-chrome-research-automation",
+      "location": "global",
+      "description": "Automated Chrome Deep Research cycle. Opens tabs in Google Chrome, runs Deep Research prompts, waits for completion, extracts results, ingests into brain, closes tabs, repeats. Use with /schedule for overnight runs.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-davinci-timeline-assembly",
+      "location": "global",
+      "description": ">-",
+      "auto_load": false
+    },
+    {
+      "name": "Keystone Instant Indexer",
+      "location": "global",
+      "description": "Bypasses WordPress cache and plugins to instantly push sitemap URLs directly to the Google Indexing API using the Master Brain service account key.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-overnight-sweep-monitor",
+      "location": "global",
+      "description": "Wraps the entire overnight Chrome Deep Research loop with bulletproof credit gating, error recovery, automatic hourly credit checks, and morning report generation. Use with /schedule to run autonomous overnight research sessions.",
+      "auto_load": false
+    },
+    {
+      "name": "keystone-session-bootstrap",
+      "location": "global",
+      "description": "AUTO-ACTIVATE on every new conversation in the Master Brain workspace. Restores context from the correction journal, brain vector DB, and latest daily digest so the agent remembers past learnings and starts every session smarter.",
+      "auto_load": true
+    },
+    {
+      "name": "keystone-short-production-pipeline",
+      "location": "global",
+      "description": ">",
+      "auto_load": false
+    },
+    {
+      "name": "keystone_sovereign_evolution",
+      "location": "global",
+      "description": "Equips the AI with master workflows for database scrubbing, stylesheet cache-busting, visual play-button aesthetics, and premium watch-page indexing across the Keystone website network.",
+      "auto_load": false
+    },
+    {
+      "name": "research_verification_gate",
+      "location": "global",
+      "description": "Mandatory pre-publication scientific and medical fact-checking gate. Traces claims to peer-reviewed primary sources, checks preprint and retraction status, verifies US/Canadian regulatory compliance, and enforces standardized dosing notation.",
+      "auto_load": false
+    },
+    {
+      "name": "upload_quality_gate",
+      "location": "global",
+      "description": "Mandatory pre-upload verification gate for all media. Enforces 3-channel YouTube token routing, cross-platform social media routing, AI disclosure labels, disclaimers, and format verification.",
+      "auto_load": false
+    },
+    {
+      "name": "banner-creator",
+      "location": "workspace",
+      "description": "Create banners using AI image generation. Discuss format/style, generate variations, iterate with user feedback, crop to target ratio. Use when user wants to create a banner, header, hero image, cover image, GitHub banner, Twitter header, or readme banner.",
+      "auto_load": false
+    },
+    {
+      "name": "domain-hunter",
+      "location": "workspace",
+      "description": "Search domains, compare prices, find promo codes, get purchase recommendations. Use when user wants to buy a domain, check domain prices, find domain deals, compare registrars, or search for .ai/.com domains.",
+      "auto_load": false
+    },
+    {
+      "name": "logo-creator",
+      "location": "workspace",
+      "description": "Create logos using AI image generation. Discuss style/ratio, generate variations, iterate with user feedback, crop, remove background, and export as SVG. Use when user wants to create a logo, icon, favicon, brand mark, mascot, emblem, or design a logo.",
+      "auto_load": false
+    },
+    {
+      "name": "requesthunt",
+      "location": "workspace",
+      "description": "Generate user demand research reports from real user feedback. Scrape and analyze feature requests, complaints, and questions from Reddit, X, GitHub, YouTube, LinkedIn, and Amazon. Use when user wants to do demand research, find feature requests, analyze user demand, or run RequestHunt queries.",
+      "auto_load": false
+    },
+    {
+      "name": "seo-geo",
+      "location": "workspace",
+      "description": "SEO & GEO (Generative Engine Optimization) for websites. Analyze keywords, generate schema markup, optimize for AI search engines (ChatGPT, Perplexity, Gemini, Copilot, Claude) and traditional search (Google, Bing). Use when user wants to improve search visibility, search optimization, search ranking, AI visibility, ChatGPT ranking, Google AI Overview, indexing, JSON-LD, meta tags, or keyword research.",
+      "auto_load": false
+    }
+  ]
+}

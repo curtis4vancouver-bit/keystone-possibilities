@@ -1,0 +1,100 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 20260521_low_cost_branding_testing_low-budget_meta_and_youtube_ads_for_local_and_digita.md, VecScore: 0.500) ---
+. The Click ID, represented by the fbclid URL parameter and stored in the _fbc cookie, is appended to the URL whenever a user clicks a Meta ad. Capturing this parameter in the GTM Data Layer and passing it through the CAPI payload is non-negotiable for deterministic attribution calculation. Other high-priority parameters include the Facebook Login ID and Date of Birth, while medium-priority parameters include Phone Number, Client IP Address, Browser ID, and physical address data (City, Country, Zip).   
+
+Customer Information Parameter	EMQ Priority Weight	Functionality in Matching
+Email ID (Hashed)	High	Primary unique identifier linking web visitors to Meta accounts.
+Click ID (fbclid / _fbc)	High	Deterministic tracking parameter generated upon ad click.
+Facebook Login ID	High	Direct account identification marker.
+Phone Number (Hashed)	Medium	Secondary unique identifier, often captured via lead forms.
+Client IP Address / Browser ID	Medium	Probabilistic matching parameters used when deter
+
+
+--- Result 2 (Source: 20260522_shopify_audiobook_funnel.md, VecScore: 0.333) ---
+,
+          "variant_id": { "type": "integer" },
+          "title": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "requires_shipping": { "type": "boolean", "const": false }
+        },
+        "required": ["id", "product_id", "variant_id", "title", "quantity", "requires_shipping"]
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" }
+      },
+      "required": ["first_name"]
+    }
+  },
+  "required": ["id", "email", "financial_status", "line_items", "customer"]
+}
+```
+
+---
+
+## 2. Secure Webhook Validation & Ingestion Engine
+
+To prevent malicious fake orders from triggering downloads, the ingestion script must verify Shopify's SHA-256 HMAC signature. The following Python script implements this check and simulates BookFunnel/Fileflare delivery API triggers.
+
+```python
+# file: webhook_handler.py
+import hmac
+import hashlib
+import base64
+im
+
+
+--- Result 3 (Source: 06_cra_taxpayer_relief_guide.md, VecScore: 0.250) ---
+ves, or unencumbered corporate assets, the CRA will summarily reject the personal hardship claim. The agency will argue that the taxpayer has the "borrowing capacity" or the executive authority to simply declare a larger dividend to satisfy the tax debt.
+
+To successfully defend the hardship claim against this level of scrutiny, the RC376 submission must proactively demonstrate that the corporation is similarly devoid of liquidity and operating on the precipice of insolvency. The CRA collections directorate will require the submission of comprehensive corporate financial data, including:
+- A corporate balance sheet detailing all assets and liabilities.
+- A detailed statement of earnings, including gross sales, interest, rental income, and other revenues.
+- A statement of expenses, including the cost of goods sold and operating expenses.
+- Relevant T2 Corporation Income Tax Return schedules, potentially including Schedule 8 (Capital Cost Allowance) and Schedule 50 (Shareholder Informatio
+
+
+--- Result 4 (Source: 06_cra_taxpayer_relief_guide.md, VecScore: 0.200) ---
+00 annual personal dividend must be declared here, alongside any other micro-income streams. Furthermore, the CRA does not evaluate the taxpayer in isolation; they evaluate the entire family unit. The net income of a spouse or common-law partner must be disclosed to determine the true borrowing capacity and household liquidity available to service the tax debt.
+2. **Living Expenses**: The taxpayer must itemize all monthly expenditures, including rent or mortgage payments, property taxes, utilities, groceries, medical expenses, child care, and transportation costs.
+3. **Asset Inventory**: A full balance sheet of personal wealth is required. The taxpayer must list all vehicles (including make, model, year, and market value), real estate properties, investments (TFSAs, RRSPs), and other liquid or illiquid assets (collectibles, antiques). The CRA uses this section to determine if the taxpayer has the ability to sell assets to pay the debt.
+4. **Liability Statement**: A comprehensive list o
+
+
+--- Result 5 (Source: 20260522_shopify_audiobook_funnel.md, VecScore: 0.167) ---
+id webhook
+    mock_payload = {
+        "id": 8847293810,
+        "email": "customer@keystone.com",
+        "financial_status": "paid",
+        "line_items": [
+            {
+                "id": 9938829,
+                "product_id": 7729103,
+                "variant_id": 12049583,
+                "title": "Keystone Recomposition Audiobook - High Performance Building",
+                "quantity": 1,
+                "requires_shipping": False
+            }
+        ],
+        "customer": {
+            "first_name": "Wayne",
+            "last_name": "Stevenson"
+        }
+    }
+    
+    raw_data = json.dumps(mock_payload).encode('utf-8')
+    
+    # Calculate a valid test HMAC
+    test_secret = "shopify_test_key"
+    digest = hmac.new(test_secret.encode('utf-8'), raw_data, hashlib.sha256).digest()
+    test_hmac = base64.b64encode(digest).decode('utf-8')
+    
+    # Run verification and test
+    engine = WebhookIngestionEngine(test_secret, "bookfunnel_partner_secret_123")
+    if engine.verif
+

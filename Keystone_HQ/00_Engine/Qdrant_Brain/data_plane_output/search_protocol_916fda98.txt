@@ -1,0 +1,127 @@
+Found 8 matches in ['protocol']:
+
+--- Result 1 (Source: bpc-157_research_report.md, VecScore: 0.750) ---
+# Keystone Health & Longevity Research Report: Bpc-157
+
+> **Date compiled:** 2026-05-21 12:31:20
+> **Compliance Status:** YMYL YouTube safe-harbor checked.
+
+## 🧬 Peptide Profile & Cellular Context
+Pentadecapeptide, highly active in tendon/muscle healing and cellular synthesis.
+
+## 🔬 Peer-Reviewed Clinical Evidence (PubMed Catalog)
+1. **[Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance.](https://pubmed.ncbi.nlm.nih.gov/41966639/)**
+   * *Authors:* Mendias CL, Awan TM
+   * *Published:* 2026 Apr 12 | *Source:* Sports Med
+
+2. **[From Regeneration to Analgesia: The Role of BPC-157 in Tissue Repair and Pain Management.](https://pubmed.ncbi.nlm.nih.gov/41898733/)**
+   * *Authors:* Yuan C, Demers A, Silva-Ortiz V
+   * *Published:* 2026 Mar 22 | *Source:* Int J Mol Sci
+
+3. **[Stable Gastric Pentadecapeptide BPC 157 as a Therapy of Severe Electrolyte Disturbances in Rats.](https://pubmed.ncbi.nlm.nih.gov/41832718/)**
+   * *Aut
+
+
+--- Result 2 (Source: bpc-157_research_report.md, VecScore: 0.700) ---
+:* 2026 Mar 22 | *Source:* Int J Mol Sci
+
+3. **[Stable Gastric Pentadecapeptide BPC 157 as a Therapy of Severe Electrolyte Disturbances in Rats.](https://pubmed.ncbi.nlm.nih.gov/41832718/)**
+   * *Authors:* Grubisic MM, Strbe S, Barisic I
+   * *Published:* 2026 Mar 13 | *Source:* Curr Neuropharmacol
+
+## 🛡️ YMYL YouTube Scripting Safe-Harbors
+- Always refer to the process as a 'titration schedule' rather than a 'protocol'.
+- Frame all peptide usages as 'combinatorial analysis' or 'cellular case studies'.
+- Strictly list trusted 'supply chains' and 'suppliers' instead of 'vendors' or 'sources'.
+
+
+---
+📁 **See also:** [[07_Health_Protocols/INDEX|← Directory Index]]
+
+
+
+--- Result 3 (Source: Keystone_Agent_Training_Vault.gdoc, VecScore: 0.476) ---
+ntent constitutes medical advice or titration prescribing. Always consult a licensed clinical specialist."
+Peer-Reviewed Academic Grounding (The "Shield" Context):
+Muscle Wastage Ratio: Batsis et al. 2026 documented that up to 34.9% of total weight lost on Tier 1 GLP-1 receptor agonists is lean skeletal muscle, not fat.
+Post-Titration Regain Plateau: Lin et al. 2026 proved a 75.6% weight regain plateau when stopping GLP-1s without heavy eccentric resistance training and structural metabolic stabilization.
+Peptide Mechanics: Strictly frame BPC-157 and TB-500 as "In Vitro collagen synthesis research" and "cellular wound-healing mechanisms," never as injectable products for self-administration.
+
+
+
+
+--- Result 4 (Source: INDEX.md, VecScore: 0.458) ---
+# 07_Health_Protocols
+
+- [[bpc-157_research_report]]
+
+
+
+--- Result 5 (Source: Keystone_Agent_Training_Vault.gdoc, VecScore: 0.417) ---
+epletive Metabotype (Why 34% of GLP-1 weight loss is structural muscle).
+Narrative Arc: Framing muscle loss as "structural damage" and "planning theater."
+Visual Prompts (Veo 3.1): High-performance mountain architecture matching Squamish grade variations, contrasting with clinical weight training clips.
+Solfeggio/Music Signal: Melodic House, Deep Cello, Soulful Female Vocals.
+
+2. COMPLIANCE & SCIENCE TRAINING FEED (YMYL / GLP-1 / PEPTIDES)
+Grounding text to bypass YouTube's 2026 YMYL manual review filters using the EDSA Exception.
+Non-Negotiable Medical Disclaimer:
+"I am a residential builder, not a medical doctor. This video represents a single-subject case study (N-of-1) tracking my own metabolic administration cadence, body recomposition progress, and structural rebuild. None of this content constitutes medical advice or titration prescribing. Always consult a licensed clinical specialist."
+Peer-Reviewed Academic Grounding (The "Shield" Context):
+Muscle Wastage Ratio: Batsis et al. 
+
+
+--- Result 6 (Source: Keystone_Agent_Training_Vault.gdoc, VecScore: 0.367) ---
+
+KEYSTONE AGENT TRAINING & CONTINUITY VAULT
+This document serves as the live training corpus and context database for the Google Antigravity agentic workflow. It bridges the Gap between local vector databases and Google Workspace documents, maintaining strict continuity across video production, brand compliance, and competitive research.
+
+1. YOUTUBE VIDEO CONTINUITY LOG
+Last Released Video (Baseline):
+Format: Spoken metabolic breakdown + Melodic House visualizer.
+Narrative Anchor: "Phase 2" hypertrophy build. Transitioning away from depletive weight loss to structural, load-bearing muscle preservation.
+Visual Assets: Squamish great room Great views, cold plunge, heavy lifting B-roll.
+Audio Base: Steady pulse Melodic House (124 BPM).
+
+Next Planned Video (Active Context):
+Target Title: The Depletive Metabotype (Why 34% of GLP-1 weight loss is structural muscle).
+Narrative Arc: Framing muscle loss as "structural damage" and "planning theater."
+Visual Prompts (Veo 3.1): High-performance mo
+
+
+--- Result 7 (Source: Master_Strategy_Protocol_Extract, VecScore: 0.254) ---
+ clean-cut graying hair, sharp jawline, dressed in charcoal gray technical canvas shirt, standing on custom timber construction site in Squamish BC. Cinematic lighting, morning mountain fog, shot on Arri Alexa 65, 85mm lens, photorealistic.
+
+Google Flow (Veo 3.1) Motion Prompts:
+Cold Plunge: Slow cinematic dolly-in of man stepping into outdoor concrete cold plunge pool, misty forest, Squamish mountains.
+Subterranean Great Room: Glide-through camera revealing modern luxury walk-out basement, limewash plaster, warm walnut cabinetry, discrete fireplace.
+Builder Sequence: Over-the-shoulder macro tracking shot of hands unrolling blueprint on raw timber workbench.
+
+
+
+
+--- Result 8 (Source: Master_Strategy_Protocol_Extract, VecScore: 0.125) ---
+: $1.55M MEXICO RETREAT INVESTOR PITCH DECK
+Capital raise for clinical-grade longevity and wellness compound in Merida/Mexico.
+Total Capital Raise: $1.55M USD.
+Target: High-performing entrepreneurs and executives over 40 to reset biological age.
+Architectural Specs: Zoned architectural kitchens, discrete linear lighting, limewash plaster walls, subterranean wellness suite (3C cold plunges, saunas, hyperbaric oxygen chambers).
+Financial Metrics: Projected 22.4% IRR for equity partners with structured buyout option in Year 3.
+Use of Funds: Land acquisition, foundation pours, local construction trades, off-grid power/water systems.
+
+SECTION 4: CINEMATIC STORYBOARD & GOOGLE FLOW PROMPT LIBRARY
+Artist Character Ingredients Lock (Midjourney/Flux):
+A rugged, athletic 43-year-old contractor, short clean-cut graying hair, sharp jawline, dressed in charcoal gray technical canvas shirt, standing on custom timber construction site in Squamish BC. Cinematic lighting, morning mountain fog, shot on A
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+Secondary Contextual Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (joint recovery:PROCESS) ──[targets]──> (shoulder injuries:MEDICAL_CONDITION)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        fetch('/api/log/error', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: message ? message.toString() : '',
+            source: source ? source.toString() : '',
+            lineno: lineno || 0,
+            colno: colno || 0,
+            error: error ? error.stack || error.toString() : ''
+          })
+        }).catch(function() {});
+        return false;
+      };
+
+      window.addEventListener('unhandledrejection', function(event) {
+        var error = event.reason;
+        fetch('/api/log/error', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: error ? error.message || error.toString() : 'Unhandled Rejection',
+            source: '',
+            lineno: 0,
+            colno: 0,
+            error: error ? error.stack || error.toString() : ''
+          })
+        }).catch(function() {});
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

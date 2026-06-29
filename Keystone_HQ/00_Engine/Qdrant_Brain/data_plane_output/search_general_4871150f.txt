@@ -1,0 +1,50 @@
+Found 5 matches in ['general']:
+
+--- Result 1 (Source: 20260610_AGENT_ARCH_pretooluse_hook_security_patterns__deep_research_into_pretoo.md, VecScore: 0.553) ---
+igravity SDK (Python) is utilized for robust applications and integrates deeply with secondary nodes. Antigravity classifies hooks into three tiers: Inspect (logging), Decide (blocking), and Transform (mutating).  \nGoogle Antigravity Documentation\n+ 1\n\nExecution Logic (Python):\nWe use a Transform hook to forcefully inject parameters, ensuring the agent aligns with the required operational cadence.\n\nPython\nfrom google.antigravity import Agent, LocalAgentConfig\nfrom google.antigravity.hooks import TransformHook, DecideHook\n\nclass AuditAndBlockHook(DecideHook):\n    async def on_pre_tool_use(self, context, tool_call):\n        # 1. Audit Trail\n        print(f\"[AUDIT] {tool_call.name} executing with {tool_call.args}\")\n        \n        # 2. Block Logic\n        if tool_call.name == \"execute_sql\" and \"DROP\" in str(tool_call.args).upper():\n            return False, \"SQL DROP operations are permanently disabled.\"\n        return True, \"\"\n\nclass MutateArgumentHook(Tra
+
+
+--- Result 2 (Source: 20260613_AGENT_ARCH_google_antigravity_agent_sdk_2026__what_are_the_most_advance.md, VecScore: 0.500) ---
+avity SDK, could write initial modular code, run local verification tests, and physically intercept the inevitable failures. When an agent encountered a broken database connection in a full-stack deployment scenario, it did not halt; it correctly diagnosed a missing Docker container dependency, rewrote the infrastructural configuration files, and deployed a self-corrected environment.   
+
+These case studies emphatically validate that when an AI system is provided with robust, type-safe middleware hooks, persistent graph-based memory structures, and the ability to dynamically spawn its own specialized subroutines, it crosses the threshold from a complex automation script into a genuinely self-evolving digital entity.
+
+Strategic Conclusions
+
+The Google Antigravity Agent SDK (v0.1.3) provides the definitive, production-ready primitives required to elevate the Keystone Sovereign system from a collection of fragile scripts to a highly durable, self-governing enterprise operator. To maximize
+
+
+--- Result 3 (Source: 20260609_AGENT_ARCH_research_the_google_adk_(agent_development_kit)_and_antigrav.md, VecScore: 0.405) ---
+. Deep Execution Control: Lifecycle Hooks and Asynchronous Triggers
+
+Beyond standard orchestration and delegation, enterprise reliability requires proactive monitoring and the ability to intercept rogue operations before they affect production environments. The Antigravity SDK implements this deep execution control through two distinct programmatic mechanisms: Synchronous Hooks and Asynchronous Triggers.   
+
+7.1 Lifecycle Interception via Hooks
+
+Hooks allow system administrators to intercept, observe, and mutate the behavior of an agent at precise stages of its execution lifecycle (such as session_start, pre_turn, pre_tool_call, and post_tool_call). To ensure clear semantics and prevent critical Time-of-Check to Time-of-Use (TOCTOU) security vulnerabilities, the HookRunner enforces a strict execution order, classifying hooks into three rigid categories.   
+
+Hook Category	Execution Behavior	Primary Purpose	Example Implementation
+Decide Hooks	Read-Only, Blocking. Executed first.	Absolute
+
+
+--- Result 4 (Source: 20260613_AGENT_ARCH_security_patterns_for_autonomous_ai_agents_with_file_system_.md, VecScore: 0.333) ---
+ine-Grained Permissions Engine and ask_permission
+
+To secure local workstations and cloud instances while enabling autonomous workflows, the Antigravity CLI and standalone applications integrate a robust Fine-Grained Permissions Engine. Every sensitive operation the agent attempts to perform is evaluated as a distinct resource permission formatted strictly as action(target). These actions are routed through a priority-based policy engine that evaluates rules across access lists configured globally inside ~/.gemini/antigravity-cli/settings.json or locally within project-specific configurations.   
+
+Antigravity ensures that permission rules operate flawlessly across operating systems by automatically normalizing paths prior to rule evaluation; on Windows, for example, it strips drive letters (e.g., C:) and converts all backslashes to forward slashes. The engine resolves every action into one of three distinct access states:   
+
+Allow: The action is auto-approved silently without promptin
+
+
+--- Result 5 (Source: 20260613_AGENT_ARCH_google_antigravity_agent_sdk_2026__what_are_the_most_advance.md, VecScore: 0.283) ---
+rfect cross-platform synchronization of the system's evolving intelligence.   
+
+Self-Reflection Loops: Autonomous Weakness Identification
+
+The capacity to store memories is only valuable if the agent possesses the capability to accurately judge the efficacy of its own actions. True autonomy necessitates self-reflection loops: explicit mechanisms allowing the system to identify suboptimal performance, pinpoint logical weaknesses, and formulate strategic improvements without human intervention.
+
+In the Antigravity SDK ecosystem, self-reflection is driven heavily by the implementation of specialized PostToolCallHook and PostTurnHook middleware functions. Because these hooks are executed asynchronously after an operation completes, they are perfectly positioned to act as the agent's internal auditing mechanism, observing the raw output of every action, logging telemetry, and calculating success rates without blocking the primary execution thread.   
+
+For example, a dedicated InspectHook ca
+

@@ -1,0 +1,68 @@
+Found 5 matches in ['general']:
+
+--- Result 1 (Source: 20260522_autonomous_skill_creation_patterns.md, VecScore: 1.000) ---
+-resolve-mcp/docs/SKILL|skill]]?" when it detects a recurring, automatable pattern
+- **Compatibility**: Hermes skills follow the agentskills.io standard, making them portable
+
+### Alongside [[davinci-resolve-mcp/docs/SKILL|Skill]] Memory
+
+Hermes maintains three forms of persistent memory:
+- `MEMORY.md`: [[general|General]] knowledge and learnings
+- `USER.md`: User preferences and environment quirks
+- `~/.hermes/skills/`: Procedural knowledge (the [[davinci-resolve-mcp/docs/SKILL|skill]] library)
+
+---
+
+## 3. The Antigravity Workflow-[[davinci-resolve-mcp/docs/SKILL|Skill]]-Creator Plugin
+
+The `workflow-[[davinci-resolve-mcp/docs/SKILL|skill]]-creator` plugin (installed locally in the Keystone system) provides a structured, human-in-the-loop approach to [[davinci-resolve-mcp/docs/SKILL|skill]] distillation. Unlike fully autonomous extraction, it operates in **four phases**:
+
+### Phase 1: Brainstorming (Mandatory)
+
+An iterative conversation across 5 rounds:
+- **Round 1**: Understand the w
+
+
+--- Result 2 (Source: 02_Julian_Goldie_Programmatic_Strategies.md, VecScore: 0.333) ---
+ink Building Strategy 2026 DESTROYS Old Methods... - YouTube\nOpens in a new window\nreddit.com\nRank In Google AI Overviews With Hermes And Agent OS (2026) : r ...\nOpens in a new window\nmarketmoverspod.com\nJulian Goldie Reveals His AI Clone Workflow. How AI SEO Agencies Scale to 100M+ Views/Year | Market Movers: Building Brands & Links with Linkifi\nOpens in a new window\njuliangoldie.com\nEarning Money with AI: The 2026 Blueprint - Julian Goldie\nOpens in a new window\njuliangoldie.com\nHow to Start an AI Business in 2026 (Step-by-Step Guide) - Julian Goldie\nOpens in a new window\nreddit.com\nI paid $399 for an AI community and here is what actually happened in 60 days - Reddit\nOpens in a new window\nSources read but not used in the report\nyoutube.com\n1-Click Hack to Beat AI Detectors! - YouTube\nOpens in a new window\nyoutube.com\nHow to Rank #1 with OpenClaw + Hermes AI SEO! - YouTube\nOpens in a new window\nyoutube.com\nOpenClaw FULL COURSE 5 HOURS (Build & Automate Anythin
+
+
+--- Result 3 (Source: 20260609_AGENT_ARCH_research_the_hermes_autonomous_ai_agent_concept_and_similar_.md, VecScore: 0.333) ---
+prevent profile conflicts, platform adapters utilize token locks, calling acquire_scoped_lock() upon connection to ensure two gateway instances do not consume the same bot credentials simultaneously.   
+
+Terminal execution is equally versatile, supporting local, Docker, SSH, Singularity, Modal, and Daytona backends. Daytona and Modal provide serverless persistence, where the agent's environment hibernates when idle and wakes on demand, rendering infrastructure costs negligible between active sessions.   
+
+Enterprise Multi-Agent Orchestration Frameworks
+
+While Hermes serves as the apex persistent personal agent and gateway, large-scale enterprise workflows require specialized multi-agent orchestration frameworks. As of 2026, the ecosystem has stratified into clear use-cases based on determinism, scale, and observability.   
+
+LangGraph: The Deterministic [[STATE|State]] Machine (Version 1.1.6)
+
+For the backbone of the Keystone Sovereign system—where the failure of an autonomous supply ch
+
+
+--- Result 4 (Source: 20260522_hermes_vs_antigravity_comparison.md, VecScore: 0.310) ---
+L|skill]]-based error encoding.
+
+3. **Vector Brain DB:** Semantic search over 450+ knowledge chunks via `keystone-brain` MCP provides deeper knowledge retrieval than Hermes' FTS5 text search.
+
+4. **Science Skills Ecosystem:** 40+ specialized science skills (AlphaFold, PubChem, gnomAD, etc.) that Hermes has no equivalent for.
+
+5. **Security Sandbox:** AST-level code validation before [[davinci-resolve-mcp/docs/SKILL|skill]] deployment. Hermes has community-contributed hardening patches but no formal AST sandbox.
+
+6. **Deep Research Daemon:** Automated overnight research with web scraping, report generation, and brain ingestion. Hermes has cron scheduling but no dedicated research pipeline.
+
+---
+
+## 4. Recommended Implementation: Autonomous [[davinci-resolve-mcp/docs/SKILL|Skill]] Extraction
+
+Here is a concrete design for the highest-priority gap -- automatic [[davinci-resolve-mcp/docs/SKILL|skill]] extraction:
+
+```python
+# auto_skill_extractor.py
+# Post-task hook that monitors tool call
+
+
+--- Result 5 (Source: 03_Multi_Agent_Link_Building.md, VecScore: 0.250) ---
+ reputation, deliverability, and security, the AI agent is assigned a dedicated, entirely separate email inbox—never a personal or primary administrative account. This isolated inbox is connected to the agent interface via a Google Service Account. By bypassing standard SMTP configurations and utilizing service account credentials, the connection ensures secure, programmatic access that prevents the AI from hallucinating interactions with sensitive internal threads.   \n\nTargeting and Prospect Ingestion: The Hermes system requires remarkably minimal initial parameter inputs to commence operations. Operators simply define the target content—providing the URL and context of the specific, high-value page intended for backlink acquisition, such as a \"genuinely useful industry guide\". Concurrently, the operator supplies a thematic prospect list of target blogs. Alternatively, the agent can be commanded to operate autonomously, utilizing web traversal logic to find relevant target domains
+

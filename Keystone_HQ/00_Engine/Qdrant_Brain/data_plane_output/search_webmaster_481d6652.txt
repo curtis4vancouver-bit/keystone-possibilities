@@ -1,0 +1,103 @@
+Found 5 matches in ['webmaster']:
+
+--- Result 1 (Source: deep_research/20260624_ai_agent_mcp_tool_integration, VecScore: 0.500) ---
+e": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-workspace"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "CHROME_DEBUG_PORT": "9222"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "content-engine": {
+      "command": "node",
+      "args": ["/opt/content-engine/dist/index.js"],
+      "timeout": 30000
+    }
+  }
+}
+
+Configuration Nuances for Reliable Discovery
+
+The provided configuration highlights several critical best practices necessary for eliminating tool ignorance at the infrastructure level.
+
+First, the handling of sensitive environment variables requires stric
+
+
+--- Result 2 (Source: webmaster/tactics/gutenberg_rankmath_injection, VecScore: 0.500) ---
+When injecting high-end blog posts into the Keystone Recomposition WordPress site via Chrome DevTools:
+1. Always wrap the entire content in the `<div class="keystone-blog-container">` custom HTML template, matching the site's `.keystone-video-wrapper` and `keystone-eeat-author-block` CSS classes. Do NOT rely on raw Gutenberg blocks, as they default to basic un-styled text.
+2. To update the Rank Math SEO Snippet Editor via DevTools `evaluate_script`, you MUST use React's native property setter to bypass the overridden `.value` setter. Example:
+```javascript
+const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+setter.call(document.getElementById('rank-math-editor-title'), 'New Title');
+document.getElementById('rank-math-editor-title').dispatchEvent(new Event('input', { bubbles: true }));
+```
+Doing this ensures Title, Permalink, and Description limits are perfectly filled and registered by Rank Math's state manager.
+
+
+--- Result 3 (Source: deep_research/20260624_prompt_10_context_window_token_optimization, VecScore: 0.333) ---
+Bug Reports - Cursor - Community Forum
+aider.chat
+Repository map | aider
+Uncovering Abstract Syntax Tree Repository Mapping
+I am analyzing how state-of-the-art coding agents completely bypass full-file reads through Abstract Syntax Tree (AST) analysis and repository mapping. Rather than dumping raw source code into the prompt, high-efficiency agents use parsing libraries to build a lightweight index of the entire workspace. This map contains only the signatures of classes, functions, and their relative import paths. When the agent needs to inspect a symbol, it leverages this map to request targeted line ranges of code on demand. This approach reduces repository index overhead by up to 90%, preventing background directories from consuming vital context before a task even starts.
+Optimizing System Prompt Length and Instruction Precision
+I am evaluating the direct relationship between system prompt length and instruction-following accuracy. My analysis of production-grade assistants shows
+
+
+--- Result 4 (Source: webmaster/seo/gutenberg_styling_automation_2026, VecScore: 0.333) ---
+Every WordPress blog post published on keystonerecomposition.com should follow the premium styling guidelines (accent gold headings, striped tables, author signature cards with linear gradients and gold borders, medical and digital twin disclaimers in container blocks) and list direct citations to primary clinical literature (PubMed/NCBI links in target="_blank" rel="noopener"). For headless publishing, always use direct Gutenberg and Rank Math Redux API states (wp.data.dispatch('core/editor') and wp.data.dispatch('rank-math')) to reliably set title, content, SEO keywords, SEO title, meta description, slug, categories, tags, and media library uploads.
+
+
+--- Result 5 (Source: deep_research/20260624_qdrant_namespace_strategy, VecScore: 0.250) ---
+Config(always_ram=True)
+            )
+        )
+    },
+    # Configure Sparse vectors to enable BM25/SPLADE keyword precision
+    sparse_vectors_config={
+        "sparse": models.SparseVectorParams(
+            index=models.SparseIndexParams(on_disk=False)
+        )
+    }
+)
+
+# 2. Create a Keyword Index for Domain Category
+client.create_payload_index(
+    collection_name=collection_name,
+    field_name="category",
+    field_schema=models.PayloadSchemaType.KEYWORD
+)
+
+# 3. Create a Tenant Index with Physical Data Co-location
+# Co-locating data sharing the same namespace drastically reduces disk I/O latency
+client.create_payload_index(
+    collection_name=collection_name,
+    field_name="namespace_origin",
+    field_schema=models.PayloadIndexParams(
+        type="keyword",
+        is_tenant=True
+    )
+)
+
+# 4. Create an Integer Index for Priority Level filtering
+client.create_payload_index(
+    collection_name=collection_name,
+    field_name="priority_level",
+    field_schema=models.Payload
+

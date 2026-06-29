@@ -1,0 +1,1 @@
+{"schema":{"source":{"type":"keyword","on_disk":true},"tenant_id":{"type":"keyword","is_tenant":true,"on_disk":true},"created_at":{"type":"keyword","on_disk":true},"memory_layer":{"type":"keyword","on_disk":true}}}

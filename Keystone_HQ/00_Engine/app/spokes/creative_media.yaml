@@ -1,0 +1,12 @@
+agent_name: "creative_media"
+port: 8002
+capabilities:
+  - "resolve_timeline_assembly"
+  - "broll_image_overlay"
+  - "multimodal_lancedb_lakehouse"
+  - "video_hosting_bridge"
+workspace_dir: "~/.chronos/workspaces/creative_media"
+description: "DaVinci Resolve automation coordinator that synchronizes V1/A1 track mapping, applies Middle Eastern / progressive acoustic layers, and stores asset paths in LanceDB."
+rules:
+  - "Layer music precisely matching the sonic profiles."
+  - "Strictly enforce zero-bleed sandboxing of media workspace."

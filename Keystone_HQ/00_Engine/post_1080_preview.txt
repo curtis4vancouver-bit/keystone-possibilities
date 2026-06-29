@@ -1,0 +1,116 @@
+[keystone_video id="fddM0_MKF7w"]
+
+<!-- wp:paragraph -->
+<p><strong>BPC-157, TB-500, GHK-Cu: The headlines say "green lit." The documents say something very different.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you've been on social media in the last few weeks, you've seen the headlines: <em>"Peptides are legal again!"</em>, <em>"FDA green lights BPC-157!"</em>, <em>"Kennedy saves peptides!"</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>I read the actual FDA documents. Here's what they actually say — and why the reality is far more nuanced than the tweets.</p>
+<!-- /wp:paragraph -->
+
+
+
+<!-- wp:paragraph -->
+<p>⚠️ <strong>Medical Disclaimer:</strong> I am not a medical professional. Nothing on this page constitutes medical advice, diagnosis, or treatment recommendations. This is an educational review of publicly available FDA regulatory documents combined with independent case study documentation. Always consult a licensed physician before making any health decisions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What the FDA Actually Did (And Didn't Do)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On April 22, 2026, the FDA officially removed 12 peptides from the Category 2 bulk drug substances list. This came after <strong>Robert F. Kennedy Jr.</strong> announced the proposed removal during a podcast with Joe Rogan in February 2026, and then confirmed it publicly on April 15th.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The 12 peptides removed include some of the most widely discussed compounds in the biohacking and regenerative medicine space:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>BPC-157</strong> (Body Protection Compound)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>TB-500</strong> (Thymosin Beta-4)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>GHK-Cu</strong> (Copper Peptide)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>And 9 others previously placed under restriction</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>But here's the critical distinction that <strong>almost every headline gets wrong:</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p><strong>Off Category 2 ≠ On Category 1.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These peptides are no longer on the restricted list. But they are NOT on the approved list either. They exist in a regulatory gray zone.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The Regulatory Timeline You Need to Know</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why This Matters: The Gray Zone</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When a peptide is removed from Category 2, it means compounding pharmacies are <em>technically</em> no longer restricted from handling it. But without Category 1 designation, there's no standardized regulatory framework for purity, dosing, or quality control.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This creates a gray market situation. Independent testing has found contamination rates as high as <strong>30%</strong> in peptides purchased from unregulated sources. That's not a typo — nearly one-third of tested samples contained impurities, incorrect dosing, or undisclosed compounds.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The July 2026 PCAC Hearing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The <strong>Pharmacy Compounding Advisory Committee (PCAC)</strong> is scheduled to convene on <strong>July 23-24, 2026</strong> to evaluate whether these 12 peptides should be placed on Category 1 — the approved list for compounding.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the real milestone. Category 1 placement would mean:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Licensed compounding pharmacies can legally produce and distribute these peptides</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Quality and purity standards would be established</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Physicians could prescribe with regulatory backing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Insurance coverage becomes possible (eventually)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">CJC-1295: A Different Situation Entirely</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>It's worth noting that <strong>CJC-1295</strong> (a growth hormone-releasing hormone analog often paired with Ipamorelin) was NOT among the 12 peptides removed. The FDA's December 2024 documentation cited specific adverse event findings for CJC-1295, keeping it on a separate regul

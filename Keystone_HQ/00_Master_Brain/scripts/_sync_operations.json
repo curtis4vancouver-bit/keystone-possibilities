@@ -1,0 +1,12 @@
+[
+  {
+    "action": "appendToGoogleDoc",
+    "docId": "1MtV6hDQ-bFSb_aTEzQDdE82kTKyazFSFnBqKN0pQWVQ",
+    "text": "\n\n## Update 2026-06-28\n**Error:** Fragile block editor clicks and Rank Math inputs failing to save values.\n**Fix:** Used direct Gutenberg and Rank Math JavaScript Redux APIs via `wp.data` and `wp.apiFetch` in the page console: `wp.data.dispatch('core/editor')` and `wp.data.dispatch('rank-math')` to programmatically and cleanly set blocks, SEO title, keywords, meta description, categories, tags, and upload featured media.\n**Prevention:** For WordPress Gutenberg and Rank Math automation, always use direct Redux state dispatches via wp.data and wp.apiFetch in the browser context rather than simulating raw mouse clicks and input entries.\n"
+  },
+  {
+    "action": "appendToGoogleDoc",
+    "docId": "1oUrYbr7AtUuPNsnss0JqrAaIqSQvYL2oeUza55AiRao",
+    "text": "\n\n## Pending Proposals (2026-06-28) — 22 items\n- **Skill:** upload_quality_gate — Failed to verify YouTube upload compliance requirements (missing medical disclaimers, AI disclosure,\n- **Skill:** upload_quality_gate — Failed to verify YouTube upload compliance requirements (missing medical disclaimers, AI disclosure,\n- **Skill:** 00_keystone_foundation — Presented scripts missing Facebook metadata, Instagram metadata, AI Twin disclosure, and 500-char ta\n- **Skill:** 00_keystone_foundation — Failed to double-check visual changes via screenshot before confirming to Wayne that work was done. \n- **Skill:** 00_keystone_foundation — AI bots not whitelisted in robots.txt and missing local citations in schema\n"
+  }
+]

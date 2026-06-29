@@ -1,0 +1,47 @@
+# Retatrutide Phase 3 Data & The Builder's Protocol
+*Source File Analysis & Strategy Guide*
+
+## Executive Summary
+Analysis of Retatrutide (the "triple G agonist" targeting GLP-1, GIP, and Glucagon) Phase 3 trial data (Triumph 1 and Triumph 4) and its application under Wayne Stevenson's "Builder's Protocol." While Retatrutide offers unmatched weight loss potency, its aggressive catabolic power requires strict structural shoring to prevent severe muscle and tissue wasting.
+
+## Wayne's Progression Log
+* **Current Protocol**: Tirzepatide (30 weeks as of current log).
+* **Results**: 48 lbs lost.
+* **Status**: Stable, protocol dialed in. 
+* **Strategic Decision**: Do not switch to Retatrutide mid-build. Changing compounds mid-protocol is equivalent to changing engineers during a foundation pour. However, for a new protocol starting from scratch, Retatrutide is the preferred compound.
+
+## Retatrutide Phase 3 (Triumph) Clinical Data
+* **Triumph 1 (12mg)**: -23.7% average body weight loss.
+* **Triumph 4**: -25% average body weight loss over 80 weeks.
+* **Efficacy**: 65% of clinical patients no longer meet obesity criteria. Comparative efficacy: Retatrutide (24-25%) > Tirzepatide (22%) > Semaglutide (15-17%).
+* **Glucagon Receptor Mechanism**: Increases metabolic rate ("runs the furnace hotter"). Offers less aggressive appetite suppression than Tirzepatide, which paradoxically allows for easier protein consumption while driving higher overall energy expenditure.
+* **The Structural Threat (Bats 2026 Data)**: Standard GLP-1 therapy can result in up to 35-40% of lost weight coming from lean muscle mass rather than fat, leading to structural and physical compromise (building on a rotting frame).
+
+## The Builder's Protocol: 4 Pillars of Structural Preservation
+To prevent muscle wasting and tissue degradation during aggressive GLP-1/Triple G agonist protocols, the following shoring protocols must be deployed:
+
+### Pillar 1: High Protein Shoring
+* **Target**: 200g of protein daily (non-negotiable).
+* **Sources**: Whey isolate, ground beef, whole eggs.
+* **Timing**: Feedings every 3 hours to maintain muscle protein synthesis.
+
+### Pillar 2: Heavy Eccentric Resistance Training
+* **Modality**: Heavy compound barbell lifts (Squats, Deadlifts, Overhead Press).
+* **Mechanism**: Loading muscles under heavy tension sends an anti-catabolic signal to retain tissue. Avoid over-reliance on cardio/Peloton.
+
+### Pillar 3: Tissue Repair (The Wolverine Stack)
+*Note: Preclinical/case study research parameters.*
+* **BPC-157**: Upregulates growth hormone receptors in tendon and connective tissues.
+* **TB-500**: Repairs damaged muscle fibers at the cellular level.
+* **Purpose**: Counteracts collateral tendon and muscle damage from rapid weight loss.
+
+### Pillar 4: Skin & Collagen Integrity
+* **Compound**: GHK-Cu (GHK copper peptide).
+* **Mechanism**: Modulates 31% of human genes (Broad Institute research).
+* **Purpose**: Targets skin laxity and hair thinning ("Ozempic face") associated with rapid weight loss.
+
+## Gray Market Sourcing & Quality Control Rules
+Given Retatrutide's pending regulatory approval in Canada, sourcing presents extreme quality risks (up to 30% of gray market peptides fail purity analysis).
+1. **Third-Party Testing**: Must possess an HPLC Certificate of Analysis (COA) from verified labs (e.g., Janoshik).
+2. **Purity Threshold**: Minimum 98% purity.
+3. **Form Factor**: Lyophilized (freeze-dried) powder only. Reject pre-mixed liquids due to rapid degradation and contamination risks.

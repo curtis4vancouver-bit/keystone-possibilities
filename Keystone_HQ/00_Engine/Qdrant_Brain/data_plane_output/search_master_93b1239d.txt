@@ -1,0 +1,135 @@
+Found 10 matches in 'master':
+
+--- Result 1 (Source: master_voice_report_protocol, VecScore: 0.611) ---
+Instruction: Always send a concise verbal status update to the voice outbox (via scripts/voice_report.py) when finishing any task, unless Wayne asks for a long one. This ensures Wayne receives real-time, short audio feedback over his headset/speakers.
+
+
+--- Result 2 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.500) ---
+ct` | `POST` | GCP OAuth2 Access Token | JSON (Instruct-customized style transfer) |
+| **ElevenLabs TTS** | `/v1/text-to-speech/{voice_id}` | `POST` | `xi-api-key` Header | JSON (Narration audio synthesis) |
+| **ElevenLabs Alignment** | `/v1/forced-alignment` | `POST` | `xi-api-key` Header | Multipart (Audio file + matching transcript) |
+
+<!-- CONTEXT: Programmatic Cinematic Pipeline / 1. Google Labs Flow Batch Video Generation -->
+### 1. Google Labs Flow Batch Video Generation
+*   **Endpoint:** `POST https://aisandbox-pa.googleapis.com/v1/video:batchAsyncGenerateVideoText`
+*   **Headers:**
+    ```http
+    Content-Type: application/json
+    Authorization: Bearer ya29.Gl8...
+    ```
+*   **Payload Schema:**
+    ```json
+    {
+      "clientContext": {
+        "projectId": "pippip-doc-01"
+      },
+      "requests": [
+        {
+          "prompt": "Dynamic aerial shot flying over a modern architectural custom build nestled in the Squamish pine forest.",
+          "durationSeconds": 8
+       
+
+
+--- Result 3 (Source: 18_LOCAL_MULTIMODAL_AUTOMATION_FRAMEWORK.md, VecScore: 0.333) ---
+n Framework / 3. Implementing Local Auditory Perception (Ears) -->
+## 3. Implementing Local Auditory Perception (Ears)
+To match the continuous listening features of cloud-based voice assistants without incurring constant API costs or network lag, developers can configure an offline auditory pipeline on their local hardware. This pipeline captures system audio, runs local transcription, and pipes the resulting text directly into the Antigravity command interface.   
+
+<!-- CONTEXT: Local Multimodal Automation Framework / Quantized Offline Transcription Pipelines -->
+### Quantized Offline Transcription Pipelines
+The core of a local listening loop relies on highly optimized, CPU-friendly implementations of OpenAI’s Whisper model. Frameworks like `faster-whisper` (which uses CTranslate2) or `whisper.cpp` (a plain C++ port) allow standard desktop processors to transcribe audio files with minimal system resources.   
+
+Using a 75MB quantized model, such as the `ggml-tiny.bin` model running wit
+
+
+--- Result 4 (Source: overnight_flash_research_2026-06-17, VecScore: 0.333) ---
+## Resume Point
+Next batch: R005, R007, R008. Then continue R009-R100 sequentially.
+
+
+--- Result 5 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.250) ---
+point = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+    console.log(`[ElevenLabs] Synthesizing narrative stream: "${text.substring(0, 40)}..."`);
+
+    try {
+      const response = await axios.post(endpoint, {
+        text,
+        model_id: 'eleven_flash_v2_5', // Flash 2.5 optimized for sub-100ms latency execution
+        voice_settings: {
+          stability: 0.8,
+          similarity_boost: 0.85,
+          style: 0.5
+        }
+      }, {
+        headers: {
+          'xi-api-key': this.elevenLabsApiKey,
+          'Content-Type': 'application/json'
+        },
+        responseType: 'arraybuffer'
+      });
+
+      return Buffer.from(response.data);
+    } catch (err) {
+      console.error('[ElevenLabs Error] Text-to-Speech transaction failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+
+
+--- Result 6 (Source: overnight_flash_research_2026-06-17, VecScore: 0.250) ---
+# Overnight Flash Research — Key Findings & Upgrades Needed
+
+
+--- Result 7 (Source: AUDIOBOOK_BUNDLE_BLUEPRINT.md, VecScore: 0.200) ---
+t / Step 1: Initialize the Audio Workspace -->
+### Step 1: Initialize the Audio Workspace
+We establish the exact folder structure inside our repository to receive synthesized stems, mastered files, and companion docs.
+* `/Audiobook/01_Raw_Voice/` (Incoming ElevenLabs synthetic WAV generation)
+* `/Audiobook/02_Music_Stems/` (Focus audio tracks and ambient stems)
+* `/Audiobook/03_Mastered_Chapters/` (Final ACX-compliant MP3 exports)
+* `/Audiobook/04_Companion_Docs/` (Markdown and Notion files)
+
+<!-- CONTEXT: Audiobook Bundle Blueprint / Step 2: Establish the Spoken Normalization Table -->
+### Step 2: Establish the Spoken Normalization Table
+We create the spelling dictionary file (`lexicon.pls` / `normalization.json`) so our generation engine reads technical terms flawlessly without stuttering.
+* `T3` -> "T three"
+* `T4` -> "T four"
+* `HbA1c` -> "hemoglobin A one c"
+* `ApoB` -> "apolipoprotein B"
+* `SHBG` -> "sex hormone-binding globulin"
+* `TRT` -> "testosterone replacement therapy"
+
+
+--
+
+
+--- Result 8 (Source: overnight_flash_research_2026-06-17, VecScore: 0.200) ---
+## Top Upgrades Identified
+
+
+
+--- Result 9 (Source: 04_SEVENTY_NEW_RESEARCH_TOPICS.md, VecScore: 0.167) ---
+reate new 18_Health_Content |
+| MUSIC | Create new 19_Music_Production |
+| INFRA | 07_Coding_Optimization or create new 20_Infrastructure |
+
+
+---
+📁 **See also:** [[Master_Docs/Gemini_Pro_Instructions/INDEX|← Directory Index]]
+
+
+
+--- Result 10 (Source: overnight_flash_research_2026-06-17, VecScore: 0.167) ---
+### HIGH PRIORITY
+1. **Skill File Progressive Disclosure:** Use 3-tier loading (Metadata ~100 tokens → Instructions → Resources). Only mount full skill content when activated. Saves massive context.
+2. **Correction Journal Structured Schema:** Standardize entries to {tried, wrong_because, fix, timestamp}. Auto-query journal before each task to prevent repeating mistakes.
+3. **Vector DB Memory Stratification:** Split brain into 4 layers — Working (volatile), Episodic (time-decayed), Semantic (permanent facts), Procedural (workflows). Apply exponential decay R(t) = e^(-t/S) with 30-day half-life.
+4. **Cross-Encoder Reranking:** Add Cohere Rerank or Jina Reranker v2 between vector search and prompt injection. Vector similarity alone misses negations and contradictions.
+
+

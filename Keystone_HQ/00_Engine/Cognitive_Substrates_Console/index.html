@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRONOS AI Operating System // Master Control Console</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Immersive Interactive Glow Background -->
+    <div class="glow-bg"></div>
+    <div class="grid-glow"></div>
+
+    <div class="app-container">
+        <!-- 1. KRONOS SYSTEM HEADER -->
+        <header class="app-header glass-panel">
+            <div class="logo-area">
+                <span class="logo-title">KRONOS AI OPERATING SYSTEM</span>
+                <span class="logo-subtitle">Persistent Context Isolation Engine // V3.2 SECURED</span>
+            </div>
+
+            <!-- DYNAMIC BRAND PARTITION SELECTOR -->
+            <div class="agent-selector-nav">
+                <button class="nav-tab active" onclick="switchAgentTab('keystone')">
+                    <span class="nav-icon">🏗️</span>
+                    <span class="nav-text">Keystone PM</span>
+                </button>
+                <button class="nav-tab" onclick="switchAgentTab('protocol')">
+                    <span class="nav-icon">🧬</span>
+                    <span class="nav-text">Protocol B2C</span>
+                </button>
+                <button class="nav-tab" onclick="switchAgentTab('spark')">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-text">Gemini Spark</span>
+                </button>
+            </div>
+
+            <div class="telemetry-bar">
+                <div class="telemetry-item">
+                    <span class="status-dot green pulse" id="telemetry-ping-dot"></span>
+                    <span class="telemetry-label">SECURE DAEMON:</span>
+                    <span class="telemetry-value text-green" id="telemetry-daemon-val">ACTIVE</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="status-dot green" id="telemetry-db-dot"></span>
+                    <span class="telemetry-label">SQLITE-VEC:</span>
+                    <span class="telemetry-value text-green" id="telemetry-db-val">SYNCED</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. TWO-COLUMN COGNITIVE BOARD -->
+        <main class="dashboard-grid">
+            
+            <!-- LEFT COLUMN: ISOLATED CONTEXT & SCHEMAS -->
+            <section class="grid-card glass-panel col-left">
+                <div class="card-header">
+                    <h2 class="card-title" id="vault-title">🏗️ Keystone Fiduciary Context Vault</h2>
+                    <span class="card-badge" id="vault-badge">FTS5 + pgvector</span>
+                </div>
+                
+                <div class="card-content">
+                    <p class="section-desc" id="vault-desc">Active document indices loaded in memory. These credentials, blueprints, and files are partitioned to isolate brand intelligence.</p>
+                    
+                    <!-- Dynamic Document Tree List -->
+                    <div class="document-vault-wrapper">
+                        <div class="vault-header-row">
+                            <span class="vault-header-title">Loaded Epistemic Assets</span>
+                            <span class="vault-header-count" id="vault-count">5 Documents</span>
+                        </div>
+                        <div class="vault-tree-list" id="vault-tree-container">
+                            <!-- Injected dynamically by app.js -->
+                        </div>
+                    </div>
+
+                    <!-- Local Execution Suite -->
+                    <div class="control-box">
+                        <h3 class="control-box-title" id="suite-title">🛠️ Keystone Fiduciary Automation Tools</h3>
+                        <div class="actions-grid" id="suite-actions-container">
+                            <!-- Injected dynamically by app.js -->
+                        </div>
+                    </div>
+
+                    <!-- Interactive Relationship Mapping -->
+                    <div class="control-box">
+                        <h3 class="control-box-title">🧠 Interactive Epistemic Schema Graph</h3>
+                        <p class="control-desc">Click semantic nodes in the active partition to inspect observation matrices.</p>
+                        <div class="graph-viewport-wrapper">
+                            <svg id="graph-svg" viewBox="0 0 600 320"></svg>
+                        </div>
+                        <div class="graph-actions-overlay">
+                            <button class="btn btn-sm btn-glass" onclick="resetGraph()">Reset Schema Coordinates</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: TELEMETRY, LOGS & TERMINAL -->
+            <div class="col-telemetry">
+                
+                <!-- DYNAMIC TELEMETRY CONTROLS -->
+                <section class="grid-card glass-panel card-telemetry">
+                    <div class="card-header">
+                        <h2 class="card-title" id="telemetry-title">📡 Active Sub-Agent Telemetry</h2>
+                        <span class="card-badge">Heartbeat Decayer</span>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p class="section-desc">Parallel background workers configured under brand authorization. crashed heartbeats trigger instant self-healing routing.</p>
+                        
+                        <!-- Telemetry Grid -->
+                        <div class="agent-telemetry-grid" id="agent-telemetry-container">
+                            <!-- Injected dynamically by app.js -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DYNAMIC CONFLICT AUDITOR -->
+                <section class="grid-card glass-panel card-conflicts" id="conflict-card-section">
+                    <div class="card-header">
+                        <h2 class="card-title">⚠️ Semantic Conflict Auditor</h2>
+                        <span class="card-badge text-gold" id="conflict-badge-status">0 Conflicts</span>
+                    </div>
+                    <div class="card-content">
+                        <div id="conflict-warning-container">
+                            <!-- Conflicts injected here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REAL-TIME DIAGNOSTIC TERMINAL -->
+                <section class="grid-card glass-panel card-logs">
+                    <div class="card-header">
+                        <h2 class="card-title" id="terminal-title">🖥️ Epistemic Diagnostics & Logging</h2>
+                        <button class="btn btn-sm btn-glass" onclick="clearConsoleLogs()">Clear Console</button>
+                    </div>
+                    <div class="card-content col-flex">
+                        <div class="terminal-logs-window" id="console-logs-window">
+                            <!-- Logs output dynamically here -->
+                        </div>
+
+                        <!-- Markdown Serializer Output -->
+                        <div class="markdown-output-box">
+                            <div class="md-box-header">
+                                <span class="md-box-title" id="md-title">📄 Local SEO Indexing Serializer Payload</span>
+                                <span class="md-badge" id="md-badge-savings">0% Tokens Saved</span>
+                            </div>
+                            <pre class="md-raw-view" id="markdown-payload-viewer"></pre>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Self Healing Alert Modal -->
+    <div id="self-healing-alert" class="self-healing-overlay hidden">
+        <div class="alert-box glass-panel">
+            <span class="alert-icon">⚡</span>
+            <div class="alert-body">
+                <h4 class="alert-title">Self-Healing Event Triggered</h4>
+                <p id="alert-text">Task has been reallocated to fresh Worker backup.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script assets -->
+    <script src="app.js"></script>
+</body>
+</html>

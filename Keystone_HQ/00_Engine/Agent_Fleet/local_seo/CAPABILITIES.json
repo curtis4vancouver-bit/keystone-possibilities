@@ -1,0 +1,21 @@
+{
+  "agent_name": "local_seo",
+  "skills": [
+    "gmb_optimization",
+    "citation_building",
+    "local_ranking",
+    "review_management"
+  ],
+  "apis": [
+    "google_business_profile",
+    "search_console"
+  ],
+  "strengths": [
+    "Local search domination",
+    "Google Business Profile",
+    "Sea-to-Sky rankings"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "possibilities"
+}

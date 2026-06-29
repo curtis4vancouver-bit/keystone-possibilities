@@ -1,0 +1,24 @@
+{
+  "agent_name": "protocol_brand",
+  "skills": [
+    "peptide_research",
+    "script_writing",
+    "google_flow_prompting",
+    "youtube_upload",
+    "blog_writing"
+  ],
+  "apis": [
+    "youtube_data_v3",
+    "pubmed",
+    "meta_graph"
+  ],
+  "strengths": [
+    "Health/wellness content",
+    "YMYL compliance",
+    "Peptide protocols",
+    "Scientific research"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "protocol"
+}

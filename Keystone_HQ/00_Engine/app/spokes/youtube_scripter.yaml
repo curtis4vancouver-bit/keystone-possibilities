@@ -1,0 +1,12 @@
+agent_name: "youtube_scripter"
+port: 8001
+capabilities:
+  - "scriptwriting"
+  - "seo_optimization"
+  - "competitor_analysis"
+  - "medical_disclaimer_injection"
+workspace_dir: "~/.chronos/workspaces/youtube_scripter"
+description: "Stoic, empirical scripter that converts training logs and peptide recovery protocols into hardcore, blue-collar YouTube scripts."
+rules:
+  - "Every output script MUST include a medical disclaimer."
+  - "Adopt a stoic, hardcore, blue-collar builder tone."

@@ -1,0 +1,80 @@
+﻿{
+    "name":  "Keystone Omi Transcript Handler",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "httpMethod":  "POST",
+                                         "path":  "omi-webhook",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.webhook",
+                      "typeVersion":  1,
+                      "position":  [
+                                       0,
+                                       0
+                                   ],
+                      "id":  "webhook-trigger",
+                      "name":  "Omi Webhook"
+                  },
+                  {
+                      "parameters":  {
+                                         "jsCode":  "const body = $json.body;\nconst transcript = body.transcript || body.text || \u0027\u0027;\nconst timestamp = body.timestamp || new Date().toISOString();\nconst duration = body.duration || 0;\n\n// Generate markdown content with YAML frontmatter\nconst mdContent = `---\ntype: omi-transcript\ntimestamp: ${timestamp}\nduration: ${duration}s\nsource: omi-wearable\n---\n\n# Omi Transcript Summary\n\n${transcript}\n`;\n\nreturn {\n  transcript,\n  timestamp,\n  mdContent,\n  filename: `omi-${new Date(timestamp).getTime()}.md`\n};"
+                                     },
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       200,
+                                       0
+                                   ],
+                      "id":  "parse-transcript",
+                      "name":  "Parse Transcript"
+                  },
+                  {
+                      "parameters":  {
+                                         "fileSignal":  "=/vault/memory/{{$json.filename}}",
+                                         "options":  {
+                                                         "append":  false
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.writeBinaryFile",
+                      "typeVersion":  1,
+                      "position":  [
+                                       400,
+                                       0
+                                   ],
+                      "id":  "write-to-vault",
+                      "name":  "Write to Vault"
+                  }
+              ],
+    "connections":  {
+                        "Omi Webhook":  {
+                                            "main":  [
+                                                         [
+                                                             {
+                                                                 "node":  "Parse Transcript",
+                                                                 "type":  "main",
+                                                                 "index":  0
+                                                             }
+                                                         ]
+                                                     ]
+                                        },
+                        "Parse Transcript":  {
+                                                 "main":  [
+                                                              [
+                                                                  {
+                                                                      "node":  "Write to Vault",
+                                                                      "type":  "main",
+                                                                      "index":  0
+                                                                  }
+                                                              ]
+                                                          ]
+                                             }
+                    },
+    "active":  true,
+    "settings":  {
+                     "executionOrder":  "v1"
+                 },
+    "id":  "1001"
+}

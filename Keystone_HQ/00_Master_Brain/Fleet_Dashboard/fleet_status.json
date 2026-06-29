@@ -1,0 +1,6 @@
+{
+  "fleet_status": "operational",
+  "last_updated": "2026-06-16T19:53:00",
+  "active_agents": 13,
+  "note": "Agent Fleet directories are managed by the Chronos Master Brain orchestrator. Each agent has its own INBOX.json and OUTPUT_LOG.jsonl for inter-agent communication. The fleet currently operates through the Antigravity skill system rather than individual fleet directories."
+}

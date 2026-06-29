@@ -1,0 +1,23 @@
+[
+  {
+    "input": {
+      "text": "Wayne Stevenson General Contractor Squamish local Squamish builder",
+      "target_word": "Squamish"
+    },
+    "assertions": [
+      {
+        "type": "schema",
+        "keys": [
+          "density",
+          "count",
+          "total_words"
+        ]
+      },
+      {
+        "type": "exact",
+        "value": 2,
+        "target": "count"
+      }
+    ]
+  }
+]

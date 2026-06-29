@@ -1,0 +1,8 @@
+# Peptide Protocol: Neutralizing GHK-Cu Injection Sting with BPC-157
+
+## Issue
+- GHK-Cu (Copper Peptide) injections cause an intense, painful stinging sensation ("battery acid") at the injection site.
+
+## Solution / Strategy
+- **Stacking Protocol**: Draw **BPC-157** into the same syringe as the **GHK-Cu** prior to injection.
+- **Mechanism**: BPC-157 buffers the acidity of the GHK-Cu and promotes immediate localized tissue healing, eliminating the injection pain entirely.

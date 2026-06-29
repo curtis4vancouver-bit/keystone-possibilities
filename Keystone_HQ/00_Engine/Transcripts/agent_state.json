@@ -1,0 +1,398 @@
+{
+  "last_updated": "2026-05-21 12:31:22.232481",
+  "active_sprints": {},
+  "subagent_jobs": {
+    "health_agent": [
+      {
+        "timestamp": "2026-05-19 14:38:50.862457",
+        "description": "Audit Tirzepatide lipid oxidation trials via pubmed-database",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 14:38:56.016485",
+        "description": "Audit Tirzepatide lipid oxidation trials via pubmed-database",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:09.286361",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:41.799815",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:27:16.538911",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:55.556080",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 11:57:35.961708",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 12:28:33.738022",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 19:42:59.828223",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 21:21:06.266572",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:08.093115",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:51.184896",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:31:20.040834",
+        "description": "CLI execute: --peptide BPC-157",
+        "status": "Completed"
+      }
+    ],
+    "media_agent": [
+      {
+        "timestamp": "2026-05-19 14:38:50.862813",
+        "description": "Assemble DaVinci Resolve gold LUT rendering template",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 14:38:56.016921",
+        "description": "Assemble DaVinci Resolve gold LUT rendering template",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:10.606047",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:43.403170",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:27:17.980519",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:57.009765",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 11:57:38.072751",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 12:28:35.281775",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 19:43:02.149224",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 21:21:07.953007",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:10.114617",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:52.675824",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:31:21.574189",
+        "description": "CLI execute: --resolve",
+        "status": "Completed"
+      }
+    ],
+    "dev_agent": [
+      {
+        "timestamp": "2026-05-19 15:09:10.460536",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:43.244004",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:27:17.831178",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:56.848703",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 11:57:37.915736",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 12:28:35.112573",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 19:43:01.987406",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 21:21:07.768503",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:09.953596",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:52.517122",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:31:21.417667",
+        "description": "CLI execute: --audit",
+        "status": "Completed"
+      }
+    ],
+    "research_agent": [
+      {
+        "timestamp": "2026-05-19 15:09:10.518578",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:43.312680",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:27:17.892319",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:56.914494",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 11:57:37.977620",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 12:28:35.179498",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 19:43:02.050262",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 21:21:07.837512",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:10.019423",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:52.580147",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:31:21.480639",
+        "description": "CLI execute: --keyword-report",
+        "status": "Completed"
+      }
+    ],
+    "music_agent": [
+      {
+        "timestamp": "2026-05-19 14:38:50.863279",
+        "description": "Generate Suno Deep House canvas track for Episode 45",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 14:38:56.017216",
+        "description": "Generate Suno Deep House canvas track for Episode 45",
+        "status": "Queued"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:09.863434",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:09:42.644579",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 15:27:17.173984",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:56.188724",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 11:57:36.693534",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 12:28:34.485158",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 19:43:00.681507",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-20 21:21:06.923648",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:09.308247",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:30:51.870091",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-21 12:31:20.772487",
+        "description": "CLI execute: --scan",
+        "status": "Completed"
+      }
+    ],
+    "youtube_flow_agent": [
+      {
+        "timestamp": "2026-05-19 14:57:14.547321",
+        "description": "Generate comprehensive content campaign for: 'Wolverine Stack'",
+        "status": "Completed"
+      },
+      {
+        "timestamp": "2026-05-19 18:52:53.885648",
+        "description": "Generate comprehensive content campaign for: 'Wolverine Stack'",
+        "status": "Completed"
+      }
+    ]
+  },
+  "music_pipeline_status": {
+    "New Songs": {
+      "count": 1,
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    "sounds": {
+      "count": 24,
+      "files": [
+        "1.mp3",
+        "12.m4a",
+        "13.m4a",
+        "14.m4a",
+        "15.m4a",
+        "3.mp3",
+        "bids c.m4a",
+        "Birds 1.0.m4a",
+        "Birds 1.1.m4a",
+        "Birds 1.2.m4a",
+        "Birds 1.4.m4a",
+        "Birds 1.5.m4a",
+        "birds a.m4a",
+        "birds b.m4a",
+        "desktop.ini",
+        "Evlenlabs.m4a",
+        "ocean 1.m4a",
+        "Ocean 2.m4a",
+        "ocean b.m4a",
+        "Ocean.m4a",
+        "Walking.m4a",
+        "Water 10.m4a",
+        "Water 2.m4a",
+        "Water.m4a"
+      ]
+    },
+    "ready for toolost": {
+      "count": 1,
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    "musicmacth": {
+      "count": 1,
+      "files": [
+        "desktop.ini"
+      ]
+    },
+    "compeleted albums": {
+      "count": 11,
+      "files": [
+        "deep house.mov",
+        "desktop.ini",
+        "KSTR-99999_mock_suno_track.wav",
+        "master 1 .mov",
+        "master 1.mov",
+        "master loop.mp4",
+        "master picture music.png",
+        "master.mov",
+        "Musixmatch_Lyrics_CA-KST-26-99999.txt",
+        "PATH OF THE BERSERKER short.mov",
+        "TooLost_Package_CA-KST-26-99999.json"
+      ]
+    }
+  }
+}

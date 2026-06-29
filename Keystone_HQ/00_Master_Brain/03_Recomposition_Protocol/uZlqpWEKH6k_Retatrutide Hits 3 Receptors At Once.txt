@@ -1,0 +1,14 @@
+# Retatrutide (Triple G Agonist) Mechanism of Action
+
+## Overview
+Retatrutide is a highly potent next-generation weight-loss and metabolic-recomposition peptide utilizing a triple-agonist mechanism, targeting three distinct receptors simultaneously.
+
+## The Triple-Agonist Mechanism ("Triple G")
+* **GLP-1 (Glucagon-Like Peptide-1):** Suppresses appetite and slows gastric emptying.
+* **GIP (Glucose-Dependent Insulinotropic Polypeptide):** Optimizes insulin secretion and metabolic efficiency.
+* **Glucagon:** Increases energy expenditure (thermogenesis), driving the metabolic furnace hotter to burn more fuel even in the absence of calorie restriction.
+
+## Comparative Analysis
+* **Semaglutide (Ozempic/Wegovy):** Single-receptor agonist (GLP-1).
+* **Tirzepatide (Mounjaro/Zepbound):** Dual-receptor agonist (GLP-1 + GIP).
+* **Retatrutide:** Triple-receptor agonist (GLP-1 + GIP + Glucagon) — representing a complete shift from standard metabolic management to active structural demolition of fat tissue.

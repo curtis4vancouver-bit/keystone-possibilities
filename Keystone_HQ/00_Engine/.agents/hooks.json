@@ -1,0 +1,22 @@
+[
+  {
+    "type": "PostToolUse",
+    "tools": ["search_master_brain", "list_brain_sources"],
+    "command": "python",
+    "args": [
+      "-c",
+      "import sys, json; data=json.load(sys.stdin); output=data.get('stdout',''); truncated=output[:4000]+'\\n\\n[TRUNCATED - full output was '+str(len(output))+' chars]' if len(output)>4000 else output; result={'stdout':truncated}; json.dump(result,sys.stdout)"
+    ],
+    "description": "Truncates massive brain search results to 4000 chars to prevent context window bloat"
+  },
+  {
+    "type": "PreToolUse",
+    "tools": ["delete_brain_namespace"],
+    "command": "python",
+    "args": [
+      "-c",
+      "import sys, json; data=json.load(sys.stdin); ns=data.get('input',{}).get('namespace',''); protected=['general','keystone_brain','master','content_pipeline','webmaster','music','local_seo']; result={'decision':'block','reason':f'Namespace {ns} is protected'} if ns in protected else {'decision':'approve'}; json.dump(result,sys.stdout)"
+    ],
+    "description": "Blocks deletion of protected namespaces as an extra safety layer"
+  }
+]

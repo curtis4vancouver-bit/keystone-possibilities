@@ -1,0 +1,80 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 09_music_uploader.md, Score: 0.732) ---
+---
+name: 09_music_uploader
+description: "Dedicated uploader for Keystone Recomposition music tracks to Spotify, YouTube Music, and distribution platforms."
+---
+
+# 09 [[music|Music]] Uploader Agent
+
+## [[Brand_Constitution/protocol/IDENTITY|Identity]] & Scope
+You are the **Music Uploader** for Wayne's Recomposition brand. You take completed tracks from `[[dynamic_skills/08_music_creator|08_Music_Creator]]` and push them to distribution.
+
+**You own:**
+- TooLost distribution submissions
+- YouTube Music video uploads (music visualizer format)
+- Spotify metadata verification
+- MusicBrainz ISRC registration checks
+- Musixmatch lyric sync verification
+
+**You do NOT do:**
+- Create music (that's `[[dynamic_skills/08_music_creator|08_Music_Creator]]`)
+- Promote music (that's `[[dynamic_skills/10_music_awareness|10_Music_Awareness]]`)
+- Upload non-music video content (that's `[[dynamic_skills/06_protocol_uploader|06_Protocol_Uploader]]`)
+
+## MCP Tool Access
+- **keystone-brain**: `search_master_b
+
+
+--- Result 2 (Source: CURRENT_DIRECTION.md, Score: 0.719) ---
+eep, recovery
+- **60-minute minimum** per track for Spotify algorithm optimization
+- **Tied to Protocol video backgrounds** — every Protocol video uses Recomposition Music
+- **Cross-promotion:** Protocol video descriptions link to the Spotify track used
+
+#### Active Priorities
+
+1. **Focus frequency series** — 432 Hz tracks for deep work
+2. **Recovery ambient series** — tracks specifically designed for post-workout/sleep
+3. **Protocol video backgrounds** — custom tracks for each Wolverine Stack episode
+4. **Spotify playlist curation** — "Recomposition Focus," "Recomposition Recovery"
+
+#### Platform Priority
+
+1. **Spotify** (primary distribution)
+2. **YouTube** (ambient video format — waveform + track, 1-4 hour loops)
+3. **Apple Music** (secondary distribution)
+4. **Protocol video integration** (supporting role)
+
+---
+
+<!-- CONTEXT: Current Direction / 4 · Cross-Brand Synergies — Active -->
+## 4 · Cross-Brand Synergies — Active
+
+| From              | To                  | Integration     
+
+
+--- Result 3 (Source: 9_2_YouTube_Shorts_2026_Optimization.md, Score: 0.718) ---
+The platform calculates the precise proportion of aggregated revenue allocated to the "Creator Pool." This allocation is heavily penalized by music usage. If a Short utilizes absolutely no copyrighted music, 100% of the allocated revenue flows directly to the creator pool. If a Short utilizes a licensed track, the revenue attributed to that view is immediately split 50/50 between the creator pool and the music publisher. If two tracks are utilized, the split becomes highly punitive: 33% to the creator pool and 66% to the publishers.
+3. **Step 3: Regional View Share Distribution**: The finalized Creator Pool is then divided among monetized creators based strictly on their percentage of total eligible views within specific geographic regions. If a creator generates 1% of all monetized Shorts views in a given market, they are assigned exactly 1% of the Creator Pool for that market.
+4. **Step 4: The Final Platform Extraction**: From the creator's assigned share calculated in Step 3, YouTub
+
+
+--- Result 4 (Source: creative_media_playbook.md, Score: 0.715) ---
+atively, an ecosystem of community-developed, open-source tools exists that interfaces directly with Spotify's internal lyric feeds—which, ironically, are themselves powered by Musixmatch data on the backend.
+
+Tools such as the `syrics` Python command-line wrapper and the `spotify-lyrics-api` bypass the need for a Musixmatch commercial [[davinci-resolve-mcp/venv/Lib/site-packages/uvicorn-0.46.0.dist-info/licenses/LICENSE|license]] by authenticating directly against a user's active Spotify account. This is achieved by extracting the `SP_DC` session cookie from a logged-in web browser and passing it as an environment variable to the Python script or Docker container running the API.
+
+When a script executes a GET request against these community endpoints, providing a specific Spotify Track ID (e.g., `/?trackid=5f8eCN...`), the API responds with a highly structured JSON payload. This response indicates the precise synchronization methodology (e.g., `"syncType": "LINE_SYNCED"`) and provides
+
+
+--- Result 5 (Source: 9_3_TikTok_Upload_Requirements.md, Score: 0.702) ---
+ Upon uploading a file containing custom audio, business accounts are prompted with a mandatory "Music Usage Confirmation" to verify they hold the requisite rights to any non-CML audio embedded in the media. Failure to secure these rights results in automated algorithmic muting, immediate content takedowns, and potential litigation from rightsholders. Furthermore, CML licenses are strictly platform-specific; audio cleared for TikTok cannot be downloaded and syndicated to a YouTube or Facebook ad campaign without acquiring separate authorization.
+
+### 6.2. User-Generated Audio and Manual Sound Matching Protocols
+
+For independent musical artists and audio producers, TikTok’s rapid UGC (User-Generated Content) ecosystem can obscure attribution, particularly when original tracks are modified—such as being sped up, slowed down, or heavily remixed—and re-uploaded by random users as "Original Audio."
+
+To reclaim this intellectual property, map the viral spread of their work, and ensure proper
+

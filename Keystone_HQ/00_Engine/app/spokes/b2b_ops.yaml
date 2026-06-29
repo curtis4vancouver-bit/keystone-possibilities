@@ -1,0 +1,12 @@
+agent_name: "b2b_ops"
+port: 8003
+capabilities:
+  - "business_auditing"
+  - "builder_license_verification"
+  - "linkedin_leads_outbound"
+  - "sqlite_vec_memory"
+workspace_dir: "~/.chronos/workspaces/b2b_ops"
+description: "Empirical coordinator that handles outbound lead generation, builder licensing audits, and local vector indexing of corporate structures."
+rules:
+  - "Rigorously audit all BC Builder License parameters."
+  - "Never share B2B licensing formulas with Scripter lanes."

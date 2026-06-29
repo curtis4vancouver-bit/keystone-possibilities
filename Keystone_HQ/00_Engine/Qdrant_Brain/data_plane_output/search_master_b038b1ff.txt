@@ -1,0 +1,111 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: MEDIA_PRODUCTION_MCP_BLUEPRINT.md, VecScore: 0.667) ---
+tion, Premiere Pro, and After Effects (v20.0 or later), exposing a local MCP server that establishes a loopback bridge to [[CLAUDE|Claude]] Desktop or other local AI clients. This architecture provides:
+*   **Generative Scripting and Batch Processing:** Automates bulk ElevenLabs voice synthesis, custom sound effect generation, and speech-to-speech localization directly within the DAW.
+*   **Voice Isolation Integration:** Triggers precision background noise removal and dialogue isolation workflows programmatically.
+*   **Storyboard Automation:** Imports and processes structured CSV matrices to generate and sequence voiceover and ambient assets across the timeline.
+
+For broader system-level integrations, developers utilize the `viaSocket` platform, which connects Adobe Audition with productivity databases like *Amazing Marvin*. This framework uses webhook listeners that intercept incoming tasks and execute remote JSON POST requests to trigger Audition template-rendering pipelines.
+
+---
+
+
+
+
+--- Result 2 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.500) ---
+point = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+    console.log(`[ElevenLabs] Synthesizing narrative stream: "${text.substring(0, 40)}..."`);
+
+    try {
+      const response = await axios.post(endpoint, {
+        text,
+        model_id: 'eleven_flash_v2_5', // Flash 2.5 optimized for sub-100ms latency execution
+        voice_settings: {
+          stability: 0.8,
+          similarity_boost: 0.85,
+          style: 0.5
+        }
+      }, {
+        headers: {
+          'xi-api-key': this.elevenLabsApiKey,
+          'Content-Type': 'application/json'
+        },
+        responseType: 'arraybuffer'
+      });
+
+      return Buffer.from(response.data);
+    } catch (err) {
+      console.error('[ElevenLabs Error] Text-to-Speech transaction failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+
+
+--- Result 3 (Source: deep_research_targets.md, VecScore: 0.500) ---
+ogical hooks."*
+
+**6. Automated Advertising Funnel & Copywriting Pipeline**
+> *"Activate Deep Research. Design an autonomous advertising blueprint. How can a Google Workspace MCP agent (Gmail/Docs) perfectly maintain a specific, highly-curated '[[Brand_Constitution/BRAND_VOICE|Brand Voice]]' when writing cold outreach emails and LinkedIn posts for a luxury construction firm (Keystone [[possibilities|Possibilities]])? Detail the exact system prompts, few-shot learning examples, and advertising psychology frameworks (like AIDA or PAS) required to generate high-converting copy with zero human review."*
+
+<!-- CONTEXT: Deep Research Targets / Group 4: Web & Development -->
+## Group 4: Web & Development
+**7. Progressive Web App (PWA) Offline Sync & Trade Integration**
+> *"Activate Deep Research. Analyze the best practices for building an offline-first Progressive Web App (PWA) using Next.js, Service Workers, and Supabase. The PWA is for construction tradesmen to check off tasks on-site witho
+
+
+--- Result 4 (Source: AUDIO_ENGINEERING_SOP.md, VecScore: 0.333) ---
+fty$ dBFS) during narrative pauses. Layering this dry vocal track directly over ambient [[music|music]] beds creates the **realism paradox**: the voice sounds artificially detached, sits awkwardly "on top" of the mix, or becomes completely drowned out by overlapping frequencies. 
+
+To bridge this gap, we implement a highly calibrated electroacoustic mastering chain that addresses:
+1.  **Spectral Masking:** Overlapping frequencies in critical auditory bandwidths.
+2.  **Dynamic Amplitude Separation:** Volume changes triggered relative to dialogue activity.
+3.  **Acoustic Continuity:** Continuous synthetic room tone to mask silent gaps.
+
+---
+
+<!-- CONTEXT: Audio Engineering Sop / 2. Electroacoustic Principles: Corrective EQ & Spectral Carving -->
+## 2. Electroacoustic Principles: Corrective EQ & Spectral Carving
+
+The human ear canal is naturally tuned to amplify frequencies in the **1 kHz to 4 kHz** range. ThisPresence Zone is the critical threshold for phoneme recognition, sibilant defini
+
+
+--- Result 5 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.250) ---
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+    console.log('[ElevenLabs] Extracting word and character alignment maps');
+
+    const form = new FormData();
+    form.append('file', audioBuffer, { filename: 'narration.mp3', contentType: 'audio/mpeg' });
+    form.append('text', transcript);
+
+    try {
+      const response = await axios.post(endpoint, form, {
+        headers: {
+          ...form.getHeaders(),
+          'xi-api-key': this.elevenLabsApiKey
+        }
+      });
+
+      return response.data; // Structure: { characters: [], words: [], loss: double }
+    } catch (err) {
+      console.error('[ElevenLabs Error] Alignment mapping execution failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Orchestrates the complete automated timeline execution sequence
+   */
+  async executeOrchestrationPipeline(sceneBriefs) {
+    console.log(
+

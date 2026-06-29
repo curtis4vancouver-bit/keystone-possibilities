@@ -1,0 +1,84 @@
+Found 5 matches in ['general']:
+
+--- Result 1 (Source: 20260522_vector_threshold_tuning.md, VecScore: 0.500) ---
+-002`. Newer models produce fundamentally different score distributions (see Section 2).
+
+---
+
+## 2. Calibrating Thresholds Across Embedding Models
+
+Different embedding models inhabit different vector spaces. A score of 0.80 in one model is NOT equivalent to 0.80 in another.
+
+### Observed Score Distributions by Model
+
+| Model | Typical High-Quality Match Score | Notes |
+|:---|:---|:---|
+| `text-embedding-ada-002` | 0.80 - 0.90 | Historical OpenAI model; clusters high |
+| `text-embedding-3-small/large` | 0.30 - 0.50 | Newer OpenAI; dramatically lower absolute scores |
+| `all-MiniLM-L6-v2` | 0.60 - 0.80 | Popular open-source; moderate range |
+| Cohere `embed-v3` | 0.40 - 0.65 | Varies by language and domain |
+
+### Calibration Process
+
+1. **Generate a Representative Sample:** Embed 200-500 documents from your actual corpus using the target model.
+2. **Compute Pairwise Scores:** Calculate cosine similarity for known-relevant pairs, known-irrelevant pairs, and random pairs.
+3. **Plot the Di
+
+
+--- Result 2 (Source: 20260522_vector_threshold_tuning.md, VecScore: 0.500) ---
+al Quality
+
+### Core Metrics
+
+| Metric | What It Measures | Best For |
+|:---|:---|:---|
+| **Precision@K** | Fraction of top-K results that are relevant | Measuring noise levels |
+| **Recall@K** | Fraction of all relevant docs found in top-K | Measuring coverage |
+| **MRR** | Reciprocal rank of first relevant result | Single-answer QA tasks |
+| **NDCG@K** | Ranking quality with graded relevance | Multi-level relevance scenarios |
+| **MAP** | Average precision across all relevant docs | Overall ranking quality |
+
+### RAGAS Framework for Automated Evaluation
+
+RAGAS (Retrieval Augmented Generation Assessment) is the industry standard for automated RAG evaluation. Key metrics:
+
+- **Faithfulness:** Ratio of generated claims supported by context (hallucination detector). Score = supported_claims / total_claims.
+- **Answer Relevancy:** How well the answer addresses the original query.
+- **Context Precision:** Whether relevant chunks are ranked highly in retrieval.
+- **Context Recall:** Whether
+
+
+--- Result 3 (Source: 20260615_SYS_obsidian_backlinking_graph_clustering.md, VecScore: 0.333) ---
+rectory scanning mapped to `aliases.yml` dictionaries | Basic regex negative lookaheads; highly susceptible to markup corruption | External Python 3 runtime; requires pip dependencies | Batch terminal execution across full directory structures |
+| **Native TS Plugins** (e.g., `AutoKeywordLinker`) | Real-time AST evaluation against loaded internal vault caches | Advanced boundary detection bypassing code blocks, YAML, and existing links | Runs locally inside the Electron/V8 engine sandbox | Reverse-order string injection preserving cursor positions |
+
+---
+
+## II. Semantic Backlinking via Dense Vector Embeddings
+
+While lexical mapping is exceptionally fast and computationally inexpensive, it is fundamentally constrained by the rigid requirement of exact string matching. It fails to identify conceptual relationships where varying terminology describes identical underlying principles. To build a genuinely dense, heuristically accurate personal knowledge graph, developers have pivoted away 
+
+
+--- Result 4 (Source: DeepDive_40_1781284972069.md, VecScore: 0.333) ---
+cs/)
+<strong>AI [[AGENTS|agents]] improve task completion speed by up to 40% compared to manual workflows</strong>. Autonomous [[AGENTS|agents]] in software development reduce coding time by 30%–50%, depending on complexity.
+
+---
+
+### [IntellifyAi](https://www.intellifyai.ai/blogs/what-are-ai-__PLACEHOLDER_12__-the-definitive-guide-to-autonomous-enterprise-intelligence-in-2026)
+Modern voice [[AGENTS|agents]] have completely transformed contact centers. In 2026, <strong>these systems possess the emotional intelligence and complex problem-solving capabilities required to handle 85% of Tier 1 and Tier 2 inquiries without human intervention</strong>. They don&#x27;t simply follow scripts.
+
+---
+
+### [The AI Research Landscape in 2026: From Agentic AI to Embodiment](https://labs.adaline.ai/p/the-ai-research-landscape-in-2026)
+OpenAI’s Operator handled multi-step web tasks without supervision. [[GEMINI|Gemini]] Deep Research synthesized information across dozens of sources independently. <str
+
+
+--- Result 5 (Source: 20260615_SYS_obsidian_backlinking_graph_clustering.md, VecScore: 0.250) ---
+challenge in lexical automation is avoiding the destructive modification of the user's data schema. Blind regular expression (Regex) search-and-replace operations invariably corrupt critical Markdown structures. Sophisticated TypeScript plugins operating directly within the Electron-based PKM environment—such as `AutoKeywordLinker`—implement extensive context-checking subroutines to ensure safe, non-destructive parsing.
+
+These scripts parse the raw document string and identify strict boundaries for specific token exclusions. The matching engine evaluates string contexts to ensure target keywords are skipped if they reside within specific protected zones:
+* **Existing Wikilinks**: Preventing recursive nesting anomalies, which occur when a parser blindly transforms a linked `Keyword` into the corrupted syntax `[Keyword]`.
+* **Code Blocks and Inline Code**: Preserving programming syntaxes where keywords might act as reserved functions or variables rather than conceptual references.
+* **YA
+

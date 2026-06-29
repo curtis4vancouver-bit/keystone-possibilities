@@ -1,0 +1,59 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.500) ---
+Root Cause: Windows enterprise environments frequently deploy rigorous SSL inspection proxies, corporate firewalls, or strict execution policies that interfere with npx dynamically fetching and executing unvetted packages from the public npm registry.
+Resolution: To bypass dynamic execution blocking, system administrators must provision the package statically. The package should be installed globally using a corporate-approved npm registry proxy (npm install -g chrome-devtools-mcp). Subsequently, the MCP configuration payload must be modified to call the globally installed binary executable directly, rather than relying on the npx -y dynamic fetch mechanism. Additionally, Claude Code provides specific troubleshooting skills and workarounds for corporate HTTPS connectivity issues.   
+
+Failure Mode 4: Silent Failure to Spawn on Windows 11
+Symptom: The agent receives a prompt requiring browser interaction. It acknowledges the task but fails silently, never triggering the Windows UI approval prompt and never launching a Chrome instance if one was absent.
+Root Cause: Sub-process execution timeouts prevalent in Windows 11 environments. Heavy enterprise endpoint detection and response (EDR) software aggressively scans .cmd batch executions (such as npx.cmd). This scanning overhead frequently causes the startup process to exceed the default, rigid timeout windows hardcoded into many AI clients.
+
+
+--- Result 2 (Source: deep_research_targets.md, VecScore: 0.500) ---
+ogical hooks."*
+
+**6. Automated Advertising Funnel & Copywriting Pipeline**
+> *"Activate Deep Research. Design an autonomous advertising blueprint. How can a Google Workspace MCP agent (Gmail/Docs) perfectly maintain a specific, highly-curated '[[Brand_Constitution/BRAND_VOICE|Brand Voice]]' when writing cold outreach emails and LinkedIn posts for a luxury construction firm (Keystone [[possibilities|Possibilities]])? Detail the exact system prompts, few-shot learning examples, and advertising psychology frameworks (like AIDA or PAS) required to generate high-converting copy with zero human review."*
+
+<!-- CONTEXT: Deep Research Targets / Group 4: Web & Development -->
+## Group 4: Web & Development
+**7. Progressive Web App (PWA) Offline Sync & Trade Integration**
+> *"Activate Deep Research. Analyze the best practices for building an offline-first Progressive Web App (PWA) using Next.js, Service Workers, and Supabase. The PWA is for construction tradesmen to check off tasks on-site witho
+
+
+--- Result 3 (Source: 16_OPERATIONALIZING_AGENTIC_ECOSYSTEMS.md, VecScore: 0.333) ---
+g sink.   
+
+Before deploying any agentic [[davinci-resolve-mcp/docs/SKILL|skill]] or MCP server to a live environment, organizations should use visual testing utilities like the MCP Inspector to run tools in isolation without an LLM in the loop. To secure these integrations, skills and servers must also be subjected to automated security scans.   
+
+| Audit Check | Scan Target | Operational Prevention Metric |
+| :--- | :--- | :--- |
+| **1. Prompt Injection** | Instruction strings and input buffers | Blocks instructions that attempt to override system prompts or bypass safety boundaries |
+| **2. Data Exfiltration** | File write scopes and socket targets | Restricts file access to local directories and blocks unauthorized outbound transmissions |
+| **3. Dangerous Commands** | System calls and shell utilities | Detects hazardous commands (e.g., `rm -rf`, `chmod`) and requires secure, sandboxed scripts |
+| **4. Hardcoded Secrets** | Source code files and environmental configs | Scans for em
+
+
+--- Result 4 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.333) ---
+Additionally, if multiple independent MCP client sessions are running simultaneously and require temporary, ephemeral browser states that do not pollute each other's history or cookies, the MCP server supports the --isolated flag. This instructs the server to automatically provision a temporary user data directory in the Windows %HOMEPATH%\.cache\chrome-devtools-mcp folder, which is purged immediately upon browser closure. When paired with the --experimentalPageIdRouting flag, the server can even route independent MCP client tool calls specifically to the exact browser tab that a particular client is working with, enabling highly parallelized agentic workflows on a single Windows machine.   
+
+6. Troubleshooting Windows-Specific Failure Modes
+
+Implementing native MCP on the Windows operating system introduces several platform-specific edge cases, file path translations, and execution policy hurdles that do not manifest in macOS or Linux environments. When autoConnect fails, it typically presents as a silent hang or an opaque timeout. However, these failures almost exclusively map to one of four predictable failure modes.
+
+Failure Mode 1: "Could not find DevToolsActivePort"
+Symptom: The AI agent attempts to fulfill a prompt by invoking a browser tool (e.g., navigate_page), but the interface hangs. Eventually, the agent returns a timeout error or logs a specific Could not find DevToolsActivePort exception to the terminal output.
+
+
+--- Result 5 (Source: MEDIA_PRODUCTION_MCP_BLUEPRINT.md, VecScore: 0.300) ---
+tion, Premiere Pro, and After Effects (v20.0 or later), exposing a local MCP server that establishes a loopback bridge to [[CLAUDE|Claude]] Desktop or other local AI clients. This architecture provides:
+*   **Generative Scripting and Batch Processing:** Automates bulk ElevenLabs voice synthesis, custom sound effect generation, and speech-to-speech localization directly within the DAW.
+*   **Voice Isolation Integration:** Triggers precision background noise removal and dialogue isolation workflows programmatically.
+*   **Storyboard Automation:** Imports and processes structured CSV matrices to generate and sequence voiceover and ambient assets across the timeline.
+
+For broader system-level integrations, developers utilize the `viaSocket` platform, which connects Adobe Audition with productivity databases like *Amazing Marvin*. This framework uses webhook listeners that intercept incoming tasks and execute remote JSON POST requests to trigger Audition template-rendering pipelines.
+
+---
+
+
+

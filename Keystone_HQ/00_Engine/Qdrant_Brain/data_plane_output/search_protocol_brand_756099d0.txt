@@ -1,0 +1,90 @@
+Found 5 matches in ['protocol_brand']:
+
+--- Result 1 (Source: 20260522_competitor_tag_hijack_analysis.md, VecScore: 0.833) ---
+y format** — personal, not clinical
+- 🤖 **AI digital twin avatar** — unique production style
+- 📊 **YMYL-compliant case study** — stats + disclaimer = credibility
+- 🔨 **"Rebuilding the machine while still running it"** — relatable for working men
+
+---
+
+## 2. TOPIC 1: WOLVERINE STACK (BPC-157 + TB-500)
+
+### Top Competitor Videos
+
+| # | Title | Channel | Views | Notes |
+|---|---|---|---|---|
+| 1 | "Dr Admits - I Was WRONG About The Wolverine Stack" | Dr. Ashley Froese | ~238K | Clickbait-style "admission" title drives massive CTR |
+| 2 | "BPC-157 & TB-500: The Truth About the Wolverine Stack" | Dr. Alex Tatem | ~150K+ | Science deep-dive, appeared on Diary of a CEO (2M+ views on that episode) |
+| 3 | "I Analyzed the Wolverine Stack Evidence—Here's What I Found" | Dr. Chris Raynor | ~100K+ | Myth-busting format, orthopedic surgeon authority |
+| 4 | "BPC-157: Everything You Need to Know" | Dr. Quinn Stillson MD | ~200K+ | Comprehensive explainer, high retention |
+| 5 | "Taking The BPC-157 &
+
+
+--- Result 2 (Source: LONG_005_RETATRUTIDE_FINAL_FLOW.md, VecScore: 0.583) ---
+itles.
+```
+
+### 📋 CLIP A31 — WAYNE (MINE)
+
+```
+THIS IS THE SCRIPT:
+Wayne says: Think of it as cellular mortar. When you demolish fat aggressively, your tendons take collateral damage. The Wolverine Stack repairs at the tissue level.
+
+THIS IS THE VIDEO PROMPT:
+Wayne. KEEP EXACT CLOTHES ON THE AVATAR, DO NOT CHANGE THEM. Standing at a 30-degree angle or less, facing mostly front. Pure black background. Camera holds steady. Hands illustrating mortar being spread. No subtitles.
+```
+
+### 📋 CLIP A32 — VICTORIA
+
+```
+THIS IS THE SCRIPT:
+Victoria says: Important flag here. B-P-C one fifty-seven evidence is almost entirely preclinical. Rodent models. No large human trials. This is a case study.
+
+THIS IS THE VIDEO PROMPT:
+Victoria. KEEP EXACT CLOTHES ON THE AVATAR, DO NOT CHANGE THEM. Standing at a 30-degree angle or less, facing mostly front. Pure black background. Close-up zoom in. Serious responsible tone, active hand gestures. No subtitles.
+```
+
+### 📋 CLIP A33 — WAYNE (MINE)
+
+```
+THIS IS THE 
+
+
+--- Result 3 (Source: 20260522_competitor_tag_hijack_analysis.md, VecScore: 0.333) ---
+yth-busting format, orthopedic surgeon authority |
+| 4 | "BPC-157: Everything You Need to Know" | Dr. Quinn Stillson MD | ~200K+ | Comprehensive explainer, high retention |
+| 5 | "Taking The BPC-157 & TB-500 WOLVERINE STACK" | Thomas DeLauer (clip) | ~80K+ | Short-form clip from Matt Kaeberlein collab |
+| 6 | "I Took The Wolverine Stack & My Thoughts" | San Diego Sports Rehab (Dr. Josh) | ~50K+ | Personal experience + clinical perspective |
+| 7 | "The Wolverine Protocol - Accelerated Injury Recovery" | Various practitioners | ~44K | Morpheus Fields format |
+| 8 | "Best Dose Of BPC-157 For Injury Healing (Wolverine Factor)" | Biohacking channels | ~30K+ | Dosing-focused content |
+| 9 | "What Is the Wolverine Stack? BPC-157, TB-500 and the Evidence" | Prof. Gordon Slater | ~25K+ | Orthopaedic surgeon deep-dive |
+| 10 | "Peptide of the Week: Wolverine Stack – Elite Recovery" | Niche peptide channels | ~15K+ | Weekly series format |
+
+### Common Title Patterns
+- "The Truth About..." (eviden
+
+
+--- Result 4 (Source: wolverine_stack_blog_post.md, VecScore: 0.250) ---
+ healing: poor blood supply, cellular immobility, and chronic inflammation.
+
+While the preclinical data is exceptionally strong and the initial human pilot studies are promising, the "Wolverine Stack" remains an experimental therapy. Its current status as a Category 2 substance by the FDA and a prohibited agent by WADA reflects the medical community's cautious approach toward substances that powerfully stimulate systemic growth pathways. The "angiogenic paradox"—the possibility that healing a ligament could also support a tumor—remains the most significant theoretical hurdle for clinical translation.
+
+For the educator, scientist, or documentary filmmaker, the story of these peptides is not just one of faster recovery for athletes. It is a story about the frontier of molecular medicine, where we are learning to hijack the body's own ancient, gastric, and thymic defense systems to perform feats of regeneration that were once thought impossible. As our understanding of these pathways deep
+
+
+--- Result 5 (Source: protocol_brand_long_006_the_triple_threat_final_flow.md, VecScore: 0.250) ---
+## Keystone Protocols — Long-Form Podcast (Wayne + Victoria)
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+Secondary Contextual Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (joint recovery:PROCESS) ──[targets]──> (shoulder injuries:MEDICAL_CONDITION)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+

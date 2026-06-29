@@ -1,0 +1,35 @@
+{
+    "soundtrack_genre": "Progressive House / Deep Melodic Techno (Ben Bohmer, Lane 8, ARTBAT style)",
+    "delivery_formats": {
+        "spotify_video_podcast": {
+            "integrated_loudness_lufs": -14.0,
+            "max_peak_level_dbfs": -0.2
+        },
+        "youtube_desktop_mobile": {
+            "integrated_loudness_lufs": -14.0,
+            "max_peak_level_dbfs": -1.0
+        }
+    },
+    "audio_mix_hierarchy": {
+        "spoken_vocals": {
+            "gain_target_dbfs": {
+                "min": -6.0,
+                "max": -3.0
+            },
+            "role": "Absolute spatial anchor, clean mono front-center"
+        },
+        "music_stems": {
+            "moog_sub_bass": "Ducked dynamically to -24 dBFS during speech",
+            "ambient_synth_pads": "Wide stereo, ducked to -18 dBFS during speech, slow compressor release",
+            "rhythmic_drums_percussion": "COMPLETELY MUTED during Wayne speaking segments to eliminate sibilance clutter",
+            "transition_risers_whips": "Swell to -12 dBFS during 1-second Bezier whip-pan cuts"
+        }
+    },
+    "sidechain_compressor_settings": {
+        "threshold_db": -22.0,
+        "ratio": "2.5:1",
+        "attack_ms": 15.0,
+        "release_ms": 350.0,
+        "mode": "Transparent slow-decay vocal ducking"
+    }
+}

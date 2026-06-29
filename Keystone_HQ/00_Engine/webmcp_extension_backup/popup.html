@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Keystone WebMCP Controller</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --accent-gradient-hover: linear-gradient(135deg, #00d2de 0%, #2fa8fe 100%);
+            --glow-color: rgba(0, 242, 254, 0.25);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            width: 380px;
+            margin: 0;
+            padding: 16px;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 14px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 4px var(--accent-cyan));
+        }
+
+        h1 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .credits-badge {
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .credits-badge:hover {
+            box-shadow: 0 0 15px var(--glow-color);
+            transform: scale(1.02);
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Control Area */
+        .controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 12px;
+            border-radius: 8px;
+            padding: 8px 12px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #000;
+            box-shadow: 0 0 12px var(--glow-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-gradient-hover);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        }
+
+        /* Task Form */
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 13px;
+            padding: 8px;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        /* Status Panels */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            text-align: center;
+        }
+
+        .stat-box {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 4px;
+        }
+
+        .stat-val {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .stat-lbl {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* Task Queue List */
+        .queue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .queue-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .queue-list {
+            max-height: 160px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-right: 4px;
+        }
+
+        /* Custom Scrollbar */
+        .queue-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .queue-list::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        .queue-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .task-item {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .task-info {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .task-prompt {
+            font-weight: 500;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-file {
+            font-size: 10px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+
+        .task-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot-pending { background-color: var(--text-muted); }
+        .dot-processing { 
+            background-color: var(--accent-cyan);
+            box-shadow: 0 0 8px var(--accent-cyan);
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        .dot-completed { background-color: var(--success); }
+        .dot-failed { background-color: var(--danger); }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        footer {
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <svg class="logo" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="128" height="128" rx="24" fill="#0f172a"/>
+                <path d="M38,32 L38,96 L52,96 L52,68 L76,96 L94,96 L68,64 L90,32 L72,32 L52,56 L52,32 Z" fill="url(#logo-grad)"/>
+                <circle cx="88" cy="40" r="6" fill="#00f2fe"/>
+                <circle cx="92" cy="88" r="6" fill="#4facfe"/>
+                <defs>
+                    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f2fe"/>
+                        <stop offset="100%" stop-color="#4facfe"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h1>Keystone WebMCP</h1>
+        </div>
+        <div class="credits-badge" id="credits-balance">-- Credits</div>
+    </header>
+
+    <!-- Queue Operations -->
+    <div class="card">
+        <div class="controls">
+            <button class="btn-primary" id="btn-toggle-queue" style="flex-grow: 1;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <span>Start Queue</span>
+            </button>
+            <button class="btn-secondary" id="btn-clear-queue">
+                Clear
+            </button>
+            <button class="btn-secondary" id="btn-dismiss-overlays" title="Force dismiss Google Flow notifications/changelogs">
+                Dismiss UI Overlays
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Panel -->
+    <div class="card">
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-val" id="stat-pending" style="color: var(--text-secondary);">0</div>
+                <div class="stat-lbl">Pending</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="stat-processing" style="color: var(--accent-cyan);">0</div>
+                <div class="stat-lbl">Active</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="stat-completed" style="color: var(--success);">0</div>
+                <div class="stat-lbl">Done</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="stat-failed" style="color: var(--danger);">0</div>
+                <div class="stat-lbl">Failed</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Form -->
+    <div class="card">
+        <div class="queue-header" style="margin-bottom: 10px;">
+            <div class="queue-title">New Generation Task</div>
+        </div>
+        <div class="form-group">
+            <label for="input-prompt">Prompt Text</label>
+            <textarea id="input-prompt" placeholder="A cinematic drone shot of..."></textarea>
+        </div>
+        <div style="display: flex; gap: 8px;">
+            <div class="form-group" style="flex: 1;">
+                <label for="input-folder">Project Folder</label>
+                <input type="text" id="input-folder" value="Keystone_Possibilities">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label for="input-filename">Filename</label>
+                <input type="text" id="input-filename" placeholder="scene01_shotA.mp4">
+            </div>
+        </div>
+        <button class="btn-secondary" id="btn-add-task" style="width: 100%; margin-top: 4px;">
+            Queue Video Task
+        </button>
+    </div>
+
+    <!-- Active Queue List -->
+    <div class="card">
+        <div class="queue-header">
+            <div class="queue-title">Live Queue</div>
+            <div id="queue-count" style="font-size: 11px; color: var(--text-secondary);">0 tasks</div>
+        </div>
+        <div class="queue-list" id="queue-list-container">
+            <!-- Dynamically populated -->
+            <div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 12px;">
+                Queue is currently empty.
+            </div>
+        </div>
+    </div>
+
+    <footer>KEYSTONE SOVEREIGN AGENT FLEET ENGINE</footer>
+    <script src="popup.js"></script>
+</body>
+</html>

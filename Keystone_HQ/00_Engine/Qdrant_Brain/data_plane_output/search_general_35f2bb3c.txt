@@ -1,0 +1,51 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: Research_Archives/20260613_YOUTUBE_GROWTH_youtube_community_building_and_engagement_strategies_for_sma.md, Score: 0.680) ---
+### Pathway 1: The n8n Visual Automation Workflow
+
+For rapid deployment, n8n provides a robust framework for connecting YouTube data to Large Language Models without managing complex server infrastructure. The workflow is designed to execute on a scheduled chron job (e.g., every 15 minutes following a new video upload).
+
+The workflow architecture operates as follows:
+
+1. **Trigger and Ingestion:**  The workflow is triggered manually or via schedule. An  `HTTP Request`  node or a dedicated  `YouTube`  node is configured to call the  `commentThreads.list`  endpoint. The node requires a valid YouTube API key and the specific Video ID.
+2. **Pagination Handling:**  A critical component is the  `Loop`  node, which checks the JSON response for a  `nextPageToken` . If present, the workflow loops back to the ingestion node to fetch subsequent pages of comments, ensuring no audience feedback is missed.
+3. **Sentiment Analysis via Gemini:**  The extracted comment text is passed to an  `AI Agent`  node configured with the  `Google Gemini Chat Model` . The node is supplied with specific prompt instructions to classify the sentiment of each comment as Positive, Neutral, or Negative, and to extract the core emotional strength and confidence score.
+
+
+--- Result 2 (Source: Research_Archives/09_Social_Media/20260522_social_media_automation_facebook_reels_publishing_via_graph_api_video_upload_from_ur.md, Score: 0.662) ---
+Platforms such as n8n provide a visual, node-based programming environment that is highly effective for chaining the three-phase upload sequence. Using standard HTTP Request nodes within n8n, developers can map the initialization, URL transfer, and publishing commands sequentially, utilizing the platform's native error routing to handle timeouts or the OIL Exception automatically. Furthermore, n8n workflows are highly modular, allowing the construction business vertical to trigger an upload based on a new file in Google Drive, while the YouTube vertical triggers based on an RSS feed update.   
+
+Similarly, Make.com offers robust visual automation, though developers utilizing its basic Facebook modules often encounter limitations regarding the required publish_video scopes and the handling of the rupload subdomain. To achieve reliable Reels publishing in Make.com, architects must bypass the standard modules and construct raw API calls using the "Make an API Call" module, strictly adhering to the header structures outlined in Section 3.
+
+
+--- Result 3 (Source: Research_Archives/20260613_YOUTUBE_GROWTH_optimal_youtube_content_calendar_and_publishing_cadence_for_.md, Score: 0.657) ---
+Therefore, the n8n environment must independently maintain three separate Google Cloud OAuth 2.0 Client authorizations. While a single credentials.json file representing one Google Cloud Project can be used, the system must undergo the user authorization flow three separate times, resulting in three distinct refresh_token sets (e.g., stored as token_construction.json, token_wellness.json, etc.).   
+
+When configuring the n8n YouTube node:
+
+Navigate to the Google Cloud Console, create a designated project, and enable the YouTube Data API v3.   
+
+Configure the OAuth consent screen and create an OAuth 2.0 Client ID (selecting the Web Application type). Critically, register the n8n instance's exact authorized redirect URI.   
+
+Within the n8n interface, create a new YouTube credential profile. Input the Client ID and Secret, execute the "Connect" protocol, and explicitly authenticate using the Google Account explicitly tied to the Construction channel.   
+
+Repeat this exact process entirely, creating entirely new n8n credential profiles for the Wellness and Music channels, ensuring the correct Google Account is selected during the pop-up consent flow.   
+
+Within the primary n8n workflow, deploy a "Switch" node to evaluate the incoming payload's metadata. Based on the niche identifier, the Switch node routes the video to one of three parallel YouTube nodes, each explicitly configured to utilize its corresponding, dedicated credential profile.
+
+
+--- Result 4 (Source: Research_Archives/03_YouTube_Scripts/20260610_YOUTUBE_SCRIPTS_research_how_to_write_youtube_video_descriptions_that_maximi.md, Score: 0.654) ---
+To execute this intricate metadata strategy across thousands of videos and multiple channels, the Keystone Sovereign system must leverage a highly robust autonomous technology stack. The optimal configuration for 2026 relies on a trifecta of automation tools: n8n for workflow orchestration, LangChain for cognitive agent decision-making, and pure Python for precise interaction with the YouTube Data API v3.   
+
+Workflow Orchestration via n8n
+
+Within this stack, n8n serves as the central nervous system, automating the flow of data between various triggers and actions without the need for constant human oversight. The platform acts as an inbox manager and event listener; it can monitor internal Slack channels, process incoming video files uploaded to cloud storage, or detect when a new video script is approved. Once an event is triggered, n8n orchestrates the pipeline, passing the raw transcripts and video metadata to the cognitive agent layer for processing, and subsequently routing the generated outputs to the Python execution nodes.   
+
+Cognitive Processing via LangChain and OpenAI
+
+LangChain acts as the cognitive core of the autonomous system. Utilizing langchain (version 1.3.4, released June 2, 2026) alongside langchain-core (version 1.4.2) and the langchain-openai integration package (version 1.3.0), the system constructs specialized retrieval-augmented generation agents capable of understanding context and executing complex formatting tasks.
+
+
+--- Result 5 (Source: Research_Archives/08_SEO_Website/20260522_competitor_tag_hijack_analysis.md, Score: 0.654) ---
+## 3. TOPIC 2: CJC-1295 (NO DAC) + IPAMORELIN
+

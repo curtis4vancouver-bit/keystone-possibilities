@@ -1,0 +1,202 @@
+Found 10 matches in ['master']:
+
+--- Result 1 (Source: episode_session_bootstrap_1782260213, VecScore: 0.542) ---
+Action: session_bootstrap
+Outcome: success
+Risk: LOW
+Summary: Successfully bootstrapped the Keystone session, updated voice bridge, verified MCP connections, and ran self-evolution doctor.
+
+
+--- Result 2 (Source: 18_LOCAL_MULTIMODAL_AUTOMATION_FRAMEWORK.md, VecScore: 0.500) ---
+streaming via WebSocket video blocks | Antigravity Browser Extension Native Messaging |
+| **Acoustic Perception (Ears)** | CPU-quantized local Whisper models (tiny/base via `whisper.cpp`) | Local VAD filtering with speech-to-text API fallback | Bidirectional native audio streaming (Gemini 3.1 Flash Live) | Integer quantized C++ binaries & WebRTC transports |
+| **DaVinci Resolve Control** | Local Python scripts interacting directly with Resolve's scripting API | High-level compound commands sent via local MCP server | *Not applicable* (restricted to local network scripting interface) | External Scripting set to Local inside Resolve Studio |
+| **Google Flow Control** | *Not applicable* (requires cloud authentication for Workspace) | Browser extension driving Flow's canvas DOM in Chrome | Drive and Workspace API connections via AI Studio integration | Google Cloud Console OAuth 2.0 Credentials |
+
+
+---
+📁 **See also:** [[Master_Docs/INDEX|← Directory Index]]
+
+**Related:** [[20260613_LOCAL_S
+
+
+--- Result 3 (Source: MEDIA_PRODUCTION_MCP_BLUEPRINT.md, VecScore: 0.358) ---
+ictly via local named pipes, this architecture limits risk to local privilege escalation, as standard OS-level access control lists (ACLs) govern who can read/write to `/tmp/audacity_script`. There is no network exposure or port conflicts, complying with air-gapped studio security.
+*   **Cloud-Connected HTTP Bridges (Adobe Audition & Krisp):** These frameworks rely on Server-Sent Events (SSE) or HTTP bridge transports authenticated via OAuth 2.0 with PKCE. While this enables convenient cloud integrations, it introduces several network-level attack vectors:
+    1.  Potential intercept of session Bearer tokens if HTTPS enforcement is misconfigured.
+    2.  Risk of prompt-injection attacks triggering unauthorized file reads or data exfiltration.
+    3.  Port-forwarding vulnerabilities on the local network.
+
+This comparison highlights the security advantages of local-first, stdio-based architectures over cloud-hybrid bridges in professional post-production environments.
+
+---
+
+<!-- CONTEXT:
+
+
+--- Result 4 (Source: MEDIA_PRODUCTION_MCP_BLUEPRINT.md, VecScore: 0.350) ---
+tion, Premiere Pro, and After Effects (v20.0 or later), exposing a local MCP server that establishes a loopback bridge to [[CLAUDE|Claude]] Desktop or other local AI clients. This architecture provides:
+*   **Generative Scripting and Batch Processing:** Automates bulk ElevenLabs voice synthesis, custom sound effect generation, and speech-to-speech localization directly within the DAW.
+*   **Voice Isolation Integration:** Triggers precision background noise removal and dialogue isolation workflows programmatically.
+*   **Storyboard Automation:** Imports and processes structured CSV matrices to generate and sequence voiceover and ambient assets across the timeline.
+
+For broader system-level integrations, developers utilize the `viaSocket` platform, which connects Adobe Audition with productivity databases like *Amazing Marvin*. This framework uses webhook listeners that intercept incoming tasks and execute remote JSON POST requests to trigger Audition template-rendering pipelines.
+
+---
+
+
+
+
+--- Result 5 (Source: 18_LOCAL_MULTIMODAL_AUTOMATION_FRAMEWORK.md, VecScore: 0.333) ---
+n Framework / 3. Implementing Local Auditory Perception (Ears) -->
+## 3. Implementing Local Auditory Perception (Ears)
+To match the continuous listening features of cloud-based voice assistants without incurring constant API costs or network lag, developers can configure an offline auditory pipeline on their local hardware. This pipeline captures system audio, runs local transcription, and pipes the resulting text directly into the Antigravity command interface.   
+
+<!-- CONTEXT: Local Multimodal Automation Framework / Quantized Offline Transcription Pipelines -->
+### Quantized Offline Transcription Pipelines
+The core of a local listening loop relies on highly optimized, CPU-friendly implementations of OpenAI’s Whisper model. Frameworks like `faster-whisper` (which uses CTranslate2) or `whisper.cpp` (a plain C++ port) allow standard desktop processors to transcribe audio files with minimal system resources.   
+
+Using a 75MB quantized model, such as the `ggml-tiny.bin` model running wit
+
+
+--- Result 6 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.250) ---
+point = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+    console.log(`[ElevenLabs] Synthesizing narrative stream: "${text.substring(0, 40)}..."`);
+
+    try {
+      const response = await axios.post(endpoint, {
+        text,
+        model_id: 'eleven_flash_v2_5', // Flash 2.5 optimized for sub-100ms latency execution
+        voice_settings: {
+          stability: 0.8,
+          similarity_boost: 0.85,
+          style: 0.5
+        }
+      }, {
+        headers: {
+          'xi-api-key': this.elevenLabsApiKey,
+          'Content-Type': 'application/json'
+        },
+        responseType: 'arraybuffer'
+      });
+
+      return Buffer.from(response.data);
+    } catch (err) {
+      console.error('[ElevenLabs Error] Text-to-Speech transaction failed:', err);
+      throw err;
+    }
+  }
+
+  /**
+   * Forces character-level and word-level alignment parsing
+   */
+  async executeForcedAlignment(audioBuffer, transcript) {
+    const endpoint = 'https://api.elevenlabs.io/v1/forced-alignment';
+
+
+--- Result 7 (Source: AUDIO_ENGINEERING_SOP.md, VecScore: 0.238) ---
+fty$ dBFS) during narrative pauses. Layering this dry vocal track directly over ambient [[music|music]] beds creates the **realism paradox**: the voice sounds artificially detached, sits awkwardly "on top" of the mix, or becomes completely drowned out by overlapping frequencies. 
+
+To bridge this gap, we implement a highly calibrated electroacoustic mastering chain that addresses:
+1.  **Spectral Masking:** Overlapping frequencies in critical auditory bandwidths.
+2.  **Dynamic Amplitude Separation:** Volume changes triggered relative to dialogue activity.
+3.  **Acoustic Continuity:** Continuous synthetic room tone to mask silent gaps.
+
+---
+
+<!-- CONTEXT: Audio Engineering Sop / 2. Electroacoustic Principles: Corrective EQ & Spectral Carving -->
+## 2. Electroacoustic Principles: Corrective EQ & Spectral Carving
+
+The human ear canal is naturally tuned to amplify frequencies in the **1 kHz to 4 kHz** range. ThisPresence Zone is the critical threshold for phoneme recognition, sibilant defini
+
+
+--- Result 8 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.222) ---
+ments the WebSocket bridge architecture required to connect with the Chrome extension proxy, authenticate with Google Labs, generate B-roll media using Veo 3 on Vertex AI, process narration via ElevenLabs, and calculate frame-by-frame forced alignments.
+
+```javascript
+/**
+ * Programmatic Video Orchestrator for Local Multi-Agent Developer Hub
+ * Google I/O 2026 Multimodal APIs & ElevenLabs Forced Alignment Pipeline
+ */
+
+import WebSocket from 'ws';
+import axios from 'axios';
+import FormData from 'form-data';
+import { v4 as uuidv4 } from 'uuid';
+import { EventEmitter } from 'events';
+
+class OrchestrationEngine extends EventEmitter {
+  constructor(config) {
+    super();
+    this.gcpProjectId = config.gcpProjectId;
+    this.gcpLocation = config.gcpLocation || 'us-central1';
+    this.elevenLabsApiKey = config.elevenLabsApiKey;
+    this.wsPort = config.wsPort || 9222;
+    this.maxConcurrentRequests = 5;
+    this.requestCooldownMs = 10000;
+    this.creditBudget5H = config.creditBudget5H || 200
+
+
+--- Result 9 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.200) ---
+ct` | `POST` | GCP OAuth2 Access Token | JSON (Instruct-customized style transfer) |
+| **ElevenLabs TTS** | `/v1/text-to-speech/{voice_id}` | `POST` | `xi-api-key` Header | JSON (Narration audio synthesis) |
+| **ElevenLabs Alignment** | `/v1/forced-alignment` | `POST` | `xi-api-key` Header | Multipart (Audio file + matching transcript) |
+
+<!-- CONTEXT: Programmatic Cinematic Pipeline / 1. Google Labs Flow Batch Video Generation -->
+### 1. Google Labs Flow Batch Video Generation
+*   **Endpoint:** `POST https://aisandbox-pa.googleapis.com/v1/video:batchAsyncGenerateVideoText`
+*   **Headers:**
+    ```http
+    Content-Type: application/json
+    Authorization: Bearer ya29.Gl8...
+    ```
+*   **Payload Schema:**
+    ```json
+    {
+      "clientContext": {
+        "projectId": "pippip-doc-01"
+      },
+      "requests": [
+        {
+          "prompt": "Dynamic aerial shot flying over a modern architectural custom build nestled in the Squamish pine forest.",
+          "durationSeconds": 8
+       
+
+
+--- Result 10 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.167) ---
+ully attached as client.');
+
+        ws.on('message', (message) => {
+          try {
+            const payload = JSON.parse(message);
+            this.handleBridgeResponse(payload);
+          } catch (err) {
+            console.error('❌ Failed to parse WebSocket packet:', err);
+          }
+        });
+
+        ws.on('close', () => {
+          console.warn('⚠️ Extension disconnected. Attempting reconnection standby.');
+          this.extensionSocket = null;
+          this.cleanupPendingFutures();
+        });
+
+        resolve(true);
+      });
+    });
+  }
+
+  /**
+   * Routes responses from the extension bridge back to their respective async requests
+   */
+  handleBridgeResponse(payload) {
+    if (payload.type === 'token_captured') {
+      this.emit('auth_token_refreshed', payload.flowKey);
+      return;
+    }
+
+    const { id, status, data, error } = payload;
+    if (this.pendingFutures.has(id)) {
+      const { resolve, reject } = this.pendingFutures.get(id);
+      this.pendingFutures.delet
+

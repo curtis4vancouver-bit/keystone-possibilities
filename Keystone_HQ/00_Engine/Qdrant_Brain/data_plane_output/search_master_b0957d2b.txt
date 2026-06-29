@@ -1,0 +1,107 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.667) ---
+If an administrator launches Chrome manually with a custom directory specification:
+PowerShell: Start-Process "chrome.exe" -ArgumentList "--user-data-dir=C:\AI_Chrome_Profile"
+
+The chrome-devtools-mcp server, by its default internal logic, will stubbornly search for the DevToolsActivePort file in the standard Windows %LOCALAPPDATA% path. Because Chrome is utilizing the custom directory, it writes the port metadata to C:\AI_Chrome_Profile\DevToolsActivePort. The MCP server will fail to find it in the default location, resulting in a frustrating and opaque connection timeout.   
+
+To bridge this configuration gap, the developer must explicitly pass the --userDataDir argument to the MCP server within the AI client's configuration payload. It is critical to note the subtle syntax difference: Chrome expects --user-data-dir, while the Node.js MCP server expects the camelCase --userDataDir. This tells the server exactly where to look for the active port metadata.   
+
+When configured with this synchronized pathing, the MCP server correctly identifies the isolated profile, reads the dynamically generated port from the custom directory, and successfully attaches to the isolated browser session without requiring the user to guess which port Chrome selected.   
+
+
+
+--- Result 2 (Source: 12_PROGRAMMATIC_CINEMATIC_PIPELINE.md, VecScore: 0.500) ---
+') {
+    if (!this.extensionSocket) {
+      throw new Error('Transaction aborted: Browser extension bridge is currently offline.');
+    }
+
+    const requestId = uuidv4();
+    const payload = {
+      id: requestId,
+      method: 'api_request',
+      params: {
+        url,
+        method,
+        headers: this.generateRandomizedFingerprints(),
+        body,
+        captchaAction
+      }
+    };
+
+    return new Promise((resolve, reject) => {
+      this.pendingFutures.set(requestId, { resolve, reject });
+      this.extensionSocket.send(JSON.stringify(payload));
+    });
+  }
+
+  /**
+   * Implements randomized browser agent signatures to bypass cloud scraping filters
+   */
+  generateRandomizedFingerprints() {
+    return {
+      'sec-ch-ua': '"Google Chrome";v="126", "Chromium";v="126", "Not=A?Brand";v="24"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"macOS"',
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126
+
+
+--- Result 3 (Source: STATE_OF_THE_EMPIRE.md, VecScore: 0.333) ---
+e [[possibilities|Possibilities]] (Custom dynamic multi-tenant estimation portal for contractors - Landscaping, Roofing, Custom Homes).
+    *   *Side B (B2C Media):* Keystone Recomposition (Hormone/metabolic longevity optimization media, synthetic audiobooks, Spotify focus [[music|music]] distribution).
+*   **Aesthetics:** High-end, premium dark-mode, minimalist typography (Outfit/Inter/Georgia), organic atmospheric audio, cinematic visual loops.
+*   **Compliance:** Strict FDA/DSHEA compliance for supplement promotion. Strict YMYL compliance for YouTube scripts ( scrubbing red-flag terms via `sovereign_coordinator.py`).
+
+---
+
+<!-- CONTEXT: State Of The Empire / 2. Active Technical Endpoints -->
+## 2. Active Technical Endpoints
+*   **Possibilities Dynamic Portal:** Coded inside `possibilities-portal/`.
+    *   *Middleware:* `src/middleware.ts` routes subdomains (`roofing`, `landscaping`) dynamically at the edge.
+    *   *Styling:* Tailwind CSS v4 variables mapped directly inside `global
+
+
+--- Result 4 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.333) ---
+A highly advanced use case that frequently arises in professional deployments involves attempting to combine the seamless attachment workflow of autoConnect with the strict isolation of a custom --user-data-dir.   
+
+Operating a highly capable AI agent directly on the primary Windows Chrome profile carries substantial inherent risk. If an LLM hallucinates instructions, or worse, encounters an adversarial prompt injection embedded within a live webpage, it possesses the technical capability to act on those malicious instructions using the user's full authentication context. Because the agent controls the browser, it could navigate to an authenticated banking portal, extract active session cookies, delete emails, or authorize OAuth applications.   
+
+To mitigate this severe risk, security-conscious developers frequently mandate the creation of a secondary, completely isolated Chrome profile dedicated solely to AI interactions. The technical challenge arises because Chrome 136+ blocks the --remote-debugging-port flag on the default directory but explicitly allows it on custom directories. This creates confusion regarding whether autoConnect is still necessary or viable when an isolated profile is in use.   
+
+Can you use autoConnect with a custom --user-data-dir simultaneously? Yes, but it requires highly specific and easily misunderstood configuration synchronization between the browser and the MCP server.   
+
+
+
+--- Result 5 (Source: 03_SEO_GEO_WEBSITE_IMPLEMENTATION.md, VecScore: 0.333) ---
+o Keystone Possibilities! We are a family-owned construction 
+company that has been serving the community for many years...
+```
+
+**AFTER (good for AI):**
+```
+Keystone Possibilities is a custom home construction and renovation 
+company serving Squamish, Whistler, and Pemberton in BC's Sea-to-Sky 
+Corridor. Founded by Wayne Stevenson, we specialize in energy-efficient 
+custom builds, Bill 44 compliance renovations, and full-service project 
+management. Contact us at (XXX) XXX-XXXX for a free consultation.
+```
+
+<!-- CONTEXT: Seo Geo Website Implementation / Step 5.2: Add statistics and citations to pages -->
+### Step 5.2: Add statistics and citations to pages
+Research shows +37% AI visibility with statistics:
+- "Over X projects completed in the Sea-to-Sky Corridor"
+- "Serving homeowners since [year]"
+- "Average build time: X months"
+- "XX% client satisfaction rate"
+- Reference BC Building Code sections where relevant
+
+<!-- CONTEXT: Seo Geo Website Implementation / Step 5.3: Create Q&A con
+
+
+
+⚠️ GraphRAG lookup disabled: Couldn't connect to localhost:7687 (resolved to ('[::1]:7687', '127.0.0.1:7687')):
+Failed to establish connection to ResolvedIPv6Address(('::1', 7687, 0, 0)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 7687)) (reason [WinError 10061] No connection could be made because the target machine actively refused it)
+

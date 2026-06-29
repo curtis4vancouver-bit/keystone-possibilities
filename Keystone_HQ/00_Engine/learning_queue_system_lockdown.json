@@ -1,0 +1,170 @@
+[
+  {
+    "id": "SYS_001",
+    "category": "brain_optimization",
+    "priority": "critical",
+    "prompt": "Deep research into Qdrant vector database optimization for AI agent memory systems. Specifically: How to organize namespaces effectively when you have 14,000+ vectors across 30 namespaces with massive imbalance (one namespace has 8,000 vectors, others have 0-5). What is the optimal namespace strategy? Should you merge small namespaces? How do you implement temporal weighting so recent vectors rank higher than old ones? How do you prune stale vectors without losing important knowledge? What chunking strategies give the best retrieval accuracy for operational playbooks vs research documents? Include real-world examples from production RAG systems in 2025-2026."
+  },
+  {
+    "id": "SYS_002",
+    "category": "brain_optimization",
+    "priority": "critical",
+    "prompt": "Deep research into vector database retrieval quality optimization. How do you measure and improve retrieval precision in a Qdrant vector DB used as an AI agent's long-term memory? What embedding models give the best results for mixed-content corpora (technical docs, scripts, error logs, brand guidelines)? How do you implement hybrid search (vector + keyword) properly? What is the optimal chunk size for different document types? How do you handle the 'needle in a haystack' problem where critical operational rules get buried under thousands of research vectors? Include benchmarks and comparisons from 2025-2026."
+  },
+  {
+    "id": "SYS_003",
+    "category": "bootstrap_architecture",
+    "priority": "critical",
+    "prompt": "Deep research into AI agent session bootstrap protocols and context window optimization for 2025-2026. How do the best autonomous AI agent systems (Devin, Cursor, Windsurf, Claude Code, Gemini Antigravity) handle session initialization? How do they ensure the agent remembers critical rules and past mistakes without bloating the context window? What is the optimal strategy for layered context loading - what goes in the system prompt vs what gets loaded on-demand vs what stays in vector DB? How do you prevent context window token waste from loading unnecessary information? What are the best patterns for 'always-on' rules (things the agent must NEVER forget) vs conditional rules? Include specific implementation patterns."
+  },
+  {
+    "id": "SYS_004",
+    "category": "bootstrap_architecture",
+    "priority": "critical",
+    "prompt": "Deep research into preventing AI agent behavioral drift during long-running autonomous tasks. The specific problem: an AI coding agent starts a batch task correctly (e.g., generating 50 video clips using exact prompts), but after 15-20 successful iterations, it starts 'optimizing' by changing the format, spawning subagents, rewriting prompts, or deviating from the proven workflow. How do production AI systems enforce behavioral consistency over long task sequences? What are the best guardrail patterns? How do you implement 'workflow lock' where the agent cannot deviate from a defined procedure once it starts? Include examples from autonomous coding agents, RPA systems, and AI video production pipelines."
+  },
+  {
+    "id": "SYS_005",
+    "category": "skill_enforcement",
+    "priority": "critical",
+    "prompt": "Deep research into AI agent skill/tool enforcement mechanisms. The problem: an AI agent has 50+ defined skills (markdown instruction files) but frequently ignores them and improvises from scratch. How do the best agent frameworks force skill loading before task execution? What are the patterns for mandatory skill activation (e.g., 'before doing ANY video work, you MUST read and follow skill X')? How do you prevent an agent from using its general knowledge when a specific skill exists for that task? What is the difference between 'rules' (always loaded) vs 'skills' (loaded on demand) and how should they be organized? Include implementation examples from LangChain, CrewAI, AutoGen, Google ADK, and similar frameworks in 2025-2026."
+  },
+  {
+    "id": "SYS_006",
+    "category": "skill_enforcement",
+    "priority": "high",
+    "prompt": "Deep research into AI agent correction journal and self-improvement systems. How do production AI agents learn from their mistakes across sessions? What is the best format for storing error-to-fix mappings? How do you implement automatic prevention rule generation from past errors? What is the optimal number of prevention rules before they become noise that the agent ignores? How do you prioritize which rules are CRITICAL vs nice-to-have? How do you test that prevention rules actually work? Include patterns from error-driven learning, CLIN framework, Reflexion, and real production deployments in 2025-2026."
+  },
+  {
+    "id": "SYS_007",
+    "category": "context_efficiency",
+    "priority": "critical",
+    "prompt": "Deep research into context window token optimization for AI coding agents in 2025-2026. How do the best AI agents minimize wasted tokens? What is the optimal strategy for loading files - read the whole file vs targeted line ranges? How do you prevent 'context pollution' where the agent loads so much background info that it loses focus on the actual task? What are the best patterns for 'working memory' vs 'reference memory'? How do you structure a system prompt that is comprehensive but token-efficient? What is the ideal balance between always-loaded context and on-demand retrieval? Include real cost analysis and token budgets from production systems."
+  },
+  {
+    "id": "SYS_008",
+    "category": "mcp_optimization",
+    "priority": "high",
+    "prompt": "Deep research into MCP (Model Context Protocol) server optimization and best practices in 2025-2026. How do you organize and manage 8+ MCP servers efficiently? What are the patterns for MCP tool discovery vs hardcoded tool knowledge? How do you handle MCP server failures gracefully? What is the best strategy for lazy vs eager tool loading? How do you prevent an AI agent from ignoring available MCP tools and falling back to raw terminal commands? What are the best practices for MCP tool schema documentation so agents actually use tools correctly? Include examples of production MCP deployments."
+  },
+  {
+    "id": "SYS_009",
+    "category": "google_flow_production",
+    "priority": "critical",
+    "prompt": "Deep research into Google Flow (labs.google/fx/tools/flow) automation best practices for batch AI video production in 2026. How do you automate 50+ clip generation without the AI agent deviating from the script? What are the known failure modes (prompt splitting, wrong character attachment, settings drift)? How do you maintain character consistency across a batch of clips? What is the optimal prompt structure for Veo 3.1 / Omni Flash to get consistent results? How do you handle the avatar/character re-attachment requirement between clips? What are the best DOM automation patterns for Google Flow via Chrome DevTools Protocol? Include any documented APIs, workarounds, or community-discovered techniques."
+  },
+  {
+    "id": "SYS_010",
+    "category": "google_flow_production",
+    "priority": "high",
+    "prompt": "Deep research into AI-generated podcast video production quality in 2026. Specifically for a two-person interview format using AI avatars (Google Flow / Veo 3.1). What camera angles, framing, and body language prompts produce the most natural-looking results? How do you write prompts that create a convincing 'seated conversation at an angle' look? What word count per 10-second clip produces natural-sounding AI speech without rushing or dead air? How do you create visual variety across 50+ clips without breaking character consistency? What are the best B-roll integration strategies for AI-generated talking head videos? Include before/after comparisons and specific prompt templates that work."
+  },
+  {
+    "id": "SYS_011",
+    "category": "script_research",
+    "priority": "high",
+    "prompt": "Deep research into retatrutide (LY3437943) clinical trial data as of June 2026. Include ALL Phase 3 TRIUMPH trial results (TRIUMPH-1 through TRIUMPH-5), exact weight loss percentages at each dose level, lean mass preservation data, side effect profiles compared to tirzepatide and semaglutide, the glucagon receptor mechanism and how it differs from dual agonists, FDA approval timeline and current status, compounding pharmacy availability projections, and any post-marketing surveillance data. Also research the PCAC (Pharmacy Compounding Advisory Committee) hearing outcomes from July 2026 regarding BPC-157 and other peptides. I need EXACT numbers, PMID references, and DOI citations for every claim."
+  },
+  {
+    "id": "SYS_012",
+    "category": "script_research",
+    "priority": "high",
+    "prompt": "Deep research into tirzepatide (Mounjaro/Zepbound) long-term outcomes beyond 26 weeks as of 2026. What happens at 30, 40, 52, 72 weeks? What is the latest SURMOUNT trial data on lean mass changes at extended durations? What do real-world user communities (Reddit r/tirzepatide, r/Mounjaro, forums) report about muscle loss patterns, appetite changes, and side effect evolution past the 6-month mark? What is the current evidence on tirzepatide vs retatrutide head-to-head comparisons? What dosing protocols are bodybuilders and biohackers using to minimize muscle loss while on tirzepatide? Include specific user testimonials and case studies alongside peer-reviewed data."
+  },
+  {
+    "id": "SYS_013",
+    "category": "script_research",
+    "priority": "medium",
+    "prompt": "Deep research into the Builder's Protocol peptide stack for muscle preservation during GLP-1 agonist therapy as of 2026. Research BPC-157 (current human trial status, mechanism of GH receptor upregulation, dosing protocols used by practitioners), TB-500/Thymosin Beta-4 (muscle fiber repair evidence, dosing), and GHK-Cu (gene modulation data from Broad Institute, skin/collagen restoration evidence, delivery methods). Also research creatine monohydrate + resistance training protocols specifically designed for patients on GLP-1 agonists. What are licensed naturopaths and integrative medicine doctors recommending in Canada and the US for their GLP-1 patients? Include the regulatory landscape for peptide compounding as of June 2026."
+  },
+  {
+    "id": "SYS_014",
+    "category": "antigravity_optimization",
+    "priority": "critical",
+    "prompt": "Deep research into Google Gemini Antigravity AI coding agent architecture and optimization in 2025-2026. How does the Antigravity agent system work internally? What are the best practices for configuring skills, rules, and subagents? How do you structure the .gemini/config directory for optimal performance? What is the difference between skills, plugins, and rules and when should each be used? How do you prevent the agent from ignoring user-defined rules? What are the known limitations and workarounds for Antigravity's planning mode, artifact system, and subagent delegation? How do you optimize the agent for long-running autonomous tasks? Include any community tips, GitHub issues, or documentation insights."
+  },
+  {
+    "id": "SYS_015",
+    "category": "antigravity_optimization",
+    "priority": "high",
+    "prompt": "Deep research into how to create effective AI agent rules and constraints that actually get followed. The problem: you write detailed rules like 'NEVER do X' and 'ALWAYS do Y' but the AI agent eventually ignores them during long tasks. What cognitive science and AI safety research explains this? What formatting, placement, and repetition strategies maximize rule adherence? Should rules be in system prompts, loaded as files, or injected at specific decision points? How do production AI safety teams enforce behavioral constraints? What is the optimal number of rules before diminishing returns? How do you test rule adherence programmatically? Include research from AI alignment, prompt engineering, and production AI deployment literature."
+  },
+  {
+    "id": "SYS_016",
+    "category": "brain_optimization",
+    "priority": "high",
+    "prompt": "Deep research into Qdrant vector database maintenance and performance tuning. How do you compact and optimize a Qdrant collection that has grown to 14,000+ vectors over several weeks? What are the best practices for batch deletion of stale or duplicate vectors? How do you implement metadata filtering to prioritize recent vs old vectors in search results? What indexing parameters (HNSW ef, m) give the best speed/accuracy tradeoff for operational retrieval? How do you monitor vector DB health and query latency? What are the warning signs that your vector DB needs pruning or restructuring? Include Qdrant-specific configuration examples and performance benchmarks."
+  },
+  {
+    "id": "SYS_017",
+    "category": "context_efficiency",
+    "priority": "high",
+    "prompt": "Deep research into AI agent 'rules file' architecture best practices in 2025-2026. Many AI coding tools (Cursor with .cursorrules, Claude with CLAUDE.md, Gemini with AGENTS.md/rules/) use project-level instruction files. What is the optimal structure and content for these files? How long should they be before they become counterproductive? Should you have one monolithic rules file or many small specialized ones? How do you handle contradictory rules? What information belongs in rules vs skills vs the agent's general knowledge? How do you version and evolve rules over time? Include comparisons of .cursorrules, CLAUDE.md, AGENTS.md, and similar approaches with real examples of what works and what doesn't."
+  },
+  {
+    "id": "SYS_018",
+    "category": "workflow_discipline",
+    "priority": "critical",
+    "prompt": "Deep research into deterministic workflow execution in AI agent systems. The core problem: AI agents are probabilistic and creative by nature, but some tasks (like batch video generation from a fixed script) require DETERMINISTIC, repeatable execution with zero deviation. What are the best architectural patterns for forcing an AI agent to follow a fixed workflow step-by-step without improvising? How do 'tool-use-only' modes work? What are state machine patterns for AI agents? How do you implement 'workflow recipes' that an agent executes mechanically? How do you prevent the agent from 'thinking it knows better' and deviating? Include examples from RPA, industrial automation, and AI agent frameworks that solve this problem."
+  },
+  {
+    "id": "SYS_019",
+    "category": "agent_tool_selection",
+    "priority": "critical",
+    "prompt": "Deep research into AI agent autonomous tool selection and MCP schema optimization in 2025-2026. How do you design MCP tool schemas, names, and descriptions so an LLM always picks the exact native tool instead of writing custom python scripts or asking the user? What are the best practices for few-shot prompting inside tool definitions? How do you prevent an AI from 'forgetting' it has specialized tools (like 'youtube-manager' or 'upload_quality_gate') when handling complex multi-step workflows? Include concrete examples of highly effective tool description patterns."
+  },
+  {
+    "id": "SYS_020",
+    "category": "visual_feedback",
+    "priority": "high",
+    "prompt": "Deep research into visual feedback loops and 'eyes and ears' for AI coding agents. Are there better alternatives to Chrome DevTools Protocol for browser automation? How do modern 'Computer Use' APIs, Puppeteer MCP, or Playwright MCP integrate with AI agents compared to basic CDP? How do you give an agent reliable visual feedback on what a web page actually looks like (screenshots vs DOM snapshots) so it stops 'flying blind' and breaking UI interactions? Include comparisons of state-of-the-art vision-agent frameworks in 2026."
+  },
+  {
+    "id": "SYS_021",
+    "category": "sequential_thinking",
+    "priority": "high",
+    "prompt": "Deep research into 'Sequential Thinking' (supranormal thinking) MCP and agent reasoning frameworks. How do you configure an AI agent to autonomously invoke sequential thinking or chain-of-thought tools for complex problems BEFORE acting, without the user having to explicitly prompt it? What is the ideal system prompt directive to force an agent to use a sequential thinking MCP when faced with ambiguity? Include examples of 'think-before-you-act' architectures."
+  },
+  {
+    "id": "SYS_022",
+    "category": "polling_optimization",
+    "priority": "medium",
+    "prompt": "Deep research into optimizing AI agent web polling loops to prevent token/credit waste. When an agent needs to wait for a long-running web task (like Deep Research or video generation), how do you implement a 60-second polling loop that doesn't consume massive LLM context tokens? What are the best practices for extracting only the 'completion status' from a DOM instead of feeding the entire HTML body back into the context window? How do systems like Opus handle background waiting efficiently compared to standard agent loops?"
+  },
+  {
+    "id": "SYS_023",
+    "category": "agent_memory",
+    "priority": "critical",
+    "prompt": "Deep research into Persistent Agent Memory vs Context Window dynamics. How do you map the distinction between 'what the agent knows' (stored in a vector DB or skill files) and 'what the agent is currently thinking about' (context window) to prevent having to re-teach the agent basic workflow steps? What are the best patterns for 'context injection' based on intent classification? How do you build an agent that truly 'remembers' your brand rules forever?"
+  },
+  {
+    "id": "SYS_024",
+    "category": "self_correction",
+    "priority": "high",
+    "prompt": "Deep research into Agent Self-Correction and Reflexion loops. If an AI agent's tool call fails (e.g., a web element isn't found or an API returns an error), how do you build an architecture where the agent automatically diagnoses and tries the correct alternative instead of immediately giving up or asking the user for help? What are the specific system prompt structures that encourage autonomous recovery from runtime errors?"
+  },
+  {
+    "id": "SYS_025",
+    "category": "system_prompt_overrides",
+    "priority": "critical",
+    "prompt": "Deep research into System Prompt overrides and 'Master Directives'. How do you write a master directive that successfully overrides a foundational LLM's intrinsic tendency to write custom python scripts when a native MCP tool already exists for the job? What specific keywords or negative constraints (e.g., 'NEVER use python if an MCP tool exists') have the highest compliance rates in production AI agent systems like Antigravity or Claude?"
+  },
+  {
+    "id": "SYS_026",
+    "category": "tool_usage_zero_shot",
+    "priority": "medium",
+    "prompt": "Deep research into zero-shot tool usage improvement. Can we use few-shot examples directly inside MCP tool JSON schema descriptions (e.g., adding an 'examples' field) to guarantee the agent formats its tool calls perfectly on the first try? What is the most effective way to document complex tool arguments so an LLM doesn't hallucinate parameters or use incorrect syntax?"
+  },
+  {
+    "id": "SYS_027",
+    "category": "workflow_discipline",
+    "priority": "high",
+    "prompt": "Deep research into preventing 'lazy' tool usage by AI agents. Why do agents sometimes use a broad, destructive tool (like rewriting a whole file) instead of a precise tool (like multi-line replace), and how do you enforce the use of precise tools? What prompt engineering techniques or tool design choices force an agent to prioritize the safest, most token-efficient tool available?"
+  },
+  {
+    "id": "SYS_028",
+    "category": "visual_feedback",
+    "priority": "medium",
+    "prompt": "Deep research into visual QA for AI agents. When an agent is automating UI tasks, how do you implement a 'look and confirm' step using Vision-Language Models (VLMs)? What are the best practices for taking automated screenshots via CDP or Playwright, passing them to a vision model, and verifying that the screen state matches expectations before clicking buttons? Include production patterns from 2026."
+  }
+]

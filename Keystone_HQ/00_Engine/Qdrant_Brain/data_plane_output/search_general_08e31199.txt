@@ -1,0 +1,69 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: SCRAPED_GOOGLE_DOCS.md, Score: 0.765) ---
+## Untitled document
+
+http://127.0.0.1:18789/chat?session=agent%3Amain%3Amain
+
+Keystone Recomposition: OpenClaw Local Pipeline SOP
+
+Hardware Target: RTX 5060 Ti (16GB VRAM) / 32GB DDR5 Engine: ollama/gemma4:e4b (9.6GB Local) Purpose: Zero-cost local processing for DaVinci Resolve scripts and YouTube SEO schemas.
+
+Phase 1: Total Site Demolition
+
+If the system is acting up, never try to patch it. Raze it to the ground and pour a clean foundation.
+
+1. Kill the core program: npm uninstall -g openclaw
+
+2. Vaporize the ghost files: Remove-Item -Recurse -Force "$env:APPDATA\npm\node_modules\openclaw"
+
+3. Verify the kill: openclaw --version (It must throw a red error saying the term is not recognized. If it doesn't, repeat steps 1 and 2).
+
+Phase 2: The Clean Pour
+
+1. Pull the fresh framework: powershell -c "irm https://openclaw.ai/install.ps1 | iex" (Let the spinner finish entirely until it drops you back to the command line).
+
+Phase 3: Hardwiring the Breaker Box
+
+Do NOT run the openclaw onboard setup wizard. It crashes and corrupts the configuration. Hardcode the blueprints directly into the terminal.
+
+1. Lock the server to the local machine: openclaw config set gateway.mode local
+
+2. Bolt the primary engine to the 5060 Ti: openclaw config set agents.defaults.model.primary "ollama/gemma4:e4b"
+
+3. Forge the master security key: openclaw config set gateway.token "keystone-admin"
+
+Phase 4: Ignition
+
+1. Fire up the background server: openclaw gateway (Leave this PowerShell window running. Do not close it).
+
+
+--- Result 2 (Source: Research_Archives/13_Chrome_Automation/20260522_chrome_automation_browser_tab_lifecycle_management_for_long-running_automation.md, Score: 0.739) ---
+Coordinating hundreds of parallel agents executing simultaneously across the construction, YouTube, and health domains requires an incredibly robust, deeply integrated backend architecture. The open-source GoClaw project masterfully illustrates the necessary structural design required for a highly secure, multi-tenant AI gateway. Built entirely in Go, this massive architectural gateway exposes both WebSocket RPC and HTTP REST interfaces, effectively decoupling the agent's core operational logic from any specific LLM provider.   
+
+In a complex system like Keystone Sovereign, individual agents must share context and historical data without ever violating strict tenant isolation. GoClaw achieves this complex requirement by enforcing a strict, immutable tenant_id scope across all PostgreSQL database queries and internal context flows. It implements a sophisticated three-tier memory system—categorized into working, episodic, and semantic memory—backed by a hybrid search infrastructure that seamlessly combines BM25 full-text indexing with pgvector for highly precise semantic retrieval.
+
+
+--- Result 3 (Source: Research_Archives/20260613_AGENT_ARCH_multi-agent_coordination_patterns_for_autonomous_ai_systems_.md, Score: 0.720) ---
+To bridge the gap between shared memory and direct oversight, systems employ Cross-Agent QMD (Query, Memory, Document) Search. In advanced configurations like OpenClaw, agents can directly query the semantic memory transcripts of other agents by appending designated memory collections to agents.list.memorySearch.qmd.extraCollections. If global sharing is required, administrators populate agents.defaults.memorySearch.qmd.extraCollections to ensure every agent inherits the same shared transcript database. This topology allows a Verifier agent to search the exact step-by-step reasoning logic a Specialist agent executed, rather than merely evaluating the final output payload.
+
+
+--- Result 4 (Source: Research_Archives/20260613_AGENT_ARCH_multi-agent_coordination_patterns_for_autonomous_ai_systems_.md, Score: 0.719) ---
+For direct operational [[DIRECTIVES|directives]], agents utilize explicit message passing. The send_message tool acts as the primary conduit within Google Antigravity, requiring a Recipient identifier and a Message payload. OpenClaw utilizes a similar session_send primitive for inter-agent dialogue. To prevent cascading network storms where agents trap themselves in infinite conversational loops, message passing is governed by Eventual Consistency models augmented by Conflict-Free Replicated Data Types (CRDTs). CRDTs and operational transformation techniques synchronize local agent states without relying on heavy consensus protocols, preserving rapid responsiveness while guaranteeing that all agents eventually converge on the same operational reality. Furthermore, mature tooling incorporates circuit breaker patterns and continual liveness verification to detect anomalous message loops, dynamically throttling API usage or isolating compromised agents dynamically upon failure.   
+
+Concurrency, Conflict Resolution, and Resource Contention
+
+The most severe point of failure in a fully autonomous 15-agent system is resource contention, which occurs when multiple agents attempt to modify the same file, access the same API endpoint, or alter the same database record simultaneously. The difficulty of Large Language Model coordination under resource contention is rigorously quantified by the DPBench (Dining Philosophers Benchmark).
+
+
+--- Result 5 (Source: Research_Archives/02_MCP_Tools/20260609_MCP_TOOLS_research_mcp_servers_for_web_scraping,_data_extraction,_and_.md, Score: 0.711) ---
+Furthermore, autonomous DOM interaction represents the next frontier in dynamic scraping. Tools such as Browserbase and Firecrawl's designated /interact endpoint are designed to maintain a persistent browser state. This persistency is critical for extracting data from sites that utilize infinite scrolling algorithms, obscure data within shadow DOMs, or strictly require complex user interactions—such as clicking a "Load More" button or navigating a multi-tiered dropdown menu—to trigger the JavaScript functions that render the target data.   
+
+Comprehensive Analysis of Managed MCP Infrastructure
+
+The current market offers a vast spectrum of MCP implementations. Selecting the appropriate infrastructure requires meticulously evaluating the specific demands of the competitive intelligence workflow, balancing the need for raw extraction speed against the requirements for bot mitigation and autonomous session management.
+
+Firecrawl: The LLM-Ready Serialization Engine
+
+Firecrawl has rapidly positioned itself as a premier infrastructure layer expressly designed to bridge the operational gap between the live web and AI agents. Its primary market value proposition lies in its unparalleled ability to ingest highly complex, JavaScript-heavy web properties and return pristine, LLM-ready [[.agents/skills/banner-creator/references/formats|formats]], specifically optimized Markdown and structured JSON.
+

@@ -1,0 +1,115 @@
+Found 5 matches in ['webmaster']:
+
+--- Result 1 (Source: webmaster/tactics/gutenberg_rankmath_injection, VecScore: 1.000) ---
+When injecting high-end blog posts into the Keystone Recomposition WordPress site via Chrome DevTools:
+1. Always wrap the entire content in the `<div class="keystone-blog-container">` custom HTML template, matching the site's `.keystone-video-wrapper` and `keystone-eeat-author-block` CSS classes. Do NOT rely on raw Gutenberg blocks, as they default to basic un-styled text.
+2. To update the Rank Math SEO Snippet Editor via DevTools `evaluate_script`, you MUST use React's native property setter to bypass the overridden `.value` setter. Example:
+```javascript
+const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
+setter.call(document.getElementById('rank-math-editor-title'), 'New Title');
+document.getElementById('rank-math-editor-title').dispatchEvent(new Event('input', { bubbles: true }));
+```
+Doing this ensures Title, Permalink, and Description limits are perfectly filled and registered by Rank Math's state manager.
+
+
+--- Result 2 (Source: deep_research/20260624_ai_agent_mcp_tool_integration, VecScore: 0.333) ---
+e": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-workspace"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "CHROME_DEBUG_PORT": "9222"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "content-engine": {
+      "command": "node",
+      "args": ["/opt/content-engine/dist/index.js"],
+      "timeout": 30000
+    }
+  }
+}
+
+Configuration Nuances for Reliable Discovery
+
+The provided configuration highlights several critical best practices necessary for eliminating tool ignorance at the infrastructure level.
+
+First, the handling of sensitive environment variables requires stric
+
+
+--- Result 3 (Source: deep_research/20260624_docker_ai_infrastructure_optimization, VecScore: 0.250) ---
+nthesizing this exhaustive research into a cohesive, deployable architecture requires the precise configuration of two crucial files: the .wslconfig for deep host-level virtualization tuning, and the docker-compose.yml for orchestrating the interrelated AI agent stack.
+
+Stage 1: The Unified .wslconfig Architecture
+
+This file governs the boundaries between the Windows 11 host and the Linux virtual machine. It must be placed in the Windows user profile directory at %USERPROFILE%\.wslconfig.   
+
+Ini, TOML
+[wsl2]
+# Core Limits: Cap memory to prevent host OS starvation.
+# Leaving headroom is vital if utilizing local LLMs in system RAM or VRAM.
+memory=16GB
+processors=4
+
+# Advanced Networking: Overhaul NAT for seamless agent connectivity
+networkingMode=mirrored
+dnsTunneling=true
+firewall=true
+autoProxy=true
+
+# Storage Optimization: Prevent VHDX disk bloat automatically
+sparseVhd=true
+
+# Database Tuning: Critical for Qdrant/Elasticsearch memory mapped files
+kernelCommandLine = "sysctl.vm.max_m
+
+
+--- Result 4 (Source: deep_research/20260624_prompt_9_error_correction_journal_self_learning_systems, VecScore: 0.200) ---
+ new window
+github.com
+GitHub - Tobi-De/leerming: An implementation of the `Leitner box` that can generate flashcards using llms from documents, youtube videos and web page links.
+Opens in a new window
+reddit.com
+Built an open source memory server so my coding agents stop forgetting everything between sessions : r/ChatGPTCoding - Reddit
+Opens in a new window
+researchgate.net
+Unbounded Human Learning: Optimal Scheduling for Spaced Repetition - ResearchGate
+Opens in a new window
+giacomoran.com
+Content-aware Spaced Repetition - Giacomo Randazzo
+Opens in a new window
+reddit.com
+Built two open source tools for my AI agents — spaced repetition memory + cryptographic preference trust : r/VibeCodersNest - Reddit
+Opens in a new window
+researchgate.net
+Agent Brain: A Biologically Inspired Memory System for Autonomous AI Agents, with Head-to-Head Evaluation on LongMemEval - ResearchGate
+Opens in a new window
+arxiv.org
+Multi-component Causal Tracing in Large Language Models - arXiv
+Opens in a new 
+
+
+--- Result 5 (Source: deep_research/20260624_ai_agent_session_bootstrap, VecScore: 0.167) ---
+wse the web autonomously. It natively supports context compaction and explicit tool integration. The optimization strategy for fixing the broken bootstrap involves shifting the cognitive burden away from the active prompt and embedding it securely within the persistent environment and external toolsets.   
+
+Step 1: Distill the Core System Prompt
+
+The primary initialization prompt must be aggressively stripped of all dynamic data, history, and project details. It should solely define the agent as a senior technical operator functioning within the Antigravity sandbox. It establishes the baseline imperative: act autonomously, utilize available tools to gather context rather than expecting it to be provided upfront, and update persistent state files upon task completion.
+
+Step 2: Implement a File-Based State Engine
+
+The "Correction Journal," "Daily Digest," and "Unfinished Tasks" must be entirely removed from the initialization prompt. These elements represent temporal memory. Following th
+

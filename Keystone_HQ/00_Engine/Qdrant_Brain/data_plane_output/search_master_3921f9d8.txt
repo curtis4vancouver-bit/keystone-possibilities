@@ -1,0 +1,123 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: Antigravity_IO_2026_Developer_Blueprint.md, VecScore: 0.500) ---
+>
+### 🔋 Running Background [[AGENTS|Agents]] 24/7
+Antigravity 2.0 supports **Managed Background Services**. Instead of shutting down when you close the chat:
+1.  We write your [[AGENTS|agents]] (`DbAgent`, `SeoAgent`, `AuditAgent`, and a future YouTube Scripting Agent) as persistent background workers.
+2.  We use our **standalone ts-node server** (currently running on port `3000` mapped via localtunnel to your phone) to keep your agent ecosystem alive and listening.
+3.  Your phone remote command center can ping this 24/7 listener to dispatch tasks, monitor sitemap crawls, or generate YouTube scripts even while your main RTX workstation is locked or asleep.
+
+---
+
+<!-- CONTEXT: Antigravity Io 2026 Developer Blueprint / 📋 Part 5: Your Immediate Developer Sign-Up Checklist -->
+## 📋 Part 5: Your Immediate Developer Sign-Up Checklist
+
+Here are the specific developer previews from I/O that you should register for using your primary Google Account (we've got you covered for the rest!):
+
+1.  **
+
+
+--- Result 2 (Source: deep_research_obsidian_qdrant_vault_sync_2026-06-25, VecScore: 0.500) ---
+        t = threading.Thread(target=worker, daemon=True)
+        t.start()
+
+    def run(self):
+        """Bootstraps the Observer and holds the main thread open."""
+        event_handler = VaultEventHandler(self.event_queue)
+        observer = Observer()
+        observer.schedule(event_handler, OBSIDIAN_VAULT_PATH, recursive=True)
+        observer.start()
+        print(f"Daemon initialized. Monitoring topology: {OBSIDIAN_VAULT_PATH}")
+        self.start_worker()
+
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            observer.stop()
+            observer.join()
+            print("Daemon terminated safely.")
+
+if __name__ == "__main__":
+    daemon = VaultSyncDaemon()
+    daemon.run()
+```
+
+9. Integrating AI Agents via the Model Context Protocol (MCP)
+
+The custom synchronization daemon detailed above establishes an immensely powerful, purely mathematical vector search foundation. However, possessing an indexed database of numerical arrays is useless in isolation. In order to allow a localized AI agent (such as Claude Desktop, Cursor, or specialized terminal interfaces) to actually interface with this data organically, engineers must implement standardized communication protocols.
+
+
+
+--- Result 3 (Source: OVERNIGHT_BUILD_INSTRUCTIONS.md, VecScore: 0.333) ---
+rain/core/state_store.py`
+
+1. Create SQLite database at `00_Master_Brain/memory/[[STATE|state]].db`
+2. Implement tables: sessions, messages, messages_fts (FTS5)
+3. WAL mode for concurrent read/write
+4. Session chaining via parent_session_id
+5. Write contention handling (15 retries, 20-150ms jitter)
+6. Schema versioning with auto-migration
+7. Full-text search across all stored messages
+8. Self-repair: detect corruption → backup → repair → rebuild FTS
+9. WAL checkpoint every 50 writes
+10. API functions:
+    - create_session(source, model, system_prompt) → session_id
+    - add_message(session_id, role, content, tool_calls, reasoning)
+    - search_messages(query, limit) → list of matches with session context
+    - get_session_chain(session_id) → full lineage
+    - get_recent_sessions(n) → last N sessions with summaries
+    - close_session(session_id, end_reason, title)
+    - repair_database() → self-healing
+
+<!-- CONTEXT: Overnight Build Instructions / PHASE 2: Auto-[[davinci-resolve-mcp/d
+
+
+--- Result 4 (Source: SOVEREIGN_MEMORY_ARCHITECTURE.md, VecScore: 0.333) ---
+n Memory Architecture / 3. How to Bootstrap a Fresh Agent in 3 Seconds -->
+## 3. How to Bootstrap a Fresh Agent in 3 Seconds
+
+Whenever you start a new chat with an AI coding assistant, copy and paste this exact **bootstrapping trigger**:
+
+> *"We are operating under the Sovereign Master Brain. Please read `c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\Master_Docs\[[Master_Docs/STATE_OF_THE_EMPIRE|STATE_OF_THE_EMPIRE]].md` to synchronize with our current brand [[Brand_Constitution/protocol/IDENTITY|identity]], active task lists, and exact project [[STATE|state]]. Then, await my instructions."*
+
+This guarantees:
+1.  **Perfect Brand Consistency:** The agent immediately knows your exact tone, aesthetic standards, and B2B/B2C hooks.
+2.  **Zero Token Waste:** You aren't wasting 100,000 tokens on historical conversation clutter. The agent has max processing speed.
+3.  **Flawless [[STATE|State]] Handovers:** You can hop between different specialized [[AGENTS|agents
+
+
+--- Result 5 (Source: 01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, VecScore: 0.333) ---
+reness** — can't differentiate new vs old information
+
+---
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / PHASE 1: AUDIT THE CURRENT BRAIN [[STATE|STATE]] -->
+## PHASE 1: AUDIT THE CURRENT BRAIN [[STATE|STATE]]
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Step 1.1: Verify Qdrant is running -->
+### Step 1.1: Verify Qdrant is running
+```bash
+docker ps | findstr qdrant
+```
+Expected: `keystone_qdrant_brain` container running on ports 6333-6334.
+
+If not running:
+```bash
+docker start keystone_qdrant_brain
+```
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Step 1.2: Check current collections -->
+### Step 1.2: Check current collections
+```python
+from qdrant_client import QdrantClient
+client = QdrantClient(host="localhost", port=6333)
+collections = client.get_collections()
+for c in collections.collections:
+    info = client.get_collection(c.name)
+    print(f"Collection: {c.name}")
+    print(f"  Vectors: {info.points_count}")
+    print(f"  Dimensions: {info.config.params.vectors}")
+  
+

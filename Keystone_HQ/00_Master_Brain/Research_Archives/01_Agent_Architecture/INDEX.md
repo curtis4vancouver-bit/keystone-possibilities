@@ -1,0 +1,29 @@
+# Research_Archives > 01_Agent_Architecture
+
+- [[02_Zero_Hallucination_Protocol]]
+- [[03_self_evolving_local_braintrust]]
+- 20260521_hermes_agent_analysis_hermes_autonomous_skill_creation_and_tool_discovery_patterns
+- [[20260521_self_learning_patterns_prompt_self-optimization_techniques_without_human_interventi]]
+- [[20260522_antigravity_custom_skills]]
+- [[20260522_antigravity_skills_directory]]
+- 20260522_antigravity_skills_discovery_antigravity_subagent_orchestration_patterns_for_parallel_aut
+- [[20260522_autonomous_skill_creation_patterns]]
+- [[20260522_error_driven_learning_loops]]
+- 20260522_hermes_architecture_breakdown
+- 20260522_hermes_beater_implementation_blueprint
+- [[20260522_hermes_self_evolution_pipeline]]
+- [[20260522_hermes_vs_antigravity_comparison]]
+- 20260522_self_learning_patterns_hermes_agent_self-evolution_pipeline_dspy_gepa_complete_tuto
+- [[20260609_AGENT_ARCH_comprehensive_comparison__single_generalist_ai_agent_vs._fle]]
+- [[20260609_AGENT_ARCH_deep_research_into_model_context_protocol_(mcp)_session_stat]]
+- [[20260609_AGENT_ARCH_deep_research_into_the_optimal_vector_database_architecture_]]
+- [[20260609_AGENT_ARCH_deep_research_on_conversation-to-conversation_knowledge_tran]]
+- [[20260609_AGENT_ARCH_how_to_build_an_ai_agent_'bootstrap_protocol'_that_runs_auto]]
+- [[20260609_AGENT_ARCH_research_how_autonomous_ai_coding_agents_like_devin,_cursor,]]
+- [[20260609_AGENT_ARCH_research_how_to_build_a_self-correcting_ai_agent_that_automa]]
+- [[20260609_AGENT_ARCH_research_the_concept_of_'mandatory_skill_loading'_in_ai_agen]]
+- [[20260609_AGENT_ARCH_research_the_google_adk_(agent_development_kit)_and_antigrav]]
+- [[20260609_AGENT_ARCH_research_the_hermes_autonomous_ai_agent_concept_and_similar_]]
+- [[20260609_AGENT_ARCH_research_the_integration_of_model_context_protocol_(mcp)_ser]]
+- [[Agentic_MCP_Architecture_Blueprint]]
+- OTS_Command_Center_Deep_Research

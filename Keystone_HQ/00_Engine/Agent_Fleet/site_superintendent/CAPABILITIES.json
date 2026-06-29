@@ -1,0 +1,17 @@
+{
+  "agent_name": "site_superintendent",
+  "skills": [
+    "blueprint_review",
+    "step_code_compliance",
+    "site_inspection_checklists"
+  ],
+  "apis": [],
+  "strengths": [
+    "Construction site management",
+    "Building code compliance",
+    "STEP code requirements"
+  ],
+  "weaknesses": [],
+  "skill_version": "2026-05-28",
+  "brand_affiliation": "possibilities"
+}

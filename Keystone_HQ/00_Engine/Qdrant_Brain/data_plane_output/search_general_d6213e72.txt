@@ -1,0 +1,90 @@
+Found 5 matches in ['general']:
+
+--- Result 1 (Source: 20260522_error_driven_learning_loops.md, VecScore: 0.500) ---
+system access)
+7. BEGIN task execution with full context loaded
+```
+
+### 8.2 Implementation: Session Bootstrap [[davinci-resolve-mcp/docs/SKILL|Skill]]
+
+```python
+def bootstrap_session(config):
+    """Initialize agent session with persistent context."""
+    context = {}
+
+    # Step 1: Load correction journal
+    journal_path = config['correction_journal_path']
+    if os.path.exists(journal_path):
+        with open(journal_path, 'r', encoding='utf-8') as f:
+            context['corrections'] = f.read()
+
+    # Step 2: Query vector DB for recent learnings
+    recent_learnings = vector_db.search(
+        query="recent corrections and learnings",
+        filter={"date": {"$gte": "2026-05-15"}},
+        top_k=5
+    )
+    context['recent_learnings'] = recent_learnings
+
+    # Step 3: Load daily digest
+    digest_path = config['daily_digest_path']
+    if os.path.exists(digest_path):
+        with open(digest_path, 'r', encoding='utf-8') as f:
+            context['daily_digest'] = f.read()
+
+    #
+
+
+--- Result 2 (Source: 03_Multi_Agent_Link_Building.md, VecScore: 0.500) ---
+ht than dozens of links acquired from disparate, low-authority lifestyle blogs. Google and other search engines demand verifiable relevance from the linking page to the target content; this contextual bridge is the definitive mechanism that boosts rankings for specific target keywords.   \n\nBecause website owners cannot directly dictate where the broader internet points its links, backlinks remain one of the few un-gamifiable ranking factors. This scarcity principle is precisely why LLMs and traditional AI search engines continue to place immense weight on natural backlink profiles. As leading industry experts emphasize, AI is not destroying traditional SEO; rather, the fragmentation of search across platforms has created the most significant opportunity gap in the last sixteen years. Operators who lean into LLM visibility now—while competitors panic over declining traditional traffic—are positioned to capture substantial market share.   \n\nThe End of Manual Prospecting: Agentic AI O
+
+
+--- Result 3 (Source: 20260522_social_token_rotation_monitoring.md, VecScore: 0.500) ---
+TIKTOK_CLIENT_SECRET"],
+                        refresh_token
+                    )
+                elif platform == "meta":
+                    current_token = vault.decrypt(
+                        db_connection.execute(
+                            "SELECT access_token_encrypted FROM social_tokens "
+                            "WHERE brand = %s AND platform = %s",
+                            (brand, platform)
+                        ).fetchone()[0]
+                    )
+                    new_data = refresh_meta_token(
+                        os.environ[f"{brand.upper()}_META_APP_ID"],
+                        os.environ[f"{brand.upper()}_META_APP_SECRET"],
+                        current_token
+                    )
+                elif platform == "linkedin":
+                    new_data = refresh_linkedin_token(
+                        os.environ[f"{brand.upper()}_LINKEDIN_CLIENT_ID"],
+                        os.environ[f"{brand.upper()}_LINKEDIN_CLIENT_SECRET"],
+                  
+
+
+--- Result 4 (Source: 20260522_antigravity_custom_skills.md, VecScore: 0.333) ---
+"
+    
+    try:
+        # Run event loop (Requires full python-antigravity runtime installed to execute chat)
+        asyncio.run(run_autonomous_skill_agent(workspace, skill_folder))
+    except Exception as e:
+        print(f"\n[PIPELINE NOTICE] Local Antigravity SDK agent loop connection skipped. Error: {e}")
+        print("This is normal in mock environments without a live Google AI Studio key or active SDK runtime.")
+        print("The written source codes are successfully validated and saved to project folder.")
+```
+
+---
+
+## 6. Verification and Deployment Checklist
+
+Follow these steps to deploy and register a custom [[davinci-resolve-mcp/docs/SKILL|skill]] securely:
+
+- [ ] **Establish `[[davinci-resolve-mcp/docs/SKILL|SKILL]].md` Metadata:** Define a valid YAML frontmatter containing `name`, `description`, `version`, and narrow activation `predicates`.
+- [ ] **Enforce Directory Isolation:** Place all executable modules under `tools/` and helper scripts under `scripts/`. Use dynamic
+
+
+--- Result 5 (Source: 01_Advanced_SEO_AI_Agents_2026.md, VecScore: 0.333) ---
+ion is absolute rigidity: if a node for a specific niche tool does not exist, the automation breaks, necessitating manual coding interventions.   \n\nAntiGravity 2.0 shifts the paradigm from \"tool connection\" to \"tool creation\". It is not merely a bridge between software; it is an autonomous author of software. If prompted to build a custom backlink reporting dashboard, AntiGravity's specialized sub-agents independently write the API calls, handle data formatting, generate the user interface, and instantly deploy the application to production.   \n\nThe Browser Validation Advantage\n\nCrucially, AntiGravity employs autonomous browser testing and validation—a feature that categorically separates it from all prior automation tools. After an agent deploys a script, web app, or frontend component, the system initializes a headless Google Chrome instance. The AI physically interacts with the build exactly as a human user would, tracking Document Object Model (DOM) elements, clicking int
+

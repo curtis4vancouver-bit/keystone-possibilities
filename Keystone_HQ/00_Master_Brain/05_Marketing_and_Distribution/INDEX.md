@@ -1,0 +1,35 @@
+# Approved YouTube Scripts Index
+
+This index tracks all approved production-ready scripts, avatar blueprints, and visual assets for YouTube operations across the dual-brand empire.
+
+## Master Script & Asset Catalog
+
+- [[alumihano_script]]
+- [[anna_consistent_character_blueprint]]
+- [[AVATAR-ANNA]]
+- [[AVATAR-WAYNE]]
+- [[biophilic_sanctuary_script]]
+- [[cjc_dac_vs_tesamorelin_8m20s_studio_black]]
+- [[cjc_dac_vs_tesamorelin_broll_prompts]]
+- [[ghk_cu_ozempic_face_8m30s_studio_black]]
+- [[ghk_cu_ozempic_face_broll_prompts]]
+- [[glp1_sarcopenia_10s_modular_script]]
+- [[glp1_sarcopenia_2min_master_script]]
+- [[glp1_sarcopenia_40s_short]]
+- [[glp1_sarcopenia_studio_black]]
+- [[glp1_sarcopenia_thumbnail]]
+- [[keystone_5min_wolverine_masterpiece]]
+- [[keystone_8min_glp1_masterpiece]]
+- [[klow_vs_glow_8m30s_studio_black]]
+- [[klow_vs_glow_broll_prompts]]
+- [[klow_vs_glow_short_30s]]
+- [[lalamu_pronunciation_test]]
+- [[music_video_flow_blueprint]]
+- [[ocean_bluff_prompts]]
+- [[omni_10_test_prompts]]
+- [[omni_10s_difficulty_test]]
+- [[omni_broll_and_transition_tests]]
+- [[omni_google_flow_test]]
+- [[stoic_builder_recovery_script]]
+- [[whistler_villa_30s_short]]
+- [[wolverine_script]]

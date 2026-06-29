@@ -1,0 +1,17 @@
+[
+  {
+    "input": {
+      "license_num": 52603,
+      "owner": "Wayne Stevenson"
+    },
+    "assertions": [
+      {
+        "type": "schema",
+        "keys": [
+          "status",
+          "entity"
+        ]
+      }
+    ]
+  }
+]

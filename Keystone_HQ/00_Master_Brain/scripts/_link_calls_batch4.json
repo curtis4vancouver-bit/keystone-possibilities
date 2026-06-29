@@ -1,0 +1,158 @@
+[
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/fusion-composition-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/fusion-template-notes"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/kernel-expansion-gameplans"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/lut-notes"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/media-analysis-guide"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/media-pool-ingest-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/openfx-notes"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/project-lifecycle-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/release-process"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/render-deliver-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/review-annotation-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/script-plugin-authoring"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/timeline-conform-interchange-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/timeline-edit-kernel"
+  },
+  {
+    "from": "davinci-resolve-mcp/docs/_INDEX",
+    "to": "davinci-resolve-mcp/docs/workflow-integrations"
+  },
+  {
+    "from": "davinci-resolve-mcp/examples/_INDEX",
+    "to": "davinci-resolve-mcp/examples/README"
+  },
+  {
+    "from": "davinci-resolve-mcp/examples/markers/_INDEX",
+    "to": "davinci-resolve-mcp/examples/markers/README"
+  },
+  {
+    "from": "davinci-resolve-mcp/examples/media/_INDEX",
+    "to": "davinci-resolve-mcp/examples/media/README"
+  },
+  {
+    "from": "davinci-resolve-mcp/examples/timeline/_INDEX",
+    "to": "davinci-resolve-mcp/examples/timeline/README"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/httpcore-1.0.9.dist-info/licenses/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/httpcore-1.0.9.dist-info/licenses/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/httpx-0.28.1.dist-info/licenses/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/httpx-0.28.1.dist-info/licenses/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/idna-3.14.dist-info/licenses/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/idna-3.14.dist-info/licenses/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/pip-26.0.1.dist-info/licenses/src/pip/_vendor/idna/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/pip-26.0.1.dist-info/licenses/src/pip/_vendor/idna/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/pip/_vendor/idna/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/pip/_vendor/idna/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/starlette-1.0.0.dist-info/licenses/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/starlette-1.0.0.dist-info/licenses/LICENSE"
+  },
+  {
+    "from": "davinci-resolve-mcp/venv/Lib/site-packages/uvicorn-0.46.0.dist-info/licenses/_INDEX",
+    "to": "davinci-resolve-mcp/venv/Lib/site-packages/uvicorn-0.46.0.dist-info/licenses/LICENSE"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/00_mcp_tool_reference"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/02_keystone_possibilities"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/05_youtube_protocol"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/08_music_creator"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/09_music_uploader"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/10_music_awareness"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/11_website_branding"
+  },
+  {
+    "from": "dynamic_skills/_INDEX",
+    "to": "dynamic_skills/14_property_scout"
+  },
+  {
+    "from": "global_tools_registry/_INDEX",
+    "to": "global_tools_registry/AVAILABLE_TOOLS"
+  },
+  {
+    "from": "memory/archive/_INDEX",
+    "to": "memory/archive/test_log"
+  },
+  {
+    "from": "MAP_OF_CONTENTS",
+    "to": "security_directive"
+  },
+  {
+    "from": "MAP_OF_CONTENTS",
+    "to": "task"
+  },
+  {
+    "from": "MAP_OF_CONTENTS",
+    "to": "wolverine_stack_blog_post"
+  }
+]

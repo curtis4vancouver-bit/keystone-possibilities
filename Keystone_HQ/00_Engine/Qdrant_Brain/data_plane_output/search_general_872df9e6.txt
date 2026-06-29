@@ -1,0 +1,173 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: POSS_001_BROLL_SHOT_LIST.md, Score: 0.758) ---
+. hit subscribe"*
+**Type:** Subscribe CTA + Brand Card
+🟢 NO REFERENCE NEEDED
+
+```
+Premium end-card graphic on Keystone Blue (#1B3A5C) background. Center:
+stylized "KEYSTONE POSSIBILITIES" logo in clean white and gold. Below:
+subscribe bell icon in gold with text "SEA-TO-SKY CONSTRUCTION UPDATES".
+Below that: phone icon "604-848-9688" and email icon
+"keystonepossibilities@gmail.com". Clean, minimal, premium brand design.
+Keystone Blue and Gold (#C8952E) palette, 4K resolution.
+```
+
+---
+
+## 📊 SUMMARY
+
+| Category | Count | Flow Workflow |
+|----------|-------|---------------|
+| 🟢 Construction Site / Infrastructure | 8 | Just generate |
+| 🟢 Data Visualizations / Infographics | 5 | Just generate |
+| 🟢 Documents / Certifications | 3 | Just generate |
+| 🟢 Maps / Aerial / Landscape | 2 | Just generate |
+| 🟢 Brand Card / CTA | 1 | Just generate |
+| 🔴 **Wayne On-Site (YOU in it)** | **3** | **Drop avatar ref in** |
+| **TOTAL** | **22** | **19 just generate / 3 with your ref** |
+
+---
+
+## 🔴 QUICK F
+
+
+--- Result 2 (Source: 20260522_low_cost_organic_branding.md, Score: 0.737) ---
+ttps://keystonepossibilities.com/#corporate",
+  "name": "Keystone Possibilities & Construction",
+  "description": "Premium commercial construction contracting, seismic retrofitting, and specialized occupational safety solutions in Metro Vancouver.",
+  "url": "https://keystonepossibilities.com/locations/squamish",
+  "telephone": "+1-604-555-0199",
+  "priceRange": "$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1200 Cleveland Ave",
+    "addressLocality": "Squamish",
+    "addressRegion": "BC",
+    "postalCode": "V8B 0B2",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.7016,
+    "longitude": -123.1558
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "opens": "07:00",
+    "closes": "17:00"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/keystone-possibilities",
+    "h
+
+
+--- Result 3 (Source: directory_listings_walkthrough_2026-06-07.md, Score: 0.721) ---
+cs uploaded: BC Housing [[davinci-resolve-mcp/venv/Lib/site-packages/uvicorn-0.46.0.dist-info/licenses/LICENSE|License]] #52603 and WBI Home Warranty Renewal Invoice.
+
+## Skipped:
+- HomeStars — BLOCKED. Phone number tied to old keystonepossibilities@gmail.com account. Requires government ID upload to publish.
+
+## NAP Consistency Across All Listings:
+- Name: Keystone Possibilities
+- Address: 1200 Cleveland Ave, Squamish, BC V8B 0B1
+- Phone: (604) 848-9688
+- Websit
+
+. Requires government ID upload to publish.
+
+## NAP Consistency Across All Listings:
+- Name: Keystone Possibilities
+- Address: 1200 Cleveland Ave, Squamish, BC V8B 0B1
+- Phone: (604) 848-9688
+- Website: https://keystonepossibilities.ca/
+
+## Impact:
+- 7 high-authority citation backlinks with consistent NAP
+- BBB A+ = major trust signal
+- Yelp + Houzz = DA 90+ contractor directories
+- Apple Maps feeds Siri, Safari, CarPlay
+- Expected local pack movement in 2-4 weeks
+- Competitive advantage: most Sea-to-Sky contractors have 1-2 
+
+
+--- Result 4 (Source: IDENTITY.md, Score: 0.720) ---
+---
+id: doc-identity
+title: Identity
+type: document
+summary: '> Brand: Keystone Possibilities Construction & Consulting'
+entities:
+- Bill 44
+- Keystone Possibilities
+- Sea-to-Sky
+- Squamish
+- Step Code
+- Wayne Stevenson
+- Whistler
+- YouTube
+created: '2026-05-28T21:54:21.520356'
+updated: '2026-06-14T19:57:36.129315'
+---
+# Keystone [[possibilities|Possibilities]] — Brand [[Brand_Constitution/protocol/IDENTITY|Identity]]
+
+> **Brand:** Keystone Possibilities Construction & Consulting
+> **Owner:** Wayne Stevenson
+> **Region:** Sea-to-Sky Corridor, British Columbia, Canada
+> **Website:** keystonepossibilities.com
+> **Last updated:** 2026-05-28
+
+---
+
+<!-- CONTEXT: [[Brand_Constitution/protocol/IDENTITY|Identity]] / 1 · Mission Statement -->
+## 1 · Mission Statement
+
+To empower Sea-to-Sky homeowners with the knowledge, expertise, and confidence to navigate building codes, unlock property potential, and build lasting additions to their homes and communities.
+
+---
+
+<!-- CONTEXT: [[Brand_Constitu
+
+
+--- Result 5 (Source: GEO_AEO_IMPLEMENTATION_PLAYBOOK.md, Score: 0.720) ---
+, British Columbia, Canada
+Service Areas: Squamish, Whistler, Pemberton, Lions Bay, Britannia Beach, Furry Creek
+Phone: [PHONE]
+Email: info@keystonepossibilities.com
+Website: https://keystonepossibilities.com
+Owner: Wayne Stevenson
+
+## Licensing & Credentials
+- Licensed General Contractor — British Columbia
+- BC Housing Licensed Builder
+- WorkSafeBC Compliant
+- Fully Insured — Commercial General Liability
+
+## Core Services
+- Custom Home Construction
+- Renovation & Remodeling
+- Project Management
+- ADU / Secondary Suite Construction (Bill 44 / PM Compliant)
+- Commercial Tenant Improvements
+- Structural Repairs & Foundations
+- Decks, Patios & Outdoor Living
+- Kitchen & Bathroom Renovations
+
+## Unique Differentiators
+- AI-augmented project management and client communication
+- Specialized in Sea-to-Sky mountain construction challenges
+- Transparent pricing with detailed scope documents
+- Digital twin project visualization
+- PM / Bill 44 housing density specialists
+
+## Content & Media
+- Bl
+

@@ -1,0 +1,26 @@
+{
+  "cash": 8000.0,
+  "positions": {
+    "540819_NO": {
+      "market_id": "540819",
+      "question": "Will Jesus Christ return before GTA VI?",
+      "outcome": "NO",
+      "buy_price": 0.505,
+      "shares": 3960.39603960396,
+      "wagered": 2000.0
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2026-06-21 15:42:17",
+      "type": "BUY",
+      "market_id": "540819",
+      "question": "Will Jesus Christ return before GTA VI?",
+      "outcome": "NO",
+      "price": 0.505,
+      "shares": 3960.39603960396,
+      "amount": 2000.0,
+      "cash_after": 8000.0
+    }
+  ]
+}

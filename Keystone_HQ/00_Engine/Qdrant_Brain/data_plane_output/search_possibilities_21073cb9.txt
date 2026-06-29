@@ -1,0 +1,101 @@
+Found 5 matches in ['possibilities']:
+
+--- Result 1 (Source: 09_reddit_competitor_intelligence.md, VecScore: 0.500) ---
+ential clients are voicing in online forums.
+
+The provincial enactment of Bill 44, formally known as the Housing Statutes (Residential Development) Amendment Act of 2023, alongside the subsequent clarifying Bill 25, the Housing and Municipal Affairs Statutes Amendment Act of 2025, represents the most significant residential rezoning event in British Columbia's modern history. Municipalities face a hard deadline of June 30, 2026, to update their local bylaws to comply with these mandates, which effectively abolish single-family exclusive zoning in municipalities with populations exceeding 5,000 residents. This legislation is designed to unlock specific density thresholds that completely redefine project feasibility for custom home builders, design-build firms, and [[general|general]] contractors operating in the region.   
+
+The baseline density requirements stipulate that a minimum of three residential units must be permitted on lots measuring 280 square meters (approximately 3,014 squa
+
+
+--- Result 2 (Source: POSS_002_20S_SHORT_BILL44.md, VecScore: 0.500) ---
+- 0:10)
+```text
+THIS IS THE SCRIPT:
+Wayne says: "Think Bill 44 is a goldmine for your West Vancouver or Whistler lot? Re-zoning is automatic, but building a fourplex comes with a brutal cost trap."
+
+THIS IS THE VIDEO PROMPT:
+A premium cinematic vertical 9:16 medium close-up of my avatar speaking directly to the camera, gesturing with authority. The background is a beautifully blurred high-end custom home construction site in West Vancouver at golden hour. The camera pushes in slowly.
+Reference the two pictures for clothes and background.
+```
+
+*Alternative (Studio Black background):*
+```text
+THIS IS THE VIDEO PROMPT:
+A premium cinematic vertical 9:16 medium close-up of my avatar speaking directly to the camera against a solid matte black studio background. The camera pushes in slowly.
+Reference the picture for clothes. Solid black screen at the bottom.
+```
+
+---
+
+### 🖼️ B-ROLL PICTURE 1 (0:09 - 0:11)
+*(Copy and paste this prompt into Google Flow to generate B-Roll Picture 1)*
+
+```text
+A 
+
+
+--- Result 3 (Source: BRAND_VOICE.md, VecScore: 0.476) ---
+yard. Here's how." | "In this article, we will explore the implications of Bill 44." |
+| YouTube hook     | "Your lot might already be approved for a second dwelling."      | "Welcome back to our channel! Today we're discussing ADUs."    |
+| Instagram caption| "3 things Bill 44 means for Sea-to-Sky homeowners 👇"           | "Exciting news in the construction industry! #blessed"         |
+
+<!-- CONTEXT: Brand Voice / Vocabulary -->
+### Vocabulary
+
+- **Say:** addition, secondary suite, ADU, laneway home, coach house, build
+- **Don't say:** project, development, unit (too clinical)
+- **Say:** homeowner, folks, neighbours
+- **Don't say:** consumers, clients, end-users
+
+---
+
+<!-- CONTEXT: Brand Voice / 3 · Protocol / Recomposition Voice -->
+## 3 · Protocol / Recomposition Voice
+
+**Brand persona:** The no-BS performance coach who reads the studies so you don't have to.
+
+<!-- CONTEXT: Brand Voice / Core Attributes -->
+### Core Attributes
+
+- **Science-backed but not academic.** Cite studies, b
+
+
+--- Result 4 (Source: 4_2_Blog_Content_Strategy.md, VecScore: 0.333) ---
+tion that falls below the 5,000-person threshold for mandatory Bill 44 compliance, voluntarily opted into the legislation. This strategic decision enabled Pemberton to secure $2.7 million from the federal Housing Accelerator Fund (HAF), prompting updates to their Official Community Plan (OCP) to facilitate missing-middle infrastructure and generate nearly 100 new housing units.   
+
+Cluster 2: Single Egress Stairs (SES) and Building Code Evolution
+
+Closely aligned with the missing-middle densification authorized by Bill 44 is the highly significant August 2024 update to the British Columbia Building Code (BCBC). Through Ministerial Order BA 2024 03, the province officially permitted Single Egress Stair (SES) designs in residential buildings up to six storeys in height. Previously, B.C.'s building code, which had remained largely unchanged on this matter since 1998, mandated at least two egress stairwells for any building three storeys or higher.   
+
+This code update presents a massive c
+
+
+--- Result 5 (Source: POSS_002_20S_SHORT_BILL44.md, VecScore: 0.300) ---
+# 📱 BILL 44 COST TRAP: 20-SECOND VIRAL SHORT PRODUCTION BLUEPRINT
+**Document Path:** `c:\Users\Curtis\New folder\construction-website\Keystone_HQ\00_Master_Brain\Research_Archives\POSS_002_20S_SHORT_BILL44.md`  
+**Date:** June 6, 2026  
+**Topic:** Bill 44 BC Housing Cost Trap (High-Volume Vertical Short for High-End Lot Owners in West Vancouver, North Vancouver, & Whistler)  
+**Target Duration:** Exactly 20 Seconds (2 Scenes × 10 Seconds)
+
+---
+
+## 👔 1. GOOGLE FLOW AVATAR & WARDROBE REFERENCE PROMPT
+*(Use this to generate the project manager clothing reference photograph in Google Flow)*
+
+```text
+A premium 8K cinematic character reference photograph of my avatar [Wayne Stevenson], reference to my picture/avatar, wearing a premium fitted white button-up dress shirt, a clean black leather belt, and fitted navy blue trousers. He looks confident, authoritative, and clean-cut. Standing against a solid matte black studio background. Natural soft key lighting, high detail, luxury builder and p
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+Secondary Contextual Relationships:
+  • (Squamish multiplex project:PROJECT) ──[complies_with]──> (BC Bill 44:LAW)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+  • (Dr. Smith:PERSON) ──[supervises]──> (wellness and peptide administration:ACTIVITY)
+

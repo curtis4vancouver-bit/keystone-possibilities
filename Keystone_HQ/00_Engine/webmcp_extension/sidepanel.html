@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Commander</title>
+  <link rel="stylesheet" href="sidepanel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+</head>
+<body>
+  <div class="commander">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="material-symbols-outlined icon-logo">auto_awesome</span>
+        <h1>Flow Commander</h1>
+      </div>
+      <div class="connection-status" id="connectionStatus">
+        <span class="status-dot pulsing"></span>
+        <span class="status-text">Disconnected</span>
+      </div>
+    </header>
+
+    <!-- Settings Panel -->
+    <section class="panel" id="settingsPanel">
+      <div class="panel-header" data-toggle="settingsContent">
+        <span class="material-symbols-outlined">tune</span>
+        <h2>Settings</h2>
+        <span class="material-symbols-outlined chevron">expand_more</span>
+      </div>
+      <div class="panel-content" id="settingsContent">
+        <div class="settings-grid">
+          <div class="setting-group" id="modeGroup">
+            <label>Mode</label>
+            <select id="settingMode">
+              <option value="VIDEO">Video</option>
+              <option value="IMAGE">Image</option>
+            </select>
+          </div>
+          <div class="setting-group" id="modelGroup">
+            <label>Model</label>
+            <select id="settingModel">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="setting-group" id="durationGroup">
+            <label>Duration</label>
+            <select id="settingDuration">
+              <option value="10">10 seconds</option>
+              <option value="8">8 seconds</option>
+              <option value="6">6 seconds</option>
+              <option value="4">4 seconds</option>
+            </select>
+          </div>
+          <div class="setting-group" id="ratioGroup">
+            <label>Aspect Ratio</label>
+            <select id="settingRatio">
+              <option value="LANDSCAPE">16:9 Landscape</option>
+              <option value="PORTRAIT">9:16 Portrait</option>
+              <option value="SQUARE">1:1 Square</option>
+              <option value="WIDE">2.39:1 Wide</option>
+              <option value="TALL">1:2.39 Tall</option>
+            </select>
+          </div>
+          <div class="setting-group" id="videoQualityGroup">
+            <label>Video Quality</label>
+            <select id="settingDownload">
+              <option value="1080p">1080p Upscaled (Free)</option>
+              <option value="720p">720p Original (Free)</option>
+            </select>
+          </div>
+          <div class="setting-group" id="imageQualityGroup">
+            <label>Image Quality</label>
+            <select id="settingImageDownload">
+              <option value="2K">2K Upscaled (Free)</option>
+              <option value="1K">1K Original (Free)</option>
+            </select>
+          </div>
+          <div class="setting-group full-width">
+            <label>Project Run Name (Folder)</label>
+            <input type="text" id="projectFolderName" placeholder="e.g., SHORT_001_peptides" value="FLOW_RUN">
+          </div>
+          <div class="setting-group full-width">
+            <label>Output Directory <span style="font-weight: 400; color: var(--text-muted);">(relative to Downloads)</span></label>
+            <input type="text" id="outputDirectory" placeholder="../Desktop/FLOW_RUN/" value="../Desktop/">
+            <p class="hint" style="margin-top: 3px; font-size: 10px;">Use ../ to navigate up. Examples: ../Desktop/  ·  .  (Downloads itself)  ·  ../../Projects/</p>
+          </div>
+          <div class="setting-group" id="prependOrderGroup" style="display: flex; align-items: center; flex-direction: row; gap: 8px; margin-top: 14px;">
+            <input type="checkbox" id="prependOrder" checked style="width: 16px; height: 16px; cursor: pointer;">
+            <label for="prependOrder" style="cursor: pointer; user-select: none;">Prepend Queue Order (001_...)</label>
+          </div>
+        </div>
+        <button class="btn btn-secondary" id="applySettings">
+          <span class="material-symbols-outlined">check</span> Apply Settings
+        </button>
+      </div>
+    </section>
+
+    <!-- Characters & References Panel (Unified) -->
+    <section class="panel" id="charactersPanel">
+      <div class="panel-header" data-toggle="charactersContent">
+        <span class="material-symbols-outlined">group</span>
+        <h2>Characters & References</h2>
+        <span class="material-symbols-outlined chevron">expand_more</span>
+      </div>
+      <div class="panel-content" id="charactersContent">
+        <div class="character-list" id="characterList">
+          <!-- Populated dynamically from project scan -->
+          <div class="char-card active" data-type="likeness" data-id="me" data-speaker="WAYNE">
+            <div class="char-card-header">
+              <span class="material-symbols-outlined char-icon">face</span>
+              <span class="char-name">Wayne (Me)</span>
+              <span class="char-badge likeness">Likeness</span>
+            </div>
+            <div class="char-card-ref">
+              <span class="material-symbols-outlined ref-icon">checkroom</span>
+              <select class="char-wardrobe-ref" data-speaker="WAYNE">
+                <option value="">No Wardrobe Ref</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <p class="hint">Characters are auto-detected from your Flow project. Each has its own wardrobe ref.</p>
+
+        <div class="global-ref-section">
+          <div class="ref-slot">
+            <span class="material-symbols-outlined">landscape</span>
+            <div class="ref-details">
+              <label>Background Ref (All Characters)</label>
+              <select id="backgroundRefSelect">
+                <option value="">None (Disabled)</option>
+              </select>
+            </div>
+            <div class="ref-thumb-preview" id="thumb-preview-BACKGROUND"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary" id="refreshRefs">
+          <span class="material-symbols-outlined">refresh</span> Refresh Project Assets
+        </button>
+      </div>
+    </section>
+
+    <!-- Media Library Panel (Manual Download & Upscale) -->
+    <section class="panel" id="galleryPanel">
+      <div class="panel-header" data-toggle="galleryContent">
+        <span class="material-symbols-outlined">photo_library</span>
+        <h2>Media Library (Upscale & Download)</h2>
+        <span class="material-symbols-outlined chevron">expand_more</span>
+      </div>
+      <div class="panel-content" id="galleryContent">
+        <div class="gallery-list" id="galleryList">
+          <div class="gallery-empty">No completed media found in project. Click Refresh below.</div>
+        </div>
+        <button class="btn btn-secondary" id="refreshGallery">
+          <span class="material-symbols-outlined">sync</span> Refresh Media List
+        </button>
+      </div>
+    </section>
+
+    <!-- Prompt Queue Panel -->
+    <section class="panel" id="queuePanel">
+      <div class="panel-header" data-toggle="queueContent">
+        <span class="material-symbols-outlined">queue</span>
+        <h2>Prompt Queue</h2>
+        <span class="material-symbols-outlined chevron">expand_more</span>
+      </div>
+      <div class="panel-content expanded" id="queueContent">
+        <div class="input-container">
+          <textarea id="scriptInput" placeholder="Paste your Keystone script here, or enter prompt text (A1|WAYNE|Prompt...)..." rows="6"></textarea>
+        </div>
+        <div class="queue-actions">
+          <button class="btn btn-secondary" id="parseScript">
+            <span class="material-symbols-outlined">auto_fix_high</span> Parse Script
+          </button>
+          <button class="btn btn-secondary" id="clearQueue">
+            <span class="material-symbols-outlined">delete</span> Clear Queue
+          </button>
+        </div>
+        <div class="queue-actions-row" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; background: rgba(255, 255, 255, 0.02); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border-color);">
+          <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">Default Avatar:</label>
+          <select id="defaultQueueAvatar" style="flex-grow: 1; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 4px 6px; color: white; font-size: 11px; cursor: pointer;">
+            <option value="BROLL">B-Roll (None)</option>
+            <option value="WAYNE">Wayne (Me)</option>
+          </select>
+          <div class="ref-thumb-preview" id="thumb-preview-DEFAULT-AVATAR"></div>
+        </div>
+        <div class="queue-list" id="queueList">
+          <div class="queue-empty">Queue is empty. Parse a script or enter prompts to begin.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Panel -->
+    <section class="panel" id="progressPanel">
+      <div class="panel-header">
+        <span class="material-symbols-outlined">speed</span>
+        <h2>Progress Tracker</h2>
+      </div>
+      <div class="panel-content expanded">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+        <div class="progress-stats">
+          <span id="progressText">0/0 Prompts</span>
+          <span id="batchText">Idle</span>
+        </div>
+        <div class="progress-stats sub-stats">
+          <span id="downloadText">Downloads: 0/0 completed</span>
+          <span id="retryText">Retries: 0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Queue Controls -->
+    <div class="controls">
+      <button class="btn btn-primary btn-large" id="startBtn">
+        <span class="material-symbols-outlined">play_arrow</span> START RUN
+      </button>
+      <button class="btn btn-warning btn-large" id="pauseBtn" disabled>
+        <span class="material-symbols-outlined">pause</span> PAUSE
+      </button>
+      <button class="btn btn-danger btn-large" id="stopBtn" disabled>
+        <span class="material-symbols-outlined">stop</span> STOP
+      </button>
+    </div>
+
+    <!-- Activity Log -->
+    <section class="panel" id="logPanel">
+      <div class="panel-header" data-toggle="logContent">
+        <span class="material-symbols-outlined">terminal</span>
+        <h2>Activity Log</h2>
+        <span class="material-symbols-outlined chevron">expand_more</span>
+      </div>
+      <div class="panel-content expanded" id="logContent">
+        <div class="log-entries" id="logEntries">
+          <!-- Populated in real-time -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Custom Download Modal Overlay -->
+  <div id="downloadModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <h3>Download File</h3>
+      <div class="setting-group">
+        <label>Filename</label>
+        <input type="text" id="modalFilename" placeholder="Enter target filename">
+      </div>
+      <div class="setting-group">
+        <label>Save Directory <span style="font-weight: 400; color: var(--text-muted);">(relative to Downloads)</span></label>
+        <input type="text" id="modalDirectory" placeholder="../Desktop/FLOW_RUN/">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary btn-small" id="modalCancel">Cancel</button>
+        <button class="btn btn-primary btn-small" id="modalConfirm">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

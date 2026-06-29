@@ -1,0 +1,45 @@
+{
+  "mcpServers": {
+    "keystone-brain": {
+      "command": "python",
+      "args": [
+        "C:/Users/Curtis/New folder/construction-website/Keystone_HQ/00_Master_Brain/Qdrant_Brain/keystone_brain_v2_mcp.py"
+      ]
+    },
+    "content-engine": {
+      "command": "python",
+      "args": [
+        "c:/Users/Curtis/New folder/construction-website/Keystone_HQ/00_Master_Brain/content_engine_mcp.py"
+      ]
+    },
+    "youtube-manager": {
+      "command": "python",
+      "args": [
+        "c:/Users/Curtis/New folder/construction-website/Keystone_HQ/00_Master_Brain/youtube_mcp.py"
+      ]
+    },
+    "youtube-researcher": {
+      "command": "python",
+      "args": [
+        "c:/Users/Curtis/New folder/construction-website/Keystone_HQ/00_Master_Brain/youtube_researcher_mcp.py"
+      ]
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "BSAlHe-SuRmVpoR86sunbF-5fK7m3kC"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    }
+  }
+}

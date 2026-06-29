@@ -1,0 +1,105 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 3_3_Knowledge_Panel.md, VecScore: 0.700) ---
+nBusiness JSON-LD script hosted on the corporate Entity Home, specific properties must be utilized to declare leadership. The properties founder, employee, and potentially alumni (depending on the individual's current operational status) must be deployed. Crucially, the value assigned to these properties must not be a simple, flat text string of the name "Wayne Stevenson." Instead, it must be a fully nested Person object containing its own rich descriptive data.   
+
+Person Schema targeting the Corporate Schema: Concurrently, on Wayne Stevenson’s dedicated executive biography page (which serves as his personal Entity Home), a distinct and comprehensive Person schema must be deployed. This specific schema must heavily utilize the worksFor property, alongside affiliation or memberOf, pointing directly back to the corporate entity.   
+
+The technical mechanism that locks this relationship together is the assignment of stable, unique @id nodes. By assigning a definitive @id URI (e.g., https:
+
+
+--- Result 2 (Source: 16_biophilic_resort_jv_blueprint.md, VecScore: 0.667) ---
+, capitalized into interest reserve)
+*   **Total Equity Required (40%):** **$3,000,000**
+    *   *Limited Partner (LP - HNW Investor Group):* **90% ($2,700,000)**
+    *   *General Partner (GP - Wayne Stevenson / Keystone [[possibilities|Possibilities]] Ltd):* **10% ($300,000)**
+
+---
+
+### 3. THE WATERFALL DISTRIBUTION STRUCTURE (IRR HURDLES)
+Distributable cash flow (from operations or capital events like refinance/sale) is allocated in the following sequential tiers:
+
+```
+[Distributable Cash Flow]
+         │
+         ▼
+ ┌───────────────┐
+ │    TIER 1     │ ──► 100% Pari-Passu to LP (90%) and GP (10%)
+ └───────────────┘     until 100% Capital Returned + 8.0% Pref Return Paid.
+         │
+         ▼
+ ┌───────────────┐
+ │    TIER 2     │ ──► Split 80% to LP / 20% to GP (20% Promote to Wayne)
+ └───────────────┘     up to a 15.0% Project-Level IRR.
+         │
+         ▼
+ ┌───────────────┐
+ │    TIER 3     │ ──► Split 60% to LP / 40% to GP (40% Promote to Wayne)
+ └───────────────┘     for all 
+
+
+--- Result 3 (Source: 17_corporate_shielding_and_voice_ip_blueprint.md, VecScore: 0.476) ---
+de Secret Protection)
+[Synthetic Speech Output] ──> (Copyrightable only if human authorship is proven)
+```
+
+#### A. Protection of training inputs (The "Source Code" of the Voice)
+The original audio recordings of Wayne Stevenson's voice used to train the ElevenLabs model (e.g., high-quality podcast interviews, raw narrative voiceovers) are fully protected under the *Copyright Act* as **"Sound Recordings"** (Section 2 and Section 18).
+*   **Ownership:** As the performer and maker of the sound recording, Wayne Stevenson (or his designated media corporation) holds the exclusive right to reproduce, publish, or [[davinci-resolve-mcp/venv/Lib/site-packages/uvicorn-0.46.0.dist-info/licenses/LICENSE|license]] these audio files.
+*   **Enforcement:** Any unauthorized scraping, downloading, or ingestion of Wayne's recorded voice by third parties to train a rival AI model constitutes direct copyright infringement.
+
+#### B. Protection of the AI Voice Model (The Weights and Biases)
+The proprietary al
+
+
+--- Result 4 (Source: 20260522_social_token_rotation_monitoring.md, VecScore: 0.450) ---
+== Wayne Stevenson Brand ===
+WAYNE_STEVENSON_TIKTOK_CLIENT_KEY=ws_tiktok_key
+WAYNE_STEVENSON_TIKTOK_CLIENT_SECRET=ws_tiktok_secret
+WAYNE_STEVENSON_META_APP_ID=ws_meta_app_id
+WAYNE_STEVENSON_META_APP_SECRET=ws_meta_app_secret
+WAYNE_STEVENSON_LINKEDIN_CLIENT_ID=ws_linkedin_id
+WAYNE_STEVENSON_LINKEDIN_CLIENT_SECRET=ws_linkedin_secret
+
+# === Alerting ===
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+# === Database ===
+TOKEN_DB_URL=postgresql://user:pass@localhost:5432/keystone_tokens
+```
+
+---
+
+## 10. Implementation Checklist
+
+### Immediate (Tonight's Fix)
+- [ ] Implement TikTok refresh function and test manually
+- [ ] Store current tokens in encrypted database
+- [ ] Set up APScheduler with 18-hour TikTok refresh cycle
+- [ ] Add pre-publish guard to publishing pipeline
+
+### This Week
+- [ ] Implement Meta token refresh with 46-day proactive window
+- [ ] Implement LinkedIn token refresh
+- [ ] Set up Slack alerting webhook
+- [ ] Deploy daily audit cron job
+- [ ] Add refr
+
+
+--- Result 5 (Source: wolverine_stack_blog_post.md, VecScore: 0.333) ---
+log_post]]
+
+
+
+
+--- Knowledge Graph Context ---
+Direct Entity Relationships:
+  • (Wayne Stevenson:PERSON) ──[manages]──> (Squamish multiplex project:PROJECT)
+  • (Wayne Stevenson:PERSON) ──[uses]──> (BPC-157:PEPTIDE)
+  • (wellness and peptide administration:ACTIVITY) ──[is_for]──> (Wayne Stevenson:PERSON)
+Secondary Contextual Relationships:
+  • (Squamish multiplex project:PROJECT) ──[complies_with]──> (BC Bill 44:LAW)
+  • (BPC-157:PEPTIDE) ──[accelerates]──> (joint recovery:PROCESS)
+  • (BPC-157:PEPTIDE) ──[is banned by]──> (World Anti-Doping Agency:ORGANIZATION)
+  • (Dr. Smith:PERSON) ──[supervises]──> (wellness and peptide administration:ACTIVITY)
+

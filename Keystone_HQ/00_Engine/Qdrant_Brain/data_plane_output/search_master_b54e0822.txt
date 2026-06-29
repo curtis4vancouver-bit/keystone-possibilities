@@ -1,0 +1,101 @@
+Found 5 matches in ['master']:
+
+--- Result 1 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 1.000) ---
+Resolution: As explicitly documented for systems like Codex and Copilot operating on Windows 11, the configuration must be updated to explicitly define the environment root paths and drastically increase the startup timeout parameters. Administrators should inject env = { SystemRoot="C:\\Windows", PROGRAMFILES="C:\\Program Files" } and set startup_timeout_ms = 20_000 to allow the sub-process sufficient time to satisfy EDR scanning and complete initialization.   
+
+7. The WebMCP Horizon (Chrome 149): Synergies and Implementations
+
+As of March 2026, the chrome-devtools-mcp package primarily facilitates a top-down automation methodology. In this paradigm, the AI agent uses the CDP connection to look at the rendered Document Object Model (DOM), guesses which visual elements represent the desired interactive components based on CSS selectors or text labels, and then executes raw CDP commands to simulate mouse clicks and keyboard typing. While this is vastly superior to legacy headless scraping because it retains authentication, it remains fundamentally brittle. If a website aggressively obfuscates its DOM, relies heavily on complex canvas rendering, or simply changes its layout, the top-down agent will fail to locate the target elements.   
+
+Enter WebMCP (Web Model Context Protocol), a deeply transformative experimental W3C standard entering early developer preview in Chrome 146 and slated for broader, formalized Origin Trials in Chrome 149.   
+
+
+
+--- Result 2 (Source: 01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, VecScore: 0.367) ---
+XT: Brain Optimization And Bootstrap / Phase 1: Cold Start -->
+### Phase 1: Cold Start
+- Identify current workspace and conversation context
+- Determine if resuming a task or starting fresh
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Phase 2: Load Correction Journal -->
+### Phase 2: Load Correction Journal
+- Read `.learnings/correction_journal.json`
+- Extract the 5 most recent corrections
+- Inject as "MISTAKES TO AVOID" into working context
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Phase 3: Query Brain for Context -->
+### Phase 3: Query Brain for Context
+- Use `search_master_brain` MCP tool
+- Query with current task description
+- Retrieve top 5 most relevant knowledge chunks
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Phase 4: Check Unfinished Tasks -->
+### Phase 4: Check Unfinished Tasks
+- Scan for any `task.md` in recent conversation artifacts
+- Check `Agent_Fleet/*/INBOX.json` for pending agent tasks
+- Report any unfinished work to user
+
+<!-- CONTEXT: Brain Optim
+
+
+--- Result 3 (Source: OVERNIGHT_BUILD_INSTRUCTIONS.md, VecScore: 0.333) ---
+es as <memory-context> blocks
+3. Post-turn sync: save new learnings to state_store (background)
+4. Context fencing: prevent injection content from leaking to output
+5. Relevance scoring: only inject memories above similarity threshold
+6. Recency weighting: recent memories ranked higher
+7. Update session_bootstrap [[davinci-resolve-mcp/docs/SKILL|skill]] to use memory_manager on startup
+
+<!-- CONTEXT: Overnight Build Instructions / PHASE 4: Conversation Compression (P1) -->
+## PHASE 4: Conversation Compression (P1)
+Build: `00_Master_Brain/core/conversation_compressor.py`
+
+1. Tier 1 - Tool output pruning (no LLM):
+   - Replace old tool outputs with 1-line summaries
+   - Deduplicate identical tool results
+   - Truncate large arguments
+2. Tier 2 - Middle window summarization:
+   - Protect first exchange + last 4 turns
+   - Summarize middle turns
+   - Never split tool-call/response pairs
+3. Tier 3 - Iterative summary updates:
+   - Store _previous_summary
+   - Build each new summary on top o
+
+
+--- Result 4 (Source: 01_BRAIN_OPTIMIZATION_AND_BOOTSTRAP.md, VecScore: 0.333) ---
+XT: Brain Optimization And Bootstrap / What needs to be ADDED: -->
+### What needs to be ADDED:
+1. **Unfinished task detection** — Check for any `task.md` files in active conversations
+2. **Agent inbox check** — Scan `Agent_Fleet/*/INBOX.json` for pending items
+3. **[[davinci-resolve-mcp/docs/SKILL|Skill]] registry loading** — Load a compact [[wiki/index|index]] of all available skills
+4. **Circuit breaker check** — Look for repeated errors in recent logs
+5. **File tree indexing** — Build a lazy-loadable [[wiki/index|index]] of the workspace
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Updated bootstrap sequence: -->
+### Updated bootstrap sequence:
+```markdown
+<!-- CONTEXT: Brain Optimization And Bootstrap / Bootstrap Protocol (8 Phases) -->
+## Bootstrap Protocol (8 Phases)
+
+<!-- CONTEXT: Brain Optimization And Bootstrap / Phase 1: Cold Start -->
+### Phase 1: Cold Start
+- Identify current workspace and conversation context
+- Determine if resuming a task or starting fresh
+
+<!-- CONT
+
+
+--- Result 5 (Source: deep_research_chrome_146_autoconnect_mcp_setup_2026-06-25, VecScore: 0.250) ---
+The definitive answer is no—provided you are using the --autoConnect flag against your default, interactive Windows profile.   
+
+Historically, utilizing the chrome-devtools-mcp package (and associated CLI wrappers like gemini-cli or claude-code) required a cumbersome, multi-step process. The user was forced to completely shut down all running instances of Chrome, manually launch a new instance via the Windows command prompt or a specialized .bat script with the port flag explicitly defined, and then configure the MCP server with the --browser-url=http://127.0.0.1:9222 parameter.   
+
+The introduction of the --autoConnect flag entirely supersedes this legacy requirement. When --autoConnect is declared in the args array of the mcpServers JSON configuration, the chrome-devtools-mcp Node package dynamically discovers the ephemeral port that Chrome has inherently opened for its own internal DevTools communications, bridging the gap without manual user intervention.   
+
+To fully harness the capabilities of the chrome-devtools-mcp package, it is necessary to understand the array of configuration arguments it accepts. While --autoConnect simplifies the attachment process, other flags control the depth and behavior of the resulting session.
+
+The table below details the critical command-line flags supported by the chrome-devtools-mcp NPM package and their specific interactions with the Windows environment.
+
+MCP Server Flag	Purpose and Behavior	Interaction with Windows Deployments
+

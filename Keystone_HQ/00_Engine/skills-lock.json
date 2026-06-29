@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "banner-creator": {
+      "source": "ReScienceLab/opc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/banner-creator/SKILL.md",
+      "computedHash": "d93d50cfc28fd783879098532f6ec091e51b9e6ce5e6ff87fbaa8fc3a6f9b7b6"
+    },
+    "domain-hunter": {
+      "source": "ReScienceLab/opc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/domain-hunter/SKILL.md",
+      "computedHash": "2e6b7fa9e25e89f9524c19ae090ae7b303fb7a1b0d00305b10151f5ea45e12b7"
+    },
+    "logo-creator": {
+      "source": "ReScienceLab/opc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/logo-creator/SKILL.md",
+      "computedHash": "cfb6815ea42686977fb54fe7f6bbd349056a2fcf61f7675fd1becd721029f82b"
+    },
+    "requesthunt": {
+      "source": "ReScienceLab/opc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/requesthunt/SKILL.md",
+      "computedHash": "0d1780b7e12c54d9e32dc33429398d87e4245bc6dfaab000c847acead2531a05"
+    },
+    "seo-geo": {
+      "source": "ReScienceLab/opc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/seo-geo/SKILL.md",
+      "computedHash": "1d38520f453282af8712874c360e3e34a379827f737fb536bd45055e2d60d964"
+    }
+  }
+}

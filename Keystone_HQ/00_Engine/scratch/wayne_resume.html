@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayne Curtis Stevenson - Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Outfit', sans-serif;
+            color: #2b2b2b;
+            background-color: #ffffff;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #ffffff;
+        }
+
+        header {
+            border-bottom: 2px solid #c5a059;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .header-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #1a252f;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .header-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #c5a059;
+            letter-spacing: 1px;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info li:not(:last-child)::after {
+            content: "|";
+            margin-left: 15px;
+            color: #ccc;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a252f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .profile-summary {
+            font-size: 13.5px;
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a252f;
+        }
+
+        .company-name {
+            font-weight: 500;
+            color: #c5a059;
+        }
+
+        .job-duration {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .job-description {
+            font-size: 13px;
+            color: #4a5568;
+            margin: 0 0 8px 0;
+            padding-left: 15px;
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 13px;
+            color: #4a5568;
+        }
+
+        .skills-list {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .skills-list li {
+            margin-bottom: 4px;
+        }
+
+        .certifications-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            font-size: 12.5px;
+            color: #4a5568;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .certifications-list li {
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .certifications-list li::before {
+            content: "•";
+            color: #c5a059;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #718096;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <h1 class="header-title">Wayne Curtis Stevenson</h1>
+            <div class="header-subtitle">Carpenter & Licensed Residential Builder</div>
+            <ul class="contact-info">
+                <li><strong>Phone:</strong> 604-848-9688</li>
+                <li><strong>Email:</strong> curtis4vancouver@gmail.com</li>
+                <li><strong>Address:</strong> 1 Watts Point Road, Squamish, BC</li>
+                <li><strong>Driver's License:</strong> Class 5 (DL #: 681 6744)</li>
+            </ul>
+        </header>
+
+        <section>
+            <div class="section-title">Professional Profile</div>
+            <div class="profile-summary">
+                Highly skilled Licensed Residential Builder and professional Carpenter with over 20 years plus of hands-on experience in high-end custom home builds, complex structural renovations, and civil utility scopes. Trade-active since age 16, offering a deep mastery of framing, concrete forming, blueprint interpretation, and project site supervision. A dedicated craftsman who excels at leading on-site operations, managing sub-trades, and ensuring full compliance with municipal building codes and safety regulations. Known for high integrity, proactive problem-solving, and executing premium architectural builds.
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Core Trade Expertise</div>
+            <div class="skills-grid">
+                <ul class="skills-list">
+                    <li><strong>Carpentry:</strong> Timber framing, structural layouts, rough carpentry, and architectural finish work.</li>
+                    <li><strong>Concrete & Forming:</strong> Specialized forming, re-bar placement, architectural concrete, and concrete finishing.</li>
+                    <li><strong>Project Coordination:</strong> Blueprint analysis, material logistics, sub-trade oversight, and client relations.</li>
+                </ul>
+                <ul class="skills-list">
+                    <li><strong>Equipment Operations:</strong> Excavator operation (7+ years owner-operator experience, certified), Zoom Boom (telehandler), and scissor lift operation.</li>
+                    <li><strong>Codes & Compliance:</strong> BC Building Code compliance, municipal bylaws, and strict safety standard enforcement.</li>
+                    <li><strong>Site Leadership:</strong> Site supervision, safety coordination, first aid oversight, and team management.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Professional Experience</div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="job-title">Owner & Licensed Residential Builder</span> - 
+                        <span class="company-name">Keystone Possibilities Ltd.</span>
+                    </div>
+                    <div class="job-duration">2019 – Present</div>
+                </div>
+                <ul class="job-description">
+                    <li>Deliver premium residential custom home construction, structural framing, and complete site development across Squamish and West Vancouver.</li>
+                    <li>Oversee high-end carpentry, complex timber forming, blueprint engineering compliance, and fine architectural concrete placement.</li>
+                    <li>Act as Prime Contractor and Site Superintendent, ensuring seamless project execution, sub-trade alignment, and clean inspections.</li>
+                    <li>Coordinated registration under the BC Hydro Registered Civil Contractor Program for off-site civil utility excavation.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="job-title">General Contractor & Carpenter</span> - 
+                        <span class="company-name">West Vancouver Excavation & Disposal</span>
+                    </div>
+                    <div class="job-duration">2009 – 2019</div>
+                </div>
+                <ul class="job-description">
+                    <li>Designed, managed, and executed new high-end custom residential builds, structural additions, and complex renovations.</li>
+                    <li>Performed hands-on rough framing, structural concrete forming, re-bar grids, concrete pours, and high-quality finish carpentry.</li>
+                    <li>Managed heavy excavation equipment operation, sitework layouts, landscaping, and drainage system installations.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="job-title">Bridge Builder, Lead Hand & Site Superintendent</span> - 
+                        <span class="company-name">Peter Kiewit Sons'</span>
+                    </div>
+                    <div class="job-duration">2006 – 2009</div>
+                </div>
+                <ul class="job-description">
+                    <li>Supervised key civil utility and heavy concrete structural scopes for the Sea-to-Sky Highway project (Segments 1–4, Whistler to Vancouver).</li>
+                    <li>Directed carpentry crews in fabricating concrete forms, shoring systems, and timber support structures for highway bridges and retaining walls.</li>
+                    <li>Maintained rigorous safety standards and coordinated directly with engineers and project managers to resolve structural challenges.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="job-title">Framing & Concrete Contractor</span> - 
+                        <span class="company-name">Blue Print Construction Ltd.</span>
+                    </div>
+                    <div class="job-duration">2001 – 2006</div>
+                </div>
+                <ul class="job-description">
+                    <li>Ran residential framing and concrete finishing operations, establishing a reputation for quality craftsmanship and reliability.</li>
+                    <li>Built deep, practical expertise in framing, structural floor systems, and precision concrete forms for foundations.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="job-title">Apprentice Carpenter / Carpenter's Helper</span> - 
+                        <span class="company-name">Residential Trade Crews</span>
+                    </div>
+                    <div class="job-duration">1998 – 2001</div>
+                </div>
+                <ul class="job-description">
+                    <li>Began active, hands-on carpentry training at age 16 under veteran journeymen, developing core skills in rough carpentry and concrete work.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Licensing & Certifications</div>
+            <ul class="certifications-list">
+                <li><strong>BC Hydro Registered Civil Contractor (RCC) Certification</strong></li>
+                <li><strong>BC Hydro Utility Safety Awareness Certification</strong> (Off-site utility excavation)</li>
+                <li><strong>BC Housing Licensed Residential Builder</strong> (License #52603)</li>
+                <li>CHBA BC Certificate in Project Management & Site Supervision</li>
+                <li>CHBA BC Certificate in Building Science for New Homes</li>
+                <li>CHBA BC Certificate in BC Building Code Part 1 & Part 2</li>
+                <li>CHBA BC Certificate in Construction Law & Financial Management</li>
+                <li>CHBA BC Certificate in Service & Warranty</li>
+                <li><strong>Excavator Operator Ticket/License</strong> (Completed 1-month training in 2010; 7+ years owner-operator experience)</li>
+                <li><strong>Zoom Boom (Telehandler) Operator Certification</strong> (Prior ticketing)</li>
+                <li><strong>Scissor Lift Operator Certification</strong> (Prior ticketing)</li>
+                <li><strong>Occupational First Aid (OFA) Level 1</strong> (1-day safety training, site safety supervisor qualified)</li>
+                <li><strong>WHMIS Certification</strong> (Workplace safety & hazard coordination)</li>
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>

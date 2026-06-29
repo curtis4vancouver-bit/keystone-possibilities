@@ -1,0 +1,213 @@
+{
+    "video_setting": {
+        "aspect_ratio": "16:9",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    "clips": [
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "If you are on G-L-P one agonists, your rapid weight loss is a trap \u2014 you are wasting active skeletal muscle tissue.",
+            "video_prompt": "A premium cinematic low-angle shot of me standing on screen. The camera executes a slow, steady zoom-in on my face as I speak. [TEMPORAL DECAY WARNING: Dialogue exceeds 8 seconds. Layer B-roll or split segment at the 8-second mark to avoid mouth jitter.] At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "Up to forty percent of every pound you lose on scale weight is actually active, functional lean mass.",
+            "video_prompt": "A premium cinematic eye-level pan shot of me walking slowly on screen. The camera tracks my movement from the side. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "This muscle leak destroys your baseline metabolic rate, leaving you weaker and setting you up for rapid rebound.",
+            "video_prompt": "A premium cinematic low-angle shot of me crouching down on screen, then slowly looking up toward the camera as I speak. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "Sarcopenic obesity is a silent epidemic for men over forty using these highly potent metabolic peptide agonists.",
+            "video_prompt": "A premium cinematic medium shot of me standing on screen. The camera executes a slow, steady pan to the left as I speak. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "But you can protect your load-bearing structures by engineering a highly customized, hyper-targeted amino acid and protein protocol.",
+            "video_prompt": "A premium cinematic high-angle shot looking down at me on screen as I roll my shoulders and stretch my arms back naturally. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "You must target a protein ceiling of at least two hundred grams daily, spread across four major titrations.",
+            "video_prompt": "A premium cinematic shot of me walking slowly on screen, then gradually slowing down to a complete stop. The camera executes a slow dolly-in. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "Combine this nutrition floor with high-tension resistance loads to force active cellular hypertrophy and signal muscle preservation.",
+            "video_prompt": "A premium cinematic close-up shot of me standing on screen. The camera executes a slow, steady zoom-out to a medium close-up. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "For structural joint and tendon repair under heavy mechanical load, we analyze systemic peptide protocols.",
+            "video_prompt": "A premium cinematic low-angle tracking shot of me crouching down on screen, then slowly standing back up to a full height. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "A systematic titration schedule of compound B-P-C one fifty-seven and T-B five hundred accelerates tissue healing.",
+            "video_prompt": "A premium cinematic side-profile shot of me standing on screen looking out, with the camera slowly panning around to my front. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "Do not just build a luxury life \u2014 build the physical architecture capable of carrying you through it.",
+            "video_prompt": "A premium cinematic tracking shot of me walking slowly forward on screen, maintaining direct eye contact with the camera. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "For my full bio-philic wellness resort blueprints and peptide guidelines, check the links in my description block.",
+            "video_prompt": "A premium cinematic medium shot of me standing on screen. The camera executes a slow, gentle tilt-down from my chest to my waist. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "This clinical analysis is strictly for scientific study. Always consult a licensed medical professional before starting protocols.",
+            "video_prompt": "A premium cinematic eye-level shot of me standing on screen. The camera executes a slow, steady zoom-in on my face as the scene concludes. At 8 seconds, the subject naturally glances away to the side for 1.5 seconds, then returns focus.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        }
+    ]
+}

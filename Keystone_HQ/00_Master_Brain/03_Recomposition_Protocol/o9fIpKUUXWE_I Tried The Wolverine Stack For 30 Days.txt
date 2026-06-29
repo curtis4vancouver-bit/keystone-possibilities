@@ -1,0 +1,51 @@
+# Personal Case Study: 30-Day Wolverine Stack Protocol & Progression Log
+
+**Subject:** Wayne Stevenson  
+**Brand:** Keystone Recomposition  
+**Focus Area:** Chronic injury rehabilitation, peptide protocols, and cellular recovery  
+
+---
+
+## 1. Background & Injury History
+- **History:** Spent early career on the tools in construction. Suffered a severe lower back injury in his 20s on a job site that resulted in 20 years of chronic, unresolved pain and morning stiffness.
+- **Secondary Injury:** Chronic shoulder joint instability and pain affecting overhead reach.
+- **Failed Pathways:** Years of conventional physiotherapy, stretching, icing, and anti-inflammatories only managed to restore Wayne to a stable **40-50% baseline**, where his progress plateaued.
+
+---
+
+## 2. The Protocol: "The Wolverine Stack"
+This 30-day protocol was executed alongside a foundational regimen of 200g+ of protein daily, targeted mobility work, and strict sleep hygiene.
+
+### Daily Schedule
+| Time of Day | Compounds | Delivery Method | Purpose / Notes |
+| :--- | :--- | :--- | :--- |
+| **Morning (Fasted)** | **BPC-157 + GHK-Cu** | Subcutaneous (Subq) "Handshake Shot" | Administered near the primary injury sites (back/shoulder) for localized healing. GHK-Cu targets collagen synthesis. |
+| **Active Rotation** | **TB-500** | Subcutaneous (Subq) | Administered 4 days per week to facilitate systemic tissue repair and cell migration. |
+| **Night (Before Bed)** | **CJC-1295 + Ipamorelin** | Subcutaneous (Subq) | Supports natural Growth Hormone (GH) pulses during deep sleep, compounding overall healing. |
+
+---
+
+## 3. Progression Log: Day 30 Results
+
+* **Lower Back:** 
+  * **Progression:** Improved from the 40-50% plateau to **85-90% functionality**.
+  * **Functional Gains:** Morning stiffness is completely resolved (previously required 20 minutes of movement to loosen). Full range of motion restored, allowing Wayne to bend over and touch the floor for the first time in decades.
+* **Shoulder Joint:** 
+  * **Progression:** Improved to **60-65% functionality**.
+  * **Functional Gains:** Slower progress due to joint complexity, but showing significant reductions in end-of-day aching and the elimination of "catchy" physical sensations during overhead movements.
+* **Sleep & Systemic Recovery:** 
+  * **Progression:** Marked improvement in deep sleep cycles. Sleep onset is faster, leading to enhanced physical recovery, which acts as a compounding force for peptide efficacy.
+* **Systemic Side Effects (Cosmetic):** 
+  * **Progression:** Noticeable improvements in skin hydration, clarity, and overall hair thickness (attributed to GHK-Cu systemically boosting collagen synthesis).
+
+---
+
+## 4. Safety, Sourcing, and Regulatory Warnings
+
+> **DISCLAIMER:** This is an N-of-1 personal case study. Peptides are currently in regulatory gray zones and are not FDA-approved for human consumption.
+
+### Critical Safety Protocols & Risks
+1. **Gray Market Contamination (30% Rule):** Independent lab testing reveals that approximately 30% of gray market peptide samples are mislabeled, under-dosed, or contaminated. 
+   * *Action:* Never rely on static PDF lab reports (which are easily doctored). Only source from suppliers utilizing verifiable, independent, third-party testing. Baseline and ongoing blood panels are mandatory to track biomarker shifts.
+2. **CJC-1295 Pituitary Risk:** FDA documentation (December 2024) classified CJC-1295 as a developmental drug, citing nonclinical findings of potential DNA damage in pituitary cells. This compound must be approached with caution and distinct risk management compared to BPC-157 or TB-500.
+3. **Regulatory Milestones:** BPC-157 and TB-500 were removed from the FDA Category 2 restricted list on April 22nd. Their long-term access and clinical categorization will be determined by upcoming Pharmacy Compounding Advisory Committee (PCAC) hearings.

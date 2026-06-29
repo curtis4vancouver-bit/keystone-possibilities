@@ -1,0 +1,98 @@
+Found 5 matches in ['general']:
+
+--- Result 1 (Source: 20260522_incremental_ingestion.md, VecScore: 0.667) ---
+date, insert new version and mark old as inactive:
+
+```sql
+-- Mark old version as inactive
+UPDATE chunk_metadata SET is_active = 0 WHERE source_id = ? AND is_active = 1;
+
+-- Insert new version
+INSERT INTO chunk_metadata (chunk_id, source_id, version, is_active, ...)
+VALUES (?, ?, ?, 1, ...);
+```
+
+At query time, filter: `WHERE is_active = 1`.
+
+### Strategy 2: Time-Based Partitioning
+
+Create separate vector indices per time window (daily/weekly). Old partitions become read-only archives. This simplifies garbage collection: just drop the old partition.
+
+### Strategy 3: Snapshot + Delta
+
+Keep a full snapshot of the vector DB periodically. Between snapshots, only store deltas (new/changed chunks). This enables point-in-time recovery.
+
+---
+
+## 9. Garbage Collection for Stale Chunks
+
+When source files are deleted or significantly changed, orphan chunks remain in the vector store. Garbage collection strategies:
+
+### Approach 1: Source-Based Sweep
+
+```python
+def garbage_collect(db, current_sour
+
+
+--- Result 2 (Source: 20260522_shopify_audiobook_marketing_shopify_subscription_models_and_recurring_revenue_funnels_fo.md, VecScore: 0.500) ---
+ics of a modern digital publishing empire.   
+
+2. API Versioning, Authentication, and Environment Configuration
+
+To ensure long-term stability and continuous access to the latest subscription mutations, the application infrastructure must strictly target the correct Shopify API version. As of the current period, the 2026-04 stable version (released April 1, 2026, and officially accessible until April 16, 2027, at 15:00 UTC) is the recommended standard for production environments. Legacy requests made to deprecated versions will automatically fall forward to the oldest accessible stable version; this behavior can cause unpredictable schema validation errors and erratic behavior in strictly typed AI integrations, making rigid version targeting a mandatory practice.   
+
+Node.js Middleware and Library Setup
+
+When establishing the Node.js middleware that acts as the operational bridge between the AI agent and the Shopify commerce engine, the official @shopify/shopify-api package (specifical
+
+
+--- Result 3 (Source: 20260522_hermes_vs_antigravity_comparison.md, VecScore: 0.333) ---
+ll]] improvement after initial deployment. |
+| **Verification gate** | All evolved variants must pass full pytest suite, size constraints, semantic preservation checks | `evaluation_harness.py` + `security_sandbox.py` provide AST validation and fixture tests. **This is comparable.** |
+
+**Verdict:** Our self-evolution engine is solid for error recovery and sandboxed [[davinci-resolve-mcp/docs/SKILL|skill]] deployment. The critical gaps are **GEPA-style prompt optimization** (automating prompt improvements without GPU training) and **autonomous [[davinci-resolve-mcp/docs/SKILL|skill]] creation triggers** (the agent should auto-extract skills without being told to).
+
+### 1.3 Error Recovery and Learning from Mistakes
+
+| Capability | Hermes Agent | Keystone/Antigravity |
+|:---|:---|:---|
+| **Self-correction reflection loop** | Attempts task, validates, feeds error diagnostics back to LLM for retry | `self_evolution.py` has `run_evolution_cycle()` with exponential backoff retry (up to 3 atte
+
+
+--- Result 4 (Source: insight_2026-06-14_footer_and_gbp.md, VecScore: 0.333) ---
+cally update the stylesheet's version string whenever the file is edited.
+* **Outcome:** Clean, beautiful rendering of our premium custom footer only, with automatic, instant cache invalidation for any future stylesheet edits.
+
+## 2. Google Business Profile & Business Notebooks Research
+* **Problem:** Wayne requested an investigation into how Gemini works inside Google Business Profile (GBP) and the newly launched 'Business Notebooks' feature.
+* **Resolution:** Research revealed that:
+  - You can connect your GBP to the Gemini App via Settings > Extensions in `gemini.google.com` (personal accounts only).
+  - Once connected, Gemini can write brand-voiced review replies, draft posts, audit profiles, and summarize search stats.
+  - Business Notebooks serve as a persistent grounding context where you can attach your GBP, website URL, and up to 600 PDFs/Docs.
+  - Developer automation must route GBP data via standard GBP API and Gemini API separately, with strict quotas (300 QPM read, 10 edi
+
+
+--- Result 5 (Source: 20260522_hermes_self_evolution_pipeline.md, VecScore: 0.250) ---
+1. Evaluate current best
+                trace = self.evaluate_candidate(current_best, case)
+                print(f"Test case: '{case['input']}' -> Success: {trace['success']}")
+                
+                if not trace["success"]:
+                    # 2. Reflect on failure
+                    reflection = self.generate_reflection(current_best, trace, case)
+                    print(f"  [Reflection] {reflection}")
+                    
+                    # 3. Mutate based on reflection
+                    mutated = self.mutate_prompt(current_best, reflection)
+                    mutated_candidates.append(mutated)
+                    
+            if mutated_candidates:
+                # Select the best mutated candidate (simulated Pareto selection)
+                current_best = mutated_candidates[0]
+                print(f"  [Evolved New Prompt Version]")
+                
+        print("\n[GEPA] Evolution complete.")
+        return current_best
+
+def save_evolved_prompt(domain: st
+

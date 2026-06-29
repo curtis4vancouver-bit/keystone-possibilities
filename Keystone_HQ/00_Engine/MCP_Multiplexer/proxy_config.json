@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "keystone-multiplexer": {
+      "command": "node",
+      "args": [
+        "c:/Users/Curtis/New folder/construction-website/Keystone_HQ/00_Master_Brain/MCP_Multiplexer/index.js"
+      ]
+    }
+  }
+}

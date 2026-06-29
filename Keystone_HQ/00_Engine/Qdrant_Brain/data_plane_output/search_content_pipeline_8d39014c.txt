@@ -1,0 +1,226 @@
+Found 10 matches in 'content_pipeline':
+
+--- Result 1 (Source: 20260522_meta_reels_publishing_complete.md, VecScore: 0.500) ---
+ase": "start",
+            "access_token": self.token,
+        }
+        resp = requests.post(reels_url, data=start_params)
+        resp.raise_for_status()
+        data = resp.json()
+        video_id = data["video_id"]
+        upload_url = data["upload_url"]
+        logger.info("FB upload session started. Video ID: %s", video_id)
+
+        # Step 2: Upload video from public URL
+        upload_headers = {
+            "Authorization": f"OAuth {self.token}",
+            "file_url": video_url,
+        }
+        resp = requests.post(upload_url, headers=upload_headers)
+        resp.raise_for_status()
+        logger.info("FB video uploaded from URL: %s", video_url)
+
+        # Step 3: Finish and publish
+        finish_params = {
+            "upload_phase": "finish",
+            "video_id": video_id,
+            "video_state": "PUBLISHED",
+            "access_token": self.token,
+        }
+        if description:
+            finish_params["description"] = description
+        if title:
+           
+
+
+--- Result 2 (Source: Google Flow Downloader 720p Fallback Rule, VecScore: 0.500) ---
+When downloading Google Flow videos, if a high-definition 1080p upscaled file (retrieved via name=MEDIA_NAME_upsampled) returns a 404 error because the upsampler failed or the file was deleted from storage, immediately fall back to requesting the raw 720p version using name=MEDIA_NAME without the '_upsampled' suffix. This ensures 100% video coverage and prevents missing clips in the final video assembly directory.
+
+
+--- Result 3 (Source: 20260522_social_media_automation_catbox.moe_and_alternative_video_hosting_for_api-based_socia.md, VecScore: 0.333) ---
+] for the next chunk iteration
+            
+    # Return the newly provisioned YouTube Video ID
+    if response is not None and 'id' in response:
+        return response['id']
+    else:
+        raise Exception(f"Upload failed with an unexpected response payload: {response}")
+
+Bridging the CDN Origin to YouTube
+
+To minimize expensive bandwidth egress costs on the primary compute nodes processing the video, the AI agent should utilize the Cloudflare or Bunny APIs to generate a temporary, signed HTTP URL of the finished video file resting on the CDN. This URL can then be passed into the YouTube upload script, allowing YouTube's backend servers to pull the file directly from the CDN edge, rather than routing the heavy traffic back through the agent's local network hardware.   
+
+System Orchestration and [[STATE|State]] Management
+
+An autonomous publishing system operating across multiple discrete domains requires rigorous [[STATE|state]] management to prevent catastrophic race conditions, d
+
+
+--- Result 4 (Source: mandatory_short_production_checklist_2026-06-16, VecScore: 0.250) ---
+## DOUBLE-CHECK PROTOCOL:
+Before presenting ANY script to Wayne:
+1. Verify all facts against Research_Archives
+2. Count words per clip (must be ≤22)
+3. Confirm all 6 metadata sections are present
+4. Pull a screenshot if any visual changes were made
+
+
+--- Result 5 (Source: 20260522_social_media_automation_facebook_reels_publishing_via_graph_api_video_upload_from_ur.md, VecScore: 0.200) ---
+            video_id = self._initialize_upload()
+            logger.info(f"Phase 1 Complete. Cryptographic Video ID acquired: {video_id}")
+
+            # Phase 2: Transfer Data via edge ingestion URL
+            self._transfer_video_data(video_id, video_url)
+            logger.info(f"Phase 2 Complete. Edge ingestion initiated for URL: {video_url}")
+
+            # Phase 3: Command Assembly and Publish
+            self._finish_upload(video_id, description, title, scheduled_time)
+            logger.info(f"Phase 3 Complete. Video {video_id} queued for Meta internal processing.")
+            
+            # Execute synchronous polling block to confirm final [[STATE|state]]
+            final_status = self.poll_video_status(video_id)
+            logger.info(f"Final resolved video [[STATE|state]]: {final_status}")
+            
+            return video_id
+
+        except Exception as e:
+            logger.error(f"Reels Publishing Pipeline Encountered Fatal Error: {str(e)}")
+            # In a pr
+
+
+--- Result 6 (Source: 20260522_youtube_api_channel_switching.md, VecScore: 0.167) ---
+      print(f"\n[UPLOAD] Initiating upload of '{os.path.basename(file_path)}' to channel '{channel_key}'...")
+        response = None
+        errors = 0
+        max_errors = 10
+
+        while response is None:
+            try:
+                status, response = request.next_chunk()
+                if status:
+                    print(f"  Uploaded: {int(status.progress() * 100)}%")
+            except HttpError as e:
+                if e.resp.status in [500, 502, 503, 504]:
+                    errors += 1
+                    if errors > max_errors:
+                        raise Exception("Too many transient server errors. Aborting upload.")
+                    
+                    # Apply exponential backoff with jitter
+                    sleep_time = (2 ** errors) + random.random()
+                    print(f"  [TRANSIENT ERROR] Status {e.resp.status}. Retrying in {sleep_time:.2f} seconds...")
+                    time.sleep(sleep_time)
+                else:
+                    raise e
+
+
+
+--- Result 7 (Source: 20260610_YT_ANALYTICS_deep_research_into_youtube_shorts_strategy_for_channel_growt.md, VecScore: 0.143) ---
+None
+        while response is None:
+            status, response = request.next_chunk()
+            if status:
+                print(f"Upload progress: {int(status.progress() * 100)}%.")
+
+        video_id = response.get('id')
+        print(f"Success: Video ID {video_id} uploaded and scheduled for {scheduled_time_iso}")
+        return video_id
+
+    except HttpError as error:
+        print(f"API HTTP Error {error.resp.status}: {error.content}")
+        return None
+
+# Example Execution Context for Keystone Sovereign
+# target_timezone = pytz.timezone('UTC')
+# scheduled_time = datetime.datetime.now(target_timezone) + datetime.timedelta(days=2)
+# iso_timestamp = scheduled_time.strftime('%Y-%m-%dT%H:%M:%SZ')
+# upload_and_schedule_short(youtube, 'renders/clip_01.mp4', 'Epoxy Floor Build', 'Full guide linked.', '22', iso_timestamp)
+
+6.3 Handling the "Related Video" Linking Limitation
+
+While the YouTube Data API v3 allows for comprehensive metadata injection, a severe limitation exists in the 2
+
+
+--- Result 8 (Source: 20260610_YT_ANALYTICS_deep_research_into_youtube_shorts_strategy_for_channel_growt.md, VecScore: 0.125) ---
+  'categoryId': category_id, 
+                'tags': ['shorts', 'automated', 'education'],
+                'defaultLanguage': 'en'
+            },
+            'status': {
+                'privacyStatus': 'private', # Mandatory for scheduling
+                'selfDeclaredMadeForKids': False, # COPPA Compliance
+                'publishAt': scheduled_time_iso # ISO 8601 string
+            }
+        }
+
+        # Initialize the chunked, resumable media upload request
+        media = MediaFileUpload(
+            video_path, 
+            chunksize=-1, 
+            resumable=True, 
+            mimetype='video/mp4'
+        )
+
+        request = youtube_client.videos().insert(
+            part='snippet,status',
+            body=body,
+            media_body=media
+        )
+        
+        response = None
+        while response is None:
+            status, response = request.next_chunk()
+            if status:
+                print(f"Upload progress: {int(status.progress() * 100)}%.")
+
+        vid
+
+
+--- Result 9 (Source: 20260613_YOUTUBE_GROWTH_youtube_shorts_optimization_strategy_for_mid-2026.md, VecScore: 0.111) ---
+': tags,
+            'categoryId': '22' # 22 indicates People & Blogs, 26 indicates How-to & Style
+        },
+        'status': {
+            'privacyStatus': 'public',
+            'selfDeclaredMadeForKids': False
+        }
+    }
+
+    # Initialize chunked, resumable media upload stream
+    media = MediaFileUpload(file_path, chunksize=-1, resumable=True, mimetype='video/mp4')
+
+    request = youtube.videos().insert(
+        part=','.join(body.keys()),
+        body=body,
+        media_body=media
+    )
+
+    # Execute upload with exponential backoff logic to handle network instability
+    response = None
+    while response is None:
+        try:
+            status, response = request.next_chunk()
+            if status:
+                print(f"Upload progress: {int(status.progress() * 100)}%")
+        except Exception as error:
+            print(f"Network or API Error encountered: {error}. Initiating exponential backoff sequence...")
+            # Script pauses execution here based on backoff
+
+
+--- Result 10 (Source: 20260613_YOUTUBE_GROWTH_managing_multiple_youtube_channels_under_one_google_account_.md, VecScore: 0.100) ---
+  body=metadata,
+        media_body=media
+    )
+    
+    response = None
+    # Iteratively stream the chunks until the server returns the final response object
+    while response is None:
+        status, response = request.next_chunk()
+        if status:
+            print(f'System upload progress: {int(status.progress() * 100)}%')
+            
+    return response["id"]
+
+
+To schedule the video for future publication programmatically—a requirement for the autonomous scheduling of content across the three channels—the native scheduling strategy mandates that the privacyStatus property inside the status object be explicitly set to 'private'. Simultaneously, the system must pass an ISO 8601 formatted timestamp to the publishAt field (e.g., '2026-06-15T15:00:00Z'), instructing YouTube's internal chron-jobs to automatically shift the visibility from private to public at the specified time.   
+
+Once the upload loop concludes and the API returns the unique video ID, the system must execute a se
+

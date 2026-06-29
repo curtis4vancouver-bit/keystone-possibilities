@@ -1,0 +1,142 @@
+Found 10 matches in ['general']:
+
+--- Result 1 (Source: 20260613_AGENT_ARCH_embedding_model_selection_for_ai_agent_memory_systems_in_mid.md, VecScore: 0.500) ---
+qlite_vec
+import numpy as np
+
+# Establish a connection to the monolithic memory file
+db = sqlite3.connect("C:\\Keystone\\vstash_memory.db")
+
+# Force the loading of the sqlite-vec extension
+db.enable_load_extension(True)
+sqlite_vec.load(db)
+db.enable_load_extension(False)
+
+# Initialize the vector virtual table expecting 384-dimensional arrays
+db.execute("""
+  CREATE VIRTUAL TABLE IF NOT EXISTS vec_memory USING vec0(
+    embedding float
+  );
+""")
+
+# Example insertion process (assuming 'vector_array' is output from FastEmbed)
+# sqlite-vec requires the numpy array to be serialized into raw bytes
+vector_data = np.array(vector_array).astype(np.float32).tobytes()
+db.execute("INSERT INTO vec_memory(rowid, embedding) VALUES (?,?)", (1, vector_data))
+db.commit()
+
+Chunking Dynamics for Maximum Retrieval Efficacy
+
+Regardless of the database chosen, the most crucial component dictating hybrid RAG effectiveness is the chunking strategy applied prior to embedding. Standard fixed-length chunking destr
+
+
+--- Result 2 (Source: 20260613_AGENT_ARCH_qdrant_vector_database_advanced_optimization_for_ai_agent_me.md, VecScore: 0.500) ---
+H_integrating_knowledge_graphs_with_vector_databases_for_ai_ag]]
+
+
+
+--- Result 3 (Source: 20260522_gemini_platform_google_ai_studio_advanced_features_and_model_fine-tuning.md, VecScore: 0.333) ---
+ates not merely as a generative intelligence layer, but as the centralized, autonomous nervous system of the modern enterprise.
+
+---
+*Auto-ingested into Keystone Brain Vector DB*
+
+
+---
+📁 **See also:** [[Research_Archives/14_Gemini_Platform/INDEX|← Directory Index]]
+
+**Related:** [[20260522_gemini_platform_google_spark_agent_platform_capabilities_and_access_methods]] · [[davinci_resolve_api_automation_research_plan___google_gemini]] · [[20260613_AGENT_ARCH_advanced_gemini_api_patterns_for_production_ai_agents_in_mid]]
+
+**Related:** [[20260522_gemini_platform_update]]
+
+
+
+--- Result 4 (Source: SYS_001_qdrant_namespace_optimization.md, VecScore: 0.333) ---
+adation while eliminating the RAM and index overhead associated with nearly empty namespaces.\nMathematical Temporal Score Boosting\nI have extracted the native database-level parameters for applying exponential, linear, and Gaussian decay functions directly to search relevance. By storing creation timestamps as numeric payload values, we can construct custom scoring formulas during the database prefetch step. This mathematically scales down the semantic vector similarity score based on elapsed time, ensuring that recent memories naturally bubble to the top of retrieval results. Executing this logic directly inside the database index avoids the massive latency overhead of pulling and reranking large volumes of outdated vectors on the client side.\nDeterministic Survival and Centroid Consolidation\nI have synthesized a highly robust, multi-tiered memory pruning framework that eliminates high token costs and non-deterministic LLM-based memory loops. The system calculates a mathematical '
+
+
+--- Result 5 (Source: compacted-logs-2026-06-04.md, VecScore: 0.250) ---
+# Compacted Agent Execution History
+
+Generated on 2026-06-04
+
+Log hybrid_search.log (Age: 11d, Size: 7609 bytes):
+HEAD:
+2026-05-23 20:05:54,601 [INFO] [HybridSearch] ======================================================================
+2026-05-23 20:05:54,601 [INFO] [HybridSearch] KEYSTONE PERSISTENT COGNITIVE SUBSTRATE - DIAGNOSTICS SUITE
+2026-05-23 20:05:54,601 [INFO] [HybridSearch] ======================================================================
+2026-05-23 20:05:54,601 [INFO] [HybridSearch] Initialized Weighted Hybrid Engine (Alpha Balance=0.6)
+2026-05-23 20:05:54,601 [INFO] [HybridSearch] Initialized M
+...
+TAIL:
+conflict resolvers...
+2026-05-23 20:08:42,224 [INFO] [HybridSearch] [Graph-RAG] Added relation: VOCAL PACE JITTER --(enforced_on)--> KEYSTONE STYLE
+2026-05-23 20:08:42,226 [INFO] [HybridSearch] [Graph-RAG] Added relation: VOCAL PACE JITTER --(enforced_on)--> KEYSTONE STYLE
+2026-05-23 20:08:42,227 [INFO] [HybridSearch] [Graph-RAG] Serializing all graph observations to
+
+
+--- Result 6 (Source: 20260522_embedding_chunk_optimization.md, VecScore: 0.250) ---
+# Optimal Embedding Chunk Size and Overlap for Technical Markdown Documents
+
+**Research Date:** May 22, 2026
+**Domain:** vector_brain_optimization
+**Sources:** 10+ web searches across academic papers, industry benchmarks, framework documentation, and practitioner reports
+**Applicability:** Keystone Sovereign [[master|Master]] Brain (sqlite-vec backed vector DB with ~1,158 chunks across 57 sources)
+
+---
+
+## Executive Summary
+
+After extensive research across current (2025-2026) industry benchmarks, framework best practices, and academic literature, the optimal configuration for embedding technical markdown documents in our Keystone brain is:
+
+- **Primary chunk size:** 512 tokens (~2,000 characters) with heading-aware boundaries
+- **Overlap:** 10-15% (50-75 tokens) -- but only when using fixed-size splitting
+- **Strategy:** Two-pass hybrid: MarkdownHeaderTextSplitter first, then RecursiveCharacterTextSplitter as fallback for oversized sections
+- **Metadata enrichment:** Prepend document t
+
+
+--- Result 7 (Source: 20260609_YOUTUBE_SCRIPTS_deep_research_into_what_makes_ai-generated_youtube_scripts_s.md, VecScore: 0.200) ---
+ng exactly where Hooks, Body points, and Call-to-Actions (CTAs) should sit without writing the actual dialogue.   
+
+The Sensory Enrichment Pass: The human prompts the AI to generate a rough draft based on the agreed-upon outline, but explicitly instructs the model to add rich sensory details and maintain continuity, strictly forbidding broad generalizations and academic summaries.   
+
+The Polishing and "LLM-ism" Purge: This is the most critical humanization step in the workflow. A strict, highly detailed negative prompt is applied to the output. This prompt explicitly bans the entire "slop list" of vocabulary (e.g., instructing the AI to "Remove words like delve, tapestry, moreover, and journey. Do not use the rule of three. Do not use em-dashes"). The AI is instructed to vary sentence length dramatically, open sections with tension rather than context, and adopt a casual, first-person voice.   
+
+The Visual Cue Integration: The text is then broken into the professional two-column AV fo
+
+
+--- Result 8 (Source: 20260522_hermes_vs_antigravity_comparison.md, VecScore: 0.200) ---
+L|skill]]-based error encoding.
+
+3. **Vector Brain DB:** Semantic search over 450+ knowledge chunks via `keystone-brain` MCP provides deeper knowledge retrieval than Hermes' FTS5 text search.
+
+4. **Science Skills Ecosystem:** 40+ specialized science skills (AlphaFold, PubChem, gnomAD, etc.) that Hermes has no equivalent for.
+
+5. **Security Sandbox:** AST-level code validation before [[davinci-resolve-mcp/docs/SKILL|skill]] deployment. Hermes has community-contributed hardening patches but no formal AST sandbox.
+
+6. **Deep Research Daemon:** Automated overnight research with web scraping, report generation, and brain ingestion. Hermes has cron scheduling but no dedicated research pipeline.
+
+---
+
+## 4. Recommended Implementation: Autonomous [[davinci-resolve-mcp/docs/SKILL|Skill]] Extraction
+
+Here is a concrete design for the highest-priority gap -- automatic [[davinci-resolve-mcp/docs/SKILL|skill]] extraction:
+
+```python
+# auto_skill_extractor.py
+# Post-task hook that monitors tool call
+
+
+--- Result 9 (Source: 05_GraphRAG_Hallucination_Prevention.md, VecScore: 0.200) ---
+depth, these pipelines employ sophisticated hybrid methodologies. High-dimensional vector search engines, such as FAISS (Facebook AI Similarity Search) or LanceDB, operate in tandem with lightweight, in-memory graph traversal libraries like NetworkX. For more robust transactional capabilities, developers utilize embedded graph databases like KuzuDB, or local instances of Memgraph and Neo4j, which support advanced query execution directly from the Python layer.   \n\nPowering the semantic reasoning are highly capable local language models. Frameworks orchestrate small language models (SLMs) running via constrained inference engines—such as llama.cpp, Ollama, or vLLM. Models like phi4 demonstrate exceptional aptitude for following instructions and generating code (such as Cypher queries), while models like gemma3 or Llama-3 are optimized for synthesizing the final user-facing text. This division of labor within the local ecosystem ensures that each component executes its specialized task
+
+
+--- Result 10 (Source: 6_1_AI_Assisted_Research_Verification.md, VecScore: 0.167) ---
+nd create severe legal liabilities for the publisher.
+
+### 5.4 Computational Detection via Semantic Entropy and Embeddings
+
+Addressing AI hallucinations involves adapting verification methodologies to specifically target computational threats. In 2026, researchers utilize advanced algorithmic techniques capable of detecting AI hallucinations with approximately 79% accuracy—representing a 10-percentage-point improvement over leading baseline methods. This is primarily achieved through the measurement of "Semantic Entropy."
+
+The semantic entropy detection system operates by prompting the model multiple times and clustering the generated answers based on their underlying semantic meaning. Using a measure of bidirectional entailment, if two answers logically entail each other, they are grouped into the same cluster. The system then calculates the entropy—the degree of uncertainty or unpredictability—of the distribution of meanings across these clusters. A high semantic entropy score indica
+

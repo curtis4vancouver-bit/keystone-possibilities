@@ -1,0 +1,77 @@
+{
+  "search_console": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "google-searchconsole-mcp"
+    ],
+    "enabled": false
+  },
+  "google_workspace": {
+    "command": "uvx",
+    "args": [
+      "workspace-mcp",
+      "--tools",
+      "gmail",
+      "calendar",
+      "drive",
+      "docs"
+    ],
+    "env": {
+      "GOOGLE_OAUTH_CLIENT_ID": "${GOOGLE_OAUTH_CLIENT_ID}",
+      "GOOGLE_OAUTH_CLIENT_SECRET": "${GOOGLE_OAUTH_CLIENT_SECRET}",
+      "GOOGLE_CLIENT_ID": "${GOOGLE_OAUTH_CLIENT_ID}",
+      "GOOGLE_CLIENT_SECRET": "${GOOGLE_OAUTH_CLIENT_SECRET}"
+    },
+    "enabled": false
+  },
+  "gemini_web_researcher": {
+    "command": "python",
+    "args": [
+      "agents/gemini_web_researcher.py"
+    ],
+    "enabled": false
+  },
+  "content_engine": {
+    "command": "python",
+    "args": [
+      "./mcp_servers/content_engine_mcp.py"
+    ],
+    "enabled": false
+  },
+  "music_production": {
+    "command": "python",
+    "args": [
+      "./mcp_servers/music_mcp.py"
+    ],
+    "enabled": false
+  },
+  "health": {
+    "command": "python",
+    "args": [
+      "./mcp_servers/health_mcp.py"
+    ],
+    "enabled": false
+  },
+  "dev": {
+    "command": "python",
+    "args": [
+      "./mcp_servers/dev_mcp.py"
+    ],
+    "enabled": false
+  },
+  "research": {
+    "command": "python",
+    "args": [
+      "./mcp_servers/research_mcp.py"
+    ],
+    "enabled": false
+  },
+  "dynamic_skills": {
+    "command": "python",
+    "args": [
+      "./dynamic_skills/dynamic_mcp.py"
+    ],
+    "enabled": false
+  }
+}

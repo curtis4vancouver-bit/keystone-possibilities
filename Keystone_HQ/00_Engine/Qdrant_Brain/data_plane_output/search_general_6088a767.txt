@@ -1,0 +1,76 @@
+Found 5 matches in 'general':
+
+--- Result 1 (Source: 1_4_Hosting_Constraints.md, VecScore: 1.000) ---
+us keywords or manually clearing transient data that bloats the wp_options table.   
+
+WP-CLI (WordPress Command Line Interface): For highly technical SEOs, the most potent and secure workaround for the lack of remote database access is the rigorous utilization of WP-CLI via an SSH connection. SSH access provides a secure, encrypted tunnel directly to the server environment. Through WP-CLI, an SEO can execute wp search-replace commands. This method is vastly superior to running raw SQL queries in phpMyAdmin for URL replacements because WP-CLI inherently understands and properly unserializes PHP arrays before performing the string replacement. Attempting a raw SQL Search and Replace on serialized data (where SEO plugins invariably store complex meta settings) will permanently corrupt the string length count, entirely breaking the plugin configuration and wiping out meta titles.   
+
+Database Optimization Routines: Cluttered databases directly slow down the TTFB, negatively impacting Core 
+
+
+--- Result 2 (Source: 1_1_Core_Web_Vitals.md, VecScore: 0.667) ---
+obscure some of the older, heavy modules, administrators can access the comprehensive hidden module control panel by navigating directly to the URL string: /wp-admin/admin.php?page=jetpack_modules.   
+
+From this legacy interface, high-impact, performance-degrading modules must be disabled if they are not absolutely mission-critical to the business logic:
+
+Jetpack Comments: This module completely replaces the native, lightweight WordPress comment system with a complex application allowing social logins (Facebook, WordPress.com) via third-party cookies. It heavily relies on external script injection, cross-origin communication, and complex iframe generation, significantly stalling main-thread availability during rendering. Furthermore, it necessitates loading hovercard scripts and Markdown parsers, adding to the INP drag.   
+
+Related Posts: This module runs intensive search queries utilizing Elasticsearch infrastructure to find contextual content, injecting additional CSS styling and Jav
+
+
+--- Result 3 (Source: 20260521_self_correction_tonight_meta_graph_api_facebook_page_selection_during_oauth_re-authe.md, VecScore: 0.250) ---
+[Brand_Constitution/shared/PLATFORM_STANDARDS|platform standards]], this catastrophic failure is rarely an issue with the constructed URL or the frontend code itself, but rather a symptom of a configuration mismatch within the Meta Developer Dashboard.   
+
+The AI agent must output the following diagnostic checklist to the human administrator when Error 1349220 is detected:
+
+Diagnostic Check	Required Dashboard Configuration	Rationale for Failure
+Application Mode	
+
+The application toggle must be set to "Live" rather than "Development".
+
+	
+
+SUAT generation and Business Login configurations fail silently in Development mode for any user who is not explicitly listed as a registered Developer or Tester in the App Roles panel.
+
+
+Login Product Settings	
+
+Under "Facebook Login for Business," both "Client OAuth Login" and "Web OAuth Login" must be enabled.
+
+	Without these toggles enabled, Meta's servers will reject the redirect_uri validation phase, assuming the request is an unauthorized hijack
+
+
+--- Result 4 (Source: deep_research_20260609_AGENT_ARCH_mandatory_skill_loading.md, VecScore: 0.250) ---
+ immutable session log to verify if the agent previously 
+            # called the MCP read tool targeting the explicitly required file URI
+            skill_loaded = any(
+                call.get("tool") == "read_mcp_resource" and 
+                call.get("args", {}).get("uri") == self.mandatory_file_uri
+                for call in session_history
+            )
+            
+            if not skill_loaded:
+                # Intercept the function call entirely. 
+                # Crucially, do NOT call `await call_next()`.
+                print(f"Zero-Trust Block Initiated: {target_tool} attempted without reading {self.mandatory_file_uri}")
+                
+                # Mutate the context.result to return a system-level tool error back to the agent
+                context.result = (
+                    f"PERMISSION DENIED. You cannot execute '{target_tool}' until you "
+                    f"have successfully called 'read_mcp_resource' with "
+                    f"u
+
+ext.result =
+
+
+--- Result 5 (Source: 1_3_Technical_SEO_Audit_Checklist.md, VecScore: 0.200) ---
+ (REPL) environment with built-in tab completion for WordPress functions, drastically speeding up debugging efforts. Additionally, tools like aaemnnosttv/wp-cli-login-command allow administrators to generate secure, temporary magic links to bypass broken frontend login forms during severe redirect loops or caching failures.   
+
+2. Page Speed Optimization and Core Web Vitals
+
+Google's algorithmic infrastructure strictly enforces mobile-first indexing, meaning that search engines evaluate the mobile version of a site's rendering, structured data, and content to determine global rankings. Responsive design is merely the baseline; modern mobile SEO requires rigorous optimization of frontend assets to pass the stringent Core Web Vitals assessments.   
+
+2.1 CSS and JavaScript Minification Strategies
+
+Minification is the process of stripping unnecessary characters, whitespaces, and comments from source code without altering its functionality, thereby reducing the payload delivered to the brow
+

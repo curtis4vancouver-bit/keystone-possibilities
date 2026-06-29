@@ -1,0 +1,43 @@
+{
+    "video_setting": {
+        "aspect_ratio": "16:9",
+        "resolution": "1080p",
+        "fps": 30
+    },
+    "clips": [
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "If you're on a G L P one agonist, your rapid weight loss is a dangerous trap. You are wasting active skeletal muscle.",
+            "video_prompt": "A premium cinematic medium shot of me standing on screen against the solid black studio background. The camera executes a slow, steady zoom-in on my face as I speak. [TEMPORAL DECAY WARNING: Dialogue duration (8.33s) exceeds 8-second facial stability threshold. In post-production, layer high-contrast cinematic B-roll (DXA scans, clinical papers) over this segment to prevent AI mouth jitter.] Camera framing: Absolute eye-level to maintain in-person equality. The subject focuses 2 degrees below the lens center (aiming towards display center) to correct display-lens parallax, creating a natural, balanced conversational connection. At exactly 6.2 seconds, the subject naturally breaks eye contact to the side (Confident Reflection gaze direction, never downward) for 1.5 seconds to signal deep cognitive processing, then smoothly returns focus to the screen. Transition: Apply Bezier temporal velocity curve for matching snap-away speed. Transition point peaks with horizontal motion blur. Cut mid-blur with a two-frame crossfade.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        },
+        {
+            "avatar_id": "wayne_avatar_v8_pro",
+            "avatar_style": "normal",
+            "voice": {
+                "voice_id": "wayne_voice_clone_v2",
+                "type": "elevenlabs"
+            },
+            "input_text": "Up to forty percent of every pound you shed is functional lean mass, destroying your metabolic rate and strength.",
+            "video_prompt": "A premium cinematic low-angle close-up shot of me standing on screen against the solid black studio background. I am speaking and gesturing naturally with direct eye contact. [TEMPORAL DECAY WARNING: Dialogue duration (7.92s) exceeds 8-second facial stability threshold. In post-production, layer high-contrast cinematic B-roll (DXA scans, clinical papers) over this segment to prevent AI mouth jitter.] Camera framing: Absolute eye-level to maintain in-person equality. The subject focuses 2 degrees below the lens center (aiming towards display center) to correct display-lens parallax, creating a natural, balanced conversational connection. At exactly 5.9 seconds, the subject naturally breaks eye contact to the side (Confident Reflection gaze direction, never downward) for 1.5 seconds to signal deep cognitive processing, then smoothly returns focus to the screen. Transition: Apply Bezier temporal velocity curve for matching snap-away speed. Transition point peaks with horizontal motion blur. Cut mid-blur with a two-frame crossfade.",
+            "background": {
+                "type": "image",
+                "url": "https://keystonerecomposition.com/assets/squamish_shoreline_4k.jpg"
+            },
+            "avatar_ingredients": {
+                "clothing_reference_url": "https://keystonerecomposition.com/assets/wayne_carhartt_outfit.jpg"
+            }
+        }
+    ]
+}
