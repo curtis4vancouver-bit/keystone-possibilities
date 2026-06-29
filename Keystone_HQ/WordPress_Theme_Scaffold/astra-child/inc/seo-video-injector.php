@@ -283,6 +283,7 @@ function astra_child_extract_video_thumbnail_fallback( $url ) {
 }
 
 
+if ( ! function_exists( 'keystone_lazy_video_shortcode' ) ) {
 /**
  * 2. Shortcode to render our fast, PageSpeed-optimized lazy YouTube/Spotify media facade
  * Usage: [keystone_video id="YOUTUBE_ID" type="youtube" placeholder_img="OPTIONAL_URL"]
@@ -337,3 +338,4 @@ function keystone_lazy_video_shortcode( $atts ) {
     return ob_get_clean();
 }
 add_shortcode( 'keystone_video', 'keystone_lazy_video_shortcode' );
+}
