@@ -1436,6 +1436,39 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
         update_post_meta( $post_id, 'rank_math_focus_keyword', sanitize_text_field( $data['focus_keyword'] ) );
     }
     
+    // Update categories if provided
+    if ( ! empty( $data['categories'] ) ) {
+        $cat_ids = array();
+        if ( is_string( $data['categories'] ) ) {
+            $cat_names = array_map( 'trim', explode( ',', $data['categories'] ) );
+        } elseif ( is_array( $data['categories'] ) ) {
+            $cat_names = $data['categories'];
+        } else {
+            $cat_names = array();
+        }
+        
+        foreach ( $cat_names as $cat_name ) {
+            $cat_id = get_cat_ID( $cat_name );
+            if ( $cat_id == 0 ) {
+                $cat_id = wp_create_category( $cat_name );
+            }
+            if ( $cat_id > 0 ) {
+                $cat_ids[] = $cat_id;
+            }
+        }
+        if ( ! empty( $cat_ids ) ) {
+            wp_set_post_categories( $post_id, $cat_ids );
+        }
+    }
+
+    // Update featured image if provided
+    if ( ! empty( $data['featured_image'] ) ) {
+        keystone_set_featured_image_from_url( $post_id, $data['featured_image'] );
+    } elseif ( ! empty( $data['youtube_id'] ) ) {
+        $yt_thumb = "https://img.youtube.com/vi/" . sanitize_text_field( $data['youtube_id'] ) . "/maxresdefault.jpg";
+        keystone_set_featured_image_from_url( $post_id, $yt_thumb );
+    }
+
     clean_post_cache( $post_id );
     if ( function_exists( 'wp_cache_flush' ) ) {
         wp_cache_flush();
@@ -1449,6 +1482,40 @@ if ( isset( $_GET['update_post_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
         'permalink' => get_permalink( $post_id )
     ) );
     exit;
+}
+
+/**
+ * Helper to download and set a featured image from a URL
+ */
+function keystone_set_featured_image_from_url( $post_id, $image_url ) {
+    if ( empty( $image_url ) ) return;
+    
+    global $wpdb;
+    $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid = %s AND post_type = 'attachment'", $image_url ) );
+    
+    if ( ! $attachment_id ) {
+        $filename = basename( preg_replace( '/\?.*/', '', $image_url ) );
+        $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s", '%' . $filename ) );
+    }
+    
+    if ( ! $attachment_id ) {
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+        require_once( ABSPATH . 'wp-admin/includes/media.php' );
+        
+        $tmp = download_url( $image_url );
+        if ( ! is_wp_error( $tmp ) ) {
+            $file_array = array(
+                'name'     => basename( $image_url ),
+                'tmp_name' => $tmp
+            );
+            $attachment_id = media_handle_sideload( $file_array, $post_id );
+        }
+    }
+    
+    if ( $attachment_id && ! is_wp_error( $attachment_id ) ) {
+        set_post_thumbnail( $post_id, $attachment_id );
+    }
 }
 
 /**
