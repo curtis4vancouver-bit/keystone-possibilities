@@ -13,6 +13,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'init', function() {
+    // 1. GEO llms.txt Intercept
+    $request_uri = $_SERVER['REQUEST_URI'];
+    if ( strpos( $request_uri, '/llms.txt' ) !== false ) {
+        header('Content-Type: text/plain; charset=utf-8');
+        echo "# Keystone Recomposition LLMs Integration\n\n";
+        echo "Welcome to the Keystone Recomposition API documentation.\n";
+        echo "This domain covers high-performance metabolic health, GLP-1 therapy, peptide science, and deep house music protocols.\n";
+        echo "Founder: Wayne Stevenson.\n\n";
+        echo "## Official Resources\n";
+        echo "- Home: https://keystonerecomposition.com\n";
+        echo "- Spotify: https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y\n";
+        echo "- YouTube: https://www.youtube.com/@KeystoneRecomposition\n";
+        exit;
+    }
+
     if ( isset( $_GET['dump_server'] ) ) {
         header('Content-Type: text/plain; charset=utf-8');
         echo "DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'] . "\n";
@@ -43,336 +58,25 @@ add_action( 'init', function() {
         if ( function_exists( 'wp_cache_flush' ) ) {
             wp_cache_flush();
         }
+        
+        // Google Indexing API Ping
+        $sitemap_url = 'https://keystonerecomposition.com/sitemap_index.xml';
+        wp_remote_get( 'https://www.google.com/ping?sitemap=' . urlencode( $sitemap_url ) );
+
         $p1 = $_SERVER['DOCUMENT_ROOT'] . '/llms.txt';
         $p4 = $_SERVER['DOCUMENT_ROOT'] . '/robots.txt';
         $u1 = file_exists( $p1 ) ? (unlink( $p1 ) ? 'deleted' : 'failed') : 'not found';
         $u4 = file_exists( $p4 ) ? (unlink( $p4 ) ? 'deleted' : 'failed') : 'not found';
 
-        echo "CACHES PURGED SUCCESSFULLY. llms.txt: $u1, robots.txt: $u4";
+        echo "CACHES PURGED & SITEMAP PINGED SUCCESSFULLY. llms.txt: $u1, robots.txt: $u4";
         exit;
     }
 }, 20 );
 
-if ( isset( $_GET['get_post_inventory'] ) && $_GET['get_post_inventory'] === 'sovereign_view' ) {
-    global $wpdb;
-    $posts = $wpdb->get_results( 
-        "SELECT ID, post_title, post_name, post_date, post_content 
-         FROM $wpdb->posts 
-         WHERE post_type = 'post' AND post_status = 'publish' 
-         ORDER BY post_date DESC" 
-    );
-    
-    $report = array();
-    foreach ( $posts as $p ) {
-        $youtube_id = '';
-        // Check shortcode first (migration converted embeds to shortcodes)
-        if ( preg_match( '~\[keystone_video\s+id=["\']([a-zA-Z0-9_-]+)["\']\]~', $p->post_content, $matches ) ) {
-            $youtube_id = $matches[1];
-        } elseif ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $p->post_content, $matches ) ) {
-            $youtube_id = $matches[1];
-        }
-        // Also check post meta
-        if ( empty( $youtube_id ) ) {
-            $youtube_id = get_post_meta( $p->ID, 'keystone_youtube_id', true );
-        }
-        
-        $report[] = array(
-            'id' => $p->ID,
-            'title' => $p->post_title,
-            'slug' => $p->post_name,
-            'date' => $p->post_date,
-            'youtube_id' => $youtube_id,
-            'has_meta' => ! empty( get_post_meta( $p->ID, 'keystone_youtube_id', true ) ),
-            'length' => strlen( $p->post_content )
-        );
-    }
-    
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( $report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-    exit;
-}
-
-if ( isset( $_GET['run_keystone_migration'] ) && $_GET['run_keystone_migration'] === 'sovereign_execute' ) {
-    global $wpdb;
-    
-    // Fetch all published posts
-    $posts = $wpdb->get_results( 
-        "SELECT ID, post_title, post_name, post_date, post_content 
-         FROM $wpdb->posts 
-         WHERE post_type = 'post' AND post_status = 'publish' 
-         ORDER BY post_date DESC" 
-    );
-    
-    $migrated = array();
-    $skipped = array();
-    
-    foreach ( $posts as $p ) {
-        $post_id = intval( $p->ID );
-        
-        // Skip Post 1149 (the flagship blueprint)
-        if ( $post_id === 1149 ) {
-            $skipped[] = array(
-                'id' => $post_id,
-                'title' => $p->post_title,
-                'reason' => 'Flagship blueprint skipped'
-            );
-            continue;
-        }
-        
-        $post_content = $p->post_content;
-        
-        // 1. Identify YouTube Video ID using the robust regex
-        $youtube_id = '';
-        if ( preg_match( '~(?:youtube\.com/(?:[^/]+/.+/(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/|youtube\.com/shorts/)([^"&?/ ]{11})~i', $post_content, $matches ) ) {
-            $youtube_id = $matches[1];
-        }
-        
-        if ( empty( $youtube_id ) ) {
-            $skipped[] = array(
-                'id' => $post_id,
-                'title' => $p->post_title,
-                'reason' => 'No YouTube video detected'
-            );
-            continue;
-        }
-        
-        // 2. Perform safe, clean, and idempotent content restructuring
-        $cleaned_content = $post_content;
-        
-        // Remove existing custom sovereign disclaimers if any exist
-        $cleaned_content = preg_replace( '/<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->.*?<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->/is', '', $cleaned_content );
-        
-        // Remove any legacy dual-column disclosures or generic medical disclaimers matching key superintendent keywords
-        $cleaned_content = preg_replace( '/<div class="[^"]*wp-block-columns[^"]*".*?Medical Disclaimer.*?<\/div>\s*<\/div>\s*<\/div>/is', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<div[^>]*class="[^"]*disclosure-card[^"]*".*?<\/div>/is', '', $cleaned_content );
-        
-        // Remove any existing play button shortcodes to prevent duplication
-        $cleaned_content = preg_replace( '/\[keystone_video[^\]]*\]/i', '', $cleaned_content );
-        
-        // Remove Gutenberg Core Embed / YouTube blocks
-        $cleaned_content = preg_replace( '/<!--\s+wp:embed\s+({.*?})?\s*-->.*?<!--\s+\/wp:embed\s*-->/is', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<!--\s+wp:core-embed\/youtube\s+({.*?})?\s*-->.*?<!--\s+\/wp:core-embed\/youtube\s*-->/is', '', $cleaned_content );
-        
-        // Remove figure blocks containing youtube
-        $cleaned_content = preg_replace( '/<figure class="[^"]*wp-block-embed-youtube[^"]*">.*?<\/figure>/is', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<figure class="[^"]*wp-block-embed[^"]*is-provider-youtube[^"]*">.*?<\/figure>/is', '', $cleaned_content );
-        
-        // Remove raw YouTube iframe elements
-        $cleaned_content = preg_replace( '/<iframe[^>]*youtube\.com\/embed\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<iframe[^>]*youtube\.com\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<iframe[^>]*youtu\.be\/[^>]*>.*?<\/iframe>/is', '', $cleaned_content );
-        
-        // Clean up any empty paragraphs or leftover markup around embeds
-        $cleaned_content = preg_replace( '/<p>\s*(https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/[^\s<>\'\"]*)\s*<\/p>/i', '', $cleaned_content );
-        $cleaned_content = preg_replace( '/<p>\s*<!--\s*-->\s*<\/p>/i', '', $cleaned_content );
-        
-        // 3. Prepend the [keystone_video id="YOUTUBE_ID"] facade shortcode at the absolute top fold
-        $cleaned_content = '[keystone_video id="' . esc_attr( $youtube_id ) . '"]' . "\n\n" . trim( $cleaned_content );
-        
-        // 4. Correct outbound Spotify links to the verified artist ID
-        $cleaned_content = preg_replace(
-            '~https://open\.spotify\.com/artist/(?!52v3Qe6Jo0hg764driOl5Y)[a-zA-Z0-9_-]+~i',
-            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
-            $cleaned_content
-        );
-        
-        // 5. Append the clean centered Real Wayne Medical Disclaimer card at the bottom
-        $disclaimer_card = "\n\n" . '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->' . "\n" .
-                           '<div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15); padding: 25px; border-radius: 4px; margin-top: 50px; margin-bottom: 30px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">' . "\n" .
-                           '    <h3 style="font-family: \'Outfit\', sans-serif; font-size: 0.95rem; color: #f59e0b; margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>' . "\n" .
-                           '    <p style="font-family: \'Inter\', sans-serif; font-size: 0.85rem; color: #a3a3a3; line-height: 1.6; margin: 0; font-weight: 300; max-width: 750px; margin-left: auto; margin-right: auto;">' . "\n" .
-                           '        This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.' . "\n" .
-                           '    </p>' . "\n" .
-                           '</div>' . "\n" .
-                           '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->';
-        
-        $cleaned_content .= $disclaimer_card;
-        
-        // 6. Update wp_posts table with restructured content
-        $wpdb->update(
-            $wpdb->posts,
-            array( 'post_content' => $cleaned_content ),
-            array( 'ID' => $post_id )
-        );
-        
-        // Clear post cache to force WordPress to load fresh DB rows
-        clean_post_cache( $post_id );
-        
-        // 7. Inject GSC Video Object Metadata using WordPress Custom Fields
-        $video_desc = wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $cleaned_content ) ), 150, '...' );
-        if ( empty( $video_desc ) ) {
-            $video_desc = esc_attr( $p->post_title ) . ' - High-performance health and longevity protocol details.';
-        }
-        
-        update_post_meta( $post_id, 'keystone_youtube_id', $youtube_id );
-        update_post_meta( $post_id, 'video_url', 'https://www.youtube.com/watch?v=' . $youtube_id );
-        update_post_meta( $post_id, 'video_title', $p->post_title );
-        update_post_meta( $post_id, 'video_description', $video_desc );
-        update_post_meta( $post_id, 'video_duration', 'PT5M0S' ); // Standard ISO duration for historical posts
-        update_post_meta( $post_id, 'video_upload_date', $p->post_date );
-        
-        $migrated[] = array(
-            'id' => $post_id,
-            'title' => $p->post_title,
-            'youtube_id' => $youtube_id,
-            'spotify_fixed' => true,
-            'disclaimer_appended' => 'Real Wayne centered card',
-            'facade_prepend' => 'Success'
-        );
-    }
-    
-    // Clear Object and OpCache layers
-    if ( function_exists( 'wp_cache_flush' ) ) {
-        wp_cache_flush();
-    }
-    if ( function_exists( 'opcache_reset' ) ) {
-        opcache_reset();
-    }
-    
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode( array(
-        'status' => 'success',
-        'message' => 'Keystone Sovereign Post-by-Post Migration Complete',
-        'migrated_count' => count( $migrated ),
-        'skipped_count' => count( $skipped ),
-        'migrated_posts' => $migrated,
-        'skipped_posts' => $skipped
-    ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-    exit;
-}
-
-if ( isset( $_GET['restore_mounjaro_post'] ) ) {
-    $file_path = __DIR__ . '/mounjaro_backup.txt';
-    if ( file_exists( $file_path ) ) {
-        $content = file_get_contents( $file_path );
-        $post_data = array(
-            'ID'           => 1149,
-            'post_content' => $content,
-        );
-        $res = wp_update_post( $post_data );
-        if ( is_wp_error( $res ) ) {
-            echo "ERROR RESTORING POST: " . $res->get_error_message();
-        } else {
-            echo "POST RESTORED SUCCESSFULLY: ID " . $res;
-        }
-    } else {
-        echo "BACKUP FILE NOT FOUND AT: " . $file_path;
-    }
-    exit;
-}
-
-if ( isset( $_GET['list_revisions'] ) ) {
-    $revisions = wp_get_post_revisions( 1149 );
-    echo "=== REVISIONS FOR POST 1149 ===\n\n";
-    foreach ( $revisions as $rev ) {
-        echo "REVISION ID: " . $rev->ID . " | DATE: " . $rev->post_date . " | TITLE: " . $rev->post_title . "\n";
-        echo "  CONTENT LENGTH: " . strlen( $rev->post_content ) . "\n";
-        echo "  SNIPPET: " . substr( wp_strip_all_tags( $rev->post_content ), 0, 150) . "\n\n";
-    }
-    exit;
-}
-
-if ( isset( $_GET['restore_revision_id'] ) ) {
-    $rev_id = intval( $_GET['restore_revision_id'] );
-    $rev = wp_get_post_revision( $rev_id );
-    if ( $rev ) {
-        $content = $rev->post_content;
-        
-        $old_url = "https://open.spotify.com/artist/keystone-recomposition";
-        $new_url = "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y";
-        $updated_content = str_replace( $old_url, $new_url, $content );
-        
-        $post_data = array(
-            'ID'           => 1149,
-            'post_content' => $updated_content,
-        );
-        $res = wp_update_post( $post_data );
-        if ( is_wp_error( $res ) ) {
-            echo "ERROR RESTORING REVISION: " . $res->get_error_message();
-        } else {
-            echo "REVISION " . $rev_id . " RESTORED & LINK UPDATED SUCCESSFULLY FOR POST 1149";
-        }
-    } else {
-        echo "REVISION ID " . $rev_id . " NOT FOUND";
-    }
-    exit;
-}
-
-if ( isset( $_GET['check_rm_options'] ) ) {
-    global $wpdb;
-    $results = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '%rank-math%' OR option_name LIKE '%rank_math%' OR option_name LIKE '%schema%'" );
-    echo "=== DB RANK MATH OPTIONS SCAN ===\n\n";
-    foreach ( $results as $row ) {
-        $val = maybe_unserialize( $row->option_value );
-        $type = gettype( $val );
-        echo "OPTION: " . $row->option_name . " | TYPE: " . $type . "\n";
-        if ( $type === 'string' ) {
-            echo "  VALUE: " . substr($val, 0, 150) . "\n";
-        }
-    }
-    
-    echo "\n=== RANK MATH SCHEMA POSTS SCAN ===\n\n";
-    $schemas = get_posts( array(
-        'post_type'   => 'rank_math_schema',
-        'post_status' => 'any',
-        'posts_per_page' => -1
-    ) );
-    echo "SCHEMAS COUNT: " . count($schemas) . "\n";
-    foreach ( $schemas as $s ) {
-        echo "SCHEMA ID: " . $s->ID . " | TITLE: " . $s->post_title . "\n";
-        $meta = get_post_meta( $s->ID );
-        foreach ( $meta as $key => $values ) {
-            foreach ( $values as $val_raw ) {
-                $val = maybe_unserialize( $val_raw );
-                $type = gettype( $val );
-                echo "  META KEY: " . $key . " | TYPE: " . $type . "\n";
-                if ( $type === 'string' ) {
-                    echo "    VALUE: " . substr($val, 0, 100) . "\n";
-                }
-            }
-        }
-    }
-    
-    echo "\n=== POST 1149 METADATA SCAN ===\n\n";
-    $meta1149 = get_post_meta( 1149 );
-    foreach ( $meta1149 as $key => $values ) {
-        foreach ( $values as $val_raw ) {
-            $val = maybe_unserialize( $val_raw );
-            $type = gettype( $val );
-            echo "META KEY: " . $key . " | TYPE: " . $type . "\n";
-            if ( $type === 'string' ) {
-                echo "  VALUE: " . substr($val, 0, 100) . "\n";
-            }
-        }
-    }
-    
-    echo "\n=== POST 1149 SCHEMA META DETAIL ===\n\n";
-    $val = get_post_meta( 1149, 'rank_math_schema_BlogPosting', true );
-    echo "TYPE: " . gettype($val) . "\n";
-    echo "VALUE:\n";
-    print_r( $val );
-    echo "\n";
-    
-    echo "\n=== SIMULATING RANK MATH ADMIN DATA ===\n\n";
-    // Check if the class exists and what options it accesses
-    if ( class_exists( 'RankMathPro\Schema\Admin' ) ) {
-        echo "RankMathPro\\Schema\\Admin exists!\n";
-    } else {
-        echo "RankMathPro\\Schema\\Admin does NOT exist on frontend context.\n";
-    }
-    exit;
-}
-
-if ( isset( $_GET['delete_corrupt_post'] ) ) {
-    $res = wp_delete_post( 807, true );
-    echo "DELETE POST 807 RESULT: " . ($res ? "SUCCESS" : "FAILED") . "\n";
-    exit;
-}
-
 /**
  * 1. Enqueue Parent Stylesheet and Google Fonts
  */
-function astra_child_keystone_enqueue_styles() {
+function kr_enqueue_styles() {
     // Enqueue parent Astra style
     wp_enqueue_style( 'astra-parent-theme-css', get_template_directory_uri() . '/style.css' );
     
@@ -382,24 +86,24 @@ function astra_child_keystone_enqueue_styles() {
     // Load typography fonts (Montserrat, Inter, Outfit)
     wp_enqueue_style( 'keystone-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&family=Outfit:wght@400;600;700;800&display=swap', array(), null );
 }
-add_action( 'wp_enqueue_scripts', 'astra_child_keystone_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'kr_enqueue_styles' );
 
 /**
  * 3. Preconnecting Web Fonts (Performance GSC optimization)
  */
-function astra_child_keystone_resource_hints( $urls, $relation_type ) {
+function kr_resource_hints( $urls, $relation_type ) {
     if ( 'dns-prefetch' === $relation_type || 'preconnect' === $relation_type ) {
         $urls[] = 'https://fonts.googleapis.com';
         $urls[] = 'https://fonts.gstatic.com';
     }
     return $urls;
 }
-add_filter( 'wp_resource_hints', 'astra_child_keystone_resource_hints', 10, 2 );
+add_filter( 'wp_resource_hints', 'kr_resource_hints', 10, 2 );
 
 /**
  * 3. Decharge Redundant Header Scripts (Optimizing PageSpeed score to 95+)
  */
-function astra_child_keystone_clean_header() {
+function kr_clean_header() {
     // Remove emoji scripts
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
     remove_action( 'wp_print_styles', 'print_emoji_styles' );
@@ -415,32 +119,32 @@ function astra_child_keystone_clean_header() {
     // Remove Windows Live Writer manifest
     remove_action( 'wp_head', 'wlwmanifest_link' );
 }
-add_action( 'init', 'astra_child_keystone_clean_header' );
+add_action( 'init', 'kr_clean_header' );
 
 /**
  * 4. Filter script loading tags to apply modern defer attribute flags to custom scripts
  */
-function astra_child_keystone_add_defer_attribute( $tag, $handle ) {
+function kr_add_defer_attribute( $tag, $handle ) {
     if ( 'keystone-lazy-player' !== $handle ) {
         return $tag;
     }
     return str_replace( ' src', ' defer="defer" src', $tag );
 }
-add_filter( 'script_loader_tag', 'astra_child_keystone_add_defer_attribute', 10, 2 );
+add_filter( 'script_loader_tag', 'kr_add_defer_attribute', 10, 2 );
 
 /**
  * 5. Filter the single post title wrapper to ensure it's strictly an H1.
  */
-add_filter( 'astra_the_title_before', 'keystone_recomposition_child_title_before', 10, 1 );
-function keystone_recomposition_child_title_before( $before ) {
+add_filter( 'astra_the_title_before', 'kr_title_before', 10, 1 );
+function kr_title_before( $before ) {
     if ( is_singular() ) {
         return preg_replace('~^<h[1-6]~i', '<h1', $before);
     }
     return $before;
 }
 
-add_filter( 'astra_the_title_after', 'keystone_recomposition_child_title_after', 10, 1 );
-function keystone_recomposition_child_title_after( $after ) {
+add_filter( 'astra_the_title_after', 'kr_title_after', 10, 1 );
+function kr_title_after( $after ) {
     if ( is_singular() ) {
         return preg_replace('~</h[1-6]>~i', '</h1>', $after);
     }
@@ -450,16 +154,16 @@ function keystone_recomposition_child_title_after( $after ) {
 /**
  * 6. Filter the archive post title wrapper to ensure it's strictly an H2, preventing multiple H1s.
  */
-add_filter( 'astra_the_post_title_before', 'keystone_recomposition_child_post_title_before', 10, 1 );
-function keystone_recomposition_child_post_title_before( $before ) {
+add_filter( 'astra_the_post_title_before', 'kr_post_title_before', 10, 1 );
+function kr_post_title_before( $before ) {
     if ( ! is_singular() ) {
         return preg_replace('~^<h[1-6]~i', '<h2', $before);
     }
     return $before;
 }
 
-add_filter( 'astra_the_post_title_after', 'keystone_recomposition_child_post_title_after', 10, 1 );
-function keystone_recomposition_child_post_title_after( $after ) {
+add_filter( 'astra_the_post_title_after', 'kr_post_title_after', 10, 1 );
+function kr_post_title_after( $after ) {
     if ( ! is_singular() ) {
         return preg_replace('~</h[1-6]>~i', '</h2>', $after);
     }
@@ -469,7 +173,7 @@ function keystone_recomposition_child_post_title_after( $after ) {
 /**
  * 7. Inject Premium Organization & Person JSON-LD Schema (Knowledge Panel Anchor)
  */
-function keystone_recomposition_child_inject_schema() {
+function kr_inject_schema() {
     $custom_logo_id = get_theme_mod( 'custom_logo' );
     $logo_url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
     if ( ! $logo_url ) {
@@ -619,13 +323,13 @@ function keystone_recomposition_child_inject_schema() {
     echo "</script>\n";
     echo "<!-- End Person Schema -->\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_inject_schema' );
+add_action( 'wp_head', 'kr_inject_schema' );
 
 /**
  * 8. Dynamic, Robust, GSC-Compliant Standalone VideoObject Schema (Stored XSS Secure)
  * Extracts the primary article video and outputs exactly ONE premium schema object.
  */
-function keystone_recomposition_child_youtube_schema() {
+function kr_youtube_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -759,12 +463,12 @@ function keystone_recomposition_child_youtube_schema() {
     echo "</script>\n";
     echo "<!-- End VideoObject Schema -->\n\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_youtube_schema', 20 );
+add_action( 'wp_head', 'kr_youtube_schema', 20 );
 
 /**
  * 8.5 Dynamic MedicalWebPage Schema
  */
-function keystone_recomposition_child_medical_schema() {
+function kr_medical_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -795,7 +499,7 @@ function keystone_recomposition_child_medical_schema() {
     echo "</script>\n";
     echo "<!-- End MedicalWebPage Schema -->\n\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_medical_schema', 25 );
+add_action( 'wp_head', 'kr_medical_schema', 25 );
 
 /**
  * 9. Hook custom media metadata into Rank Math PRO's Video Sitemap Generator
@@ -890,7 +594,7 @@ add_filter( 'rank_math/json_ld', function( $data, $jsonld ) {
  * (img.youtube.com/vi/{id}/maxresdefault.jpg) and extracts "maxresdefau"
  * (11 chars from the path) as a fake YouTube video ID, creating a broken
  * duplicate VideoObject schema. Since we output our own clean VideoObject
- * via keystone_recomposition_child_youtube_schema(), we disable Rank Math's
+ * via kr_youtube_schema(), we disable Rank Math's
  * video schema completely.
  */
 
@@ -962,7 +666,7 @@ add_action( 'wp_footer', function() {
  * og:video tags for natively embedded videos. This function ensures ALL posts
  * with a YouTube video get the og:video signals Google needs for video indexing.
  */
-function keystone_recomposition_inject_og_video() {
+function kr_inject_og_video() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -999,12 +703,12 @@ function keystone_recomposition_inject_og_video() {
     echo '<meta property="ya:ovs:allow_embed" content="true" />' . "\n";
     echo '<!-- End Keystone og:video -->' . "\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_inject_og_video', 5 );
+add_action( 'wp_head', 'kr_inject_og_video', 5 );
 
 /**
  * 11. General SEO Fixes: output noindex for tag, date, author archives and query parameters
  */
-function keystone_recomposition_child_seo_noindex() {
+function kr_seo_noindex() {
     $should_noindex = false;
 
     // Only noindex archive types that create duplicate content
@@ -1037,12 +741,12 @@ function keystone_recomposition_child_seo_noindex() {
         echo "<meta name=\"robots\" content=\"noindex, follow\">\n";
     }
 }
-add_action( 'wp_head', 'keystone_recomposition_child_seo_noindex', 1 );
+add_action( 'wp_head', 'kr_seo_noindex', 1 );
 
 /**
  * 12. Patch Structural Site Leaks (404/Redirect Errors)
  */
-function keystone_recomposition_child_404_redirect() {
+function kr_404_redirect() {
     $request_uri = $_SERVER['REQUEST_URI'];
     
     // Normalize request URI
@@ -1080,12 +784,12 @@ function keystone_recomposition_child_404_redirect() {
         exit;
     }
 }
-add_action( 'template_redirect', 'keystone_recomposition_child_404_redirect' );
+add_action( 'template_redirect', 'kr_404_redirect' );
 
 /**
  * 13. Shortcode to render our fast, PageSpeed-optimized lazy YouTube/Spotify media facade
  */
-function keystone_lazy_video_shortcode( $atts ) {
+function kr_lazy_video_shortcode( $atts ) {
     $args = shortcode_atts( array(
         'id'   => '',
         'type' => 'youtube',
@@ -1133,12 +837,12 @@ function keystone_lazy_video_shortcode( $atts ) {
     <?php
     return ob_get_clean();
 }
-add_shortcode( 'keystone_video', 'keystone_lazy_video_shortcode' );
+add_shortcode( 'keystone_video', 'kr_lazy_video_shortcode' );
 
 /**
  * 14. Inject Premium Grid Alignment Custom CSS directly in wp_head
  */
-function keystone_recomposition_child_inject_custom_css() {
+function kr_inject_custom_css() {
     ?>
     <style id="keystone-protocols-premium-grid">
     .ast-blog-layout-4-grid .ast-row,
@@ -1294,12 +998,12 @@ function keystone_recomposition_child_inject_custom_css() {
     </style>
     <?php
 }
-add_action( 'wp_head', 'keystone_recomposition_child_inject_custom_css', 150 );
+add_action( 'wp_head', 'kr_inject_custom_css', 150 );
 
 /**
  * 14.5 E-E-A-T Author Credentials Block
  */
-function keystone_recomposition_child_eeat_author_block( $content ) {
+function kr_eeat_author_block( $content ) {
     if ( is_singular( 'post' ) && is_main_query() ) {
         $author_block = '
         <div class="keystone-eeat-author-block" style="background-color: #0a0a0a; border-left: 4px solid #c4a265; padding: 25px; margin-top: 50px; margin-bottom: 30px; border-radius: 4px;">
@@ -1316,12 +1020,12 @@ function keystone_recomposition_child_eeat_author_block( $content ) {
     }
     return $content;
 }
-add_filter( 'the_content', 'keystone_recomposition_child_eeat_author_block', 98 );
+add_filter( 'the_content', 'kr_eeat_author_block', 98 );
 
 /**
  * 15. Automatically Append YouTube Subscribe Buttons to All Pages and Posts
  */
-function keystone_recomposition_child_append_subscribe_buttons( $content ) {
+function kr_append_subscribe_buttons( $content ) {
     if ( is_singular() && is_main_query() ) {
         if ( strpos( $content, 'sub_confirmation=1' ) === false ) {
             $subscribe_html = '
@@ -1334,7 +1038,7 @@ function keystone_recomposition_child_append_subscribe_buttons( $content ) {
     }
     return $content;
 }
-add_filter( 'the_content', 'keystone_recomposition_child_append_subscribe_buttons', 99 );
+add_filter( 'the_content', 'kr_append_subscribe_buttons', 99 );
 
 /**
  * 16. Fallback Post Thumbnail to YouTube Video Thumbnail
@@ -1900,7 +1604,7 @@ if ( isset( $_GET['update_page_sovereign'] ) && $_SERVER['REQUEST_METHOD'] === '
 /**
  * 22. GA4 Video Tracking Script
  */
-function keystone_recomposition_child_ga4_tracking() {
+function kr_ga4_tracking() {
     if ( is_singular( 'post' ) ) {
         ?>
         <!-- GA4 Video Tracking -->
@@ -1926,7 +1630,7 @@ function keystone_recomposition_child_ga4_tracking() {
         <?php
     }
 }
-add_action( 'wp_footer', 'keystone_recomposition_child_ga4_tracking', 100 );
+add_action( 'wp_footer', 'kr_ga4_tracking', 100 );
 
 /**
  * KEYSTONE SOVEREIGN: Register custom fields for REST API so Gutenberg can save them
@@ -1957,7 +1661,7 @@ add_action( 'init', function() {
  * FAQPage JSON-LD schema. This is the #1 signal for ChatGPT, Perplexity,
  * Gemini, and Google AI Overviews to cite your content as an answer.
  */
-function keystone_recomposition_child_faq_schema() {
+function kr_faq_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -2059,7 +1763,7 @@ function keystone_recomposition_child_faq_schema() {
     echo "</script>\n";
     echo "<!-- End FAQPage Schema -->\n\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
+add_action( 'wp_head', 'kr_faq_schema', 30 );
 
 /**
  * =====================================================================
@@ -2069,7 +1773,7 @@ add_action( 'wp_head', 'keystone_recomposition_child_faq_schema', 30 );
  * playback via Google Assistant, Gemini, and other voice interfaces.
  * Uses CSS selectors pointing to the main content area.
  */
-function keystone_recomposition_child_speakable_schema() {
+function kr_speakable_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -2110,7 +1814,7 @@ function keystone_recomposition_child_speakable_schema() {
     echo "</script>\n";
     echo "<!-- End Speakable Schema -->\n\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_speakable_schema', 35 );
+add_action( 'wp_head', 'kr_speakable_schema', 35 );
 
 /**
  * =====================================================================
@@ -2120,7 +1824,7 @@ add_action( 'wp_head', 'keystone_recomposition_child_speakable_schema', 35 );
  * use to properly attribute and cite content. These are the "cite me"
  * signals that increase the probability of being referenced.
  */
-function keystone_recomposition_child_geo_citation_meta() {
+function kr_geo_citation_meta() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -2158,7 +1862,7 @@ function keystone_recomposition_child_geo_citation_meta() {
     echo "<meta property=\"article:section\" content=\"Health &amp; Wellness\" />\n";
     echo "<!-- End GEO Citation Meta -->\n\n";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_geo_citation_meta', 3 );
+add_action( 'wp_head', 'kr_geo_citation_meta', 3 );
 
 /**
  * =====================================================================
