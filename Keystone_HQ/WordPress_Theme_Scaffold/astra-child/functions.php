@@ -25,7 +25,20 @@ if ( isset( $_GET['purge_all_caches'] ) ) {
     global $wpdb;
     $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_rank_math_sitemap_%' OR option_name LIKE '_transient_timeout_rank_math_sitemap_%'" );
     
-    echo "CACHES PURGED SUCCESSFULLY";
+    // Ping Google Indexing API
+    $ping_url = 'https://www.google.com/ping?sitemap=' . urlencode( home_url( '/sitemap_index.xml' ) );
+    $response = wp_remote_get( $ping_url );
+    
+    $robots_deleted = false;
+    $llms_deleted = false;
+    if ( file_exists( ABSPATH . 'robots.txt' ) ) {
+        $robots_deleted = unlink( ABSPATH . 'robots.txt' );
+    }
+    if ( file_exists( ABSPATH . 'llms.txt' ) ) {
+        $llms_deleted = unlink( ABSPATH . 'llms.txt' );
+    }
+
+    echo "CACHES PURGED & SITEMAP PINGED SUCCESSFULLY. llms.txt: " . ($llms_deleted ? "deleted" : "not found") . ", robots.txt: " . ($robots_deleted ? "deleted" : "not found");
     exit;
 }
 
@@ -448,7 +461,7 @@ if ( isset( $_GET['delete_corrupt_post'] ) ) {
 /**
  * 1. Enqueue Parent Stylesheet and Google Fonts
  */
-function astra_child_keystone_enqueue_styles() {
+function kp_enqueue_styles() {
     // Enqueue parent Astra style
     wp_enqueue_style( 'astra-parent-theme-css', get_template_directory_uri() . '/style.css' );
     
@@ -458,24 +471,24 @@ function astra_child_keystone_enqueue_styles() {
     // Load typography fonts (Montserrat, Inter, Outfit)
     wp_enqueue_style( 'keystone-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&family=Outfit:wght@400;600;700;800&display=swap', array(), null );
 }
-add_action( 'wp_enqueue_scripts', 'astra_child_keystone_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'kp_enqueue_styles' );
 
 /**
  * 3. Preconnecting Web Fonts (Performance GSC optimization)
  */
-function astra_child_keystone_resource_hints( $urls, $relation_type ) {
+function kp_resource_hints( $urls, $relation_type ) {
     if ( 'dns-prefetch' === $relation_type || 'preconnect' === $relation_type ) {
         $urls[] = 'https://fonts.googleapis.com';
         $urls[] = 'https://fonts.gstatic.com';
     }
     return $urls;
 }
-add_filter( 'wp_resource_hints', 'astra_child_keystone_resource_hints', 10, 2 );
+add_filter( 'wp_resource_hints', 'kp_resource_hints', 10, 2 );
 
 /**
  * 3. Decharge Redundant Header Scripts (Optimizing PageSpeed score to 95+)
  */
-function astra_child_keystone_clean_header() {
+function kp_clean_header() {
     // Remove emoji scripts
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
     remove_action( 'wp_print_styles', 'print_emoji_styles' );
@@ -491,32 +504,32 @@ function astra_child_keystone_clean_header() {
     // Remove Windows Live Writer manifest
     remove_action( 'wp_head', 'wlwmanifest_link' );
 }
-add_action( 'init', 'astra_child_keystone_clean_header' );
+add_action( 'init', 'kp_clean_header' );
 
 /**
  * 4. Filter script loading tags to apply modern defer attribute flags to custom scripts
  */
-function astra_child_keystone_add_defer_attribute( $tag, $handle ) {
+function kp_add_defer_attribute( $tag, $handle ) {
     if ( 'keystone-lazy-player' !== $handle ) {
         return $tag;
     }
     return str_replace( ' src', ' defer="defer" src', $tag );
 }
-add_filter( 'script_loader_tag', 'astra_child_keystone_add_defer_attribute', 10, 2 );
+add_filter( 'script_loader_tag', 'kp_add_defer_attribute', 10, 2 );
 
 /**
  * 5. Filter the single post title wrapper to ensure it's strictly an H1.
  */
-add_filter( 'astra_the_title_before', 'keystone_recomposition_child_title_before', 10, 1 );
-function keystone_recomposition_child_title_before( $before ) {
+add_filter( 'astra_the_title_before', 'kp_title_before', 10, 1 );
+function kp_title_before( $before ) {
     if ( is_singular() ) {
         return preg_replace('~^<h[1-6]~i', '<h1', $before);
     }
     return $before;
 }
 
-add_filter( 'astra_the_title_after', 'keystone_recomposition_child_title_after', 10, 1 );
-function keystone_recomposition_child_title_after( $after ) {
+add_filter( 'astra_the_title_after', 'kp_title_after', 10, 1 );
+function kp_title_after( $after ) {
     if ( is_singular() ) {
         return preg_replace('~</h[1-6]>~i', '</h1>', $after);
     }
@@ -526,16 +539,16 @@ function keystone_recomposition_child_title_after( $after ) {
 /**
  * 6. Filter the archive post title wrapper to ensure it's strictly an H2, preventing multiple H1s.
  */
-add_filter( 'astra_the_post_title_before', 'keystone_recomposition_child_post_title_before', 10, 1 );
-function keystone_recomposition_child_post_title_before( $before ) {
+add_filter( 'astra_the_post_title_before', 'kp_post_title_before', 10, 1 );
+function kp_post_title_before( $before ) {
     if ( ! is_singular() ) {
         return preg_replace('~^<h[1-6]~i', '<h2', $before);
     }
     return $before;
 }
 
-add_filter( 'astra_the_post_title_after', 'keystone_recomposition_child_post_title_after', 10, 1 );
-function keystone_recomposition_child_post_title_after( $after ) {
+add_filter( 'astra_the_post_title_after', 'kp_post_title_after', 10, 1 );
+function kp_post_title_after( $after ) {
     if ( ! is_singular() ) {
         return preg_replace('~</h[1-6]>~i', '</h2>', $after);
     }
@@ -545,7 +558,7 @@ function keystone_recomposition_child_post_title_after( $after ) {
 /**
  * 7. Inject Premium Organization & Person JSON-LD Schema (Knowledge Panel Anchor)
  */
-function keystone_recomposition_child_inject_schema() {
+function kp_inject_schema() {
     // SITE-AWARE: Skip Recomposition/Digital schema injection on the Possibilities site.
     // The Possibilities site uses its own Rank Math filter for clean B2B construction schema.
     // Without this gate, Recomposition Organization + Person nodes pollute the Possibilities
@@ -701,13 +714,13 @@ function keystone_recomposition_child_inject_schema() {
     echo "<!-- End Person Schema -->
 ";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_inject_schema' );
+add_action( 'wp_head', 'kp_inject_schema' );
 
 /**
  * 8. Dynamic, Robust, GSC-Compliant Standalone VideoObject Schema (Stored XSS Secure)
  * Extracts the primary article video and outputs exactly ONE premium schema object.
  */
-function keystone_recomposition_child_youtube_schema() {
+function kp_youtube_schema() {
     if ( ! is_singular( 'post' ) ) {
         return;
     }
@@ -848,7 +861,7 @@ function keystone_recomposition_child_youtube_schema() {
 
 ";
 }
-add_action( 'wp_head', 'keystone_recomposition_child_youtube_schema', 20 );
+add_action( 'wp_head', 'kp_youtube_schema', 20 );
 
 /**
  * 9. Hook custom media metadata into Rank Math PRO's Video Sitemap Generator
@@ -952,7 +965,7 @@ add_action( 'template_redirect', function() {
 /**
  * 11. General SEO Fixes: output noindex for tag, date, author archives and query parameters
  */
-function keystone_recomposition_child_seo_noindex() {
+function kp_seo_noindex() {
     $should_noindex = false;
 
     if ( is_date() || is_author() || is_tag() || is_search() ) {
@@ -973,13 +986,13 @@ function keystone_recomposition_child_seo_noindex() {
         echo "<meta name=\"robots\" content=\"noindex, follow\">\n";
     }
 }
-add_action( 'wp_head', 'keystone_recomposition_child_seo_noindex', 1 );
+add_action( 'wp_head', 'kp_seo_noindex', 1 );
 
 /**
  * 12. Patch Structural Site Leaks (404/Redirect Errors)
  * Redirects 404 pages to the homepage with a 301 Moved Permanently status.
  */
-function keystone_recomposition_child_404_redirect() {
+function kp_404_redirect() {
     $request_uri = $_SERVER['REQUEST_URI'];
     
     // Normalize request URI
@@ -1017,7 +1030,7 @@ function keystone_recomposition_child_404_redirect() {
         exit;
     }
 }
-add_action( 'template_redirect', 'keystone_recomposition_child_404_redirect' );
+add_action( 'template_redirect', 'kp_404_redirect' );
 
 
 
@@ -1025,7 +1038,7 @@ add_action( 'template_redirect', 'keystone_recomposition_child_404_redirect' );
  * 14. Inject Premium Grid Alignment Custom CSS directly in wp_head
  * Bypasses enqueues/caching and applies perfect alignment immediately!
  */
-function keystone_recomposition_child_inject_custom_css() {
+function kp_inject_custom_css() {
     ?>
     <style id="keystone-protocols-premium-grid">
     .ast-blog-layout-4-grid .ast-row,
@@ -1180,13 +1193,13 @@ function keystone_recomposition_child_inject_custom_css() {
     </style>
     <?php
 }
-add_action( 'wp_head', 'keystone_recomposition_child_inject_custom_css', 150 );
+add_action( 'wp_head', 'kp_inject_custom_css', 150 );
 
 /**
  * 15. Automatically Append YouTube Subscribe Buttons to All Pages and Posts
  * Skips appending if the content already contains a sub_confirmation link.
  */
-function keystone_recomposition_child_append_subscribe_buttons( $content ) {
+function kp_append_subscribe_buttons( $content ) {
     if ( is_singular() && is_main_query() ) {
         // Prevent duplication if the user manually embedded them
         if ( strpos( $content, 'sub_confirmation=1' ) === false ) {
@@ -1200,7 +1213,7 @@ function keystone_recomposition_child_append_subscribe_buttons( $content ) {
     }
     return $content;
 }
-add_filter( 'the_content', 'keystone_recomposition_child_append_subscribe_buttons', 99 );
+add_filter( 'the_content', 'kp_append_subscribe_buttons', 99 );
 
 /**
  * Page - Sovereign one-by-one page enhancement
@@ -2129,3 +2142,25 @@ add_action('init', function() {
         exit;
     }
 });
+
+// ---------------------------------------------------------------------------
+// GEO / AI BOT CONTEXT INJECTION (llms.txt)
+// ---------------------------------------------------------------------------
+add_action( 'init', 'kp_serve_llms_txt' );
+function kp_serve_llms_txt() {
+    $request_uri = $_SERVER['REQUEST_URI'];
+    if ( strpos( $request_uri, '/llms.txt' ) !== false ) {
+        header( 'Content-Type: text/plain; charset=utf-8' );
+        echo "# Keystone Possibilities - AI LLM Context\n\n";
+        echo "## Company Identity\n";
+        echo "Keystone Possibilities is a premium construction project management and civil construction firm.\n";
+        echo "Focus: Luxury Custom Homes, Civil Construction, and Site Engineering across the Sea-to-Sky and Greater Vancouver regions.\n";
+        echo "Founder: Wayne Stevenson, Certified BC Builder & Project Manager.\n\n";
+        echo "## Core Services\n";
+        echo "- Luxury Custom Home Project Management\n";
+        echo "- Civil Construction & Site Engineering\n";
+        echo "- BC Step Code Compliance\n";
+        echo "- Bill 44 Multiplex Conversions\n";
+        exit;
+    }
+}
