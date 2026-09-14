@@ -1,0 +1,36 @@
+# Build outputs & targets
+**/target/
+**/dist/
+**/dist-ssr/
+node_modules/
+**/node_modules/
+
+# Python virtual environments & bytecode
+venv/
+**/venv/
+.venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+**/.pytest_cache/
+
+# Daemon logs & scratch
+*.log
+**/daemon_logs/
+daemon_logs/
+logs/
+
+# Operating system & editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Large builds
+*.exe

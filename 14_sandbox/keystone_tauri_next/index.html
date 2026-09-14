@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keystone Studio — Desktop AI Workspace</title>
+  <link rel="icon" type="image/png" href="app_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- MASTER FULL-WINDOW LAYOUT -->
+  <div class="hud-app-layout" id="hudAppLayout" data-collapsed="false">
+
+    <!-- LEFT / CENTER MAIN COLUMN -->
+    <div class="hud-main-column">
+      
+      <!-- TOP BAR -->
+      <header class="hud-topbar" data-tauri-drag-region>
+        <div class="hud-topbar-left">
+          <!-- Active Tab Strip (Placed at the far left) -->
+          <nav class="hud-tab-strip" id="hudTabStrip" role="tablist">
+            <!-- Tabs rendered dynamically by JS based on active group -->
+          </nav>
+        </div>
+
+        <div class="hud-topbar-drag-spacer" data-tauri-drag-region></div>
+
+        <div class="hud-topbar-right">
+          <!-- Cyber Master Audio & Volume Controls -->
+          <div class="hud-audio-quick-bar" id="hudAudioQuickBar">
+            <button class="hud-audio-device-badge" id="hudAudioDeviceBadge" title="Audio Device: Auto-Switches with Windows Default (HDMI, Headset, Speakers). Click to play test chime.">
+              <span class="audio-badge-icon" id="hudAudioBadgeIcon">💻</span>
+              <span class="audio-badge-label" id="hudAudioDeviceLabel">System Default</span>
+            </button>
+            <div class="hud-volume-slider-wrap" title="Master Audio Output Volume">
+              <button class="hud-volume-mute-btn" id="btnVolumeMute" title="Mute / Unmute Volume">
+                <span class="volume-icon" id="hudVolumeIcon">🔊</span>
+              </button>
+              <input type="range" class="hud-volume-slider" id="hudVolumeSlider" min="0" max="100" value="80" step="1" aria-label="Master Volume">
+              <span class="volume-val-display" id="hudVolumeDisplay">80%</span>
+            </div>
+          </div>
+
+          <button class="hud-btn cyan-btn" id="btnPortStatus" title="Active Debugging Port">
+            <span class="status-dot-pulse"></span>
+            <span>Port 9222</span>
+          </button>
+
+          <button class="hud-btn active-glow" id="btnToggleSidebar" title="Expand / Collapse Sidebar (Ctrl+B)">
+            <span id="sidebarToggleIcon">◨</span>
+            <span id="sidebarToggleText">Panel</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MAIN WORKSPACE VIEWPORT -->
+      <main class="hud-socket-canvas" id="socketCanvas">
+        
+        <!-- VIEW 1: Antigravity & OpenAI AI Socket Chamber -->
+        <div class="hud-view-pane active" id="viewSocketPane" style="display: flex;">
+          
+          <!-- MASTER VIEWPORT CONTENT WRAPPER -->
+          <div class="viewport-content-root" id="viewportContent" style="width: 100%; height: 100%; display: flex; flex-direction: column; flex: 1 1 0%; min-height: 0; min-width: 0;">
+
+            <!-- UNSOCKETED STATE: High-End Sci-Fi Socket Portal -->
+            <div class="socket-portal-container matrix-socket-container" id="socketPortalContainer" data-portal-theme="antigravity">
+            
+            <!-- Ambient Radial Glow Backdrop -->
+            <div class="portal-ambient-glow" id="portalAmbientGlow"></div>
+
+            <!-- Cyberpunk Hex & Circuitry Vector Layer -->
+            <svg class="portal-circuit-backdrop" viewBox="0 0 500 500" aria-hidden="true">
+              <defs>
+                <pattern id="portalHexPattern" width="32" height="55.4" patternUnits="userSpaceOnUse">
+                  <path d="M 16,0 L 32,9.24 L 32,27.7 L 16,36.94 L 0,27.7 L 0,9.24 Z M 0,55.4 L 16,46.16 L 32,55.4" 
+                        fill="none" stroke="currentColor" stroke-width="0.75" class="hex-stroke" opacity="0.28" />
+                </pattern>
+                <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="var(--portal-glow-primary)" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="var(--portal-glow-secondary)" stop-opacity="0.1" />
+                </linearGradient>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#portalHexPattern)" />
+              
+              <!-- 45-degree circuit buses -->
+              <g class="circuit-traces" stroke="url(#traceGrad)" stroke-width="1.5" fill="none">
+                <path d="M 60,60 L 140,140 L 190,140" />
+                <circle cx="60" cy="60" r="3.5" fill="var(--portal-glow-primary)" />
+                <path d="M 440,440 L 360,360 L 310,360" />
+                <circle cx="440" cy="440" r="3.5" fill="var(--portal-glow-primary)" />
+                <path d="M 440,60 L 360,140 L 310,140" />
+                <circle cx="440" cy="60" r="3.5" fill="var(--portal-glow-secondary)" />
+                <path d="M 60,440 L 140,360 L 190,360" />
+                <circle cx="60" cy="440" r="3.5" fill="var(--portal-glow-secondary)" />
+              </g>
+            </svg>
+
+            <!-- Sci-Fi HUD Corner Brackets -->
+            <div class="portal-hud-bracket top-left"></div>
+            <div class="portal-hud-bracket top-right"></div>
+            <div class="portal-hud-bracket bottom-left"></div>
+            <div class="portal-hud-bracket bottom-right"></div>
+
+            <!-- Interactive Portal Chamber / Orb Reactor Area -->
+            <div class="portal-chamber-wrap orb-portal-stage" id="portalChamberWrap">
+              
+              <!-- Shockwave Ripple -->
+              <div class="portal-shockwave" id="portalShockwave"></div>
+
+              <!-- Multi-Tiered Concentric SVG Rotating Reticle Rings -->
+              <svg class="portal-svg-reticle" viewBox="0 0 320 320" aria-hidden="true">
+                <!-- Static Crosshairs -->
+                <g class="reticle-crosshairs" stroke="currentColor" opacity="0.35" stroke-width="1.2">
+                  <line x1="160" y1="12" x2="160" y2="40" />
+                  <line x1="160" y1="280" x2="160" y2="308" />
+                  <line x1="12" y1="160" x2="40" y2="160" />
+                  <line x1="280" y1="160" x2="308" y2="160" />
+                </g>
+
+                <!-- Outer Navigational Ring (Slow CW) -->
+                <circle class="ring ring-outer-cw" cx="160" cy="160" r="142" 
+                        fill="none" stroke-width="2" stroke-dasharray="80 25 15 25 45 35" />
+
+                <!-- Middle Encoder Ring with Sensor Ticks (Medium CCW) -->
+                <circle class="ring ring-mid-ccw" cx="160" cy="160" r="118" 
+                        fill="none" stroke-width="2.2" stroke-dasharray="3 9" />
+
+                <!-- Inner Caliper Locking Ring (Fast CW) -->
+                <circle class="ring ring-inner-cw" cx="160" cy="160" r="92" 
+                        fill="none" stroke-width="2.5" stroke-dasharray="60 60" />
+              </svg>
+
+              <!-- Central Glowing Orb Reactor (Click to Socket!) -->
+              <div class="portal-core" id="portalCore" title="Click to Socket Antigravity Matrix">
+                <!-- Video Reactor Layer (Energy reactor orb spinning with deep purple fusion glow) -->
+                <video id="portalCoreVideo" class="portal-core-video" src="videos/core_reactor.mp4" autoplay loop muted playsinline></video>
+                <div class="core-plasma-shimmer"></div>
+                <div class="core-reactor-halo" id="coreReactorHalo"></div>
+                
+                <div class="core-content">
+                  <!-- Antigravity Lightning Core Glyph -->
+                  <svg class="core-glyph glyph-antigravity" id="glyphAntigravity" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+
+                  <span class="core-label" id="portalCoreLabel">ANTIGRAVITY CORE</span>
+                  <span class="core-substatus" id="portalCoreStatus">○ READY TO SOCKET</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Portal Bottom Titles & Action CTA -->
+            <div class="portal-cta-group">
+              <h2 class="portal-title" id="portalMainTitle">ANTIGRAVITY MATRIX</h2>
+
+              <!-- Central Push-To-Socket Trigger Button -->
+              <button class="portal-action-btn" id="portalPushBtn">
+                <span class="btn-energy-glow"></span>
+                <span class="btn-text" id="portalBtnText">[ PUSH HERE TO SOCKET ]</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- SOCKETED STATE: Coordinate-Locked Native Antigravity Window Chamber (Zero headers up there) -->
+          <div class="socket-active-chamber" id="socketActiveChamber" style="display: none;">
+            
+            <!-- Full-Bleed Native Socket Target (Tauri Desktop Win32 Dock Container) -->
+            <div class="socket-viewport-frame" id="socketViewportFrame">
+              <div class="socket-dock-target" id="socketDockTarget">
+                <div class="socket-dock-watermark">
+                  <div class="socket-dock-core-glow"></div>
+                  <svg class="socket-dock-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                  <span class="socket-dock-title">ANTIGRAVITY DESKTOP SOCKETED</span>
+                  <span class="socket-dock-sub">Coordinate-Locked Native Win32 Window</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          </div> <!-- /#viewportContent -->
+
+        </div>
+
+        <!-- VIEW: Vector Brain Celestial Knowledge Cortex & Multi-Brain Switcher -->
+        <div class="hud-view-pane" id="viewVectorBrainPane" style="display: none;">
+          <!-- TOP BRAIN CONTROL BAR / MULTI-BRAIN SWITCHER -->
+          <div class="brain-top-strip" id="brainTopStrip">
+            <div class="brain-strip-left">
+              <div class="brain-brand-badge">
+                <span class="brain-brand-icon">🧠</span>
+                <span class="brain-brand-text">CELESTIAL VECTOR BRAIN</span>
+                <span class="brain-brand-port">PORT 9878 SIMD</span>
+              </div>
+
+              <!-- Multi-Brain Workspace Switcher Dropdown -->
+              <div class="brain-switcher-box">
+                <button class="brain-strip-btn icon-btn" id="btnBrowseFolderBrain" title="Add Folder / Drive to Brain">📁</button>
+                <span class="brain-switcher-label">BRAIN:</span>
+                <select id="brainWorkspaceSelect" class="brain-workspace-dropdown" title="Select Active Workspace Brain">
+                  <option value="C:\Users\Curtis\Desktop\Keystone Brain">🧠 Keystone Brain</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="brain-strip-right">
+              <!-- Dynamic Stats Badge -->
+              <div class="brain-stats-badge" id="brainStatsBadge">
+                <span class="stats-pulse-dot"></span>
+                <span id="brainStatsNodes">20 Orbs</span>
+                <span class="stats-sep">|</span>
+                <span id="brainStatsFiles">-- Files</span>
+              </div>
+
+              <button class="brain-strip-btn" id="btnRecenterBrain" title="Re-Center Camera">⊙ CENTER</button>
+              <button class="brain-strip-btn cyan-btn" id="btnToggleMediaMode" title="Toggle Video Orbs / Static Pictures">🎬 VIDEOS</button>
+              <button class="brain-strip-btn" id="btnToggleOrbits" title="Toggle Celestial Orbits">⏸️ ORBITS: STATIONARY</button>
+              <button class="brain-strip-btn" id="btnToggleTree" title="Toggle Folder Tree">📁 TREE</button>
+              <button class="brain-strip-btn gold" id="btnToggleDrawer" title="Toggle Wiki Drawer">📖 WIKI</button>
+            </div>
+          </div>
+
+          <!-- BRAIN WORKSPACE BODY (3-Pane Edge-to-Edge Responsive Layout) -->
+          <div class="brain-workspace-body" id="brainWorkspaceBody">
+            <!-- LEFT PANE: Collapsible Hierarchical Folder Pop-Down Tree -->
+            <aside class="brain-folder-pane" id="brainFolderPane">
+              <div class="folder-pane-top">
+                <div class="folder-pane-title-wrap">
+                  <span class="folder-pane-icon">📁</span>
+                  <span class="folder-pane-title">FOLDER POP-DOWN</span>
+                </div>
+                <button class="folder-collapse-btn" id="btnCollapseFolderTree" title="Collapse Folder Tree">◀</button>
+              </div>
+              <div class="folder-filter-box">
+                <input type="text" id="brainFolderFilter" class="folder-filter-input" placeholder="Filter folders &amp; files..." />
+              </div>
+              <div class="brain-folder-tree-scroll" id="brainFolderTree">
+                <div class="tree-loading-state">
+                  <span class="tree-spinner"></span>
+                  <span>Scanning celestial directory matrix...</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- LEFT RESIZE SPLITTER -->
+            <div class="brain-splitter-handle" id="brainSplitterLeft" title="Drag to resize folder tree"></div>
+
+            <!-- CENTER CANVAS CONTAINER: Full-bleed Celestial Vector Brain Canvas -->
+            <div class="brain-canvas-viewport" id="neuralBrainCanvasContainer">
+              <!-- Central Sun Nucleus Video Orb (01_core_brain_nucleus.mp4) & Celestial Orbits Canvas rendered here -->
+            </div>
+
+            <!-- RIGHT PANE: Interactive Slide-out Markdown Wiki Reader Drawer -->
+            <aside class="brain-wiki-drawer" id="brainWikiDrawer">
+              <div class="wiki-drawer-header">
+                <div class="wiki-meta-badge">
+                  <span class="wiki-type-pill" id="wikiTypePill">SYSTEM NUCLEUS</span>
+                  <span class="wiki-filename" id="wikiFilename">01_core_brain_nucleus</span>
+                </div>
+                <button class="wiki-close-btn" id="btnCloseWikiDrawer" title="Close Wiki Drawer">&times;</button>
+              </div>
+
+              <div class="wiki-drawer-title-box">
+                <h3 class="wiki-drawer-title" id="wikiDrawerTitle">Keystone Vector Brain Core</h3>
+                <div class="wiki-tags-row" id="wikiTagsContainer">
+                  <span class="wiki-tag">#nucleus</span>
+                  <span class="wiki-tag">#vector_brain</span>
+                  <span class="wiki-tag">#simd</span>
+                </div>
+              </div>
+
+              <div class="wiki-drawer-body-scroll" id="wikiDrawerBody">
+                <div class="wiki-intro-card">
+                  <h4>🧠 Central Sun Nucleus</h4>
+                  <p>Welcome to the Next-Gen Celestial Vector Brain. Select any orbiting planetary node or folder in the tree to read real-time Markdown telemetry, frontmatter tags, and wikilinks.</p>
+                </div>
+              </div>
+
+              <div class="wiki-drawer-footer">
+                <button class="wiki-action-btn primary" id="btnOpenInExplorer">📂 OPEN IN EXPLORER</button>
+                <button class="wiki-action-btn" id="btnCopyWikiPath">📋 COPY PATH</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- VIEW 3: Polymarket Sentinel Pane -->
+        <div class="hud-view-pane" id="viewPolymarketPane" style="display: none;">
+          <div class="studio-deck-container">
+            <div class="deck-header">
+              <span class="deck-tag">QUANT SENTINEL v8.2.0</span>
+              <h2 class="deck-title">Polymarket 365 Tennis & Money Terminal</h2>
+              <p class="deck-desc">12-Factor OSINT Screen, 20¢–40¢ Sweet-Spot Engine, Quarter-Kelly Compounding ( ➔  ➔ ), and Chrome Port 9222 Execution.</p>
+            </div>
+            <div class="deck-stats-grid">
+              <div class="deck-stat-box">
+                <span class="stat-label">Daily Match Radar</span>
+                <span class="stat-value cyan">229 Matches</span>
+                <span class="stat-sub">WTA / ATP / ITF Active</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Sweet-Spot Filter</span>
+                <span class="stat-value violet">30% Breakeven Law</span>
+                <span class="stat-sub">+40% Projected EV Screen</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Bankroll Float (CAD)</span>
+                <span class="stat-value gold">,450.00 CAD</span>
+                <span class="stat-sub">40% Fortress Preserved</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Execution Pipeline</span>
+                <span class="stat-value green">Port 9222 Ready</span>
+                <span class="stat-sub">Sequential Single-Match</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 4: Google Flow Studio Pane -->
+        <div class="hud-view-pane" id="viewFlowPane" style="display: none;">
+          <div class="studio-deck-container">
+            <div class="deck-header">
+              <span class="deck-tag">FLOW BOX 2 AUTOMATION</span>
+              <h2 class="deck-title">Google Flow Video Production Suite</h2>
+              <p class="deck-desc">Subagents F1-F4 Automation, Dual Speaker Alternation Standard, 1K B-Roll Downloader, and Reverse Grid Renamer.</p>
+            </div>
+            <div class="deck-stats-grid">
+              <div class="deck-stat-box">
+                <span class="stat-label">Box 2 Worker Status</span>
+                <span class="stat-value cyan">🟢 IDLE / READY</span>
+                <span class="stat-sub">Chrome CDP Connected</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Batch Renamer Engine</span>
+                <span class="stat-value violet">Reverse Grid Law</span>
+                <span class="stat-sub">F1/F2 Safe Sequencing</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">B-Roll Downloader</span>
+                <span class="stat-value gold">1K Clips Staged</span>
+                <span class="stat-sub">F3 Autonomous Downloader</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">DaVinci Export Ready</span>
+                <span class="stat-value green">2-Track Synchronized</span>
+                <span class="stat-sub">Video Track 1 + B-Roll Track 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 5: DaVinci Bridge Pane -->
+        <div class="hud-view-pane" id="viewDaVinciPane" style="display: none;">
+          <div class="studio-deck-container">
+            <div class="deck-header">
+              <span class="deck-tag">DAVINCI RESOLVE STUDIO</span>
+              <h2 class="deck-title">DaVinci Resolve Automated Assembly Bridge</h2>
+              <p class="deck-desc">2-Track Timeline Assembly, -18dB Background Music Auto-Injection, Transition Cut Bridging, and Subagents D1/D2.</p>
+            </div>
+            <div class="deck-stats-grid">
+              <div class="deck-stat-box">
+                <span class="stat-label">Resolve Studio Status</span>
+                <span class="stat-value cyan">Bridge Connected</span>
+                <span class="stat-sub">davinci-resolve-mcp Active</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Audio Ducking Engine</span>
+                <span class="stat-value violet">-18 dB Calibrated</span>
+                <span class="stat-sub">Subagent D2 Synchronized</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Timeline Architecture</span>
+                <span class="stat-value gold">A1/A2 + V1/V2</span>
+                <span class="stat-sub">Voice + Ducked Music + B-Roll</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Render Pipeline</span>
+                <span class="stat-value green">YouTube 4K Ready</span>
+                <span class="stat-sub">100/100 Metadata Linked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 6: Dedicated 64-Agent Neural Swarm & Daemon Registry Workspace -->
+        <div class="hud-view-pane" id="viewAgentsPane" style="display: none;">
+          <div class="agents-workspace-container">
+            
+            <!-- Workspace Header with Agents vs Daemons Switcher -->
+            <div class="deck-header agents-deck-header">
+              <div class="deck-header-info">
+                <span class="deck-tag">KEYSTONE NEURAL REGISTRY · ISOLATED EPHEMERAL SWARMS · PORT 9879</span>
+                <h2 class="deck-title">Keystone 64-Agent Neural Swarm &amp; Daemon Registry</h2>
+                <p class="deck-desc">Autonomous multi-agent registry, live telemetry breakdown, active model tier routing, background daemons, and swarm inspection console.</p>
+              </div>
+              <div class="agents-mode-switch">
+                <button class="agents-mode-btn active" id="btnModeAgents" data-mode="agents">
+                  <span class="mode-icon">🤖</span> AGENTS VIEW (<span id="btnAgentsCount">64</span>)
+                </button>
+                <button class="agents-mode-btn" id="btnModeDaemons" data-mode="daemons">
+                  <span class="mode-icon">⚡</span> DAEMONS VIEW (5)
+                </button>
+              </div>
+            </div>
+
+            <!-- Agent Telemetry Ribbon (Streamlined Dual Metrics) -->
+            <div class="deck-stats-grid agents-telemetry-ribbon">
+              <div class="deck-stat-box">
+                <span class="stat-label">Total Subagents</span>
+                <span class="stat-value cyan" id="telemetryAgentCount">64 Active</span>
+                <span class="stat-sub">17_subagents Catalog Indexed</span>
+              </div>
+              <div class="deck-stat-box">
+                <span class="stat-label">Core Daemons</span>
+                <span class="stat-value violet" id="telemetryDaemonCount">5 Online</span>
+                <span class="stat-sub">Ports 9876–9890 Running</span>
+              </div>
+            </div>
+
+            <!-- Squad Filter Bar (Visible in Agents View) -->
+            <div class="agents-filter-bar" id="agentsFilterBar">
+              <button class="agents-filter-pill active" data-filter="all">All Swarms (64)</button>
+              <button class="agents-filter-pill" data-filter="tdd">⚡ TDD &amp; Eng (16)</button>
+              <button class="agents-filter-pill" data-filter="music">🎵 Suno Music (12)</button>
+              <button class="agents-filter-pill" data-filter="possibilities">🏗️ Possibilities (10)</button>
+              <button class="agents-filter-pill" data-filter="money">💰 Money &amp; Tennis (9)</button>
+              <button class="agents-filter-pill" data-filter="web">🏛️ Luxury Web &amp; SEO (7)</button>
+              <button class="agents-filter-pill" data-filter="flow">🎬 Flow &amp; DaVinci (6)</button>
+              <button class="agents-filter-pill" data-filter="infra">🗄️ Infrastructure (3)</button>
+              <button class="agents-filter-pill" data-filter="brain">🧠 Vector Brain (1)</button>
+            </div>
+
+            <!-- Dynamic Swarm Skill Overview Box (Updates on Filter Pill Click) -->
+            <div class="swarm-overview-box" id="swarmOverviewBox">
+              <div class="swarm-overview-header">
+                <span class="swarm-overview-icon" id="swarmOverviewIcon">⚡</span>
+                <div style="flex:1; min-width:0;">
+                  <div class="swarm-overview-title-row">
+                    <h3 id="swarmOverviewTitle">Autonomous 16-Agent Task Swarm (TDD &amp; Engineering Grid)</h3>
+                    <span class="swarm-overview-badge" id="swarmOverviewBadge">Skill: A5_swarm_orchestration_engine</span>
+                  </div>
+                  <p id="swarmOverviewDesc" class="swarm-overview-desc">Goal-to-completion autonomous engineering harness. Enforces strict red-to-green test harnesses, anti-cheat code reviews, and visual UX verification.</p>
+                </div>
+              </div>
+              <div class="swarm-overview-footer">
+                <div class="swarm-meta-item"><span>Directory:</span> <strong id="swarmOverviewPath">17_subagents/</strong></div>
+                <div class="swarm-meta-item"><span>Model Tier Standard:</span> <strong class="gold" id="swarmOverviewTier">inherit (Frontier Gemini 3.8-High)</strong></div>
+                <div class="swarm-meta-item"><span>Active Agents:</span> <strong class="cyan" id="swarmOverviewCount">16 Indexed</strong></div>
+              </div>
+            </div>
+
+            <!-- Main 2-Column Responsive Workspace Body -->
+            <div class="agents-workspace-body" id="agentsWorkspaceBody">
+              
+              <!-- Left Column: Scrollable Card Grid -->
+              <div class="agents-scroll-feed" id="agentsScrollFeed">
+                
+                <!-- Dynamic Agents Cards Grid -->
+                <div class="agents-cards-grid" id="agentsCardsGrid">
+                  <div class="agents-loading-state">
+                    <span class="tree-spinner"></span>
+                    <span>Loading 64 subagents from registry...</span>
+                  </div>
+                </div>
+
+                <!-- Daemons Cards Grid (Hidden in Agents View) -->
+                <div class="daemons-cards-grid" id="daemonsCardsGrid" style="display: none;">
+                  
+                  <!-- Daemon 1: Port 9876 -->
+                  <div class="daemon-card-v2">
+                    <div class="daemon-card-header">
+                      <div class="daemon-icon-badge">🎤</div>
+                      <div style="flex:1;">
+                        <div class="daemon-title-row">
+                          <h4>Local CUDA STT Daemon</h4>
+                          <span class="daemon-status-dot online">● ONLINE</span>
+                        </div>
+                        <span class="daemon-port-tag">PORT 9876 · REST &amp; WEBSOCKET</span>
+                      </div>
+                    </div>
+                    <p class="daemon-desc">Real-time Faster-Whisper audio transcription, dynamic WebSocket telemetry broadcast (<code>/ws</code>), two-way Windows Core Audio master volume synchronization via <code>pycaw</code> (<code>/api/volume</code>), and active chat binding.</p>
+                    <div class="daemon-meta-grid">
+                      <div class="daemon-meta-item"><span>Engine:</span><strong class="cyan">Faster-Whisper CUDA</strong></div>
+                      <div class="daemon-meta-item"><span>Latency:</span><strong class="green">&lt;150ms</strong></div>
+                      <div class="daemon-meta-item"><span>Volume Sync:</span><strong class="violet">pycaw 2-Way</strong></div>
+                      <div class="daemon-meta-item"><span>Script:</span><strong>local_stt_daemon.py</strong></div>
+                    </div>
+                  </div>
+
+                  <!-- Daemon 2: Port 9877 -->
+                  <div class="daemon-card-v2">
+                    <div class="daemon-card-header">
+                      <div class="daemon-icon-badge">🔊</div>
+                      <div style="flex:1;">
+                        <div class="daemon-title-row">
+                          <h4>Agent Voice TTS Synthesis Daemon</h4>
+                          <span class="daemon-status-dot online">● ONLINE</span>
+                        </div>
+                        <span class="daemon-port-tag">PORT 9877 · AUDIO REST API</span>
+                      </div>
+                    </div>
+                    <p class="daemon-desc">Voice synthesis pipeline with Aoede persona, dynamic Windows default audio auto-switch (HDMI / Logitech Headset / Desktop Speakers), audio test chime (<code>/api/chime</code>), and FIFO speech queuing.</p>
+                    <div class="daemon-meta-grid">
+                      <div class="daemon-meta-item"><span>Persona:</span><strong class="cyan">Aoede / ElevenLabs</strong></div>
+                      <div class="daemon-meta-item"><span>Device:</span><strong class="green">OS Default Auto-Switch</strong></div>
+                      <div class="daemon-meta-item"><span>Endpoint:</span><strong class="violet">/api/tts</strong></div>
+                      <div class="daemon-meta-item"><span>Script:</span><strong>agent_voice_tts_daemon.py</strong></div>
+                    </div>
+                  </div>
+
+                  <!-- Daemon 3: Port 9878 -->
+                  <div class="daemon-card-v2">
+                    <div class="daemon-card-header">
+                      <div class="daemon-icon-badge">🧠</div>
+                      <div style="flex:1;">
+                        <div class="daemon-title-row">
+                          <h4>Vector Brain Hybrid Search API</h4>
+                          <span class="daemon-status-dot online">● ONLINE</span>
+                        </div>
+                        <span class="daemon-port-tag">PORT 9878 · SIMD / QDRANT CORTEX</span>
+                      </div>
+                    </div>
+                    <p class="daemon-desc">Dense 1536-dim CUDA embeddings + Sparse BM25 hybrid search, 1,420 Qdrant graph nodes, filesystem watcher, dynamic workspace hot-reloading (<code>POST /api/workspace</code>), and wikilink graph resolution.</p>
+                    <div class="daemon-meta-grid">
+                      <div class="daemon-meta-item"><span>Vectors:</span><strong class="cyan">1536-dim Dense CUDA</strong></div>
+                      <div class="daemon-meta-item"><span>Graph Nodes:</span><strong class="green">1,420 Active</strong></div>
+                      <div class="daemon-meta-item"><span>Hot Reload:</span><strong class="violet">/api/workspace</strong></div>
+                      <div class="daemon-meta-item"><span>Script:</span><strong>vector_brain_daemon.py</strong></div>
+                    </div>
+                  </div>
+
+                  <!-- Daemon 4: Port 9879 -->
+                  <div class="daemon-card-v2">
+                    <div class="daemon-card-header">
+                      <div class="daemon-icon-badge">⚡</div>
+                      <div style="flex:1;">
+                        <div class="daemon-title-row">
+                          <h4>Chrome CDP Overlay &amp; Mutex Daemon</h4>
+                          <span class="daemon-status-dot online">● ONLINE</span>
+                        </div>
+                        <span class="daemon-port-tag">PORT 9879 · CDP OVERLAY &amp; LOCKS</span>
+                      </div>
+                    </div>
+                    <p class="daemon-desc">Live Chrome CDP Port 9222 DOM injection, FastMCP typed contracts, browser tools routing, and mutual exclusion locking for publishing pipelines (<code>luxury_blog_publish</code>, <code>youtube_upload</code>).</p>
+                    <div class="daemon-meta-grid">
+                      <div class="daemon-meta-item"><span>CDP Port:</span><strong class="cyan">9222 Auto-Attach</strong></div>
+                      <div class="daemon-meta-item"><span>Mutex Guard:</span><strong class="green">/api/pipeline_lock</strong></div>
+                      <div class="daemon-meta-item"><span>Overlay:</span><strong class="violet">HUD Injection Active</strong></div>
+                      <div class="daemon-meta-item"><span>Script:</span><strong>chrome_overlay_daemon.py</strong></div>
+                    </div>
+                  </div>
+
+                  <!-- Daemon 5: Port 9890 -->
+                  <div class="daemon-card-v2">
+                    <div class="daemon-card-header">
+                      <div class="daemon-icon-badge">🛡️</div>
+                      <div style="flex:1;">
+                        <div class="daemon-title-row">
+                          <h4>Master F9 Voice Ingestion Watchdog</h4>
+                          <span class="daemon-status-dot online">● ONLINE</span>
+                        </div>
+                        <span class="daemon-port-tag">PORT 9890 · F9 GLOBAL HOOK</span>
+                      </div>
+                    </div>
+                    <p class="daemon-desc">Global F9 push-to-talk keyboard hook, instant audio recording capture, Whisper STT dispatch, dynamic active conversation ID injection into <code>active_conversation_id.txt</code>, and crash recovery watchdog.</p>
+                    <div class="daemon-meta-grid">
+                      <div class="daemon-meta-item"><span>Hotkey:</span><strong class="cyan">Global F9 ("FA")</strong></div>
+                      <div class="daemon-meta-item"><span>Injection:</span><strong class="green">ConnectRPC / CLI</strong></div>
+                      <div class="daemon-meta-item"><span>Watchdog:</span><strong class="violet">Self-Healing Task Card</strong></div>
+                      <div class="daemon-meta-item"><span>Script:</span><strong>instant_watchdog.py</strong></div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+                            <!-- Right Column: Interactive Side Panel -->
+              <aside class="agents-side-panel" id="agentsSidePanel">
+                
+                <!-- Collaborative Subagent Architect Tool Card -->
+                <div class="agent-tool-card architect-tool-card">
+                  <div class="agent-tool-header">
+                    <span class="tool-icon">🤖</span>
+                    <div>
+                      <h4 style="margin:0; font-size:13px; font-weight:700; color:#fff;">Subagent Architect</h4>
+                      <span style="font-size:10px; color:var(--hud-neon-cyan,#00f0ff); font-family:var(--hud-font-mono);">CONVERSATIONAL AGENT BUILDER</span>
+                    </div>
+                  </div>
+                  <p class="tool-desc">Collaborative frontier AI architect. Automatically engages you in your open Antigravity chat to design, calibrate, test, and register a new production subagent.</p>
+                  
+                  <div class="architect-steps-box">
+                    <div class="arch-step-row">
+                      <span class="step-num">1</span>
+                      <div class="step-text"><strong>Discovery &amp; Role Elicitation:</strong> Frontier AI asks targeted questions about your desired agent's mission, inputs, outputs, and requirements.</div>
+                    </div>
+                    <div class="arch-step-row">
+                      <span class="step-num">2</span>
+                      <div class="step-text"><strong>Tool &amp; Concurrency Setup:</strong> Calibrates required tools (Brave Search, Filesystem, CDP) and locks model tier to <code>inherit</code>.</div>
+                    </div>
+                    <div class="arch-step-row">
+                      <span class="step-num">3</span>
+                      <div class="step-text"><strong>FastMCP Architecture:</strong> Authors <code>definition.md</code> with typed input/output schemas, anti-looping guards, and DoD gates.</div>
+                    </div>
+                    <div class="arch-step-row">
+                      <span class="step-num">4</span>
+                      <div class="step-text"><strong>Registry &amp; Category Persistence:</strong> Saves to <code>17_subagents/</code>, registers into the swarm pile, and triggers Vector Brain re-indexing.</div>
+                    </div>
+                  </div>
+
+                  <div class="architect-target-chat-row">
+                    <div style="display:flex; flex-direction:column; gap:4px; width:100%;">
+                      <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="chat-target-label">Target Chat:</span>
+                        <span class="chat-live-pulse" id="archLivePulse">● LIVE ACTIVE CHAT</span>
+                      </div>
+                      <select class="chat-target-select" id="archChatSelect" title="Select target Antigravity chat or keep on Auto-Detect">
+                        <option value="auto" selected>⚡ AUTO-DETECT ACTIVE CHAT</option>
+                      </select>
+                      <span class="chat-target-badge" id="archActiveChatBadge">[#01] Run Bootstrap Process</span>
+                    </div>
+                  </div>
+
+                  <button type="button" id="btnLaunchSubagentArchitect" class="swarm-run-btn architect-launch-btn">
+                    <span class="btn-main-label">✨ Launch Subagent Architect in Active Chat</span>
+                    <span class="btn-sub-label">Interviews Wayne &amp; writes full subagent step-by-step</span>
+                  </button>
+                  <div id="archStatusMsg" class="tool-status-msg" style="display: none;"></div>
+                </div>
+
+              </aside>
+
+            </div>
+
+            <!-- Slide-out Agent Definition Drawer -->
+            <div class="agent-drawer-backdrop" id="agentDrawerBackdrop" style="display: none;"></div>
+            <aside class="agent-definition-drawer" id="agentDefinitionDrawer" style="display: none;">
+              <!-- Left Draggable Resize Splitter Edge -->
+              <div class="drawer-resize-handle" id="drawerResizeHandle" title="Drag to Resize Panel Width (or use Ctrl+Wheel to zoom text)">
+                <div class="drawer-resize-grip"></div>
+              </div>
+
+              <div class="agent-drawer-header">
+                <div class="agent-drawer-title-row">
+                  <span class="agent-drawer-icon" id="drawerAgentIcon">🤖</span>
+                  <div style="flex:1; overflow:hidden;">
+                    <h3 id="drawerAgentTitle" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Agent Name</h3>
+                    <span class="agent-drawer-id" id="drawerAgentId">ID</span>
+                  </div>
+                  <div class="drawer-header-controls">
+                    <!-- Smooth Zoom Slider -->
+                    <div class="drawer-zoom-slider-wrap" title="Slide or use Ctrl+Wheel over text to adjust font size">
+                      <span class="zoom-slider-icon">🔍</span>
+                      <input type="range" class="drawer-zoom-slider" id="drawerZoomSlider" min="10" max="32" value="13" step="1" aria-label="Font Size">
+                      <span class="drawer-zoom-readout" id="drawerZoomReadout">13px</span>
+                    </div>
+                    <!-- Quick Zoom Buttons -->
+                    <div class="drawer-zoom-group" title="Quick Text Size Adjust">
+                      <button class="drawer-ctrl-btn" id="btnDrawerZoomOut" title="Smaller Font (A-)">A-</button>
+                      <button class="drawer-ctrl-btn" id="btnDrawerZoomReset" title="Reset Font Size">100%</button>
+                      <button class="drawer-ctrl-btn" id="btnDrawerZoomIn" title="Larger Font (A+)">A+</button>
+                    </div>
+                    <!-- Width Expand / Fullscreen Toggle -->
+                    <button class="drawer-ctrl-btn drawer-expand-btn" id="btnDrawerExpand" title="Toggle Wide / Normal View">⛶</button>
+                    <button class="agent-drawer-close" id="btnCloseAgentDrawer" title="Close Drawer">&times;</button>
+                  </div>
+                </div>
+                <div class="agent-drawer-meta-pills">
+                  <span class="agent-pill-tag" id="drawerAgentCategory">Category</span>
+                  <span class="agent-tier-badge" id="drawerAgentModel">Model: inherit</span>
+                  <span class="agent-status-badge running">ACTIVE 🔒</span>
+                </div>
+              </div>
+
+              <div class="agent-drawer-scroll" id="drawerAgentBody">
+                <!-- Full rendered markdown of definition.md -->
+              </div>
+
+              <div class="agent-drawer-footer">
+                <button class="wiki-action-btn primary" id="btnOpenAgentFolder">📂 OPEN IN EXPLORER</button>
+                <button class="wiki-action-btn" id="btnCopyAgentPrompt">📋 COPY PROMPT</button>
+              </div>
+            </aside>
+
+          </div>
+        </div>
+
+      </main>
+
+      <!-- BOTTOM SOCKET DOCK (Antigravity & OpenAI Dual Intelligence) -->
+      <footer class="hud-bottom-dock" id="hudBottomDock" data-expanded="false">
+        
+        <!-- Dock Control Bar (Tight 42px strip) -->
+        <div class="dock-bar">
+          <div class="dock-left">
+            <button class="dock-socket-btn" id="btnToggleSocket" title="Socket In / Unsocket">
+              <span class="socket-status-dot"></span>
+              <span id="socketBtnText">⚡ SOCKET IN</span>
+            </button>
+
+            <div class="dock-engine-selector">
+              <button class="engine-pill active" id="engineAntigravity" data-engine="antigravity" title="Local Antigravity Brain (Gemini 2.5 Pro + PC Tools)">
+                <span>⚡ Antigravity</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Center Command Slot: Completely Clear on Every Tab -->
+          <div class="dock-center" id="dockCustomCenter"></div>
+
+          <div class="dock-right">
+            <button class="dock-expand-btn" id="btnToggleDockExpand" title="Expand / Collapse Drawer">
+              <span id="dockExpandIcon">▲</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Clean Dock Drawer Body: Slides up and down smoothly -->
+        <div class="dock-terminal-deck" id="dockTerminalDeck">
+          <div class="dock-drawer-layout">
+            
+            <!-- Left Side: Hardware Telemetry (CPU, RAM, VRAM) looking nice -->
+            <div class="dock-drawer-telemetry">
+              <div class="dock-telemetry-card">
+                <div class="dock-telemetry-header">
+                  <div class="dock-telemetry-title-group">
+                    <span class="dock-telemetry-dot"></span>
+                    <span class="dock-telemetry-title">HARDWARE TELEMETRY</span>
+                  </div>
+                  <span class="dock-telemetry-badge" id="gpuModelBadge">RTX · CUDA 12.4</span>
+                </div>
+
+                <div class="dock-telemetry-rows">
+                  <!-- CPU Gauge -->
+                  <div class="hw-mini-row">
+                    <div class="hw-mini-header">
+                      <span class="hw-label"><span class="hw-dot cyan"></span>CPU</span>
+                      <span class="hw-value-mini" id="cpuLoadValue">15.0%</span>
+                    </div>
+                    <div class="hw-progress-track-mini">
+                      <div class="hw-progress-fill cyan-glow" id="cpuProgressFill" style="width: 15%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- System RAM Gauge -->
+                  <div class="hw-mini-row">
+                    <div class="hw-mini-header">
+                      <span class="hw-label"><span class="hw-dot violet"></span>RAM</span>
+                      <span class="hw-value-mini" id="ramLoadValue">13.0 / 31.8 GB (40.9%)</span>
+                    </div>
+                    <div class="hw-progress-track-mini">
+                      <div class="hw-progress-fill violet-glow" id="ramProgressFill" style="width: 40.9%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- GPU VRAM Gauge -->
+                  <div class="hw-mini-row">
+                    <div class="hw-mini-header">
+                      <span class="hw-label"><span class="hw-dot amber"></span>VRAM</span>
+                      <span class="hw-value-mini" id="vramLoadValue">4.2 / 15.9 GB (26.6%)</span>
+                    </div>
+                    <div class="hw-progress-track-mini vram-track">
+                      <div class="hw-progress-fill amber-cyan-glow" id="vramProgressFill" style="width: 26.6%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hw-subtext-mini" id="gpuModelText">NVIDIA GeForce RTX 5060 Ti · CUDA 12.4 · Direct2D Acceleration</div>
+              </div>
+            </div>
+
+            <!-- Right Side: Custom Buttons Slot (Wayne will put buttons here) -->
+            <div class="dock-drawer-buttons-slot" id="dockDrawerButtonsSlot">
+              <!-- Reserved for Wayne's custom control buttons -->
+            </div>
+
+          </div>
+        </div>
+
+      </footer>
+
+    </div>
+
+    <!-- Splitter -->
+    <div class="hud-splitter" id="dragSplitter" role="separator" title="Drag to Resize Panel"></div>
+
+    <!-- RIGHT FULL-HEIGHT SIDEBAR (Goes straight up to the very top!) -->
+    <aside class="hud-sidebar" id="hudSidebar" role="complementary">
+      
+      <!-- Full-Height Sidebar Top Header (Aligned with Topbar!) -->
+      <div class="sidebar-header" data-tauri-drag-region>
+        <div class="sidebar-title-group" data-tauri-drag-region>
+          <span class="sidebar-title">HUD Controls</span>
+          <span class="sidebar-badge">V2.4</span>
+        </div>
+
+        <!-- Draggable Grip Region (Between V2.4 and Minimize Button: Click & Move Anywhere) -->
+        <div class="sidebar-drag-spacer" id="sidebarDragSpacer" data-tauri-drag-region title="Click and drag to move Keystone Studio anywhere on screen">
+          <div class="sidebar-drag-grip" data-tauri-drag-region>
+            <span class="grip-line"></span>
+            <span class="grip-line"></span>
+            <span class="grip-line"></span>
+          </div>
+        </div>
+
+        <div class="sidebar-controls">
+          <button class="icon-btn win-btn" id="btnWinMin" title="Minimize Window / Screen">
+            <span>─</span>
+          </button>
+          <button class="icon-btn win-btn" id="btnWinMax" title="Maximize / Restore Window">
+            <span>🗖</span>
+          </button>
+          <button class="icon-btn" id="btnCollapseSidebar" title="Collapse Side Tab">
+            <span>⇥</span>
+          </button>
+          <button class="icon-btn close-btn win-btn" id="btnWinClose" title="Close Window">
+            <span>✕</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Sidebar Content Area -->
+      <div class="sidebar-content" id="sidebarScrollArea">
+        
+        <!-- MASTER CONTROL HUB (Persistent on Every Tab) -->
+        <div class="sidebar-master-control-hub" id="sidebarMasterControlHub">
+
+          <!-- BOX 1: BOOTSTRAP BOX (Single-Row Active Header + Roll-Down Scroll Drawer) -->
+          <div class="hud-card hub-box-bootstrap" id="hubBoxBootstrap">
+            
+            <!-- Compact Active Row (Always Visible) -->
+            <button class="bootstrap-compact-header" id="btnToggleBootstrapDrawer" title="Click to expand / collapse project chats">
+              <div class="bootstrap-compact-left">
+                <span class="bootstrap-status-dot-mini" id="bootstrapStatusDot"></span>
+                <span class="bootstrap-number-badge" id="sidebarActiveChatNum">[#01]</span>
+                <div class="bootstrap-compact-titles">
+                  <span class="bootstrap-compact-name" id="sidebarActiveChatTitle">Run Bootstrap Process</span>
+                  <span class="bootstrap-compact-sub" id="sidebarActiveChatDesc">Master Daemons &amp; Watchdog</span>
+                </div>
+              </div>
+              <div class="bootstrap-compact-right">
+                <span class="bootstrap-ipc-badge">IPC :9876</span>
+                <span class="bootstrap-drawer-arrow" id="bootstrapDrawerArrow">▾</span>
+              </div>
+            </button>
+
+            <!-- Roll-Down Scroll Drawer (Collapsed by default, scrolls when opened) -->
+            <div class="bootstrap-scroll-drawer" id="bootstrapScrollDrawer">
+              <div class="bootstrap-drawer-inner" id="sidebarChatList">
+                <div class="sidebar-chat-item active" data-chat-id="1baa32b7-bf7a-4715-b3f6-2daeb7357af8" data-chat-title="[#01] Run Bootstrap Process — Master Daemons &amp; Watchdog">
+                  <div class="sidebar-chat-dot"></div>
+                  <div class="sidebar-chat-text">
+                    <span class="sidebar-chat-name">[#01] Run Bootstrap Process</span>
+                    <span class="sidebar-chat-sub">Master Daemons &amp; Watchdog</span>
+                  </div>
+                </div>
+                <div class="sidebar-chat-item" data-chat-id="021ad8b8-4d88-4087-bd73-f626ccaa0a9e" data-chat-title="[#02] Getting Started With Bootstrap — Architecture &amp; Rules">
+                  <div class="sidebar-chat-dot"></div>
+                  <div class="sidebar-chat-text">
+                    <span class="sidebar-chat-name">[#02] Getting Started With Bootstrap</span>
+                    <span class="sidebar-chat-sub">Architecture &amp; Rules</span>
+                  </div>
+                </div>
+                <div class="sidebar-chat-item" data-chat-id="b0dbf679-0d9b-45ee-971d-bfb6f964689a" data-chat-title="[#03] Bootstrap Implementation Guide — Engine Calibration">
+                  <div class="sidebar-chat-dot"></div>
+                  <div class="sidebar-chat-text">
+                    <span class="sidebar-chat-name">[#03] Bootstrap Implementation Guide</span>
+                    <span class="sidebar-chat-sub">Engine Calibration</span>
+                  </div>
+                </div>
+                <div class="sidebar-chat-item" data-chat-id="32dd7ff9-c336-4e75-ac2d-9fdfb3429f2a" data-chat-title="[#04] Thirty Day Agent Strategy — 30-Day Multi-Agent Plan">
+                  <div class="sidebar-chat-dot"></div>
+                  <div class="sidebar-chat-text">
+                    <span class="sidebar-chat-name">[#04] Thirty Day Agent Strategy</span>
+                    <span class="sidebar-chat-sub">30-Day Multi-Agent Plan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BOX 2: WORKSPACE GROUPS BOX (Single-Row Active Header + Roll-Down Scroll Drawer) -->
+          <div class="hud-card hub-box-groups" id="hubBoxGroups">
+            
+            <!-- Compact Active Row (Always Visible) -->
+            <button class="groups-compact-header" id="btnToggleGroupsDrawer" title="Click to expand / collapse workspace groups">
+              <div class="groups-compact-left">
+                <span class="groups-active-icon">📑</span>
+                <span class="groups-active-badge" id="sidebarActiveGroupBadge">✦ Group 1</span>
+                <span class="groups-active-desc" id="sidebarActiveGroupDesc">Master Studio</span>
+              </div>
+              <div class="groups-compact-right">
+                <span class="groups-count-pill" id="sidebarGroupsCountPill">4 Groups</span>
+                <span class="groups-drawer-arrow" id="groupsDrawerArrow">▾</span>
+              </div>
+            </button>
+
+            <!-- Roll-Down Scroll Drawer (Collapsed by default, scrolls when opened) -->
+            <div class="groups-scroll-drawer" id="groupsScrollDrawer">
+              <div class="groups-drawer-inner">
+                <div class="sidebar-groups-list" id="sidebarGroupsList">
+                  <!-- Dynamically populated by JS: Group 1, Group 2, Group 3, Group 4, etc. -->
+                </div>
+                <button class="sidebar-group-add-btn" id="btnSidebarAddGroup" title="Add New Workspace Group">
+                  <span class="add-icon">+</span>
+                  <span>Add Group</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+            <!-- Box 3: Universal Local Buttons & Main Team Swarm (Persistent on Every Hub, Tab & Group) -->
+            <div class="hub-box-swarm" id="universalSwarmBox">
+              <div class="swarm-box-header">
+                <div class="swarm-header-left">
+                  <span class="swarm-lightning-icon">⚡</span>
+                  <span class="swarm-header-title">LOCAL BUTTONS</span>
+                </div>
+                <span class="swarm-grip-dots" title="Universal Hub Actions">⋮⋮</span>
+              </div>
+              <div class="swarm-box-actions" id="universalSwarmActions">
+                <button class="action-btn-task-swarm" id="btnUniversalTaskSwarm" title="Activate Autonomous Team Swarm in Active Chat">
+                  <div class="task-swarm-btn-content">
+                    <span class="task-swarm-icon-group">
+                      <span class="task-swarm-sparkle">✨</span>
+                      <span class="task-swarm-robot">🤖</span>
+                    </span>
+                    <span class="task-swarm-btn-label">Task Swarm</span>
+                  </div>
+                  <span class="task-swarm-ext-icon">↗</span>
+                </button>
+                <button class="action-btn-skill-overseer" id="btnUniversalSkillOverseer" title="Supervise & Mine Skills / Workflows Across Active Chats">
+                  <div class="skill-overseer-btn-content">
+                    <span class="skill-overseer-icon-group">
+                      <span class="skill-overseer-sparkle">✨</span>
+                      <span class="skill-overseer-search">🔍</span>
+                    </span>
+                    <span class="skill-overseer-btn-label">Skill Overseer</span>
+                  </div>
+                  <span class="skill-overseer-ext-icon">↗</span>
+                </button>
+              </div>
+            </div>
+
+
+        </div>
+
+        <!-- DYNAMIC TAB WORKSPACE (Underneath Master Control Hub - Asks & Does Different Things Per Tab!) -->
+        <div id="sidebarDynamicContent">
+          <!-- Injected dynamically based on active tab -->
+        </div>
+
+      </div>
+
+            <!-- UNIVERSAL LOCAL DOCUMENTATION FOLDERS (Anchored above Avatar on Every Tab) -->
+      <div class="local-doc-folders-strip" id="localDocFoldersStrip">
+        <div class="doc-folders-header">
+          <span class="doc-folders-icon">📁</span>
+          <span class="doc-folders-title">LOCAL DOCUMENTATION FOLDERS</span>
+        </div>
+        <div class="doc-folders-btn-row">
+          <button class="doc-folder-btn btn-folder-downloads" id="btnUniversalDownloads" title="Open Downloads Folder (C:\Users\Curtis\Downloads)">
+            <span class="btn-folder-icon">📥</span>
+            <span class="btn-folder-label">Downloads</span>
+          </button>
+          <button class="doc-folder-btn btn-folder-slot2" id="btnUniversalSlot2" title="Slot 2 (Local Folder Slot)">
+            <span class="btn-folder-icon">📁</span>
+            <span class="btn-folder-label">Slot 2</span>
+          </button>
+          <button class="doc-folder-btn btn-folder-slot3" id="btnUniversalSlot3" title="Open Keystone Brain Root Directory">
+            <span class="btn-folder-icon">📁</span>
+            <span class="btn-folder-label">Slot 3</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. PURE HOLOGRAPHIC COMPANION AVATAR (Anchored at very bottom across the whole width) -->
+      <div class="hologram-avatar-stick hologram-avatar-zone" id="hologramAvatarStick" title="Keystone Companion AI Robot (Click to cycle states / test speech)">
+        <!-- Atmospheric Neon Glow behind Robot -->
+        <div class="avatar-ambient-glow" id="avatarAmbientGlow"></div>
+        <div class="avatar-top-feather"></div>
+
+        <div class="hologram-stage" id="avatarCapsuleCompact">
+          <!-- Holographic ground aura -->
+          <div class="hologram-aura-base"></div>
+
+          <!-- Video Layers (Seamless Chatter & State Transitions - Only active video decodes) -->
+          <video id="vidIdle" class="avatar-video-layer active" src="videos/idle.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <video id="vidListening" class="avatar-video-layer" src="videos/listening.mp4" loop muted playsinline preload="none"></video>
+          <video id="vidWorking" class="avatar-video-layer" src="videos/working.mp4" loop muted playsinline preload="none"></video>
+          <video id="vidThinking" class="avatar-video-layer" src="videos/thinking.mp4" loop muted playsinline preload="none"></video>
+          <video id="vidTalking" class="avatar-video-layer" src="videos/talking.mp4" loop muted playsinline preload="none"></video>
+          <video id="vidWalking" class="avatar-video-layer" src="videos/walking.mp4" loop muted playsinline preload="none"></video>
+
+          <!-- Pure scanlines without any borders -->
+          <div class="hologram-pure-scanlines"></div>
+
+          <!-- Floating Speech Bubble -->
+          <div class="avatar-speech-bubble hologram-speech" id="speechBubble" style="display:none;">
+            <span id="speechBubbleText">Companion active. Press F9 to talk.</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <button class="hud-expand-fab" id="btnExpandFab" title="Expand Sidebar Panel (Ctrl+B)">
+    <span>◨</span>
+    <span>Expand Panel</span>
+  </button>
+
+  <!-- Add Folder to Brain Modal -->
+  <div class="brain-add-folder-modal-backdrop" id="brainAddFolderModal" style="display: none;">
+    <div class="brain-add-folder-modal">
+      <div class="modal-header">
+        <span class="modal-title">📁 ADD FOLDER / DRIVE TO BRAIN</span>
+        <button class="modal-close-btn" id="btnCloseAddFolderModal" title="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Enter any computer path (e.g. <code>C:\</code>, <code>D:\</code>, or any folder), or browse your computer:</p>
+        <div class="modal-input-row">
+          <input type="text" id="inputBrainFolderPath" class="modal-input-path" placeholder="e.g. C:\ or D:\ or C:\Users\Curtis\..." spellcheck="false" />
+          <button class="modal-browse-btn" id="btnBrowseComputerPath" title="Browse PC for Folder">📂 BROWSE...</button>
+        </div>
+        <div id="modalAddFolderError" class="modal-error-msg" style="display: none;"></div>
+        <div class="modal-saved-section" id="modalSavedSection" style="display: none;">
+          <div class="modal-saved-header">
+            <span class="modal-saved-title">SAVED WORKSPACES IN BRAIN</span>
+          </div>
+          <div class="modal-saved-list" id="modalSavedList"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn-cancel" id="btnCancelAddFolder">CANCEL</button>
+        <button class="modal-btn-add" id="btnConfirmAddToBrain">⚡ ADD TO BRAIN</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="neural_brain_2d.js"></script>
+  <script src="agents_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "backup_timestamp": "2026-08-08 08:59:55",
+  "backup_date": "20260808",
+  "daemon_status": {
+    "Janitor Daemon": "ONLINE (Active Port)",
+    "Vector Brain Daemon": "ONLINE (Active Port)",
+    "STT Ingest Daemon": "ONLINE (Active Port)",
+    "Voice TTS Daemon": "ONLINE (Active Port)",
+    "Chrome Overlay Daemon": "ONLINE (Active Port)"
+  },
+  "graph_summary": {
+    "total_nodes": 1868,
+    "total_edges": 15563,
+    "total_folders": 19,
+    "timestamp": "2026-08-08 08:59:49"
+  },
+  "workspace_state": {
+    "last_session_model": "Gemini 3.6 Flash (High)",
+    "last_active_timestamp": "2026-08-08 08:59:49",
+    "canonical_folders": [
+      "00_todays_video_upload",
+      "01_Keystone_Protocols_Media_Ingestion",
+      "01_system_rules",
+      "02_skills",
+      "03_MCP",
+      "04_brand_assets",
+      "04_vector_brain",
+      "04_Wayne_Stevenson_health_stats",
+      "05_Keystone_HUD",
+      "06_Keystone_possibilities",
+      "07_Keystone_recomposition",
+      "08_Keystone_protocols",
+      "09_Keystone_websites",
+      "10_researcher",
+      "11_global_LLM_engines",
+      "16_daemons",
+      "17_subagents",
+      "18_session_continuity",
+      "tests"
+    ],
+    "graph_nodes_count": 1868,
+    "graph_edges_count": 15563,
+    "ui_preferences": {
+      "selected_panel": "04_vector_brain",
+      "sidebar_collapsed": false,
+      "theme": "dark_keystone"
+    }
+  },
+  "workspace_tree_snapshot": {
+    "total_canonical_folders": 19,
+    "timestamp": "2026-08-08 08:59:49"
+  }
+}

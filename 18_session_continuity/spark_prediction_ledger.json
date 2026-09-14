@@ -1,0 +1,10 @@
+{
+  "virtual_bankroll": 500.0,
+  "current_hour_budget": 10.0,
+  "baseline_floor": 10.0,
+  "total_sub_bets": 0,
+  "wins": 0,
+  "losses": 0,
+  "cum_pnl": 0.0,
+  "history": []
+}
