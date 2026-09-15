@@ -1,4 +1,0 @@
-{
-  "overlap_registry": [],
-  "note": "This registry tracks content topics that multiple agents are working on simultaneously to prevent duplicate effort. Populated by the Chronos orchestrator during fleet coordination."
-}
