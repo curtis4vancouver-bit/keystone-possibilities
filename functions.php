@@ -37,7 +37,9 @@ function keystone_possibilities_add_defer_attribute($tag, $handle) {
 
 // ── 2. Require Master JSON-LD Schema, Portfolio & Lead Capture Engines ──────
 require_once __DIR__ . '/inc/seo-schema.php';
-require_once __DIR__ . '/inc/portfolio-residences.php';
+if (file_exists(__DIR__ . '/inc/portfolio-residences.php')) {
+    require_once __DIR__ . '/inc/portfolio-residences.php';
+}
 require_once __DIR__ . '/inc/lead-capture.php';
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
@@ -421,4 +423,96 @@ function keystone_possibilities_ensure_watch_theater($content) {
 
     return $theater_html . $sanitized_content;
 }
+
+// ── 7. 2026 Master Portfolio Carousel Controller (Inline Footer Engine) ──────
+add_action('wp_footer', 'keystone_possibilities_render_carousel_script', 99);
+function keystone_possibilities_render_carousel_script() {
+    ?>
+    <script id="keystone-portfolio-carousel-inline">
+    (function() {
+        function initCarousels() {
+            const sections = document.querySelectorAll('.residence-section');
+            if (!sections.length) return;
+
+            sections.forEach((section) => {
+                const track = section.querySelector('.residence-carousel-track');
+                if (!track) return;
+
+                const cards = track.querySelectorAll('.residence-card');
+                const total = cards.length;
+                if (total <= 1) return;
+
+                let headerBar = section.querySelector('.residence-carousel-header-bar');
+                if (!headerBar) {
+                    const titleHeading = section.querySelector('.residence-title-heading');
+                    if (titleHeading) {
+                        headerBar = document.createElement('div');
+                        headerBar.className = 'residence-carousel-header-bar';
+                        titleHeading.parentNode.insertBefore(headerBar, titleHeading);
+                        headerBar.appendChild(titleHeading);
+                    }
+                }
+
+                if (headerBar && !headerBar.querySelector('.residence-carousel-controls')) {
+                    const controls = document.createElement('div');
+                    controls.className = 'residence-carousel-controls';
+
+                    const badge = document.createElement('span');
+                    badge.className = 'residence-counter-badge';
+                    badge.textContent = `01 / ${String(total).padStart(2, '0')}`;
+
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'residence-nav-btn prev';
+                    prevBtn.setAttribute('aria-label', 'Previous photo');
+                    prevBtn.innerHTML = '&#8249;';
+
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'residence-nav-btn next';
+                    nextBtn.setAttribute('aria-label', 'Next photo');
+                    nextBtn.innerHTML = '&#8250;';
+
+                    controls.appendChild(badge);
+                    controls.appendChild(prevBtn);
+                    controls.appendChild(nextBtn);
+                    headerBar.appendChild(controls);
+
+                    prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const cardWidth = cards[0].getBoundingClientRect().width + 20;
+                        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                    });
+
+                    nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const cardWidth = cards[0].getBoundingClientRect().width + 20;
+                        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                    });
+
+                    if ('IntersectionObserver' in window) {
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    const cardIndex = Array.from(cards).indexOf(entry.target);
+                                    if (cardIndex !== -1) {
+                                        badge.textContent = `${String(cardIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+                                    }
+                                }
+                            });
+                        }, { root: track, threshold: 0.6 });
+                        cards.forEach(card => observer.observe(card));
+                    }
+                }
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCarousels);
+        } else {
+            initCarousels();
+        }
+    })();
+    </script>
+    <?php
+}
+
 
