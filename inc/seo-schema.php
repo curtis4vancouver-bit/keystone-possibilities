@@ -105,12 +105,34 @@ function keystone_possibilities_inject_master_schema() {
                 "areaServed" => array(
                     array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
                     array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
-                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
                     array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
                     array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
                     array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
+                    array("@type" => "AdministrativeArea", "name" => "British Properties, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3458, "longitude" => -123.1425)),
+                    array("@type" => "AdministrativeArea", "name" => "Caulfeild, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3512, "longitude" => -123.2389)),
+                    array("@type" => "AdministrativeArea", "name" => "Altamont, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3421, "longitude" => -123.2085)),
+                    array("@type" => "AdministrativeArea", "name" => "Dundarave, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3338, "longitude" => -123.1812)),
+                    array("@type" => "AdministrativeArea", "name" => "Sunridge Plateau, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1163, "longitude" => -122.9574)),
+                    array("@type" => "AdministrativeArea", "name" => "Kadenwood, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.0987, "longitude" => -122.9754)),
+                    array("@type" => "AdministrativeArea", "name" => "Alta Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1121, "longitude" => -122.9812)),
+                    array("@type" => "AdministrativeArea", "name" => "Green Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1450, "longitude" => -122.9410)),
+                    array("@type" => "AdministrativeArea", "name" => "The Heights, Squamish", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7350, "longitude" => -123.1320)),
+                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
                     array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
                     array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach")
+                ),
+                "knowsAbout" => array(
+                    "BC Building Code 2024",
+                    "Vancouver Building By-law Part 10 R-22 Effective",
+                    "Simpson Strong-Tie ATS Continuous Rod Tie-Down Systems",
+                    "High-Seismic Infill Engineering (Sa=0.94g)",
+                    "BC Energy Step Code 4 and Step Code 5",
+                    "Passive House High-Performance Envelopes",
+                    "District of West Vancouver Watercourse Protection Bylaw 4364",
+                    "Whistler Alpine Heavy Timber & High Snow Load Engineering",
+                    "Granite Bedrock Micropile and Post-Tensioned Rock Anchors",
+                    "BC Bill 44 Multiplex Density and Infill Conversions",
+                    "BC Hydro ES54 Civil Underground Ducting and Servicing"
                 ),
                 "hasOfferCatalog" => array(
                     "@type" => "OfferCatalog",
@@ -129,7 +151,7 @@ function keystone_possibilities_inject_master_schema() {
                             "itemOffered" => array(
                                 "@type" => "Service",
                                 "name" => "Custom Luxury Home Construction",
-                                "description" => "Turnkey design-build contracting with mandatory 2-5-10 Year Home Warranty, Step Code 5 energy performance, and high-altitude alpine framing."
+                                "description" => "Turnkey design-build contracting with mandatory 2-5-10 Year Home Warranty, Step Code 5 energy performance, and high-altitude alpine framing across West Vancouver and Whistler."
                             )
                         ),
                         array(
@@ -170,7 +192,30 @@ function keystone_possibilities_inject_master_schema() {
                     "name" => "Wayne Stevenson",
                     "jobTitle" => "Certified BC Residential Builder & Fiduciary Project Manager",
                     "url" => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
-                    "sameAs" => "https://keystonerecomposition.com/about/"
+                    "sameAs" => array(
+                        "https://keystonerecomposition.com/about/",
+                        "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
+                    ),
+                    "hasCredential" => array(
+                        "@type" => "EducationalOccupationalCredential",
+                        "name" => "BC Housing Licensed Residential Builder (Licence #52603)",
+                        "credentialCategory" => "Professional License",
+                        "recognizedBy" => array(
+                            "@type" => "GovernmentOrganization",
+                            "name" => "BC Housing Licensing and Consumer Services",
+                            "url" => "https://www.bchousing.org"
+                        ),
+                        "validIn" => array(
+                            "@type" => "AdministrativeArea",
+                            "name" => "British Columbia, Canada"
+                        )
+                    ),
+                    "knowsAbout" => array(
+                        "BC Building Code 2024",
+                        "Step Code 5 Net-Zero Custom Homes",
+                        "Vancouver Multiplex Zoning Bill 44",
+                        "Fiduciary Cost-Plus Project Management"
+                    )
                 )
             ),
             // Parent Organization Entity (Keystone Empire / Keystone Group)
@@ -405,47 +450,132 @@ function keystone_possibilities_rank_math_video_sitemap($video, $post_id) {
     return $video;
 }
 
-// ── 2.9 Deduplicate Rank Math JSON-LD Schema Graph & Auto-detected Videos ────
-add_filter('rank_math/json_ld', 'keystone_possibilities_dedup_rank_math_schema', 999, 2);
-function keystone_possibilities_dedup_rank_math_schema($data, $jsonld) {
-    if (!is_array($data)) {
+// ── 2.9 Google-Compliant Watch Page & VideoObject Schema Injection in Rank Math ────
+add_filter('rank_math/json_ld', 'keystone_possibilities_rank_math_watch_page_schema', 999, 2);
+function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
+    if (!is_array($data) || is_admin()) {
         return $data;
     }
-    foreach ($data as $key => $val) {
-        if (in_array(strtolower((string)$key), array('video', 'videoobject'), true)) {
-            unset($data[$key]);
+
+    // 1. Sanitize any legacy staging URLs in Rank Math output
+    array_walk_recursive($data, function(&$item) {
+        if (is_string($item) && strpos($item, 'staging-a826-keystonepossibilities.wpcomstaging.com') !== false) {
+            $item = str_replace('https://staging-a826-keystonepossibilities.wpcomstaging.com', 'https://keystonepossibilities.ca', $item);
         }
-        if (is_array($val) && isset($val['@type'])) {
-            $types = (array)$val['@type'];
-            foreach ($types as $t) {
-                if (strtolower((string)$t) === 'videoobject') {
-                    unset($data[$key]);
-                    break;
-                }
-            }
+    });
+
+    if (!is_singular('post')) {
+        return $data;
+    }
+
+    global $post;
+    if (!$post) return $data;
+
+    // Detect YouTube Video ID
+    $video_id = get_post_meta($post->ID, 'keystone_youtube_id', true);
+    if (empty($video_id)) {
+        $video_url = get_post_meta($post->ID, 'video_url', true);
+        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
+            $video_id = $m[1];
         }
     }
+    if (empty($video_id)) {
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $post->post_content, $m)) {
+            $video_id = $m[1];
+        }
+    }
+
+    if (empty($video_id)) {
+        return $data;
+    }
+
+    $permalink     = get_permalink($post);
+    $video_node_id = trailingslashit($permalink) . '#videoobject';
+    $post_title    = get_the_title($post);
+    $excerpt       = wp_strip_all_tags(get_the_excerpt($post));
+    if (empty($excerpt)) {
+        $excerpt = wp_trim_words(wp_strip_all_tags($post->post_content), 35, '...');
+    }
+
+    // High-res with guaranteed hqdefault fallback (eliminates 404s)
+    $thumbnails = array(
+        "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
+        "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
+    );
+    if (has_post_thumbnail($post)) {
+        $feat = get_the_post_thumbnail_url($post, 'full');
+        if ($feat) {
+            array_unshift($thumbnails, $feat);
+        }
+    }
+
+    // Parse duration
+    $video_duration = get_post_meta($post->ID, 'video_duration', true);
+    if (empty($video_duration)) {
+        $video_duration = get_post_meta($post->ID, 'keystone_video_duration', true);
+    }
+    $duration_iso = 'PT5M0S';
+    if (!empty($video_duration)) {
+        $video_duration = trim($video_duration);
+        if (stripos($video_duration, 'PT') === 0) {
+            $duration_iso = $video_duration;
+        } elseif (is_numeric($video_duration)) {
+            $s = intval($video_duration);
+            $h = floor($s / 3600);
+            $m = floor(($s / 60) % 60);
+            $sec = $s % 60;
+            $duration_iso = 'PT' . ($h > 0 ? $h . 'H' : '') . ($m > 0 ? $m . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
+        }
+    }
+
+    // Construct Compliant VideoObject Node
+    $video_object = array(
+        '@type'            => 'VideoObject',
+        '@id'              => $video_node_id,
+        'name'             => $post_title,
+        'description'      => $excerpt,
+        'uploadDate'       => get_the_date('c', $post),
+        'duration'         => $duration_iso,
+        'thumbnailUrl'     => $thumbnails,
+        'embedUrl'         => "https://www.youtube-nocookie.com/embed/{$video_id}",
+        'contentUrl'       => "https://www.youtube.com/watch?v={$video_id}",
+        'inLanguage'       => 'en-CA',
+        'isFamilyFriendly' => true,
+        'mainEntityOfPage' => array('@id' => $permalink),
+        'publisher'        => array('@id' => home_url('/#organization'))
+    );
+
+    // Inject VideoObject directly into Rank Math graph
+    $data['VideoObject'] = $video_object;
+
+    // Transform WebPage Node to ItemPage & Bind mainEntity (Watch Page Criteria)
+    if (isset($data['WebPage'])) {
+        $data['WebPage']['@type'] = array('WebPage', 'ItemPage');
+        $data['WebPage']['mainEntity'] = array('@id' => $video_node_id);
+    }
+
+    // Demote/unset text-only Article and BlogPosting schemas so Google treats page as Watch Page
+    unset($data['Article']);
+    unset($data['BlogPosting']);
+
+    // Also inject into @graph array if present
     if (isset($data['@graph']) && is_array($data['@graph'])) {
-        $other_nodes = array();
+        $clean_graph = array();
         foreach ($data['@graph'] as $node) {
-            if (isset($node['@type'])) {
-                $types = (array)$node['@type'];
-                $has_video = false;
-                foreach ($types as $t) {
-                    if (strtolower((string)$t) === 'videoobject') {
-                        $has_video = true;
-                        break;
-                    }
-                }
-                if (!$has_video) {
-                    $other_nodes[] = $node;
-                }
-            } else {
-                $other_nodes[] = $node;
+            $type = isset($node['@type']) ? (array)$node['@type'] : array();
+            if (in_array('Article', $type) || in_array('BlogPosting', $type)) {
+                continue; // Demote Article/BlogPosting nodes to avoid conflicting text-only categorization
             }
+            if (in_array('WebPage', $type)) {
+                $node['@type'] = array('WebPage', 'ItemPage');
+                $node['mainEntity'] = array('@id' => $video_node_id);
+            }
+            $clean_graph[] = $node;
         }
-        $data['@graph'] = $other_nodes;
+        $clean_graph[] = $video_object;
+        $data['@graph'] = $clean_graph;
     }
+
     return $data;
 }
 

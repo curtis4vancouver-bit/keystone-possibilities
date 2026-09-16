@@ -15,8 +15,9 @@ if (!defined('ABSPATH')) {
 add_action('wp_enqueue_scripts', 'keystone_possibilities_enqueue_styles', 15);
 function keystone_possibilities_enqueue_styles() {
     wp_enqueue_style('astra-parent-style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('keystone-possibilities-style', get_stylesheet_uri(), array('astra-parent-style'), '2.5.3');
-    wp_enqueue_script('keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '2.5.3', true);
+    wp_enqueue_style('keystone-possibilities-style', get_stylesheet_uri(), array('astra-parent-style'), '2.6.0');
+    wp_enqueue_script('keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '2.6.0', true);
+    wp_enqueue_script('keystone-portfolio-carousel', get_stylesheet_directory_uri() . '/js/portfolio-carousel.js', array(), '2.6.0', true);
 
     // Pass REST and AJAX endpoints to frontend for interactive lead capture
     wp_localize_script('keystone-lazy-player', 'keystoneData', array(
@@ -25,17 +26,18 @@ function keystone_possibilities_enqueue_styles() {
     ));
 }
 
-// Apply defer attribute to lazy player script for 100/100 Mobile PageSpeed
+// Apply defer attribute to scripts for 100/100 Mobile PageSpeed
 add_filter('script_loader_tag', 'keystone_possibilities_add_defer_attribute', 10, 2);
 function keystone_possibilities_add_defer_attribute($tag, $handle) {
-    if ('keystone-lazy-player' === $handle) {
+    if ('keystone-lazy-player' === $handle || 'keystone-portfolio-carousel' === $handle) {
         return str_replace(' src', ' defer="defer" src', $tag);
     }
     return $tag;
 }
 
-// ── 2. Require Master JSON-LD Schema & Lead Capture Engines ──────────────────
+// ── 2. Require Master JSON-LD Schema, Portfolio & Lead Capture Engines ──────
 require_once __DIR__ . '/inc/seo-schema.php';
+require_once __DIR__ . '/inc/portfolio-residences.php';
 require_once __DIR__ . '/inc/lead-capture.php';
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
@@ -168,12 +170,23 @@ add_action('wp_head', function () {
 add_filter('rank_math/snippet/rich_snippet_video', '__return_empty_array');
 add_filter('rank_math/schema/video', '__return_empty_array');
 
-// ── 4.5. 301 Redirect & 410 Gone Handler for Pruned Legacy URLs ─────────────
+// ── 4.5. 301 Redirect, /llms.txt & 410 Handler ──────────────────────────────
 add_action('template_redirect', 'keystone_possibilities_handle_301_410_redirects', 1);
 function keystone_possibilities_handle_301_410_redirects() {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
     $path = strtok($uri, '?');
     
+    // Serve /llms.txt dynamically for AI search engines (Perplexity, ChatGPT, Claude)
+    if ($path === '/llms.txt' || $path === 'llms.txt') {
+        $llms_file = get_stylesheet_directory() . '/llms.txt';
+        if (file_exists($llms_file)) {
+            header('Content-Type: text/plain; charset=utf-8');
+            header('X-Robots-Tag: all');
+            readfile($llms_file);
+            exit;
+        }
+    }
+
     // Strict 301 redirects mapping all legacy/variant slugs to verified 200 OK live URLs
     $redirects_301 = array(
         '/about-us-general-contractor-squamish.html' => '/about-us-general-contractor-squamish/',
@@ -355,3 +368,57 @@ function keystone_possibilities_inject_critical_hero_css() {
     </style>
     <?php
 }
+
+// ── 8. Google-Compliant Above-The-Fold Video Watch Theater Injector ─────────
+add_filter('the_content', 'keystone_possibilities_ensure_watch_theater', 5);
+function keystone_possibilities_ensure_watch_theater($content) {
+    if (!is_singular('post') || is_admin() || is_feed()) {
+        return $content;
+    }
+
+    global $post;
+    if (!$post) return $content;
+
+    // Detect YouTube ID from post meta or content
+    $video_id = get_post_meta($post->ID, 'keystone_youtube_id', true);
+    if (empty($video_id)) {
+        $video_url = get_post_meta($post->ID, 'video_url', true);
+        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
+            $video_id = $m[1];
+        }
+    }
+    if (empty($video_id)) {
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $content, $m)) {
+            $video_id = $m[1];
+        }
+    }
+
+    if (empty($video_id)) {
+        return $content;
+    }
+
+    // Check if an iframe already exists in the first 300 characters
+    $first_chunk = substr(trim(strip_tags($content, '<iframe>')), 0, 300);
+    if (stripos($first_chunk, '<iframe') !== false) {
+        return $content;
+    }
+
+    // Strip duplicate iframes or embed blocks placed deeper in the article
+    $sanitized_content = preg_replace('/<figure class="wp-block-embed[^>]*>.*?<\/figure>/is', '', $content);
+    $sanitized_content = preg_replace('/<iframe[^>]*src="[^"]*youtube[^"]*"[^>]*><\/iframe>/is', '', $sanitized_content);
+
+    // Build Compliant 16:9 Above-the-Fold Watch Theater (Dominant primary entity)
+    $theater_html = '
+    <div class="watch-theater-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/' . esc_attr($video_id) . '?rel=0&modestbranding=1" 
+                title="' . esc_attr(get_the_title($post)) . '" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                loading="eager">
+        </iframe>
+    </div>';
+
+    return $theater_html . $sanitized_content;
+}
+

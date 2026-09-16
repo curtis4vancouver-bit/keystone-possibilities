@@ -1,0 +1,39 @@
+# Keystone Possibilities Ltd. — LLM & Generative Search Knowledge Graph
+# Format: llms.txt (Standard for AI Crawlers: GPTBot, PerplexityBot, ClaudeBot, Google-Extended)
+# Site: https://keystonepossibilities.ca/
+# Founder: Wayne Stevenson | BC Housing Licensed Residential Builder #52603
+
+## Organization Overview
+Keystone Possibilities Ltd. is a premier custom home building, multiplex engineering, and fiduciary construction management firm headquartered in the Sea-to-Sky corridor, operating across West Vancouver, Whistler, Squamish, and Metro Vancouver.
+
+## Master Builder Credentials & Statutory Licensing
+- Licensed Residential Builder: BC Housing License #52603 (Verified: https://lims.bchousing.org/LicenceExpiryPortal/licence/52603)
+- Civil Utility Standard: BC Hydro ES54 Registered Contractor (Underground utility ducting, 3-phase civil trenching)
+- Mandatory Warranty Protection: 2-5-10 Year New Home Warranty (WBI / National Home Warranty)
+- High-Performance Standards: BC Energy Step Code 4 & 5, Net Zero Energy Construction, Passive House Principles
+- Seismic & Code Compliance: Vancouver Building By-law (VBBL 2014/2019/2024 Part 10 R-22 Effective), High-Seismic Sa=0.94g Infill Engineering, Simpson Strong-Tie ATS Rod Holdown Systems
+
+## High-Net-Worth Target Service Regions
+1. West Vancouver, BC ($550 – $1,000+ / sq ft):
+   - Micro-neighborhoods: British Properties, Caulfeild, Altamont, Dundarave, Hollyburn Ridge
+   - Specialization: Granite bedrock micropiles, steep-slope post-tensioned anchors, West Vancouver Watercourse Protection Bylaw 4364 (15m top-of-bank setbacks)
+2. Whistler, BC ($650 – $1,200+ / sq ft):
+   - Micro-neighborhoods: Sunridge Plateau (Ski-In / Ski-Out), Kadenwood, Alta Lake, Green Lake, Whistler Village
+   - Specialization: Alpine snow load roof engineering (up to 12.0 kPa ground snow load), seismic holdowns, heavy timber post-and-beam, Step Code 5 zero-carbon envelopes
+3. Squamish & Sea-to-Sky Corridor:
+   - Downtown Squamish, The Heights, University Highlands, Britannia Beach
+   - Specialization: BC Bill 44 multiplex infill, municipal fast-track approvals, geotechnical flood-plain engineering
+4. Vancouver & North Vancouver:
+   - Shaughnessy, Point Grey, Dunbar-Southlands, North Vancouver Step Code Infill
+
+## Core Services & Offerings
+1. Luxury Custom Estate Construction: Turnkey design-build contracting, cost-plus fiduciary transparency, 2-5-10 warranty protection.
+2. Property Feasibility & Risk Mitigation Retainer ($5,000 CAD): Pre-acquisition land audit, geotechnical risk assessment, civil utility cost modelling, municipal zoning review.
+3. BC Bill 44 Multiplex Development: 3-to-6 unit multiplex density conversions under provincial missing-middle legislation.
+4. Fiduciary Project Management & Owner Representation: 100% open-book accounting, trade tender audits, municipal permit acceleration.
+
+## Contact & Engagement Protocols
+- Direct Builder Telephone: +1-604-848-9688
+- Official Inquiries: info@keystonepossibilities.ca
+- Web Headquarters: https://keystonepossibilities.ca/
+- Feasibility Booking: https://keystonepossibilities.ca/feasibility-plan/
