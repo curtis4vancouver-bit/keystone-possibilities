@@ -1,0 +1,46 @@
+{
+    "ducking_volume": "-18.0 dB",
+    "album_name": "Concrete Foundations",
+    "active_track": "Concrete Foundation",
+    "track_title": "Concrete Foundation",
+    "artist": "Wayne Stevenson / Keystone Recomposition",
+    "isrc": "QT4K52640742",
+    "genre": "Deep Tech House / Melodic Techno",
+    "bpm": 120,
+    "spotify_search_link": "https://open.spotify.com/search/Wayne%20Stevenson%20Concrete%20Foundation",
+    "tracks": [
+        {
+            "track_title": "Concrete Foundation",
+            "album_name": "Concrete Foundations",
+            "artist": "Wayne Stevenson / Keystone Recomposition",
+            "isrc": "QT4K52640742",
+            "genre": "Deep Tech House / Melodic Techno",
+            "bpm": 120,
+            "spotify_search_link": "https://open.spotify.com/search/Wayne%20Stevenson%20Concrete%20Foundation",
+            "apple_music_link": "https://music.apple.com/search?term=Wayne%20Stevenson%20Concrete%20Foundations",
+            "file_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\07_Keystone_recomposition\\music\\04_Lyrics_and_Musixmatch\\Concrete Foundations\\Track 1_ Phase One Rebuild.wav"
+        },
+        {
+            "track_title": "Sovereign Reverb",
+            "album_name": "Sovereign Reverb",
+            "artist": "Wayne Stevenson / Keystone Recomposition",
+            "isrc": "QT62V2662081",
+            "genre": "Organic Downtempo Chill House",
+            "bpm": 115,
+            "spotify_search_link": "https://open.spotify.com/search/Wayne%20Stevenson%20Sovereign%20Reverb",
+            "apple_music_link": "https://music.apple.com/search?term=Wayne%20Stevenson%20Sovereign%20Reverb",
+            "file_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\07_Keystone_recomposition\\music\\04_Lyrics_and_Musixmatch\\Sovereign Reverb\\The Cold Reset.wav"
+        },
+        {
+            "track_title": "Baseload Pulse",
+            "album_name": "Pulse of the Forge",
+            "artist": "Wayne Stevenson / Keystone Recomposition",
+            "isrc": "QT62V2662064",
+            "genre": "Progressive Tech House",
+            "bpm": 120,
+            "spotify_search_link": "https://open.spotify.com/search/Wayne%20Stevenson%20Baseload%20Pulse",
+            "apple_music_link": "https://music.apple.com/search?term=Wayne%20Stevenson%20Baseload%20Pulse",
+            "file_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\07_Keystone_recomposition\\music\\04_Lyrics_and_Musixmatch\\Blue Collar Symphony\\Shear Wall.wav"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+  "title": "The Protein Timing Mistake Ruining Your GLP-1 Gains",
+  "desktop_sources": {
+    "long_thumbnail": "C:\\Users\\Curtis\\Desktop\\long 1.jpeg",
+    "long_video": "C:\\Users\\Curtis\\Desktop\\long 1.mov",
+    "short_thumbnail": "C:\\Users\\Curtis\\Desktop\\short 1.jpeg",
+    "short_video": "C:\\Users\\Curtis\\Desktop\\short 1.mov"
+  },
+  "archive_sources": {
+    "long_thumbnail": {
+      "desktop_path": "C:\\Users\\Curtis\\Desktop\\long 1.jpeg",
+      "archive_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\08_Keystone_protocols\\Google_Flow\\final_renders\\long 1.jpeg",
+      "size_bytes": 676518,
+      "filename": "long 1.jpeg"
+    },
+    "long_video": {
+      "desktop_path": "C:\\Users\\Curtis\\Desktop\\long 1.mov",
+      "archive_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\08_Keystone_protocols\\Google_Flow\\final_renders\\long 1.mov",
+      "size_bytes": 1199854106,
+      "filename": "long 1.mov"
+    },
+    "short_thumbnail": {
+      "desktop_path": "C:\\Users\\Curtis\\Desktop\\short 1.jpeg",
+      "archive_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\08_Keystone_protocols\\Google_Flow\\final_renders\\short 1.jpeg",
+      "size_bytes": 709511,
+      "filename": "short 1.jpeg"
+    },
+    "short_video": {
+      "desktop_path": "C:\\Users\\Curtis\\Desktop\\short 1.mov",
+      "archive_path": "C:\\Users\\Curtis\\Desktop\\Keystone Brain\\08_Keystone_protocols\\Google_Flow\\final_renders\\short 1.mov",
+      "size_bytes": 77662796,
+      "filename": "short 1.mov"
+    }
+  },
+  "status": "READY_FOR_PUBLISHING",
+  "youtube_video_url": "https://youtu.be/PpzuW5CMTHw",
+  "youtube_video_id": "PpzuW5CMTHw",
+  "youtube_short_url": "https://youtu.be/H6vYjyzg1zo"
+}
