@@ -63,6 +63,7 @@ function keystone_possibilities_process_lead($data) {
     $phone        = sanitize_text_field($data['phone'] ?? $data['phoneNumber'] ?? '');
     $project_type = sanitize_text_field($data['project_type'] ?? $data['service'] ?? 'General Consultation / Feasibility');
     $location     = sanitize_text_field($data['location'] ?? $data['city'] ?? $data['region'] ?? 'Sea-to-Sky / Metro Vancouver');
+    $lot_address  = sanitize_text_field($data['lot_address'] ?? $data['lotAddress'] ?? $data['address'] ?? '');
     $budget       = sanitize_text_field($data['budget'] ?? 'Not Specified');
     $message      = sanitize_textarea_field($data['message'] ?? $data['details'] ?? $data['notes'] ?? $data['scope'] ?? '');
     $source_url   = esc_url_raw($data['source_url'] ?? $_SERVER['HTTP_REFERER'] ?? home_url());
@@ -82,6 +83,7 @@ function keystone_possibilities_process_lead($data) {
         'phone'        => $phone,
         'project_type' => $project_type,
         'location'     => $location,
+        'lot_address'  => $lot_address,
         'budget'       => $budget,
         'message'      => $message,
         'source_url'   => $source_url,
@@ -103,7 +105,8 @@ function keystone_possibilities_process_lead($data) {
 
     // 3. Dispatch Instant Notification to Wayne Stevenson
     $to = 'keystonepossibilities@gmail.com';
-    $subject = '🏛️ [NEW INQUIRY] ' . $name . ' — ' . $project_type . ' (' . $location . ')';
+    $subject_loc = !empty($lot_address) ? $lot_address : $location;
+    $subject = '🏛️ [NEW INQUIRY] ' . $name . ' — ' . $project_type . ' (' . $subject_loc . ')';
 
     $headers = array(
         'Content-Type: text/html; charset=UTF-8',
@@ -140,6 +143,7 @@ function keystone_possibilities_process_lead($data) {
             <div class="row"><span class="label">Client Name:</span><span class="value"><strong>' . esc_html($name) . '</strong></span></div>
             <div class="row"><span class="label">Email:</span><span class="value"><a href="mailto:' . esc_attr($email) . '" style="color:#00f0ff;">' . esc_html($email) . '</a></span></div>
             <div class="row"><span class="label">Phone:</span><span class="value"><a href="tel:' . esc_attr($phone) . '" style="color:#00f0ff;">' . esc_html($phone) . '</a></span></div>
+            ' . (!empty($lot_address) ? '<div class="row"><span class="label">Project Lot Address:</span><span class="value" style="color:#f6d365; font-weight:700;">' . esc_html($lot_address) . '</span></div>' : '') . '
             <div class="row"><span class="label">Project Scope:</span><span class="value">' . esc_html($project_type) . '</span></div>
             <div class="row"><span class="label">Location / Site:</span><span class="value">' . esc_html($location) . '</span></div>
             <div class="row"><span class="label">Estimated Budget:</span><span class="value">' . esc_html($budget) . '</span></div>
@@ -156,7 +160,10 @@ function keystone_possibilities_process_lead($data) {
     </body>
     </html>';
 
-    @wp_mail($to, $subject, $body, $headers);
+    $mail_sent = @wp_mail($to, $subject, $body, $headers);
+    if (!$mail_sent) {
+        error_log('Keystone Lead Dispatch Warning: wp_mail failed to dispatch notification for lead ID: ' . $lead_record['id']);
+    }
 
     return new WP_REST_Response(array(
         'success' => true,
@@ -254,11 +261,11 @@ function keystone_possibilities_render_lead_form_script() {
         const forms = document.querySelectorAll('form');
         forms.forEach(function (form) {
             // Check if this is the consultation / contact form
-            const hasName = form.querySelector('input[type="text"], input[placeholder*="Doe"], input[placeholder*="Name"]');
+            const hasName = form.querySelector('input[type="text"], input[placeholder*="Doe" i], input[placeholder*="Name" i], input[placeholder*="First" i], input[placeholder*="Surname" i]');
             const hasEmail = form.querySelector('input[type="email"]');
             const hasSubmit = form.querySelector('button[type="submit"], input[type="submit"]');
 
-            if (hasName && hasEmail && hasSubmit) {
+            if ((hasName || hasEmail) && hasSubmit) {
                 // Remove legacy inline onsubmit alert if present
                 form.removeAttribute('onsubmit');
 
@@ -269,26 +276,43 @@ function keystone_possibilities_render_lead_form_script() {
                     const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
                     const origBtnText = submitBtn ? submitBtn.innerHTML : 'Submit';
 
-                    // Collect input values
-                    const nameInput = form.querySelector('input[placeholder*="Doe"], input[placeholder*="Name"], input[type="text"]');
+                    // Collect multi-part name inputs (First Name + Surname)
+                    const firstNameInput = form.querySelector('input[placeholder*="First" i], input[name*="first" i], input[placeholder*="FIRST" i]');
+                    const lastNameInput = form.querySelector('input[placeholder*="Surname" i], input[placeholder*="Last" i], input[name*="last" i], input[name*="surname" i], input[placeholder*="SURNAME" i]');
+                    let clientName = '';
+                    if (firstNameInput && lastNameInput) {
+                        clientName = (firstNameInput.value.trim() + ' ' + lastNameInput.value.trim()).trim();
+                    } else if (firstNameInput) {
+                        clientName = firstNameInput.value.trim();
+                    } else {
+                        const generalNameInput = form.querySelector('input[placeholder*="Doe" i], input[placeholder*="Name" i], input[name*="name" i], input[type="text"]');
+                        clientName = generalNameInput ? generalNameInput.value.trim() : '';
+                    }
+
+                    // Extract Project Lot Address if present on multiplex landing pages
+                    const lotAddressInput = form.querySelector('input[placeholder*="ADDRESS" i], input[placeholder*="LOT" i], input[name*="address" i], input[name*="lot" i], input[placeholder*="Address" i], input[placeholder*="Lot" i]');
+                    const lotAddress = lotAddressInput ? lotAddressInput.value.trim() : '';
+
                     const emailInput = form.querySelector('input[type="email"]');
                     const phoneInput = form.querySelector('input[type="tel"], input[placeholder*="000"]');
                     const regionSelect = form.querySelector('select');
                     const detailsInput = form.querySelector('textarea');
 
                     const payload = {
-                        name: nameInput ? nameInput.value.trim() : '',
+                        name: clientName || 'Prospective Client',
                         email: emailInput ? emailInput.value.trim() : '',
                         phone: phoneInput ? phoneInput.value.trim() : '',
-                        location: regionSelect ? regionSelect.value : '',
-                        message: detailsInput ? detailsInput.value.trim() : '',
-                        project_type: 'Direct Consultation Request',
+                        location: regionSelect ? regionSelect.value : (lotAddress || 'Sea-to-Sky / Greater Vancouver'),
+                        lot_address: lotAddress,
+                        message: (detailsInput ? detailsInput.value.trim() : '') + (lotAddress ? (detailsInput && detailsInput.value.trim() ? '\n' : '') + '[Site / Lot Address: ' + lotAddress + ']' : ''),
+                        project_type: form.getAttribute('data-project-type') || (lotAddress ? 'Multiplex Infill / Feasibility Inquiry' : 'Direct Consultation Request'),
                         source_url: window.location.href
                     };
 
-                    if (!payload.name) {
+                    if (!clientName && !payload.name) {
                         alert('Please enter your name.');
-                        if (nameInput) nameInput.focus();
+                        if (firstNameInput) firstNameInput.focus();
+                        else if (form.querySelector('input[type="text"]')) form.querySelector('input[type="text"]').focus();
                         return;
                     }
                     if (!payload.email && !payload.phone) {

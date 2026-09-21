@@ -41,6 +41,8 @@ if (file_exists(__DIR__ . '/inc/portfolio-residences.php')) {
     require_once __DIR__ . '/inc/portfolio-residences.php';
 }
 require_once __DIR__ . '/inc/lead-capture.php';
+require_once __DIR__ . '/inc/bill44-estimator.php';
+require_once __DIR__ . '/inc/client-portal-demo.php';
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
 add_shortcode('keystone_video', 'keystone_possibilities_lazy_video_shortcode');
@@ -79,6 +81,38 @@ function keystone_possibilities_lazy_video_shortcode($atts) {
 }
 
 // ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
+
+// Tier 1: Natively exclude 'category' taxonomy from Rank Math sitemap generation
+add_filter('rank_math/sitemap/exclude_taxonomy', function (bool $exclude, string $type): bool {
+    if ('category' === $type) {
+        return true;
+    }
+    return $exclude;
+}, 10, 2);
+
+// Enforce strict exclusion of empty terms across all remaining taxonomies
+add_filter('rank_math/sitemap/exclude_empty_terms', '__return_true');
+
+// Tier 2: Guardrail - Strip category-sitemap from sitemap_index.xml XML output
+add_filter('rank_math/sitemap/index', function (string $xml): string {
+    $pattern = '/<sitemap>\s*<loc>[^<]*category-sitemap\.xml<\/loc>.*?<\/sitemap>\s*/is';
+    $cleaned = preg_replace($pattern, '', $xml);
+    return is_string($cleaned) ? $cleaned : $xml;
+}, 11);
+
+// Tier 3: Intercept direct requests to category-sitemap.xml and return HTTP 410 Gone
+add_action('template_redirect', function (): void {
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    if (preg_match('#/category-sitemap(?:[0-9]+)?\.xml(\.gz)?$#i', (string) $request_uri) === 1) {
+        status_header(410);
+        nocache_headers();
+        header('Content-Type: text/plain; charset=utf-8');
+        header('X-Robots-Tag: noindex, nofollow');
+        echo '410 Gone: category-sitemap.xml has been intentionally retired and removed from sitemap_index.xml.';
+        exit;
+    }
+}, 0);
+
 add_filter('rank_math/sitemap/entry', 'keystone_possibilities_sanitize_rank_math_sitemap', 10, 3);
 function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object) {
     if (empty($url) || !is_array($url) || empty($url['loc'])) {
@@ -400,7 +434,7 @@ function keystone_possibilities_ensure_watch_theater($content) {
     }
 
     // Check if an iframe already exists in the first 300 characters
-    $first_chunk = substr(trim(strip_tags($content, '<iframe>')), 0, 300);
+    $first_chunk = substr(trim(strip_tags($content ?? '', '<iframe>')), 0, 300);
     if (stripos($first_chunk, '<iframe') !== false) {
         return $content;
     }
