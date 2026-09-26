@@ -22,22 +22,22 @@ function keystone_possibilities_inject_master_schema() {
         "@graph" => array(
             // Primary Business Entity
             array(
-                "@type" => array("ConstructionBusiness", "GeneralContractor", "HomeAndConstructionBusiness"),
+                "@type" => array("GeneralContractor", "HomeAndConstructionBusiness", "LocalBusiness"),
                 "@id" => "https://keystonepossibilities.ca/#organization",
-                "name" => "Keystone Possibilities Ltd",
+                "name" => "Keystone Possibilities Ltd.",
                 "legalName" => "Keystone Possibilities Ltd.",
                 "url" => "https://keystonepossibilities.ca",
                 "logo" => array(
                     "@type" => "ImageObject",
                     "@id" => "https://keystonepossibilities.ca/#logo",
-                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
-                    "contentUrl" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
+                    "url" => "https://keystonepossibilities.ca/wp-content/themes/astra-child/assets/final-logo-ks4.png",
+                    "contentUrl" => "https://keystonepossibilities.ca/wp-content/themes/astra-child/assets/final-logo-ks4.png",
                     "caption" => "Keystone Possibilities Ltd — BC Builder License #52603"
                 ),
-                "image" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
+                "image" => "https://keystonepossibilities.ca/wp-content/themes/astra-child/assets/final-logo-ks4.png",
                 "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in BC Bill 44 multiplex conversions, custom luxury estate construction, and fiduciary project management across Squamish, Whistler, Pemberton, West Vancouver, and North Vancouver.",
                 "telephone" => "+1-604-848-9688",
-                "email" => "info@keystonepossibilities.ca",
+                "email" => "wayne@keystonepossibilities.ca",
                 "priceRange" => "$$$$",
                 "currenciesAccepted" => "CAD",
                 "paymentAccepted" => "Bank Transfer, Check, Financing",
@@ -67,13 +67,58 @@ function keystone_possibilities_inject_master_schema() {
                         "https://keystonerecomposition.com"
                     )
                 ),
+                "hasCredential" => array(
+                    "@type" => "EducationalOccupationalCredential",
+                    "@id" => "https://keystonepossibilities.ca/#bc-housing-licence",
+                    "credentialCategory" => "license",
+                    "name" => "BC Housing Licensed Residential Builder",
+                    "recognizedBy" => array(
+                        "@type" => "GovernmentOrganization",
+                        "name" => "BC Housing Licensing and Consumer Services",
+                        "url" => "https://www.bchousing.org"
+                    ),
+                    "identifier" => "52603",
+                    "validIn" => array(
+                        "@type" => "AdministrativeArea",
+                        "name" => "British Columbia",
+                        "sameAs" => "https://www.wikidata.org/wiki/Q1973"
+                    ),
+                    "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
+                ),
+                "hasCertification" => array(
+                    array(
+                        "@type" => "Certification",
+                        "@id" => "https://keystonepossibilities.ca/#bc-hydro-es54",
+                        "name" => "BC Hydro ES54 Registered Civil Contractor",
+                        "issuedBy" => array(
+                            "@type" => "Organization",
+                            "name" => "British Columbia Hydro and Power Authority",
+                            "url" => "https://www.bchydro.com"
+                        ),
+                        "certificationIdentification" => "ES54 Civil Underground Specification",
+                        "certificationStatus" => "https://schema.org/ActiveActionStatus",
+                        "description" => "Authorized contractor status for underground electrical distribution, trenching, vaults, pull boxes, and DB2 conduit installations meeting BC Hydro technical standards."
+                    ),
+                    array(
+                        "@type" => "Certification",
+                        "@id" => "https://keystonepossibilities.ca/#warranty-2-5-10",
+                        "name" => "Mandatory 2-5-10 Year New Home Warranty Insurance",
+                        "issuedBy" => array(
+                            "@type" => "Organization",
+                            "name" => "WBI Home Warranty / National Home Warranty",
+                            "url" => "https://wbihomewarranty.com"
+                        ),
+                        "certificationStatus" => "https://schema.org/ActiveActionStatus",
+                        "description" => "Comprehensive provincial new home warranty under the BC Homeowner Protection Act: 2 years on labour and materials, 5 years on the building envelope moisture barrier, and 10 years on structural load-bearing components."
+                    )
+                ),
                 "identifier" => array(
                     array(
                         "@type" => "PropertyValue",
                         "propertyID" => "BC Housing Licensed Residential Builder",
                         "name" => "BC Housing Builder License",
                         "value" => "52603",
-                        "url" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
+                        "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
                     ),
                     array(
                         "@type" => "PropertyValue",
@@ -88,7 +133,6 @@ function keystone_possibilities_inject_master_schema() {
                         "value" => "2-5-10 Year Mandatory Home Warranty Protection (WBI / National Home Warranty)"
                     )
                 ),
-                "license" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search",
                 "address" => array(
                     "@type" => "PostalAddress",
                     "streetAddress" => "1 Watts Point Road",
@@ -103,23 +147,17 @@ function keystone_possibilities_inject_master_schema() {
                     "longitude" => -123.1508
                 ),
                 "areaServed" => array(
-                    array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
-                    array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
-                    array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
-                    array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
-                    array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
+                    array("@type" => "City", "name" => "Squamish", "sameAs" => "https://www.wikidata.org/wiki/Q1018260", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7016, "longitude" => -123.1558)),
+                    array("@type" => "City", "name" => "Whistler", "sameAs" => "https://www.wikidata.org/wiki/Q798606", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1163, "longitude" => -122.9574)),
+                    array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://www.wikidata.org/wiki/Q610897", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3280, "longitude" => -123.1602)),
+                    array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://www.wikidata.org/wiki/Q2047805", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3199, "longitude" => -123.0724)),
+                    array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://www.wikidata.org/wiki/Q2463", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.2827, "longitude" => -123.1207)),
+                    array("@type" => "City", "name" => "Burnaby", "sameAs" => "https://www.wikidata.org/wiki/Q243764", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.2488, "longitude" => -122.9805)),
+                    array("@type" => "City", "name" => "Richmond", "sameAs" => "https://www.wikidata.org/wiki/Q506307", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.1666, "longitude" => -123.1336)),
+                    array("@type" => "City", "name" => "Surrey", "sameAs" => "https://www.wikidata.org/wiki/Q652431", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.1913, "longitude" => -122.8490)),
+                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://www.wikidata.org/wiki/Q1026040", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.3167, "longitude" => -122.8000)),
                     array("@type" => "AdministrativeArea", "name" => "British Properties, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3458, "longitude" => -123.1425)),
-                    array("@type" => "AdministrativeArea", "name" => "Caulfeild, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3512, "longitude" => -123.2389)),
-                    array("@type" => "AdministrativeArea", "name" => "Altamont, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3421, "longitude" => -123.2085)),
-                    array("@type" => "AdministrativeArea", "name" => "Dundarave, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3338, "longitude" => -123.1812)),
-                    array("@type" => "AdministrativeArea", "name" => "Sunridge Plateau, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1163, "longitude" => -122.9574)),
-                    array("@type" => "AdministrativeArea", "name" => "Kadenwood, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.0987, "longitude" => -122.9754)),
-                    array("@type" => "AdministrativeArea", "name" => "Alta Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1121, "longitude" => -122.9812)),
-                    array("@type" => "AdministrativeArea", "name" => "Green Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1450, "longitude" => -122.9410)),
-                    array("@type" => "AdministrativeArea", "name" => "The Heights, Squamish", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7350, "longitude" => -123.1320)),
-                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
-                    array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
-                    array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach")
+                    array("@type" => "AdministrativeArea", "name" => "Kadenwood, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.0987, "longitude" => -122.9754))
                 ),
                 "knowsAbout" => array(
                     "BC Building Code 2024",
