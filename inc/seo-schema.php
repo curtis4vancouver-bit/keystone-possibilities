@@ -608,20 +608,53 @@ function keystone_possibilities_render_empire_footer() {
 // ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
 add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
 add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = null ) {
-    if ( empty( $url['loc'] ) ) return $url;
+    if ( empty( $url ) || ! is_array( $url ) || empty( $url['loc'] ) ) {
+        return false;
+    }
+    $loc = (string) $url['loc'];
     $excluded_patterns = array(
-        '/tag/', '/author/', '/date/', 'sample-page', 'test', 'demo', 'wp-admin'
+        '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin', 'wp-login',
+        'about-us-general-contractor-squamish.html', 'squamish-custom-home-builder', 'squamish-general-contractor',
+        'west-vancouver-luxury-builder', 'whistler-luxury-home-builder', 'whistler-luxury-builder',
+        'north-vancouver-home-builder', 'feasibility-study', 'cjc-1295-ipamorelin-glp-1-fatigue',
+        'mounjaro-muscle-loss', 'retatrutide-phase-3-data', 'wolverine-stack', 'glp-1', 'peptide',
+        'the-journey', 'keystone_recomposition', '52603', 'pemberton-luxury-builder',
+        'bc-hydro-registered-civil-contractor', '.html'
     );
     foreach ( $excluded_patterns as $pat ) {
-        if ( stripos( $url['loc'], $pat ) !== false ) {
+        if ( stripos( $loc, $pat ) !== false ) {
             return false;
         }
+    }
+    if ( preg_match( '~^https?://[^/]+/\d{4}/(?:\d{2}/)?$~i', $loc ) ) {
+        return false;
     }
     return $url;
 }, 10, 3 );
 
 // ── 5. Sanitize robots.txt & Expose AI Crawler Directives (/llms.txt) ─────────
 add_filter( 'robots_txt', function( $output, $public ) {
-    $custom = "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\n";
-    return $custom;
+    $sitemap_url = home_url( '/sitemap_index.xml' );
+    $robots = "User-agent: *\n";
+    $robots .= "Disallow: /wp-admin/\n";
+    $robots .= "Allow: /wp-admin/admin-ajax.php\n";
+    $robots .= "Allow: /wp-content/uploads/\n";
+    $robots .= "Allow: /wp-content/themes/\n";
+    $robots .= "Allow: /wp-includes/\n";
+    $robots .= "Disallow: /wp-content/plugins/\n";
+    $robots .= "Disallow: /readme.html\n";
+    $robots .= "Disallow: /license.txt\n";
+    $robots .= "Disallow: /search/\n";
+    $robots .= "Disallow: /?s=\n";
+    $robots .= "Disallow: /*.html$\n\n";
+
+    $robots .= "# AI Search Engine Crawlers Explicit Directives\n";
+    $robots .= "User-agent: GPTBot\nAllow: /\n\n";
+    $robots .= "User-agent: ClaudeBot\nAllow: /\n\n";
+    $robots .= "User-agent: PerplexityBot\nAllow: /\n\n";
+    $robots .= "User-agent: Google-Extended\nAllow: /\n\n";
+    $robots .= "User-agent: CCBot\nAllow: /\n\n";
+
+    $robots .= "Sitemap: " . esc_url( $sitemap_url ) . "\n";
+    return $robots;
 }, 99, 2 );

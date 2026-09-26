@@ -638,3 +638,106 @@ header.entry-header {
     max-width: 900px !important;
 }
 
+/* ==========================================================================
+   High-Performance Quiet Luxury Media Facade Engine (.luxury-video-facade)
+   ========================================================================== */
+.luxury-video-facade {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 880px !important;
+    margin: 25px auto 35px auto !important;
+    min-height: 480px !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    border: 1px solid var(--gold-border, rgba(212, 175, 55, 0.45)) !important;
+    border-radius: var(--radius-card, 18px) !important;
+    background-color: #000000 !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), var(--gold-glow, 0 0 20px rgba(212, 175, 55, 0.25)) !important;
+    cursor: pointer !important;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease !important;
+}
+
+@media (max-width: 768px) {
+    .luxury-video-facade {
+        min-height: 220px !important;
+        margin: 15px auto 25px auto !important;
+    }
+}
+
+.luxury-video-facade:hover {
+    border-color: rgba(212, 175, 55, 0.8) !important;
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25), 0 0 25px rgba(0, 240, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+
+.luxury-video-facade .facade-background {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: opacity 0.5s ease !important;
+    z-index: 1 !important;
+}
+
+.luxury-video-facade .facade-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 100%) !important;
+    transition: opacity 0.5s ease !important;
+    z-index: 2 !important;
+}
+
+.luxury-video-facade .play-button {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 64px !important;
+    height: 64px !important;
+    background: rgba(10, 15, 25, 0.85) !important;
+    border: 2px solid rgba(212, 175, 55, 0.5) !important;
+    border-radius: 50% !important;
+    color: var(--gold-light, #f6d365) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 3 !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7) !important;
+}
+
+.luxury-video-facade:hover .play-button {
+    background: var(--gold-primary, #d4af37) !important;
+    color: #04070d !important;
+    border-color: #ffffff !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6) !important;
+}
+
+.luxury-video-facade .play-icon {
+    width: 24px !important;
+    height: 24px !important;
+    margin-left: 3px !important;
+    transition: fill 0.3s ease !important;
+}
+
+.luxury-video-facade iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10 !important;
+    border-radius: var(--radius-card, 18px) !important;
+    border: 0 !important;
+}
+
+

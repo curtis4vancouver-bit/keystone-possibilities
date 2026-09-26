@@ -10,7 +10,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const initVideoFacades = () => {
         // Query all premium video placeholders on the page
-        const facades = document.querySelectorAll('.luxury-video-facade');
+        const facades = document.querySelectorAll('.luxury-video-facade, .keystone-lazy-video-container');
         
         facades.forEach(facade => {
             // Register isolated play click trigger

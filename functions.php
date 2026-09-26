@@ -62,19 +62,30 @@ function keystone_possibilities_lazy_video_shortcode($atts) {
     
     $bg_img = '';
     if (!empty($args['placeholder_img'])) {
-        $bg_img = 'background-image: url(' . esc_url($args['placeholder_img']) . ');';
+        $bg_img = esc_url($args['placeholder_img']);
     } else {
-        $bg_img = 'background-image: url(https://i.ytimg.com/vi_webp/' . $media_id . '/maxresdefault.webp);';
+        $bg_img = 'https://i.ytimg.com/vi_webp/' . $media_id . '/maxresdefault.webp';
     }
 
     ob_start();
     ?>
-    <div class="keystone-lazy-video-container" data-video-id="<?php echo $media_id; ?>" data-video-type="<?php echo $media_type; ?>" style="<?php echo $bg_img; ?> background-size: cover; background-position: center; border-radius: 16px; position: relative; overflow: hidden; aspect-ratio: 16/9; max-width: 900px; margin: 30px auto; border: 1px solid rgba(0, 240, 255, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
-        <button class="keystone-play-button" aria-label="Play Construction Overview Video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; background: rgba(0, 240, 255, 0.85); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(0, 240, 255, 0.6); transition: transform 0.2s ease, background 0.2s ease;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="#000" style="margin-left: 4px;">
-                <path d="M8 5v14l11-7z"/>
+    <div class="luxury-video-facade keystone-lazy-video-container" 
+         data-video-id="<?php echo $media_id; ?>" 
+         data-video-type="<?php echo $media_type; ?>" 
+         role="region" 
+         aria-label="Video Player Placeholder">
+        
+        <div class="facade-background" style="background-image: url('<?php echo $bg_img; ?>');"></div>
+        <div class="facade-overlay"></div>
+        
+        <button class="play-button keystone-play-button" aria-label="Play Construction Overview Video">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
             </svg>
         </button>
+        <noscript>
+            <iframe src="https://www.youtube.com/embed/<?php echo $media_id; ?>?rel=0" width="100%" height="100%" style="position: absolute; top: 0; left: 0;" frameborder="0" allowfullscreen></iframe>
+        </noscript>
     </div>
     <?php
     return ob_get_clean();
@@ -82,9 +93,9 @@ function keystone_possibilities_lazy_video_shortcode($atts) {
 
 // ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
 
-// Tier 1: Natively exclude 'category' taxonomy from Rank Math sitemap generation
+// Tier 1: Natively exclude 'category', 'post_tag', and 'post_format' taxonomies from Rank Math sitemap generation
 add_filter('rank_math/sitemap/exclude_taxonomy', function (bool $exclude, string $type): bool {
-    if ('category' === $type) {
+    if (in_array($type, array('category', 'post_tag', 'post_format'), true)) {
         return true;
     }
     return $exclude;
@@ -144,6 +155,9 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
         'peptide',
         'the-journey',
         'keystone_recomposition',
+        '52603',
+        'pemberton-luxury-builder',
+        'bc-hydro-registered-civil-contractor',
         '/tag/',
         '/author/',
         '/date/',
@@ -154,6 +168,11 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
         if (stripos($loc, $pat) !== false) {
             return false; // Strips from XML sitemap
         }
+    }
+
+    // Filter pure date archives (e.g. /2026/ or /2026/05/)
+    if (preg_match('~^https?://[^/]+/\d{4}/(?:\d{2}/)?$~i', $loc)) {
+        return false;
     }
 
     // Boundary-aware check for standalone test and demo slugs
@@ -195,9 +214,18 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
 // Disable sitemap caching for instant updates
 add_filter('rank_math/sitemap/enable_caching', '__return_false');
 
-// Dynamic Robots Noindex for Thin Archives (Resolves Crawled - Not Indexed)
+// Dynamic Robots Noindex for Thin Archives (Resolves 37 Crawled - Not Indexed GSC notices)
+add_filter('rank_math/frontend/robots', function (array $robots): array {
+    if (is_tag() || is_category() || is_date() || is_author() || is_search() || is_paged() || is_404()) {
+        $robots['index']  = 'noindex';
+        $robots['follow'] = 'follow';
+        unset($robots['noindex']);
+    }
+    return $robots;
+}, 10, 1);
+
 add_action('wp_head', function () {
-    if (is_tag() || is_date() || is_author() || is_search() || is_404()) {
+    if (is_tag() || is_date() || is_author() || is_search() || is_404() || is_category() || is_paged()) {
         echo '<meta name="robots" content="noindex, follow" />' . "\n";
     }
 }, 1);
@@ -209,8 +237,8 @@ add_filter('rank_math/schema/video', '__return_empty_array');
 // ── 4.5. 301 Redirect, /llms.txt & 410 Handler ──────────────────────────────
 add_action('template_redirect', 'keystone_possibilities_handle_301_410_redirects', 1);
 function keystone_possibilities_handle_301_410_redirects() {
-    $uri = $_SERVER['REQUEST_URI'] ?? '';
-    $path = strtok($uri, '?');
+    $uri = (string) ( $_SERVER['REQUEST_URI'] ?? '' );
+    $path = (string) strtok($uri, '?');
     
     // Serve /llms.txt dynamically for AI search engines (Perplexity, ChatGPT, Claude)
     if ($path === '/llms.txt' || $path === 'llms.txt') {
@@ -282,7 +310,7 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/the-journey/',
     );
 
-    $normalized_path = '/' . trim($path, '/') . '/';
+    $normalized_path = '/' . trim((string) $path, '/') . '/';
     if (in_array($normalized_path, $gone_paths, true)) {
         status_header(410);
         nocache_headers();
