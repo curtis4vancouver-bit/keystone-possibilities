@@ -578,3 +578,7 @@ function keystone_possibilities_render_carousel_script() {
 }
 
 
+
+// ── Disarm Jetpack Photon CDN (Serve 100% Direct Origin High-Res Images) ───
+add_filter('jetpack_photon_skip_image', '__return_true');
+add_filter('jetpack_photon_pre_image_url', function($url, $args) { return $url; }, 10, 2);

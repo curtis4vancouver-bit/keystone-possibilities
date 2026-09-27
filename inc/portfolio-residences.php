@@ -185,7 +185,7 @@ function kp_portfolio_residences_carousels_shortcode() {
 
     <!-- CENTERED CROPPED HERO BANNER -->
     <div class="portfolio-hero-banner-wrapper">
-        <img src="https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2026/05/Modern_luxury_home_forest8_202605011201.jpeg?ssl=1" alt="Keystone Possibilities Master Luxury Home Build" class="portfolio-hero-banner-img">
+        <img src="https://keystonepossibilities.ca/wp-content/uploads/2026/05/Modern_luxury_home_forest8_202605011201.jpeg?ssl=1" alt="Keystone Possibilities Master Luxury Home Build" class="portfolio-hero-banner-img">
     </div>
 
     <div class="residences-master-wrapper">
@@ -204,11 +204,11 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $west_ridge_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.32-pm.png?resize=1580%2C1274&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.40-pm.png?resize=994%2C892&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.48-pm.png?resize=982%2C824&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.53-pm.png?resize=824%2C728&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.55.02-pm.png?resize=796%2C1298&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.32-pm.png?resize=1580%2C1274&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.40-pm.png?resize=994%2C892&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.48-pm.png?resize=982%2C824&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.54.53-pm.png?resize=824%2C728&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.55.02-pm.png?resize=796%2C1298&ssl=1"
                 ];
                 foreach ($west_ridge_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -238,11 +238,11 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $ballantree_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.57.48-pm.png?resize=1870%2C1086&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.58.07-pm.png?resize=2592%2C1410&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.58.16-pm.png?resize=1292%2C1304&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.29-pm.png?resize=1558%2C616&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.23-pm.png?resize=1498%2C700&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.57.48-pm.png?resize=1870%2C1086&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.58.07-pm.png?resize=2592%2C1410&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.58.16-pm.png?resize=1292%2C1304&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.29-pm.png?resize=1558%2C616&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.23-pm.png?resize=1498%2C700&ssl=1"
                 ];
                 foreach ($ballantree_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -272,14 +272,14 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $dickinson_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.02.40-pm.png?resize=1892%2C1460&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.38-pm.png?resize=1616%2C738&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.31-pm.png?resize=1464%2C704&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.02.54-pm.png?resize=2600%2C1174&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.39-pm.png?resize=2630%2C1356&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.05-pm.png?resize=1318%2C760&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.12-pm.png?resize=1348%2C622&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.56-pm.png?resize=2574%2C1332&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.02.40-pm.png?resize=1892%2C1460&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.38-pm.png?resize=1616%2C738&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.31-pm.png?resize=1464%2C704&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.02.54-pm.png?resize=2600%2C1174&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.39-pm.png?resize=2630%2C1356&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.05-pm.png?resize=1318%2C760&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.03.12-pm.png?resize=1348%2C622&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.04.56-pm.png?resize=2574%2C1332&ssl=1"
                 ];
                 foreach ($dickinson_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -309,16 +309,16 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $st_andrews_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.07.36-pm.png?resize=1938%2C1064&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.11-pm.png?resize=854%2C622&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.16-pm.png?resize=842%2C722&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.21-pm.png?resize=844%2C678&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.27-pm.png?resize=828%2C664&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.33-pm.png?resize=1256%2C890&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.38-pm.png?resize=1242%2C950&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.46-pm.png?resize=1162%2C956&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.54-pm.png?resize=1146%2C948&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.09.00-pm.png?resize=1160%2C882&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.07.36-pm.png?resize=1938%2C1064&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.11-pm.png?resize=854%2C622&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.16-pm.png?resize=842%2C722&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.21-pm.png?resize=844%2C678&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.27-pm.png?resize=828%2C664&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.33-pm.png?resize=1256%2C890&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.38-pm.png?resize=1242%2C950&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.46-pm.png?resize=1162%2C956&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.08.54-pm.png?resize=1146%2C948&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.09.00-pm.png?resize=1160%2C882&ssl=1"
                 ];
                 foreach ($st_andrews_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -348,9 +348,9 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $prima_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.12.46-pm.png?resize=1818%2C984&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.12.55-pm.png?resize=1516%2C722&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.13.00-pm.png?resize=1178%2C1200&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.12.46-pm.png?resize=1818%2C984&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.12.55-pm.png?resize=1516%2C722&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.13.00-pm.png?resize=1178%2C1200&ssl=1"
                 ];
                 foreach ($prima_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -380,14 +380,14 @@ function kp_portfolio_residences_carousels_shortcode() {
             <div class="residence-carousel-track">
                 <?php
                 $sunridge_imgs = [
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.07-pm.png?resize=2288%2C1172&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.14-pm.png?resize=2592%2C1252&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.22-pm.png?resize=2492%2C1246&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.30-pm.png?resize=2540%2C1244&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.38-pm.png?resize=2530%2C1224&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.45-pm.png?resize=2318%2C1174&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.51-pm.png?resize=2318%2C1154&ssl=1",
-                    "https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.56-pm.png?resize=2412%2C1174&ssl=1"
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.07-pm.png?resize=2288%2C1172&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.14-pm.png?resize=2592%2C1252&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.22-pm.png?resize=2492%2C1246&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.30-pm.png?resize=2540%2C1244&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.38-pm.png?resize=2530%2C1224&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.45-pm.png?resize=2318%2C1174&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.51-pm.png?resize=2318%2C1154&ssl=1",
+                    "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.14.56-pm.png?resize=2412%2C1174&ssl=1"
                 ];
                 foreach ($sunridge_imgs as $idx => $img_url) : ?>
                     <div class="residence-card">
@@ -416,7 +416,7 @@ function kp_portfolio_residences_carousels_shortcode() {
             </h3>
             <div class="residence-carousel-track">
                 <div class="residence-card">
-                    <img src="https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.43-pm.png?resize=1812%2C940&ssl=1" alt="Piper Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.43-pm.png?resize=1812%2C940&ssl=1', 'PIPER RESIDENCE &bull; SECHELT, BC')">
+                    <img src="https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.43-pm.png?resize=1812%2C940&ssl=1" alt="Piper Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.43-pm.png?resize=1812%2C940&ssl=1', 'PIPER RESIDENCE &bull; SECHELT, BC')">
                 </div>
             </div>
             <div class="residence-breakdown-box">
@@ -440,7 +440,7 @@ function kp_portfolio_residences_carousels_shortcode() {
             </h3>
             <div class="residence-carousel-track">
                 <div class="residence-card">
-                    <img src="https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.52-pm.png?resize=1724%2C1130&ssl=1" alt="Compass Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.52-pm.png?resize=1724%2C1130&ssl=1', 'COMPASS RESIDENCE &bull; SECHELT, BC')">
+                    <img src="https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.52-pm.png?resize=1724%2C1130&ssl=1" alt="Compass Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.19.52-pm.png?resize=1724%2C1130&ssl=1', 'COMPASS RESIDENCE &bull; SECHELT, BC')">
                 </div>
             </div>
             <div class="residence-breakdown-box">
@@ -464,7 +464,7 @@ function kp_portfolio_residences_carousels_shortcode() {
             </h3>
             <div class="residence-carousel-track">
                 <div class="residence-card">
-                    <img src="https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.20.00-pm.png?resize=1802%2C872&ssl=1" alt="Sullivan Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://i0.wp.com/keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.20.00-pm.png?resize=1802%2C872&ssl=1', 'SULLIVAN RESIDENCE &bull; SECHELT, BC')">
+                    <img src="https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.20.00-pm.png?resize=1802%2C872&ssl=1" alt="Sullivan Residence Sechelt" class="residence-img" onclick="openResidenceLightbox('https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-4.20.00-pm.png?resize=1802%2C872&ssl=1', 'SULLIVAN RESIDENCE &bull; SECHELT, BC')">
                 </div>
             </div>
             <div class="residence-breakdown-box">
@@ -486,7 +486,7 @@ function kp_portfolio_residences_carousels_shortcode() {
     <div id="residence-lightbox-modal" onclick="closeResidenceLightbox(event)">
         <div class="lightbox-modal-content" onclick="event.stopPropagation()">
             <span class="lightbox-close-icon" onclick="closeResidenceLightbox(event)">&times;</span>
-            <img id="residence-lightbox-target-img" src="" alt="Residence Full View">
+            <img id="residence-lightbox-target-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Residence Full View">
             <div id="residence-lightbox-target-caption" class="lightbox-caption-text"></div>
         </div>
     </div>
