@@ -37,11 +37,15 @@ function keystone_possibilities_add_defer_attribute($tag, $handle) {
 
 // ── 2. Require Master JSON-LD Schema, Portfolio & Lead Capture Engines ──────
 require_once __DIR__ . '/inc/seo-schema.php';
+// Prevent duplicate empire bar output from seo-schema.php (retains clean integrated blue mesh bar)
+remove_action('wp_footer', 'keystone_possibilities_render_empire_footer', 30);
 if (file_exists(__DIR__ . '/inc/portfolio-residences.php')) {
     require_once __DIR__ . '/inc/portfolio-residences.php';
 }
 require_once __DIR__ . '/inc/lead-capture.php';
 require_once __DIR__ . '/inc/bill44-estimator.php';
+// Disable automatic appending of legacy Bill 44 estimator on /feasibility-plan/ (replaces with clean luxury 1-box calculator)
+remove_filter('the_content', 'keystone_possibilities_inject_feasibility_tools', 20);
 require_once __DIR__ . '/inc/client-portal-demo.php';
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
@@ -319,48 +323,106 @@ function keystone_possibilities_handle_301_410_redirects() {
     }
 }
 
-// ── 5. Regional SEO/GEO Footer Mesh (Resolves GSC Crawl & Orphan Errors) ─────
-add_action('wp_footer', 'keystone_possibilities_render_geo_mesh', 20);
-function keystone_possibilities_render_geo_mesh() {
+// ── 5. Master Luxury Footer & Global Color Harmonization Standard ──────────
+// 1. Suppress Astra Default Footer Markup globally
+remove_action('astra_footer', 'astra_footer_markup');
+
+// 2. Render Unified Master Luxury Footer
+add_action('wp_footer', 'keystone_possibilities_render_master_luxury_footer', 20);
+function keystone_possibilities_render_master_luxury_footer() {
     ?>
-    <div class="keystone-geo-footer-mesh" style="border-top:1px solid rgba(255,255,255,0.08); padding:28px 20px; background:#070b14; color:#94a3b8; font-size:0.82rem; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-        <div style="max-width:1200px; margin:0 auto;">
-            <div style="color:#00f0ff; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; font-size:0.75rem; display:flex; align-items:center; gap:8px;">
-                <span>🏛️</span> KEYSTONE POSSIBILITIES — REGIONAL DIVISIONS & SPECIALIZED SERVICES
+    <footer id="kp-master-luxury-footer" class="kp-master-luxury-footer" style="background-color: #04070D !important; border-top: 1px solid rgba(212, 175, 55, 0.25); padding: 48px 20px calc(5rem + env(safe-area-inset-bottom, 0px)) 20px; color: #94A3B8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 0.84rem; text-align: center; position: relative; z-index: 10; width: 100%; box-sizing: border-box; overflow-x: clip;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <!-- A. Centered Social Matrix & YouTube Subscribe Directing -->
+            <div style="margin-bottom: 24px;">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px;">
+                    
+                    <!-- Facebook Page -->
+                    <a href="https://www.facebook.com/profile.php?id=61554185128555" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="Facebook Page" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+
+                    <!-- Instagram Account -->
+                    <a href="https://www.instagram.com/keystonepossibilities" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="Instagram Account" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.13-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+
+                    <!-- YouTube Official Channel -->
+                    <a href="https://www.youtube.com/@KeystonePossibilities" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+
+                    <!-- High-Converting YouTube Channel Subscribe Pill -->
+                    <a href="https://www.youtube.com/@KeystonePossibilities?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" style="filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>SUBSCRIBE &bull; @KeystonePossibilities</span>
+                    </a>
+
+                </div>
             </div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; line-height:1.6;">
-                <div>
-                    <strong style="color:#fff; display:block; margin-bottom:6px; font-size:0.85rem;">Sea-to-Sky Corridor:</strong>
-                    <a href="/squamish-custom-homes/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• Squamish Custom Home Builder</a>
-                    <a href="/whistler-custom-homes/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• Whistler Luxury Estate Builder</a>
-                    <a href="/pemberton-luxury-builder/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• Pemberton Acreage Builder</a>
+
+            <!-- B. Centered High-End Copyright & Credentials -->
+            <div style="margin-bottom: 32px; line-height: 1.6;">
+                <p style="margin: 0 0 6px 0; color: #CBD5E1; font-weight: 500; font-size: 0.86rem; letter-spacing: 0.02em;">
+                    Copyright &copy; 2023–2026 Keystone Possibilities Ltd &bull; All Rights Reserved.
+                </p>
+                <p style="margin: 0; color: #c5a059; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;">
+                    Certified BC Housing Residential Builder #52603 &bull; Fiduciary CCDC 5B Construction Management
+                </p>
+            </div>
+
+            <!-- C. Regional Divisions & Specialized Services 4-Column Mesh (Unified Obsidian & Gold) -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 24px; text-align: left;">
+                <div style="color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 16px; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;">
+                    <span>🏛️</span> KEYSTONE POSSIBILITIES — REGIONAL DIVISIONS &amp; SPECIALIZED SERVICES
                 </div>
-                <div>
-                    <strong style="color:#fff; display:block; margin-bottom:6px; font-size:0.85rem;">Metro Vancouver:</strong>
-                    <a href="/north-vancouver-custom-homes/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• North Vancouver Luxury Builder</a>
-                    <a href="/north-vancouver-multiplex-conversions/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• North Vancouver Bill 44 Multiplex</a>
-                    <a href="/west-vancouver-custom-homes/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• West Vancouver Steep Slope Builds</a>
-                </div>
-                <div>
-                    <strong style="color:#fff; display:block; margin-bottom:6px; font-size:0.85rem;">Civil & Fiduciary PM:</strong>
-                    <a href="/bc-hydro-registered-civil-contractor/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• BC Hydro Civil Utility Contractor</a>
-                    <a href="/feasibility-plan/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• Construction Feasibility Studies</a>
-                    <a href="/private-investors/" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:4px; transition:color 0.2s;">• Private Investor Joint Ventures</a>
-                </div>
-                <div>
-                    <strong style="color:#fff; display:block; margin-bottom:6px; font-size:0.85rem;">Direct Authority & Contact:</strong>
-                    <span style="color:#94a3b8; display:block; margin-bottom:4px;">BC Housing License #52603</span>
-                    <a href="tel:+16048489688" style="color:#00f0ff; text-decoration:none; font-weight:700; display:block; margin-bottom:4px; font-size:0.9rem;">📞 (604) 848-9688</a>
-                    <a href="/contact-general-contractor-squamish/" style="color:#94a3b8; text-decoration:none; display:block; transition:color 0.2s;">• Schedule Fiduciary Consultation</a>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; line-height: 1.6;">
+                    <div>
+                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Sea-to-Sky Corridor:</strong>
+                        <a href="/squamish-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Squamish Custom Home Builder</a>
+                        <a href="/whistler-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Whistler Luxury Estate Builder</a>
+                        <a href="/pemberton-luxury-builder/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Pemberton Acreage Builder</a>
+                    </div>
+                    <div>
+                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver:</strong>
+                        <a href="/north-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Luxury Builder</a>
+                        <a href="/north-vancouver-multiplex-conversions/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Bill 44 Multiplex</a>
+                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
+                    </div>
+                    <div>
+                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Civil &amp; Fiduciary PM:</strong>
+                        <a href="/bc-hydro-registered-civil-contractor/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• BC Hydro Civil Utility Contractor</a>
+                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Construction Feasibility Studies</a>
+                        <a href="/private-investors/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Private Investor Joint Ventures</a>
+                    </div>
+                    <div>
+                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Direct Authority &amp; Contact:</strong>
+                        <span style="color: #94a3b8; display: block; margin-bottom: 4px;">BC Housing License #52603</span>
+                        <a href="tel:+16048489688" style="color: #f6d365; text-decoration: none !important; font-weight: 700; display: block; margin-bottom: 6px; font-size: 0.90rem;">📞 (604) 848-9688</a>
+                        <a href="/contact-general-contractor-squamish/" style="color: #94a3b8; text-decoration: none !important; display: block; transition: color 0.2s ease;">• Schedule Fiduciary Consultation</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- D. Standardized Keystone Empire Network Bar (Gold & Obsidian Continuity) -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.80rem; color: #94a3b8;">
+                <div>
+                    <span style="color: #d4af37; font-weight: 700; letter-spacing: 0.04em;">⚔️ KEYSTONE EMPIRE NETWORK</span> | Keystone Possibilities — BC Building Code &amp; Construction Consulting
+                </div>
+                <div>
+                    Sister Flagship: <a href="https://keystonerecomposition.com/ai-protocols/" target="_blank" rel="noopener noreferrer" style="color: #f6d365; text-decoration: none !important; font-weight: 600;">Keystone Recomposition — Production AI Protocols, AI Music &amp; Lifestyle Investments &rarr;</a>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </footer>
     <a href="tel:+16048489688" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
         <span>📞 (604) 848-9688</span>
     </a>
     <?php
 }
+
 // ── 6. Real-Time Brand Sanitization & Zero CSS Leak Filter ──────────────────
 add_filter('the_content', 'keystone_possibilities_sanitize_content_output', 999);
 function keystone_possibilities_sanitize_content_output($content) {
@@ -582,3 +644,463 @@ function keystone_possibilities_render_carousel_script() {
 // ── Disarm Jetpack Photon CDN (Serve 100% Direct Origin High-Res Images) ───
 add_filter('jetpack_photon_skip_image', '__return_true');
 add_filter('jetpack_photon_pre_image_url', function($url, $args) { return $url; }, 10, 2);
+// =============================================================================
+// KEYSTONE POSSIBILITIES — 2026 ARCHITECTURAL DARK QUIET LUXURY HEADER & FOOTER
+// Certified BC Housing Builder #52603 | Wayne Stevenson Master Builder Engine
+// =============================================================================
+
+add_action('wp_head', 'keystone_possibilities_luxury_header_overrides', 99);
+function keystone_possibilities_luxury_header_overrides() {
+    ?>
+    <style id="keystone-luxury-header-overrides">
+        /* Main Header Dark Luxury Styling */
+        #masthead {
+            background-color: #05080E !important;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.22) !important;
+        }
+        .site-primary-header-wrap {
+            max-width: 1680px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+        }
+        .ast-builder-grid-row {
+            grid-template-columns: auto 1fr auto !important;
+            align-items: center !important;
+        }
+        .site-header-primary-section-left {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+        }
+        .site-header-primary-section-left-center {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+        }
+        /* Wayne's Real Logo Badge Lockup */
+        .brand-edge-logo {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            text-decoration: none !important;
+            padding: 4px 0 !important;
+            transition: opacity 0.2s ease !important;
+            flex-shrink: 0 !important;
+        }
+        .brand-edge-logo:hover {
+            opacity: 0.9 !important;
+        }
+        .kp-badge-mark {
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 9px !important;
+            overflow: hidden !important;
+            border: none !important;
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.45) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: transparent !important;
+            flex-shrink: 0 !important;
+        }
+        .kp-badge-img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+            display: block !important;
+        }
+        .brand-title-wrap {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            line-height: 1.15 !important;
+        }
+        .brand-title-wrap .title-main {
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.92rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.06em !important;
+            text-transform: uppercase !important;
+            color: #FFFFFF !important;
+            white-space: nowrap !important;
+        }
+        .brand-title-wrap .title-sub {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.65rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.14em !important;
+            text-transform: uppercase !important;
+            color: #D4AF37 !important;
+            white-space: nowrap !important;
+            margin-top: 1px !important;
+        }
+        /* Navigation Links: Perfectly Centered in Header */
+        .site-header-primary-section-center {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+        }
+        #ast-hf-menu-1 {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin: 0 auto !important;
+        }
+        #ast-hf-menu-1 > li > a {
+            font-size: 0.78rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.06em !important;
+            padding: 0 10px !important;
+            color: #CBD5E1 !important;
+            text-transform: uppercase !important;
+            transition: color 0.2s ease !important;
+        }
+        #ast-hf-menu-1 > li > a:hover {
+            color: #E6C275 !important;
+        }
+        #ast-hf-menu-1 > li.current-menu-item > a {
+            color: #D4AF37 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Luxury Form Select & Input Standards (Zero Text Clipping) */
+        .kp-feasibility-page-wrapper select,
+        .kp-feasibility-page-wrapper input[type="text"],
+        .kp-feasibility-page-wrapper input[type="tel"],
+        .kp-feasibility-page-wrapper input[type="email"] {
+            height: 52px !important;
+            min-height: 52px !important;
+            line-height: 52px !important;
+            padding: 0 16px !important;
+            font-size: 0.95rem !important;
+            box-sizing: border-box !important;
+            background-color: #070b14 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(212, 175, 55, 0.4) !important;
+            border-radius: 8px !important;
+            display: block !important;
+        }
+        .kp-feasibility-page-wrapper select option {
+            background-color: #070b14 !important;
+            color: #ffffff !important;
+            padding: 10px !important;
+        }
+        /* Hide Astra Default Footer on Home Page */
+        .home #colophon {
+            display: none !important;
+        }
+        .home .keystone-mobile-call-bar {
+            display: none !important;
+        }
+
+        /* Feasibility Plan (Page 1409) Layout & Title Suppression */
+        .page-id-1409 .entry-header,
+        .page-id-1409 .ast-single-post-order,
+        .page-id-1409 .entry-title,
+        .page-id-1409 #colophon,
+        .page-id-1409 .keystone-mobile-call-bar {
+            display: none !important;
+        }
+        .page-id-1409 .site-content {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            background-color: #04070d !important;
+        }
+        .page-id-1409 .ast-container {
+            max-width: 100% !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-top: 0 !important;
+            margin: 0 !important;
+        }
+        .page-id-1409 #primary {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .page-id-1409 .ast-article-single {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .page-id-1409 .entry-content {
+            margin-top: 0 !important;
+        }
+        .page-id-1409 .entry-content[data-ast-blocks-layout] > *,
+        .page-id-1409 .entry-content > *,
+        .page-id-1409 .kp-feasibility-page-wrapper {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        /* =========================================================================
+           GLOBAL LUXURY SUITE PAGE TITLE SUPPRESSION & FULL-BLEED ARCHITECTURE
+           Pages: 1255 (Civil), 1219 (Investors), 2 (About Us), 114 (Portfolio), 547 (Series)
+           ========================================================================= */
+        .page-id-283 .entry-header,
+        .page-id-283 .ast-single-post-order,
+        .page-id-283 .entry-title,
+        .page-id-283 #colophon,
+        .page-id-283 .keystone-mobile-call-bar,
+        .page-id-1255 .entry-header,
+        .page-id-1255 .ast-single-post-order,
+        .page-id-1255 .entry-title,
+        .page-id-1255 #colophon,
+        .page-id-1255 .keystone-mobile-call-bar,
+        .page-id-1219 .entry-header,
+        .page-id-1219 .ast-single-post-order,
+        .page-id-1219 .entry-title,
+        .page-id-1219 #colophon,
+        .page-id-1219 .keystone-mobile-call-bar,
+        .page-id-2 .entry-header,
+        .page-id-2 .ast-single-post-order,
+        .page-id-2 .entry-title,
+        .page-id-2 #colophon,
+        .page-id-2 .keystone-mobile-call-bar,
+        .page-id-114 .entry-header,
+        .page-id-114 .ast-single-post-order,
+        .page-id-114 .entry-title,
+        .page-id-114 #colophon,
+        .page-id-114 .keystone-mobile-call-bar,
+        .page-id-547 .entry-header,
+        .page-id-547 .ast-single-post-order,
+        .page-id-547 .entry-title,
+        .page-id-547 #colophon,
+        .page-id-547 .keystone-mobile-call-bar {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            visibility: hidden !important;
+            position: absolute !important;
+            pointer-events: none !important;
+        }
+
+        .page-id-283 .site-content,
+        .page-id-1255 .site-content,
+        .page-id-1219 .site-content,
+        .page-id-2 .site-content,
+        .page-id-114 .site-content,
+        .page-id-547 .site-content {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            background-color: #04070d !important;
+        }
+
+        .page-id-283 .ast-container,
+        .page-id-1255 .ast-container,
+        .page-id-1219 .ast-container,
+        .page-id-2 .ast-container,
+        .page-id-114 .ast-container,
+        .page-id-547 .ast-container {
+            max-width: 100% !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-top: 0 !important;
+            margin: 0 !important;
+        }
+
+        .page-id-283 #primary,
+        .page-id-1255 #primary,
+        .page-id-1219 #primary,
+        .page-id-2 #primary,
+        .page-id-114 #primary,
+        .page-id-547 #primary {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .page-id-283 .ast-article-single,
+        .page-id-1255 .ast-article-single,
+        .page-id-1219 .ast-article-single,
+        .page-id-2 .ast-article-single,
+        .page-id-114 .ast-article-single,
+        .page-id-547 .ast-article-single {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .page-id-283 .entry-content,
+        .page-id-1255 .entry-content,
+        .page-id-1219 .entry-content,
+        .page-id-2 .entry-content,
+        .page-id-114 .entry-content,
+        .page-id-547 .entry-content {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        /* Wayne's Gold Button Law Across All Pages */
+        a.btn-gold-action,
+        a[style*="linear-gradient"],
+        .kp-btn-primary,
+        .kp-btn-gold {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            font-weight: 800 !important;
+        }
+        a.btn-gold-action *,
+        a[style*="linear-gradient"] *,
+        .kp-btn-primary *,
+        .kp-btn-gold * {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            font-weight: 800 !important;
+        }
+
+
+        /* Luxury Button & Card Classes */
+        .kp-btn-primary {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: linear-gradient(135deg, #d4af37 0%, #c4a265 50%, #aa8232 100%) !important;
+            color: #04070d !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 900 !important;
+            font-size: 0.92rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.08em !important;
+            padding: 13px 28px !important;
+            border-radius: 9999px !important;
+            text-decoration: none !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+            border: 1px solid #f6d365 !important;
+            transition: all 0.25s ease !important;
+            cursor: pointer !important;
+        }
+        .kp-btn-primary:hover {
+            background: linear-gradient(135deg, #f6d365 0%, #d4af37 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6) !important;
+            color: #04070d !important;
+        }
+        .kp-btn-secondary {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            color: #ffffff !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 0.92rem !important;
+            letter-spacing: 0.05em !important;
+            padding: 13px 26px !important;
+            border-radius: 9999px !important;
+            text-decoration: none !important;
+            border: 1px solid rgba(212, 175, 55, 0.45) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+            transition: all 0.25s ease !important;
+            cursor: pointer !important;
+        }
+        .kp-btn-secondary:hover {
+            border-color: #00f0ff !important;
+            color: #00f0ff !important;
+            transform: translateY(-2px) !important;
+        }
+        .kp-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(4, 7, 13, 0.98) 100%) !important;
+            border: 1px solid rgba(212, 175, 55, 0.35) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7) !important;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+        }
+        .kp-card:hover {
+            border-color: rgba(212, 175, 55, 0.65) !important;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.2) !important;
+            transform: translateY(-3px) !important;
+        }
+        .kp-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.78rem !important;
+            font-weight: 800 !important;
+            color: #f6d365 !important;
+            background: rgba(212, 175, 55, 0.12) !important;
+            padding: 6px 16px !important;
+            border-radius: 9999px !important;
+            border: 1px solid rgba(212, 175, 55, 0.35) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.1em !important;
+        }
+        .kp-gold-glow {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.06em !important;
+            color: #d4af37 !important;
+            background: none !important;
+            -webkit-text-fill-color: initial !important;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.4) !important;
+        }
+
+        /* Feasibility Plan Responsive Grid & Mobile Standards */
+        @media (max-width: 980px) {
+            .kp-grid-3col {
+                grid-template-columns: 1fr !important;
+            }
+            .kp-grid-2col {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media (max-width: 680px) {
+            .kp-feasibility-page-wrapper {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+            #fiduciary-calculator div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            form[action*="contact-general-contractor-squamish"] {
+                grid-template-columns: 1fr !important;
+            }
+            form[action*="contact-general-contractor-squamish"] > div {
+                grid-column: span 1 !important;
+            }
+        }
+    </style>
+    <?php
+}
+
+add_action('wp_footer', 'keystone_possibilities_mount_header_logo_script', 99);
+function keystone_possibilities_mount_header_logo_script() {
+    ?>
+    <script id="keystone-mount-logo-engine">
+    (function() {
+        function injectLogo() {
+            var left = document.querySelector('.site-header-primary-section-left-center');
+            if (left && !left.querySelector('.brand-edge-logo')) {
+                left.innerHTML = '<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="brand-edge-logo" aria-label="Keystone Possibilities Ltd. Home">' +
+                    '<div class="kp-badge-mark">' +
+                    '<img src="https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png" alt="Keystone Possibilities Ltd." class="kp-badge-img">' +
+                    '</div>' +
+                    '<div class="brand-title-wrap">' +
+                    '<span class="title-main">KEYSTONE POSSIBILITIES</span>' +
+                    '<span class="title-sub">LICENSED BUILDER #52603</span>' +
+                    '</div>' +
+                    '</a>';
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectLogo);
+        } else {
+            injectLogo();
+        }
+    })();
+    </script>
+    <?php
+}
+
+// ── Cleanly Suppress Astra Default Entry Titles Across All Pages ─────────────
+add_filter('astra_the_title_enabled', 'keystone_possibilities_suppress_page_titles', 10, 1);
+function keystone_possibilities_suppress_page_titles($enabled) {
+    if (is_page()) {
+        return false;
+    }
+    return $enabled;
+}
+add_filter('rank_math/sitemap/enable_caching', '__return_false');

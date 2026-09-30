@@ -104,7 +104,7 @@ function keystone_possibilities_process_lead($data) {
     update_option('keystone_leads_log', $leads_log, false);
 
     // 3. Dispatch Instant Notification to Wayne Stevenson
-    $to = 'keystonepossibilities@gmail.com';
+    $to = 'keystone4vancouver@gmail.com, keystonepossibilities@gmail.com';
     $subject_loc = !empty($lot_address) ? $lot_address : $location;
     $subject = '🏛️ [NEW INQUIRY] ' . $name . ' — ' . $project_type . ' (' . $subject_loc . ')';
 
