@@ -1104,3 +1104,23 @@ function keystone_possibilities_suppress_page_titles($enabled) {
     return $enabled;
 }
 add_filter('rank_math/sitemap/enable_caching', '__return_false');
+
+// ── Cleanly Suppress Astra Default Featured Image Banners Across All Pages ──
+add_filter('astra_featured_image_enabled', function($enabled) {
+    if (is_page()) {
+        return false;
+    }
+    return $enabled;
+}, 99);
+add_filter('astra_blog_post_thumb_enabled', function($enabled) {
+    if (is_page()) {
+        return false;
+    }
+    return $enabled;
+}, 99);
+add_filter('astra_page_post_thumb_enabled', function($enabled) {
+    if (is_page()) {
+        return false;
+    }
+    return $enabled;
+}, 99);

@@ -2826,3 +2826,36 @@ body.page-id-283 #content {
 .page-id-283 textarea {
     font-size: 16px !important;
 }
+
+/* =========================================================================
+   KEYSTONE POSSIBILITIES: TOP FEATURED IMAGE BANNER SUPPRESSION ON ALL PAGES
+   ========================================================================= */
+.page .ast-single-post-featured-section,
+.page .post-thumb.ast-article-image-container--wide,
+.page .ast-article-single > .post-thumb,
+.page .entry-content > .wp-post-image,
+.page .wp-post-image.size-large:first-child {
+    display: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Elegant Constrained Framing for Single Blog Post Media */
+.single-post .ast-single-post-featured-section,
+.single-post .post-thumb {
+    max-width: 960px !important;
+    margin: 0 auto 24px auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+.single-post .ast-single-post-featured-section img,
+.single-post .post-thumb img {
+    max-height: 420px !important;
+    object-fit: cover !important;
+    width: 100% !important;
+}
