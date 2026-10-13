@@ -1,0 +1,327 @@
+{
+  "ok": true,
+  "context": "protocols",
+  "day": 4,
+  "video_count": 26,
+  "broll_count": 25,
+  "chips": [
+    "__WAYNE_AVATAR__",
+    "cloth_1",
+    "background_1"
+  ],
+  "ref_assets": {
+    "background_1": "Studio photo of a solid clean black studio background with minimal subtle golden rim lighting coming in from off screen, deep matte shadows, zero clutter, minimal elements to prevent video glitches, 8K resolution",
+    "cloth_1": "Studio photo of luxury athletic wear laying flat on black ground, fine-gauge Italian charcoal technical long-sleeve crewneck pullover with tailored cuffed wrists paired with dark technical obsidian joggers, strictly long sleeves covering wrists, zero logos, 8K resolution"
+  },
+  "clips": [
+    {
+      "clip_id": "000401",
+      "title": "Clip 000401: 00:00\u201300:10 \u2014 WELCOME BACK TO KEYSTONE AI",
+      "speaker": "wayne",
+      "script": "Welcome back to Keystone AI Protocols. I am Wayne Stevenson's AI twin, demonstrating why fragile JSON API calls cause autonomous multi-agent coding swarms to collapse.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter in dark charcoal technical pullover speaks with calm authority, raising his hands naturally to shoulder height before settling them in a measured framing stance, making direct eye contact with the lens as ambient golden studio rim light highlights his shoulders in 8K resolution"
+    },
+    {
+      "clip_id": "000402",
+      "title": "Clip 000402: 00:10\u201300:20 \u2014 WHEN YOU INSTRUCT RAW LARGE",
+      "speaker": "wayne",
+      "script": "When you instruct raw large language models to invoke external tools without strict schemas, they hallucinate parameter names, corrupt types, and trigger silent execution crashes.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter makes an open-hand warning gesture toward a semi-transparent floating JSON error code card flashing crimson in mid-air, subtle head nod conveying seasoned builder experience in 8K resolution"
+    },
+    {
+      "clip_id": "000403",
+      "title": "Clip 000403: 00:20\u201300:30 \u2014 IN COMMERCIAL CONSTRUCTION, YOU WOULD",
+      "speaker": "wayne",
+      "script": "In commercial construction, you would never let an apprentice guess roof truss dimensions on site with a dull handsaw and zero certified engineering blueprints.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter makes a natural leveling palm gesture, turning slightly toward the left side of frame with a subtle torso pivot, using a firm downward hand motion to emphasize structural stability and ground-level reality in 8K resolution"
+    },
+    {
+      "clip_id": "000404",
+      "title": "Clip 000404: 00:30\u201300:40 \u2014 YOU ORDER FACTORY-ENGINEERED, STAMPED",
+      "speaker": "wayne",
+      "script": "You order factory-engineered, stamped trusses designed to carry calculated snow loads, craning them onto framed wall plates where every single joint locks into place.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter raises both hands upward in an authoritative arch to illustrate roof truss geometry, smoothly lowering them to chest level as fingers interlock to represent solid structural framing in 8K resolution"
+    },
+    {
+      "clip_id": "000405",
+      "title": "Clip 000405: 00:40\u201300:50 \u2014 FASTMCP IS THE STAMPED STRUCTURAL",
+      "speaker": "wayne",
+      "script": "FastMCP is the stamped structural engineering blueprint for autonomous agent swarms, locking input and output interfaces into rigid, unshakeable Python Pydantic type definitions.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter gestures toward luminescent semi-transparent 3D holographic wireframe telemetry floating weightlessly at chest height in the studio space, glowing in crisp electric cyan and warm amber-gold vector lines with typed FastMCP schemas in 8K resolution"
+    },
+    {
+      "clip_id": "000406",
+      "title": "Clip 000406: 00:50\u201301:00 \u2014 INSTEAD OF PASSING LOOSE DICTIONARY",
+      "speaker": "wayne",
+      "script": "Instead of passing loose dictionary payloads over HTTP endpoints, FastMCP establishes typed contracts across standard input and output channels or dedicated local system sockets.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter points firmly to two parallel cyan laser lines connecting across mid-air, hands tracking the steady horizontal data conduit with confident physical precision in 8K resolution"
+    },
+    {
+      "clip_id": "000407",
+      "title": "Clip 000407: 01:00\u201301:10 \u2014 THINK OF POURING A FORTY-YARD",
+      "speaker": "wayne",
+      "script": "Think of pouring a forty-yard commercial concrete foundation. You need high hydraulic line pressure, continuous aggregate flow, and a skilled crew vibrating every void.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter uses deliberate two-handed pumping and pressing down motions to illustrate continuous hydraulic line pressure and high-velocity throughput, shifting weight naturally like an experienced builder on site in 8K resolution"
+    },
+    {
+      "clip_id": "000408",
+      "title": "Clip 000408: 01:10\u201301:20 \u2014 IF YOUR CONCRETE PUMP HOSE",
+      "speaker": "wayne",
+      "script": "If your concrete pump hose blows a coupling mid-pour, your aggregate stops flowing, creating dangerous cold joints that permanently destroy the structural foundation.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter opens his hands abruptly with a controlled parting gesture to depict a broken coupling, expression serious and direct as an amber structural stress hologram highlights a cold joint in 8K resolution"
+    },
+    {
+      "clip_id": "000409",
+      "title": "Clip 000409: 01:20\u201301:30 \u2014 UNVALIDATED API REQUESTS BEHAVE LIKE",
+      "speaker": "guest",
+      "script": "Unvalidated API requests behave like that ruptured concrete line, spraying malformed JSON arguments across your memory buffers and halting your autonomous build pipeline.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter holds up a firm stop-hand gesture, shaking his head slightly, body grounded in calm poise as fragmented red code particles dissolve into the dark studio space in 8K resolution"
+    },
+    {
+      "clip_id": "000410",
+      "title": "Clip 000410: 01:30\u201301:40 \u2014 WITH FASTMCP, EVERY TOOL PARAMETER",
+      "speaker": "wayne",
+      "script": "With FastMCP, every tool parameter undergoes instantaneous runtime validation before your child subagents execute a single line of local shell or file code.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter gestures naturally with right hand toward a chest-height volumetric hologram, glancing over with authentic builder focus as glowing cyan schemas validate with a green checkmark on screen in 8K resolution"
+    },
+    {
+      "clip_id": "000411",
+      "title": "Clip 000411: 01:40\u201301:50 \u2014 ON OUR PHYSICAL WORKSTATION, WE",
+      "speaker": "wayne",
+      "script": "On our physical workstation, we operate detached background services communicating through typed FastMCP contracts across dedicated internal ports from ninety-eight seventy-six upwards.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter turns slightly toward camera right, gesturing toward a floating port telemetry display showing ports 9876 to 9890 active in solid green with sub-millisecond ping times in 8K resolution"
+    },
+    {
+      "clip_id": "000412",
+      "title": "Clip 000412: 01:50\u201302:00 \u2014 WHEN OUR DISCOVERY AGENT PASSES",
+      "speaker": "wayne",
+      "script": "When our discovery agent passes requirements to our architecture subagent, the payload matches the exact schema without missing keys or distorted parameter types.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter brings both palms together in an exact seamless interlocking motion, demonstrating flawless socket handshake and zero data leakage across agents in 8K resolution"
+    },
+    {
+      "clip_id": "000413",
+      "title": "Clip 000413: 02:00\u201302:10 \u2014 NOTICE THE ARCHITECTURAL DIFFERENCE: MONOLITHIC",
+      "speaker": "wayne",
+      "script": "Notice the architectural difference: monolithic web APIs force agents to parse unstructured string documentation, guessing whether an argument expects integers or nested objects.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter contrasts left and right hands, holding an open messy scroll on his left and a crisp compact blueprint card on his right, eyes assessing both with sharp analytical clarity in 8K resolution"
+    },
+    {
+      "clip_id": "000414",
+      "title": "Clip 000414: 02:10\u201302:20 \u2014 FASTMCP SERVES MACHINE-READABLE JSON SCHEMAS",
+      "speaker": "wayne",
+      "script": "FastMCP serves machine-readable JSON schemas directly to the model context, eliminating ambiguous tool prompts and slashing token consumption by over forty percent.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter executes a crisp downward slicing gesture with his right hand, indicating radical token reduction while glowing amber metrics flash -40% TOKEN LOAD in 8K resolution"
+    },
+    {
+      "clip_id": "000415",
+      "title": "Clip 000415: 02:20\u201302:30 \u2014 IN OUR RIGOROUS TESTING ACROSS",
+      "speaker": "wayne",
+      "script": "In our rigorous testing across complex multi-agent refactors, typed FastMCP contracts reduced runtime execution exceptions from twenty-eight percent down to absolute zero.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter displays a closed fist opening to a flat steady palm, indicating rock-solid stability as a bold cyan graphic reading 0.0% RUNTIME FAILURES locks into place in 8K resolution"
+    },
+    {
+      "clip_id": "000416",
+      "title": "Clip 000416: 02:30\u201302:40 \u2014 THAT MEANS ZERO BROKEN SUBPROCESS",
+      "speaker": "wayne",
+      "script": "That means zero broken subprocess calls, zero corrupted file writes, and zero stalled background workers waiting indefinitely on malformed network socket handshakes.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter takes one step forward with grounded physical presence, gesturing authoritatively with steady eye contact and rhythmic hand cadences reinforcing each milestone in 8K resolution"
+    },
+    {
+      "clip_id": "000417",
+      "title": "Clip 000417: 02:40\u201302:50 \u2014 JUST LIKE GALVANIZED ANCHOR BOLTS",
+      "speaker": "wayne",
+      "script": "Just like galvanized anchor bolts set deep into cured foundation concrete, FastMCP pins your autonomous subagents firmly to real operating system resources.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter drives a firm, grounded downward fist gesture onto his open palm to signify structural anchor bolts locking into cured concrete, calm authoritative posture with subtle head nod in 8K resolution"
+    },
+    {
+      "clip_id": "000418",
+      "title": "Clip 000418: 02:50\u201303:00 \u2014 YOUR AGENTS CAN SAFELY INSPECT",
+      "speaker": "wayne",
+      "script": "Your agents can safely inspect live Chrome browser tabs, compile native desktop Rust binaries, and update vector memory indexes without drifting off course.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter gestures across three floating glowing HUD panels showing Chrome CDP Port 9222, Tauri Cargo build output, and celestial vector brain nodes in 8K resolution"
+    },
+    {
+      "clip_id": "000419",
+      "title": "Clip 000419: 03:00\u201303:10 \u2014 NOW COMPARE THIS SOVEREIGN SETUP",
+      "speaker": "wayne",
+      "script": "Now compare this sovereign setup to hosted cloud platforms that charge high monthly subscriptions while wrapping flimsy webhook calls in proprietary black-box dashboards.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter folds arms thoughtfully with a wry builder smile, shaking his head slightly at expensive SaaS wrappers as a floating red receipt reading $300/MO RENT dissolves in 8K resolution"
+    },
+    {
+      "clip_id": "000420",
+      "title": "Clip 000420: 03:10\u201303:20 \u2014 WHEN THEIR CLOUD SERVERS GLITCH",
+      "speaker": "wayne",
+      "script": "When their cloud servers glitch or rate limits throttle, your entire automated engineering pipeline stalls, and your proprietary codebase remains trapped on third-party servers.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter holds up an open palm signaling a dead end, body language conveying the extreme risk of third-party platform lock-in against dark studio shadows in 8K resolution"
+    },
+    {
+      "clip_id": "000421",
+      "title": "Clip 000421: 03:20\u201303:30 \u2014 OUR SOVEREIGN WORKSTATION PHILOSOPHY IS",
+      "speaker": "wayne",
+      "script": "Our sovereign workstation philosophy is simple: own your hardware, control your local background daemons, and enforce strict typed contracts at every layer.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter points with index finger to his temple and then down toward his workstation desk, establishing unshakeable conviction and physical builder discipline in 8K resolution"
+    },
+    {
+      "clip_id": "000422",
+      "title": "Clip 000422: 03:30\u201303:40 \u2014 BUILDING BULLETPROOF PRODUCTION FASTMCP SERVERS",
+      "speaker": "wayne",
+      "script": "Building bulletproof production FastMCP servers requires handling Windows process lifecycles, non-blocking I-O streams, and schema serializations without burning weeks debugging edge cases.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter raises both hands shoulder-width apart, illustrating the immense technical friction gap of raw OS socket programming with authentic engineering respect in 8K resolution"
+    },
+    {
+      "clip_id": "000423",
+      "title": "Clip 000423: 03:40\u201303:50 \u2014 THAT IS WHY WE PACKAGED",
+      "speaker": "wayne",
+      "script": "That is why we packaged our turnkey FastMCP server contracts and autonomous subagent templates directly inside the Keystone Builder Boardroom Skool community.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter opens his hands invitingly toward the viewer as a sleek 3D golden Keystone Builder Boardroom portal emblem illuminates beside him in 8K resolution"
+    },
+    {
+      "clip_id": "000424",
+      "title": "Clip 000424: 03:50\u201304:00 \u2014 INSIDE THE BOARDROOM, YOU GET",
+      "speaker": "wayne",
+      "script": "Inside the Boardroom, you get our one-click workstation installer, production daemon blueprints, and live engineering masterminds to deploy your private agent swarm immediately.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter gestures down to an illuminated floating blueprint card detailing the complete 1-click batch installer and turnkey Python daemon contracts in 8K resolution"
+    },
+    {
+      "clip_id": "000425",
+      "title": "Clip 000425: 04:00\u201304:10 \u2014 JOIN THE BOARDROOM AT THE",
+      "speaker": "wayne",
+      "script": "Join the Boardroom at the forty-nine dollar monthly launch tier linked below, and download our free AI Agent Swarm Starter Kit today.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter points directly downward toward the video description link, confident smile with amber and cyan volumetric rim lighting gleaming on dark studio walls in 8K resolution"
+    },
+    {
+      "clip_id": "000426",
+      "title": "Clip 000426: 04:10\u201304:20 \u2014 NOTICE: THIS CASE STUDY REPRESENTS",
+      "speaker": "wayne",
+      "script": "Notice: this case study represents our authentic personal experience, not medical or investment advice. Lock down your typed contracts, and keep building.",
+      "camera": "Using reference picture me for avatar, reference picture cloth_1 for clothing on my avatar, and reference picture background_1 for the background picture of the video, presenter gives a respectful, decisive builder nod, raises his hand in a parting builder salute, and stands solid as the gold and cyan studio lighting gently dims in 8K resolution"
+    }
+  ],
+  "brolls": [
+    {
+      "broll_id": "102",
+      "title": "B-Roll 102: A25 (Centered on Cut 01, bridging Clip 01 & Clip 02)",
+      "prompt": "Macro architectural studio photograph of a certified structural blueprint showing stamped load calculations and steel truss engineering notes under clean cyan and amber drafting lights, 8K resolution"
+    },
+    {
+      "broll_id": "103",
+      "title": "B-Roll 103: A24 (Centered on Cut 02, bridging Clip 02 & Clip 03)",
+      "prompt": "Close-up macro visual of corrupted JSON syntax error text highlighted in pulsing red on an ultra-wide dark terminal screen, surrounded by dark server rack telemetry, 8K resolution"
+    },
+    {
+      "broll_id": "104",
+      "title": "B-Roll 104: A23 (Centered on Cut 03, bridging Clip 03 & Clip 04)",
+      "prompt": "High-rise commercial construction framing crew in safety vests and hard hats receiving a crane load of certified pre-fabricated roof trusses on an elevated residential floor deck at dawn overlooking mountain peaks, 8K resolution"
+    },
+    {
+      "broll_id": "105",
+      "title": "B-Roll 105: A22 (Centered on Cut 04, bridging Clip 04 & Clip 05)",
+      "prompt": "Cinematic architectural photograph of crane cables lowering a massive factory-stamped engineered timber truss assembly onto laser-leveled framed wall plates with construction tradesmen guiding the base, 8K resolution"
+    },
+    {
+      "broll_id": "106",
+      "title": "B-Roll 106: A21 (Centered on Cut 05, bridging Clip 05 & Clip 06)",
+      "prompt": "Luminescent semi-transparent 3D wireframe schematic of a typed FastMCP server architecture with Pydantic contract schemas glowing in electric cyan (#00f0ff) against dark obsidian background, 8K resolution"
+    },
+    {
+      "broll_id": "107",
+      "title": "B-Roll 107: A20 (Centered on Cut 06, bridging Clip 06 & Clip 07)",
+      "prompt": "High-tech server room close-up showing shielded gold-plated high-speed fiber optic patch cables plugged into a modular industrial network switch with steady green activity LEDs, 8K resolution"
+    },
+    {
+      "broll_id": "108",
+      "title": "B-Roll 108: A19 (Centered on Cut 07, bridging Clip 07 & Clip 08)",
+      "prompt": "Experienced commercial concrete pump operator in full safety gear, high-visibility vest, and hard hat actively holding and steering the thick rubber tremie reducer discharge hose with both hands, directly guiding the high-velocity wet concrete slurry into forms, surrounded by an active crew of tradesmen vibrating the concrete with needle vibrators and raking across heavy steel rebar on a high-rise deck overlooking an urban cityscape in 8K resolution"
+    },
+    {
+      "broll_id": "109",
+      "title": "B-Roll 109: A18 (Centered on Cut 08, bridging Clip 08 & Clip 09)",
+      "prompt": "Macro action photograph of a heavy commercial concrete boom pump coupling under hydraulic pressure with working construction tradesmen signaling to the boom operator on an active commercial building site in 8K resolution"
+    },
+    {
+      "broll_id": "110",
+      "title": "B-Roll 110: A17 (Centered on Cut 09, bridging Clip 09 & Clip 10)",
+      "prompt": "3D mechanical render of high-pressure fluid flow in a reinforced conduit with an automated safety relief valve maintaining laminar line pressure, glowing blue fluid dynamics, 8K resolution"
+    },
+    {
+      "broll_id": "111",
+      "title": "B-Roll 111: A16 (Centered on Cut 10, bridging Clip 10 & Clip 11)",
+      "prompt": "Clean dark UI interface displaying real-time FastMCP request validation passing through strict Pydantic typed filters with vibrant green status badges and 0ms latency timers, 8K resolution"
+    },
+    {
+      "broll_id": "112",
+      "title": "B-Roll 112: A15 (Centered on Cut 11, bridging Clip 11 & Clip 12)",
+      "prompt": "Industrial hardware close-up of a powerful sovereign multi-GPU workstation chassis with braided power cables and glowing cyan cooling blocks running silent in a dark studio, 8K resolution"
+    },
+    {
+      "broll_id": "113",
+      "title": "B-Roll 113: A14 (Centered on Cut 12, bridging Clip 12 & Clip 13)",
+      "prompt": "3D holographic DAG dependency tree visualization showing autonomous agent task nodes communicating over typed socket streams with zero data packet loss, 8K resolution"
+    },
+    {
+      "broll_id": "114",
+      "title": "B-Roll 114: A13 (Centered on Cut 13, bridging Clip 13 & Clip 14)",
+      "prompt": "Side-by-side conceptual comparison on dark glass: a cluttered, unformatted text API document on left contrasting with a crisp, structured JSON-LD schema on right in 8K resolution"
+    },
+    {
+      "broll_id": "115",
+      "title": "B-Roll 115: A12 (Centered on Cut 14, bridging Clip 14 & Clip 15)",
+      "prompt": "Modern software analytics dashboard showing token consumption graph dropping by 40% along a steep downward gradient with bold glowing cyan metric indicators, 8K resolution"
+    },
+    {
+      "broll_id": "116",
+      "title": "B-Roll 116: A11 (Centered on Cut 15, bridging Clip 15 & Clip 16)",
+      "prompt": "Terminal monitor displaying a continuous automated test suite run with 24 green PASS checkmarks and a summary banner reading '0 RUNTIME EXCEPTIONS DETECTED' in 8K resolution"
+    },
+    {
+      "broll_id": "117",
+      "title": "B-Roll 117: A10 (Centered on Cut 16, bridging Clip 16 & Clip 17)",
+      "prompt": "High-speed mechanical macro shot of precision CNC milling head cutting hardened titanium with steady coolant flow and zero tool vibration under dramatic workshop lighting, 8K resolution"
+    },
+    {
+      "broll_id": "118",
+      "title": "B-Roll 118: A9 (Centered on Cut 17, bridging Clip 17 & Clip 18)",
+      "prompt": "Experienced concrete tradesman in heavy rubber boots and gloves setting heavy galvanized steel anchor bolts into freshly placed, screeded concrete foundation footings on an active commercial job site in 8K resolution"
+    },
+    {
+      "broll_id": "119",
+      "title": "B-Roll 119: A8 (Centered on Cut 18, bridging Clip 18 & Clip 19)",
+      "prompt": "Studio screen capture mockup of Chrome DevTools Protocol attached to active port 9222 showing DOM element inspection synchronized with native desktop Rust compiler output, 8K resolution"
+    },
+    {
+      "broll_id": "120",
+      "title": "B-Roll 120: A7 (Centered on Cut 19, bridging Clip 19 & Clip 20)",
+      "prompt": "Conceptual high-contrast image of heavy steel server padlock breaking open to reveal clean open-source terminal lines, symbolizing sovereign self-hosted infrastructure, 8K resolution"
+    },
+    {
+      "broll_id": "121",
+      "title": "B-Roll 121: A6 (Centered on Cut 20, bridging Clip 20 & Clip 21)",
+      "prompt": "Macro view of a server rack fiber connector unplugged with an orange warning indicator reading 'THIRD PARTY SERVICE DEGRADATION', 8K resolution"
+    },
+    {
+      "broll_id": "122",
+      "title": "B-Roll 122: A5 (Centered on Cut 21, bridging Clip 21 & Clip 22)",
+      "prompt": "Clean flat-lay photograph of a heavy mechanical drafting pencil, certified architectural scale ruler, and high-performance NVMe SSD drive resting on a dark walnut workbench, 8K resolution"
+    },
+    {
+      "broll_id": "123",
+      "title": "B-Roll 123: A4 (Centered on Cut 22, bridging Clip 22 & Clip 23)",
+      "prompt": "3D technical blueprint schematic of Windows operating system process handles and non-blocking asynchronous IPC named pipes rendered in crisp cyan line vectors, 8K resolution"
+    },
+    {
+      "broll_id": "124",
+      "title": "B-Roll 124: A3 (Centered on Cut 23, bridging Clip 23 & Clip 24)",
+      "prompt": "Elegant 3D glassmorphic card for 'Keystone Builder Boardroom' featuring gold embossed lettering and a glowing cyan keyhole portal emblem over dark brushed titanium, 8K resolution"
+    },
+    {
+      "broll_id": "125",
+      "title": "B-Roll 125: A2 (Centered on Cut 24, bridging Clip 24 & Clip 25)",
+      "prompt": "High-resolution studio mockup of a private developer community dashboard displaying 81 subagent prompt cards and turnkey FastMCP Python contracts ready for 1-click download, 8K resolution"
+    },
+    {
+      "broll_id": "126",
+      "title": "B-Roll 126: A1 (Centered on Cut 25, bridging Clip 25 & Clip 26)",
+      "prompt": "Official Keystone Protocols gold and obsidian legal end card displaying single clean medical and investment disclaimer typography with subtle gold border lines, 8K resolution"
+    }
+  ]
+}
