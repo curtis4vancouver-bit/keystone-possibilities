@@ -127,7 +127,7 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 1.25rem; text-align: center;">
                     <span style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Allowable Density</span>
                     <div id="kp-b44-units" style="color: #d4af37; font-size: 2.4rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">6 Units</div>
-                    <span id="kp-b44-units-sub" style="color: #34d399; font-size: 0.8rem; font-weight: 600;">Zero Minimum Parking Required</span>
+                    <span id="kp-b44-units-sub" style="color: #38bdf8; font-size: 0.8rem; font-weight: 600;">Zero Minimum Parking Required</span>
                 </div>
 
                 <!-- Card 2: Buildable Floor Area -->
@@ -141,7 +141,7 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 1.25rem; text-align: center;">
                     <span style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Est. Monthly Rental Roll</span>
                     <div id="kp-b44-rent" style="color: #f8fafc; font-size: 2.2rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">$18,600 /mo</div>
-                    <span style="color: #34d399; font-size: 0.8rem;">$223,200 Annual Gross</span>
+                    <span style="color: #38bdf8; font-size: 0.8rem;">$223,200 Annual Gross</span>
                 </div>
 
                 <!-- Card 4: Strata Valuation -->
@@ -175,7 +175,7 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <input type="email" name="email" placeholder="Email Address *" required style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 12px; color: #f8fafc; font-size: 0.95rem; outline: none;">
                 <input type="tel" name="phone" placeholder="Phone Number *" required style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 12px; color: #f8fafc; font-size: 0.95rem; outline: none;">
                 <input type="hidden" name="lotAddress" id="kp-b44-hidden-addr" value="">
-                <button type="submit" style="grid-column: 1 / -1; background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%); color: #04070d; border: none; border-radius: 8px; padding: 15px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);">
+                <button type="submit" style="grid-column: 1 / -1; background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%); color: #04070d; border: none; border-radius: 9999px; padding: 15px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);">
                     🚀 Dispatch My Complete 8-Page Pro-Forma Dossier
                 </button>
             </form>
@@ -338,13 +338,13 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
             
             <!-- Traditional Cost-Plus -->
-            <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 12px; padding: 1.5rem;">
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 12px; padding: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                     <span style="font-size: 1.2rem;">⚠️</span>
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #f87171; margin: 0;">Traditional Cost-Plus</h3>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #f6d365; margin: 0;">Traditional Cost-Plus</h3>
                 </div>
                 <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px;">Standard 18% GC Markup on all invoices:</div>
-                <div id="kp-ob-trad-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #ef4444; margin-bottom: 12px;">
+                <div id="kp-ob-trad-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">
                     $270,000
                 </div>
                 <ul style="padding-left: 20px; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin: 0;">
@@ -355,13 +355,13 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
             </div>
 
             <!-- Keystone Open-Book Pass-Through -->
-            <div style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid #10b981; border-radius: 12px; padding: 1.5rem;">
+            <div style="background: rgba(56, 189, 248, 0.08); border: 1.5px solid #38bdf8; border-radius: 12px; padding: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                     <span style="font-size: 1.2rem;">🛡️</span>
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #34d399; margin: 0;">Keystone Open-Book</h3>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #38bdf8; margin: 0;">Keystone Open-Book</h3>
                 </div>
                 <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px;">Fixed Fiduciary CM Fee + 0% Trade Markups:</div>
-                <div id="kp-ob-keystone-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #10b981; margin-bottom: 12px;">
+                <div id="kp-ob-keystone-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #38bdf8; margin-bottom: 12px;">
                     $135,000
                 </div>
                 <ul style="padding-left: 20px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; margin: 0;">

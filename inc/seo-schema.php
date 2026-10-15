@@ -17,6 +17,30 @@ function keystone_possibilities_inject_master_schema() {
     // Only inject on frontend
     if (is_admin()) return;
 
+    $canonical_credentials = array(
+        array(
+            "@type" => "EducationalOccupationalCredential",
+            "name" => "BC Housing Licensed Residential Builder #52603",
+            "credentialCategory" => "Professional License",
+            "recognizedBy" => array(
+                "@type" => "GovernmentOrganization",
+                "name" => "BC Housing Licensing and Consumer Services",
+                "url" => "https://www.bchousing.org"
+            ),
+            "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
+        ),
+        array(
+            "@type" => "EducationalOccupationalCredential",
+            "name" => "2-5-10 National Home Warranty",
+            "credentialCategory" => "Statutory New Home Warranty Protection"
+        ),
+        array(
+            "@type" => "EducationalOccupationalCredential",
+            "name" => "BC Hydro Registered Civil Contractor List ES54",
+            "credentialCategory" => "Civil Utility Contracting Certification"
+        )
+    );
+
     $master_schema = array(
         "@context" => "https://schema.org",
         "@graph" => array(
@@ -30,50 +54,25 @@ function keystone_possibilities_inject_master_schema() {
                 "logo" => array(
                     "@type" => "ImageObject",
                     "@id" => "https://keystonepossibilities.ca/#logo",
-                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
-                    "contentUrl" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
+                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
+                    "contentUrl" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
                     "caption" => "Keystone Possibilities Ltd — BC Builder License #52603"
                 ),
-                "image" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png",
-                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in BC Bill 44 multiplex conversions, custom luxury estate construction, and fiduciary project management across Squamish, Whistler, Pemberton, West Vancouver, and North Vancouver.",
+                "image" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
+                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in BC Bill 44 multiplex conversions, custom luxury estate construction, and fiduciary project management across West Vancouver, North Vancouver, Whistler, Squamish, Pemberton, and Vancouver.",
                 "telephone" => "+1-604-848-9688",
                 "email" => "info@keystonepossibilities.ca",
                 "priceRange" => "$$$$",
                 "currenciesAccepted" => "CAD",
                 "paymentAccepted" => "Bank Transfer, Check, Financing",
-                "parentOrganization" => array(
-                    "@type" => "Organization",
-                    "@id" => "https://keystonepossibilities.ca/#parent-organization",
-                    "name" => "Keystone Empire",
-                    "alternateName" => "Keystone Group",
-                    "url" => "https://keystonepossibilities.ca",
-                    "description" => "Master parent organization network governing Keystone Possibilities Ltd. and Keystone Recomposition.",
-                    "subOrganization" => array(
-                        array(
-                            "@type" => "Organization",
-                            "@id" => "https://keystonepossibilities.ca/#organization",
-                            "name" => "Keystone Possibilities Ltd.",
-                            "url" => "https://keystonepossibilities.ca"
-                        ),
-                        array(
-                            "@type" => "Organization",
-                            "@id" => "https://keystonerecomposition.com/#organization",
-                            "name" => "Keystone Recomposition",
-                            "url" => "https://keystonerecomposition.com"
-                        )
-                    ),
-                    "sameAs" => array(
-                        "https://keystonepossibilities.ca",
-                        "https://keystonerecomposition.com"
-                    )
-                ),
+                "hasCredential" => $canonical_credentials,
                 "identifier" => array(
                     array(
                         "@type" => "PropertyValue",
                         "propertyID" => "BC Housing Licensed Residential Builder",
                         "name" => "BC Housing Builder License",
                         "value" => "52603",
-                        "url" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
+                        "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
                     ),
                     array(
                         "@type" => "PropertyValue",
@@ -85,10 +84,10 @@ function keystone_possibilities_inject_master_schema() {
                         "@type" => "PropertyValue",
                         "propertyID" => "Mandatory Home Warranty Protection",
                         "name" => "New Home Warranty Protection",
-                        "value" => "2-5-10 Year Mandatory Home Warranty Protection (WBI / National Home Warranty)"
+                        "value" => "2-5-10 National Home Warranty"
                     )
                 ),
-                "license" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search",
+                "license" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
                 "address" => array(
                     "@type" => "PostalAddress",
                     "streetAddress" => "1 Watts Point Road",
@@ -103,10 +102,11 @@ function keystone_possibilities_inject_master_schema() {
                     "longitude" => -123.1508
                 ),
                 "areaServed" => array(
-                    array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
-                    array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
                     array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
                     array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
+                    array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
+                    array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
+                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
                     array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
                     array("@type" => "AdministrativeArea", "name" => "British Properties, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3458, "longitude" => -123.1425)),
                     array("@type" => "AdministrativeArea", "name" => "Caulfeild, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3512, "longitude" => -123.2389)),
@@ -117,7 +117,6 @@ function keystone_possibilities_inject_master_schema() {
                     array("@type" => "AdministrativeArea", "name" => "Alta Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1121, "longitude" => -122.9812)),
                     array("@type" => "AdministrativeArea", "name" => "Green Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1450, "longitude" => -122.9410)),
                     array("@type" => "AdministrativeArea", "name" => "The Heights, Squamish", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7350, "longitude" => -123.1320)),
-                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
                     array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
                     array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach")
                 ),
@@ -151,7 +150,7 @@ function keystone_possibilities_inject_master_schema() {
                             "itemOffered" => array(
                                 "@type" => "Service",
                                 "name" => "Custom Luxury Home Construction",
-                                "description" => "Turnkey design-build contracting with mandatory 2-5-10 Year Home Warranty, Step Code 5 energy performance, and high-altitude alpine framing across West Vancouver and Whistler."
+                                "description" => "Turnkey design-build contracting with mandatory 2-5-10 National Home Warranty, Step Code 5 energy performance, and high-altitude alpine framing across West Vancouver and Whistler."
                             )
                         ),
                         array(
@@ -182,9 +181,9 @@ function keystone_possibilities_inject_master_schema() {
                 ),
                 "sameAs" => array(
                     "https://www.facebook.com/profile.php?id=61554185128555",
-                    "https://www.youtube.com/@KeystonePossibilities",
+                    "https://www.youtube.com/@KeystonePossibilitiesLtd",
                     "https://www.instagram.com/keystonepossibilities",
-                    "https://keystonerecomposition.com"
+                    "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
                 ),
                 "founder" => array(
                     "@type" => "Person",
@@ -193,56 +192,18 @@ function keystone_possibilities_inject_master_schema() {
                     "jobTitle" => "Certified BC Residential Builder & Fiduciary Project Manager",
                     "url" => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
                     "sameAs" => array(
-                        "https://keystonerecomposition.com/about/",
-                        "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
+                        "https://www.youtube.com/@KeystonePossibilitiesLtd",
+                        "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
+                        "https://keystonerecomposition.com/about/"
                     ),
-                    "hasCredential" => array(
-                        "@type" => "EducationalOccupationalCredential",
-                        "name" => "BC Housing Licensed Residential Builder (Licence #52603)",
-                        "credentialCategory" => "Professional License",
-                        "recognizedBy" => array(
-                            "@type" => "GovernmentOrganization",
-                            "name" => "BC Housing Licensing and Consumer Services",
-                            "url" => "https://www.bchousing.org"
-                        ),
-                        "validIn" => array(
-                            "@type" => "AdministrativeArea",
-                            "name" => "British Columbia, Canada"
-                        )
-                    ),
+                    "hasCredential" => $canonical_credentials,
                     "knowsAbout" => array(
                         "BC Building Code 2024",
                         "Step Code 5 Net-Zero Custom Homes",
                         "Vancouver Multiplex Zoning Bill 44",
-                        "Fiduciary Cost-Plus Project Management"
+                        "Fiduciary Cost-Plus Project Management",
+                        "BC Hydro ES54 Civil Utility Contracting"
                     )
-                )
-            ),
-            // Parent Organization Entity (Keystone Empire / Keystone Group)
-            array(
-                "@type" => "Organization",
-                "@id" => "https://keystonepossibilities.ca/#parent-organization",
-                "name" => "Keystone Empire",
-                "alternateName" => "Keystone Group",
-                "url" => "https://keystonepossibilities.ca",
-                "description" => "Master parent organization network governing Keystone Possibilities Ltd. and Keystone Recomposition.",
-                "subOrganization" => array(
-                    array(
-                        "@type" => "Organization",
-                        "@id" => "https://keystonepossibilities.ca/#organization",
-                        "name" => "Keystone Possibilities Ltd.",
-                        "url" => "https://keystonepossibilities.ca"
-                    ),
-                    array(
-                        "@type" => "Organization",
-                        "@id" => "https://keystonerecomposition.com/#organization",
-                        "name" => "Keystone Recomposition",
-                        "url" => "https://keystonerecomposition.com"
-                    )
-                ),
-                "sameAs" => array(
-                    "https://keystonepossibilities.ca",
-                    "https://keystonerecomposition.com"
                 )
             ),
             // WebSite Node with SearchAction
@@ -261,7 +222,7 @@ function keystone_possibilities_inject_master_schema() {
         )
     );
 
-    echo "\n<!-- Keystone Possibilities 2026 Master Authority & ParentOrganization Schema -->\n";
+    echo "\n<!-- Keystone Possibilities 2026 Master Authority Schema -->\n";
     echo '<script type="application/ld+json">' . json_encode($master_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
 }
 
@@ -369,7 +330,7 @@ function keystone_possibilities_inject_video_schema() {
                 "name" => "Keystone Possibilities Ltd.",
                 "logo" => array(
                     "@type" => "ImageObject",
-                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/logo.png"
+                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png"
                 )
             )
         );
@@ -450,6 +411,107 @@ function keystone_possibilities_rank_math_video_sitemap($video, $post_id) {
     return $video;
 }
 
+/**
+ * Sanitize a single JSON-LD node (Organization / Person / ImageObject) in Rank Math output.
+ */
+function keystone_possibilities_sanitize_schema_node(&$node) {
+    if (!is_array($node)) {
+        return;
+    }
+
+    $canonical_logo_url = 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
+    $canonical_credentials = array(
+        array(
+            '@type' => 'EducationalOccupationalCredential',
+            'name' => 'BC Housing Licensed Residential Builder #52603',
+            'credentialCategory' => 'Professional License'
+        ),
+        array(
+            '@type' => 'EducationalOccupationalCredential',
+            'name' => '2-5-10 National Home Warranty',
+            'credentialCategory' => 'Statutory New Home Warranty Protection'
+        ),
+        array(
+            '@type' => 'EducationalOccupationalCredential',
+            'name' => 'BC Hydro Registered Civil Contractor List ES54',
+            'credentialCategory' => 'Civil Utility Contracting Certification'
+        )
+    );
+    $canonical_areas = array(
+        array('@type' => 'City', 'name' => 'West Vancouver'),
+        array('@type' => 'City', 'name' => 'North Vancouver'),
+        array('@type' => 'City', 'name' => 'Whistler'),
+        array('@type' => 'City', 'name' => 'Squamish'),
+        array('@type' => 'City', 'name' => 'Pemberton'),
+        array('@type' => 'City', 'name' => 'Vancouver')
+    );
+
+    if (isset($node['name']) && $node['name'] === 'Wayne') {
+        $node['name'] = 'Wayne Stevenson';
+    }
+
+    $types = isset($node['@type']) ? (array) $node['@type'] : array();
+
+    if (in_array('Person', $types, true)) {
+        if (empty($node['name']) || $node['name'] === 'Wayne' || stripos($node['name'], 'Wayne') !== false) {
+            $node['name'] = 'Wayne Stevenson';
+        }
+        $node['jobTitle'] = 'Certified BC Residential Builder & Fiduciary Project Manager';
+        $node['url'] = 'https://keystonepossibilities.ca/about-us-general-contractor-squamish/';
+        $node['hasCredential'] = $canonical_credentials;
+        $node['sameAs'] = array(
+            'https://www.youtube.com/@KeystonePossibilitiesLtd',
+            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603',
+            'https://keystonerecomposition.com/about/'
+        );
+    }
+
+    if (array_intersect($types, array('Organization', 'LocalBusiness', 'ConstructionBusiness', 'GeneralContractor', 'HomeAndConstructionBusiness'))) {
+        $node['@type'] = array('ConstructionBusiness', 'GeneralContractor', 'Organization');
+        $node['name'] = 'Keystone Possibilities Ltd';
+        $node['legalName'] = 'Keystone Possibilities Ltd.';
+        $node['url'] = 'https://keystonepossibilities.ca';
+        $node['email'] = 'info@keystonepossibilities.ca';
+        $node['telephone'] = '+1-604-848-9688';
+        $node['hasCredential'] = $canonical_credentials;
+        $node['areaServed'] = $canonical_areas;
+        $node['sameAs'] = array(
+            'https://www.facebook.com/profile.php?id=61554185128555',
+            'https://www.youtube.com/@KeystonePossibilitiesLtd',
+            'https://www.instagram.com/keystonepossibilities',
+            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603'
+        );
+        if (isset($node['logo']) && is_array($node['logo'])) {
+            $node['logo']['url'] = $canonical_logo_url;
+            $node['logo']['contentUrl'] = $canonical_logo_url;
+            $node['logo']['caption'] = 'Keystone Possibilities Ltd — BC Builder License #52603';
+        } else {
+            $node['logo'] = array(
+                '@type' => 'ImageObject',
+                '@id' => 'https://keystonepossibilities.ca/#logo',
+                'url' => $canonical_logo_url,
+                'contentUrl' => $canonical_logo_url,
+                'caption' => 'Keystone Possibilities Ltd — BC Builder License #52603'
+            );
+        }
+        $node['image'] = $canonical_logo_url;
+    }
+
+    if (in_array('ImageObject', $types, true)) {
+        if (isset($node['@id']) && strpos($node['@id'], '#logo') !== false) {
+            $node['url'] = $canonical_logo_url;
+            $node['contentUrl'] = $canonical_logo_url;
+            $node['caption'] = 'Keystone Possibilities Ltd — BC Builder License #52603';
+        }
+    }
+
+    foreach ($node as $k => &$child) {
+        if (is_array($child)) {
+            keystone_possibilities_sanitize_schema_node($child);
+        }
+    }
+}
+
 // ── 2.9 Google-Compliant Watch Page & VideoObject Schema Injection in Rank Math ────
 add_filter('rank_math/json_ld', 'keystone_possibilities_rank_math_watch_page_schema', 999, 2);
 function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
@@ -457,12 +519,39 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
         return $data;
     }
 
-    // 1. Sanitize any legacy staging URLs in Rank Math output
-    array_walk_recursive($data, function(&$item) {
-        if (is_string($item) && strpos($item, 'staging-a826-keystonepossibilities.wpcomstaging.com') !== false) {
+    $canonical_logo_url = 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
+
+    // 1. Sanitize legacy staging URLs, personal emails, screenshot logos, and old handles across ALL pages
+    array_walk_recursive($data, function(&$item, $key) use ($canonical_logo_url) {
+        if (!is_string($item)) {
+            return;
+        }
+        if (strpos($item, 'staging-a826-keystonepossibilities.wpcomstaging.com') !== false) {
             $item = str_replace('https://staging-a826-keystonepossibilities.wpcomstaging.com', 'https://keystonepossibilities.ca', $item);
         }
+        if (strpos($item, 'keystonepossibilities.wordpress.com') !== false) {
+            $item = str_replace(
+                array('https://keystonepossibilities.wordpress.com', 'http://keystonepossibilities.wordpress.com'),
+                'https://keystonepossibilities.ca',
+                $item
+            );
+        }
+        if (stripos($item, 'curtis4vancouver@gmail.com') !== false) {
+            $item = str_ireplace('curtis4vancouver@gmail.com', 'info@keystonepossibilities.ca', $item);
+        }
+        if (preg_match('#/@KeystonePossibilities(?!Ltd)#i', $item)) {
+            $item = preg_replace('#/@KeystonePossibilities(?!Ltd)#i', '/@KeystonePossibilitiesLtd', $item);
+        }
+        if (stripos($item, 'screenshot-2023-') !== false || strpos($item, '/wp-content/uploads/logo.png') !== false) {
+            $item = $canonical_logo_url;
+        }
+        if ($key === 'name' && $item === 'Wayne') {
+            $item = 'Wayne Stevenson';
+        }
     });
+
+    // 2. Enrich & sanitize all Organization and Person nodes in Rank Math graph on ALL pages
+    keystone_possibilities_sanitize_schema_node($data);
 
     if (!is_singular('post')) {
         return $data;
@@ -579,28 +668,9 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
     return $data;
 }
 
-// ── 3. Keystone Empire Network Standardized Footer Bar ───────────────────────
-add_action('wp_footer', 'keystone_possibilities_render_empire_footer', 30);
+// ── 3. Keystone Empire Network Standardized Footer Bar (Deprecated / Disabled to prevent duplicate footers) ──
 function keystone_possibilities_render_empire_footer() {
-    ?>
-    <!-- Keystone Empire Network Standardized Footer Bar -->
-    <div class="keystone-empire-footer-bar" style="background:#04070d; border-top:1px solid rgba(196,162,101,0.25); padding:16px 20px; text-align:center; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:#94a3b8; font-size:0.82rem;">
-        <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
-            <div style="display:flex; align-items:center; gap:10px; text-align:left;">
-                <span style="color:#c4a265; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; font-size:0.78rem; display:inline-flex; align-items:center; gap:6px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4a265" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    KEYSTONE EMPIRE NETWORK
-                </span>
-                <span style="color:rgba(255,255,255,0.2);">|</span>
-                <span style="color:#cbd5e1; font-size:0.8rem; font-weight:500;">Keystone Possibilities — BC Building Code &amp; Construction Consulting</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:0.8rem;">
-                <span style="color:#64748b;">Sister Flagship:</span>
-                <span style="color:#d4af37; font-weight:700;">Keystone Possibilities Ltd — Certified BC Builder #52603</span>
-            </div>
-        </div>
-    </div>
-    <?php
+    return;
 }
 
 // ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
@@ -608,7 +678,7 @@ add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
 add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = null ) {
     if ( empty( $url['loc'] ) ) return $url;
     $excluded_patterns = array(
-        '/tag/', '/author/', '/date/', 'sample-page', 'test', 'demo', 'wp-admin'
+        '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin', 'locations.kml', 'locations-sitemap'
     );
     foreach ( $excluded_patterns as $pat ) {
         if ( stripos( $url['loc'], $pat ) !== false ) {
@@ -620,7 +690,7 @@ add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = nul
 
 // ── 5. Sanitize robots.txt & Expose AI Crawler Directives (/llms.txt) ─────────
 add_filter( 'robots_txt', function( $output, $public ) {
-    $custom = "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\nSitemap: https://keystonepossibilities.ca/keystone-video-sitemap.xml\nSitemap: https://keystonepossibilities.ca/video-sitemap.xml\n";
+    $custom = "User-agent: *\nDisallow: /wp-admin/\nDisallow: /*?share=\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\nSitemap: https://keystonepossibilities.ca/keystone-video-sitemap.xml\n";
     return $custom;
 }, 99, 2 );
 

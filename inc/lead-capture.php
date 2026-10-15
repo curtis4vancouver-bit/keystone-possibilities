@@ -341,9 +341,9 @@ function keystone_possibilities_render_lead_form_script() {
                     .then(function (response) { return response.json(); })
                     .then(function (res) {
                         if (res.success) {
-                            form.innerHTML = '<div id="kp-lead-status-box" style="grid-column: 1 / -1; background: rgba(16, 185, 129, 0.12); border: 1.5px solid #10b981; border-radius: 12px; padding: 2.5rem 1.5rem; text-align: center; box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);">' +
+                            form.innerHTML = '<div id="kp-lead-status-box" style="grid-column: 1 / -1; background: rgba(56, 189, 248, 0.12); border: 1.5px solid #38bdf8; border-radius: 18px; padding: 2.5rem 1.5rem; text-align: center; box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);">' +
                                 '<div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏛️</div>' +
-                                '<h3 style="color: #34d399; font-family: Outfit, sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.5rem 0;">Consultation Request Received</h3>' +
+                                '<h3 style="color: #38bdf8; font-family: Outfit, sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.5rem 0;">Consultation Request Received</h3>' +
                                 '<p style="color: #f8fafc; font-size: 1.05rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">Thank you, <strong>' + (payload.name || '') + '</strong>. Wayne Stevenson (BC Builder Licence #52603) has received your project parameters and will contact you within 24 hours to review zoning, municipal bylaws, and scheduling.</p>' +
                             '</div>';
                         } else {
@@ -358,7 +358,7 @@ function keystone_possibilities_render_lead_form_script() {
                         }
                         const errBox = document.createElement('div');
                         errBox.id = 'kp-lead-status-box';
-                        errBox.style.cssText = 'grid-column: 1 / -1; margin-top: 1rem; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; border-radius: 6px; padding: 1rem; text-align: center; color: #fca5a5;';
+                        errBox.style.cssText = 'grid-column: 1 / -1; margin-top: 1rem; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; border-radius: 12px; padding: 1rem; text-align: center; color: #f6d365;';
                         errBox.innerText = 'Error submitting request: ' + err.message + '. Please call Wayne Stevenson directly at (604) 848-9688.';
                         form.appendChild(errBox);
                     });

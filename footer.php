@@ -13,9 +13,11 @@ declare(strict_types=1);
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+global $kp_master_footer_rendered;
 ?>
     </div><!-- #content -->
 
+<?php if ( empty( $kp_master_footer_rendered ) ) : $kp_master_footer_rendered = true; ?>
     <!-- WAYNE'S MASTER LUXURY FOOTER (Unified Obsidian #04070D Standard) -->
     <footer id="kp-master-luxury-footer" class="kp-master-luxury-footer wayne-preferred-footer" style="background-color: #04070D !important; border-top: 1px solid rgba(212, 175, 55, 0.25); padding: 48px 20px calc(5rem + env(safe-area-inset-bottom, 0px)) 20px; color: #94A3B8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 0.84rem; text-align: center; position: relative; z-index: 10; width: 100%; box-sizing: border-box; overflow-x: clip;">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -35,21 +37,21 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </a>
 
                     <!-- YouTube Official Channel -->
-                    <a href="https://www.youtube.com/@KeystonePossibilities" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
 
                     <!-- High-Converting YouTube Channel Subscribe Pill -->
-                    <a href="https://www.youtube.com/@KeystonePossibilities?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" style="filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>SUBSCRIBE &bull; @KeystonePossibilities</span>
+                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37" style="filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>SUBSCRIBE &bull; @KeystonePossibilitiesLtd</span>
                     </a>
 
                 </div>
             </div>
 
             <!-- B. Centered High-End Copyright & Credentials -->
-            <div style="margin-bottom: 32px; line-height: 1.6;">
+            <div data-nosnippet style="margin-bottom: 32px; line-height: 1.6;">
                 <p style="margin: 0 0 6px 0; color: #CBD5E1; font-weight: 500; font-size: 0.86rem; letter-spacing: 0.02em;">
                     Copyright &copy; 2023–2026 Keystone Possibilities Ltd &bull; All Rights Reserved.
                 </p>
@@ -59,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
 
             <!-- C. Regional Divisions & Specialized Services 4-Column Mesh (Unified Obsidian & Gold) -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 24px; text-align: left;">
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 12px; text-align: left;">
                 <div style="color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 16px; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;">
                     <span>🏛️</span> KEYSTONE POSSIBILITIES — REGIONAL DIVISIONS &amp; SPECIALIZED SERVICES
                 </div>
@@ -91,18 +93,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </div>
 
-            <!-- D. Standardized Keystone Empire Network Bar (Gold & Obsidian Continuity) -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.80rem; color: #94a3b8;">
-                <div>
-                    <span style="color: #d4af37; font-weight: 700; letter-spacing: 0.04em;">⚔️ KEYSTONE EMPIRE NETWORK</span> | Keystone Possibilities — BC Building Code &amp; Construction Consulting
-                </div>
-                <div>
-                    Sister Flagship: <a href="https://keystonerecomposition.com/ai-protocols/" target="_blank" rel="noopener noreferrer" style="color: #f6d365; text-decoration: none !important; font-weight: 600;">Keystone Recomposition — Production AI Protocols, AI Music &amp; Lifestyle Investments &rarr;</a>
-                </div>
-            </div>
-
         </div>
     </footer>
+    <a href="tel:+16048489688" id="kp-floating-phone" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
+        <span>📞 (604) 848-9688</span>
+    </a>
+<?php endif; ?>
 
     <!-- MOBILE STICKY FLOATING BOTTOM DOCK -->
     <div class="mobile-floating-dock">
