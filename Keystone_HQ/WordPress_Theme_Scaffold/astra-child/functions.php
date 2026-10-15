@@ -19,10 +19,11 @@ function keystone_possibilities_enqueue_styles() {
     wp_enqueue_script('keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '2.6.0', true);
     wp_enqueue_script('keystone-portfolio-carousel', get_stylesheet_directory_uri() . '/js/portfolio-carousel.js', array(), '2.6.0', true);
 
-    // Pass REST and AJAX endpoints to frontend for interactive lead capture
+    // Pass REST and AJAX endpoints to frontend for interactive lead capture & multi-job portal
     wp_localize_script('keystone-lazy-player', 'keystoneData', array(
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'restUrl' => esc_url_raw(rest_url('keystone/v1/lead'))
+        'ajaxUrl'           => admin_url('admin-ajax.php'),
+        'restUrl'           => esc_url_raw(rest_url('keystone/v1/lead')),
+        'portalJobsRestUrl' => esc_url_raw(rest_url('keystone/v1/portal-jobs')),
     ));
 }
 
@@ -47,6 +48,9 @@ require_once __DIR__ . '/inc/bill44-estimator.php';
 // Disable automatic appending of legacy Bill 44 estimator on /feasibility-plan/ (replaces with clean luxury 1-box calculator)
 remove_filter('the_content', 'keystone_possibilities_inject_feasibility_tools', 20);
 require_once __DIR__ . '/inc/client-portal-demo.php';
+if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
+    require_once __DIR__ . '/inc/multi-job-portal-api.php';
+}
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
 add_shortcode('keystone_video', 'keystone_possibilities_lazy_video_shortcode');
