@@ -1212,7 +1212,313 @@ function keystone_possibilities_luxury_header_overrides() {
                 grid-column: span 1 !important;
             }
         }
+
+        /* 2026 Slim 52px Mobile Header + ☰ MENU ▾ Pill + Scrollable Dropdown Drawer */
+        body:has(#kpSiteNavHeader) #masthead,
+        header#masthead {
+            display: none !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        .site-nav-header#kpSiteNavHeader {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 10002 !important;
+            background: rgba(4, 7, 13, 0.97) !important;
+            backdrop-filter: blur(18px) !important;
+            -webkit-backdrop-filter: blur(18px) !important;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.34) !important;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.78) !important;
+            width: 100% !important;
+        }
+        #kpSiteNavHeader .nav-container {
+            max-width: 1680px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 16px !important;
+            box-sizing: border-box !important;
+        }
+        #kpSiteNavHeader .nav-links-menu {
+            display: flex !important;
+            align-items: center !important;
+            gap: clamp(10px, 1.1vw, 20px) !important;
+            list-style: none !important;
+            margin: 0 0 0 16px !important;
+            padding: 0 !important;
+        }
+        #kpSiteNavHeader .nav-link-item {
+            color: #CBD5E1 !important;
+            text-decoration: none !important;
+            font-size: clamp(0.72rem, 0.76vw, 0.80rem) !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.07em !important;
+            text-transform: uppercase !important;
+            padding: 6px 2px !important;
+            white-space: nowrap !important;
+        }
+        #kpSiteNavHeader .nav-link-item:hover,
+        #kpSiteNavHeader .nav-link-item.active {
+            color: #D4AF37 !important;
+        }
+        #kpSiteNavHeader .nav-right-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            margin-left: auto !important;
+            flex-shrink: 0 !important;
+        }
+        #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle {
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            padding: 7px 14px !important;
+            border-radius: 9999px !important;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.24) 0%, rgba(10, 18, 34, 0.96) 55%, rgba(56, 189, 248, 0.22) 100%) !important;
+            border: 1.5px solid #d4af37 !important;
+            box-shadow: 0 0 14px rgba(212, 175, 55, 0.35), 0 0 10px rgba(56, 189, 248, 0.22) !important;
+            color: #FFF2C6 !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.75rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+        #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle:hover,
+        #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle.is-open {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.55), 0 0 14px rgba(212, 175, 55, 0.45) !important;
+            color: #ffffff !important;
+        }
+        .mobile-menu-drawer#mobileDrawer {
+            display: none !important;
+            position: fixed !important;
+            top: 52px !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: auto !important;
+            max-height: calc(100vh - 64px) !important;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            background: rgba(4, 7, 13, 0.98) !important;
+            backdrop-filter: blur(22px) !important;
+            -webkit-backdrop-filter: blur(22px) !important;
+            border-bottom: 2px solid #d4af37 !important;
+            box-shadow: 0 24px 54px rgba(0, 0, 0, 0.92), 0 0 24px rgba(212, 175, 55, 0.22) !important;
+            z-index: 10001 !important;
+            padding: 12px 14px 20px 14px !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            box-sizing: border-box !important;
+        }
+        .mobile-menu-drawer#mobileDrawer.open {
+            display: flex !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-featured-cta {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 4px !important;
+            padding: 12px 14px !important;
+            margin-bottom: 4px !important;
+            border-radius: 14px !important;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.20) 0%, rgba(10, 18, 34, 0.96) 55%, rgba(56, 189, 248, 0.16) 100%) !important;
+            border: 1.5px solid #d4af37 !important;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.75), 0 0 18px rgba(212, 175, 55, 0.25), inset 0 0 14px rgba(56, 189, 248, 0.12) !important;
+            text-decoration: none !important;
+            text-transform: none !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-featured-cta .drawer-cta-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            align-self: flex-start !important;
+            padding: 2px 9px !important;
+            border-radius: 9999px !important;
+            background: rgba(56, 189, 248, 0.16) !important;
+            border: 1px solid rgba(56, 189, 248, 0.55) !important;
+            color: #38bdf8 !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.64rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-featured-cta .drawer-cta-title {
+            color: #FFF2C6 !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.86rem !important;
+            font-weight: 900 !important;
+            line-height: 1.3 !important;
+            letter-spacing: 0.02em !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-featured-cta .drawer-cta-sub {
+            color: #cbd5e1 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.72rem !important;
+            font-weight: 600 !important;
+            line-height: 1.35 !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-link {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 10px 14px !important;
+            border-radius: 12px !important;
+            background: rgba(15, 23, 42, 0.85) !important;
+            border: 1px solid rgba(212, 175, 55, 0.25) !important;
+            color: #F8FAFC !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.84rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            text-decoration: none !important;
+            transition: all 0.18s ease !important;
+        }
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-link:hover,
+        .mobile-menu-drawer#mobileDrawer a.mobile-drawer-link.active {
+            border-color: #d4af37 !important;
+            background: rgba(212, 175, 55, 0.14) !important;
+            color: #FFF2C6 !important;
+        }
+        @media (max-width: 1024px) {
+            #kpSiteNavHeader .kp-desktop-nav-wrap,
+            #kpSiteNavHeader .nav-links-menu {
+                display: none !important;
+            }
+            #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle {
+                display: inline-flex !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .site-nav-header#kpSiteNavHeader {
+                height: 52px !important;
+                min-height: 52px !important;
+                max-height: 52px !important;
+            }
+            #kpSiteNavHeader .nav-container {
+                height: 52px !important;
+                min-height: 52px !important;
+                max-height: 52px !important;
+                padding: 0 12px !important;
+                gap: 8px !important;
+            }
+            #kpSiteNavHeader .brand-edge-logo {
+                gap: 8px !important;
+                min-width: 0 !important;
+                flex: 1 1 auto !important;
+                overflow: hidden !important;
+            }
+            #kpSiteNavHeader .kp-badge-mark {
+                width: 32px !important;
+                height: 32px !important;
+                border-radius: 7px !important;
+                flex-shrink: 0 !important;
+            }
+            #kpSiteNavHeader .brand-title-wrap {
+                min-width: 0 !important;
+                overflow: hidden !important;
+            }
+            #kpSiteNavHeader .brand-title-wrap .title-main {
+                font-size: 0.78rem !important;
+                letter-spacing: 0.04em !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            #kpSiteNavHeader .brand-title-wrap .title-sub {
+                font-size: 0.55rem !important;
+                letter-spacing: 0.10em !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            #kpSiteNavHeader .social-icon-btn {
+                display: none !important;
+            }
+            #kpSiteNavHeader .nav-right-actions {
+                margin-left: auto !important;
+                flex-shrink: 0 !important;
+            }
+            #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle {
+                display: inline-flex !important;
+                padding: 6px 12px !important;
+                font-size: 0.72rem !important;
+                height: 34px !important;
+            }
+        }
     </style>
+    <?php
+}
+
+add_action('wp_body_open', 'keystone_possibilities_render_slim_nav_header', 5);
+function keystone_possibilities_render_slim_nav_header() {
+    if (defined('KP_HEADER_RENDERED')) {
+        return;
+    }
+    define('KP_HEADER_RENDERED', true);
+    ?>
+    <header class="site-nav-header" id="kpSiteNavHeader">
+        <div class="nav-container">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="brand-edge-logo" aria-label="Keystone Possibilities Ltd. Home">
+                <div class="kp-badge-mark">
+                    <img src="https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png" alt="Keystone Possibilities Ltd." class="kp-badge-img">
+                </div>
+                <div class="brand-title-wrap">
+                    <span class="title-main">KEYSTONE POSSIBILITIES</span>
+                    <span class="title-sub">LICENSED BUILDER #52603</span>
+                </div>
+            </a>
+            <nav aria-label="Main Navigation" class="kp-desktop-nav-wrap">
+                <ul class="nav-links-menu">
+                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link-item <?php echo is_front_page() ? 'active' : ''; ?>">HOME</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item">CUSTOM BUILD &amp; COST PLAN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="nav-link-item">CLIENT LOGIN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="nav-link-item">MASTER BUILDER SERIES</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link-item">PORTFOLIO</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="nav-link-item">ABOUT US</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="nav-link-item">PRIVATE INVESTORS</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="nav-link-item">CIVIL</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="nav-link-item">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="nav-right-actions">
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Facebook">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.13-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <button type="button" class="mobile-hamburger" id="kpMobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+                    <span class="mobile-menu-pill-text">☰ MENU ▾</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu-drawer" id="mobileDrawer" aria-label="Mobile Navigation Drawer">
+        <a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="mobile-drawer-featured-cta">
+            <span class="drawer-cta-badge">⭐ FEATURED BUILDER TOOL · LICENSE #52603</span>
+            <span class="drawer-cta-title">📐 CUSTOM BUILD &amp; COST PLAN — Custom Homes (#52603) &amp; BC Hydro Civil (ES54)</span>
+            <span class="drawer-cta-sub">Interactive Lot Feasibility, Cost Breakdown &amp; Civil Scope Calculator →</span>
+        </a>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mobile-drawer-link <?php echo is_front_page() ? 'active' : ''; ?>">🏠 HOME</a>
+        <a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="mobile-drawer-link">🔐 CLIENT LOGIN</a>
+        <a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="mobile-drawer-link">🎬 MASTER BUILDER SERIES</a>
+        <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-drawer-link">🏛️ PORTFOLIO</a>
+        <a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">👤 ABOUT US</a>
+        <a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="mobile-drawer-link">📈 PRIVATE INVESTORS</a>
+        <a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="mobile-drawer-link">⚡ CIVIL (ES54)</a>
+        <a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">📞 CONTACT — (604) 848-9688</a>
+    </div>
     <?php
 }
 
@@ -1221,24 +1527,38 @@ function keystone_possibilities_mount_header_logo_script() {
     ?>
     <script id="keystone-mount-logo-engine">
     (function() {
-        function injectLogo() {
-            var left = document.querySelector('.site-header-primary-section-left-center');
-            if (left && !left.querySelector('.brand-edge-logo')) {
-                left.innerHTML = '<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="brand-edge-logo" aria-label="Keystone Possibilities Ltd. Home">' +
-                    '<div class="kp-badge-mark">' +
-                    '<img src="https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png" alt="Keystone Possibilities Ltd." class="kp-badge-img">' +
-                    '</div>' +
-                    '<div class="brand-title-wrap">' +
-                    '<span class="title-main">KEYSTONE POSSIBILITIES</span>' +
-                    '<span class="title-sub">LICENSED BUILDER #52603</span>' +
-                    '</div>' +
-                    '</a>';
+        function initHeaderAndDrawer() {
+            var toggle = document.getElementById('kpMobileNavToggle');
+            var drawer = document.getElementById('mobileDrawer');
+            if (toggle && drawer && !toggle.dataset.kpBound) {
+                toggle.dataset.kpBound = '1';
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var isOpen = drawer.classList.toggle('open');
+                    toggle.classList.toggle('is-open', isOpen);
+                    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+                drawer.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        drawer.classList.remove('open');
+                        toggle.classList.remove('is-open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+                        drawer.classList.remove('open');
+                        toggle.classList.remove('is-open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
             }
         }
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', injectLogo);
+            document.addEventListener('DOMContentLoaded', initHeaderAndDrawer);
         } else {
-            injectLogo();
+            initHeaderAndDrawer();
         }
     })();
     </script>
