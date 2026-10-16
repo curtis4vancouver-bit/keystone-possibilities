@@ -535,7 +535,18 @@ function keystone_possibilities_sanitize_content_output($content) {
             'Bill 44 Multiplex Retainer (3-6 Units)',
             'Bill 44 Multiplex Conversion (3-6 Units)',
             'Request My Custom Feasibility Plan →',
-            '<span>📐 Feasibility Plan</span>'
+            '<span>📐 Feasibility Plan</span>',
+            'Building ultra-luxury mountain residences and complex multiplex infill requires',
+            '<h2>Sea-to-Sky &amp; Vancouver Infill</h2>',
+            '<h2>Sea-to-Sky & Vancouver Infill</h2>',
+            'and Bill 44 multiplex conversions engineered across',
+            '<div class="portfolio-badge">Squamish Infill</div>',
+            '<h4>Highlands Multiplex Infill</h4>',
+            'Bill 44 high-efficiency multiplex development optimizing allowable density with turnkey civil infrastructure, separate hydro metering, and luxury tenant suites.',
+            '<h2>Start With An Exhaustive Feasibility Plan</h2>',
+            '<span>Book Feasibility Consultation →</span>',
+            '<span>Book Feasibility Consultation &rarr;</span>',
+            'regarding your custom estate or multiplex development project.'
         );
         $replace = array(
             'KEYSTONE POSSIBILITIES LTD',
@@ -565,7 +576,18 @@ function keystone_possibilities_sanitize_content_output($content) {
             'Luxury Custom Home / Architectural Estate (Builder #52603)',
             'Major Custom Renovation / Structural Addition',
             'Request My Custom Home &amp; Civil Pre-Construction Plan →',
-            '<span>📐 Cost &amp; Build Plan</span>'
+            '<span>📐 Cost &amp; Build Plan</span>',
+            'Building ultra-luxury mountain residences, custom coastal estates, and BC Hydro ES54 civil infrastructure requires',
+            '<h2>Sea-to-Sky &amp; North Shore Custom Homes &amp; Civil</h2>',
+            '<h2>Sea-to-Sky &amp; North Shore Custom Homes &amp; Civil</h2>',
+            'and BC Hydro ES54 civil infrastructure engineered across',
+            '<div class="portfolio-badge">Squamish Custom &amp; Civil</div>',
+            '<h4>Highlands Custom Estate &amp; Civil Servicing</h4>',
+            'Mountain modern custom residence and carriage house build featuring turnkey BC Hydro ES54 underground civil infrastructure, PMT vault servicing, and Step Code 5 envelope.',
+            '<h2>Start With a Custom Home or Civil Pre-Construction Plan</h2>',
+            '<span>Start Your Custom Home or Civil Project Plan →</span>',
+            '<span>Start Your Custom Home or Civil Project Plan &rarr;</span>',
+            'regarding your luxury custom home, architectural estate, or BC Hydro ES54 civil project.'
         );
         $content = str_replace($search, $replace, $content);
         // Replace inline linear-gradient h2 with clean class to eliminate white glare box
