@@ -45,8 +45,6 @@ if (file_exists(__DIR__ . '/inc/portfolio-residences.php')) {
 }
 require_once __DIR__ . '/inc/lead-capture.php';
 require_once __DIR__ . '/inc/bill44-estimator.php';
-// Disable automatic appending of legacy Bill 44 estimator on /feasibility-plan/ (replaces with clean luxury 1-box calculator)
-remove_filter('the_content', 'keystone_possibilities_inject_feasibility_tools', 20);
 require_once __DIR__ . '/inc/client-portal-demo.php';
 if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
     require_once __DIR__ . '/inc/multi-job-portal-api.php';
@@ -112,9 +110,13 @@ add_filter('rank_math/sitemap/exclude_taxonomy', function (bool $exclude, string
 // Enforce strict exclusion of empty terms across all remaining taxonomies
 add_filter('rank_math/sitemap/exclude_empty_terms', '__return_true');
 
-// Tier 2: Guardrail - Strip category-sitemap from sitemap_index.xml XML output
+// Disable Rank Math KML / Locations sitemap to prevent redirecting locations.kml in sitemaps
+add_filter('rank_math/sitemap/locations', '__return_empty_string');
+add_filter('rank_math/sitemap/locations/data', '__return_empty_array');
+
+// Tier 2: Guardrail - Strip category-sitemap, local-sitemap, and locations-sitemap from sitemap_index.xml XML output
 add_filter('rank_math/sitemap/index', function (string $xml): string {
-    $pattern = '/<sitemap>\s*<loc>[^<]*category-sitemap\.xml<\/loc>.*?<\/sitemap>\s*/is';
+    $pattern = '/<sitemap>\s*<loc>[^<]*(?:category-sitemap\.xml|local-sitemap\.xml|locations-sitemap\.xml|locations\.kml)<\/loc>.*?<\/sitemap>\s*/is';
     $cleaned = preg_replace($pattern, '', $xml);
     return is_string($cleaned) ? $cleaned : $xml;
 }, 11);
@@ -140,13 +142,15 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
 
     $loc = $url['loc'];
 
-    // 1. Exclude legacy redirected paths, test URLs, and .html extensions
+    // 1. Exclude legacy redirected paths, test URLs, locations.kml, and .html extensions
+    // Note: /pemberton-luxury-builder/ and /bc-hydro-registered-civil-contractor/ are canonical 200 OK pages and MUST remain indexed
     $excluded_patterns = array(
         'sample-page',
         '/test/',
         '/demo/',
         'wp-admin',
         'wp-login',
+        'locations.kml',
         'about-us-general-contractor-squamish.html',
         'squamish-custom-home-builder',
         'squamish-general-contractor',
@@ -164,8 +168,6 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
         'the-journey',
         'keystone_recomposition',
         '52603',
-        'pemberton-luxury-builder',
-        'bc-hydro-registered-civil-contractor',
         '/tag/',
         '/author/',
         '/date/',
@@ -245,6 +247,19 @@ add_filter('rank_math/schema/video', '__return_empty_array');
 // ── 4.5. 301 Redirect, /llms.txt & 410 Handler ──────────────────────────────
 add_action('template_redirect', 'keystone_possibilities_handle_301_410_redirects', 1);
 function keystone_possibilities_handle_301_410_redirects() {
+    // 1. Strip Jetpack/social ?share= and ?nb= query parameters via 301 to canonical URL
+    if (isset($_GET['share'])) {
+        wp_safe_redirect(remove_query_arg(array('share', 'nb')), 301);
+        exit;
+    }
+
+    // 2. Redirect RSS/Atom feeds with noindex header to canonical custom homes hub
+    if (is_feed()) {
+        header('X-Robots-Tag: noindex, follow', true);
+        wp_safe_redirect(home_url('/keystone-possibilities-custom-homes/'), 301);
+        exit;
+    }
+
     $uri = (string) ( $_SERVER['REQUEST_URI'] ?? '' );
     $path = (string) strtok($uri, '?');
     
@@ -252,11 +267,18 @@ function keystone_possibilities_handle_301_410_redirects() {
     if ($path === '/llms.txt' || $path === 'llms.txt') {
         $llms_file = get_stylesheet_directory() . '/llms.txt';
         if (file_exists($llms_file)) {
+            status_header(200);
             header('Content-Type: text/plain; charset=utf-8');
             header('X-Robots-Tag: all');
             readfile($llms_file);
             exit;
         }
+    }
+
+    // Prefix match for any /2026/03/02/the-2026-structural-reset* variants
+    if (stripos($path, '/2026/03/02/the-2026-structural-reset') === 0 || stripos($path, '/2026/03/02/squamish-structural-reset') === 0) {
+        wp_safe_redirect(home_url('/2026/09/05/why-4-storey-multiplexes-snap-holdowns/'), 301);
+        exit;
     }
 
     // Strict 301 redirects mapping all legacy/variant slugs to verified 200 OK live URLs
@@ -270,6 +292,10 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/squamish-custom-home-builder' => '/squamish-custom-homes/',
         '/squamish-general-contractor/' => '/squamish-custom-homes/',
         '/squamish-general-contractor' => '/squamish-custom-homes/',
+        '/squamish-sauna/' => '/squamish-custom-homes/',
+        '/squamish-sauna' => '/squamish-custom-homes/',
+        '/project-management/squamish_custom_homes/' => '/squamish-custom-homes/',
+        '/project-management/squamish_custom_homes' => '/squamish-custom-homes/',
         
         // Whistler
         '/whistler-luxury-builder.html' => '/whistler-custom-homes/',
@@ -277,27 +303,70 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/whistler-luxury-builder' => '/whistler-custom-homes/',
         '/whistler-luxury-home-builder/' => '/whistler-custom-homes/',
         '/whistler-luxury-home-builder' => '/whistler-custom-homes/',
+        '/whistler-sauna/' => '/whistler-custom-homes/',
+        '/whistler-sauna' => '/whistler-custom-homes/',
         
         // West Vancouver
         '/west-vancouver-custom-homes.html' => '/west-vancouver-custom-homes/',
+        '/west-vancouver-luxury-renovations.html' => '/west-vancouver-luxury-renovations/',
         '/west-vancouver-luxury-builder/' => '/west-vancouver-custom-homes/',
         '/west-vancouver-luxury-builder' => '/west-vancouver-custom-homes/',
+        '/west-vancouver-sauna/' => '/west-vancouver-custom-homes/',
+        '/west-vancouver-sauna' => '/west-vancouver-custom-homes/',
+        '/west_vancouver-sauna/' => '/west-vancouver-custom-homes/',
+        '/west_vancouver-sauna' => '/west-vancouver-custom-homes/',
         
         // North Vancouver
         '/north-vancouver-home-builder/' => '/north-vancouver-custom-homes/',
         '/north-vancouver-home-builder' => '/north-vancouver-custom-homes/',
+        '/north-vancouver-sauna/' => '/north-vancouver-custom-homes/',
+        '/north-vancouver-sauna' => '/north-vancouver-custom-homes/',
+        '/north_vancouver-sauna/' => '/north-vancouver-custom-homes/',
+        '/north_vancouver-sauna' => '/north-vancouver-custom-homes/',
+
+        // Sunshine Coast / Portfolio
+        '/sunshine-coast-sauna/' => '/sunshine-coast-custom-homes/',
+        '/sunshine-coast-sauna' => '/sunshine-coast-custom-homes/',
+        '/portfolio/' => '/portfolio-general-contractor-squamish/',
+        '/portfolio' => '/portfolio-general-contractor-squamish/',
         
-        // Feasibility Plan
+        // Feasibility Plan & Consulting
         '/feasibility-study/' => '/feasibility-plan/',
         '/feasibility-study' => '/feasibility-plan/',
+        '/consulting/' => '/feasibility-plan/',
+        '/consulting' => '/feasibility-plan/',
+        '/bill-44-multiplex-feasibility/' => '/feasibility-plan/',
+        '/bill-44-multiplex-feasibility' => '/feasibility-plan/',
+
+        // Client Portal & Videos
+        '/client-portal-2/' => '/client-portal-demo/',
+        '/client-portal-2' => '/client-portal-demo/',
+        '/client-portal/' => '/client-portal-demo/',
+        '/client-portal' => '/client-portal-demo/',
+        '/videos/' => '/keystone-possibilities-custom-homes/',
+        '/videos' => '/keystone-possibilities-custom-homes/',
         
+        // Unpublished 2026 & Legacy Post Slugs -> Canonical Published 200 OK Engineering Teardowns
+        '/2026/05/19/squamish-permit-delays/' => '/2026/06/06/building-fourplex-squamish/',
+        '/2026/05/19/squamish-permit-delays' => '/2026/06/06/building-fourplex-squamish/',
+        '/2026/04/28/bc-bill-44-multiplex-guide/' => '/feasibility-plan/',
+        '/2026/04/28/bc-bill-44-multiplex-guide' => '/feasibility-plan/',
+        '/2026/04/12/bc-building-code-updates/' => '/2026/08/31/vancouver-r1-1-step-code-5/',
+        '/2026/04/12/bc-building-code-updates' => '/2026/08/31/vancouver-r1-1-step-code-5/',
+        '/2026/03/02/the-2026-structural-reset/' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
+        '/2026/03/02/the-2026-structural-reset' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
+        '/2026/03/02/squamish-structural-reset/' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
+        '/2026/03/02/squamish-structural-reset' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
+        '/2025/11/22/plan-spring-build-in-winter/' => '/2026/07/14/mountain-construction-bc/',
+        '/2025/11/22/plan-spring-build-in-winter' => '/2026/07/14/mountain-construction-bc/',
+
         // Articles / Blog
         '/blog/' => '/#articles',
         '/blog' => '/#articles',
         '/articles/' => '/#articles',
         '/articles' => '/#articles',
         
-        // Obsolete peptide pages redirected to root
+        // Obsolete legacy paths redirected to root
         '/cjc-1295-ipamorelin-glp-1-fatigue.html' => '/',
         '/mounjaro-muscle-loss.html' => '/',
         '/retatrutide-phase-3-data.html' => '/',
@@ -305,7 +374,7 @@ function keystone_possibilities_handle_301_410_redirects() {
     );
 
     if (isset($redirects_301[$path])) {
-        wp_redirect(home_url($redirects_301[$path]), 301);
+        wp_safe_redirect(home_url($redirects_301[$path]), 301);
         exit;
     }
 
@@ -328,12 +397,18 @@ function keystone_possibilities_handle_301_410_redirects() {
 }
 
 // ── 5. Master Luxury Footer & Global Color Harmonization Standard ──────────
-// 1. Suppress Astra Default Footer Markup globally
+// 1. Suppress Astra Default Footer Markup & Duplicate Copyright globally
 remove_action('astra_footer', 'astra_footer_markup');
+add_filter('astra_footer_copyright_layout', '__return_false');
 
-// 2. Render Unified Master Luxury Footer
+// 2. Render Unified Master Luxury Footer (with single-render guard)
 add_action('wp_footer', 'keystone_possibilities_render_master_luxury_footer', 20);
 function keystone_possibilities_render_master_luxury_footer() {
+    global $kp_master_footer_rendered;
+    if (!empty($kp_master_footer_rendered)) {
+        return;
+    }
+    $kp_master_footer_rendered = true;
     ?>
     <footer id="kp-master-luxury-footer" class="kp-master-luxury-footer" style="background-color: #04070D !important; border-top: 1px solid rgba(212, 175, 55, 0.25); padding: 48px 20px calc(5rem + env(safe-area-inset-bottom, 0px)) 20px; color: #94A3B8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 0.84rem; text-align: center; position: relative; z-index: 10; width: 100%; box-sizing: border-box; overflow-x: clip;">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -353,21 +428,21 @@ function keystone_possibilities_render_master_luxury_footer() {
                     </a>
 
                     <!-- YouTube Official Channel -->
-                    <a href="https://www.youtube.com/@KeystonePossibilities" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
 
                     <!-- High-Converting YouTube Channel Subscribe Pill -->
-                    <a href="https://www.youtube.com/@KeystonePossibilities?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" style="filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.6)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>SUBSCRIBE &bull; @KeystonePossibilities</span>
+                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37" style="filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>SUBSCRIBE &bull; @KeystonePossibilitiesLtd</span>
                     </a>
 
                 </div>
             </div>
 
             <!-- B. Centered High-End Copyright & Credentials -->
-            <div style="margin-bottom: 32px; line-height: 1.6;">
+            <div data-nosnippet style="margin-bottom: 32px; line-height: 1.6;">
                 <p style="margin: 0 0 6px 0; color: #CBD5E1; font-weight: 500; font-size: 0.86rem; letter-spacing: 0.02em;">
                     Copyright &copy; 2023–2026 Keystone Possibilities Ltd &bull; All Rights Reserved.
                 </p>
@@ -377,7 +452,7 @@ function keystone_possibilities_render_master_luxury_footer() {
             </div>
 
             <!-- C. Regional Divisions & Specialized Services 4-Column Mesh (Unified Obsidian & Gold) -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 24px; text-align: left;">
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 12px; text-align: left;">
                 <div style="color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 16px; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;">
                     <span>🏛️</span> KEYSTONE POSSIBILITIES — REGIONAL DIVISIONS &amp; SPECIALIZED SERVICES
                 </div>
@@ -391,13 +466,13 @@ function keystone_possibilities_render_master_luxury_footer() {
                     <div>
                         <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver:</strong>
                         <a href="/north-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Luxury Builder</a>
-                        <a href="/north-vancouver-multiplex-conversions/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Bill 44 Multiplex</a>
-                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
+                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North &amp; West Vancouver Custom Homes</a>
+                        <a href="/west-vancouver-luxury-renovations/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
                     </div>
                     <div>
                         <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Civil &amp; Fiduciary PM:</strong>
                         <a href="/bc-hydro-registered-civil-contractor/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• BC Hydro Civil Utility Contractor</a>
-                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Construction Feasibility Studies</a>
+                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Custom Build &amp; Cost Plan</a>
                         <a href="/private-investors/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Private Investor Joint Ventures</a>
                     </div>
                     <div>
@@ -409,23 +484,24 @@ function keystone_possibilities_render_master_luxury_footer() {
                 </div>
             </div>
 
-            <!-- D. Standardized Keystone Empire Network Bar (Gold & Obsidian Continuity) -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.80rem; color: #94a3b8;">
-                <div>
-                    <span style="color: #d4af37; font-weight: 700; letter-spacing: 0.04em;">⚔️ KEYSTONE EMPIRE NETWORK</span> | Keystone Possibilities — BC Building Code &amp; Construction Consulting
-                </div>
-                <div>
-                    Sister Flagship: <a href="https://keystonerecomposition.com/ai-protocols/" target="_blank" rel="noopener noreferrer" style="color: #f6d365; text-decoration: none !important; font-weight: 600;">Keystone Recomposition — Production AI Protocols, AI Music &amp; Lifestyle Investments &rarr;</a>
-                </div>
-            </div>
-
         </div>
     </footer>
-    <a href="tel:+16048489688" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
+    <a href="tel:+16048489688" id="kp-floating-phone" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
         <span>📞 (604) 848-9688</span>
     </a>
     <?php
 }
+
+// Ensure Astra primary nav menu item for /feasibility-plan/ displays "CUSTOM BUILD & COST PLAN"
+add_filter('wp_nav_menu_objects', function($items) {
+    if (!is_array($items)) return $items;
+    foreach ($items as $item) {
+        if (!empty($item->url) && stripos($item->url, 'feasibility-plan') !== false) {
+            $item->title = 'Custom Build & Cost Plan';
+        }
+    }
+    return $items;
+}, 20);
 
 // ── 6. Real-Time Brand Sanitization & Zero CSS Leak Filter ──────────────────
 add_filter('the_content', 'keystone_possibilities_sanitize_content_output', 999);
@@ -435,13 +511,61 @@ function keystone_possibilities_sanitize_content_output($content) {
             'KEYSTONE RECOMPOSITION',
             'ks-recomposition-header',
             '#ks-recomposition-header',
-            'KEYSTONE POSSIBILITY HELP TD'
+            'KEYSTONE POSSIBILITY HELP TD',
+            'BILL 44 MULTIPLEX INFILL, MANAGED WITH',
+            'Start-to-Finish Luxury Custom Homes, Bill 44 Multiplex Development &amp; Turnkey BC Hydro Civil Contracting (ES54)',
+            'Start-to-Finish Luxury Custom Homes, Bill 44 Multiplex Development & Turnkey BC Hydro Civil Contracting (ES54)',
+            'START WITH A FEASIBILITY PLAN &rarr;',
+            'START WITH A FEASIBILITY PLAN →',
+            'START WITH A FEASIBILITY PLAN',
+            'START YOUR FEASIBILITY PLAN &rarr;',
+            'START YOUR FEASIBILITY PLAN →',
+            'START YOUR FEASIBILITY PLAN',
+            'Start With a Property Feasibility Plan',
+            'BOOK YOUR FEASIBILITY CALL &rarr;',
+            'BOOK YOUR FEASIBILITY CALL →',
+            '<a href="/north-vancouver-multiplex-conversions/" class="municipal-pill">Vancouver Infill →</a>',
+            '<a href="/north-vancouver-multiplex-conversions/" class="municipal-pill">Vancouver Infill &rarr;</a>',
+            '<option value="Vancouver Infill">Vancouver Infill (Bill 44)</option>',
+            '<option value="Luxury Custom Estate">Luxury Custom Estate ($3M &#8211; $15M+)</option>',
+            '<option value="Luxury Custom Estate">Luxury Custom Estate ($3M – $15M+)</option>',
+            '<option value="Hillside Rock Concrete Build">Hillside Rock &amp; Concrete Build</option>',
+            '<option value="Bill 44 Multiplex Infill">Bill 44 Multiplex Infill (3-6 Units)</option>',
+            '<option value="BC Hydro Civil Infrastructure">BC Hydro Civil &amp; Transformer Vaults</option>',
+            'Bill 44 Multiplex Retainer (3-6 Units)',
+            'Bill 44 Multiplex Conversion (3-6 Units)',
+            'Request My Custom Feasibility Plan →',
+            '<span>📐 Feasibility Plan</span>'
         );
         $replace = array(
             'KEYSTONE POSSIBILITIES LTD',
             'ks-possibilities-header',
             '#ks-possibilities-header',
-            'KEYSTONE POSSIBILITIES LTD — CLIENT &amp; CONSULTING SERVICES'
+            'KEYSTONE POSSIBILITIES LTD — CLIENT &amp; CONSULTING SERVICES',
+            'BC HYDRO CIVIL INFRASTRUCTURE, MANAGED WITH',
+            'Start-to-Finish Luxury Custom Homes, Architectural Mountain &amp; Coastal Estates, and Turnkey BC Hydro Civil Contracting (ES54)',
+            'Start-to-Finish Luxury Custom Homes, Architectural Mountain & Coastal Estates, and Turnkey BC Hydro Civil Contracting (ES54)',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN &rarr;',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN →',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN &rarr;',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN →',
+            'START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN',
+            'Start With a Custom Home or Civil Pre-Construction Plan',
+            'START YOUR CUSTOM BUILD OR CIVIL PLAN &rarr;',
+            'START YOUR CUSTOM BUILD OR CIVIL PLAN →',
+            '<a href="/bc-hydro-registered-civil-contractor/" class="municipal-pill">BC Hydro Civil ES54 →</a>',
+            '<a href="/bc-hydro-registered-civil-contractor/" class="municipal-pill">BC Hydro Civil ES54 &rarr;</a>',
+            '<option value="Vancouver">Vancouver (Custom Homes &amp; Estates)</option>',
+            '<option value="Luxury Custom Home / Architectural Estate (Builder #52603)">Luxury Custom Home / Architectural Estate (Builder #52603)</option>',
+            '<option value="Luxury Custom Home / Architectural Estate (Builder #52603)">Luxury Custom Home / Architectural Estate (Builder #52603)</option>',
+            '<option value="BC Hydro Civil Infrastructure & Underground Servicing (ES54)">BC Hydro Civil Infrastructure &amp; Underground Servicing (ES54)</option>',
+            '<option value="Major Custom Renovation / Structural Addition">Major Custom Renovation / Structural Addition</option>',
+            '<option value="Carriage House, Luxury Duplex or Multi-Generational Build">Carriage House, Luxury Duplex or Multi-Generational Build</option>',
+            'Luxury Custom Home / Architectural Estate (Builder #52603)',
+            'Major Custom Renovation / Structural Addition',
+            'Request My Custom Home &amp; Civil Pre-Construction Plan →',
+            '<span>📐 Cost &amp; Build Plan</span>'
         );
         $content = str_replace($search, $replace, $content);
         // Replace inline linear-gradient h2 with clean class to eliminate white glare box
@@ -1128,3 +1252,299 @@ add_filter('astra_page_post_thumb_enabled', function($enabled) {
     }
     return $enabled;
 }, 99);
+
+// ── 9. Multi-Job Client & Builder Portal v10 REST API Fallback ─────────────
+if (!function_exists('keystone_portal_v10_get_jobs')) {
+define('KEYSTONE_PORTAL_JOBS_OPTION', 'keystone_portal_jobs_v10');
+define('KEYSTONE_PORTAL_JOBS_UPDATED_OPTION', 'keystone_portal_jobs_v10_updated_at');
+
+/**
+ * Compute and attach CORS + No-Cache headers to Portal REST responses.
+ *
+ * @param WP_REST_Response $response
+ * @return WP_REST_Response
+ */
+function keystone_portal_v10_attach_headers(WP_REST_Response $response): WP_REST_Response {
+    $allowed_origins = array(
+        'https://keystonepossibilities.ca',
+        'https://www.keystonepossibilities.ca',
+        'http://127.0.0.1:9879',
+        'http://localhost:9879',
+    );
+
+    $origin = isset($_SERVER['HTTP_ORIGIN']) ? trim((string) $_SERVER['HTTP_ORIGIN']) : '';
+    if (in_array($origin, $allowed_origins, true)) {
+        $response->header('Access-Control-Allow-Origin', $origin);
+    } else {
+        $response->header('Access-Control-Allow-Origin', 'https://keystonepossibilities.ca');
+    }
+
+    $response->header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+    $response->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-WP-Nonce, X-Portal-Role');
+    $response->header('Access-Control-Allow-Credentials', 'true');
+    $response->header('Vary', 'Origin');
+    $response->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    $response->header('Pragma', 'no-cache');
+    $response->header('X-LiteSpeed-Cache-Control', 'no-cache');
+
+    return $response;
+}
+
+/**
+ * Ensure preflight OPTIONS requests to /wp-json/keystone/v1/portal-jobs receive CORS headers.
+ */
+add_filter('rest_pre_serve_request', function ($served, $result, $request, $server) {
+    $route = $request->get_route();
+    if (strpos($route, '/keystone/v1/portal-jobs') === 0) {
+        $allowed_origins = array(
+            'https://keystonepossibilities.ca',
+            'https://www.keystonepossibilities.ca',
+            'http://127.0.0.1:9879',
+            'http://localhost:9879',
+        );
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? trim((string) $_SERVER['HTTP_ORIGIN']) : '';
+        if (in_array($origin, $allowed_origins, true)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+        } else {
+            header('Access-Control-Allow-Origin: https://keystonepossibilities.ca');
+        }
+        header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization, X-WP-Nonce, X-Portal-Role');
+        header('Access-Control-Allow-Credentials: true');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('X-LiteSpeed-Cache-Control: no-cache');
+    }
+    return $served;
+}, 10, 4);
+
+/**
+ * Register REST API routes for Multi-Job Portal v10.
+ */
+add_action('rest_api_init', function () {
+    register_rest_route('keystone/v1', '/portal-jobs', array(
+        array(
+            'methods'             => WP_REST_Server::READABLE, // GET
+            'callback'            => 'keystone_portal_v10_get_jobs',
+            'permission_callback' => '__return_true',
+        ),
+        array(
+            'methods'             => WP_REST_Server::CREATABLE, // POST
+            'callback'            => 'keystone_portal_v10_save_jobs',
+            'permission_callback' => '__return_true',
+        ),
+        array(
+            'methods'             => WP_REST_Server::DELETABLE, // DELETE
+            'callback'            => 'keystone_portal_v10_delete_job',
+            'permission_callback' => '__return_true',
+        ),
+    ));
+});
+
+/**
+ * Load stored portal jobs dictionary safely.
+ *
+ * @return array
+ */
+function keystone_portal_v10_load_jobs_dict(): array {
+    $jobs = get_option(KEYSTONE_PORTAL_JOBS_OPTION, array());
+    if (!is_array($jobs)) {
+        return array();
+    }
+    return $jobs;
+}
+
+/**
+ * GET /wp-json/keystone/v1/portal-jobs
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function keystone_portal_v10_get_jobs(WP_REST_Request $request): WP_REST_Response {
+    $jobs       = keystone_portal_v10_load_jobs_dict();
+    $updated_at = get_option(KEYSTONE_PORTAL_JOBS_UPDATED_OPTION, null);
+    if (empty($updated_at)) {
+        $updated_at = gmdate('c');
+    }
+
+    $job_id = sanitize_text_field((string) ($request->get_param('job_id') ?? ''));
+    if (!empty($job_id)) {
+        $single = isset($jobs[$job_id]) ? $jobs[$job_id] : null;
+        $resp = new WP_REST_Response(array(
+            'status'     => 'ok',
+            'job_id'     => $job_id,
+            'job'        => $single,
+            'jobs'       => (object) $jobs,
+            'count'      => count($jobs),
+            'updated_at' => $updated_at,
+        ), 200);
+        return keystone_portal_v10_attach_headers($resp);
+    }
+
+    $resp = new WP_REST_Response(array(
+        'status'     => 'ok',
+        'jobs'       => (object) $jobs,
+        'count'      => count($jobs),
+        'updated_at' => $updated_at,
+    ), 200);
+
+    return keystone_portal_v10_attach_headers($resp);
+}
+
+/**
+ * POST /wp-json/keystone/v1/portal-jobs
+ * Accepts:
+ *   - { "job_id": "...", "job": { ... } }
+ *   - { "jobs": { ... } }
+ *   - { "action": "delete_job", "job_id": "..." }
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function keystone_portal_v10_save_jobs(WP_REST_Request $request): WP_REST_Response {
+    $params = $request->get_json_params();
+    if (empty($params) || !is_array($params)) {
+        $params = $request->get_body_params();
+    }
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $action = isset($params['action']) ? sanitize_text_field((string) $params['action']) : '';
+    if ($action === 'delete_job') {
+        return keystone_portal_v10_delete_job($request);
+    }
+
+    $jobs = keystone_portal_v10_load_jobs_dict();
+    $saved_job_id = null;
+    $now_iso = gmdate('c');
+
+    // Case 1: Batch dictionary of jobs `{ "jobs": { "KP-2026-001": { ... }, ... } }`
+    if (isset($params['jobs']) && is_array($params['jobs'])) {
+        $replace_all = !empty($params['replace_all']);
+        if ($replace_all) {
+            $jobs = array();
+        }
+        foreach ($params['jobs'] as $k => $v) {
+            if (!is_array($v)) {
+                continue;
+            }
+            $jid = is_string($k) && !is_numeric($k)
+                ? sanitize_text_field($k)
+                : sanitize_text_field((string) ($v['job_id'] ?? $v['project_id'] ?? $v['id'] ?? ''));
+            if (empty($jid)) {
+                continue;
+            }
+            $v['job_id']     = $jid;
+            $v['updated_at'] = $v['updated_at'] ?? $now_iso;
+            $jobs[$jid]      = $v;
+            $saved_job_id    = $jid;
+        }
+    }
+
+    // Case 2: Single job `{ "job_id": "...", "job": { ... } }`
+    if (isset($params['job']) && is_array($params['job'])) {
+        $job_data = $params['job'];
+        $jid = sanitize_text_field((string) (
+            $params['job_id']
+            ?? $job_data['job_id']
+            ?? $job_data['project_id']
+            ?? $job_data['id']
+            ?? ''
+        ));
+        if (!empty($jid)) {
+            $job_data['job_id']     = $jid;
+            $job_data['updated_at'] = $job_data['updated_at'] ?? $now_iso;
+            $jobs[$jid]             = $job_data;
+            $saved_job_id           = $jid;
+        }
+    }
+
+    // Case 3: Top-level job payload with `job_id` / `project_id` but no nested `job` key
+    if ($saved_job_id === null && (!empty($params['job_id']) || !empty($params['project_id']))) {
+        $jid = sanitize_text_field((string) ($params['job_id'] ?? $params['project_id']));
+        if (!empty($jid)) {
+            $job_data = $params;
+            unset($job_data['action']);
+            $job_data['job_id']     = $jid;
+            $job_data['updated_at'] = $job_data['updated_at'] ?? $now_iso;
+            $jobs[$jid]             = $job_data;
+            $saved_job_id           = $jid;
+        }
+    }
+
+    if ($saved_job_id === null && !isset($params['jobs'])) {
+        $err = new WP_REST_Response(array(
+            'status'  => 'error',
+            'message' => 'Invalid payload. Provide {"job_id": "...", "job": {...}} or {"jobs": {...}}.',
+        ), 400);
+        return keystone_portal_v10_attach_headers($err);
+    }
+
+    // Persist with autoload = false so large JSON payloads never bloat wp_options autoload
+    update_option(KEYSTONE_PORTAL_JOBS_OPTION, $jobs, false);
+    update_option(KEYSTONE_PORTAL_JOBS_UPDATED_OPTION, $now_iso, false);
+
+    $resp = new WP_REST_Response(array(
+        'status'     => 'saved',
+        'job_id'     => $saved_job_id,
+        'count'      => count($jobs),
+        'updated_at' => $now_iso,
+    ), 200);
+
+    return keystone_portal_v10_attach_headers($resp);
+}
+
+/**
+ * DELETE /wp-json/keystone/v1/portal-jobs
+ * Deletes a job by `job_id` from `keystone_portal_jobs_v10`.
+ *
+ * @param WP_REST_Request $request
+ * @return WP_REST_Response
+ */
+function keystone_portal_v10_delete_job(WP_REST_Request $request): WP_REST_Response {
+    $params = $request->get_json_params();
+    if (empty($params) || !is_array($params)) {
+        $params = $request->get_body_params();
+    }
+    if (!is_array($params)) {
+        $params = array();
+    }
+
+    $job_id = sanitize_text_field((string) (
+        $params['job_id']
+        ?? $params['project_id']
+        ?? $params['id']
+        ?? $request->get_param('job_id')
+        ?? $request->get_param('id')
+        ?? ''
+    ));
+
+    if (empty($job_id)) {
+        $err = new WP_REST_Response(array(
+            'status'  => 'error',
+            'message' => 'Missing required parameter: job_id',
+        ), 400);
+        return keystone_portal_v10_attach_headers($err);
+    }
+
+    $jobs = keystone_portal_v10_load_jobs_dict();
+    $existed = isset($jobs[$job_id]);
+    if ($existed) {
+        unset($jobs[$job_id]);
+    }
+
+    $now_iso = gmdate('c');
+    update_option(KEYSTONE_PORTAL_JOBS_OPTION, $jobs, false);
+    update_option(KEYSTONE_PORTAL_JOBS_UPDATED_OPTION, $now_iso, false);
+
+    $resp = new WP_REST_Response(array(
+        'status'     => 'deleted',
+        'job_id'     => $job_id,
+        'existed'    => $existed,
+        'count'      => count($jobs),
+        'updated_at' => $now_iso,
+    ), 200);
+
+    return keystone_portal_v10_attach_headers($resp);
+}
+}

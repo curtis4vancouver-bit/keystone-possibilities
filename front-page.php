@@ -48,21 +48,21 @@ $theme_uri = get_stylesheet_directory_uri();
 
             <!-- Centered H1 Master Headline -->
             <h1 class="hero-master-title">
-                LUXURY MOUNTAIN ESTATES &amp;<br>
-                MULTIPLEX INFILL, MANAGED WITH<br>
+                LUXURY CUSTOM HOMES &amp;<br>
+                MOUNTAIN ESTATES, MANAGED WITH<br>
                 <span class="gold-gradient">ABSOLUTE FIDUCIARY</span><br>
                 <span class="gold-gradient">TRANSPARENCY</span>
             </h1>
 
             <!-- Centered Subtitle Paragraph -->
             <p class="hero-description-lead">
-                Architect-Led Custom Residences, Hillside Geotechnical Infill &amp; Turnkey BC Hydro Civil Contracting across West Vancouver, Whistler, and Squamish. Fixed-price predictability, BC Step Code 5 net-zero engineering, and 24/7 transparent client portal oversight.
+                Start-to-Finish Luxury Custom Homes, Architectural Mountain/Coastal Estates &amp; Turnkey BC Hydro Civil Contracting (ES54) across West Vancouver, Whistler, Squamish, and North Vancouver. Protected by BC Housing Licensed Builder #52603, 2-5-10 National Home Warranty, and 24/7 transparent client portal oversight.
             </p>
 
             <!-- Centered Dual Call-to-Action Buttons (Smaller, Black Lettering on Gold) -->
             <div class="hero-dual-cta-group">
-                <a href="#feasibility" class="btn-gold-action">
-                    <span>START WITH A FEASIBILITY PLAN →</span>
+                <a href="/feasibility-plan/" class="btn-gold-action">
+                    <span>START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN →</span>
                 </a>
                 <a href="/client-portal/" class="btn-portal-secondary">
                     <span>24/7 CLIENT PORTAL LOGIN</span>
@@ -139,7 +139,7 @@ $theme_uri = get_stylesheet_directory_uri();
                 </div>
                 <h2>Engineered With Absolute Precision</h2>
                 <p>
-                    Building ultra-luxury mountain residences and complex multiplex infill requires an unyielding marriage of civil engineering discipline and open-book financial accountability.
+                    Building start-to-finish luxury custom residences, architectural mountain/coastal estates, and heavy civil utility infrastructure requires an unyielding marriage of engineering discipline and open-book financial accountability.
                 </p>
             </div>
 
@@ -162,10 +162,10 @@ $theme_uri = get_stylesheet_directory_uri();
                     <div class="pillar-icon-box">⚡</div>
                     <h3>BC Hydro Civil Infrastructure</h3>
                     <p>
-                        Registered ES54 civil contractor capacity handling underground hydro trenching, civil road works, transformer pads, and municipal off-site tie-ins without third-party utility delays across Sea-to-Sky corridors.
+                        Registered ES54 civil contractor capacity handling underground hydro duct banks, PMT transformer vaults, heavy rock excavation, and municipal off-site tie-ins without third-party utility delays across Sea-to-Sky corridors.
                     </p>
                     <div class="pillar-meta-badge">
-                        <span>✓ Registered Civil Contractor</span>
+                        <span>✓ Registered Civil Contractor ES54</span>
                     </div>
                 </div>
 
@@ -190,9 +190,9 @@ $theme_uri = get_stylesheet_directory_uri();
                 <div class="section-eyebrow-gold">
                     <span>🏔️ ARCHITECTURAL PORTFOLIO</span>
                 </div>
-                <h2>Sea-to-Sky &amp; Vancouver Infill</h2>
+                <h2>West Vancouver, Whistler, Squamish &amp; North Vancouver</h2>
                 <p>
-                    Explore our recent custom mountain estates, hillside concrete builds, and Bill 44 multiplex conversions engineered across British Columbia's premier corridors.
+                    Explore our start-to-finish luxury custom homes and architectural mountain/coastal estates (BC Housing Licensed Residential Builder #52603 &amp; 2-5-10 National Home Warranty), BC Hydro registered civil infrastructure (ES54), and major custom renovations engineered across British Columbia's premier corridors.
                 </p>
             </div>
 
@@ -234,20 +234,20 @@ $theme_uri = get_stylesheet_directory_uri();
                     </div>
                 </div>
 
-                <!-- Portfolio 3: Squamish Infill -->
+                <!-- Portfolio 3: Squamish & North Shore Custom Estates & Civil -->
                 <div class="portfolio-card">
                     <div class="portfolio-img-box">
-                        <img src="<?php echo esc_url( $theme_uri . '/assets/images/luxury-home-construction-squamish-bc-aerial.jpeg' ); ?>" alt="Squamish Infill Multiplex" loading="lazy">
-                        <div class="portfolio-badge">Squamish Infill</div>
+                        <img src="<?php echo esc_url( $theme_uri . '/assets/images/luxury-home-construction-squamish-bc-aerial.jpeg' ); ?>" alt="Squamish Luxury Custom Home & BC Hydro ES54 Civil Infrastructure" loading="lazy">
+                        <div class="portfolio-badge">Squamish &amp; North Shore</div>
                     </div>
                     <div class="portfolio-body">
-                        <h4>Highlands Multiplex Infill</h4>
+                        <h4>Highlands Custom Estate &amp; ES54 Civil</h4>
                         <p>
-                            Bill 44 high-efficiency multiplex development optimizing allowable density with turnkey civil infrastructure, separate hydro metering, and luxury tenant suites.
+                            Multi-generational custom residence, carriage/coach home, and major structural renovation featuring BC Hydro ES54 underground duct banks, PMT transformer vaults, and heavy rock excavation.
                         </p>
                         <div class="portfolio-footer-meta">
-                            <span>Squamish, BC</span>
-                            <span class="gold">Turnkey Civil &amp; Hydro</span>
+                            <span>Squamish &amp; North Van</span>
+                            <span class="gold">Builder #52603 &amp; Civil ES54</span>
                         </div>
                     </div>
                 </div>
@@ -255,19 +255,19 @@ $theme_uri = get_stylesheet_directory_uri();
             </div>
         </section>
 
-        <!-- FEASIBILITY PACKAGE SECTION -->
+        <!-- CUSTOM PRE-CONSTRUCTION & CIVIL PLANNING SECTION -->
         <section class="pillar-matrix-section" id="feasibility">
             <div class="feasibility-cta-card">
                 <div class="section-eyebrow-gold" style="justify-content: center; margin-bottom: 14px;">
-                    <span>📐 PRE-CONSTRUCTION ACCURACY</span>
+                    <span>📐 CUSTOM PRE-CONSTRUCTION PLANNING</span>
                 </div>
-                <h2>Start With An Exhaustive Feasibility Plan</h2>
+                <h2>Custom Home, Estate &amp; BC Hydro Civil Pre-Construction Plan</h2>
                 <p>
-                    Eliminate cost surprises before architectural drawings are finalized. Our comprehensive feasibility audit evaluates zoning bylaws, geotechnical rock conditions, BC Hydro civil connections, and realistic pro-forma construction budgets.
+                    Eliminate cost surprises before architectural drawings are finalized. Whether you are commissioning a start-to-finish luxury custom home or architectural mountain/coastal estate in West Vancouver, Whistler, Squamish, or North Vancouver (BC Housing Licensed Residential Builder #52603 &amp; 2-5-10 National Home Warranty), executing BC Hydro registered civil infrastructure (ES54 underground duct banks, PMT transformer vaults &amp; heavy rock excavation), or planning a major custom renovation, carriage/coach home, or multi-generational estate—our pre-construction cost and servicing plan delivers bank-ready open-book certainty.
                 </p>
                 <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
-                    <a href="#contact" class="btn-gold-action">
-                        <span>Book Feasibility Consultation →</span>
+                    <a href="/feasibility-plan/" class="btn-gold-action">
+                        <span>START YOUR CUSTOM HOME OR CIVIL PROJECT PLAN →</span>
                     </a>
                     <a href="/client-portal/" class="btn-portal-secondary">
                         <span>Explore Client Portal</span>
@@ -284,7 +284,7 @@ $theme_uri = get_stylesheet_directory_uri();
                 </div>
                 <h2>Initiate Your Build Consultation</h2>
                 <p>
-                    Speak directly with Wayne Stevenson regarding your custom estate or multiplex development project.
+                    Speak directly with Wayne Stevenson regarding your luxury custom home, mountain/coastal estate, BC Hydro ES54 civil infrastructure, or custom renovation project.
                 </p>
             </div>
 
@@ -310,18 +310,18 @@ $theme_uri = get_stylesheet_directory_uri();
                                 <option value="Whistler">Whistler</option>
                                 <option value="Squamish">Squamish</option>
                                 <option value="North Vancouver">North Vancouver</option>
-                                <option value="Vancouver Infill">Vancouver Infill (Bill 44)</option>
                                 <option value="Pemberton">Pemberton</option>
+                                <option value="Vancouver / Sea-to-Sky">Vancouver &amp; Sea-to-Sky Corridor</option>
                             </select>
                         </div>
                         <div>
                             <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #CBD5E1; margin-bottom: 8px; text-transform: uppercase;">Project Type *</label>
                             <select name="project_type" required style="width: 100%; padding: 12px; background: rgba(5,8,14,0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-sm); color: #FFF; font-family: var(--font-body); font-size: 0.92rem;">
                                 <option value="">Select Type...</option>
-                                <option value="Luxury Custom Estate">Luxury Custom Estate ($3M - $15M+)</option>
-                                <option value="Hillside Rock Concrete Build">Hillside Rock &amp; Concrete Build</option>
-                                <option value="Bill 44 Multiplex Infill">Bill 44 Multiplex Infill (3-6 Units)</option>
-                                <option value="BC Hydro Civil Infrastructure">BC Hydro Civil &amp; Transformer Vaults</option>
+                                <option value="Luxury Custom Home / Architectural Estate (Builder #52603)">Luxury Custom Home / Architectural Estate (Builder #52603)</option>
+                                <option value="BC Hydro Civil Infrastructure & Underground Servicing (ES54)">BC Hydro Civil Infrastructure &amp; Underground Servicing (ES54)</option>
+                                <option value="Major Custom Renovation / Structural Addition">Major Custom Renovation / Structural Addition</option>
+                                <option value="Carriage House, Luxury Duplex or Multi-Generational Build">Carriage House, Luxury Duplex or Multi-Generational Build</option>
                                 <option value="Private Investor Partnership">Private Investor Joint Venture</option>
                             </select>
                         </div>
@@ -329,7 +329,7 @@ $theme_uri = get_stylesheet_directory_uri();
 
                     <div style="margin-bottom: 24px;">
                         <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #CBD5E1; margin-bottom: 8px; text-transform: uppercase;">Site Address / Project Scope Details</label>
-                        <textarea name="project_scope" rows="3" placeholder="Describe your property, lot zoning, or specific architectural requirements..." style="width: 100%; padding: 12px; background: rgba(5,8,14,0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-sm); color: #FFF; font-family: var(--font-body); font-size: 0.92rem; resize: vertical;"></textarea>
+                        <textarea name="project_scope" rows="3" placeholder="Describe your property, custom home vision, civil servicing needs, or renovation requirements..." style="width: 100%; padding: 12px; background: rgba(5,8,14,0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-sm); color: #FFF; font-family: var(--font-body); font-size: 0.92rem; resize: vertical;"></textarea>
                     </div>
 
                     <button type="submit" class="btn-gold-action" style="width: 100%; border: none; cursor: pointer;">

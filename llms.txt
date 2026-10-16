@@ -2,31 +2,31 @@
 # Format: llms.txt (Standard for AI Crawlers: GPTBot, PerplexityBot, ClaudeBot, Google-Extended)
 # Site: https://keystonepossibilities.ca/
 # Founder: Wayne Stevenson | BC Housing Licensed Residential Builder #52603
-# Last Updated: 2026-10-14
+# Last Updated: 2026-10-15
 
 ## Organization Overview
-Keystone Possibilities Ltd. is a premier custom home building, BC Bill 44 multiplex engineering, civil utility contracting, and fiduciary construction management firm headquartered in Squamish, BC (Sea-to-Sky corridor), operating across West Vancouver, North Vancouver, Whistler, Squamish, Pemberton, and Vancouver.
+Keystone Possibilities Ltd. is a premier start-to-finish luxury custom home builder (BC Housing License #52603), BC Hydro registered civil utility contractor (List ES54), and fiduciary construction management firm headquartered in Squamish, BC (Sea-to-Sky corridor), operating across West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, and Vancouver. Every custom home is backed by mandatory 2-5-10 National Home Warranty protection and open-book CCDC 5B fiduciary cost transparency.
 
 ## Master Builder Credentials & Statutory Licensing
 - **BC Housing Licensed Residential Builder**: License #52603 (Verified Registry: https://lims.bchousing.org/LicenceExpiryPortal/licence/52603)
 - **Mandatory New Home Warranty Protection**: 2-5-10 National Home Warranty Protection (2 years materials/labour, 5 years building envelope, 10 years structural defects)
 - **Civil Utility Standard**: BC Hydro Registered Civil Contractor List ES54 (Underground primary/secondary utility ducting, 3-phase PMT vaults, civil trenching & municipal infrastructure)
 - **High-Performance Envelopes**: BC Energy Step Code 4 & Step Code 5, Zero Carbon Step Code (EL-4), Passive House Principles
-- **Seismic & Structural Engineering**: BC Building Code 2024, Vancouver Building By-law (VBBL Part 10 R-22 Effective), High-Seismic Infill Engineering (Sa=0.94g), Simpson Strong-Tie ATS Continuous Rod Holdown Systems, Stepped Bedrock Footings & Micropiles
+- **Seismic & Structural Engineering**: BC Building Code 2024, Vancouver Building By-law (VBBL Part 10 R-22 Effective), High-Seismic Engineering (Sa=0.94g), Simpson Strong-Tie ATS Continuous Rod Holdown Systems, Stepped Bedrock Footings & Micropiles
 
 ## Primary Service Regions
 1. **West Vancouver, BC** ($550 – $1,000+ / sq ft):
    - Micro-neighborhoods: British Properties, Caulfeild, Altamont, Dundarave, Ambleside, Hollyburn Ridge
-   - Specialization: Granite bedrock blasting & micropiles, steep-slope post-tensioned rock anchors, District of West Vancouver Watercourse Protection Bylaw 4364 (15m riparian setbacks)
-2. **North Vancouver, BC**:
-   - Edgemont Village, Deep Cove, Lynn Valley, Lonsdale, Upper Delbrook
-   - Specialization: BC Bill 44 up-to-6-unit SSMUH multiplex conversions, Step Code 5 custom homes, steep canyon geotechnical foundations
-3. **Whistler, BC** ($650 – $1,200+ / sq ft):
+   - Specialization: Luxury architectural custom homes, granite bedrock blasting & micropiles, steep-slope post-tensioned rock anchors, District of West Vancouver Watercourse Protection Bylaw 4364 (15m riparian setbacks)
+2. **Whistler, BC** ($650 – $1,200+ / sq ft):
    - Micro-neighborhoods: Sunridge Plateau (Ski-In / Ski-Out), Kadenwood, Alta Lake, Green Lake, Blueberry Hill
-   - Specialization: High alpine ground snow load roof engineering (12.8 kPa+ / 260+ psf), cold-roof ventilated assemblies, heavy timber post-and-beam, Step Code 5 air-tightness (<1.0 ACH50)
-4. **Squamish, BC**:
+   - Specialization: Custom alpine chalets & luxury mountain estates, high alpine ground snow load roof engineering (12.8 kPa+ / 260+ psf), cold-roof ventilated assemblies, heavy timber post-and-beam, Step Code 5 air-tightness (<1.0 ACH50)
+3. **Squamish, BC**:
    - Downtown Squamish, The Heights, Garibaldi Highlands, University Highlands, Finch Drive, Britannia Beach
-   - Specialization: BC Bill 44 3-to-6 unit multiplex infill, Flood Construction Level (FCL) structural raft slabs, civil utility servicing
+   - Specialization: Mountain modern custom homes, Flood Construction Level (FCL) structural raft slabs, BC Hydro ES54 civil utility servicing, and carriage home / multi-generational builds
+4. **North Vancouver, BC**:
+   - Edgemont Village, Deep Cove, Lynn Valley, Lonsdale, Upper Delbrook
+   - Specialization: Step Code 5 luxury custom homes, steep canyon geotechnical foundations, major structural renovations, and custom duplexes
 5. **Pemberton, BC**:
    - Pemberton Benchlands, Meadowlark, Pemberton Valley Acreages (SLRD Area C)
    - Specialization: Luxury acreage compounds, continental climate thermal envelopes, off-grid solar/geothermal microgrids, agricultural and alpine estate builds
@@ -34,19 +34,19 @@ Keystone Possibilities Ltd. is a premier custom home building, BC Bill 44 multip
    - Shaughnessy, Point Grey, Kitsilano, Dunbar-Southlands, Sechelt, Gibsons
 
 ## Core Services & Offerings
-1. **Luxury Custom Estate Construction**: Turnkey design-build contracting, open-book fiduciary transparency, mandatory 2-5-10 National Home Warranty protection.
-2. **BC Bill 44 Multiplex Feasibility & Construction**: 3-to-6 unit missing-middle multiplex conversions, zoning & FSR envelope modeling, strata pro-forma engineering.
-3. **BC Hydro ES54 Registered Civil Contracting**: Underground civil trenching, pad-mounted transformer (PMT) civil works, municipal water/storm/sanitary upgrades.
-4. **Fiduciary Project Management & Owner Representation**: 100% transparent cost-plus accounting, trade tender audits, municipal permit acceleration.
-5. **Pre-Acquisition Property Feasibility & Risk Mitigation Retainer**: Site due diligence, bedrock/geotechnical risk assessment, civil utility cost modeling, and zoning verification.
+1. **Start-to-Finish Luxury Custom Home & Estate Construction**: Turnkey design-build contracting (BC Housing Builder #52603), open-book fiduciary transparency, mandatory 2-5-10 National Home Warranty protection across West Vancouver, Whistler, Squamish, and North Vancouver.
+2. **BC Hydro ES54 Registered Civil Contracting**: Underground civil trenching, pad-mounted transformer (PMT) civil works, primary/secondary duct banks, and municipal water/storm/sanitary upgrades.
+3. **Custom Pre-Construction Cost & Servicing Planning**: Pre-construction architectural budgeting, bedrock/geotechnical risk assessment, BC Hydro ES54 civil utility cost modeling, and zoning verification.
+4. **Fiduciary Project Management & Owner Representation**: 100% transparent CCDC 5B cost-plus accounting, trade tender audits, and municipal permit acceleration.
+5. **Major Custom Renovations, Carriage Homes & Multi-Generational Builds**: Full-gut structural retrofits, deep energy upgrades, laneway/carriage houses, and custom duplexes.
 
 ## Canonical Pages (23 Core Pages & Regional Hubs)
-1. [Keystone Possibilities Ltd — Custom Homes & Multiplex Headquarters](https://keystonepossibilities.ca/)
+1. [Keystone Possibilities Ltd — Custom Homes & Civil Contracting Headquarters](https://keystonepossibilities.ca/)
 2. [About Us — Wayne Stevenson, Certified BC Builder #52603](https://keystonepossibilities.ca/about-us-general-contractor-squamish/)
 3. [Construction & Fiduciary Services](https://keystonepossibilities.ca/services-general-contractor-squamish/)
-4. [Custom Home & Multiplex Portfolio](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/)
+4. [Luxury Custom Home & Civil Portfolio](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/)
 5. [Contact Keystone Possibilities Ltd](https://keystonepossibilities.ca/contact-general-contractor-squamish/)
-6. [Property Feasibility Plan & Land Due Diligence](https://keystonepossibilities.ca/feasibility-plan/)
+6. [Custom Build & Civil Pre-Construction Cost Plan](https://keystonepossibilities.ca/feasibility-plan/)
 7. [Fiduciary Project Management & Owner Representation](https://keystonepossibilities.ca/project-management-wp/)
 8. [Private Investors & Joint Venture Real Estate Development](https://keystonepossibilities.ca/private-investors/)
 9. [Engineering Insights & BC Building Code Teardowns Hub](https://keystonepossibilities.ca/keystone-possibilities-custom-homes/)
@@ -55,15 +55,15 @@ Keystone Possibilities Ltd. is a premier custom home building, BC Bill 44 multip
 12. [West Vancouver Luxury Renovations & Structural Retrofits](https://keystonepossibilities.ca/west-vancouver-luxury-renovations/)
 13. [West Vancouver Luxury Builder Dossier](https://keystonepossibilities.ca/west-vancouver-luxury-builder/)
 14. [North Vancouver Custom Homes](https://keystonepossibilities.ca/north-vancouver-custom-homes/)
-15. [North Vancouver BC Bill 44 Multiplex Conversions](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/)
+15. [North Vancouver Custom Duplex & Multi-Family Builds](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/)
 16. [North Vancouver Home Builder Dossier](https://keystonepossibilities.ca/north-vancouver-home-builder/)
 17. [Whistler Custom Homes & Alpine Chalets](https://keystonepossibilities.ca/whistler-custom-homes/)
 18. [Whistler Luxury Home Builder Dossier](https://keystonepossibilities.ca/whistler-luxury-home-builder/)
-19. [Squamish Custom Homes & Multiplex Builder](https://keystonepossibilities.ca/squamish-custom-homes/)
+19. [Squamish Custom Home Builder](https://keystonepossibilities.ca/squamish-custom-homes/)
 20. [Pemberton Luxury Custom Home & Estate Builder](https://keystonepossibilities.ca/pemberton-luxury-builder/)
 21. [Sunshine Coast Custom Homes](https://keystonepossibilities.ca/sunshine-coast-custom-homes/)
 22. [Interactive Client Portal & Fiduciary Ledger](https://keystonepossibilities.ca/client-portal/)
-23. [BC Bill 44 Interactive Feasibility Study & Pro-Forma Tool](https://keystonepossibilities.ca/feasibility-study/)
+23. [Interactive Custom Home & Civil Cost Planner](https://keystonepossibilities.ca/feasibility-study/)
 
 ## Canonical Engineering Teardowns & Technical Articles (11 Published Briefings)
 1. [Why 4-Storey Multiplexes Fail Lateral Shear Engineering (And How to Fix It)](https://keystonepossibilities.ca/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/)
@@ -86,4 +86,4 @@ Keystone Possibilities Ltd. is a premier custom home building, BC Bill 44 multip
 - **Official YouTube Channel**: https://www.youtube.com/@KeystonePossibilitiesLtd
 - **Official Instagram**: https://www.instagram.com/keystonepossibilities
 - **Official Facebook**: https://www.facebook.com/profile.php?id=61554185128555
-- **Feasibility Consultation Booking**: https://keystonepossibilities.ca/feasibility-plan/
+- **Custom Build & Cost Plan Booking**: https://keystonepossibilities.ca/feasibility-plan/

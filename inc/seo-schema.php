@@ -59,7 +59,7 @@ function keystone_possibilities_inject_master_schema() {
                     "caption" => "Keystone Possibilities Ltd — BC Builder License #52603"
                 ),
                 "image" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
-                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in BC Bill 44 multiplex conversions, custom luxury estate construction, and fiduciary project management across West Vancouver, North Vancouver, Whistler, Squamish, Pemberton, and Vancouver.",
+                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in start-to-finish luxury custom home construction, 2-5-10 National Home Warranty builds, underground civil infrastructure, and fiduciary CCDC 5B project management across West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, and Vancouver.",
                 "telephone" => "+1-604-848-9688",
                 "email" => "info@keystonepossibilities.ca",
                 "priceRange" => "$$$$",
@@ -103,9 +103,9 @@ function keystone_possibilities_inject_master_schema() {
                 ),
                 "areaServed" => array(
                     array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
-                    array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
                     array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
                     array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
+                    array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
                     array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
                     array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
                     array("@type" => "AdministrativeArea", "name" => "British Properties, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3458, "longitude" => -123.1425)),
@@ -121,36 +121,44 @@ function keystone_possibilities_inject_master_schema() {
                     array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach")
                 ),
                 "knowsAbout" => array(
+                    "Start-to-Finish Luxury Custom Home Construction (BC Housing License #52603)",
+                    "2-5-10 National Home Warranty Protection",
+                    "BC Hydro ES54 Civil Underground Ducting and Servicing",
                     "BC Building Code 2024",
-                    "Vancouver Building By-law Part 10 R-22 Effective",
-                    "Simpson Strong-Tie ATS Continuous Rod Tie-Down Systems",
-                    "High-Seismic Infill Engineering (Sa=0.94g)",
                     "BC Energy Step Code 4 and Step Code 5",
                     "Passive House High-Performance Envelopes",
-                    "District of West Vancouver Watercourse Protection Bylaw 4364",
                     "Whistler Alpine Heavy Timber & High Snow Load Engineering",
                     "Granite Bedrock Micropile and Post-Tensioned Rock Anchors",
-                    "BC Bill 44 Multiplex Density and Infill Conversions",
-                    "BC Hydro ES54 Civil Underground Ducting and Servicing"
+                    "District of West Vancouver Watercourse Protection Bylaw 4364",
+                    "Simpson Strong-Tie ATS Continuous Rod Tie-Down Systems",
+                    "High-Seismic Structural Engineering (Sa=0.94g)"
                 ),
                 "hasOfferCatalog" => array(
                     "@type" => "OfferCatalog",
-                    "name" => "Keystone Possibilities Construction & Fiduciary Services",
+                    "name" => "Keystone Possibilities Custom Home & Civil Construction Services",
                     "itemListElement" => array(
                         array(
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
-                                "name" => "BC Bill 44 Multiplex Feasibility & Construction",
-                                "description" => "Turnkey feasibility, architectural drafting, civil utility servicing, and high-density multiplex build-out under BC Bill 44 missing middle legislation."
+                                "name" => "Start-to-Finish Luxury Custom Home & Estate Construction",
+                                "description" => "Turnkey design-build custom home contracting (BC Housing License #52603) with mandatory 2-5-10 National Home Warranty, Step Code 5 energy performance, and alpine/coastal engineering across West Vancouver, Whistler, Squamish, and North Vancouver."
                             )
                         ),
                         array(
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
-                                "name" => "Custom Luxury Home Construction",
-                                "description" => "Turnkey design-build contracting with mandatory 2-5-10 National Home Warranty, Step Code 5 energy performance, and high-altitude alpine framing across West Vancouver and Whistler."
+                                "name" => "BC Hydro Registered Civil Contracting (List ES54)",
+                                "description" => "ES54 certified underground utility trenching, 200A–600A+ primary/secondary ducting, pad-mounted transformer (PMT) vaults, civil excavation, and municipal infrastructure connections."
+                            )
+                        ),
+                        array(
+                            "@type" => "Offer",
+                            "itemOffered" => array(
+                                "@type" => "Service",
+                                "name" => "Custom Home & Civil Pre-Construction Cost & Servicing Planning",
+                                "description" => "Pre-construction architectural budgeting, geotechnical bedrock review, BC Hydro ES54 civil utility cost modeling, and municipal permit strategy."
                             )
                         ),
                         array(
@@ -158,23 +166,15 @@ function keystone_possibilities_inject_master_schema() {
                             "itemOffered" => array(
                                 "@type" => "Service",
                                 "name" => "Fiduciary Project Management & Owner Representation",
-                                "description" => "100% transparent cost-plus accounting, trade bidding oversight, municipal permit acceleration, and owner advocacy."
+                                "description" => "100% transparent CCDC 5B cost-plus accounting, trade bidding oversight, municipal permit acceleration, and owner advocacy."
                             )
                         ),
                         array(
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
-                                "name" => "BC Hydro Registered Civil Contracting",
-                                "description" => "ES54 certified underground utility trenching, ducting, civil excavation, and municipal infrastructure connections."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Construction Feasibility Studies & Land Due Diligence",
-                                "description" => "Pre-acquisition site feasibility, geotechnical review, civil utility costing, and municipal zoning risk assessments."
+                                "name" => "Major Custom Renovations, Carriage Homes & Multi-Generational Builds",
+                                "description" => "Full-gut structural retrofits, architectural additions, carriage homes, and custom multi-generational builds."
                             )
                         )
                     )
@@ -198,11 +198,12 @@ function keystone_possibilities_inject_master_schema() {
                     ),
                     "hasCredential" => $canonical_credentials,
                     "knowsAbout" => array(
-                        "BC Building Code 2024",
+                        "Luxury Custom Home Building (BC Housing #52603)",
+                        "2-5-10 National Home Warranty Standards",
+                        "BC Hydro ES54 Civil Utility Contracting",
                         "Step Code 5 Net-Zero Custom Homes",
-                        "Vancouver Multiplex Zoning Bill 44",
-                        "Fiduciary Cost-Plus Project Management",
-                        "BC Hydro ES54 Civil Utility Contracting"
+                        "Fiduciary CCDC 5B Cost-Plus Project Management",
+                        "BC Building Code 2024"
                     )
                 )
             ),

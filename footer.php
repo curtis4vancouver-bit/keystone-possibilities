@@ -75,13 +75,13 @@ global $kp_master_footer_rendered;
                     <div>
                         <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver:</strong>
                         <a href="/north-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Luxury Builder</a>
-                        <a href="/north-vancouver-multiplex-conversions/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Bill 44 Multiplex</a>
-                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
+                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North &amp; West Vancouver Custom Homes</a>
+                        <a href="/west-vancouver-luxury-renovations/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
                     </div>
                     <div>
                         <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Civil &amp; Fiduciary PM:</strong>
                         <a href="/bc-hydro-registered-civil-contractor/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• BC Hydro Civil Utility Contractor</a>
-                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Construction Feasibility Studies</a>
+                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Custom Build &amp; Cost Plan</a>
                         <a href="/private-investors/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Private Investor Joint Ventures</a>
                     </div>
                     <div>
@@ -105,8 +105,8 @@ global $kp_master_footer_rendered;
         <a href="tel:+16048489688" class="dock-btn dock-btn-call">
             <span>📞 Call Builder</span>
         </a>
-        <a href="<?php echo esc_url( home_url( '/#feasibility' ) ); ?>" class="dock-btn dock-btn-plan">
-            <span>📐 Feasibility Plan</span>
+        <a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="dock-btn dock-btn-plan">
+            <span>📐 Cost &amp; Build Plan</span>
         </a>
     </div>
 

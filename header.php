@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <nav aria-label="Main Navigation">
                 <ul class="nav-links-menu">
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link-item <?php echo is_front_page() ? 'active' : ''; ?>">HOME</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#feasibility' ) ); ?>" class="nav-link-item">FEASIBILITY PLAN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item">CUSTOM BUILD &amp; COST PLAN</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="nav-link-item">CLIENT LOGIN</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="nav-link-item">MASTER BUILDER SERIES</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link-item">PORTFOLIO</a></li>
@@ -77,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- MOBILE NAVIGATION DRAWER -->
     <div class="mobile-menu-drawer" id="mobileDrawer">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo is_front_page() ? 'active' : ''; ?>">HOME</a>
-        <a href="<?php echo esc_url( home_url( '/#feasibility' ) ); ?>">FEASIBILITY PLAN</a>
+        <a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>">CUSTOM BUILD &amp; COST PLAN</a>
         <a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>">CLIENT LOGIN</a>
         <a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>">MASTER BUILDER SERIES</a>
         <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>">PORTFOLIO</a>
