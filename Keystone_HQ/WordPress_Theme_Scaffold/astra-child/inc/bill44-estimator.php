@@ -64,19 +64,16 @@ add_shortcode('keystone_custom_build_planner', 'keystone_possibilities_bill44_es
 function keystone_possibilities_bill44_estimator_shortcode($atts) {
     ob_start();
     ?>
-    <div id="kp-bill44-estimator-wrapper" class="kp-tool-container" style="background: #0a0f19; border: 1.5px solid rgba(212, 175, 55, 0.45); border-radius: 18px; padding: 2rem 1.5rem; max-width: 1040px; margin: 1.5rem auto 2.5rem auto; box-shadow: 0 18px 45px rgba(0,0,0,0.75); font-family: 'Inter', -apple-system, sans-serif; color: #f8fafc;">
+    <div id="kp-bill44-estimator-wrapper" class="kp-tool-container" style="background: #0a0f19; border: 1.5px solid rgba(212, 175, 55, 0.45); border-radius: 18px; padding: 1.5rem 1.5rem; max-width: 1040px; margin: 1.1rem auto 2rem auto; box-shadow: 0 18px 45px rgba(0,0,0,0.75); font-family: 'Inter', -apple-system, sans-serif; color: #f8fafc;">
         
         <!-- Header / Authority Badge -->
-        <div style="text-align: center; margin-bottom: 1.5rem;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.45); padding: 6px 16px; border-radius: 9999px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center;">
+        <div style="text-align: center; margin-bottom: 1.15rem;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); padding: 4px 14px; border-radius: 9999px; margin-bottom: 8px; flex-wrap: wrap; justify-content: center;">
                 <span style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
-                <span style="color: #f6d365; font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em;">BC Housing Licensed Builder #52603 • BC Hydro Civil Contractor ES54 • 2-5-10 National Home Warranty</span>
+                <span style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;">Interactive Pre-Construction &amp; BC Hydro ES54 Servicing Engine</span>
             </div>
-            <h2 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 0.45rem 0; background: linear-gradient(135deg, #ffffff 35%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Custom Home, Estate &amp; BC Hydro Civil Pre-Construction Cost &amp; Servicing Planner
-            </h2>
-            <p style="color: #94a3b8; font-size: 0.96rem; max-width: 760px; margin: 0 auto; line-height: 1.55;">
-                Select your <strong style="color: #f8fafc;">Project Archetype</strong> and enter your West Vancouver, Whistler, Squamish, or North Vancouver property address to model turnkey custom construction budgets, BC Hydro ES54 underground servicing &amp; PMT vault requirements, and open-book CCDC 5B fee savings.
+            <p style="color: #cbd5e1; font-size: 0.92rem; max-width: 820px; margin: 0 auto; line-height: 1.5;">
+                Select your <strong style="color: #f6d365;">Project Archetype</strong> and enter your West Vancouver, Whistler, Squamish, or North Vancouver property address to model turnkey custom construction budgets, BC Hydro ES54 underground servicing &amp; PMT vault requirements, and open-book CCDC 5B fee savings.
             </p>
         </div>
 
@@ -466,33 +463,33 @@ function keystone_possibilities_inject_feasibility_tools($content) {
         <div class="kp-feasibility-page-wrapper" style="background-color: #04070d; color: #e2e8f0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding-bottom: 4rem; margin: 0 auto; width: 100%; max-width: 100% !important;">
 
             <!-- 1. Hero Header: Custom Home, Estate & BC Hydro Civil Pre-Construction Cost & Servicing Planner -->
-            <header style="text-align: center; padding: 2.2rem 1.5rem 1.5rem 1.5rem; background: radial-gradient(circle at top center, rgba(212, 175, 55, 0.16) 0%, rgba(10, 15, 25, 0.9) 60%, rgba(4, 7, 13, 1) 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.22);">
+            <header style="text-align: center; padding: 1.35rem 1.5rem 1.05rem 1.5rem; background: radial-gradient(circle at top center, rgba(212, 175, 55, 0.16) 0%, rgba(10, 15, 25, 0.9) 60%, rgba(4, 7, 13, 1) 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.22);">
                 <div style="max-width: 1080px; margin: 0 auto; text-align: center;">
                     
                     <!-- Credential Authority Badge -->
-                    <div style="text-align: center; margin-bottom: 12px;">
-                        <span class="kp-badge" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.12); padding: 6px 20px; border-radius: 9999px; border: 1px solid rgba(212, 175, 55, 0.45); text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);">
+                    <div style="text-align: center; margin-bottom: 8px;">
+                        <span class="kp-badge" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.12); padding: 5px 18px; border-radius: 9999px; border: 1px solid rgba(212, 175, 55, 0.45); text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);">
                             🏛️ BC Housing Licensed Builder #52603 • BC Hydro Civil Contractor ES54 • 2-5-10 National Home Warranty
                         </span>
                     </div>
 
                     <!-- Regional Corridor Switcher Pills -->
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <a href="/west-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">West Vancouver →</a>
-                        <a href="/whistler-custom-homes/" style="display: inline-flex; align-items: center; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Whistler →</a>
-                        <a href="/squamish-custom-homes/" style="display: inline-flex; align-items: center; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Squamish →</a>
-                        <a href="/north-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">North Vancouver →</a>
-                        <a href="/bc-hydro-registered-civil-contractor/" style="display: inline-flex; align-items: center; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: #38bdf8; text-decoration: none; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 9999px;">BC Hydro Civil ES54 →</a>
-                        <span style="display: inline-flex; align-items: center; padding: 6px 18px; font-size: 0.78rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.2); border: 1.5px solid #d4af37; border-radius: 9999px;">📐 Cost &amp; Build Plan</span>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.75rem;">
+                        <a href="/west-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">West Vancouver →</a>
+                        <a href="/whistler-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Whistler →</a>
+                        <a href="/squamish-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Squamish →</a>
+                        <a href="/north-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">North Vancouver →</a>
+                        <a href="/bc-hydro-registered-civil-contractor/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #38bdf8; text-decoration: none; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 9999px;">BC Hydro Civil ES54 →</a>
+                        <span style="display: inline-flex; align-items: center; padding: 5px 16px; font-size: 0.76rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.2); border: 1.5px solid #d4af37; border-radius: 9999px;">📐 Cost &amp; Build Plan</span>
                     </div>
 
                     <!-- H1 Master Headline -->
-                    <h1 class="hero-master-title" style="font-family: 'Cinzel', 'Outfit', serif !important; font-size: clamp(1.75rem, 3.2vw, 2.75rem) !important; font-weight: 900 !important; line-height: 1.18 !important; letter-spacing: 0.01em !important; color: #FFFFFF !important; max-width: 980px !important; margin: 0 auto 0.75rem auto !important; text-align: center !important; text-transform: uppercase !important;">
+                    <h1 class="hero-master-title" style="font-family: 'Cinzel', 'Outfit', serif !important; font-size: clamp(1.55rem, 2.6vw, 2.25rem) !important; font-weight: 900 !important; line-height: 1.15 !important; letter-spacing: 0.01em !important; color: #FFFFFF !important; max-width: 980px !important; margin: 0 auto 0.45rem auto !important; text-align: center !important; text-transform: uppercase !important;">
                         CUSTOM HOME, ESTATE &amp; BC HYDRO CIVIL<br>
                         <span class="gold-gradient" style="background: linear-gradient(135deg, #FFF2C6 0%, #D4AF37 50%, #A38025 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; display: inline-block;">PRE-CONSTRUCTION COST &amp; SERVICING PLANNER</span>
                     </h1>
 
-                    <p style="font-size: 1rem; line-height: 1.6; color: #cbd5e1; max-width: 840px; margin: 0 auto;">
+                    <p style="font-size: 0.94rem; line-height: 1.5; color: #cbd5e1; max-width: 840px; margin: 0 auto;">
                         De-risk your luxury custom home, architectural mountain/coastal estate, or BC Hydro ES54 underground utility build before blueprint lock-in across West Vancouver, Whistler, Squamish, and North Vancouver.
                     </p>
                 </div>
