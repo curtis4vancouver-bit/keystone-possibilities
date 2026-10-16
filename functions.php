@@ -1370,7 +1370,8 @@ function keystone_possibilities_luxury_header_overrides() {
         .mobile-menu-drawer#mobileDrawer a.mobile-drawer-link {
             display: flex !important;
             align-items: center !important;
-            justify-content: space-between !important;
+            justify-content: flex-start !important;
+            gap: 10px !important;
             padding: 10px 14px !important;
             border-radius: 12px !important;
             background: rgba(15, 23, 42, 0.85) !important;
@@ -1390,6 +1391,13 @@ function keystone_possibilities_luxury_header_overrides() {
             background: rgba(212, 175, 55, 0.14) !important;
             color: #FFF2C6 !important;
         }
+        .dock-btn-plan,
+        .dock-btn-plan * {
+            color: #04070d !important;
+            -webkit-text-fill-color: #04070d !important;
+            font-weight: 800 !important;
+            text-decoration: none !important;
+        }
         @media (max-width: 1024px) {
             #kpSiteNavHeader .kp-desktop-nav-wrap,
             #kpSiteNavHeader .nav-links-menu {
@@ -1397,6 +1405,15 @@ function keystone_possibilities_luxury_header_overrides() {
             }
             #kpSiteNavHeader .mobile-hamburger#kpMobileNavToggle {
                 display: inline-flex !important;
+            }
+            #rank-math-analytics-stats-wrapper,
+            #rank-math-analytics-stats-bar,
+            .rank-math-analytics-stats-bar,
+            [id*="rank-math-analytics"],
+            [class*="rank-math-analytics"] {
+                display: none !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
             }
         }
         @media (max-width: 768px) {
