@@ -223,20 +223,65 @@ function keystone_possibilities_inject_master_schema() {
         )
     );
 
+    if (is_front_page()) {
+        $master_schema["@graph"][] = array(
+            "@type" => "FAQPage",
+            "@id" => "https://keystonepossibilities.ca/#faq",
+            "mainEntity" => array(
+                array(
+                    "@type" => "Question",
+                    "name" => "How does CCDC 5B Open-Book Construction Management protect my capital better than a fixed-price contract?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "In custom alpine and coastal construction, fixed-price builders embed 18% to 28% hidden risk contingencies into the base price and charge punitive markups on owner selections or geotechnical adjustments. Under CCDC 5B Construction Management, Keystone Possibilities acts as your legally aligned fiduciary: every trade division is competitively tendered to 3 pre-qualified subcontractors, you see raw unedited bids and invoices in our 24/7 Client Portal, 100% of trade discounts are passed directly to you, and you have the contractual option to lock a Guaranteed Maximum Price (GMP) once drawings and rock excavation are finalized."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "Why does hiring a builder who is also a BC Hydro ES54 Registered Civil Contractor save 4–8 months?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "Modern luxury estates with heated driveways, air-to-water heat pump plants, elevators, and multi-EV chargers routinely require 400A to 1200A+ primary power with on-site pad-mounted transformers (PMDFs) or Vista switchgear. Because Keystone Possibilities is a BC Hydro ES54 Registered Civil Contractor, we execute underground primary duct banks (ES54 Section H), concrete transformer pads (Section F), and copper grounding grids (Section R) concurrently with foundation excavation—compressing your critical path by 4 to 8 months."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "How do you achieve BCBC 2024 Step Code 5 & Zero Carbon EL-4 with floor-to-ceiling ocean or mountain glass?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "We integrate Schöck Isokorb structural thermal breaks at all slab cantilevers, specify triple-pane thermally broken European curtain walls positioned inside the continuous exterior mineral-wool insulation plane, and engineer concealed Eccentrically Braced Steel Frames (EBF) that satisfy BC Building Code 2024 Division B Part 4 seismic drift limits (<= 0.025 hs) without obstructing panoramic sightlines."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "Who actually supervises my job site day-to-day?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "We strictly limit our active project volume so founder and licensed Master Builder Wayne Stevenson (BC Housing License #52603) provides direct on-site superintendence across every structural pour, envelope tie-in, and civil utility inspection."
+                    )
+                )
+            )
+        );
+    }
+
     echo "\n<!-- Keystone Possibilities 2026 Master Authority Schema -->\n";
     echo '<script type="application/ld+json">' . json_encode($master_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
 }
 
-// ── 2. Automatic Google-Compliant VideoObject Schema Injector ────────────────
+// ── 2. Automatic Google-Compliant VideoObject Schema Injector (Fallback when Rank Math inactive) ──
+add_filter('rank_math/snippet/rich_snippet_video', '__return_false');
+add_filter('rank_math/schema/video', '__return_empty_array');
+add_filter('rank_math/snippet/rich_snippet_videoobject_entity', '__return_false');
+
 add_action('wp_head', 'keystone_possibilities_inject_video_schema', 2);
 function keystone_possibilities_inject_video_schema() {
-    if (is_admin()) return;
+    if (is_admin() || class_exists('RankMath')) return;
     
     global $post;
     if (!$post) return;
 
     $is_watch_page = ('page' === $post->post_type && 0 === strpos($post->post_name, 'watch-'));
-    if (!is_singular('post') && !$is_watch_page && !is_singular('page')) return;
+    if (!is_singular('post') && !$is_watch_page) return;
 
     $post_id = $post->ID;
     if ($is_watch_page) {
@@ -252,75 +297,36 @@ function keystone_possibilities_inject_video_schema() {
         }
     }
 
-    $video_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-    
-    if (empty($video_id)) {
-        $video_url = get_post_meta($post_id, 'video_url', true);
-        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
-            $video_id = $m[1];
-        }
-    }
-
-    if (empty($video_id)) {
-        $content = $post->post_content;
-        if (preg_match('/\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]{11})["\']/i', $content, $m)) {
-            $video_id = $m[1];
-        } elseif (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $content, $m)) {
-            $video_id = $m[1];
-        }
-    }
-
+    $video_id = keystone_possibilities_extract_youtube_id_helper($post_id);
     if (!empty($video_id)) {
         $video_title = get_post_meta($post_id, 'video_title', true);
         if (empty($video_title)) {
-            $video_title = get_the_title($post_id);
+            $video_title = wp_strip_all_tags(html_entity_decode(get_the_title($post_id), ENT_QUOTES, 'UTF-8'));
         }
 
         $video_desc = get_post_meta($post_id, 'video_description', true);
         if (empty($video_desc)) {
-            $video_desc = wp_strip_all_tags(get_the_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words($post->post_content, 35));
+            $video_desc = wp_strip_all_tags(html_entity_decode(get_the_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words($post->post_content, 35), ENT_QUOTES, 'UTF-8'));
         }
         if (empty($video_desc)) {
-            $video_desc = esc_attr(get_the_title($post_id)) . ' - Certified BC Builder #52603 multiplex and construction consulting.';
+            $video_desc = $video_title . ' - Certified BC Builder #52603 multiplex and construction consulting.';
         }
 
-        $video_duration = get_post_meta($post_id, 'video_duration', true);
-        if (empty($video_duration)) {
-            $video_duration = get_post_meta($post_id, 'keystone_video_duration', true);
-        }
-        $duration_iso = 'PT5M0S'; // Default fallback 5 minutes
-        if (!empty($video_duration)) {
-            $video_duration = trim($video_duration);
-            if (stripos($video_duration, 'PT') === 0) {
-                $duration_iso = $video_duration;
-            } elseif (is_numeric($video_duration)) {
-                $total_seconds = intval($video_duration);
-                $hours = floor($total_seconds / 3600);
-                $minutes = floor(($total_seconds / 60) % 60);
-                $seconds = $total_seconds % 60;
-                $duration_iso = 'PT' . ($hours > 0 ? $hours . 'H' : '') . ($minutes > 0 ? $minutes . 'M' : '') . ($seconds > 0 ? $seconds . 'S' : ($hours == 0 && $minutes == 0 ? '0S' : ''));
-            } elseif (preg_match('/^(?:(\d+):)?(\d+):(\d+)$/', $video_duration, $m)) {
-                $hours = isset($m[1]) && $m[1] !== '' ? intval($m[1]) : 0;
-                $minutes = intval($m[2]);
-                $seconds = intval($m[3]);
-                $duration_iso = 'PT' . ($hours > 0 ? $hours . 'H' : '') . ($minutes > 0 ? $minutes . 'M' : '') . ($seconds > 0 ? $seconds . 'S' : ($hours == 0 && $minutes == 0 ? '0S' : ''));
-            }
-        }
-
+        $duration_iso = keystone_possibilities_resolve_positive_duration_iso($post_id);
         $upload_date = get_the_date('c', $post_id);
 
         $video_schema = array(
             "@context" => "https://schema.org",
             "@type" => "VideoObject",
-            "@id" => get_permalink($post_id) . "#videoobject",
-            "name" => esc_attr($video_title),
-            "description" => esc_attr($video_desc),
+            "@id" => trailingslashit(get_permalink($post_id)) . "#videoobject",
+            "name" => $video_title,
+            "description" => $video_desc,
             "thumbnailUrl" => array(
                 "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
                 "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
             ),
             "uploadDate" => $upload_date,
-            "duration" => esc_attr($duration_iso),
+            "duration" => $duration_iso,
             "contentUrl" => "https://www.youtube.com/watch?v={$video_id}",
             "embedUrl" => "https://www.youtube-nocookie.com/embed/{$video_id}",
             "inLanguage" => "en-CA",
@@ -336,8 +342,51 @@ function keystone_possibilities_inject_video_schema() {
             )
         );
         echo "\n<!-- Keystone Possibilities Dynamic VideoObject Schema -->\n";
-        echo '<script type="application/ld+json">' . json_encode($video_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
+        echo '<script type="application/ld+json">' . wp_json_encode($video_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
     }
+}
+
+function keystone_possibilities_resolve_positive_duration_iso($post_id) {
+    $video_duration = get_post_meta($post_id, 'video_duration', true);
+    if (empty($video_duration)) {
+        $video_duration = get_post_meta($post_id, 'keystone_video_duration', true);
+    }
+    $default_iso = 'PT5M30S';
+    if (empty($video_duration)) {
+        return $default_iso;
+    }
+    $video_duration = strtoupper(trim((string) $video_duration));
+    if (in_array($video_duration, array('0', 'P0D', 'PT0S', 'PT0M', 'PT0M0S', '00:00', '0:00', '00:00:00'), true)) {
+        return $default_iso;
+    }
+    if (strpos($video_duration, 'PT') === 0) {
+        if (preg_match('/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/', $video_duration, $m)) {
+            $h = !empty($m[1]) ? intval($m[1]) : 0;
+            $min = !empty($m[2]) ? intval($m[2]) : 0;
+            $s = !empty($m[3]) ? intval($m[3]) : 0;
+            if (($h * 3600 + $min * 60 + $s) <= 0) {
+                return $default_iso;
+            }
+            return $video_duration;
+        }
+        return $default_iso;
+    }
+    if (is_numeric($video_duration)) {
+        $s = intval($video_duration);
+        if ($s <= 0) return $default_iso;
+        $h = floor($s / 3600);
+        $m = floor(($s / 60) % 60);
+        $sec = $s % 60;
+        return 'PT' . ($h > 0 ? $h . 'H' : '') . ($m > 0 ? $m . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
+    }
+    if (preg_match('/^(?:(\d+):)?(\d+):(\d+)$/', $video_duration, $m)) {
+        $h = isset($m[1]) && $m[1] !== '' ? intval($m[1]) : 0;
+        $min = intval($m[2]);
+        $sec = intval($m[3]);
+        if (($h * 3600 + $min * 60 + $sec) <= 0) return $default_iso;
+        return 'PT' . ($h > 0 ? $h . 'H' : '') . ($min > 0 ? $min . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
+    }
+    return $default_iso;
 }
 
 // ── 2.5 OpenGraph Video Meta Tags (Google Video Indexing Engine) ─────────────
@@ -561,64 +610,28 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
     global $post;
     if (!$post) return $data;
 
-    // Detect YouTube Video ID
-    $video_id = get_post_meta($post->ID, 'keystone_youtube_id', true);
-    if (empty($video_id)) {
-        $video_url = get_post_meta($post->ID, 'video_url', true);
-        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
-            $video_id = $m[1];
-        }
-    }
-    if (empty($video_id)) {
-        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $post->post_content, $m)) {
-            $video_id = $m[1];
-        }
-    }
-
+    $video_id = keystone_possibilities_extract_youtube_id_helper($post);
     if (empty($video_id)) {
         return $data;
     }
 
     $permalink     = get_permalink($post);
     $video_node_id = trailingslashit($permalink) . '#videoobject';
-    $post_title    = get_the_title($post);
-    $excerpt       = wp_strip_all_tags(get_the_excerpt($post));
+    $post_title    = wp_strip_all_tags(html_entity_decode(get_the_title($post), ENT_QUOTES, 'UTF-8'));
+    $excerpt       = wp_strip_all_tags(html_entity_decode(get_the_excerpt($post), ENT_QUOTES, 'UTF-8'));
     if (empty($excerpt)) {
-        $excerpt = wp_trim_words(wp_strip_all_tags($post->post_content), 35, '...');
+        $excerpt = wp_trim_words(wp_strip_all_tags(html_entity_decode($post->post_content, ENT_QUOTES, 'UTF-8')), 35, '...');
     }
 
-    // High-res with guaranteed hqdefault fallback (eliminates 404s)
+    // High-res YouTube 16:9 thumbnails (zero Jetpack Photon &#038;ssl=1 corruption)
     $thumbnails = array(
         "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
         "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
     );
-    if (has_post_thumbnail($post)) {
-        $feat = get_the_post_thumbnail_url($post, 'full');
-        if ($feat) {
-            array_unshift($thumbnails, $feat);
-        }
-    }
 
-    // Parse duration
-    $video_duration = get_post_meta($post->ID, 'video_duration', true);
-    if (empty($video_duration)) {
-        $video_duration = get_post_meta($post->ID, 'keystone_video_duration', true);
-    }
-    $duration_iso = 'PT5M0S';
-    if (!empty($video_duration)) {
-        $video_duration = trim($video_duration);
-        if (stripos($video_duration, 'PT') === 0) {
-            $duration_iso = $video_duration;
-        } elseif (is_numeric($video_duration)) {
-            $s = intval($video_duration);
-            $h = floor($s / 3600);
-            $m = floor(($s / 60) % 60);
-            $sec = $s % 60;
-            $duration_iso = 'PT' . ($h > 0 ? $h . 'H' : '') . ($m > 0 ? $m . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
-        }
-    }
+    $duration_iso = keystone_possibilities_resolve_positive_duration_iso($post->ID);
 
-    // Construct Compliant VideoObject Node
+    // Construct Compliant Single VideoObject Node
     $video_object = array(
         '@type'            => 'VideoObject',
         '@id'              => $video_node_id,
@@ -635,30 +648,59 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
         'publisher'        => array('@id' => home_url('/#organization'))
     );
 
-    // Inject VideoObject directly into Rank Math graph
-    $data['VideoObject'] = $video_object;
-
-    // Transform WebPage Node to ItemPage & Bind mainEntity (Watch Page Criteria)
-    if (isset($data['WebPage'])) {
-        $data['WebPage']['@type'] = array('WebPage', 'ItemPage');
-        $data['WebPage']['mainEntity'] = array('@id' => $video_node_id);
+    // Strip any Rank Math auto-detected or custom schema-* VideoObject / duplicate BlogPosting keys
+    $seen_article = false;
+    foreach (array_keys($data) as $key) {
+        if ($key === '@graph' || !is_array($data[$key])) {
+            continue;
+        }
+        $type = isset($data[$key]['@type']) ? (array)$data[$key]['@type'] : array();
+        foreach ($type as $t) {
+            $tl = strtolower((string)$t);
+            if ($tl === 'videoobject') {
+                unset($data[$key]);
+                break;
+            }
+            if (in_array($tl, array('article', 'blogposting', 'techarticle', 'newsarticle'), true)) {
+                if ($seen_article) {
+                    unset($data[$key]);
+                } else {
+                    $seen_article = true;
+                    $data[$key]['author'] = array('@id' => 'https://keystonepossibilities.ca/#founder');
+                    $data[$key]['video']  = array('@id' => $video_node_id);
+                }
+                break;
+            }
+        }
     }
 
-    // Demote/unset text-only Article and BlogPosting schemas so Google treats page as Watch Page
-    unset($data['Article']);
-    unset($data['BlogPosting']);
+    // Inject canonical VideoObject directly into Rank Math graph
+    $data['VideoObject'] = $video_object;
 
-    // Also inject into @graph array if present
+    if (isset($data['WebPage']) && is_array($data['WebPage'])) {
+        $data['WebPage']['video'] = array('@id' => $video_node_id);
+    }
+
+    // Also sanitize @graph array if already assembled
     if (isset($data['@graph']) && is_array($data['@graph'])) {
         $clean_graph = array();
+        $graph_seen_article = false;
         foreach ($data['@graph'] as $node) {
             $type = isset($node['@type']) ? (array)$node['@type'] : array();
-            if (in_array('Article', $type) || in_array('BlogPosting', $type)) {
-                continue; // Demote Article/BlogPosting nodes to avoid conflicting text-only categorization
+            $types_lower = array_map('strtolower', array_map('strval', $type));
+            if (in_array('videoobject', $types_lower, true)) {
+                continue; // Strip Rank Math P0D / duplicate VideoObject nodes
             }
-            if (in_array('WebPage', $type)) {
-                $node['@type'] = array('WebPage', 'ItemPage');
-                $node['mainEntity'] = array('@id' => $video_node_id);
+            if (array_intersect($types_lower, array('article', 'blogposting', 'techarticle', 'newsarticle'))) {
+                if ($graph_seen_article) {
+                    continue; // Strip duplicate BlogPosting node
+                }
+                $graph_seen_article = true;
+                $node['author'] = array('@id' => 'https://keystonepossibilities.ca/#founder');
+                $node['video']  = array('@id' => $video_node_id);
+            }
+            if (in_array('webpage', $types_lower, true)) {
+                $node['video'] = array('@id' => $video_node_id);
             }
             $clean_graph[] = $node;
         }
@@ -668,6 +710,7 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
 
     return $data;
 }
+add_filter('rank_math/json_ld', 'keystone_possibilities_rank_math_watch_page_schema', 99999, 2);
 
 // ── 3. Keystone Empire Network Standardized Footer Bar (Deprecated / Disabled to prevent duplicate footers) ──
 function keystone_possibilities_render_empire_footer() {
@@ -676,13 +719,37 @@ function keystone_possibilities_render_empire_footer() {
 
 // ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
 add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
+add_filter( 'rank_math/sitemap/exclude_taxonomy', function( $exclude, $taxonomy ) {
+    if ( in_array( $taxonomy, array( 'category', 'post_tag', 'post_format' ), true ) ) {
+        return true;
+    }
+    return $exclude;
+}, 10, 2 );
+
 add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = null ) {
-    if ( empty( $url['loc'] ) ) return $url;
+    if ( empty( $url ) || ! is_array( $url ) || empty( $url['loc'] ) ) return $url;
+    $loc = (string) $url['loc'];
     $excluded_patterns = array(
-        '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin', 'locations.kml', 'locations-sitemap'
+        '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin',
+        'locations.kml', 'locations-sitemap', 'category-sitemap', 'post_tag-sitemap',
+        '/client-portal-demo/', '/project-management-wp/', '__trashed', '/trash/',
+        'purge_all_caches', 'gsc_ping_all', 'keystone_video_sitemap'
     );
     foreach ( $excluded_patterns as $pat ) {
-        if ( stripos( $url['loc'], $pat ) !== false ) {
+        if ( stripos( $loc, $pat ) !== false ) {
+            return false;
+        }
+    }
+    if ( is_object( $object ) && isset( $object->ID ) ) {
+        $post_id = (int) $object->ID;
+        if ( 'publish' !== get_post_status( $post_id ) ) {
+            return false;
+        }
+        $robots = get_post_meta( $post_id, 'rank_math_robots', true );
+        if ( ( is_array( $robots ) && in_array( 'noindex', $robots, true ) ) || ( is_string( $robots ) && stripos( $robots, 'noindex' ) !== false ) ) {
+            return false;
+        }
+        if ( ! empty( get_post_meta( $post_id, 'rank_math_redirection_id', true ) ) || ! empty( get_post_meta( $post_id, 'rank_math_redirection_url', true ) ) ) {
             return false;
         }
     }
@@ -711,8 +778,9 @@ function keystone_possibilities_video_sitemap_query_vars($vars) {
 
 add_action('init', 'keystone_possibilities_maybe_flush_video_sitemap_rewrites', 99);
 function keystone_possibilities_maybe_flush_video_sitemap_rewrites() {
-    $engine_version = '2026.1.8';
+    $engine_version = '2026.10.17';
     if (get_option('keystone_video_sitemap_ver') !== $engine_version) {
+        delete_transient('keystone_video_sitemap_xml_cache');
         flush_rewrite_rules(false);
         update_option('keystone_video_sitemap_ver', $engine_version);
     }
@@ -794,23 +862,23 @@ function keystone_possibilities_extract_youtube_id_helper($post) {
     $post_id = $post->ID;
 
     $meta_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-    if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id))) {
+    if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id)) && trim($meta_id) !== 'maxresdefau') {
         return trim($meta_id);
     }
 
     $video_url = get_post_meta($post_id, 'video_url', true);
     if (!empty($video_url) && preg_match('/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $video_url, $m)) {
-        return $m[1];
+        if ($m[1] !== 'maxresdefau') return $m[1];
     }
 
     $content = $post->post_content;
     if (!empty($content)) {
         if (preg_match('/\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]{11})["\']/i', $content, $m)) {
-            return $m[1];
+            if ($m[1] !== 'maxresdefau') return $m[1];
         }
 
         if (preg_match('/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $content, $m)) {
-            return $m[1];
+            if ($m[1] !== 'maxresdefau') return $m[1];
         }
     }
 
@@ -836,7 +904,7 @@ function keystone_possibilities_extract_youtube_id_helper($post) {
 function keystone_possibilities_generate_video_sitemap_markup() {
     $posts = get_posts(array(
         'numberposts'      => 100,
-        'post_type'        => array('post', 'page'),
+        'post_type'        => array('post'),
         'post_status'      => 'publish',
         'orderby'          => 'date',
         'order'            => 'DESC',
@@ -853,17 +921,12 @@ function keystone_possibilities_generate_video_sitemap_markup() {
         }
 
         $loc      = esc_url(get_permalink($p->ID));
-        $pub_date = mysql2date('Y-m-d\TH:i:s+00:00', $p->post_date_gmt);
-
-        if (has_post_thumbnail($p->ID)) {
-            $thumb = get_the_post_thumbnail_url($p->ID, 'full');
-        } else {
-            $thumb = "https://i.ytimg.com/vi/{$video_id}/hqdefault.jpg";
-        }
+        $pub_date = get_the_date('c', $p->ID);
+        $thumb    = "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg";
 
         $raw_title = get_post_meta($p->ID, 'video_title', true);
         $title     = !empty($raw_title) ? $raw_title : get_the_title($p->ID);
-        $title     = htmlspecialchars(wp_strip_all_tags($title), ENT_XML1, 'UTF-8');
+        $title     = htmlspecialchars(wp_strip_all_tags(html_entity_decode($title, ENT_QUOTES, 'UTF-8')), ENT_XML1, 'UTF-8');
         if (mb_strlen($title) > 100) {
             $title = mb_substr($title, 0, 97) . '...';
         }
@@ -875,15 +938,17 @@ function keystone_possibilities_generate_video_sitemap_markup() {
         if (empty($raw_desc)) {
             $raw_desc = wp_trim_words($p->post_content, 35);
         }
-        $desc = htmlspecialchars(mb_strimwidth(wp_strip_all_tags($raw_desc), 0, 2040, '...'), ENT_XML1, 'UTF-8');
+        $desc = htmlspecialchars(mb_strimwidth(wp_strip_all_tags(html_entity_decode($raw_desc, ENT_QUOTES, 'UTF-8')), 0, 2040, '...'), ENT_XML1, 'UTF-8');
 
         $entries[] = array(
             'loc'        => $loc,
-            'thumb'      => esc_url($thumb),
+            'thumb'      => $thumb,
             'title'      => $title,
             'desc'       => $desc,
             'player_loc' => "https://www.youtube-nocookie.com/embed/{$video_id}",
+            'content_loc'=> "https://www.youtube.com/watch?v={$video_id}",
             'pub_date'   => $pub_date,
+            'duration'   => 330,
             'video_id'   => $video_id,
         );
     }
@@ -899,10 +964,12 @@ function keystone_possibilities_generate_video_sitemap_markup() {
         $out .= "\t\t\t<video:thumbnail_loc>{$e['thumb']}</video:thumbnail_loc>\n";
         $out .= "\t\t\t<video:title>{$e['title']}</video:title>\n";
         $out .= "\t\t\t<video:description>{$e['desc']}</video:description>\n";
+        $out .= "\t\t\t<video:content_loc>{$e['content_loc']}</video:content_loc>\n";
         $out .= "\t\t\t<video:player_loc allow_embed=\"yes\">{$e['player_loc']}</video:player_loc>\n";
+        $out .= "\t\t\t<video:duration>{$e['duration']}</video:duration>\n";
         $out .= "\t\t\t<video:publication_date>{$e['pub_date']}</video:publication_date>\n";
         $out .= "\t\t\t<video:family_friendly>yes</video:family_friendly>\n";
-        $out .= "\t\t\t<video:uploader info=\"https://keystonepossibilities.ca\">Keystone Possibilities Ltd.</video:uploader>\n";
+        $out .= "\t\t\t<video:uploader info=\"https://keystonepossibilities.ca/\">Keystone Possibilities Ltd.</video:uploader>\n";
         $out .= "\t\t</video:video>\n";
         $out .= "\t</url>\n";
     }
