@@ -52,14 +52,14 @@ if ( ! defined( 'KP_HEADER_RENDERED' ) ) {
             <nav aria-label="Main Navigation" class="kp-desktop-nav-wrap">
                 <ul class="nav-links-menu">
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link-item <?php echo is_front_page() ? 'active' : ''; ?>">HOME</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item">CUSTOM BUILD &amp; COST PLAN</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="nav-link-item">CLIENT LOGIN</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="nav-link-item">MASTER BUILDER SERIES</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link-item">PORTFOLIO</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="nav-link-item">ABOUT US</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="nav-link-item">PRIVATE INVESTORS</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="nav-link-item">CIVIL</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="nav-link-item">CONTACT</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item <?php echo is_page( 'feasibility-plan' ) ? 'active' : ''; ?>">CUSTOM BUILD &amp; COST PLAN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/client-login/' ) ); ?>" class="nav-link-item <?php echo is_page( 'client-login' ) ? 'active' : ''; ?>">CLIENT LOGIN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/keystone-possibilities-custom-homes/' ) ); ?>" class="nav-link-item <?php echo is_page( 'keystone-possibilities-custom-homes' ) ? 'active' : ''; ?>">MASTER BUILDER SERIES</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/portfolio-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'portfolio-general-contractor-squamish' ) ? 'active' : ''; ?>">PORTFOLIO</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'about-us-general-contractor-squamish' ) ? 'active' : ''; ?>">ABOUT US</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="nav-link-item <?php echo is_page( 'private-investors' ) ? 'active' : ''; ?>">PRIVATE INVESTORS</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="nav-link-item <?php echo is_page( 'bc-hydro-registered-civil-contractor' ) ? 'active' : ''; ?>">CIVIL</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'contact-general-contractor-squamish' ) ? 'active' : ''; ?>">CONTACT</a></li>
                 </ul>
             </nav>
 
@@ -87,9 +87,9 @@ if ( ! defined( 'KP_HEADER_RENDERED' ) ) {
             <span class="drawer-cta-sub">Interactive Lot Feasibility, Cost Breakdown &amp; Civil Scope Calculator →</span>
         </a>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mobile-drawer-link <?php echo is_front_page() ? 'active' : ''; ?>">🏠 HOME</a>
-        <a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="mobile-drawer-link">🔐 CLIENT LOGIN</a>
-        <a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="mobile-drawer-link">🎬 MASTER BUILDER SERIES</a>
-        <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-drawer-link">🏛️ PORTFOLIO</a>
+        <a href="<?php echo esc_url( home_url( '/client-login/' ) ); ?>" class="mobile-drawer-link">🔐 CLIENT LOGIN</a>
+        <a href="<?php echo esc_url( home_url( '/keystone-possibilities-custom-homes/' ) ); ?>" class="mobile-drawer-link">🎬 MASTER BUILDER SERIES</a>
+        <a href="<?php echo esc_url( home_url( '/portfolio-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">🏛️ PORTFOLIO</a>
         <a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">👤 ABOUT US</a>
         <a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="mobile-drawer-link">📈 PRIVATE INVESTORS</a>
         <a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="mobile-drawer-link">⚡ CIVIL (ES54)</a>

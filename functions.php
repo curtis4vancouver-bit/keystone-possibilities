@@ -4,7 +4,7 @@
  * Certified BC Builder #52603 — Authority, SEO & GEO Schema Engine
  * 
  * @package KeystonePossibilitiesChild
- * @version 2.5.0
+ * @version 2.7.0
  */
 
 if (!defined('ABSPATH')) {
@@ -15,9 +15,9 @@ if (!defined('ABSPATH')) {
 add_action('wp_enqueue_scripts', 'keystone_possibilities_enqueue_styles', 15);
 function keystone_possibilities_enqueue_styles() {
     wp_enqueue_style('astra-parent-style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('keystone-possibilities-style', get_stylesheet_uri(), array('astra-parent-style'), '2.6.0');
-    wp_enqueue_script('keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '2.6.0', true);
-    wp_enqueue_script('keystone-portfolio-carousel', get_stylesheet_directory_uri() . '/js/portfolio-carousel.js', array(), '2.6.0', true);
+    wp_enqueue_style('keystone-possibilities-style', get_stylesheet_uri(), array('astra-parent-style'), '2.7.0');
+    wp_enqueue_script('keystone-lazy-player', get_stylesheet_directory_uri() . '/js/lazy-player.js', array(), '2.7.0', true);
+    wp_enqueue_script('keystone-portfolio-carousel', get_stylesheet_directory_uri() . '/js/portfolio-carousel.js', array(), '2.7.0', true);
 
     // Pass REST and AJAX endpoints to frontend for interactive lead capture & multi-job portal
     wp_localize_script('keystone-lazy-player', 'keystoneData', array(
@@ -339,10 +339,12 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/bill-44-multiplex-feasibility' => '/feasibility-plan/',
 
         // Client Portal & Videos
-        '/client-portal-2/' => '/client-portal-demo/',
-        '/client-portal-2' => '/client-portal-demo/',
-        '/client-portal/' => '/client-portal-demo/',
-        '/client-portal' => '/client-portal-demo/',
+        '/client-portal-2/' => '/client-login/',
+        '/client-portal-2' => '/client-login/',
+        '/client-portal/' => '/client-login/',
+        '/client-portal' => '/client-login/',
+        '/client-portal-demo/' => '/client-login/',
+        '/client-portal-demo' => '/client-login/',
         '/videos/' => '/keystone-possibilities-custom-homes/',
         '/videos' => '/keystone-possibilities-custom-homes/',
         
@@ -622,6 +624,17 @@ add_action('wp_head', 'keystone_possibilities_inject_critical_hero_css', 99);
 function keystone_possibilities_inject_critical_hero_css() {
     ?>
     <style id="keystone-hero-title-critical-fix">
+    .hero-master-title {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: clamp(1.70rem, 2.45vw, 2.42rem);
+        font-weight: 800;
+        line-height: 1.24;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        max-width: 1080px;
+        margin: 0 auto 20px auto;
+    }
     #ks-possibilities-header h2,
     #ks-recomposition-header h2,
     .kp-hero-title {
@@ -1498,14 +1511,14 @@ function keystone_possibilities_render_slim_nav_header() {
             <nav aria-label="Main Navigation" class="kp-desktop-nav-wrap">
                 <ul class="nav-links-menu">
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-link-item <?php echo is_front_page() ? 'active' : ''; ?>">HOME</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item">CUSTOM BUILD &amp; COST PLAN</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="nav-link-item">CLIENT LOGIN</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="nav-link-item">MASTER BUILDER SERIES</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="nav-link-item">PORTFOLIO</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="nav-link-item">ABOUT US</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="nav-link-item">PRIVATE INVESTORS</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="nav-link-item">CIVIL</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="nav-link-item">CONTACT</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="nav-link-item <?php echo is_page( 'feasibility-plan' ) ? 'active' : ''; ?>">CUSTOM BUILD &amp; COST PLAN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/client-login/' ) ); ?>" class="nav-link-item <?php echo is_page( 'client-login' ) ? 'active' : ''; ?>">CLIENT LOGIN</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/keystone-possibilities-custom-homes/' ) ); ?>" class="nav-link-item <?php echo is_page( 'keystone-possibilities-custom-homes' ) ? 'active' : ''; ?>">MASTER BUILDER SERIES</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/portfolio-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'portfolio-general-contractor-squamish' ) ? 'active' : ''; ?>">PORTFOLIO</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'about-us-general-contractor-squamish' ) ? 'active' : ''; ?>">ABOUT US</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="nav-link-item <?php echo is_page( 'private-investors' ) ? 'active' : ''; ?>">PRIVATE INVESTORS</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="nav-link-item <?php echo is_page( 'bc-hydro-registered-civil-contractor' ) ? 'active' : ''; ?>">CIVIL</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/contact-general-contractor-squamish/' ) ); ?>" class="nav-link-item <?php echo is_page( 'contact-general-contractor-squamish' ) ? 'active' : ''; ?>">CONTACT</a></li>
                 </ul>
             </nav>
             <div class="nav-right-actions">
@@ -1528,9 +1541,9 @@ function keystone_possibilities_render_slim_nav_header() {
             <span class="drawer-cta-sub">Interactive Lot Feasibility, Cost Breakdown &amp; Civil Scope Calculator →</span>
         </a>
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="mobile-drawer-link <?php echo is_front_page() ? 'active' : ''; ?>">🏠 HOME</a>
-        <a href="<?php echo esc_url( home_url( '/client-portal/' ) ); ?>" class="mobile-drawer-link">🔐 CLIENT LOGIN</a>
-        <a href="<?php echo esc_url( home_url( '/#master-builder-series' ) ); ?>" class="mobile-drawer-link">🎬 MASTER BUILDER SERIES</a>
-        <a href="<?php echo esc_url( home_url( '/#portfolio' ) ); ?>" class="mobile-drawer-link">🏛️ PORTFOLIO</a>
+        <a href="<?php echo esc_url( home_url( '/client-login/' ) ); ?>" class="mobile-drawer-link">🔐 CLIENT LOGIN</a>
+        <a href="<?php echo esc_url( home_url( '/keystone-possibilities-custom-homes/' ) ); ?>" class="mobile-drawer-link">🎬 MASTER BUILDER SERIES</a>
+        <a href="<?php echo esc_url( home_url( '/portfolio-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">🏛️ PORTFOLIO</a>
         <a href="<?php echo esc_url( home_url( '/about-us-general-contractor-squamish/' ) ); ?>" class="mobile-drawer-link">👤 ABOUT US</a>
         <a href="<?php echo esc_url( home_url( '/private-investors/' ) ); ?>" class="mobile-drawer-link">📈 PRIVATE INVESTORS</a>
         <a href="<?php echo esc_url( home_url( '/bc-hydro-registered-civil-contractor/' ) ); ?>" class="mobile-drawer-link">⚡ CIVIL (ES54)</a>
@@ -1545,6 +1558,18 @@ function keystone_possibilities_mount_header_logo_script() {
     <script id="keystone-mount-logo-engine">
     (function() {
         function initHeaderAndDrawer() {
+            // Canonical nav link normalizer (guarantees Master Builder Series, Portfolio & Client Login never point to homepage hashes)
+            document.querySelectorAll('#kpSiteNavHeader a, #mobileDrawer a').forEach(function(a) {
+                var txt = (a.innerText || '').toUpperCase().trim();
+                var href = a.getAttribute('href') || '';
+                if (txt.indexOf('MASTER BUILDER SERIES') !== -1 || href.indexOf('#master-builder-series') !== -1) {
+                    a.setAttribute('href', 'https://keystonepossibilities.ca/keystone-possibilities-custom-homes/');
+                } else if (txt.indexOf('PORTFOLIO') !== -1 && href.indexOf('#portfolio') !== -1) {
+                    a.setAttribute('href', 'https://keystonepossibilities.ca/portfolio-general-contractor-squamish/');
+                } else if (txt.indexOf('CLIENT LOGIN') !== -1 || href.indexOf('/client-portal') !== -1) {
+                    a.setAttribute('href', 'https://keystonepossibilities.ca/client-login/');
+                }
+            });
             var toggle = document.getElementById('kpMobileNavToggle');
             var drawer = document.getElementById('mobileDrawer');
             if (toggle && drawer && !toggle.dataset.kpBound) {

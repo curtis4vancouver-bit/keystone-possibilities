@@ -16,38 +16,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// ── 1. Intercept /client-portal-demo/ and inject virtual showcase if page not in DB ─
-add_action('template_redirect', 'keystone_possibilities_handle_client_portal_demo_route', 5);
+// ── 1. Redirect /client-portal-demo/ and /client-portal/ directly to the Login Portal (/client-login/) ─
+add_action('template_redirect', 'keystone_possibilities_handle_client_portal_demo_route', 1);
 function keystone_possibilities_handle_client_portal_demo_route() {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if (preg_match('#^/client-portal-demo/?$#i', parse_url($uri, PHP_URL_PATH) ?? '')) {
-        // If a native page exists, let WordPress render it normally.
-        // If not, render standalone high-converting luxury portal demo page.
-        global $wp_query;
-        if ($wp_query->is_404) {
-            status_header(200);
-            $wp_query->is_404 = false;
-            nocache_headers();
-            
-            get_header();
-            echo '<main id="primary" class="site-main" style="background:#04070d; min-height:80vh; padding: 2rem 1rem;">';
-            echo do_shortcode('[keystone_client_portal_demo]');
-            echo '</main>';
-            get_footer();
-            exit;
-        }
+    $path = parse_url($uri, PHP_URL_PATH) ?? '';
+    if (preg_match('#^/client-portal(-demo|-2)?/?$#i', $path)) {
+        wp_safe_redirect(home_url('/client-login/'), 301);
+        exit;
     }
-}
-
-// Ensure the_content renders client portal demo if a native page is created
-add_filter('the_content', 'keystone_possibilities_inject_portal_demo_content', 20);
-function keystone_possibilities_inject_portal_demo_content($content) {
-    if (is_page('client-portal-demo') || (is_singular() && preg_match('#client-portal-demo#i', $_SERVER['REQUEST_URI'] ?? ''))) {
-        if (stripos($content, 'kp-client-portal-demo-wrapper') === false) {
-            return $content . "\n\n" . do_shortcode('[keystone_client_portal_demo]');
-        }
-    }
-    return $content;
 }
 
 // ── 2. Shortcode: [keystone_client_portal_demo] ──────────────────────────────
