@@ -112,6 +112,41 @@ global $kp_master_footer_rendered;
 
 </div><!-- #page -->
 
+<script id="kp-v470-global-footer-canonical-engine">
+(function() {
+  function initKeystonePage1CanonicalStandard() {
+    if (!document.getElementById('kp-v470-head-styles')) {
+      var st = document.createElement('style');
+      st.id = 'kp-v470-head-styles';
+      st.textContent = [
+        '#rank-math-analytics-stats-wrapper, #rank-math-analytic-bar, .rank-math-analytics-stats-bar, #wpadminbar, #ast-scroll-top, .ast-scroll-top-icon { display: none !important; height: 0 !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }',
+        'html, html.wp-toolbar { margin-top: 0 !important; padding-top: 0 !important; }',
+        '@keyframes ksButtonWordWave { 0% { background-position: 220% 50%; } 100% { background-position: 0% 50%; } }',
+        'h1.kp-canonical-hero-h1 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; font-size: clamp(2.05rem, 3.2vw, 3.02rem) !important; font-weight: 800 !important; line-height: 1.18 !important; letter-spacing: -0.02em !important; text-transform: none !important; color: #FFFFFF !important; max-width: 1120px !important; margin: 0 auto 20px auto !important; text-align: center !important; border: none !important; }',
+        'h1.kp-canonical-hero-h1::after, h1.kp-canonical-hero-h1::before, .entry-content h2::after, .entry-content h2::before, .entry-content h3::after, .entry-content h3::before, .entry-content h4::after, .entry-content h4::before { display: none !important; content: none !important; background: none !important; border: none !important; height: 0 !important; width: 0 !important; }',
+        'h1.kp-canonical-hero-h1 .kp-h1-line1-white { display: block !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
+        'h1.kp-canonical-hero-h1 .kp-h1-line2-gold { display: inline-block !important; background: linear-gradient(90deg, #f8fafc 0%, #fef3c7 14%, #f6d365 36%, #d4af37 72%, #c59b27 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }',
+        '.entry-content h2, .entry-content h3, .entry-content h4, main h2, main h3, main h4 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; text-transform: none !important; letter-spacing: -0.015em !important; font-weight: 800 !important; border: none !important; }',
+        '.entry-content h2 span, .entry-content h3 span, main h2 span, main h3 span { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
+        'html body .kp-btn-sovereign-gold, html body a.kp-btn-sovereign-gold, html body button.kp-btn-sovereign-gold, html body .kp-subscribe-direct-btn, html body a.kp-subscribe-direct-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 48px !important; padding: 10px 26px !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.84) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-family: "Outfit", "Plus Jakarta Sans", sans-serif !important; font-size: 0.83rem !important; font-weight: 800 !important; letter-spacing: 0.05em !important; text-decoration: none !important; box-shadow: 0 8px 22px rgba(0,0,0,0.85), inset 0 0 14px rgba(212,175,55,0.10) !important; box-sizing: border-box !important; cursor: pointer !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
+        'html body .kp-geo-pill, html body a.kp-geo-pill { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 38px !important; min-height: 38px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; text-decoration: none !important; box-shadow: 0 6px 18px rgba(0,0,0,0.80) !important; box-sizing: border-box !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
+        'html body .kp-kicker-pill-gold { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 34px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.78) !important; }',
+        'html body .ks-wave-text { display: inline-block !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background-image: none !important; background-color: transparent !important; animation: none !important; text-decoration: none !important; }',
+        'html body .kp-btn-ico { display: inline-block !important; color: #f6d365 !important; -webkit-text-fill-color: initial !important; flex-shrink: 0 !important; }',
+        'html body .kp-btn-sovereign-gold:hover, html body .kp-subscribe-direct-btn:hover, html body .kp-geo-pill:hover, html body .kp-kicker-pill-gold:hover { background: #04070d !important; background-image: none !important; border-color: #f6d365 !important; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.92), 0 0 22px rgba(212, 175, 55, 0.62) !important; transform: translateY(-1.5px) !important; }',
+        'html body .kp-btn-sovereign-gold:hover .ks-wave-text, html body .kp-subscribe-direct-btn:hover .ks-wave-text, html body .kp-geo-pill:hover .ks-wave-text, html body .kp-kicker-pill-gold:hover .ks-wave-text { background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 14%, #f6d365 28%, #ffd700 40%, #ffffff 52%, #d4af37 66%, #ffd700 78%, #ffffff 92%, #ffffff 100%) !important; background-size: 220% auto !important; background-repeat: repeat !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; animation: ksButtonWordWave 1.15s linear infinite !important; }'
+      ].join(' ');
+      document.head.appendChild(st);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initKeystonePage1CanonicalStandard);
+  } else {
+    initKeystonePage1CanonicalStandard();
+  }
+})();
+</script>
+
 <?php 
 do_action( 'keystone_footer_rendered' );
 wp_footer(); 

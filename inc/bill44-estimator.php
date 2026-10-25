@@ -68,12 +68,12 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
         
         <!-- Header / Authority Badge -->
         <div style="text-align: center; margin-bottom: 1.15rem;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); padding: 4px 14px; border-radius: 9999px; margin-bottom: 8px; flex-wrap: wrap; justify-content: center;">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
-                <span style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;">Interactive Pre-Construction &amp; BC Hydro ES54 Servicing Engine</span>
+            <div class="kp-kicker-pill-gold" style="display: inline-flex; align-items: center; gap: 8px; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); padding: 4px 16px; border-radius: 9999px; margin-bottom: 8px; flex-wrap: wrap; justify-content: center;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #f6d365; box-shadow: 0 0 10px #f6d365;"></span>
+                <span class="ks-wave-text" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;">Interactive Pre-Construction &amp; BC Hydro ES54 Servicing Engine</span>
             </div>
             <p style="color: #cbd5e1; font-size: 0.92rem; max-width: 820px; margin: 0 auto; line-height: 1.5;">
-                Select your <strong style="color: #f6d365;">Project Archetype</strong> and enter your West Vancouver, Whistler, Squamish, or North Vancouver property address to model turnkey custom construction budgets, BC Hydro ES54 underground servicing &amp; PMT vault requirements, and open-book CCDC 5B fee savings.
+                Select your <strong style="color: #ffffff;">Project Archetype</strong> and enter your West Vancouver, Whistler, Squamish, or North Vancouver property address to model turnkey custom construction budgets, BC Hydro ES54 underground servicing &amp; PMT vault requirements, and open-book CCDC 5B fee savings.
             </p>
         </div>
 
@@ -81,7 +81,7 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
         <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 1.35rem; margin-bottom: 1.5rem; position: relative;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
                 <div>
-                    <label for="kp-b44-archetype" style="display: block; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: #d4af37; margin-bottom: 6px; letter-spacing: 0.05em;">
+                    <label for="kp-b44-archetype" style="display: block; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: #ffffff; margin-bottom: 6px; letter-spacing: 0.05em;">
                         🏛️ Select Project Archetype:
                     </label>
                     <select id="kp-b44-archetype" style="width: 100%; height: 48px !important; background: #04070d !important; border: 1.5px solid rgba(212, 175, 55, 0.55) !important; border-radius: 10px !important; padding: 0 14px !important; color: #f8fafc !important; font-size: 0.94rem !important; font-weight: 600; outline: none;">
@@ -93,10 +93,10 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 </div>
 
                 <div style="position: relative;">
-                    <label for="kp-b44-address" style="display: block; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: #38bdf8; margin-bottom: 6px; letter-spacing: 0.05em;">
+                    <label for="kp-b44-address" style="display: block; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; color: #ffffff; margin-bottom: 6px; letter-spacing: 0.05em;">
                         📍 Property Civic Address (West Van, Whistler, Squamish, North Van):
                     </label>
-                    <input type="text" id="kp-b44-address" placeholder="e.g. 38118 Cleveland Ave, Squamish or 1420 Chartwell Dr, West Vancouver" style="width: 100%; height: 48px !important; box-sizing: border-box; background: #04070d !important; border: 1.5px solid rgba(56, 189, 248, 0.45) !important; border-radius: 10px !important; padding: 0 14px !important; color: #f8fafc !important; font-size: 0.94rem !important; outline: none; transition: border-color 0.2s;" autocomplete="off">
+                    <input type="text" id="kp-b44-address" placeholder="e.g. 38118 Cleveland Ave, Squamish or 1420 Chartwell Dr, West Vancouver" style="width: 100%; height: 48px !important; box-sizing: border-box; background: #04070d !important; border: 1.5px solid rgba(212, 175, 55, 0.45) !important; border-radius: 10px !important; padding: 0 14px !important; color: #f8fafc !important; font-size: 0.94rem !important; outline: none; transition: border-color 0.2s;" autocomplete="off">
                     <div id="kp-b44-suggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0b1329; border: 1px solid #d4af37; border-radius: 0 0 10px 10px; max-height: 220px; overflow-y: auto; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.8);"></div>
                 </div>
             </div>
@@ -124,11 +124,11 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
         </div>
 
         <!-- Live Calculation Dashboard -->
-        <div id="kp-b44-results-card" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(4, 7, 13, 0.98) 100%); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div id="kp-b44-results-card" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(4, 7, 13, 0.98) 100%); border: 1px solid rgba(212, 175, 55, 0.45); border-radius: 18px; padding: 1.5rem; margin-bottom: 1.5rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 8px;">
                 <div>
                     <span style="color: #94a3b8; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Selected Archetype &amp; Site:</span>
-                    <div id="kp-b44-display-addr" style="color: #38bdf8; font-weight: 800; font-size: 1.05rem; font-family: 'Outfit', sans-serif;">Luxury Custom Single-Family Estate — West Vancouver / Sea-to-Sky</div>
+                    <div id="kp-b44-display-addr" style="color: #ffffff; font-weight: 800; font-size: 1.05rem; font-family: 'Outfit', sans-serif;">Luxury Custom Single-Family Estate — West Vancouver / Sea-to-Sky</div>
                 </div>
                 <div style="text-align: right;">
                     <span style="color: #94a3b8; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;">Builder &amp; Civil Authority:</span>
@@ -143,13 +143,13 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <div style="background: rgba(4, 7, 13, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 18px; padding: 1.1rem; text-align: center;">
                     <span style="color: #94a3b8; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em;">Hard Cost Benchmark</span>
                     <div id="kp-b44-units" style="color: #d4af37; font-size: 2rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">$650 / SF</div>
-                    <span id="kp-b44-units-sub" style="color: #38bdf8; font-size: 0.78rem; font-weight: 600;">2-5-10 National Home Warranty</span>
+                    <span id="kp-b44-units-sub" style="color: #cbd5e1; font-size: 0.78rem; font-weight: 600;">2-5-10 National Home Warranty</span>
                 </div>
 
                 <!-- Card 2: Planned Area -->
-                <div style="background: rgba(4, 7, 13, 0.75); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 18px; padding: 1.1rem; text-align: center;">
+                <div style="background: rgba(4, 7, 13, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 18px; padding: 1.1rem; text-align: center;">
                     <span style="color: #94a3b8; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em;">Planned Build Area</span>
-                    <div id="kp-b44-fsr" style="color: #38bdf8; font-size: 2rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">4,200 SF</div>
+                    <div id="kp-b44-fsr" style="color: #ffffff; font-size: 2rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">4,200 SF</div>
                     <span id="kp-b44-spec-sub" style="color: #94a3b8; font-size: 0.78rem;">Step Code 5 / Net-Zero Envelope</span>
                 </div>
 
@@ -157,7 +157,7 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <div style="background: rgba(4, 7, 13, 0.75); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 18px; padding: 1.1rem; text-align: center;">
                     <span style="color: #94a3b8; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em;">BC Hydro ES54 &amp; Civil</span>
                     <div id="kp-b44-rent" style="color: #f8fafc; font-size: 2rem; font-weight: 900; font-family: 'Outfit', sans-serif; margin: 4px 0;">$95,000</div>
-                    <span style="color: #38bdf8; font-size: 0.78rem;">Duct Bank, PMT &amp; Rock Trenching</span>
+                    <span style="color: #cbd5e1; font-size: 0.78rem;">Duct Bank, PMT &amp; Rock Trenching</span>
                 </div>
 
                 <!-- Card 4: Open-Book Fiduciary Savings -->
@@ -169,15 +169,15 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
             </div>
 
             <!-- Turnkey Cost & BC Hydro ES54 Servicing Breakdown Callout -->
-            <div style="background: rgba(15, 23, 42, 0.8); border-left: 3px solid #38bdf8; border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 0.88rem; line-height: 1.55; color: #cbd5e1;">
-                <strong style="color: #38bdf8;">⚡ BC Hydro ES54 Civil &amp; Pre-Construction Breakdown:</strong> Estimated turnkey hard construction &amp; civil budget is modeled at <span id="kp-b44-hardcost" style="color:#ffffff; font-weight:800;">$2,825,000</span> (including BC Energy Step Code 4/5 envelope, geotechnical bedrock anchoring, and statutory 2-5-10 National Home Warranty). As a certified <strong>BC Hydro ES54 Civil Contractor</strong>, Wayne Stevenson executes underground primary/secondary duct banks, 200A–600A service drops, and Pad-Mounted Transformer (PMT) vaults directly—eliminating $65k–$120k third-party utility surprises and 9-month hydro delays.
+            <div style="background: rgba(15, 23, 42, 0.8); border-left: 3px solid #d4af37; border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 0.88rem; line-height: 1.55; color: #cbd5e1;">
+                <strong style="color: #ffffff;">⚡ BC Hydro ES54 Civil &amp; Pre-Construction Breakdown:</strong> Estimated turnkey hard construction &amp; civil budget is modeled at <span id="kp-b44-hardcost" style="color:#ffffff; font-weight:800;">$2,825,000</span> (including BC Energy Step Code 4/5 envelope, geotechnical bedrock anchoring, and statutory 2-5-10 National Home Warranty). As a certified <strong>BC Hydro ES54 Civil Contractor</strong>, Wayne Stevenson executes underground primary/secondary duct banks, 200A–600A service drops, and Pad-Mounted Transformer (PMT) vaults directly—eliminating $65k–$120k third-party utility surprises and 9-month hydro delays.
             </div>
         </div>
 
         <!-- High-Converting Lead Capture Gate -->
         <div style="background: #04070d; border: 1.5px solid #d4af37; border-radius: 18px; padding: 1.75rem; box-shadow: 0 0 35px rgba(212, 175, 55, 0.15);">
             <div style="text-align: center; margin-bottom: 1.25rem;">
-                <h3 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.45rem); font-weight: 800; text-transform: uppercase; color: #d4af37; margin: 0 0 0.45rem 0; letter-spacing: 0.05em;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.45rem); font-weight: 800; color: #ffffff !important; margin: 0 0 0.45rem 0; letter-spacing: -0.01em;">
                     Request Your Custom Home &amp; Civil Pre-Construction Cost Dossier
                 </h3>
                 <p style="color: #94a3b8; font-size: 0.92rem; max-width: 680px; margin: 0 auto; line-height: 1.5;">
@@ -190,8 +190,8 @@ function keystone_possibilities_bill44_estimator_shortcode($atts) {
                 <input type="email" name="email" placeholder="Email Address *" required style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 12px 14px; color: #f8fafc; font-size: 0.95rem; outline: none;">
                 <input type="tel" name="phone" placeholder="Phone Number *" required style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 12px 14px; color: #f8fafc; font-size: 0.95rem; outline: none;">
                 <input type="hidden" name="lotAddress" id="kp-b44-hidden-addr" value="">
-                <button type="submit" class="kp-btn-primary" style="grid-column: 1 / -1; background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%); color: #04070d !important; border: 1px solid #f6d365; border-radius: 9999px; padding: 15px 24px; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);">
-                    🚀 Request Your Custom Home &amp; Civil Pre-Construction Cost Dossier →
+                <button type="submit" class="kp-btn-primary kp-btn-sovereign-gold" style="grid-column: 1 / -1; background: #04070d !important; color: #ffffff !important; border: 1.5px solid rgba(212, 175, 55, 0.84) !important; border-radius: 9999px !important; padding: 15px 24px !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important; font-size: 0.92rem !important; letter-spacing: 0.05em !important; cursor: pointer;">
+                    <span class="kp-btn-ico">🚀</span> <span class="ks-wave-text">Request Your Custom Home &amp; Civil Pre-Construction Cost Dossier →</span>
                 </button>
             </form>
             <div id="kp-b44-status" style="margin-top: 12px; display: none;"></div>
@@ -320,14 +320,14 @@ add_shortcode('keystone_open_book_calculator', 'keystone_possibilities_open_book
 function keystone_possibilities_open_book_calculator_shortcode($atts) {
     ob_start();
     ?>
-    <div id="kp-open-book-calc-wrapper" class="kp-tool-container" style="background: #0a0f19; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 2.2rem 1.5rem; max-width: 1040px; margin: 2rem auto; box-shadow: 0 15px 40px rgba(0,0,0,0.7); font-family: 'Inter', -apple-system, sans-serif; color: #f8fafc;">
+    <div id="kp-open-book-calc-wrapper" class="kp-tool-container" style="background: #0a0f19; border: 1.5px solid rgba(212, 175, 55, 0.45); border-radius: 18px; padding: 2.2rem 1.5rem; max-width: 1040px; margin: 2rem auto; box-shadow: 0 15px 40px rgba(0,0,0,0.7); font-family: 'Inter', -apple-system, sans-serif; color: #f8fafc;">
         
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 1.75rem;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.4); padding: 5px 16px; border-radius: 9999px; margin-bottom: 12px;">
-                <span style="color: #d4af37; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;">CCDC 5B Fiduciary Cost Transparency</span>
+            <div class="kp-kicker-pill-gold" style="display: inline-flex; align-items: center; gap: 8px; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); padding: 5px 16px; border-radius: 9999px; margin-bottom: 12px;">
+                <span class="ks-wave-text" style="color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;">CCDC 5B Fiduciary Cost Transparency</span>
             </div>
-            <h2 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 0.5rem 0; background: linear-gradient(135deg, #ffffff 40%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h2 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; color: #ffffff !important; margin: 0 0 0.5rem 0;">
                 Fiduciary Open-Book Cost Calculator
             </h2>
             <p style="color: #94a3b8; font-size: 0.98rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
@@ -341,11 +341,11 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
                 <label for="kp-ob-budget-slider" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; color: #f8fafc;">
                     Custom Home or Civil Construction Hard Cost (Materials &amp; Subtrades)
                 </label>
-                <div id="kp-ob-budget-display" style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900; color: #38bdf8;">
+                <div id="kp-ob-budget-display" style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900; color: #f6d365;">
                     $2,500,000
                 </div>
             </div>
-            <input type="range" id="kp-ob-budget-slider" min="800000" max="6000000" step="100000" value="2500000" style="width: 100%; height: 10px; border-radius: 5px; background: #1e293b; outline: none; cursor: pointer; accent-color: #38bdf8;">
+            <input type="range" id="kp-ob-budget-slider" min="800000" max="6000000" step="100000" value="2500000" style="width: 100%; height: 10px; border-radius: 5px; background: #1e293b; outline: none; cursor: pointer; accent-color: #d4af37;">
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #64748b; margin-top: 6px;">
                 <span>$800,000 (BC Hydro Civil / Custom Renovation)</span>
                 <span>$2,500,000 (Mountain Modern Custom Home)</span>
@@ -360,7 +360,7 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
             <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 18px; padding: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                     <span style="font-size: 1.2rem;">⚠️</span>
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #f6d365; margin: 0;">Traditional Cost-Plus</h3>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #ffffff !important; margin: 0;">Traditional Cost-Plus</h3>
                 </div>
                 <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px;">Standard 18% GC Markup on all invoices:</div>
                 <div id="kp-ob-trad-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 12px;">
@@ -374,13 +374,13 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
             </div>
 
             <!-- Keystone Open-Book Pass-Through -->
-            <div style="background: rgba(56, 189, 248, 0.08); border: 1.5px solid #38bdf8; border-radius: 18px; padding: 1.5rem;">
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid #d4af37; border-radius: 18px; padding: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                     <span style="font-size: 1.2rem;">🛡️</span>
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #38bdf8; margin: 0;">Keystone Open-Book</h3>
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: #ffffff !important; margin: 0;">Keystone Open-Book</h3>
                 </div>
                 <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px;">Fixed Fiduciary CM Fee + 0% Trade Markups:</div>
-                <div id="kp-ob-keystone-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #38bdf8; margin-bottom: 12px;">
+                <div id="kp-ob-keystone-fee" style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">
                     $225,000
                 </div>
                 <ul style="padding-left: 20px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
@@ -393,7 +393,7 @@ function keystone_possibilities_open_book_calculator_shortcode($atts) {
         </div>
 
         <!-- Animated Net Savings Banner -->
-        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid #d4af37; border-radius: 18px; padding: 1.6rem; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);">
+        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(15, 23, 42, 0.92) 100%); border: 1.5px solid #d4af37; border-radius: 18px; padding: 1.6rem; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);">
             <span style="color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">Net Direct Hard Cash Savings Kept in Your Custom Home Equity</span>
             <div id="kp-ob-savings" style="font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 900; color: #d4af37; margin: 6px 0; text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);">
                 $225,000 SAVED
@@ -468,25 +468,25 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                     
                     <!-- Credential Authority Badge -->
                     <div style="text-align: center; margin-bottom: 8px;">
-                        <span class="kp-badge" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.12); padding: 5px 18px; border-radius: 9999px; border: 1px solid rgba(212, 175, 55, 0.45); text-transform: uppercase; letter-spacing: 0.08em; box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);">
-                            🏛️ BC Housing Licensed Builder #52603 • BC Hydro Civil Contractor ES54 • 2-5-10 National Home Warranty
+                        <span class="kp-kicker-pill-gold" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 800; color: #ffffff; background: #04070d; padding: 5px 18px; border-radius: 9999px; border: 1.5px solid rgba(212, 175, 55, 0.75); text-transform: uppercase; letter-spacing: 0.08em;">
+                            <span class="kp-btn-ico">🏛️</span> <span class="ks-wave-text">BC Housing Licensed Builder #52603 • BC Hydro Civil Contractor ES54 • 2-5-10 National Home Warranty</span>
                         </span>
                     </div>
 
                     <!-- Regional Corridor Switcher Pills -->
                     <div style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.75rem;">
-                        <a href="/west-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">West Vancouver →</a>
-                        <a href="/whistler-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Whistler →</a>
-                        <a href="/squamish-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">Squamish →</a>
-                        <a href="/north-vancouver-custom-homes/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #cbd5e1; text-decoration: none; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 9999px;">North Vancouver →</a>
-                        <a href="/bc-hydro-registered-civil-contractor/" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #38bdf8; text-decoration: none; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 9999px;">BC Hydro Civil ES54 →</a>
-                        <span style="display: inline-flex; align-items: center; padding: 5px 16px; font-size: 0.76rem; font-weight: 800; color: #f6d365; background: rgba(212, 175, 55, 0.2); border: 1.5px solid #d4af37; border-radius: 9999px;">📐 Cost &amp; Build Plan</span>
+                        <a href="/west-vancouver-custom-homes/" class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #ffffff; text-decoration: none; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); border-radius: 9999px;"><span class="ks-wave-text">West Vancouver →</span></a>
+                        <a href="/whistler-custom-homes/" class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #ffffff; text-decoration: none; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); border-radius: 9999px;"><span class="ks-wave-text">Whistler →</span></a>
+                        <a href="/squamish-custom-homes/" class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #ffffff; text-decoration: none; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); border-radius: 9999px;"><span class="ks-wave-text">Squamish →</span></a>
+                        <a href="/north-vancouver-custom-homes/" class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #ffffff; text-decoration: none; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); border-radius: 9999px;"><span class="ks-wave-text">North Vancouver →</span></a>
+                        <a href="/bc-hydro-registered-civil-contractor/" class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 15px; font-size: 0.76rem; font-weight: 700; color: #ffffff; text-decoration: none; background: #04070d; border: 1.5px solid rgba(212, 175, 55, 0.75); border-radius: 9999px;"><span class="ks-wave-text">BC Hydro Civil ES54 →</span></a>
+                        <span class="kp-geo-pill" style="display: inline-flex; align-items: center; padding: 5px 16px; font-size: 0.76rem; font-weight: 800; color: #ffffff; background: #04070d; border: 1.5px solid #d4af37; border-radius: 9999px;"><span class="kp-btn-ico">📐</span> <span class="ks-wave-text">Cost &amp; Build Plan</span></span>
                     </div>
 
-                    <!-- H1 Master Headline -->
-                    <h1 class="hero-master-title" style="font-family: 'Cinzel', 'Outfit', serif !important; font-size: clamp(1.55rem, 2.6vw, 2.25rem) !important; font-weight: 900 !important; line-height: 1.15 !important; letter-spacing: 0.01em !important; color: #FFFFFF !important; max-width: 980px !important; margin: 0 auto 0.45rem auto !important; text-align: center !important; text-transform: uppercase !important;">
-                        CUSTOM HOME, ESTATE &amp; BC HYDRO CIVIL<br>
-                        <span class="gold-gradient" style="background: linear-gradient(135deg, #FFF2C6 0%, #D4AF37 50%, #A38025 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; display: inline-block;">PRE-CONSTRUCTION COST &amp; SERVICING PLANNER</span>
+                    <!-- H1 Master Headline (Page 1 Canonical 2-Line Standard) -->
+                    <h1 class="hero-master-title kp-canonical-hero-h1" style="font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important; font-size: clamp(2.05rem, 3.2vw, 3.02rem) !important; font-weight: 800 !important; line-height: 1.18 !important; letter-spacing: -0.02em !important; text-transform: none !important; color: #FFFFFF !important; max-width: 1120px !important; margin: 0 auto 0.65rem auto !important; text-align: center !important; border: none !important;">
+                        <span class="kp-h1-line1-white" style="display: block !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important;">Architectural Custom Home Feasibility &amp;</span>
+                        <span class="kp-h1-line2-gold" style="background: linear-gradient(90deg, #f8fafc 0%, #fef3c7 14%, #f6d365 36%, #d4af37 72%, #c59b27 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; display: inline-block !important;">Open-Book CCDC 5B Square-Foot Cost Planning</span>
                     </h1>
 
                     <p style="font-size: 0.94rem; line-height: 1.5; color: #cbd5e1; max-width: 840px; margin: 0 auto;">
@@ -511,7 +511,7 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                     <div style="color: #f6d365; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem;">
                         2026 SEA-TO-SKY &amp; NORTH SHORE BENCHMARKS
                     </div>
-                    <h2 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: #ffffff; margin: 0 0 0.75rem 0;">
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 900; color: #ffffff !important; margin: 0 0 0.75rem 0;">
                         Turnkey Custom Home, Estate &amp; BC Hydro ES54 Civil Standards
                     </h2>
                     <p style="color: #94a3b8; max-width: 760px; margin: 0 auto; font-size: 0.98rem; line-height: 1.6;">
@@ -526,7 +526,7 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                         <div style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 900; color: #ffffff; margin-bottom: 0.3rem;">
                             $550 – $850+ <span style="font-size: 0.95rem; color: #94a3b8; font-weight: 500;">/ sq. ft.</span>
                         </div>
-                        <h3 style="color: #d4af37; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
+                        <h3 style="color: #ffffff !important; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
                             Luxury Custom Single-Family Estates
                         </h3>
                         <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
@@ -535,12 +535,12 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="kp-card" style="border-top: 4px solid #38bdf8; border-radius: 18px; padding: 1.8rem;">
-                        <span class="kp-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.1); font-size: 0.72rem; padding: 4px 12px; margin-bottom: 0.8rem;">SQUAMISH &amp; NORTH VANCOUVER</span>
+                    <div class="kp-card" style="border-top: 4px solid #d4af37; border-radius: 18px; padding: 1.8rem;">
+                        <span class="kp-badge" style="font-size: 0.72rem; padding: 4px 12px; margin-bottom: 0.8rem;">SQUAMISH &amp; NORTH VANCOUVER</span>
                         <div style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 900; color: #ffffff; margin-bottom: 0.3rem;">
                             $425 – $575 <span style="font-size: 0.95rem; color: #94a3b8; font-weight: 500;">/ sq. ft.</span>
                         </div>
-                        <h3 style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
+                        <h3 style="color: #ffffff !important; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
                             Mountain Modern Homes, Renovations &amp; Carriage Builds
                         </h3>
                         <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
@@ -554,7 +554,7 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                         <div style="font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 900; color: #ffffff; margin-bottom: 0.3rem;">
                             $55K – $185K+ <span style="font-size: 0.95rem; color: #94a3b8; font-weight: 500;">turnkey civil</span>
                         </div>
-                        <h3 style="color: #f6d365; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
+                        <h3 style="color: #ffffff !important; font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 800; margin: 0.3rem 0 0.7rem 0;">
                             BC Hydro ES54 Underground Civil &amp; PMT Vaults
                         </h3>
                         <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
@@ -579,20 +579,20 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                         </div>
                         <div style="flex: 1 1 480px;">
                             <span class="kp-badge" style="margin-bottom: 10px;">DIRECT BUILDER LEADERSHIP</span>
-                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 900; color: #ffffff; margin: 0 0 0.85rem 0;">
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 900; color: #ffffff !important; margin: 0 0 0.85rem 0;">
                                 On-Site Custom Home &amp; Civil Authority. Zero Paper Brokerage.
                             </h3>
                             <p style="color: #cbd5e1; font-size: 0.96rem; line-height: 1.7; margin: 0 0 1.2rem 0;">
                                 Every custom home build and pre-construction servicing plan is led directly by Wayne Stevenson. With decades of hands-on structural concrete, steep-slope bedrock anchoring, and BC Hydro ES54 underground utility execution across West Vancouver, Whistler, Squamish, and North Vancouver, you receive direct builder accountability from initial concept to 2-5-10 warranty occupancy.
                             </p>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1.4rem;">
-                                <div><strong style="color: #f6d365;">• BC Housing License:</strong> #52603</div>
-                                <div><strong style="color: #f6d365;">• BC Hydro Status:</strong> ES54 Civil Contractor</div>
-                                <div><strong style="color: #f6d365;">• Home Warranty:</strong> Statutory 2-5-10 WBI</div>
-                                <div><strong style="color: #f6d365;">• Contract Model:</strong> CCDC 5B Open-Book</div>
+                                <div><strong style="color: #ffffff;">• BC Housing License:</strong> #52603</div>
+                                <div><strong style="color: #ffffff;">• BC Hydro Status:</strong> ES54 Civil Contractor</div>
+                                <div><strong style="color: #ffffff;">• Home Warranty:</strong> Statutory 2-5-10 WBI</div>
+                                <div><strong style="color: #ffffff;">• Contract Model:</strong> CCDC 5B Open-Book</div>
                             </div>
-                            <a href="tel:+16048489688" class="kp-btn-primary" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d4af37 0%, #c4a265 50%, #aa8232 100%); color: #04070d !important; font-family: 'Outfit', sans-serif !important; font-weight: 900 !important; font-size: 0.88rem !important; text-transform: uppercase !important; letter-spacing: 0.08em !important; padding: 13px 28px !important; border-radius: 9999px !important; text-decoration: none !important; border: 1px solid #f6d365 !important;">
-                                SPEAK DIRECTLY WITH WAYNE: (604) 848-9688
+                            <a href="tel:+16048489688" class="kp-btn-primary kp-btn-sovereign-gold" style="display: inline-flex; align-items: center; justify-content: center; background: #04070d !important; color: #ffffff !important; font-family: 'Outfit', sans-serif !important; font-weight: 800 !important; font-size: 0.85rem !important; letter-spacing: 0.05em !important; padding: 13px 28px !important; border-radius: 9999px !important; text-decoration: none !important; border: 1.5px solid rgba(212, 175, 55, 0.84) !important;">
+                                <span class="kp-btn-ico">📞</span> <span class="ks-wave-text">Speak Directly With Wayne: (604) 848-9688</span>
                             </a>
                         </div>
                     </div>
