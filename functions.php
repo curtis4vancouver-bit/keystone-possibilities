@@ -49,9 +49,6 @@ require_once __DIR__ . '/inc/client-portal-demo.php';
 if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
     require_once __DIR__ . '/inc/multi-job-portal-api.php';
 }
-if (file_exists(__DIR__ . '/inc/project-sync-api.php')) {
-    require_once __DIR__ . '/inc/project-sync-api.php';
-}
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
 add_shortcode('keystone_video', 'keystone_possibilities_lazy_video_shortcode');
@@ -117,49 +114,12 @@ add_filter('rank_math/sitemap/exclude_empty_terms', '__return_true');
 add_filter('rank_math/sitemap/locations', '__return_empty_string');
 add_filter('rank_math/sitemap/locations/data', '__return_empty_array');
 
-// Tier 2: Guardrail - Strip category-sitemap, local-sitemap, and locations-sitemap from sitemap_index.xml XML output & inject keystone-video-sitemap.xml
-add_filter('rank_math/sitemap/enable_caching', '__return_false');
+// Tier 2: Guardrail - Strip category-sitemap, local-sitemap, and locations-sitemap from sitemap_index.xml XML output
 add_filter('rank_math/sitemap/index', function (string $xml): string {
     $pattern = '/<sitemap>\s*<loc>[^<]*(?:category-sitemap\.xml|local-sitemap\.xml|locations-sitemap\.xml|locations\.kml)<\/loc>.*?<\/sitemap>\s*/is';
     $cleaned = preg_replace($pattern, '', $xml);
-    $xml = is_string($cleaned) ? $cleaned : $xml;
-    $video_sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml'));
-    if (strpos($xml, 'keystone-video-sitemap.xml') === false) {
-        $entry  = "	<sitemap>
-";
-        $entry .= "		<loc>" . $video_sitemap_url . "</loc>
-";
-        $entry .= "		<lastmod>" . gmdate('c') . "</lastmod>
-";
-        $entry .= "	</sitemap>
-";
-        $xml .= $entry;
-    }
-    return $xml;
+    return is_string($cleaned) ? $cleaned : $xml;
 }, 11);
-
-// Tier 2.5: Prevent LiteSpeed/CDN caching of XML Sitemaps & support ?keystone_ls_purge=1
-add_action('send_headers', function (): void {
-    $req = isset($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] : '';
-    if (preg_match('/sitemap.*\.xml/i', $req)) {
-        header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
-        header('Pragma: no-cache');
-        header('Expires: 0');
-        header('X-LiteSpeed-Cache-Control: no-cache');
-    }
-    if (isset($_GET['keystone_ls_purge']) && $_GET['keystone_ls_purge'] === '1') {
-        if (class_exists('\RankMath\Sitemap\Cache')) {
-            \RankMath\Sitemap\Cache::invalidate_storage();
-        }
-        if (function_exists('wp_cache_flush')) {
-            wp_cache_flush();
-        }
-        header('X-LiteSpeed-Purge: *');
-        header('Content-Type: text/plain; charset=utf-8');
-        echo 'PURGED_LITESPEED_AND_RANKMATH_CACHE';
-        exit;
-    }
-}, 1);
 
 // Tier 3: Intercept direct requests to category-sitemap.xml and return HTTP 410 Gone
 add_action('template_redirect', function (): void {
@@ -701,26 +661,23 @@ function keystone_possibilities_inject_critical_hero_css() {
 // ── 8. Google-Compliant Above-The-Fold Video Watch Theater Injector ─────────
 add_filter('the_content', 'keystone_possibilities_ensure_watch_theater', 5);
 function keystone_possibilities_ensure_watch_theater($content) {
-    if ((!is_singular('post') && !is_page()) || is_admin() || is_feed()) {
+    if (!is_singular('post') || is_admin() || is_feed()) {
         return $content;
     }
 
     global $post;
     if (!$post) return $content;
 
-    $is_watch_page = ('page' === $post->post_type && 0 === strpos((string) $post->post_name, 'watch-'));
-    if (!is_singular('post') && !$is_watch_page) {
-        return $content;
-    }
-
-    $video_id = function_exists('keystone_possibilities_extract_youtube_id_helper')
-        ? keystone_possibilities_extract_youtube_id_helper($post)
-        : get_post_meta($post->ID, 'keystone_youtube_id', true);
-
+    // Detect YouTube ID from post meta or content
+    $video_id = get_post_meta($post->ID, 'keystone_youtube_id', true);
     if (empty($video_id)) {
-        if (preg_match('/youtube(?:-nocookie)?\.com\/embed\/([a-zA-Z0-9_-]{11})/i', (string) $content, $m)) {
+        $video_url = get_post_meta($post->ID, 'video_url', true);
+        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
             $video_id = $m[1];
-        } elseif (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', (string) $content, $m)) {
+        }
+    }
+    if (empty($video_id)) {
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $content, $m)) {
             $video_id = $m[1];
         }
     }
@@ -729,20 +686,21 @@ function keystone_possibilities_ensure_watch_theater($content) {
         return $content;
     }
 
-    $first_chunk = substr((string) $content, 0, 600);
-    if (stripos($first_chunk, 'watch-theater-embed') !== false || stripos($first_chunk, '<iframe') !== false) {
+    // Check if an iframe already exists in the first 300 characters
+    $first_chunk = substr(trim(strip_tags($content ?? '', '<iframe>')), 0, 300);
+    if (stripos($first_chunk, '<iframe') !== false) {
         return $content;
     }
 
-    $quoted_id = preg_quote($video_id, '/');
-    $sanitized_content = preg_replace('/<figure class="wp-block-embed[^>]*>.*?' . $quoted_id . '.*?<\/figure>/is', '', (string) $content);
-    $sanitized_content = preg_replace('/<iframe[^>]*src="[^"]*' . $quoted_id . '[^"]*"[^>]*><\/iframe>/is', '', (string) $sanitized_content);
+    // Strip duplicate iframes or embed blocks placed deeper in the article
+    $sanitized_content = preg_replace('/<figure class="wp-block-embed[^>]*>.*?<\/figure>/is', '', $content);
+    $sanitized_content = preg_replace('/<iframe[^>]*src="[^"]*youtube[^"]*"[^>]*><\/iframe>/is', '', $sanitized_content);
 
+    // Build Compliant 16:9 Above-the-Fold Watch Theater (Dominant primary entity)
     $theater_html = '
-    <div class="watch-theater-embed" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; margin: 0 auto 26px auto; border-radius: 18px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.55); box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85); background: #04070d;">
+    <div class="watch-theater-embed">
         <iframe src="https://www.youtube-nocookie.com/embed/' . esc_attr($video_id) . '?rel=0&modestbranding=1" 
                 title="' . esc_attr(get_the_title($post)) . '" 
-                style="width: 100%; height: 100%; border: 0;"
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen 
@@ -1973,181 +1931,4 @@ function keystone_portal_v10_delete_job(WP_REST_Request $request): WP_REST_Respo
 
     return keystone_portal_v10_attach_headers($resp);
 }
-}
-
-/**
- * ============================================================================
- * KEYSTONE POSSIBILITIES — PURE-BLACK (#04070D) LUXURY BUTTONS, PILLS &
- * PULSATING GOLD/BLUE WORD-WAVE HOVER ENGINE (v4.6.0 — MATCHING RECOMPOSITION)
- * Keeps existing page layouts 100% intact while upgrading all buttons and pills
- * to Pure Obsidian (#04070d), Sovereign Gold (#d4af37) & Luminous Baby Blue (#38bdf8).
- * ============================================================================
- */
-add_action('wp_head', 'keystone_possibilities_luxury_button_word_wave_styles', 10001);
-function keystone_possibilities_luxury_button_word_wave_styles(): void {
-    if (is_admin()) {
-        return;
-    }
-    ?>
-    <style id="keystone-possibilities-luxury-buttons-v460">
-        @keyframes kpWordWaveGold {
-            0%, 100% {
-                color: #f8fafc;
-                text-shadow: 0 0 8px rgba(212, 175, 55, 0.45);
-                transform: translateY(0);
-            }
-            50% {
-                color: #d4af37;
-                text-shadow: 0 0 16px rgba(212, 175, 55, 0.95), 0 0 26px rgba(56, 189, 248, 0.55);
-                transform: translateY(-1.5px);
-            }
-        }
-        @keyframes kpWordWaveBlue {
-            0%, 100% {
-                color: #f8fafc;
-                text-shadow: 0 0 8px rgba(56, 189, 248, 0.45);
-                transform: translateY(0);
-            }
-            50% {
-                color: #38bdf8;
-                text-shadow: 0 0 16px rgba(56, 189, 248, 0.95), 0 0 26px rgba(212, 175, 55, 0.55);
-                transform: translateY(-1.5px);
-            }
-        }
-
-        /* Primary Gold-Bordered Pure-Black Pill Buttons */
-        body .btn-gold-action,
-        body a.btn-gold-action,
-        body .header-cta-button,
-        body a.header-cta-button,
-        body .wp-block-button__link,
-        body button[type="submit"],
-        body input[type="submit"],
-        body .feasibility-submit-btn {
-            background: #04070d !important;
-            color: #d4af37 !important;
-            border: 1.5px solid rgba(212, 175, 55, 0.78) !important;
-            border-radius: 9999px !important;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75), inset 0 0 16px rgba(212, 175, 55, 0.12) !important;
-            font-weight: 800 !important;
-            letter-spacing: 0.06em !important;
-            text-decoration: none !important;
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        body .btn-gold-action:hover,
-        body a.btn-gold-action:hover,
-        body .header-cta-button:hover,
-        body a.header-cta-button:hover,
-        body .wp-block-button__link:hover,
-        body button[type="submit"]:hover {
-            background: #04070d !important;
-            color: #f8fafc !important;
-            border-color: #d4af37 !important;
-            box-shadow: 0 0 26px rgba(212, 175, 55, 0.48), 0 0 14px rgba(56, 189, 248, 0.25), inset 0 0 18px rgba(212, 175, 55, 0.22) !important;
-            transform: translateY(-2px) !important;
-        }
-
-        /* Secondary Luminous Baby-Blue Pure-Black Pill Buttons */
-        body .btn-portal-secondary,
-        body a.btn-portal-secondary,
-        body .municipal-pill,
-        body a.municipal-pill {
-            background: #04070d !important;
-            color: #38bdf8 !important;
-            border: 1.5px solid rgba(56, 189, 248, 0.68) !important;
-            border-radius: 9999px !important;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.72), inset 0 0 14px rgba(56, 189, 248, 0.10) !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.05em !important;
-            text-decoration: none !important;
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        body .btn-portal-secondary:hover,
-        body a.btn-portal-secondary:hover,
-        body .municipal-pill:hover,
-        body a.municipal-pill:hover {
-            background: #04070d !important;
-            color: #f8fafc !important;
-            border-color: #38bdf8 !important;
-            box-shadow: 0 0 24px rgba(56, 189, 248, 0.48), 0 0 14px rgba(212, 175, 55, 0.22), inset 0 0 18px rgba(56, 189, 248, 0.20) !important;
-            transform: translateY(-2px) !important;
-        }
-
-        /* Pure-Black Pill Badges & Status Tags */
-        body .entity-pill-badge,
-        body .superintendent-pill-tag,
-        body .section-eyebrow-gold,
-        body .pillar-meta-badge {
-            background: #04070d !important;
-            color: #d4af37 !important;
-            border: 1px solid rgba(212, 175, 55, 0.58) !important;
-            border-radius: 9999px !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), inset 0 0 12px rgba(212, 175, 55, 0.10) !important;
-        }
-
-        /* Word-Wave Span Styling */
-        .kp-wave-word {
-            display: inline-block;
-            transition: color 0.22s ease, text-shadow 0.22s ease, transform 0.22s ease;
-        }
-        body .btn-gold-action:hover .kp-wave-word,
-        body .header-cta-button:hover .kp-wave-word,
-        body .wp-block-button__link:hover .kp-wave-word,
-        body .entity-pill-badge:hover .kp-wave-word,
-        body .superintendent-pill-tag:hover .kp-wave-word,
-        body .pillar-meta-badge:hover .kp-wave-word {
-            animation: kpWordWaveGold 0.85s ease-in-out infinite;
-            animation-delay: calc(var(--w-idx, 0) * 0.07s);
-        }
-        body .btn-portal-secondary:hover .kp-wave-word,
-        body .municipal-pill:hover .kp-wave-word {
-            animation: kpWordWaveBlue 0.85s ease-in-out infinite;
-            animation-delay: calc(var(--w-idx, 0) * 0.07s);
-        }
-    </style>
-    <?php
-}
-
-add_action('wp_footer', 'keystone_possibilities_luxury_button_word_wave_script', 10001);
-function keystone_possibilities_luxury_button_word_wave_script(): void {
-    if (is_admin()) {
-        return;
-    }
-    ?>
-    <script id="keystone-possibilities-word-wave-js">
-    (function(){
-        function initPossibilitiesWordWave(){
-            var selectors = [
-                '.btn-gold-action',
-                '.btn-portal-secondary',
-                '.municipal-pill',
-                '.header-cta-button',
-                '.wp-block-button__link',
-                '.entity-pill-badge',
-                '.superintendent-pill-tag',
-                '.pillar-meta-badge'
-            ].join(',');
-            var els = document.querySelectorAll(selectors);
-            els.forEach(function(el){
-                if (el.dataset.kpWaveInit === '1') return;
-                el.dataset.kpWaveInit = '1';
-                var target = el.querySelector('span:last-child') || el;
-                if (target.children.length > 0) return;
-                var txt = (target.textContent || '').trim();
-                if (!txt) return;
-                var words = txt.split(/\s+/);
-                target.innerHTML = words.map(function(w, i){
-                    var safe = w.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-                    return '<span class="kp-wave-word" style="--w-idx:' + i + '">' + safe + '</span>';
-                }).join(' ');
-            });
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initPossibilitiesWordWave);
-        } else {
-            initPossibilitiesWordWave();
-        }
-    })();
-    </script>
-    <?php
 }

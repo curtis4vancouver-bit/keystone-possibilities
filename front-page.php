@@ -82,7 +82,7 @@ $theme_uri = get_stylesheet_directory_uri();
                     
                     <!-- Left: Wayne Stevenson Blueprint Framing Image -->
                     <div class="superintendent-visual-frame">
-                        <img src="<?php echo esc_url( $theme_uri . '/assets/images/wayne_possibilities_coastal_estate.jpg' ); ?>" alt="Wayne Stevenson - Licensed Master Builder #52603 on Coastal &amp; Alpine Estate Construction Site" loading="eager">
+                        <img src="<?php echo esc_url( $theme_uri . '/assets/images/wayne_whistler_builder_avatar.jpg' ); ?>" alt="Wayne Stevenson - Licensed Master Builder #52603 on Alpine Construction Site" loading="eager">
                         <div class="visual-corner-badge">
                             <div class="name">Wayne Stevenson</div>
                             <div class="role">Licensed General Contractor &amp; Civil Superintendent</div>
