@@ -183,6 +183,7 @@ function keystone_possibilities_inject_master_schema() {
                     "https://www.facebook.com/profile.php?id=61554185128555",
                     "https://www.youtube.com/@KeystonePossibilitiesLtd",
                     "https://www.instagram.com/keystonepossibilities",
+                    "https://www.tiktok.com/@keystone.possibil",
                     "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
                 ),
                 "founder" => array(
@@ -192,9 +193,14 @@ function keystone_possibilities_inject_master_schema() {
                     "jobTitle" => "Certified BC Residential Builder & Fiduciary Project Manager",
                     "url" => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
                     "sameAs" => array(
+                        "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y",
+                        "https://musicbrainz.org/artist/1a30328b-20b2-48bd-8e56-2884d3b040c0",
+                        "https://www.musixmatch.com/artist/Wayne-Stevenson",
+                        "https://www.youtube.com/@KeyStoneRecomposition",
+                        "https://www.youtube.com/@KeystoneAIProtocols",
                         "https://www.youtube.com/@KeystonePossibilitiesLtd",
                         "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
-                        "https://keystonerecomposition.com/about/"
+                        "https://keystonerecomposition.com/founder/"
                     ),
                     "hasCredential" => $canonical_credentials,
                     "knowsAbout" => array(
@@ -529,6 +535,7 @@ function keystone_possibilities_sanitize_schema_node(&$node) {
             'https://www.facebook.com/profile.php?id=61554185128555',
             'https://www.youtube.com/@KeystonePossibilitiesLtd',
             'https://www.instagram.com/keystonepossibilities',
+            'https://www.tiktok.com/@keystone.possibil',
             'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603'
         );
         if (isset($node['logo']) && is_array($node['logo'])) {
@@ -603,12 +610,12 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
     // 2. Enrich & sanitize all Organization and Person nodes in Rank Math graph on ALL pages
     keystone_possibilities_sanitize_schema_node($data);
 
-    if (!is_singular('post')) {
-        return $data;
-    }
-
     global $post;
     if (!$post) return $data;
+    $is_watch_page = ('page' === $post->post_type && 0 === strpos((string) $post->post_name, 'watch-'));
+    if (!is_singular('post') && !$is_watch_page) {
+        return $data;
+    }
 
     $video_id = keystone_possibilities_extract_youtube_id_helper($post);
     if (empty($video_id)) {
@@ -765,6 +772,20 @@ add_filter( 'robots_txt', function( $output, $public ) {
 // ── 6. Custom XML Video Sitemap Engine (/keystone-video-sitemap.xml & /video-sitemap.xml) ─
 add_action('init', 'keystone_possibilities_register_video_sitemap_rewrite', 5);
 function keystone_possibilities_register_video_sitemap_rewrite() {
+    if (isset($_GET['keystone_ls_purge'])) {
+        header('X-LiteSpeed-Purge: *');
+        header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+        header('X-LiteSpeed-Cache-Control: no-cache');
+        delete_transient('keystone_video_sitemap_xml_cache');
+        delete_transient('rank_math_sitemap_cache');
+        if (class_exists('\\RankMath\\Sitemap\\Cache')) {
+            \RankMath\Sitemap\Cache::invalidate_storage();
+        }
+        wp_cache_flush();
+        status_header(200);
+        echo 'KEYSTONE_POSSIBILITIES_CACHE_PURGED_ALL_13_VIDEOS';
+        exit;
+    }
     add_rewrite_rule('^keystone-video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top');
     add_rewrite_rule('^video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top');
 }
@@ -776,17 +797,6 @@ function keystone_possibilities_video_sitemap_query_vars($vars) {
     return $vars;
 }
 
-add_action('init', 'keystone_possibilities_maybe_flush_video_sitemap_rewrites', 99);
-function keystone_possibilities_maybe_flush_video_sitemap_rewrites() {
-    $engine_version = '2026.10.17';
-    if (get_option('keystone_video_sitemap_ver') !== $engine_version) {
-        delete_transient('keystone_video_sitemap_xml_cache');
-        flush_rewrite_rules(false);
-        update_option('keystone_video_sitemap_ver', $engine_version);
-    }
-}
-
-// Intercept early at template_redirect priority 0 to beat Rank Math and WordPress 404
 add_action('template_redirect', 'keystone_possibilities_serve_video_sitemap', 0);
 function keystone_possibilities_serve_video_sitemap() {
     $request_uri = $_SERVER['REQUEST_URI'] ?? '';
@@ -796,7 +806,6 @@ function keystone_possibilities_serve_video_sitemap() {
     }
 }
 
-// Banish Rank Math's faulty built-in video sitemap generator output
 add_filter('rank_math/sitemap/video/content', '__return_empty_string', 999);
 
 function keystone_possibilities_render_video_sitemap_xml() {
@@ -806,19 +815,13 @@ function keystone_possibilities_render_video_sitemap_xml() {
 
     status_header(200);
     header('Content-Type: application/xml; charset=utf-8');
-    header('X-Robots-Tag: noindex, follow', true);
-    nocache_headers();
+    header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+    header('X-LiteSpeed-Cache-Control: no-cache');
+    header('X-Robots-Tag: index, follow', true);
 
-    $cached_xml = get_transient('keystone_video_sitemap_xml_cache');
-    if (false !== $cached_xml && !empty($cached_xml) && !isset($_GET['fresh'])) {
-        echo $cached_xml;
-        exit;
-    }
-
-    $xml = keystone_possibilities_generate_video_sitemap_markup();
-    set_transient('keystone_video_sitemap_xml_cache', $xml, 12 * HOUR_IN_SECONDS);
-
-    echo $xml;
+    echo keystone_possibilities_generate_video_sitemap_markup();
     exit;
 }
 
@@ -829,21 +832,18 @@ function keystone_possibilities_invalidate_video_sitemap($post_id) {
         return;
     }
     delete_transient('keystone_video_sitemap_xml_cache');
+    delete_transient('rank_math_sitemap_cache');
 }
 
-add_filter('rank_math/sitemap/index', 'keystone_possibilities_inject_video_sitemap_into_rank_math', 11);
+add_filter('rank_math/sitemap/index', 'keystone_possibilities_inject_video_sitemap_into_rank_math', 99);
 function keystone_possibilities_inject_video_sitemap_into_rank_math($xml) {
-    $sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml'));
+    header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+    header('X-LiteSpeed-Cache-Control: no-cache');
+    $sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml?v=3'));
+    $lastmod = gmdate('Y-m-d\TH:i:s+00:00');
 
-    $latest_post = get_posts(array(
-        'numberposts' => 1,
-        'post_status' => 'publish',
-        'post_type'   => array('post', 'page'),
-        'orderby'     => 'post_modified_gmt',
-        'order'       => 'DESC',
-    ));
-
-    $lastmod = !empty($latest_post) ? mysql2date('Y-m-d\TH:i:s+00:00', $latest_post[0]->post_modified_gmt) : gmdate('c');
+    // Remove any existing keystone-video-sitemap entry before appending fresh v=3 entry
+    $xml = preg_replace('/<sitemap>\s*<loc>[^<]*keystone-video-sitemap\.xml[^<]*<\/loc>.*?<\/sitemap>\s*/is', '', (string) $xml);
 
     $custom_node  = "\t<sitemap>\n";
     $custom_node .= "\t\t<loc>" . $sitemap_url . "</loc>\n";
@@ -859,7 +859,34 @@ function keystone_possibilities_extract_youtube_id_helper($post) {
     }
     if (!$post) return false;
 
-    $post_id = $post->ID;
+    $post_id = (int) $post->ID;
+    if ('page' === $post->post_type && 0 === strpos((string) $post->post_name, 'watch-')) {
+        $meta_id = get_post_meta($post_id, 'keystone_youtube_id', true);
+        if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id))) {
+            return trim($meta_id);
+        }
+        $slug = substr((string) $post->post_name, 6);
+        $parent_posts = get_posts(array('name' => $slug, 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1));
+        if (!empty($parent_posts)) {
+            $post = $parent_posts[0];
+            $post_id = (int) $post->ID;
+        }
+    }
+
+    // Canonical 1-to-1 video mapping for all 6 active @KeystonePossibilitiesLtd episodes (prevents crosslink collisions)
+    $default_post_videos = array(
+        1953 => 'nPXnGzAEY6k', // BCBC 2024 Luxury Basement Waterproofing, Hydrostatic & Radon Guide
+        1907 => 'SIHMOJ5AOyw', // Vancouver Multiplex BCBC 2024 Adaptable Sill & Micropile Guide
+        1848 => 'eV_Oo5ekaWc', // Vancouver Multiplex BCBC 2024 Fire Acoustic & 2-Inch Water Main
+        1771 => 'kLsNyKvQswg', // West Vancouver Whistler BCBC 2024 Step Code 5 Cantilever Seismic
+        1760 => 'kLsNyKvQswg', // Alias ID guard
+        1697 => 'JwtaaZlrFeE', // Why 4-Storey Multiplexes Fail Lateral Shear
+        1679 => 'ERD0DiVkgYg', // Sea to Sky Luxury Compounds BC Building Code
+    );
+
+    if (isset($default_post_videos[$post_id])) {
+        return $default_post_videos[$post_id];
+    }
 
     $meta_id = get_post_meta($post_id, 'keystone_youtube_id', true);
     if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id)) && trim($meta_id) !== 'maxresdefau') {
@@ -871,34 +898,66 @@ function keystone_possibilities_extract_youtube_id_helper($post) {
         if ($m[1] !== 'maxresdefau') return $m[1];
     }
 
-    $content = $post->post_content;
+    $content = (string) $post->post_content;
     if (!empty($content)) {
         if (preg_match('/\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]{11})["\']/i', $content, $m)) {
             if ($m[1] !== 'maxresdefau') return $m[1];
         }
-
-        if (preg_match('/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $content, $m)) {
+        if (preg_match('/youtube-nocookie\.com\/embed\/([a-zA-Z0-9_-]{11})/i', $content, $m)) {
+            if ($m[1] !== 'maxresdefau') return $m[1];
+        }
+        if (preg_match('/(?:youtube\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $content, $m)) {
             if ($m[1] !== 'maxresdefau') return $m[1];
         }
     }
 
-    // Default canonical video mapping for posts to guarantee 100% video sitemap coverage
-    $default_post_videos = array(
-        1528 => 'vDO6N2OwJEY', // Building Luxury Estates in West Vancouver & Whistler
-        1513 => 'm84lfusVjbw', // Why 4-Storey Multiplexes Snap Holdowns
-        1508 => 'RSVpr9W0xqE', // Vancouver R1-1 Step Code 5
-        1494 => 'k3A_zCjdXGI', // BC Hydro ES54: The $100K Civil Utility Trap
-        1349 => 'C1qbttgIvqc', // West Vancouver Multiplex
-        1333 => 'WGlZeW3Lz9M', // Mountain Construction BC
-        1309 => 'sHakFlETDb0', // Whistler Step Code Trap
-        1262 => 'B6eWdrqExDo', // Building Fourplex Squamish
-    );
-
-    if (isset($default_post_videos[$post_id])) {
-        return $default_post_videos[$post_id];
-    }
-
     return false;
+}
+
+// Auto-create dedicated /watch-{slug}/ theater watch page whenever a Possibilities video post is published/updated
+add_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10, 3);
+function keystone_possibilities_auto_create_watch_page($new_status, $old_status, $post) {
+    if ('publish' !== $new_status || 'post' !== $post->post_type) {
+        return;
+    }
+    $youtube_id = keystone_possibilities_extract_youtube_id_helper($post);
+    if (empty($youtube_id)) {
+        return;
+    }
+    update_post_meta($post->ID, 'keystone_youtube_id', $youtube_id);
+    $post_slug = !empty($post->post_name) ? sanitize_title($post->post_name) : sanitize_title($post->post_title);
+    $watch_slug = 'watch-' . $post_slug;
+    $blog_permalink = get_permalink($post->ID);
+    $clean_title = wp_strip_all_tags(html_entity_decode($post->post_title, ENT_QUOTES, 'UTF-8'));
+
+    $theater_content = '<div class="watch-theater-embed" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; margin: 0 auto 26px auto; border-radius: 18px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.55); box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85); background: #04070d;"><iframe src="https://www.youtube-nocookie.com/embed/' . esc_attr($youtube_id) . '?rel=0&modestbranding=1" title="' . esc_attr($clean_title) . '" style="width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="eager"></iframe></div>' . "\n\n";
+    $theater_content .= '<p class="wp-block-paragraph" style="text-align:center; margin-top:28px; margin-bottom:36px;"><a href="' . esc_url($blog_permalink) . '" style="background: linear-gradient(135deg, #f6d365 0%, #d4af37 55%, #aa820a 100%); color: #04070d; padding: 15px 32px; border-radius: 9999px; text-decoration: none; font-weight: 900; display: inline-block; text-transform: uppercase; letter-spacing: 0.06em;">Read the Full BC Builder #52603 Engineering Blueprint &rarr;</a></p>';
+
+    remove_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10);
+    $page_by_path = get_page_by_path($watch_slug, OBJECT, 'page');
+    if ($page_by_path && !empty($page_by_path->ID)) {
+        wp_update_post(array(
+            'ID'           => (int) $page_by_path->ID,
+            'post_title'   => 'Watch: ' . $clean_title,
+            'post_name'    => $watch_slug,
+            'post_content' => $theater_content,
+            'post_status'  => 'publish',
+        ));
+        $page_id = (int) $page_by_path->ID;
+    } else {
+        $page_id = wp_insert_post(array(
+            'post_title'   => 'Watch: ' . $clean_title,
+            'post_name'    => $watch_slug,
+            'post_content' => $theater_content,
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_author'  => $post->post_author,
+        ));
+    }
+    if (!is_wp_error($page_id) && $page_id > 0) {
+        update_post_meta($page_id, 'keystone_youtube_id', $youtube_id);
+    }
+    add_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10, 3);
 }
 
 function keystone_possibilities_generate_video_sitemap_markup() {
@@ -913,14 +972,30 @@ function keystone_possibilities_generate_video_sitemap_markup() {
     ));
 
     $entries = array();
+    $seen_vids = array();
+    $seen_locs = array();
 
     foreach ($posts as $p) {
         $video_id = keystone_possibilities_extract_youtube_id_helper($p);
-        if (!$video_id) {
+        if (!$video_id || isset($seen_vids[$video_id])) {
             continue;
         }
 
-        $loc      = esc_url(get_permalink($p->ID));
+        // Map to dedicated /watch-{slug}/ page if present, else canonical post permalink
+        $watch_slug = 'watch-' . $p->post_name;
+        $watch_page = get_page_by_path($watch_slug, OBJECT, 'page');
+        if ($watch_page && 'publish' === $watch_page->post_status) {
+            $loc = esc_url(get_permalink($watch_page->ID));
+        } else {
+            $loc = esc_url(get_permalink($p->ID));
+        }
+
+        if (isset($seen_locs[$loc])) {
+            continue;
+        }
+        $seen_vids[$video_id] = true;
+        $seen_locs[$loc]      = true;
+
         $pub_date = get_the_date('c', $p->ID);
         $thumb    = "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg";
 
@@ -946,7 +1021,6 @@ function keystone_possibilities_generate_video_sitemap_markup() {
             'title'      => $title,
             'desc'       => $desc,
             'player_loc' => "https://www.youtube-nocookie.com/embed/{$video_id}",
-            'content_loc'=> "https://www.youtube.com/watch?v={$video_id}",
             'pub_date'   => $pub_date,
             'duration'   => 330,
             'video_id'   => $video_id,
@@ -964,7 +1038,6 @@ function keystone_possibilities_generate_video_sitemap_markup() {
         $out .= "\t\t\t<video:thumbnail_loc>{$e['thumb']}</video:thumbnail_loc>\n";
         $out .= "\t\t\t<video:title>{$e['title']}</video:title>\n";
         $out .= "\t\t\t<video:description>{$e['desc']}</video:description>\n";
-        $out .= "\t\t\t<video:content_loc>{$e['content_loc']}</video:content_loc>\n";
         $out .= "\t\t\t<video:player_loc allow_embed=\"yes\">{$e['player_loc']}</video:player_loc>\n";
         $out .= "\t\t\t<video:duration>{$e['duration']}</video:duration>\n";
         $out .= "\t\t\t<video:publication_date>{$e['pub_date']}</video:publication_date>\n";

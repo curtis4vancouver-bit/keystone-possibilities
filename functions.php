@@ -245,8 +245,41 @@ add_filter('rank_math/snippet/rich_snippet_video', '__return_empty_array');
 add_filter('rank_math/schema/video', '__return_empty_array');
 
 // ── 4.5. 301 Redirect, /llms.txt & 410 Handler ──────────────────────────────
+add_action('init', 'keystone_possibilities_handle_301_410_redirects', 1);
 add_action('template_redirect', 'keystone_possibilities_handle_301_410_redirects', 1);
 function keystone_possibilities_handle_301_410_redirects() {
+    if (is_admin() || (defined('REST_REQUEST') && REST_REQUEST) || (defined('DOING_CRON') && DOING_CRON)) {
+        return;
+    }
+
+    // Redirect legacy ?p= and ?page_id= query IDs for retired pre-October old-channel posts/watch-pages
+    $legacy_id_redirects = array(
+        1674 => '/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        1885 => '/watch-vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        1528 => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1887 => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1513 => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        1889 => '/watch-why-4-storey-multiplexes-fail-lateral-shear/',
+        1508 => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        1891 => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        1494 => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        1893 => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        1349 => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1895 => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1333 => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        1897 => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+        1309 => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1899 => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        1262 => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        1901 => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+    );
+    $req_id = isset($_GET['p']) ? (int) $_GET['p'] : (isset($_GET['page_id']) ? (int) $_GET['page_id'] : 0);
+    if ($req_id > 0 && isset($legacy_id_redirects[$req_id])) {
+        header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+        header('X-LiteSpeed-Cache-Control: no-cache');
+        wp_safe_redirect(home_url($legacy_id_redirects[$req_id]), 301);
+        exit;
+    }
     // 1. Strip Jetpack/social ?share= and ?nb= query parameters via 301 to canonical URL
     if (isset($_GET['share'])) {
         wp_safe_redirect(remove_query_arg(array('share', 'nb')), 301);
@@ -254,7 +287,7 @@ function keystone_possibilities_handle_301_410_redirects() {
     }
 
     // 2. Redirect RSS/Atom feeds with noindex header to canonical custom homes hub
-    if (is_feed()) {
+    if (function_exists('is_feed') && did_action('wp') && is_feed()) {
         header('X-Robots-Tag: noindex, follow', true);
         wp_safe_redirect(home_url('/keystone-possibilities-custom-homes/'), 301);
         exit;
@@ -262,14 +295,22 @@ function keystone_possibilities_handle_301_410_redirects() {
 
     $uri = (string) ( $_SERVER['REQUEST_URI'] ?? '' );
     $path = (string) strtok($uri, '?');
+    if (!headers_sent()) {
+        header('Link: </llms.txt>; rel="llms-txt"', false);
+    }
     
-    // Serve /llms.txt dynamically for AI search engines (Perplexity, ChatGPT, Claude)
-    if ($path === '/llms.txt' || $path === 'llms.txt') {
-        $llms_file = get_stylesheet_directory() . '/llms.txt';
+    // Serve /llms.txt and /llms-full.txt dynamically for AI search engines (Perplexity, ChatGPT, Claude)
+    if ($path === '/llms.txt' || $path === 'llms.txt' || $path === '/llms-full.txt' || $path === 'llms-full.txt') {
+        $target_file = ($path === '/llms-full.txt' || $path === 'llms-full.txt') ? '/llms-full.txt' : '/llms.txt';
+        $llms_file = get_stylesheet_directory() . $target_file;
+        if (!file_exists($llms_file)) {
+            $llms_file = get_stylesheet_directory() . '/llms.txt';
+        }
         if (file_exists($llms_file)) {
             status_header(200);
             header('Content-Type: text/plain; charset=utf-8');
             header('X-Robots-Tag: all');
+            header('Link: </llms.txt>; rel="llms-txt"', false);
             readfile($llms_file);
             exit;
         }
@@ -277,7 +318,7 @@ function keystone_possibilities_handle_301_410_redirects() {
 
     // Prefix match for any /2026/03/02/the-2026-structural-reset* variants
     if (stripos($path, '/2026/03/02/the-2026-structural-reset') === 0 || stripos($path, '/2026/03/02/squamish-structural-reset') === 0) {
-        wp_safe_redirect(home_url('/2026/09/05/why-4-storey-multiplexes-snap-holdowns/'), 301);
+        wp_safe_redirect(home_url('/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/'), 301);
         exit;
     }
 
@@ -348,19 +389,93 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/videos/' => '/keystone-possibilities-custom-homes/',
         '/videos' => '/keystone-possibilities-custom-homes/',
         
-        // Unpublished 2026 & Legacy Post Slugs -> Canonical Published 200 OK Engineering Teardowns
-        '/2026/05/19/squamish-permit-delays/' => '/2026/06/06/building-fourplex-squamish/',
-        '/2026/05/19/squamish-permit-delays' => '/2026/06/06/building-fourplex-squamish/',
+        // Unpublished 2026 & Legacy Pre-October Old-Channel Posts -> Canonical @KeystonePossibilitiesLtd Pillar Posts (Single-Hop 301)
+        '/2026/05/19/squamish-permit-delays/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/2026/05/19/squamish-permit-delays' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
         '/2026/04/28/bc-bill-44-multiplex-guide/' => '/feasibility-plan/',
         '/2026/04/28/bc-bill-44-multiplex-guide' => '/feasibility-plan/',
-        '/2026/04/12/bc-building-code-updates/' => '/2026/08/31/vancouver-r1-1-step-code-5/',
-        '/2026/04/12/bc-building-code-updates' => '/2026/08/31/vancouver-r1-1-step-code-5/',
-        '/2026/03/02/the-2026-structural-reset/' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
-        '/2026/03/02/the-2026-structural-reset' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
-        '/2026/03/02/squamish-structural-reset/' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
-        '/2026/03/02/squamish-structural-reset' => '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/',
-        '/2025/11/22/plan-spring-build-in-winter/' => '/2026/07/14/mountain-construction-bc/',
-        '/2025/11/22/plan-spring-build-in-winter' => '/2026/07/14/mountain-construction-bc/',
+        '/2026/04/12/bc-building-code-updates/' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/2026/04/12/bc-building-code-updates' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/2026/03/02/the-2026-structural-reset/' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/2026/03/02/the-2026-structural-reset' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/2026/03/02/squamish-structural-reset/' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/2026/03/02/squamish-structural-reset' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/2025/11/22/plan-spring-build-in-winter/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/2025/11/22/plan-spring-build-in-winter' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/2026/10/15/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/2026/10/15/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+
+        // 1. Legacy Post #1674 & Watch Page #1885 (2026-09-30) -> Post #1907 & Watch Page #1908
+        '/2026/09/30/why-sloping-lots-break-vancouver-multiplexes-stepped-footings/' => '/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        '/2026/09/30/why-sloping-lots-break-vancouver-multiplexes-stepped-footings' => '/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        '/why-sloping-lots-break-vancouver-multiplexes-stepped-footings/' => '/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        '/why-sloping-lots-break-vancouver-multiplexes-stepped-footings' => '/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        '/watch-why-sloping-lots-break-vancouver-multiplexes-stepped-footings/' => '/watch-vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+        '/watch-why-sloping-lots-break-vancouver-multiplexes-stepped-footings' => '/watch-vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/',
+
+        // 2. Legacy Post #1528 & Watch Page #1887 (2026-09-17) -> Post #1771 & Watch Page #1879
+        '/2026/09/17/building-luxury-estates-in-west-vancouver-whistler/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/2026/09/17/building-luxury-estates-in-west-vancouver-whistler' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/building-luxury-estates-in-west-vancouver-whistler/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/building-luxury-estates-in-west-vancouver-whistler' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-building-luxury-estates-in-west-vancouver-whistler/' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-building-luxury-estates-in-west-vancouver-whistler' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+
+        // 3. Legacy Post #1513 & Watch Page #1889 (2026-09-05) -> Post #1697 & Watch Page #1881
+        '/2026/09/05/why-4-storey-multiplexes-snap-holdowns/' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/2026/09/05/why-4-storey-multiplexes-snap-holdowns' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/why-4-storey-multiplexes-snap-holdowns/' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/why-4-storey-multiplexes-snap-holdowns' => '/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/',
+        '/watch-why-4-storey-multiplexes-snap-holdowns/' => '/watch-why-4-storey-multiplexes-fail-lateral-shear/',
+        '/watch-why-4-storey-multiplexes-snap-holdowns' => '/watch-why-4-storey-multiplexes-fail-lateral-shear/',
+
+        // 4. Legacy Post #1508 & Watch Page #1891 (2026-08-31) -> Post #1848 & Watch Page #1877
+        '/2026/08/31/vancouver-r1-1-step-code-5/' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/2026/08/31/vancouver-r1-1-step-code-5' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/vancouver-r1-1-step-code-5/' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/vancouver-r1-1-step-code-5' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/watch-vancouver-r1-1-step-code-5/' => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/watch-vancouver-r1-1-step-code-5' => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+
+        // 5. Legacy Post #1494 & Watch Page #1893 (2026-08-17) -> Post #1848 & Watch Page #1877
+        '/2026/08/17/bc-hydro-es54-trap/' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/2026/08/17/bc-hydro-es54-trap' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/bc-hydro-es54-trap/' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/bc-hydro-es54-trap' => '/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/watch-bc-hydro-es54-trap/' => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+        '/watch-bc-hydro-es54-trap' => '/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/',
+
+        // 6. Legacy Post #1349 & Watch Page #1895 (2026-08-05) -> Post #1771 & Watch Page #1879
+        '/2026/08/05/west-vancouver-multiplex/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/2026/08/05/west-vancouver-multiplex' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/west-vancouver-multiplex/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/west-vancouver-multiplex' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-west-vancouver-multiplex/' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-west-vancouver-multiplex' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+
+        // 7. Legacy Post #1333 & Watch Page #1897 (2026-07-14) -> Post #1679 & Watch Page #1883
+        '/2026/07/14/mountain-construction-bc/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/2026/07/14/mountain-construction-bc' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/mountain-construction-bc/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/mountain-construction-bc' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/watch-mountain-construction-bc/' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+        '/watch-mountain-construction-bc' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+
+        // 8. Legacy Post #1309 & Watch Page #1899 (2026-06-20) -> Post #1771 & Watch Page #1879
+        '/2026/06/20/whistler-step-code-trap/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/2026/06/20/whistler-step-code-trap' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/whistler-step-code-trap/' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/whistler-step-code-trap' => '/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-whistler-step-code-trap/' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+        '/watch-whistler-step-code-trap' => '/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/',
+
+        // 9. Legacy Post #1262 & Watch Page #1901 (2026-06-06) -> Post #1679 & Watch Page #1883
+        '/2026/06/06/building-fourplex-squamish/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/2026/06/06/building-fourplex-squamish' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/building-fourplex-squamish/' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/building-fourplex-squamish' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
+        '/watch-building-fourplex-squamish/' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+        '/watch-building-fourplex-squamish' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
 
         // Articles / Blog
         '/blog/' => '/#articles',
@@ -435,9 +550,9 @@ function keystone_possibilities_render_master_luxury_footer() {
                     </a>
 
                     <!-- High-Converting YouTube Channel Subscribe Pill -->
-                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #d4af37; padding: 10px 22px; border-radius: 9999px; text-decoration: none !important; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.22); transition: all 0.25s ease;">
+                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn kp-btn-sovereign-gold" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid #d4af37 !important; padding: 10px 24px; border-radius: 9999px; text-decoration: none !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.85), 0 0 16px rgba(212, 175, 55, 0.24), inset 0 0 16px rgba(212, 175, 55, 0.14); transition: all 0.25s ease;">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37" style="filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>SUBSCRIBE &bull; @KeystonePossibilitiesLtd</span>
+                        <span class="ks-wave-text" style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;">SUBSCRIBE &bull; @KeystonePossibilitiesLtd</span>
                     </a>
 
                 </div>
@@ -491,6 +606,40 @@ function keystone_possibilities_render_master_luxury_footer() {
     <a href="tel:+16048489688" id="kp-floating-phone" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
         <span>📞 (604) 848-9688</span>
     </a>
+    <script id="kp-v470-global-footer-canonical-engine">
+    (function() {
+      function initKeystonePage1CanonicalStandard() {
+        var oldSt = document.getElementById('kp-v470-head-styles');
+        if (oldSt) oldSt.remove();
+        var st = document.createElement('style');
+        st.id = 'kp-v470-head-styles';
+        st.textContent = [
+          '#rank-math-analytics-stats-wrapper, #rank-math-analytic-bar, .rank-math-analytics-stats-bar, #wpadminbar, #ast-scroll-top, .ast-scroll-top-icon { display: none !important; height: 0 !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }',
+          'html, html.wp-toolbar, body { margin-top: 0 !important; padding-top: 0 !important; }',
+          '@keyframes ksButtonWordWave { 0% { background-position: 220% 50%; } 100% { background-position: 0% 50%; } }',
+          'h1.kp-canonical-hero-h1 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; font-size: clamp(2.05rem, 3.2vw, 3.02rem) !important; font-weight: 800 !important; line-height: 1.18 !important; letter-spacing: -0.02em !important; text-transform: none !important; color: #FFFFFF !important; max-width: 1120px !important; margin: 0 auto 20px auto !important; text-align: center !important; border: none !important; }',
+          'h1.kp-canonical-hero-h1::after, h1.kp-canonical-hero-h1::before, .entry-content h2::after, .entry-content h2::before, .entry-content h3::after, .entry-content h3::before, .entry-content h4::after, .entry-content h4::before { display: none !important; content: none !important; background: none !important; border: none !important; height: 0 !important; width: 0 !important; }',
+          'h1.kp-canonical-hero-h1 .kp-h1-line1-white { display: block !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
+          'h1.kp-canonical-hero-h1 .kp-h1-line2-gold { display: inline-block !important; background: linear-gradient(90deg, #f8fafc 0%, #fef3c7 14%, #f6d365 36%, #d4af37 72%, #c59b27 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }',
+          '.entry-content h2, .entry-content h3, .entry-content h4, main h2, main h3, main h4 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; text-transform: none !important; letter-spacing: -0.015em !important; font-weight: 800 !important; border: none !important; }',
+          '.entry-content h2 span, .entry-content h3 span, main h2 span, main h3 span { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
+          'html body .kp-btn-sovereign-gold, html body a.kp-btn-sovereign-gold, html body button.kp-btn-sovereign-gold, html body .kp-subscribe-direct-btn, html body a.kp-subscribe-direct-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 48px !important; padding: 10px 26px !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.84) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-family: "Outfit", "Plus Jakarta Sans", sans-serif !important; font-size: 0.83rem !important; font-weight: 800 !important; letter-spacing: 0.05em !important; text-decoration: none !important; box-shadow: 0 8px 22px rgba(0,0,0,0.85), inset 0 0 14px rgba(212,175,55,0.10) !important; box-sizing: border-box !important; cursor: pointer !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
+          'html body .kp-geo-pill, html body a.kp-geo-pill { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 38px !important; min-height: 38px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; text-decoration: none !important; box-shadow: 0 6px 18px rgba(0,0,0,0.80) !important; box-sizing: border-box !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
+          'html body .kp-kicker-pill-gold { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 34px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.78) !important; }',
+          'html body .ks-wave-text, html body .kp-subscribe-direct-btn span { display: inline-block !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background-image: none !important; background-color: transparent !important; animation: none !important; text-decoration: none !important; }',
+          'html body .kp-btn-ico { display: inline-block !important; color: #f6d365 !important; -webkit-text-fill-color: initial !important; flex-shrink: 0 !important; }',
+          'html body .kp-btn-sovereign-gold:hover, html body .kp-subscribe-direct-btn:hover, html body .kp-geo-pill:hover, html body .kp-kicker-pill-gold:hover { background: #04070d !important; background-image: none !important; border-color: #f6d365 !important; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.92), 0 0 22px rgba(212, 175, 55, 0.62) !important; transform: translateY(-1.5px) !important; }',
+          'html body .kp-btn-sovereign-gold:hover .ks-wave-text, html body .kp-subscribe-direct-btn:hover .ks-wave-text, html body .kp-subscribe-direct-btn:hover span, html body .kp-geo-pill:hover .ks-wave-text, html body .kp-kicker-pill-gold:hover .ks-wave-text { background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 14%, #f6d365 28%, #ffd700 40%, #ffffff 52%, #d4af37 66%, #ffd700 78%, #ffffff 92%, #ffffff 100%) !important; background-size: 220% auto !important; background-repeat: repeat !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; animation: ksButtonWordWave 1.15s linear infinite !important; }'
+        ].join(' ');
+        document.head.appendChild(st);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initKeystonePage1CanonicalStandard);
+      } else {
+        initKeystonePage1CanonicalStandard();
+      }
+    })();
+    </script>
     <?php
 }
 
