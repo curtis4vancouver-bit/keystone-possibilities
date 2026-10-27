@@ -839,7 +839,7 @@ add_filter('rank_math/sitemap/index', 'keystone_possibilities_inject_video_sitem
 function keystone_possibilities_inject_video_sitemap_into_rank_math($xml) {
     header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
     header('X-LiteSpeed-Cache-Control: no-cache');
-    $sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml?v=3'));
+    $sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml'));
     $lastmod = gmdate('Y-m-d\TH:i:s+00:00');
 
     // Remove any existing keystone-video-sitemap entry before appending fresh v=3 entry
