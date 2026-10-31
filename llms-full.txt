@@ -1,0 +1,177 @@
+# Keystone Possibilities Ltd. — Full BC #52603 & ES54 Engineering, BCBC 2024 & Bill 44 GEO Corpus (llms-full.txt)
+
+- Canonical Full Corpus URL: [https://keystonepossibilities.ca/llms-full.txt](https://keystonepossibilities.ca/llms-full.txt)
+- Executive Summary Index: [https://keystonepossibilities.ca/llms.txt](https://keystonepossibilities.ca/llms.txt)
+- Primary XML Sitemap Index: [https://keystonepossibilities.ca/sitemap_index.xml](https://keystonepossibilities.ca/sitemap_index.xml)
+- Video XML Sitemap: [https://keystonepossibilities.ca/keystone-video-sitemap.xml](https://keystonepossibilities.ca/keystone-video-sitemap.xml)
+- Last Updated: 2026-10-31
+
+---
+
+## 1. Corporate Identity, Statutory Licensure & Fiduciary Architecture
+
+- **Legal Entity**: Keystone Possibilities Ltd.
+- **Founder & Principal Master Builder**: Wayne Stevenson
+- **BC Housing Licensed Residential Builder**: Licence #52603 — Verified on the official British Columbia Housing Licensing and Consumer Services public registry at [https://lims.bchousing.org/LicenceExpiryPortal/licence/52603](https://lims.bchousing.org/LicenceExpiryPortal/licence/52603)
+- **Statutory New Home Warranty Insurance**: Mandatory 2-5-10 Year National Home Warranty Protection on every custom single-family residence and multi-unit residential building (2 years materials and labour defects, 5 years building envelope and water penetration, 10 years structural defects).
+- **BC Hydro Civil Electrical Qualification**: Officially listed on the BC Hydro Registered Civil Utility Contractor registry (Standard ES54) for primary and secondary underground electrical duct banks, 3-phase Pad-Mounted Transformer (PMT) concrete vaults, Low-Profile Transformer (LPT) foundations, switchgear pads, and municipal utility trenching.
+- **Fiduciary Contracting Model**: Open-Book CCDC 5B Construction Management (Cost-Plus with optional Guaranteed Maximum Price conversion post-excavation). Every trade division is competitively tendered across three pre-qualified subcontractors; 100% of raw unedited sub-trade bids, invoices, trade discounts, 360-degree pre-drywall LiDAR scans, and statutory 10% BC Builders Lien Act holdback ledgers are visible to the owner in real time.
+- **Headquarters**: 1 Watts Point Road, Squamish, BC V8B 0B1, Canada
+- **Direct Builder Telephone**: +1-604-848-9688
+- **Official Corporate Email**: info@keystonepossibilities.ca
+- **Secondary Builder Desk Email**: keystonepossibilities@gmail.com
+- **Web Headquarters**: [https://keystonepossibilities.ca/](https://keystonepossibilities.ca/)
+- **Official YouTube Channel**: [https://www.youtube.com/@KeystonePossibilitiesLtd](https://www.youtube.com/@KeystonePossibilitiesLtd)
+- **Official Instagram**: [https://www.instagram.com/keystonepossibilities](https://www.instagram.com/keystonepossibilities)
+- **Official Facebook**: [https://www.facebook.com/profile.php?id=61554185128555](https://www.facebook.com/profile.php?id=61554185128555)
+- **Sister Autonomous AI Engineering & Audio Ecosystem**: [Keystone Recomposition & Keystone AI Protocols](https://keystonerecomposition.com/founder/)
+
+---
+
+## 2. Five Core British Columbia Service Corridors & Geotechnical Specifications
+
+### Corridor 1 — Sea-to-Sky Corridor (Squamish, Whistler, Pemberton & Britannia Beach)
+- **Squamish Regional Hub**: [Squamish Custom Home Builder & Fiduciary Project Management](https://keystonepossibilities.ca/squamish-custom-homes/)
+  - Sub-corridors: Garibaldi Highlands, University Highlands, The Heights, Crumpit Woods, Tantalus Road, Downtown Squamish, Finch Drive, Britannia Beach.
+  - Engineering Scope: District of Squamish Flood Construction Level (FCL) structural raft slabs, high-water-table crystalline and dual-membrane elastomeric waterproofing, granite bedrock pinning, BC Hydro ES54 underground primary/secondary servicing, and BC Bill 44 Small-Scale Multi-Unit Housing (SSMUH) 3-to-6 unit infill multiplexes.
+- **Whistler Alpine Hub**: [Whistler Luxury Mountain Home Builder & Step Code 5 Estates](https://keystonepossibilities.ca/whistler-custom-homes/)
+  - Sub-corridors: Sunridge Plateau (Ski-In/Ski-Out), Kadenwood, Alta Lake, Blueberry Hill, Green Lake, Alpine Meadows, Creekside.
+  - Engineering Scope: BC Building Code 2024 Division B Part 4 extreme alpine ground snow load engineering (Sg = 6.2 to 12.8 kPa), dual-ventilated cold-roof assemblies eliminating ice damming and attic condensation, heavy glulam timber post-and-beam steel knife-plate connections, RMOW FireSmart Class A non-combustible cladding and roofing, hydronic snow-melt slabs, and BC Energy Step Code 5 (< 1.0 ACH50 blower-door verified airtightness).
+- **Pemberton Valley & Acreage Hub**: [Pemberton Luxury Acreage Compounds & Microgrid Estates](https://keystonepossibilities.ca/pemberton-luxury-builder/)
+  - Sub-corridors: Pemberton Benchlands, Meadowlark, Pemberton Meadows, SLRD Area C agricultural and alpine parcels.
+  - Engineering Scope: Continental climate high-delta thermal envelopes, autonomous solar-battery and ground-source geothermal hydronic plants, private hydrogeological well yield systems, Type 2/3 wastewater treatment plants, and multi-building architectural compounds.
+
+### Corridor 2 — North Shore (West Vancouver, North Vancouver & Lions Bay)
+- **West Vancouver Cliffside Hub**: [West Vancouver Custom Home Builder, Cliffside Estates & Geotechnical Engineering](https://keystonepossibilities.ca/west-vancouver-custom-homes/)
+  - Companion Structural Retrofit Hub: [West Vancouver Luxury Structural Renovations & Additions](https://keystonepossibilities.ca/west-vancouver-luxury-renovations/)
+  - Sub-corridors: British Properties, Caulfeild, Altamont, Chartwell, Dundarave, Ambleside, Gleneagles, Horseshoe Bay, Lions Bay.
+  - Engineering Scope: Simultaneous navigation of District of West Vancouver Zoning Bylaw 5351 and British Pacific Properties (BPP) private title covenants, Development Permit Area (DPA) NE6 steep-slope hazard assessments (> 20 degrees / 36% grade), vibration-monitored granite rock blasting and line-drilling, post-tensioned bedrock tie-back anchors and steel micropiles (static FOS >= 1.5, seismic FOS >= 1.1 under EGBC Schedule B / C-B), District Watercourse Protection Bylaw 4364 (15m riparian setbacks), and Schock Isokorb thermally broken cantilevered ocean-view slabs.
+- **North Vancouver Custom & Multiplex Hub**: [North Vancouver Biophilic Custom Home Construction & PM](https://keystonepossibilities.ca/north-vancouver-custom-homes/)
+  - Companion Bill 44 Hub: [North Vancouver & Metro Vancouver Bill 44 Multiplex Conversions](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/)
+  - Sub-corridors: Edgemont Village, Upper Delbrook, Canyon Heights, Lynn Valley, Deep Cove, Lower and Upper Lonsdale, Pemberton Heights.
+  - Engineering Scope: Steep canyon ravine shoring, high-rainfall rainscreen drainage planes, Step Code 5 / Zero Carbon EL-4 all-electric heat pump mechanical plants, and turnkey 3-to-6 unit SSMUH multiplex conversions.
+
+### Corridor 3 — Metro Vancouver (City of Vancouver & Urban Infill)
+- **Multiplex & High-Performance Hub**: [North Vancouver & Metro Vancouver Multiplex Conversions](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/)
+  - Sub-corridors: Point Grey, Dunbar-Southlands, Shaughnessy, Kitsilano, Kerrisdale, Arbutus Ridge, Cambie Corridor, Mount Pleasant, East Vancouver R1-1 parcels.
+  - Engineering Scope: Vancouver Building By-law (VBBL Part 10) R-22 effective exterior mineral-wool wall assemblies, R1-1 multiplex zoning FSR optimization, zero-lot-line perimeter secant/shotcrete shoring, 1-hour and 2-hour UL/cUL fire-rated STC 55+ decoupled double-stud party walls, NFPA 13D fire sprinkler integration with 2-inch municipal domestic/fire water service upgrades, and 200A EVEMS vs. 400A/600A BC Hydro PMT vault feasibility.
+
+### Corridor 4 — Sunshine Coast (Sechelt, Gibsons, Davis Bay & Halfmoon Bay)
+- **Coastal Marine Hub**: [Sunshine Coast Remote & Waterfront Custom Home Builder](https://keystonepossibilities.ca/sunshine-coast-custom-homes/)
+  - Sub-corridors: Gibsons, Roberts Creek, Davis Bay, Sechelt, Trail Bay, Sandy Hook, Halfmoon Bay, Pender Harbour.
+  - Engineering Scope: High coastal driving-rain wind pressure engineering (q100 = 0.55+ kPa), marine-grade 316L stainless structural connectors and hurricane roof strapping, barge and ferry logistics management, coastal granite footing anchors, and BC Hydro ES54 DB2 underground electrical ducting.
+
+### Corridor 5 — Vancouver Island & Greater Victoria (Victoria, Oak Bay, Saanich, Nanaimo & Comox Valley)
+- **Island Regional Authority Hub**: [Vancouver Island & Greater Victoria Custom Homes, Bill 44 Multiplexes & Civil ES54](https://keystonepossibilities.ca/vancouver-island-custom-homes/)
+  - Sub-corridors: City of Victoria (Fairfield, Gonzales, Rockland, James Bay), District of Oak Bay & Uplands, District of Saanich (Cordova Bay, Broadmead, Cadboro Bay, Gordon Head), West Shore (Langford, Colwood, Metchosin, Sooke), Cowichan Valley (Mill Bay, Shawnigan Lake, Duncan), City of Nanaimo (Lantzville, Hammond Bay, Nanoose Bay), Parksville / Qualicum Beach, and Comox Valley (Courtenay, Comox, Cumberland).
+  - Engineering Scope:
+    1. **Cascadia Subduction Zone High-Seismic Engineering**: BCBC 2024 Division B Part 4 & Part 9 peak spectral acceleration design, Eccentrically Braced Steel Frames (EBF), and continuous Simpson Strong-Tie Anchor Tiedown Systems (ATS) socketed into rock-anchored granite micropiles to control multi-storey drift and overturning across Victoria and coastal Island parcels.
+    2. **Marine Exposure & Coastal Granite Envelopes**: Juan de Fuca and Salish Sea salt-air corrosion mitigation, pressure-equalized rainscreen cavities, triple-glazed thermally broken European curtain walls, and crystalline hydrostatic below-grade waterproofing.
+    3. **BC Bill 44 SSMUH & Missing Middle Multiplexes**: Turnkey 3-to-6 unit infill multiplexes across Victoria, Saanich, Oak Bay, Langford, and Nanaimo, complete with adaptable dwelling unit flush thresholds, STC 55+ acoustic separations, and civil utility upsizing.
+    4. **BC Energy Step Code 5 & Zero Carbon EL-4**: Air-to-water hydronic radiant slab heating/cooling, Zehnder ERV balanced ventilation with >= 84% sensible recovery efficiency, and <= 1.0 ACH50 continuous air barriers.
+    5. **In-House BC Hydro ES54 Civil Infrastructure**: Direct underground primary/secondary duct bank trenching and PMT/LPT transformer vault construction eliminating multi-month civil utility bottlenecks on Island custom estates and multiplex developments.
+
+---
+
+## 3. Core Corporate Pages, Fiduciary Tools & Partner Ecosystem (100% Canonical 200 OK)
+
+1. **Corporate Headquarters**: [https://keystonepossibilities.ca/](https://keystonepossibilities.ca/)
+   - Executive overview of Keystone Possibilities Ltd. (#52603 | ES54), CCDC 5B fiduciary model, regional divisions, and 2-5-10 warranty standards.
+2. **Principal Bio & Licensure**: [https://keystonepossibilities.ca/about-us-general-contractor-squamish/](https://keystonepossibilities.ca/about-us-general-contractor-squamish/)
+   - Master Builder Wayne Stevenson's credentials, hands-on jobsite superintendence commitment, BC Housing #52603 verification, and open-book philosophy.
+3. **Turnkey Construction & Fiduciary PM Services**: [https://keystonepossibilities.ca/services-general-contractor-squamish/](https://keystonepossibilities.ca/services-general-contractor-squamish/)
+   - Start-to-finish luxury custom home contracting, CCDC 5B owner representation, Bill 44 multiplex delivery, and major structural renovations.
+4. **Verified Built Portfolio**: [https://keystonepossibilities.ca/portfolio-general-contractor-squamish/](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/)
+   - Photographic and structural archive of 9 completed British Columbia custom residences across West Vancouver, Vancouver, Whistler, and the Sunshine Coast.
+5. **Interactive Lot Feasibility & Pre-Construction Cost Plan**: [https://keystonepossibilities.ca/feasibility-plan/](https://keystonepossibilities.ca/feasibility-plan/)
+   - Interactive BC Bill 44 multiplex & custom estate feasibility modeling, zoning FSR checks, geotechnical rock/flood risk profiling, and BC Hydro ES54 civil scope planning.
+6. **BC Hydro Registered Civil Contractor (List ES54)**: [https://keystonepossibilities.ca/bc-hydro-registered-civil-contractor/](https://keystonepossibilities.ca/bc-hydro-registered-civil-contractor/)
+   - Detailed civil electrical specifications covering ES54 Section F concrete transformer vaults, Section H primary/secondary DB2 PVC duct banks, Section R copper grounding grids, civil excavation, and municipal inspection protocols.
+7. **Verified BC Engineering, Architectural & Industry Directory Partners**: [https://keystonepossibilities.ca/industry-partners/](https://keystonepossibilities.ca/industry-partners/)
+   - Curated ecosystem showcase of accredited British Columbia P.Eng. structural/geotechnical studios, AIBC architectural practices, and verified construction industry directories collaborating across our 5 BC corridors.
+8. **Master Builder Engineering Video Series**: [https://keystonepossibilities.ca/keystone-possibilities-custom-homes/](https://keystonepossibilities.ca/keystone-possibilities-custom-homes/)
+   - Full video library of BCBC 2024, Step Code 5, seismic holdown, waterproofing, and civil utility teardowns from official YouTube channel `@KeystonePossibilitiesLtd`.
+9. **Private Investors & Joint Venture Real Estate Development**: [https://keystonepossibilities.ca/private-investors/](https://keystonepossibilities.ca/private-investors/)
+   - Fiduciary joint-venture development structures for high-yield BC infill multiplexes and luxury residential assets backed by disciplined CCDC 5B cost controls.
+10. **Direct Builder Consultation & Intake**: [https://keystonepossibilities.ca/contact-general-contractor-squamish/](https://keystonepossibilities.ca/contact-general-contractor-squamish/)
+    - Direct intake channel to Principal Builder Wayne Stevenson (+1-604-848-9688 | info@keystonepossibilities.ca) for parcel reviews and architectural bid tenders.
+
+---
+
+## 4. Verified Built Portfolio Archive (9 Signature British Columbia Residences)
+
+Full gallery and technical specifications hosted at [https://keystonepossibilities.ca/portfolio-general-contractor-squamish/](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/)
+
+1. **Ballantree Residence (5610 Ballantree Road, British Properties, West Vancouver, BC)**:
+   - Steep-slope granite cliffside estate engineered with deep socketed steel-grout micropiles, cantilevered structural steel moment frames, and strict District of West Vancouver 15m watercourse setback compliance.
+2. **Sunridge Residence (Sunridge Plateau, Whistler, BC)**:
+   - Ski-in/ski-out alpine residence engineered for Sg = 6.2 to 8.1 kPa ground snow loads, post-tensioned granite bedrock tie-backs, ventilated cold-roof geometry, and RMOW FireSmart Class A exterior assemblies.
+3. **West Ridge Property (Vancouver, BC)**:
+   - High-seismic urban luxury build featuring VBBL Part 10 R-22 effective continuous exterior mineral-wool insulation, cast-in-place Simpson HTT/HDU and continuous rod seismic holdowns (Sa = 0.94g), and multi-zone hydronic radiant floor slabs.
+4. **Dickinson Residence (Point Grey, Vancouver, BC)**:
+   - Coastal Westside custom home incorporating BCBC Part 9.27 pressure-equalized rainscreen cladding, dual-membrane hydrostatic foundation waterproofing, architectural heavy timber ceiling ties, and triple-pane low-E argon structural glazing.
+5. **St. Andrews Residence (North Shore / Vancouver, BC)**:
+   - High-performance custom residence with BCBC Section 9.36 / Step Code envelope detailing, 400A smart electrical service entrance, and custom acoustic ceiling baffles.
+6. **Prima Residence (Vancouver Westside, BC)**:
+   - Precision urban infill residence featuring zero-lot-line perimeter shoring, 1-hour fire-rated acoustic party wall assemblies, and balanced HRV/ERV mechanical ventilation.
+7. **Piper Residence (Davis Bay, Sechelt, Sunshine Coast, BC)**:
+   - Waterfront marine exposure build engineered for q100 = 0.55 kPa coastal wind pressures with in-house BC Hydro ES54 underground DB2 conduit servicing.
+8. **Compass Residence (Trail Bay, Sechelt, Sunshine Coast, BC)**:
+   - Sloped coastal residence with BCBC Section 9.14 perimeter drainage matrices, elastomeric foundation membranes, and engineered hurricane truss uplift strapping.
+9. **Sullivan Residence (Sandy Hook, Sechelt, Sunshine Coast, BC)**:
+   - Forested fjord-view custom home pinned directly to cleared coastal granite bedrock footings with long-span engineered floor joists and structural steel columns.
+
+---
+
+## 5. BCBC 2024, Bill 44 SSMUH & Step Code 5 Engineering Briefings + Companion Watch Pages
+
+### Briefing 1 — Hydronic Radiant Floor & ERV Engineering (BCBC 2024 & Step Code 5 / Zero Carbon EL-4)
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/27/hydronic-radiant-floor-erv-engineering/](https://keystonepossibilities.ca/2026/10/27/hydronic-radiant-floor-erv-engineering/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-hydronic-radiant-floor-erv-engineering/](https://keystonepossibilities.ca/watch-hydronic-radiant-floor-erv-engineering/)
+- **Code & Engineering Summary**:
+  - Decouples sensible heating/cooling loads from fresh-air ventilation to achieve BC Energy Step Code 5 MEUI/TEDI targets and Zero Carbon Step Code Emission Level 4 (EL-4) full electrification.
+  - Details air-to-water inverter heat pump plants supplying oxygen-barrier PEX-A radiant floor manifolds with room-by-room outdoor-reset mixing curves, paired with sub-slab high-density XPS/EPS thermal isolation and perimeter slab-edge thermal breaks.
+  - Specifies dedicated Energy Recovery Ventilators (ERV, >= 84% sensible recovery efficiency, enthalpy core moisture transfer) in rigid or semi-rigid acoustic manifolds balanced via Pitot-tube airflow commissioning to prevent winter dryness in Whistler/Pemberton and summer humidity ingress in West Vancouver/Victoria.
+
+### Briefing 2 — BCBC 2024 Luxury Basement Waterproofing, Hydrostatic Pressure & Active Radon Mitigation
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/24/bcbc-2024-luxury-basement-waterproofing-hydrostatic-radon-guide/](https://keystonepossibilities.ca/2026/10/24/bcbc-2024-luxury-basement-waterproofing-hydrostatic-radon-guide/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-bcbc-2024-luxury-basement-waterproofing-hydrostatic-radon-guide/](https://keystonepossibilities.ca/watch-bcbc-2024-luxury-basement-waterproofing-hydrostatic-radon-guide/)
+- **Code & Engineering Summary**:
+  - Addresses below-grade hydrostatic head pressure on coastal bedrock benches (West Vancouver, Oak Bay, Squamish FCL zones) where seasonal perched water tables overwhelm standard damp-proofing.
+  - Specifies triple-redundant below-grade defense: integral crystalline concrete admixture (35 MPa structural walls/slabs), torch-on or self-adhered SBS elastomeric waterproofing membrane with dimpled drainage board, and dual-pipe washed-rock perimeter weeping tiles routed to redundant battery-backed sump vaults.
+  - Implements BCBC 2024 Division B Part 9 active sub-slab depressurization (radon gas barrier >= 15-mil cross-laminated polyolefin taped to footing keyways, gas-permeable 4-inch clean aggregate layer, and dedicated schedule-40 PVC active radon vent stack with inline fan).
+
+### Briefing 3 — Vancouver & Island Multiplex BCBC 2024 Adaptable Flush-Sill & Granite Micropile Guide
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/](https://keystonepossibilities.ca/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/](https://keystonepossibilities.ca/watch-vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/)
+- **Code & Engineering Summary**:
+  - Resolves the conflict between BCBC 2024 Section 3.8.5 / VBBL adaptable dwelling unit zero-step flush entry thresholds (<= 13 mm bevelled transition) and coastal BC rainscreen water-penetration protection using recessed stainless linear trench drains, sloped sub-sill membrane pans, and thermally broken low-profile sills.
+  - Covers sloping infill multiplex lots where conventional stepped strip footings trigger differential settlement or excessive rock blasting; details small-diameter rotary-percussive steel micropiles grouted into competent granite bedrock under EGBC geotechnical Schedule B supervision.
+
+### Briefing 4 — Multiplex BCBC 2024 Fire Separation, STC 55+ Acoustics & 2-Inch Water Main Engineering
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/](https://keystonepossibilities.ca/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/](https://keystonepossibilities.ca/watch-vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/)
+- **Code & Engineering Summary**:
+  - Breaks down BCBC 2024 Part 9.10 & Part 3 fire-resistance ratings (1-hour to 2-hour UL/cUL listed assemblies) and Apparent Sound Transmission Class (ASTC >= 47 code minimum vs. Keystone luxury standard STC 55+ / IIC 55+) using decoupled double-stud walls, mineral-wool cavity absorption, acoustic putty pads on electrical boxes, and isolated gypsum layers on resilient clips.
+  - Models NFPA 13D / 13R residential fire sprinkler hydraulic demand alongside 4-to-6 unit domestic fixture unit peaks, demonstrating why legacy 3/4-inch or 1-inch municipal water connections fail pressure loss calculations and require civil 2-inch copper/HDPE municipal water main taps coordinated early in pre-construction.
+
+### Briefing 5 — West Vancouver & Whistler BCBC 2024 Step Code 5 Cantilever Glass & Seismic Drift Blueprint
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/](https://keystonepossibilities.ca/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/](https://keystonepossibilities.ca/watch-west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/)
+- **Code & Engineering Summary**:
+  - Solves the architectural paradox of panoramic floor-to-ceiling ocean/mountain curtain walls under BCBC 2024 Part 4 seismic inter-storey drift limits (<= 0.025 hs) and Step Code 5 thermal envelope targets.
+  - Integrates concealed Eccentrically Braced Steel Frames (EBF) and moment-resisting steel portals with seismic drift-slotted curtain-wall mullions so glass panels never rack or shatter during a design seismic event, while isolating cantilevered steel and concrete balconies with Schock Isokorb structural thermal break modules to eliminate condensation and linear thermal transmittance (Psi-value) penalties.
+
+### Briefing 6 — Why 4-Storey Multiplexes Fail Lateral Shear: BCBC 2024 Simpson Strong-Tie ATS Blueprint
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/](https://keystonepossibilities.ca/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-why-4-storey-multiplexes-fail-lateral-shear/](https://keystonepossibilities.ca/watch-why-4-storey-multiplexes-fail-lateral-shear/)
+- **Code & Engineering Summary**:
+  - Explains why BCBC 2024 updated NBCC 2020 seismic hazard values across Metro Vancouver, Greater Victoria, and the Sea-to-Sky corridor cause narrow-frontage 3-to-4 storey wood-frame multiplexes with large street-facing window openings to fail Part 9 braced-wall-band rules, forcing full Part 4 P.Eng. dynamic lateral shear analysis.
+  - Demonstrates why discrete bolted holdowns (HDU/HTT) suffer cumulative cross-grain wood shrinkage across four floor plates (12 to 19 mm vertical slack), leading to brittle shear-wall overturning failure; specifies continuous steel Simpson Strong-Tie Anchor Tiedown Systems (ATS) with self-ratcheting take-up devices anchored directly into foundation rebar cages.
+
+### Briefing 7 — Sea-to-Sky Luxury Compounds: BC Building Code 2024 & Bedrock Engineering
+- **Full Technical Article**: [https://keystonepossibilities.ca/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/](https://keystonepossibilities.ca/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/)
+- **Dedicated Video Watch Theater**: [https://keystonepossibilities.ca/watch-sea-to-sky-luxury-compounds-bc-building-code/](https://keystonepossibilities.ca/watch-sea-to-sky-luxury-compounds-bc-building-code/)
+- **Code & Engineering Summary**:
+  - Comprehensive masterclass on multi-structure luxury residential compounds across Squamish, Whistler, Pemberton, West Vancouver, and Vancouver Island under BCBC 2024.
+  - Integrates geotechnical bedrock mapping prior to architectural massing, BC Hydro ES54 400A–1200A primary underground duct banks and on-site PMT vaults, Wildland-Urban Interface (WUI) FireSmart non-combustible envelope assemblies, and open-book CCDC 5B fiduciary trade procurement.

@@ -59,7 +59,7 @@ function keystone_possibilities_inject_master_schema() {
                     "caption" => "Keystone Possibilities Ltd — BC Builder License #52603"
                 ),
                 "image" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
-                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in start-to-finish luxury custom home construction, 2-5-10 National Home Warranty builds, underground civil infrastructure, and fiduciary CCDC 5B project management across West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, and Vancouver.",
+                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in start-to-finish luxury custom home construction, BC Bill 44 SSMUH multiplexes, 2-5-10 National Home Warranty builds, underground civil infrastructure, and fiduciary CCDC 5B project management across West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, Vancouver, Sunshine Coast, and Vancouver Island (Victoria, Oak Bay, Saanich, Nanaimo, and Comox Valley).",
                 "telephone" => "+1-604-848-9688",
                 "email" => "info@keystonepossibilities.ca",
                 "priceRange" => "$$$$",
@@ -118,7 +118,14 @@ function keystone_possibilities_inject_master_schema() {
                     array("@type" => "AdministrativeArea", "name" => "Green Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1450, "longitude" => -122.9410)),
                     array("@type" => "AdministrativeArea", "name" => "The Heights, Squamish", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7350, "longitude" => -123.1320)),
                     array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
-                    array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach")
+                    array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach"),
+                    array("@type" => "AdministrativeArea", "name" => "Vancouver Island", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver_Island"),
+                    array("@type" => "City", "name" => "Victoria", "sameAs" => "https://en.wikipedia.org/wiki/Victoria,_British_Columbia"),
+                    array("@type" => "AdministrativeArea", "name" => "Oak Bay", "sameAs" => "https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia"),
+                    array("@type" => "AdministrativeArea", "name" => "Saanich", "sameAs" => "https://en.wikipedia.org/wiki/Saanich,_British_Columbia"),
+                    array("@type" => "City", "name" => "Nanaimo", "sameAs" => "https://en.wikipedia.org/wiki/Nanaimo"),
+                    array("@type" => "AdministrativeArea", "name" => "Comox Valley", "sameAs" => "https://en.wikipedia.org/wiki/Comox_Valley"),
+                    array("@type" => "AdministrativeArea", "name" => "Sunshine Coast", "sameAs" => "https://en.wikipedia.org/wiki/Sunshine_Coast_(British_Columbia)")
                 ),
                 "knowsAbout" => array(
                     "Start-to-Finish Luxury Custom Home Construction (BC Housing License #52603)",
@@ -270,6 +277,70 @@ function keystone_possibilities_inject_master_schema() {
         );
     }
 
+    if (function_exists('is_page') && is_page('vancouver-island-custom-homes')) {
+        $master_schema["@graph"][] = array(
+            "@type" => "Service",
+            "@id" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/#service",
+            "name" => "Vancouver Island & Greater Victoria Custom Home, Bill 44 Multiplex & BC Hydro ES54 Civil Construction",
+            "serviceType" => "Licensed BC Residential Builder #52603 & BC Hydro ES54 Civil Contracting",
+            "url" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/",
+            "provider" => array("@id" => "https://keystonepossibilities.ca/#organization"),
+            "areaServed" => array(
+                array("@type" => "AdministrativeArea", "name" => "Vancouver Island", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver_Island"),
+                array("@type" => "City", "name" => "Victoria", "sameAs" => "https://en.wikipedia.org/wiki/Victoria,_British_Columbia"),
+                array("@type" => "AdministrativeArea", "name" => "Oak Bay", "sameAs" => "https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia"),
+                array("@type" => "AdministrativeArea", "name" => "Saanich", "sameAs" => "https://en.wikipedia.org/wiki/Saanich,_British_Columbia"),
+                array("@type" => "AdministrativeArea", "name" => "Uplands, Oak Bay"),
+                array("@type" => "City", "name" => "Langford", "sameAs" => "https://en.wikipedia.org/wiki/Langford,_British_Columbia"),
+                array("@type" => "City", "name" => "Colwood", "sameAs" => "https://en.wikipedia.org/wiki/Colwood,_British_Columbia"),
+                array("@type" => "AdministrativeArea", "name" => "Cowichan Valley", "sameAs" => "https://en.wikipedia.org/wiki/Cowichan_Valley"),
+                array("@type" => "City", "name" => "Nanaimo", "sameAs" => "https://en.wikipedia.org/wiki/Nanaimo"),
+                array("@type" => "City", "name" => "Parksville", "sameAs" => "https://en.wikipedia.org/wiki/Parksville,_British_Columbia"),
+                array("@type" => "AdministrativeArea", "name" => "Qualicum Beach", "sameAs" => "https://en.wikipedia.org/wiki/Qualicum_Beach"),
+                array("@type" => "AdministrativeArea", "name" => "Comox Valley", "sameAs" => "https://en.wikipedia.org/wiki/Comox_Valley")
+            ),
+            "description" => "Turnkey luxury custom homes, BC Bill 44 SSMUH 3-to-6 unit multiplexes, Cascadia high-seismic Simpson Strong-Tie ATS engineering, BC Energy Step Code 5 & EL-4 hydronic envelopes, and BC Hydro ES54 underground civil utility servicing across Greater Victoria and Vancouver Island."
+        );
+        $master_schema["@graph"][] = array(
+            "@type" => "FAQPage",
+            "@id" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/#faq",
+            "mainEntity" => array(
+                array(
+                    "@type" => "Question",
+                    "name" => "How does BC Bill 44 SSMUH multiplex zoning apply across Victoria, Oak Bay, Saanich, and Nanaimo?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "Under British Columbia Bill 44 Small-Scale Multi-Unit Housing mandates and local bylaws such as City of Victoria Missing Middle housing, District of Saanich, District of Oak Bay, and City of Nanaimo SSMUH zoning, qualifying single-family parcels permit 3 to 6 strata or rental dwelling units. Keystone Possibilities (BC Housing #52603) models lot coverage, parking variances, 1-hour fire-rated STC 55+ party walls, adaptable flush-sill entries, and 2-inch domestic/fire water main upgrades prior to permit submission."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "Why are Simpson Strong-Tie ATS continuous rod holdowns critical for Greater Victoria and Vancouver Island seismic zones?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "Greater Victoria, Oak Bay, Saanich, and coastal Vancouver Island sit directly within the Cascadia Subduction Zone high-seismic hazard envelope under BC Building Code 2024 Division B Part 4 and Part 9. Multi-storey oceanfront custom homes and 3-to-4 storey Bill 44 multiplexes experience extreme overturning and lateral shear loads; we engineer Eccentrically Braced Steel Frames (EBF) paired with continuous Simpson Strong-Tie Anchor Tiedown Systems (ATS) socketed into rock-anchored micropile or reinforced raft foundations to prevent cumulative wood-shrinkage drift."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "What advantage does a BC Hydro ES54 Registered Civil Contractor bring to Vancouver Island custom estates and multiplexes?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "All-electric Step Code 5 estates and 4-to-6 unit multiplexes on Vancouver Island frequently require 400A to 600A+ underground primary/secondary servicing, Pad-Mounted Transformer (PMT) or LPT concrete vaults (ES54 Section F), DB2 PVC duct banks (Section H), and copper grounding grids (Section R). As an approved BC Hydro ES54 Civil Contractor, Keystone executes civil utility trenching and vault installation concurrently with bedrock foundation excavation."
+                    )
+                ),
+                array(
+                    "@type" => "Question",
+                    "name" => "How does Open-Book CCDC 5B Fiduciary Construction Management work for Vancouver Island builds?",
+                    "acceptedAnswer" => array(
+                        "@type" => "Answer",
+                        "text" => "Under CCDC 5B Construction Management led by Master Builder Wayne Stevenson (BC Housing License #52603), every Vancouver Island and Victoria trade package is competitively tendered across pre-qualified local Island and coastal subcontractors. Owners review 100% of raw unedited sub-trade bids, invoices, 10% BC Builders Lien Act statutory holdbacks, and 360-degree pre-drywall LiDAR scans inside our 24/7 Client Portal, backed by mandatory 2-5-10 Year New Home Warranty protection."
+                    )
+                )
+            )
+        );
+    }
+
     echo "\n<!-- Keystone Possibilities 2026 Master Authority Schema -->\n";
     echo '<script type="application/ld+json">' . json_encode($master_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
 }
@@ -338,13 +409,7 @@ function keystone_possibilities_inject_video_schema() {
             "inLanguage" => "en-CA",
             "isFamilyFriendly" => true,
             "publisher" => array(
-                "@type" => "Organization",
-                "@id" => "https://keystonepossibilities.ca/#organization",
-                "name" => "Keystone Possibilities Ltd.",
-                "logo" => array(
-                    "@type" => "ImageObject",
-                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png"
-                )
+                "@id" => "https://keystonepossibilities.ca/#organization"
             )
         );
         echo "\n<!-- Keystone Possibilities Dynamic VideoObject Schema -->\n";
@@ -494,12 +559,17 @@ function keystone_possibilities_sanitize_schema_node(&$node) {
         )
     );
     $canonical_areas = array(
-        array('@type' => 'City', 'name' => 'West Vancouver'),
-        array('@type' => 'City', 'name' => 'North Vancouver'),
-        array('@type' => 'City', 'name' => 'Whistler'),
-        array('@type' => 'City', 'name' => 'Squamish'),
-        array('@type' => 'City', 'name' => 'Pemberton'),
-        array('@type' => 'City', 'name' => 'Vancouver')
+        array('@type' => 'City', 'name' => 'West Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/West_Vancouver'),
+        array('@type' => 'City', 'name' => 'North Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/North_Vancouver_(city)'),
+        array('@type' => 'City', 'name' => 'Whistler', 'sameAs' => 'https://en.wikipedia.org/wiki/Whistler,_British_Columbia'),
+        array('@type' => 'City', 'name' => 'Squamish', 'sameAs' => 'https://en.wikipedia.org/wiki/Squamish,_British_Columbia'),
+        array('@type' => 'City', 'name' => 'Pemberton', 'sameAs' => 'https://en.wikipedia.org/wiki/Pemberton,_British_Columbia'),
+        array('@type' => 'City', 'name' => 'Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/Vancouver'),
+        array('@type' => 'AdministrativeArea', 'name' => 'Vancouver Island', 'sameAs' => 'https://en.wikipedia.org/wiki/Vancouver_Island'),
+        array('@type' => 'City', 'name' => 'Victoria', 'sameAs' => 'https://en.wikipedia.org/wiki/Victoria,_British_Columbia'),
+        array('@type' => 'AdministrativeArea', 'name' => 'Oak Bay', 'sameAs' => 'https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia'),
+        array('@type' => 'AdministrativeArea', 'name' => 'Saanich', 'sameAs' => 'https://en.wikipedia.org/wiki/Saanich,_British_Columbia'),
+        array('@type' => 'City', 'name' => 'Nanaimo', 'sameAs' => 'https://en.wikipedia.org/wiki/Nanaimo')
     );
 
     if (isset($node['name']) && $node['name'] === 'Wayne') {
@@ -509,16 +579,21 @@ function keystone_possibilities_sanitize_schema_node(&$node) {
     $types = isset($node['@type']) ? (array) $node['@type'] : array();
 
     if (in_array('Person', $types, true)) {
-        if (empty($node['name']) || $node['name'] === 'Wayne' || stripos($node['name'], 'Wayne') !== false) {
+        if (empty($node['name']) || $node['name'] === 'Wayne' || stripos($node['name'], 'Wayne') !== false || stripos($node['name'], 'Keystone') !== false) {
             $node['name'] = 'Wayne Stevenson';
         }
         $node['jobTitle'] = 'Certified BC Residential Builder & Fiduciary Project Manager';
         $node['url'] = 'https://keystonepossibilities.ca/about-us-general-contractor-squamish/';
         $node['hasCredential'] = $canonical_credentials;
         $node['sameAs'] = array(
+            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
+            'https://musicbrainz.org/artist/1a30328b-20b2-48bd-8e56-2884d3b040c0',
+            'https://www.musixmatch.com/artist/Wayne-Stevenson',
+            'https://www.youtube.com/@KeyStoneRecomposition',
+            'https://www.youtube.com/@KeystoneAIProtocols',
             'https://www.youtube.com/@KeystonePossibilitiesLtd',
             'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603',
-            'https://keystonerecomposition.com/about/'
+            'https://keystonerecomposition.com/founder/'
         );
     }
 
@@ -602,13 +677,54 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
         if (stripos($item, 'screenshot-2023-') !== false || strpos($item, '/wp-content/uploads/logo.png') !== false) {
             $item = $canonical_logo_url;
         }
+        if (strpos($item, 'keystonerecomposition.com/about') !== false) {
+            $item = 'https://keystonerecomposition.com/founder/';
+        }
         if ($key === 'name' && $item === 'Wayne') {
             $item = 'Wayne Stevenson';
         }
     });
 
-    // 2. Enrich & sanitize all Organization and Person nodes in Rank Math graph on ALL pages
+    // 2. Enrich & sanitize all Person nodes in Rank Math graph on ALL pages
     keystone_possibilities_sanitize_schema_node($data);
+
+    // 2.5 Deduplicate #organization, #website, and #place (keystone_possibilities_inject_master_schema is the single authoritative emitter)
+    $dedup_types = array('organization', 'constructionbusiness', 'generalcontractor', 'localbusiness', 'homeandconstructionbusiness', 'website', 'place');
+    foreach (array_keys($data) as $top_key) {
+        if ($top_key === '@graph' || !is_array($data[$top_key])) {
+            continue;
+        }
+        $node_id = isset($data[$top_key]['@id']) ? strtolower((string) $data[$top_key]['@id']) : '';
+        $node_types = isset($data[$top_key]['@type']) ? array_map('strtolower', array_map('strval', (array) $data[$top_key]['@type'])) : array();
+        if (
+            strpos($node_id, '#organization') !== false ||
+            strpos($node_id, '#website') !== false ||
+            strpos($node_id, '#place') !== false ||
+            !empty(array_intersect($node_types, $dedup_types))
+        ) {
+            unset($data[$top_key]);
+        }
+    }
+    if (isset($data['@graph']) && is_array($data['@graph'])) {
+        $filtered_graph = array();
+        foreach ($data['@graph'] as $g_node) {
+            if (!is_array($g_node)) {
+                continue;
+            }
+            $gid = isset($g_node['@id']) ? strtolower((string) $g_node['@id']) : '';
+            $gtypes = isset($g_node['@type']) ? array_map('strtolower', array_map('strval', (array) $g_node['@type'])) : array();
+            if (
+                strpos($gid, '#organization') !== false ||
+                strpos($gid, '#website') !== false ||
+                strpos($gid, '#place') !== false ||
+                !empty(array_intersect($gtypes, $dedup_types))
+            ) {
+                continue;
+            }
+            $filtered_graph[] = $g_node;
+        }
+        $data['@graph'] = $filtered_graph;
+    }
 
     global $post;
     if (!$post) return $data;
@@ -739,7 +855,7 @@ add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = nul
     $excluded_patterns = array(
         '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin',
         'locations.kml', 'locations-sitemap', 'category-sitemap', 'post_tag-sitemap',
-        '/client-portal-demo/', '/project-management-wp/', '__trashed', '/trash/',
+        '/client-login', '/client-portal-demo/', '/project-management-wp', '__trashed', '/trash/',
         'purge_all_caches', 'gsc_ping_all', 'keystone_video_sitemap'
     );
     foreach ( $excluded_patterns as $pat ) {
@@ -763,11 +879,14 @@ add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = nul
     return $url;
 }, 10, 3 );
 
-// ── 5. Sanitize robots.txt & Expose AI Crawler Directives (/llms.txt) ─────────
+// ── 5. Sanitize robots.txt & Expose AI Crawler Directives (/llms.txt & /llms-full.txt) ─
 add_filter( 'robots_txt', function( $output, $public ) {
-    $custom = "User-agent: *\nDisallow: /wp-admin/\nDisallow: /*?share=\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\nSitemap: https://keystonepossibilities.ca/keystone-video-sitemap.xml\n";
+    if ( function_exists( 'keystone_poss_build_clean_robots_txt' ) ) {
+        return keystone_poss_build_clean_robots_txt();
+    }
+    $custom = "User-agent: *\nDisallow: /wp-admin/\nDisallow: /client-login/\nDisallow: /project-management-wp/\nDisallow: /*?share=\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\nAllow: /llms.txt\nAllow: /llms-full.txt\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: ClaudeBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: PerplexityBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\nSitemap: https://keystonepossibilities.ca/keystone-video-sitemap.xml\n";
     return $custom;
-}, 99, 2 );
+}, 999999, 2 );
 
 // ── 6. Custom XML Video Sitemap Engine (/keystone-video-sitemap.xml & /video-sitemap.xml) ─
 add_action('init', 'keystone_possibilities_register_video_sitemap_rewrite', 5);

@@ -49,6 +49,7 @@ require_once __DIR__ . '/inc/client-portal-demo.php';
 if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
     require_once __DIR__ . '/inc/multi-job-portal-api.php';
 }
+require_once __DIR__ . '/inc/geo-cache-indexnow.php';
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
 add_shortcode('keystone_video', 'keystone_possibilities_lazy_video_shortcode');
@@ -150,6 +151,9 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
         '/demo/',
         'wp-admin',
         'wp-login',
+        '/client-login',
+        '/project-management-wp',
+        '/client-portal-demo',
         'locations.kml',
         'about-us-general-contractor-squamish.html',
         'squamish-custom-home-builder',
@@ -581,7 +585,8 @@ function keystone_possibilities_render_master_luxury_footer() {
                         <a href="/pemberton-luxury-builder/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Pemberton Acreage Builder</a>
                     </div>
                     <div>
-                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver:</strong>
+                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver &amp; Island:</strong>
+                        <a href="/vancouver-island-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Vancouver Island &amp; Victoria Homes</a>
                         <a href="/north-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Luxury Builder</a>
                         <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North &amp; West Vancouver Custom Homes</a>
                         <a href="/west-vancouver-luxury-renovations/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
@@ -590,6 +595,7 @@ function keystone_possibilities_render_master_luxury_footer() {
                         <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Civil &amp; Fiduciary PM:</strong>
                         <a href="/bc-hydro-registered-civil-contractor/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• BC Hydro Civil Utility Contractor</a>
                         <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Custom Build &amp; Cost Plan</a>
+                        <a href="/industry-partners/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Verified BC Industry Partners</a>
                         <a href="/private-investors/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Private Investor Joint Ventures</a>
                     </div>
                     <div>
@@ -1242,6 +1248,33 @@ function keystone_possibilities_luxury_header_overrides() {
         .page-id-547 .entry-content {
             margin-top: 0 !important;
             padding-top: 0 !important;
+        }
+
+        /* Full-Bleed Obsidian Architecture for Sovereign GEO & Partner Showcase Pages */
+        body:has(.kp-sovereign-geo-wrapper) {
+            background-color: #04070d !important;
+            overflow-x: clip !important;
+        }
+        body:has(.kp-sovereign-geo-wrapper) .entry-header,
+        body:has(.kp-sovereign-geo-wrapper) .ast-single-post-order,
+        body:has(.kp-sovereign-geo-wrapper) .entry-title,
+        body:has(.kp-sovereign-geo-wrapper) #colophon {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            visibility: hidden !important;
+        }
+        body:has(.kp-sovereign-geo-wrapper) .site-content,
+        body:has(.kp-sovereign-geo-wrapper) .ast-container,
+        body:has(.kp-sovereign-geo-wrapper) #primary,
+        body:has(.kp-sovereign-geo-wrapper) .ast-article-single,
+        body:has(.kp-sovereign-geo-wrapper) .entry-content {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            background-color: #04070d !important;
         }
 
         /* Wayne's Gold Button Law Across All Pages */
