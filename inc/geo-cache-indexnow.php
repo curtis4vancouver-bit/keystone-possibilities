@@ -127,6 +127,19 @@ function keystone_poss_priority_zero_geo_router(): void {
     $uri  = (string) ($_SERVER['REQUEST_URI'] ?? '');
     $path = (string) strtok($uri, '?');
 
+    // B0. Serve clean /robots.txt at priority 0 if dynamic request reaches PHP
+    if ($path === '/robots.txt') {
+        if (!headers_sent()) {
+            header_remove('Set-Cookie');
+            status_header(200);
+            header('Content-Type: text/plain; charset=utf-8');
+            header('Cache-Control: public, max-age=300, s-maxage=86400');
+            header('X-LiteSpeed-Cache-Control: public,max-age=86400');
+        }
+        echo keystone_poss_build_clean_robots_txt();
+        exit;
+    }
+
     // B. Serve /llms.txt and /llms-full.txt cleanly if static file was bypassed
     if ($path === '/llms.txt' || $path === '/llms-full.txt') {
         $rel_file = ($path === '/llms-full.txt') ? '/llms-full.txt' : '/llms.txt';
@@ -480,13 +493,36 @@ function keystone_poss_build_htaccess_block(): string {
     return implode("\n", $lines) . "\n\n";
 }
 
-// ── 9. Master Idempotent Root GEO, .htaccess & IndexNow Synchronizer ─────────
+// ── 9. Resolve All Writable Webroots (Atomic /srv/htdocs/ + Standard ABSPATH) ─
+function keystone_poss_resolve_writable_webroots(): array {
+    $candidates = array();
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) {
+        $candidates[] = rtrim((string) $_SERVER['DOCUMENT_ROOT'], '/\\');
+    }
+    if (defined('WP_CONTENT_DIR')) {
+        $candidates[] = rtrim(dirname((string) WP_CONTENT_DIR), '/\\');
+    }
+    if (defined('ABSPATH')) {
+        $candidates[] = rtrim((string) ABSPATH, '/\\');
+    }
+    $roots = array();
+    foreach (array_values(array_unique($candidates)) as $dir) {
+        if ($dir !== '' && @is_dir($dir) && @is_writable($dir)) {
+            $roots[] = $dir . '/';
+        }
+    }
+    return !empty($roots) ? $roots : array(ABSPATH);
+}
+
+// ── 10. Master Idempotent Root GEO, .htaccess & IndexNow Synchronizer ────────
 function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
+    $webroots = keystone_poss_resolve_writable_webroots();
     $telemetry = array(
         'status'               => 'ok',
         'version'              => KEYSTONE_POSS_GEO_SYNC_VERSION,
         'timestamp_utc'        => gmdate('c'),
         'forced'               => $force,
+        'webroots'             => $webroots,
         'llms_copied'          => false,
         'llms_full_copied'     => false,
         'robots_file_cleaned'  => false,
@@ -503,25 +539,69 @@ function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
         'submitted_urls'       => array(),
     );
 
-    // A. Copy theme llms.txt & llms-full.txt -> ABSPATH root for <100ms direct static serving
-    $theme_dir = get_stylesheet_directory();
-    if (file_exists($theme_dir . '/llms.txt')) {
-        $telemetry['llms_copied'] = @copy($theme_dir . '/llms.txt', ABSPATH . 'llms.txt');
-    }
-    if (file_exists($theme_dir . '/llms-full.txt')) {
-        $telemetry['llms_full_copied'] = @copy($theme_dir . '/llms-full.txt', ABSPATH . 'llms-full.txt');
+    $theme_dir    = get_stylesheet_directory();
+    $clean_robots = keystone_poss_build_clean_robots_txt();
+    $key          = keystone_poss_resolve_indexnow_key();
+    $telemetry['indexnow_key'] = $key;
+
+    foreach ($webroots as $root_dir) {
+        // A. Copy theme llms.txt & llms-full.txt -> writable webroot for <100ms direct static serving
+        if (file_exists($theme_dir . '/llms.txt')) {
+            if (@copy($theme_dir . '/llms.txt', $root_dir . 'llms.txt')) {
+                $telemetry['llms_copied'] = true;
+            }
+        }
+        if (file_exists($theme_dir . '/llms-full.txt')) {
+            if (@copy($theme_dir . '/llms-full.txt', $root_dir . 'llms-full.txt')) {
+                $telemetry['llms_full_copied'] = true;
+            }
+        }
+
+        // B. Backup & write clean static robots.txt in webroot so nginx/LiteSpeed serves clean video sitemap
+        $root_robots = $root_dir . 'robots.txt';
+        if (file_exists($root_robots)) {
+            $robots_bak = $root_dir . 'robots.txt.bak-20261031';
+            if (!file_exists($robots_bak)) {
+                @copy($root_robots, $robots_bak);
+            }
+        }
+        if (@file_put_contents($root_robots, $clean_robots) !== false) {
+            $telemetry['robots_file_cleaned'] = true;
+        }
+
+        // C. Safely backup & prepend # BEGIN KEYSTONE_POSS_GEO_CACHE to webroot .htaccess
+        $htaccess_path = $root_dir . '.htaccess';
+        $backup_path   = $root_dir . '.htaccess.bak-20261031';
+        $existing_ht   = '';
+        if (file_exists($htaccess_path) && is_readable($htaccess_path)) {
+            $existing_ht = (string) file_get_contents($htaccess_path);
+            if (!file_exists($backup_path)) {
+                if (@copy($htaccess_path, $backup_path)) {
+                    $telemetry['htaccess_backup'] = $backup_path;
+                }
+            } else {
+                $telemetry['htaccess_backup'] = $backup_path;
+            }
+        }
+        $cleaned_ht = preg_replace(
+            '/# BEGIN KEYSTONE_POSS_GEO_CACHE.*?# END KEYSTONE_POSS_GEO_CACHE\s*/is',
+            '',
+            $existing_ht
+        );
+        $new_ht = keystone_poss_build_htaccess_block() . ltrim((string) $cleaned_ht);
+        if (@file_put_contents($htaccess_path, $new_ht) !== false) {
+            $telemetry['htaccess_updated'] = true;
+        }
+
+        // D. Write 32-char hex IndexNow key verification file <webroot>/<key>.txt
+        $key_file = $root_dir . $key . '.txt';
+        if (@file_put_contents($key_file, $key) !== false) {
+            $telemetry['indexnow_file']    = $key_file;
+            $telemetry['indexnow_file_ok'] = true;
+        }
     }
 
-    // B. Clean static ABSPATH/robots.txt (if present) and Rank Math robots_txt_content option
-    $clean_robots = keystone_poss_build_clean_robots_txt();
-    $root_robots  = ABSPATH . 'robots.txt';
-    if (file_exists($root_robots)) {
-        $robots_bak = ABSPATH . 'robots.txt.bak-20261031';
-        if (!file_exists($robots_bak)) {
-            @copy($root_robots, $robots_bak);
-        }
-        $telemetry['robots_file_cleaned'] = (@file_put_contents($root_robots, $clean_robots) !== false);
-    }
+    // E. Clean Rank Math robots_txt_content option & Code Snippets / options if cached
     $rm_gen = get_option('rank-math-options-general');
     if (is_array($rm_gen) && isset($rm_gen['robots_txt_content'])) {
         $rm_gen['robots_txt_content'] = $clean_robots;
@@ -529,7 +609,7 @@ function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
         $telemetry['robots_rm_cleaned'] = true;
     }
 
-    // C. Persist Rank Math noindex,nofollow postmeta on utility login/portal pages
+    // F. Persist Rank Math noindex,nofollow postmeta on utility login/portal pages
     foreach (array('client-login', 'project-management-wp', 'client-portal-demo') as $util_slug) {
         $pg = get_page_by_path($util_slug, OBJECT, 'page');
         if ($pg && !empty($pg->ID)) {
@@ -538,38 +618,7 @@ function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
         }
     }
 
-    // D. Safely backup & prepend # BEGIN KEYSTONE_POSS_GEO_CACHE to ABSPATH/.htaccess
-    $htaccess_path = ABSPATH . '.htaccess';
-    $backup_path   = ABSPATH . '.htaccess.bak-20261031';
-    $existing_ht   = '';
-    if (file_exists($htaccess_path) && is_readable($htaccess_path)) {
-        $existing_ht = (string) file_get_contents($htaccess_path);
-        if (!file_exists($backup_path)) {
-            if (@copy($htaccess_path, $backup_path)) {
-                $telemetry['htaccess_backup'] = $backup_path;
-            }
-        } else {
-            $telemetry['htaccess_backup'] = $backup_path;
-        }
-    }
-    // Strip any prior KEYSTONE_POSS_GEO_CACHE block idempotently while preserving LSCACHE & WordPress blocks
-    $cleaned_ht = preg_replace(
-        '/# BEGIN KEYSTONE_POSS_GEO_CACHE.*?# END KEYSTONE_POSS_GEO_CACHE\s*/is',
-        '',
-        $existing_ht
-    );
-    $new_ht = keystone_poss_build_htaccess_block() . ltrim((string) $cleaned_ht);
-    if (@file_put_contents($htaccess_path, $new_ht) !== false) {
-        $telemetry['htaccess_updated'] = true;
-    }
-
-    // E. Generate/Read 32-char IndexNow Key, Write ABSPATH/<key>.txt & Submit Batch POST
-    $key      = keystone_poss_resolve_indexnow_key();
-    $key_file = ABSPATH . $key . '.txt';
-    $telemetry['indexnow_key']     = $key;
-    $telemetry['indexnow_file']    = $key_file;
-    $telemetry['indexnow_file_ok'] = (@file_put_contents($key_file, $key) !== false);
-
+    // G. Submit IndexNow Batch POST to api.indexnow.org + www.bing.com
     $urls = keystone_poss_collect_canonical_indexnow_urls();
     $telemetry['submitted_urls']       = $urls;
     $telemetry['submitted_urls_count'] = count($urls);
@@ -594,7 +643,7 @@ function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
     $telemetry['indexnow_api_code']  = is_wp_error($resp_api) ? 0 : (int) wp_remote_retrieve_response_code($resp_api);
     $telemetry['indexnow_bing_code'] = is_wp_error($resp_bing) ? 0 : (int) wp_remote_retrieve_response_code($resp_bing);
 
-    // F. Flush Object Cache & Rank Math Sitemap Storage
+    // H. Flush Object Cache & Rank Math Sitemap Storage
     delete_transient('keystone_video_sitemap_xml_cache');
     delete_transient('rank_math_sitemap_cache');
     if (class_exists('\\RankMath\\Sitemap\\Cache')) {
