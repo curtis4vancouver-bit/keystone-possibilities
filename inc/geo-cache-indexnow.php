@@ -662,3 +662,440 @@ add_action('init', function (): void {
         keystone_poss_sync_root_geo_and_htaccess(false);
     }
 }, 20);
+
+// ── 11. Rule 33 Quiet Luxury <head> Stylesheet for Sovereign GEO & Partner Pages ─
+add_action('wp_head', 'keystone_poss_render_sovereign_geo_luxury_css', 999);
+function keystone_poss_render_sovereign_geo_luxury_css(): void {
+    if (is_admin()) {
+        return;
+    }
+    ?>
+    <style id="kp-sovereign-geo-luxury-css">
+    html body .kp-sovereign-geo-wrapper {
+        background-color: #04070d !important;
+        color: #e2e8f0 !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: clip !important;
+        padding: 0 0 80px 0 !important;
+        margin: 0 !important;
+    }
+    html body .kp-sovereign-geo-wrapper *,
+    html body .kp-sovereign-geo-wrapper *::before,
+    html body .kp-sovereign-geo-wrapper *::after {
+        box-sizing: border-box !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-geo-hero {
+        position: relative !important;
+        text-align: center !important;
+        padding: 64px 24px 54px 24px !important;
+        background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.16) 0%, rgba(56, 189, 248, 0.08) 42%, rgba(4, 7, 13, 1) 78%) !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.30) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-geo-container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 24px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-eyebrow-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 9px !important;
+        padding: 8px 20px !important;
+        border-radius: 9999px !important;
+        background-color: rgba(56, 189, 248, 0.14) !important;
+        border: 1px solid rgba(56, 189, 248, 0.55) !important;
+        color: #38bdf8 !important;
+        -webkit-text-fill-color: #38bdf8 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.76rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.11em !important;
+        text-transform: uppercase !important;
+        margin: 0 auto 22px auto !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 16px rgba(56, 189, 248, 0.14) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-eyebrow-dot {
+        width: 8px !important;
+        height: 8px !important;
+        border-radius: 9999px !important;
+        background-color: #d4af37 !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.9) !important;
+        display: inline-block !important;
+        flex-shrink: 0 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-hero-lead {
+        font-size: clamp(1.02rem, 1.3vw, 1.15rem) !important;
+        color: #cbd5e1 !important;
+        max-width: 900px !important;
+        margin: 0 auto 30px auto !important;
+        line-height: 1.72 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-cta-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important;
+        margin: 10px auto 0 auto !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-gold-3d-pill,
+    html body .entry-content .kp-sovereign-geo-wrapper a.kp-gold-3d-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        min-height: 52px !important;
+        padding: 14px 32px !important;
+        border-radius: 9999px !important;
+        background: linear-gradient(135deg, #f8df7e 0%, #d4af37 52%, #b68d24 100%) !important;
+        background-color: #d4af37 !important;
+        color: #04070d !important;
+        -webkit-text-fill-color: #04070d !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.88rem !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        border: 1.5px solid #fef08a !important;
+        box-shadow: 0 12px 30px rgba(212, 175, 55, 0.42), inset 0 1.5px 0 rgba(255, 255, 255, 0.65), inset 0 -2px 0 rgba(0, 0, 0, 0.22) !important;
+        transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+        cursor: pointer !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-gold-3d-pill:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 16px 36px rgba(212, 175, 55, 0.58), inset 0 1.5px 0 rgba(255, 255, 255, 0.8) !important;
+        color: #04070d !important;
+        -webkit-text-fill-color: #04070d !important;
+        text-decoration: none !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-obsidian-blue-pill,
+    html body .entry-content .kp-sovereign-geo-wrapper a.kp-obsidian-blue-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 9px !important;
+        min-height: 52px !important;
+        padding: 14px 28px !important;
+        border-radius: 9999px !important;
+        background: rgba(56, 189, 248, 0.14) !important;
+        background-color: rgba(56, 189, 248, 0.14) !important;
+        background-image: none !important;
+        color: #38bdf8 !important;
+        -webkit-text-fill-color: #38bdf8 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.86rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        border: 1.5px solid rgba(56, 189, 248, 0.65) !important;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.72), 0 0 18px rgba(56, 189, 248, 0.18) !important;
+        transition: all 0.22s ease !important;
+        cursor: pointer !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-obsidian-blue-pill:hover {
+        border-color: #d4af37 !important;
+        background-color: rgba(212, 175, 55, 0.16) !important;
+        color: #f6d365 !important;
+        -webkit-text-fill-color: #f6d365 !important;
+        text-decoration: none !important;
+        transform: translateY(-2px) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-trust-strip {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+        margin: 38px auto 0 auto !important;
+        max-width: 1152px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-trust-stat {
+        background: linear-gradient(180deg, rgba(13, 21, 38, 0.92) 0%, rgba(4, 7, 13, 0.96) 100%) !important;
+        background-color: #04070d !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        border-radius: 18px !important;
+        padding: 24px 22px !important;
+        text-align: left !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-trust-kicker {
+        display: block !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.72rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.11em !important;
+        text-transform: uppercase !important;
+        color: #38bdf8 !important;
+        margin-bottom: 7px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-trust-val {
+        display: block !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 1.06rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin-bottom: 6px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-trust-sub {
+        display: block !important;
+        font-size: 0.84rem !important;
+        color: #94a3b8 !important;
+        line-height: 1.52 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-corridor-nav-bar {
+        margin: 38px auto 14px auto !important;
+        padding: 26px 28px !important;
+        background: linear-gradient(180deg, rgba(11, 18, 32, 0.94) 0%, rgba(4, 7, 13, 0.98) 100%) !important;
+        background-color: #04070d !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        border-radius: 18px !important;
+        text-align: center !important;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-corridor-nav-label {
+        display: block !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.76rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.12em !important;
+        text-transform: uppercase !important;
+        color: #d4af37 !important;
+        margin-bottom: 16px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-corridor-pills-wrap {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-corridor-pill,
+    html body .entry-content .kp-sovereign-geo-wrapper a.kp-corridor-pill {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        padding: 9px 18px !important;
+        border-radius: 9999px !important;
+        background: rgba(56, 189, 248, 0.14) !important;
+        background-color: rgba(56, 189, 248, 0.14) !important;
+        background-image: none !important;
+        border: 1px solid rgba(56, 189, 248, 0.50) !important;
+        color: #38bdf8 !important;
+        -webkit-text-fill-color: #38bdf8 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.79rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.04em !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+    }
+    html body .kp-sovereign-geo-wrapper a.kp-corridor-pill:hover,
+    html body .kp-sovereign-geo-wrapper a.kp-corridor-pill.is-active {
+        background-color: rgba(212, 175, 55, 0.18) !important;
+        border-color: #d4af37 !important;
+        color: #f6d365 !important;
+        -webkit-text-fill-color: #f6d365 !important;
+        text-decoration: none !important;
+        box-shadow: 0 0 16px rgba(212, 175, 55, 0.26) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-section-block {
+        margin-top: 52px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-section-header {
+        text-align: center !important;
+        max-width: 860px !important;
+        margin: 0 auto 32px auto !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-section-tag {
+        display: inline-block !important;
+        padding: 6px 16px !important;
+        border-radius: 9999px !important;
+        background-color: rgba(56, 189, 248, 0.14) !important;
+        border: 1px solid rgba(56, 189, 248, 0.50) !important;
+        color: #38bdf8 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.74rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.10em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 14px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-pillars-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card {
+        background: linear-gradient(180deg, rgba(12, 20, 36, 0.92) 0%, rgba(4, 7, 13, 0.97) 100%) !important;
+        background-color: #04070d !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        border-radius: 18px !important;
+        padding: 28px 26px !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.70), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+        transition: transform 0.24s ease, border-color 0.24s ease !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card:hover {
+        transform: translateY(-3px) !important;
+        border-color: rgba(212, 175, 55, 0.68) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-card-kicker {
+        display: inline-block !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.73rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.11em !important;
+        text-transform: uppercase !important;
+        color: #d4af37 !important;
+        margin-bottom: 10px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card h3 {
+        margin: 0 0 12px 0 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 1.22rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        line-height: 1.32 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card p {
+        margin: 0 0 14px 0 !important;
+        font-size: 0.94rem !important;
+        line-height: 1.68 !important;
+        color: #cbd5e1 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card ul {
+        margin: 0 !important;
+        padding-left: 18px !important;
+        color: #e2e8f0 !important;
+        font-size: 0.90rem !important;
+        line-height: 1.68 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-glass-card li {
+        margin-bottom: 8px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-subcorridor-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-subcorridor-card {
+        background: linear-gradient(180deg, rgba(11, 18, 32, 0.94) 0%, rgba(4, 7, 13, 0.98) 100%) !important;
+        background-color: #04070d !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        border-left: 3.5px solid #38bdf8 !important;
+        border-radius: 18px !important;
+        padding: 26px 26px !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.62) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-faq-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        max-width: 980px !important;
+        margin: 0 auto !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-faq-item {
+        background: linear-gradient(180deg, rgba(12, 20, 36, 0.92) 0%, rgba(4, 7, 13, 0.97) 100%) !important;
+        background-color: #04070d !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        border-radius: 18px !important;
+        padding: 26px 30px !important;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65) !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-faq-q {
+        margin: 0 0 10px 0 !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 1.12rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        line-height: 1.38 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-faq-a {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.72 !important;
+        color: #cbd5e1 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-industry-partners-sandbox {
+        border-radius: 18px !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        background-color: #04070d !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-partner-registry-baseline a {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 8px 18px !important;
+        border-radius: 9999px !important;
+        background-color: rgba(56, 189, 248, 0.14) !important;
+        border: 1px solid rgba(56, 189, 248, 0.52) !important;
+        color: #38bdf8 !important;
+        -webkit-text-fill-color: #38bdf8 !important;
+        text-decoration: none !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.82rem !important;
+        font-weight: 700 !important;
+    }
+    html body .kp-sovereign-geo-wrapper .kp-bottom-cta-vault {
+        margin-top: 56px !important;
+        padding: 44px 32px !important;
+        border-radius: 18px !important;
+        background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.14) 0%, rgba(4, 7, 13, 0.98) 76%) !important;
+        background-color: #04070d !important;
+        border: 1.5px solid rgba(212, 175, 55, 0.48) !important;
+        box-shadow: 0 20px 52px rgba(0, 0, 0, 0.84), 0 0 28px rgba(212, 175, 55, 0.12) !important;
+        text-align: center !important;
+    }
+    @media (max-width: 1024px) {
+        html body .kp-sovereign-geo-wrapper .kp-trust-strip {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+        html body .kp-sovereign-geo-wrapper .kp-pillars-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+    }
+    @media (max-width: 680px) {
+        html body .kp-sovereign-geo-wrapper .kp-geo-hero { padding: 44px 16px 36px 16px !important; }
+        html body .kp-sovereign-geo-wrapper .kp-geo-container { padding: 0 16px !important; }
+        html body .kp-sovereign-geo-wrapper .kp-trust-strip,
+        html body .kp-sovereign-geo-wrapper .kp-pillars-grid,
+        html body .kp-sovereign-geo-wrapper .kp-subcorridor-grid {
+            grid-template-columns: 1fr !important;
+        }
+        html body .kp-sovereign-geo-wrapper .kp-glass-card,
+        html body .kp-sovereign-geo-wrapper .kp-subcorridor-card,
+        html body .kp-sovereign-geo-wrapper .kp-faq-item {
+            padding: 24px 20px !important;
+        }
+        html body .kp-sovereign-geo-wrapper .kp-bottom-cta-vault { padding: 32px 20px !important; }
+    }
+    </style>
+    <?php
+}
+
+// ── 12. Rule 30 Zero Unlaunched Retainer Price Guard on Content Output ───────
+add_filter('the_content', 'keystone_poss_purge_retainer_price_leaks', 9999);
+function keystone_poss_purge_retainer_price_leaks(string $content): string {
+    if (strpos($content, '5,000') === false) {
+        return $content;
+    }
+    $patterns = array(
+        '/Commission\s+a\s+\$5,000\s+Feasibility\s*(?:&amp;|&)\s*Permitting\s+Audit/i',
+        '/\$5,000\s+Feasibility\s*(?:&amp;|&)\s*Permitting\s+(?:Audit|Plan|Retainer)/i',
+        '/\$5,000\s+(?:Pre-Construction\s+)?Feasibility\s+(?:Audit|Plan|Retainer|Dossier)/i',
+    );
+    $replacements = array(
+        'Commission a Pre-Construction Feasibility &amp; Permitting Plan',
+        'Pre-Construction Feasibility &amp; Permitting Plan',
+        'Pre-Construction Feasibility &amp; Permitting Plan',
+    );
+    return (string) preg_replace($patterns, $replacements, $content);
+}
