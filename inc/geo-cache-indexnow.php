@@ -308,9 +308,12 @@ add_action('init', function (): void {
         header_register_callback('keystone_poss_apply_public_edge_cache_headers');
     }
 }, 1);
+add_action('init', 'keystone_poss_apply_public_edge_cache_headers', 99999);
 add_action('send_headers', 'keystone_poss_apply_public_edge_cache_headers', 99999);
 add_action('template_redirect', 'keystone_poss_apply_public_edge_cache_headers', 99999);
+add_action('wp_head', 'keystone_poss_apply_public_edge_cache_headers', 99999);
 add_action('wp_footer', 'keystone_poss_apply_public_edge_cache_headers', 99999);
+add_action('shutdown', 'keystone_poss_apply_public_edge_cache_headers', 0);
 
 // ── 6. Authoritative Clean robots.txt Generator & Filter ─────────────────────
 function keystone_poss_build_clean_robots_txt(): string {

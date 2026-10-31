@@ -49,7 +49,43 @@ require_once __DIR__ . '/inc/client-portal-demo.php';
 if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
     require_once __DIR__ . '/inc/multi-job-portal-api.php';
 }
-require_once __DIR__ . '/inc/geo-cache-indexnow.php';
+if (file_exists(__DIR__ . '/inc/geo-cache-indexnow.php')) {
+    require_once __DIR__ . '/inc/geo-cache-indexnow.php';
+}
+
+// Authenticated Theme-Editor Asset Synchronizer (strictly requires edit_themes + manage_options)
+add_action('rest_api_init', function () {
+    register_rest_route('keystone/v1', '/sync-theme-asset', array(
+        'methods'             => 'POST',
+        'permission_callback' => function (): bool {
+            return current_user_can('edit_themes') && current_user_can('manage_options');
+        },
+        'callback'            => function (WP_REST_Request $request): WP_REST_Response {
+            $allowed = array(
+                'inc/geo-cache-indexnow.php',
+                'inc/seo-schema.php',
+                'llms.txt',
+                'llms-full.txt',
+            );
+            $params   = $request->get_json_params();
+            $rel_file = isset($params['file']) ? (string) $params['file'] : '';
+            $content  = isset($params['content']) ? (string) $params['content'] : '';
+            if (!in_array($rel_file, $allowed, true) || strlen($content) < 64) {
+                return new WP_REST_Response(array('ok' => false, 'error' => 'Invalid file or content'), 400);
+            }
+            $dest = trailingslashit(get_stylesheet_directory()) . $rel_file;
+            $dir  = dirname($dest);
+            if (!is_dir($dir)) {
+                wp_mkdir_p($dir);
+            }
+            $bytes = @file_put_contents($dest, $content);
+            if ($bytes === false) {
+                return new WP_REST_Response(array('ok' => false, 'error' => 'Write failed', 'dest' => $dest), 500);
+            }
+            return new WP_REST_Response(array('ok' => true, 'file' => $rel_file, 'bytes' => $bytes, 'dest' => $dest), 200);
+        },
+    ));
+});
 
 // ── 3. WebP Video Facade Player Shortcode ([keystone_video]) ─────────────────
 add_shortcode('keystone_video', 'keystone_possibilities_lazy_video_shortcode');
