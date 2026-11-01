@@ -8,13 +8,15 @@
  *   - 'stepcode5'   -> kp_video_id_stepcode5_custom
  *
  * Design Invariants (Rule 30 & Rule 33):
- *   - Obsidian (#04070d), Glassmorphic Card (rgba(10, 15, 25, 0.88)), Sovereign Gold (#d4af37),
+ *   - Obsidian (#04070d), Glassmorphic Card (rgba(10, 15, 25, 0.92)), Sovereign Gold (#d4af37),
  *     Luminous Baby Blue (#38bdf8), 18px card radius, 9999px pill buttons.
+ *   - Enqueues CSS & JS in wp_head AND applies inline styles so WordPress/Jetpack content
+ *     filters never strip widescreen 16:9 sizing or allow Astra blue button defaults.
  *   - Zero emerald green drift, zero hardcoded retainer prices,
  *     zero horizontal overflow, zero broken iframe when wp_option is empty.
  *
  * @package KeystonePossibilitiesChild
- * @version 2.9.0
+ * @version 2.9.1
  */
 
 declare(strict_types=1);
@@ -114,7 +116,7 @@ function kp_get_founder_avatar_video_slots(): array {
 			'option'       => 'kp_video_id_stepcode5_custom',
 			'badge'        => 'BC ENERGY STEP CODE 5 • COASTAL & ALPINE ENVELOPE BRIEFING',
 			'title'        => 'Sea-to-Sky & Vancouver Island Custom Homes — BC Energy Step Code 5 Breakdown (2:30)',
-			'description'  => 'Licensed BC Builder #52603 technical walkthrough of coastal and alpine custom home envelope engineering, BC Energy Step Code Level 5 & HOT2000 energy modeling, <= 1.0 ACH50 blower-door airtightness verification, continuous exterior mineral-wool insulation with triple-glazed fenestration, and 2-5-10 warranty milestones.',
+			'description'  => 'Licensed BC Builder #52603 technical walkthrough of coastal and alpine custom home envelope engineering, BC Energy Step Code Level 5 & HOT2000 energy modeling, ≤ 1.0 ACH50 blower-door airtightness verification, continuous exterior mineral-wool insulation with triple-glazed fenestration, and 2-5-10 warranty milestones.',
 			'duration_iso' => 'PT2M30S',
 			'total_sec'    => 150,
 			'chapters'     => array(
@@ -130,7 +132,7 @@ function kp_get_founder_avatar_video_slots(): array {
 				),
 				array(
 					'time'    => '1:00',
-					'title'   => '<= 1.0 ACH50 Blower-Door',
+					'title'   => '≤ 1.0 ACH50 Blower-Door',
 					'seconds' => 60,
 				),
 				array(
@@ -172,6 +174,204 @@ function kp_normalize_founder_video_slot( string $slot ): string {
 }
 
 /**
+ * Emit Quiet Luxury CSS & chapter-seek JS in <head> so WordPress content filters never strip them
+ * and Astra theme button rules (#0274be) never override our Obsidian/Baby-Blue/Gold pills.
+ */
+function kp_print_founder_avatar_video_head_assets(): void {
+	if ( ! empty( $GLOBALS['kp_founder_video_head_printed'] ) ) {
+		return;
+	}
+	$GLOBALS['kp_founder_video_head_printed'] = true;
+	?>
+	<style id="kp-founder-avatar-video-card-css">
+	.kp-founder-video-card {
+		background: rgba(10, 15, 25, 0.92) !important;
+		border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
+		border-radius: 18px !important;
+		padding: 22px 24px !important;
+		margin: 1.75rem auto 2.25rem auto !important;
+		max-width: 1080px !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+		overflow: hidden !important;
+		box-shadow: 0 18px 46px rgba(0, 0, 0, 0.78) !important;
+		color: #f8fafc !important;
+	}
+	.kp-founder-video-topbar {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		flex-wrap: wrap !important;
+		gap: 10px !important;
+		margin-bottom: 12px !important;
+	}
+	.kp-founder-video-badge {
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		background: #04070d !important;
+		border: 1px solid rgba(212, 175, 55, 0.6) !important;
+		border-radius: 9999px !important;
+		padding: 5px 14px !important;
+		color: #d4af37 !important;
+		font-family: 'JetBrains Mono', monospace !important;
+		font-size: 0.72rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.04em !important;
+		text-transform: uppercase !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+	a.kp-founder-video-cta-pill,
+	.kp-founder-video-cta-pill {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 6px !important;
+		background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 55%, #aa8010 100%) !important;
+		color: #04070d !important;
+		-webkit-text-fill-color: #04070d !important;
+		border: none !important;
+		border-radius: 9999px !important;
+		padding: 8px 18px !important;
+		font-family: 'Outfit', 'Inter', sans-serif !important;
+		font-size: 0.80rem !important;
+		font-weight: 800 !important;
+		letter-spacing: 0.02em !important;
+		text-decoration: none !important;
+		cursor: pointer !important;
+		box-shadow: 0 6px 18px rgba(212, 175, 55, 0.34) !important;
+		transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+		box-sizing: border-box !important;
+	}
+	.kp-founder-video-heading {
+		font-family: 'Outfit', 'Inter', sans-serif !important;
+		font-size: clamp(1.14rem, 2.05vw, 1.38rem) !important;
+		font-weight: 800 !important;
+		color: #ffffff !important;
+		margin: 0 0 14px 0 !important;
+		line-height: 1.32 !important;
+	}
+	.kp-founder-video-frame-wrap {
+		position: relative !important;
+		width: 100% !important;
+		padding-bottom: 56.25% !important;
+		height: 0 !important;
+		background: #04070d !important;
+		border: 1.5px solid rgba(56, 189, 248, 0.38) !important;
+		border-radius: 14px !important;
+		overflow: hidden !important;
+		box-sizing: border-box !important;
+	}
+	.kp-founder-video-frame-wrap iframe {
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+		border: 0 !important;
+		margin: 0 !important;
+	}
+	.kp-founder-chapter-bar {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		align-items: center !important;
+		gap: 8px !important;
+		margin-top: 14px !important;
+		padding-top: 12px !important;
+		border-top: 1px solid rgba(212, 175, 55, 0.25) !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+	button.kp-founder-chapter-pill,
+	.kp-founder-chapter-pill {
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 6px !important;
+		background: #04070d !important;
+		background-color: #04070d !important;
+		border: 1px solid rgba(56, 189, 248, 0.48) !important;
+		border-radius: 9999px !important;
+		padding: 7px 14px !important;
+		color: #f8fafc !important;
+		font-family: 'Outfit', 'Inter', sans-serif !important;
+		font-size: 0.78rem !important;
+		font-weight: 700 !important;
+		line-height: 1.2 !important;
+		cursor: pointer !important;
+		transition: all 0.18s ease !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		box-shadow: none !important;
+		text-transform: none !important;
+	}
+	button.kp-founder-chapter-pill:hover,
+	button.kp-founder-chapter-pill.is-active,
+	.kp-founder-chapter-pill:hover,
+	.kp-founder-chapter-pill.is-active {
+		border-color: #d4af37 !important;
+		background: rgba(212, 175, 55, 0.16) !important;
+		background-color: rgba(212, 175, 55, 0.16) !important;
+		color: #ffffff !important;
+		box-shadow: 0 4px 14px rgba(212, 175, 55, 0.24) !important;
+	}
+	.kp-founder-chapter-ts {
+		color: #38bdf8 !important;
+		font-family: 'JetBrains Mono', monospace !important;
+		font-size: 0.72rem !important;
+		font-weight: 800 !important;
+		white-space: nowrap !important;
+	}
+	button.kp-founder-chapter-pill.is-active .kp-founder-chapter-ts,
+	button.kp-founder-chapter-pill:hover .kp-founder-chapter-ts {
+		color: #d4af37 !important;
+	}
+	@media (max-width: 640px) {
+		.kp-founder-video-card {
+			padding: 16px 14px !important;
+		}
+		button.kp-founder-chapter-pill {
+			font-size: 0.73rem !important;
+			padding: 6px 11px !important;
+		}
+	}
+	</style>
+	<script id="kp-founder-avatar-video-card-js">
+	window.kpSeekFounderAvatarVideo = function(iframeId, videoId, startSec, btnEl) {
+		var iframe = document.getElementById(iframeId);
+		if (!iframe || !videoId) return;
+		var sec = Math.max(0, parseInt(startSec, 10) || 0);
+		iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) + '?start=' + sec + '&autoplay=1&rel=0&modestbranding=1';
+		if (btnEl && btnEl.parentNode) {
+			var pills = btnEl.parentNode.querySelectorAll('.kp-founder-chapter-pill');
+			for (var i = 0; i < pills.length; i++) {
+				pills[i].classList.remove('is-active');
+			}
+			btnEl.classList.add('is-active');
+		}
+	};
+	window.kpScrollToParcelReview = function(evt) {
+		var target = document.getElementById('kp-feasibility-intake')
+			|| document.querySelector('form[action*="/keystone/v1/lead"]')
+			|| document.getElementById('kp-b44-gate-form')
+			|| document.getElementById('custom-build-planner');
+		if (target) {
+			if (evt && typeof evt.preventDefault === 'function') {
+				evt.preventDefault();
+			}
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			return false;
+		}
+		return true;
+	};
+	</script>
+	<?php
+}
+if ( function_exists( 'add_action' ) ) {
+	add_action( 'wp_head', 'kp_print_founder_avatar_video_head_assets', 30 );
+}
+
+/**
  * Build the complete HTML + VideoObject JSON-LD for a Founder Avatar Video Card.
  * Returns an empty string when the backing wp_option is unset/empty so zero broken
  * iframes or empty wrappers ever render prior to Unlisted YouTube ID binding.
@@ -191,8 +391,8 @@ function kp_get_founder_avatar_video_card_html( string $slot, bool $dedupe = tru
 		return '';
 	}
 
-	$cfg      = $slots[ $canonical_slot ];
-	$raw_id   = trim( (string) get_option( (string) $cfg['option'], '' ) );
+	$cfg    = $slots[ $canonical_slot ];
+	$raw_id = trim( (string) get_option( (string) $cfg['option'], '' ) );
 	if ( '' === $raw_id || 1 !== preg_match( '/^[A-Za-z0-9_-]{11}$/', $raw_id ) ) {
 		return '';
 	}
@@ -206,16 +406,13 @@ function kp_get_founder_avatar_video_card_html( string $slot, bool $dedupe = tru
 	}
 	$GLOBALS['kp_rendered_founder_video_slots'][ $canonical_slot ] = true;
 
-	$style_printed = ! empty( $GLOBALS['kp_founder_video_card_assets_printed'] );
-	$GLOBALS['kp_founder_video_card_assets_printed'] = true;
-
 	$iframe_id = 'kpFounderAvatarIframe-' . $canonical_slot;
 	$card_id   = 'kpFounderAvatarCard-' . $canonical_slot;
 	$chapters  = (array) $cfg['chapters'];
 	$total_sec = (int) $cfg['total_sec'];
 
-	$clips     = array();
-	$ch_count  = count( $chapters );
+	$clips    = array();
+	$ch_count = count( $chapters );
 	for ( $i = 0; $i < $ch_count; $i++ ) {
 		$ch        = $chapters[ $i ];
 		$start_sec = (int) $ch['seconds'];
@@ -240,7 +437,7 @@ function kp_get_founder_avatar_video_card_html( string $slot, bool $dedupe = tru
 			'https://i.ytimg.com/vi/' . $video_id . '/maxresdefault.jpg',
 			'https://i.ytimg.com/vi/' . $video_id . '/hqdefault.jpg',
 		),
-		'uploadDate'   => '2026-10-15T08:00:00-07:00',
+		'uploadDate'   => '2026-11-01T08:00:00-07:00',
 		'duration'     => (string) $cfg['duration_iso'],
 		'contentUrl'   => 'https://www.youtube.com/watch?v=' . $video_id,
 		'embedUrl'     => 'https://www.youtube-nocookie.com/embed/' . $video_id,
@@ -257,212 +454,32 @@ function kp_get_founder_avatar_video_card_html( string $slot, bool $dedupe = tru
 		: (string) json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 
 	ob_start();
-
-	if ( ! $style_printed ) :
-		?>
-		<style id="kp-founder-avatar-video-card-css">
-		.kp-founder-video-card {
-			background: rgba(10, 15, 25, 0.88);
-			border: 1px solid rgba(212, 175, 55, 0.32);
-			border-radius: 18px;
-			padding: 20px 22px;
-			margin: 1.75rem auto 2.25rem auto;
-			max-width: 1100px;
-			width: 100%;
-			box-sizing: border-box;
-			overflow: hidden;
-			box-shadow: 0 16px 42px rgba(0, 0, 0, 0.72);
-			color: #f8fafc;
-		}
-		.kp-founder-video-topbar {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			gap: 10px;
-			margin-bottom: 12px;
-		}
-		.kp-founder-video-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			background: #04070d;
-			border: 1px solid rgba(212, 175, 55, 0.55);
-			border-radius: 9999px;
-			padding: 5px 14px;
-			color: #d4af37;
-			font-family: 'JetBrains Mono', monospace;
-			font-size: 0.72rem;
-			font-weight: 800;
-			letter-spacing: 0.04em;
-			text-transform: uppercase;
-			max-width: 100%;
-			box-sizing: border-box;
-		}
-		.kp-founder-video-cta-pill {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 6px;
-			background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 55%, #aa8010 100%);
-			color: #04070d !important;
-			-webkit-text-fill-color: #04070d !important;
-			border: none;
-			border-radius: 9999px;
-			padding: 8px 18px;
-			font-family: 'Outfit', sans-serif;
-			font-size: 0.80rem;
-			font-weight: 800;
-			letter-spacing: 0.02em;
-			text-decoration: none !important;
-			cursor: pointer;
-			box-shadow: 0 6px 18px rgba(212, 175, 55, 0.32);
-			transition: transform 0.18s ease, box-shadow 0.18s ease;
-			box-sizing: border-box;
-		}
-		.kp-founder-video-cta-pill:hover {
-			transform: translateY(-1px);
-			box-shadow: 0 8px 22px rgba(212, 175, 55, 0.46);
-		}
-		.kp-founder-video-heading {
-			font-family: 'Outfit', sans-serif;
-			font-size: clamp(1.12rem, 2.1vw, 1.38rem);
-			font-weight: 800;
-			color: #ffffff;
-			margin: 0 0 14px 0;
-			line-height: 1.32;
-		}
-		.kp-founder-video-frame-wrap {
-			position: relative;
-			width: 100%;
-			padding-bottom: 56.25%;
-			height: 0;
-			background: #04070d;
-			border: 1px solid rgba(56, 189, 248, 0.32);
-			border-radius: 14px;
-			overflow: hidden;
-			box-sizing: border-box;
-		}
-		.kp-founder-video-frame-wrap iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			border: 0;
-		}
-		.kp-founder-chapter-bar {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			gap: 8px;
-			margin-top: 14px;
-			padding-top: 12px;
-			border-top: 1px solid rgba(212, 175, 55, 0.22);
-			max-width: 100%;
-			box-sizing: border-box;
-		}
-		.kp-founder-chapter-pill {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			background: #04070d;
-			border: 1px solid rgba(56, 189, 248, 0.42);
-			border-radius: 9999px;
-			padding: 6px 13px;
-			color: #f8fafc;
-			font-family: 'Outfit', sans-serif;
-			font-size: 0.78rem;
-			font-weight: 700;
-			line-height: 1.2;
-			cursor: pointer;
-			transition: all 0.18s ease;
-			max-width: 100%;
-			box-sizing: border-box;
-		}
-		.kp-founder-chapter-pill:hover,
-		.kp-founder-chapter-pill.is-active {
-			border-color: #d4af37;
-			background: rgba(212, 175, 55, 0.15);
-			color: #ffffff;
-			box-shadow: 0 4px 14px rgba(212, 175, 55, 0.22);
-		}
-		.kp-founder-chapter-ts {
-			color: #38bdf8;
-			font-family: 'JetBrains Mono', monospace;
-			font-size: 0.72rem;
-			font-weight: 800;
-			white-space: nowrap;
-		}
-		.kp-founder-chapter-pill:hover .kp-founder-chapter-ts,
-		.kp-founder-chapter-pill.is-active .kp-founder-chapter-ts {
-			color: #d4af37;
-		}
-		@media (max-width: 640px) {
-			.kp-founder-video-card {
-				padding: 16px 14px;
-			}
-			.kp-founder-chapter-pill {
-				font-size: 0.73rem;
-				padding: 5px 11px;
-			}
-		}
-		</style>
-		<script id="kp-founder-avatar-video-card-js">
-		window.kpSeekFounderAvatarVideo = function(iframeId, videoId, startSec, btnEl) {
-			var iframe = document.getElementById(iframeId);
-			if (!iframe || !videoId) return;
-			var sec = Math.max(0, parseInt(startSec, 10) || 0);
-			iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) + '?start=' + sec + '&autoplay=1&rel=0&modestbranding=1';
-			if (btnEl && btnEl.parentNode) {
-				var pills = btnEl.parentNode.querySelectorAll('.kp-founder-chapter-pill');
-				for (var i = 0; i < pills.length; i++) {
-					pills[i].classList.remove('is-active');
-				}
-				btnEl.classList.add('is-active');
-			}
-		};
-		window.kpScrollToParcelReview = function(evt) {
-			var target = document.getElementById('kp-feasibility-intake')
-				|| document.querySelector('form[action*="/keystone/v1/lead"]')
-				|| document.getElementById('kp-b44-gate-form')
-				|| document.getElementById('custom-build-planner');
-			if (target) {
-				if (evt && typeof evt.preventDefault === 'function') {
-					evt.preventDefault();
-				}
-				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				return false;
-			}
-			return true;
-		};
-		</script>
-		<?php
-	endif;
 	?>
-	<section id="<?php echo esc_attr( $card_id ); ?>" class="kp-founder-video-card" data-founder-slot="<?php echo esc_attr( $canonical_slot ); ?>" aria-label="<?php echo esc_attr( (string) $cfg['title'] ); ?>">
-		<div class="kp-founder-video-topbar">
-			<span class="kp-founder-video-badge"><?php echo esc_html( (string) $cfg['badge'] ); ?></span>
-			<a href="#kp-feasibility-intake" class="kp-founder-video-cta-pill" onclick="return window.kpScrollToParcelReview ? window.kpScrollToParcelReview(event) : true;">
+	<section id="<?php echo esc_attr( $card_id ); ?>" class="kp-founder-video-card" data-founder-slot="<?php echo esc_attr( $canonical_slot ); ?>" aria-label="<?php echo esc_attr( (string) $cfg['title'] ); ?>" style="background: rgba(10, 15, 25, 0.92); border: 1.5px solid rgba(212, 175, 55, 0.45); border-radius: 18px; padding: 22px 24px; margin: 1.75rem auto 2.25rem auto; max-width: 1080px; width: 100%; box-sizing: border-box; overflow: hidden; box-shadow: 0 18px 46px rgba(0, 0, 0, 0.78); color: #f8fafc;">
+		<div class="kp-founder-video-topbar" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+			<span class="kp-founder-video-badge" style="display: inline-flex; align-items: center; gap: 8px; background: #04070d; border: 1px solid rgba(212, 175, 55, 0.6); border-radius: 9999px; padding: 5px 14px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;"><?php echo esc_html( (string) $cfg['badge'] ); ?></span>
+			<a href="#kp-feasibility-intake" class="kp-founder-video-cta-pill" onclick="return window.kpScrollToParcelReview ? window.kpScrollToParcelReview(event) : true;" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 55%, #aa8010 100%); color: #04070d; border-radius: 9999px; padding: 8px 18px; font-weight: 800; font-size: 0.80rem; text-decoration: none; box-shadow: 0 6px 18px rgba(212, 175, 55, 0.34);">
 				Request Parcel Feasibility Review &darr;
 			</a>
 		</div>
-		<h2 class="kp-founder-video-heading"><?php echo esc_html( (string) $cfg['title'] ); ?></h2>
-		<div class="kp-founder-video-frame-wrap">
+		<h2 class="kp-founder-video-heading" style="font-size: clamp(1.14rem, 2.05vw, 1.38rem); font-weight: 800; color: #ffffff; margin: 0 0 14px 0; line-height: 1.32;"><?php echo esc_html( (string) $cfg['title'] ); ?></h2>
+		<div class="kp-founder-video-frame-wrap" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background: #04070d; border: 1.5px solid rgba(56, 189, 248, 0.38); border-radius: 14px; overflow: hidden; box-sizing: border-box;">
 			<iframe id="<?php echo esc_attr( $iframe_id ); ?>"
 					src="https://www.youtube-nocookie.com/embed/<?php echo esc_attr( $video_id ); ?>?rel=0&amp;modestbranding=1"
 					title="<?php echo esc_attr( (string) $cfg['title'] ); ?>"
+					style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; margin: 0;"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowfullscreen
 					loading="eager"></iframe>
 		</div>
-		<div class="kp-founder-chapter-bar" role="navigation" aria-label="Video Chapters">
+		<div class="kp-founder-chapter-bar" role="navigation" aria-label="Video Chapters" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(212, 175, 55, 0.25);">
 			<?php foreach ( $chapters as $idx => $ch ) : ?>
 				<button type="button"
 						class="kp-founder-chapter-pill<?php echo 0 === $idx ? ' is-active' : ''; ?>"
 						data-start="<?php echo esc_attr( (string) $ch['seconds'] ); ?>"
+						style="display: inline-flex; align-items: center; gap: 6px; background: <?php echo 0 === $idx ? 'rgba(212, 175, 55, 0.16)' : '#04070d'; ?>; border: 1px solid <?php echo 0 === $idx ? '#d4af37' : 'rgba(56, 189, 248, 0.48)'; ?>; border-radius: 9999px; padding: 7px 14px; color: #f8fafc; font-size: 0.78rem; font-weight: 700; line-height: 1.2; cursor: pointer;"
 						onclick="kpSeekFounderAvatarVideo('<?php echo esc_js( $iframe_id ); ?>', '<?php echo esc_js( $video_id ); ?>', <?php echo (int) $ch['seconds']; ?>, this)">
-					<span class="kp-founder-chapter-ts"><?php echo esc_html( (string) $ch['time'] ); ?></span>
+					<span class="kp-founder-chapter-ts" style="color: <?php echo 0 === $idx ? '#d4af37' : '#38bdf8'; ?>; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800;"><?php echo esc_html( (string) $ch['time'] ); ?></span>
 					<span><?php echo esc_html( (string) $ch['title'] ); ?></span>
 				</button>
 			<?php endforeach; ?>
@@ -503,8 +520,8 @@ if ( function_exists( 'add_shortcode' ) ) {
 /**
  * Automatic slug-based fallback injector on `the_content` (priority 25) so pages using
  * the default WordPress/Gutenberg template (rather than custom page-*.php files) still
- * render their canonical Founder Avatar Video Card directly below `</header>` with zero
- * duplication when a custom PHP template has already rendered the slot.
+ * render their canonical Founder Avatar Video Card directly below `</header>` or hero `</section>`
+ * with zero duplication when a custom PHP template has already rendered the slot.
  *
  * @param string $content Post content HTML.
  * @return string
@@ -554,6 +571,9 @@ function kp_auto_inject_founder_avatar_video_on_slug_pages( string $content ): s
 
 	if ( false !== stripos( $content, '</header>' ) ) {
 		return (string) preg_replace( '/<\/header>/i', '</header>' . "\n" . $card_html, $content, 1 );
+	}
+	if ( false !== stripos( $content, '</section>' ) ) {
+		return (string) preg_replace( '/<\/section>/i', '</section>' . "\n" . $card_html, $content, 1 );
 	}
 
 	return $card_html . "\n" . $content;
