@@ -326,6 +326,13 @@ function kp_print_founder_avatar_video_head_assets(): void {
 	button.kp-founder-chapter-pill:hover .kp-founder-chapter-ts {
 		color: #d4af37 !important;
 	}
+	.kp-founder-video-card ~ section .luxury-video-facade,
+	.kp-founder-video-card + section .luxury-video-facade {
+		display: none !important;
+	}
+	.kp-founder-video-card + section[style*="-50px"] {
+		margin-top: 0 !important;
+	}
 	@media (max-width: 640px) {
 		.kp-founder-video-card {
 			padding: 16px 14px !important;
@@ -568,6 +575,10 @@ function kp_auto_inject_founder_avatar_video_on_slug_pages( string $content ): s
 	if ( '' === $card_html ) {
 		return $content;
 	}
+
+	// Remove legacy placeholder video-facade blocks (e.g. broken #0085ff play-button with -50px overlap) when real 4K Founder Avatar card is active.
+	$content = (string) preg_replace( '/<div[^>]*class=["\'][^"\']*luxury-video-facade[^"\']*["\'][^>]*>[\s\S]*?<\/button>\s*<\/div>/i', '', $content );
+	$content = (string) preg_replace( '/margin:\s*-\d+px\s+auto/i', 'margin: 0 auto', $content );
 
 	if ( false !== stripos( $content, '</header>' ) ) {
 		return (string) preg_replace( '/<\/header>/i', '</header>' . "\n" . $card_html, $content, 1 );
