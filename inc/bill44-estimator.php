@@ -461,6 +461,10 @@ function keystone_possibilities_inject_feasibility_tools($content) {
         ob_start();
         ?>
         <div class="kp-feasibility-page-wrapper" style="background-color: #04070d; color: #e2e8f0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding-bottom: 4rem; margin: 0 auto; width: 100%; max-width: 100% !important;">
+            <style>
+                #wpadminbar, #ast-scroll-top, .ast-scroll-top-icon, #rank-math-analytics-stats-wrapper { display: none !important; height: 0 !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+                html, html.wp-toolbar, body { margin-top: 0 !important; padding-top: 0 !important; }
+            </style>
 
             <!-- 1. Hero Header: Custom Home, Estate & BC Hydro Civil Pre-Construction Cost & Servicing Planner -->
             <header style="text-align: center; padding: 1.35rem 1.5rem 1.05rem 1.5rem; background: radial-gradient(circle at top center, rgba(212, 175, 55, 0.16) 0%, rgba(10, 15, 25, 0.9) 60%, rgba(4, 7, 13, 1) 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.22);">
@@ -494,6 +498,14 @@ function keystone_possibilities_inject_feasibility_tools($content) {
                     </p>
                 </div>
             </header>
+
+            <?php
+            if (function_exists('kp_render_founder_avatar_video_card')) {
+                echo '<div style="padding: 0 1rem;">';
+                kp_render_founder_avatar_video_card('feasibility');
+                echo '</div>';
+            }
+            ?>
 
             <!-- 2. Interactive Custom Home, Estate & BC Hydro Civil Planner (Above the Fold) -->
             <section id="custom-build-planner" style="padding: 0 1rem;">

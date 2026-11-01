@@ -52,6 +52,9 @@ if (file_exists(__DIR__ . '/inc/multi-job-portal-api.php')) {
 if (file_exists(__DIR__ . '/inc/geo-cache-indexnow.php')) {
     require_once __DIR__ . '/inc/geo-cache-indexnow.php';
 }
+if (file_exists(__DIR__ . '/inc/founder-avatar-video-card.php')) {
+    require_once __DIR__ . '/inc/founder-avatar-video-card.php';
+}
 
 // Authenticated Theme-Editor Asset Synchronizer (strictly requires edit_themes + manage_options)
 add_action('rest_api_init', function () {
@@ -64,6 +67,14 @@ add_action('rest_api_init', function () {
             $allowed = array(
                 'inc/geo-cache-indexnow.php',
                 'inc/seo-schema.php',
+                'inc/founder-avatar-video-card.php',
+                'inc/bill44-estimator.php',
+                'page-feasibility-retainer.php',
+                'page-vancouver-multiplex.php',
+                'page-squamish.php',
+                'page-step-code-5-engineering.php',
+                'page-contact.php',
+                'page-homepage.php',
                 'llms.txt',
                 'llms-full.txt',
             );
@@ -82,7 +93,67 @@ add_action('rest_api_init', function () {
             if ($bytes === false) {
                 return new WP_REST_Response(array('ok' => false, 'error' => 'Write failed', 'dest' => $dest), 500);
             }
+            do_action('litespeed_purge_all');
+            if (function_exists('wp_cache_flush')) {
+                wp_cache_flush();
+            }
             return new WP_REST_Response(array('ok' => true, 'file' => $rel_file, 'bytes' => $bytes, 'dest' => $dest), 200);
+        },
+    ));
+
+    register_rest_route('keystone/v1', '/set-avatar-video-ids', array(
+        'methods'             => 'POST',
+        'permission_callback' => function (): bool {
+            return current_user_can('manage_options');
+        },
+        'callback'            => function (WP_REST_Request $request): WP_REST_Response {
+            $params = $request->get_json_params() ?: $request->get_params();
+            $key_map = array(
+                'feasibility'                  => 'kp_video_id_feasibility',
+                'kp_video_id_feasibility'      => 'kp_video_id_feasibility',
+                'bill44'                       => 'kp_video_id_bill44_multiplex',
+                'kp_video_id_bill44_multiplex' => 'kp_video_id_bill44_multiplex',
+                'stepcode5'                    => 'kp_video_id_stepcode5_custom',
+                'kp_video_id_stepcode5_custom' => 'kp_video_id_stepcode5_custom',
+            );
+
+            $updated = array();
+            foreach ($key_map as $input_key => $option_name) {
+                if (!array_key_exists($input_key, $params)) {
+                    continue;
+                }
+                $raw_val = trim(sanitize_text_field((string) $params[$input_key]));
+                if ($raw_val !== '' && preg_match('/^[A-Za-z0-9_-]{11}$/', $raw_val) !== 1) {
+                    return new WP_REST_Response(array(
+                        'ok'    => false,
+                        'error' => sprintf('Invalid 11-character YouTube video ID for %s.', $input_key),
+                    ), 400);
+                }
+                update_option($option_name, $raw_val, false);
+                $updated[$option_name] = $raw_val;
+            }
+
+            if (empty($updated)) {
+                return new WP_REST_Response(array(
+                    'ok'    => false,
+                    'error' => 'Provide at least one video ID key: feasibility, bill44, or stepcode5.',
+                ), 400);
+            }
+
+            do_action('litespeed_purge_all');
+            if (function_exists('wp_cache_flush')) {
+                wp_cache_flush();
+            }
+
+            return new WP_REST_Response(array(
+                'ok'      => true,
+                'updated' => $updated,
+                'active'  => array(
+                    'kp_video_id_feasibility'      => (string) get_option('kp_video_id_feasibility', ''),
+                    'kp_video_id_bill44_multiplex' => (string) get_option('kp_video_id_bill44_multiplex', ''),
+                    'kp_video_id_stepcode5_custom' => (string) get_option('kp_video_id_stepcode5_custom', ''),
+                ),
+            ), 200);
         },
     ));
 });

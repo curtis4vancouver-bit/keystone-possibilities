@@ -1,16 +1,16 @@
 ---
-name: "Index \u2014 fonts"
+name: "Index — fonts"
 description: "**Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/retrospect/assets/00_INDEX|Parent Hub (assets)]]"
 folder: "09_Keystone_websites/themes/keystone-possibilities-child/retrospect/assets/fonts"
 tags: ["moc", "index", "fonts"]
-last_updated: "2026-10-16 21:28:50"
+last_updated: "2026-10-19 20:35:44"
 type: "moc"
 ---
 # Index — fonts
 
 > **Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/retrospect/assets/00_INDEX|Parent Hub (assets)]]  
 > **Path**: `09_Keystone_websites/themes/keystone-possibilities-child/retrospect/assets/fonts`  
-> **Last Updated**: October 16, 2026 21:28:50
+> **Last Updated**: October 19, 2026 20:35:44
 
 ## Directory Contents
 - 📁 [[09_Keystone_websites/themes/keystone-possibilities-child/retrospect/assets/fonts/figtree/00_INDEX|figtree/]]

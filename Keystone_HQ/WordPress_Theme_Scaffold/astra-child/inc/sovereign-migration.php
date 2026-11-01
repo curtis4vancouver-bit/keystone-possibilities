@@ -104,25 +104,8 @@ if ( isset( $_GET['run_keystone_migration'] ) && $_GET['run_keystone_migration']
             $cleaned_content
         );
         
-        // 5. Append the clean centered Real Wayne Medical Disclaimer card at the bottom
-        $disclaimer_card = "
-
-" . '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_START -->' . "
-" .
-                           '<div class="kr-medical-disclaimer-card" style="background-color: rgba(245, 158, 11, 0.03); border: 1px solid rgba(245, 158, 11, 0.15); padding: 25px; border-radius: 4px; margin-top: 50px; margin-bottom: 30px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">' . "
-" .
-                           '    <h3 style="font-family: Outfit, sans-serif; font-size: 0.95rem; color: #f59e0b; margin-top: 0; margin-bottom: 12px; letter-spacing: 0.08em; text-transform: uppercase;">⚠️ Medical Disclaimer</h3>' . "
-" .
-                           '    <p style="font-family: \'Inter\', sans-serif; font-size: 0.85rem; color: #a3a3a3; line-height: 1.6; margin: 0; font-weight: 300; max-width: 750px; margin-left: auto; margin-right: auto;">' . "
-" .
-                           '        This article is a personal case study for educational purposes only. Wayne Stevenson is a construction superintendent and metabolic researcher, not a doctor. Nothing here constitutes medical advice. GLP-1 / GIP therapies are powerful prescription drugs—always consult your licensed physician before starting or modifying any protocol.' . "
-" .
-                           '    </p>' . "
-" .
-                           '</div>' . "
-" .
-                           '<!-- KEYSTONE_SOVEREIGN_MEDICAL_DISCLAIMER_END -->';
-        
+        // 5. Sovereign builder footer
+        $disclaimer_card = '';
         $cleaned_content .= $disclaimer_card;
         
         // 6. Update wp_posts table with restructured content
@@ -178,25 +161,6 @@ if ( isset( $_GET['run_keystone_migration'] ) && $_GET['run_keystone_migration']
     exit;
 }
 
-if ( isset( $_GET['restore_mounjaro_post'] ) ) {
-    $file_path = __DIR__ . '/mounjaro_backup.txt';
-    if ( file_exists( $file_path ) ) {
-        $content = file_get_contents( $file_path );
-        $post_data = array(
-            'ID'           => 1149,
-            'post_content' => $content,
-        );
-        $res = wp_update_post( $post_data );
-        if ( is_wp_error( $res ) ) {
-            echo "ERROR RESTORING POST: " . $res->get_error_message();
-        } else {
-            echo "POST RESTORED SUCCESSFULLY: ID " . $res;
-        }
-    } else {
-        echo "BACKUP FILE NOT FOUND AT: " . $file_path;
-    }
-    exit;
-}
 
 if ( isset( $_GET['list_revisions'] ) ) {
     $revisions = wp_get_post_revisions( 1149 );

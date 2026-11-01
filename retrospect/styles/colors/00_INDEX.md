@@ -1,16 +1,16 @@
 ---
-name: "Index \u2014 colors"
+name: "Index — colors"
 description: "**Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/retrospect/styles/00_INDEX|Parent Hub (styles)]]"
 folder: "09_Keystone_websites/themes/keystone-possibilities-child/retrospect/styles/colors"
 tags: ["moc", "index", "colors"]
-last_updated: "2026-10-16 21:28:50"
+last_updated: "2026-10-19 20:35:44"
 type: "moc"
 ---
 # Index — colors
 
 > **Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/retrospect/styles/00_INDEX|Parent Hub (styles)]]  
 > **Path**: `09_Keystone_websites/themes/keystone-possibilities-child/retrospect/styles/colors`  
-> **Last Updated**: October 16, 2026 21:28:50
+> **Last Updated**: October 19, 2026 20:35:44
 
 ## Directory Contents
 - *(No sub-documents found yet)*

@@ -80,7 +80,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
             <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
                 <div>
                     <span style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase;">Milestone:</span>
-                    <div style="color: #34d399; font-weight: 700; font-size: 0.95rem;">Pre-Drywall MEP Lock (94% Verified)</div>
+                    <div style="color: #38bdf8; font-weight: 700; font-size: 0.95rem;">Pre-Drywall MEP Lock (94% Verified)</div>
                 </div>
                 <div>
                     <span style="color: #94a3b8; font-size: 0.75rem; text-transform: uppercase;">BC Builder License:</span>
@@ -139,7 +139,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                         <!-- Central Mechanical Room / HVAC -->
                         <div style="width: 320px; height: 600px; border: 2px dashed rgba(0,240,255,0.4); border-radius: 8px; padding: 1rem; position: relative; background: rgba(15,23,42,0.8);">
                             <span style="color:#00f0ff; font-family:'Outfit'; font-weight:700; font-size:0.8rem;">MEP HUB: HRV &amp; HEAT PUMP</span>
-                            <div style="position: absolute; top: 140px; left: 30px; background: rgba(16,185,129,0.25); border: 1.5px solid #10b981; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; color: #6ee7b7;">
+                            <div style="position: absolute; top: 140px; left: 30px; background: rgba(56,189,248,0.20); border: 1.5px solid #38bdf8; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; color: #38bdf8;">
                                 🌿 Zehnder ComfoAir Q350 HRV (84% SRE)
                             </div>
                             <div style="position: absolute; top: 240px; left: 20px; background: rgba(168,85,247,0.25); border: 1px solid #a855f7; border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; color: #d8b4fe;">
@@ -153,7 +153,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                         <!-- Stud Wall 2 -->
                         <div style="width: 280px; height: 600px; border: 2px dashed rgba(255,255,255,0.3); border-radius: 8px; padding: 1rem; position: relative; background: rgba(15,23,42,0.6);">
                             <span style="color:#d4af37; font-family:'Outfit'; font-weight:700; font-size:0.8rem;">EXTERIOR WALL: STEP CODE 5</span>
-                            <div style="position: absolute; top: 180px; left: 20px; background: rgba(16,185,129,0.25); border: 1px solid #10b981; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #6ee7b7;">
+                            <div style="position: absolute; top: 180px; left: 20px; background: rgba(212,175,55,0.20); border: 1px solid #d4af37; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #f6d365;">
                                 🧱 4" Continuous Exterior Rockwool (R-16.8)
                             </div>
                             <div style="position: absolute; top: 280px; left: 30px; background: rgba(0,240,255,0.25); border: 1px solid #00f0ff; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #67e8f9;">
@@ -189,7 +189,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                     <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; text-transform: uppercase; color: #d4af37; margin: 0;">
                         Field Supervisor Inspection Stream
                     </h3>
-                    <span style="font-size: 0.85rem; color: #34d399; font-weight: 600;">● Live Onsite Stream Active</span>
+                    <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">● Live Onsite Stream Active</span>
                 </div>
 
                 <!-- Log Entry 1 -->
@@ -203,7 +203,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                     <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin: 0 0 8px 0;">
                         District building inspector completed plumbing rough-in and electrical branch inspection. 100% clean pass with zero deficiencies. Acoustic RC-1 channel separation verified on party walls. 360° LiDAR capture completed and synced to client portal vault.
                     </p>
-                    <div style="display: inline-block; background: rgba(16,185,129,0.15); border: 1px solid #10b981; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; color: #34d399;">
+                    <div style="display: inline-block; background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; color: #38bdf8;">
                         ✓ Municipal Permit Stage #04 APPROVED
                     </div>
                 </div>
@@ -238,7 +238,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                     </div>
                     <div style="text-align: right;">
                         <span style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Total Hard Costs to Date:</span>
-                        <div style="color: #10b981; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.4rem;">$642,850.00</div>
+                        <div style="color: #f6d365; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.4rem;">$642,850.00</div>
                     </div>
                 </div>
 
@@ -260,36 +260,36 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                             <td style="padding: 12px 10px; color: #94a3b8;">INV-8821</td>
                             <td style="padding: 12px 10px;">$84,200.00</td>
                             <td style="padding: 12px 10px; color: #f6d365;">-$8,420.00</td>
-                            <td style="padding: 12px 10px; color: #34d399; font-weight: 700;">$0.00 (Pass-through)</td>
+                            <td style="padding: 12px 10px; color: #38bdf8; font-weight: 700;">$0.00 (Pass-through)</td>
                             <td style="padding: 12px 10px; font-weight: 700;">$75,780.00</td>
-                            <td style="padding: 12px 10px;"><span style="color: #34d399;">● Approved</span></td>
+                            <td style="padding: 12px 10px;"><span style="color: #38bdf8;">● Approved</span></td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
                             <td style="padding: 12px 10px; font-weight: 600; color: #f8fafc;">35 MPa Concrete Forming &amp; Pour</td>
                             <td style="padding: 12px 10px; color: #94a3b8;">INV-4019</td>
                             <td style="padding: 12px 10px;">$148,500.00</td>
                             <td style="padding: 12px 10px; color: #f6d365;">-$14,850.00</td>
-                            <td style="padding: 12px 10px; color: #34d399; font-weight: 700;">$0.00 (Pass-through)</td>
+                            <td style="padding: 12px 10px; color: #38bdf8; font-weight: 700;">$0.00 (Pass-through)</td>
                             <td style="padding: 12px 10px; font-weight: 700;">$133,650.00</td>
-                            <td style="padding: 12px 10px;"><span style="color: #34d399;">● Approved</span></td>
+                            <td style="padding: 12px 10px;"><span style="color: #38bdf8;">● Approved</span></td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
                             <td style="padding: 12px 10px; font-weight: 600; color: #f8fafc;">Structural SPF Framing &amp; Engineered Trusses</td>
                             <td style="padding: 12px 10px; color: #94a3b8;">INV-7732</td>
                             <td style="padding: 12px 10px;">$215,000.00</td>
                             <td style="padding: 12px 10px; color: #f6d365;">-$21,500.00</td>
-                            <td style="padding: 12px 10px; color: #34d399; font-weight: 700;">$0.00 (Pass-through)</td>
+                            <td style="padding: 12px 10px; color: #38bdf8; font-weight: 700;">$0.00 (Pass-through)</td>
                             <td style="padding: 12px 10px; font-weight: 700;">$193,500.00</td>
-                            <td style="padding: 12px 10px;"><span style="color: #34d399;">● Approved</span></td>
+                            <td style="padding: 12px 10px;"><span style="color: #38bdf8;">● Approved</span></td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
                             <td style="padding: 12px 10px; font-weight: 600; color: #f8fafc;">BC Hydro ES54 Underground Civil Duct Bank</td>
                             <td style="padding: 12px 10px; color: #94a3b8;">INV-9021</td>
                             <td style="padding: 12px 10px;">$68,400.00</td>
                             <td style="padding: 12px 10px; color: #f6d365;">-$6,840.00</td>
-                            <td style="padding: 12px 10px; color: #34d399; font-weight: 700;">$0.00 (Pass-through)</td>
+                            <td style="padding: 12px 10px; color: #38bdf8; font-weight: 700;">$0.00 (Pass-through)</td>
                             <td style="padding: 12px 10px; font-weight: 700;">$61,560.00</td>
-                            <td style="padding: 12px 10px;"><span style="color: #34d399;">● Approved</span></td>
+                            <td style="padding: 12px 10px;"><span style="color: #38bdf8;">● Approved</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -309,21 +309,21 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                         <div style="font-size: 1.8rem; margin-bottom: 6px;">🏛️</div>
                         <h4 style="font-size: 1rem; color: #d4af37; margin: 0 0 4px 0; font-family: 'Outfit', sans-serif;">BC Housing Builder License</h4>
                         <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">License Number: <strong>#52603</strong><br>General Contractor: Wayne Stevenson</p>
-                        <span style="color: #34d399; font-size: 0.78rem; font-weight: 700;">✓ Active &amp; In Good Standing</span>
+                        <span style="color: #38bdf8; font-size: 0.78rem; font-weight: 700;">✓ Active &amp; In Good Standing</span>
                     </div>
 
                     <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: 8px; padding: 1.25rem;">
                         <div style="font-size: 1.8rem; margin-bottom: 6px;">🛡️</div>
                         <h4 style="font-size: 1rem; color: #00f0ff; margin: 0 0 4px 0; font-family: 'Outfit', sans-serif;">2-5-10 Home Warranty</h4>
                         <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">Pacific Home Warranty #PHW-52603<br>2 Yr Labour/Material | 5 Yr Envelope | 10 Yr Structure</p>
-                        <span style="color: #34d399; font-size: 0.78rem; font-weight: 700;">✓ Bound &amp; Registered</span>
+                        <span style="color: #38bdf8; font-size: 0.78rem; font-weight: 700;">✓ Bound &amp; Registered</span>
                     </div>
 
                     <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 1.25rem;">
                         <div style="font-size: 1.8rem; margin-bottom: 6px;">⚡</div>
                         <h4 style="font-size: 1rem; color: #f8fafc; margin: 0 0 4px 0; font-family: 'Outfit', sans-serif;">BC Hydro ES54 Civil</h4>
                         <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">Registered Underground Civil Contractor<br>Authorized for 400A–600A primary duct conversions</p>
-                        <span style="color: #34d399; font-size: 0.78rem; font-weight: 700;">✓ ES54 Certified</span>
+                        <span style="color: #38bdf8; font-size: 0.78rem; font-weight: 700;">✓ ES54 Certified</span>
                     </div>
 
                 </div>

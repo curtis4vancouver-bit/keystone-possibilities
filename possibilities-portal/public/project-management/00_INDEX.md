@@ -1,16 +1,16 @@
 ---
-name: "Index \u2014 project-management"
+name: "Index — project-management"
 description: "**Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/public/00_INDEX|Parent Hub (public)]]"
 folder: "09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/public/project-management"
 tags: ["moc", "index", "project-management"]
-last_updated: "2026-10-16 21:28:50"
+last_updated: "2026-10-19 20:35:44"
 type: "moc"
 ---
 # Index — project-management
 
 > **Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/public/00_INDEX|Parent Hub (public)]]  
 > **Path**: `09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/public/project-management`  
-> **Last Updated**: October 16, 2026 21:28:50
+> **Last Updated**: October 19, 2026 20:35:44
 
 ## Directory Contents
 - *(No sub-documents found yet)*

@@ -1,16 +1,16 @@
 ---
-name: "Index \u2014 assets"
+name: "Index — assets"
 description: "**Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/00_INDEX|Parent Hub (keystone-possibilities-child)]]"
 folder: "09_Keystone_websites/themes/keystone-possibilities-child/assets"
 tags: ["moc", "index", "assets"]
-last_updated: "2026-10-16 21:28:50"
+last_updated: "2026-10-19 20:35:44"
 type: "moc"
 ---
 # Index — assets
 
 > **Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/00_INDEX|Parent Hub (keystone-possibilities-child)]]  
 > **Path**: `09_Keystone_websites/themes/keystone-possibilities-child/assets`  
-> **Last Updated**: October 16, 2026 21:28:50
+> **Last Updated**: October 19, 2026 20:35:44
 
 ## Directory Contents
 - 📁 [[09_Keystone_websites/themes/keystone-possibilities-child/assets/images/00_INDEX|images/]]

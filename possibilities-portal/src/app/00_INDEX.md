@@ -1,16 +1,16 @@
 ---
-name: "Index \u2014 app"
+name: "Index — app"
 description: "**Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/src/00_INDEX|Parent Hub (src)]]"
 folder: "09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/src/app"
 tags: ["moc", "index", "app"]
-last_updated: "2026-10-16 21:28:50"
+last_updated: "2026-10-19 20:35:44"
 type: "moc"
 ---
 # Index — app
 
 > **Parent Hub**: [[09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/src/00_INDEX|Parent Hub (src)]]  
 > **Path**: `09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/src/app`  
-> **Last Updated**: October 16, 2026 21:28:50
+> **Last Updated**: October 19, 2026 20:35:44
 
 ## Directory Contents
 - 📁 [[09_Keystone_websites/themes/keystone-possibilities-child/possibilities-portal/src/app/api/00_INDEX|api/]]
