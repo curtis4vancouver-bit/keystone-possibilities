@@ -56,6 +56,103 @@ if (file_exists(__DIR__ . '/inc/founder-avatar-video-card.php')) {
     require_once __DIR__ . '/inc/founder-avatar-video-card.php';
 }
 
+/**
+ * Purge WP Cloud (_atomic_bur / wpcomsh), Batcache, LiteSpeed, and Object Cache across all published .ca pages.
+ *
+ * Calling clean_post_cache() + wp_update_post(array('ID' => $pid)) triggers WordPress.com Atomic
+ * Nginx edge-cache PURGE requests so anonymous visitors immediately receive updated templates & avatar videos.
+ *
+ * @return array{purged_page_ids: array<int, int>}
+ */
+function keystone_poss_purge_wpcloud_edge_cache(): array {
+    if (function_exists('do_action')) {
+        do_action('litespeed_purge_all');
+    }
+    if (function_exists('wp_cache_flush')) {
+        wp_cache_flush();
+    }
+
+    $candidate_ids = array();
+    if (function_exists('get_option')) {
+        $front_id = (int) get_option('page_on_front', 0);
+        if ($front_id > 0) {
+            $candidate_ids[] = $front_id;
+        }
+    }
+
+    if (function_exists('get_posts')) {
+        $all_page_ids = get_posts(array(
+            'post_type'      => 'page',
+            'post_status'    => 'publish',
+            'posts_per_page' => 100,
+            'fields'         => 'ids',
+        ));
+        if (is_array($all_page_ids)) {
+            foreach ($all_page_ids as $pid) {
+                if ((int) $pid > 0) {
+                    $candidate_ids[] = (int) $pid;
+                }
+            }
+        }
+    } elseif (function_exists('get_page_by_path')) {
+        $slugs = array(
+            'home',
+            'feasibility-plan',
+            'feasibility-retainer',
+            'services-general-contractor-squamish',
+            'bc-hydro-registered-civil-contractor',
+            'contact-general-contractor-squamish',
+            'about-us-general-contractor-squamish',
+            'north-vancouver-multiplex-conversions',
+            'vancouver-multiplex-development',
+            'vancouver-multiplex',
+            'private-investors',
+            'keystone-possibilities-custom-homes',
+            'portfolio-general-contractor-squamish',
+            'squamish-custom-homes',
+            'squamish-custom-home-builder',
+            'squamish',
+            'step-code-5-engineering',
+            'west-vancouver-custom-homes',
+            'west-vancouver-luxury-renovations',
+            'whistler-custom-homes',
+            'whistler-luxury-builder',
+            'pemberton-luxury-builder',
+            'sunshine-coast-custom-homes',
+            'north-vancouver-custom-homes',
+            'vancouver-island-custom-homes',
+        );
+        foreach ($slugs as $s) {
+            $page_obj = get_page_by_path($s, 'OBJECT', 'page');
+            if (is_object($page_obj) && isset($page_obj->ID) && (int) $page_obj->ID > 0) {
+                $candidate_ids[] = (int) $page_obj->ID;
+            }
+        }
+    }
+
+    $purged_ids = array_values(array_unique(array_filter(array_map('intval', $candidate_ids), static function (int $id): bool {
+        return $id > 0;
+    })));
+
+    foreach ($purged_ids as $pid) {
+        if (function_exists('clean_post_cache')) {
+            clean_post_cache($pid);
+        }
+        if (function_exists('wp_update_post')) {
+            wp_update_post(array('ID' => $pid));
+        }
+    }
+
+    if (function_exists('batcache_clear_url') && function_exists('home_url')) {
+        batcache_clear_url(home_url('/'));
+        batcache_clear_url(home_url('/feasibility-plan/'));
+    }
+
+    return array(
+        'purged_page_ids' => $purged_ids,
+    );
+}
+
 // Authenticated Theme-Editor Asset Synchronizer (strictly requires edit_themes + manage_options)
 add_action('rest_api_init', function () {
     register_rest_route('keystone/v1', '/sync-theme-asset', array(
@@ -93,11 +190,8 @@ add_action('rest_api_init', function () {
             if ($bytes === false) {
                 return new WP_REST_Response(array('ok' => false, 'error' => 'Write failed', 'dest' => $dest), 500);
             }
-            do_action('litespeed_purge_all');
-            if (function_exists('wp_cache_flush')) {
-                wp_cache_flush();
-            }
-            return new WP_REST_Response(array('ok' => true, 'file' => $rel_file, 'bytes' => $bytes, 'dest' => $dest), 200);
+            $purge_info = keystone_poss_purge_wpcloud_edge_cache();
+            return new WP_REST_Response(array('ok' => true, 'file' => $rel_file, 'bytes' => $bytes, 'dest' => $dest, 'edge_cache_purge' => $purge_info), 200);
         },
     ));
 
@@ -140,19 +234,17 @@ add_action('rest_api_init', function () {
                 ), 400);
             }
 
-            do_action('litespeed_purge_all');
-            if (function_exists('wp_cache_flush')) {
-                wp_cache_flush();
-            }
+            $purge_info = keystone_poss_purge_wpcloud_edge_cache();
 
             return new WP_REST_Response(array(
-                'ok'      => true,
-                'updated' => $updated,
-                'active'  => array(
+                'ok'               => true,
+                'updated'          => $updated,
+                'active'           => array(
                     'kp_video_id_feasibility'      => (string) get_option('kp_video_id_feasibility', ''),
                     'kp_video_id_bill44_multiplex' => (string) get_option('kp_video_id_bill44_multiplex', ''),
                     'kp_video_id_stepcode5_custom' => (string) get_option('kp_video_id_stepcode5_custom', ''),
                 ),
+                'edge_cache_purge' => $purge_info,
             ), 200);
         },
     ));
@@ -404,7 +496,7 @@ function keystone_possibilities_handle_301_410_redirects() {
         exit;
     }
 
-    $uri = (string) ( $_SERVER['REQUEST_URI'] ?? '' );
+    $uri = (string) ($_SERVER['REQUEST_URI'] ?? '');
     $path = (string) strtok($uri, '?');
     if (!headers_sent()) {
         header('Link: </llms.txt>; rel="llms-txt"', false);
@@ -602,7 +694,7 @@ function keystone_possibilities_handle_301_410_redirects() {
     );
 
     if (isset($redirects_301[$path])) {
-        wp_safe_redirect(home_url($redirects_301[$path]), 301);
+        wp_redirect(home_url($redirects_301[$path]), 301);
         exit;
     }
 

@@ -104,7 +104,7 @@ function keystone_possibilities_process_lead($data) {
     update_option('keystone_leads_log', $leads_log, false);
 
     // 3. Dispatch Instant Notification to Wayne Stevenson
-    $to = 'keystonepossibilities@gmail.com';
+    $to = 'keystone4vancouver@gmail.com, keystonepossibilities@gmail.com';
     $subject_loc = !empty($lot_address) ? $lot_address : $location;
     $subject = '🏛️ [NEW INQUIRY] ' . $name . ' — ' . $project_type . ' (' . $subject_loc . ')';
 
@@ -358,7 +358,7 @@ function keystone_possibilities_render_lead_form_script() {
                         }
                         const errBox = document.createElement('div');
                         errBox.id = 'kp-lead-status-box';
-                        errBox.style.cssText = 'grid-column: 1 / -1; margin-top: 1rem; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; border-radius: 6px; padding: 1rem; text-align: center; color: #fca5a5;';
+                        errBox.style.cssText = 'grid-column: 1 / -1; margin-top: 1rem; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; border-radius: 12px; padding: 1rem; text-align: center; color: #f6d365;';
                         errBox.innerText = 'Error submitting request: ' + err.message + '. Please call Wayne Stevenson directly at (604) 848-9688.';
                         form.appendChild(errBox);
                     });

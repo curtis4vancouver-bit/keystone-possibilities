@@ -46,6 +46,12 @@ get_header();
 			</div>
 		</section>
 
+		<?php
+		if ( function_exists( 'kp_render_founder_avatar_video_card' ) ) {
+			kp_render_founder_avatar_video_card( 'home' );
+		}
+		?>
+
 		<!-- Credibility Track Scroller -->
 		<section class="credibility-scroller-wrapper" style="margin: 3rem 0; overflow-x: auto; padding-bottom: 10px;">
 			<div class="credibility-track" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">

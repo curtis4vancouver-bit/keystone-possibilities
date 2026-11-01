@@ -25,7 +25,7 @@ function keystone_possibilities_inject_master_schema() {
             "recognizedBy" => array(
                 "@type" => "GovernmentOrganization",
                 "name" => "BC Housing Licensing and Consumer Services",
-                "url" => "https://www.bchousing.org"
+                "url" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
             ),
             "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
         ),
@@ -84,7 +84,7 @@ function keystone_possibilities_inject_master_schema() {
                         "@type" => "PropertyValue",
                         "propertyID" => "Mandatory Home Warranty Protection",
                         "name" => "New Home Warranty Protection",
-                        "value" => "2-5-10 National Home Warranty"
+                        "value" => "2-5-10 Year Mandatory Home Warranty Protection (WBI / National Home Warranty)"
                     )
                 ),
                 "license" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
@@ -142,30 +142,22 @@ function keystone_possibilities_inject_master_schema() {
                 ),
                 "hasOfferCatalog" => array(
                     "@type" => "OfferCatalog",
-                    "name" => "Keystone Possibilities Custom Home & Civil Construction Services",
+                    "name" => "Keystone Possibilities Custom Home, Multiplex & Civil Construction Services",
                     "itemListElement" => array(
                         array(
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
-                                "name" => "Start-to-Finish Luxury Custom Home & Estate Construction",
-                                "description" => "Turnkey design-build custom home contracting (BC Housing License #52603) with mandatory 2-5-10 National Home Warranty, Step Code 5 energy performance, and alpine/coastal engineering across West Vancouver, Whistler, Squamish, and North Vancouver."
+                                "name" => "BC Bill 44 Multiplex Feasibility & Construction",
+                                "description" => "Turnkey 3-to-6 unit BC Bill 44 SSMUH multiplex feasibility, BC Building Code 2024 Section 9.10 fire & ASTC 47 acoustic engineering, and licensed general contracting across Metro Vancouver and Sea-to-Sky."
                             )
                         ),
                         array(
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
-                                "name" => "BC Hydro Registered Civil Contracting (List ES54)",
-                                "description" => "ES54 certified underground utility trenching, 200A–600A+ primary/secondary ducting, pad-mounted transformer (PMT) vaults, civil excavation, and municipal infrastructure connections."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Custom Home & Civil Pre-Construction Cost & Servicing Planning",
-                                "description" => "Pre-construction architectural budgeting, geotechnical bedrock review, BC Hydro ES54 civil utility cost modeling, and municipal permit strategy."
+                                "name" => "Custom Luxury Home Construction",
+                                "description" => "Turnkey start-to-finish luxury custom home and estate contracting (BC Housing License #52603) with mandatory 2-5-10 Year Home Warranty, Step Code 5 energy performance, and alpine/coastal engineering across West Vancouver, Whistler, Squamish, North Vancouver, and Vancouver Island."
                             )
                         ),
                         array(
@@ -180,18 +172,38 @@ function keystone_possibilities_inject_master_schema() {
                             "@type" => "Offer",
                             "itemOffered" => array(
                                 "@type" => "Service",
+                                "name" => "BC Hydro Registered Civil Contracting (List ES54)",
+                                "description" => "ES54 certified underground utility trenching, 200A–600A+ primary/secondary ducting, pad-mounted transformer (PMT) vaults, civil excavation, and municipal infrastructure connections."
+                            )
+                        ),
+                        array(
+                            "@type" => "Offer",
+                            "itemOffered" => array(
+                                "@type" => "Service",
+                                "name" => "Construction Feasibility Studies & Land Due Diligence",
+                                "description" => "Pre-acquisition parcel due diligence, zoning & OCP verification, geotechnical bedrock & 30m RAPR riparian review, BC Hydro ES54 civil utility cost modeling, and DP/BP critical-path scheduling."
+                            )
+                        ),
+                        array(
+                            "@type" => "Offer",
+                            "itemOffered" => array(
+                                "@type" => "Service",
                                 "name" => "Major Custom Renovations, Carriage Homes & Multi-Generational Builds",
                                 "description" => "Full-gut structural retrofits, architectural additions, carriage homes, and custom multi-generational builds."
                             )
                         )
                     )
                 ),
+                "parentOrganization" => array(
+                    "@id" => "https://keystonepossibilities.ca/#parent-organization"
+                ),
                 "sameAs" => array(
                     "https://www.facebook.com/profile.php?id=61554185128555",
                     "https://www.youtube.com/@KeystonePossibilitiesLtd",
                     "https://www.instagram.com/keystonepossibilities",
                     "https://www.tiktok.com/@keystone.possibil",
-                    "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
+                    "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
+                    "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
                 ),
                 "founder" => array(
                     "@type" => "Person",
@@ -217,6 +229,24 @@ function keystone_possibilities_inject_master_schema() {
                         "Step Code 5 Net-Zero Custom Homes",
                         "Fiduciary CCDC 5B Cost-Plus Project Management",
                         "BC Building Code 2024"
+                    )
+                )
+            ),
+            // ParentOrganization Node connecting Keystone Empire Network
+            array(
+                "@type" => "Organization",
+                "@id" => "https://keystonepossibilities.ca/#parent-organization",
+                "name" => "Keystone Empire",
+                "alternateName" => "Keystone Group",
+                "url" => "https://keystonerecomposition.com",
+                "founder" => array("@id" => "https://keystonepossibilities.ca/#founder"),
+                "subOrganization" => array(
+                    array("@id" => "https://keystonepossibilities.ca/#organization"),
+                    array(
+                        "@type" => "Organization",
+                        "@id" => "https://keystonerecomposition.com/#organization",
+                        "name" => "Keystone Recomposition",
+                        "url" => "https://keystonerecomposition.com"
                     )
                 )
             ),
@@ -396,14 +426,14 @@ function keystone_possibilities_inject_video_schema() {
             "@context" => "https://schema.org",
             "@type" => "VideoObject",
             "@id" => trailingslashit(get_permalink($post_id)) . "#videoobject",
-            "name" => $video_title,
-            "description" => $video_desc,
+            "name" => esc_attr($video_title),
+            "description" => esc_attr($video_desc),
             "thumbnailUrl" => array(
                 "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
                 "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
             ),
             "uploadDate" => $upload_date,
-            "duration" => $duration_iso,
+            "duration" => esc_attr($duration_iso),
             "contentUrl" => "https://www.youtube.com/watch?v={$video_id}",
             "embedUrl" => "https://www.youtube-nocookie.com/embed/{$video_id}",
             "inLanguage" => "en-CA",
@@ -645,7 +675,10 @@ function keystone_possibilities_sanitize_schema_node(&$node) {
 }
 
 // ── 2.9 Google-Compliant Watch Page & VideoObject Schema Injection in Rank Math ────
-add_filter('rank_math/json_ld', 'keystone_possibilities_rank_math_watch_page_schema', 999, 2);
+add_filter('rank_math/json_ld', 'keystone_possibilities_dedup_rank_math_schema', 999, 2);
+function keystone_possibilities_dedup_rank_math_schema($data, $jsonld) {
+    return keystone_possibilities_rank_math_watch_page_schema($data, $jsonld);
+}
 function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
     if (!is_array($data) || is_admin()) {
         return $data;
@@ -833,7 +866,6 @@ function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
 
     return $data;
 }
-add_filter('rank_math/json_ld', 'keystone_possibilities_rank_math_watch_page_schema', 99999, 2);
 
 // ── 3. Keystone Empire Network Standardized Footer Bar (Deprecated / Disabled to prevent duplicate footers) ──
 function keystone_possibilities_render_empire_footer() {
