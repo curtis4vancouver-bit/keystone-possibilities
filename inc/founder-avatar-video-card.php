@@ -531,10 +531,15 @@ function kp_auto_inject_founder_avatar_video_on_slug_pages( string $content ): s
 		'vancouver-multiplex'                    => 'bill44',
 		'north-vancouver-multiplex-conversions'  => 'bill44',
 		'squamish-custom-homes'                  => 'stepcode5',
+		'squamish-custom-home-builder'           => 'stepcode5',
 		'squamish'                               => 'stepcode5',
 		'step-code-5-engineering'                => 'stepcode5',
 		'west-vancouver-custom-homes'            => 'stepcode5',
 		'whistler-custom-homes'                  => 'stepcode5',
+		'whistler-luxury-builder'                => 'stepcode5',
+		'pemberton-luxury-builder'               => 'stepcode5',
+		'sunshine-coast-custom-homes'            => 'stepcode5',
+		'north-vancouver-custom-homes'           => 'stepcode5',
 		'vancouver-island-custom-homes'          => 'stepcode5',
 	);
 
