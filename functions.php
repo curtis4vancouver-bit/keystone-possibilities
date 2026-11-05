@@ -371,6 +371,9 @@ function keystone_possibilities_sanitize_rank_math_sitemap($url, $type, $object)
         'the-journey',
         'keystone_recomposition',
         '52603',
+        'net-zero-building-envelopes',
+        'watch-net-zero-building-envelopes',
+        'watch-inverted-roof-terraces-alpine-cold-roofs-bc',
         '/tag/',
         '/author/',
         '/date/',
@@ -679,6 +682,16 @@ function keystone_possibilities_handle_301_410_redirects() {
         '/building-fourplex-squamish' => '/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/',
         '/watch-building-fourplex-squamish/' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
         '/watch-building-fourplex-squamish' => '/watch-sea-to-sky-luxury-compounds-bc-building-code/',
+
+        // 10. GAP-01 Duplicate Nov 2 / Oct 30 Slugs -> Canonical Envelopes & Inverted Roof Terraces Posts/Watch Pages
+        '/2026/11/02/net-zero-building-envelopes/' => '/2026/11/02/net-zero-envelopes-bc/',
+        '/2026/11/02/net-zero-building-envelopes' => '/2026/11/02/net-zero-envelopes-bc/',
+        '/net-zero-building-envelopes/' => '/2026/11/02/net-zero-envelopes-bc/',
+        '/net-zero-building-envelopes' => '/2026/11/02/net-zero-envelopes-bc/',
+        '/watch-net-zero-building-envelopes/' => '/watch-net-zero-envelopes-bc/',
+        '/watch-net-zero-building-envelopes' => '/watch-net-zero-envelopes-bc/',
+        '/watch-inverted-roof-terraces-alpine-cold-roofs-bc/' => '/watch-inverted-roof-terraces-bc/',
+        '/watch-inverted-roof-terraces-alpine-cold-roofs-bc' => '/watch-inverted-roof-terraces-bc/',
 
         // Articles / Blog
         '/blog/' => '/#articles',

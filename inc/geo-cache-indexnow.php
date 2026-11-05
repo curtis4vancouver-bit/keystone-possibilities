@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('KEYSTONE_POSS_GEO_SYNC_VERSION')) {
-    define('KEYSTONE_POSS_GEO_SYNC_VERSION', '2026.10.31.1');
+    define('KEYSTONE_POSS_GEO_SYNC_VERSION', '2026.11.05.1');
 }
 
 // ── 1. Expose Rank Math SEO Meta Fields to Authenticated WP REST API ─────────
@@ -91,6 +91,16 @@ function keystone_poss_get_canonical_301_map(): array {
         '/whistler'                                                                   => '/whistler-custom-homes/',
         '/contact/'                                                                   => '/contact-general-contractor-squamish/',
         '/contact'                                                                    => '/contact-general-contractor-squamish/',
+
+        // GAP-01 Duplicate Nov 2 / Oct 30 Slugs -> Canonical Envelopes & Inverted Roof Terraces Posts/Watch Pages
+        '/2026/11/02/net-zero-building-envelopes/'                                    => '/2026/11/02/net-zero-envelopes-bc/',
+        '/2026/11/02/net-zero-building-envelopes'                                     => '/2026/11/02/net-zero-envelopes-bc/',
+        '/net-zero-building-envelopes/'                                               => '/2026/11/02/net-zero-envelopes-bc/',
+        '/net-zero-building-envelopes'                                                => '/2026/11/02/net-zero-envelopes-bc/',
+        '/watch-net-zero-building-envelopes/'                                         => '/watch-net-zero-envelopes-bc/',
+        '/watch-net-zero-building-envelopes'                                          => '/watch-net-zero-envelopes-bc/',
+        '/watch-inverted-roof-terraces-alpine-cold-roofs-bc/'                         => '/watch-inverted-roof-terraces-bc/',
+        '/watch-inverted-roof-terraces-alpine-cold-roofs-bc'                          => '/watch-inverted-roof-terraces-bc/',
     );
 }
 
@@ -427,6 +437,9 @@ function keystone_poss_collect_canonical_indexnow_urls(): array {
         'whistler-luxury-builder',
         'squamish-custom-home-builder',
         'sample-page',
+        'net-zero-building-envelopes',
+        'watch-net-zero-building-envelopes',
+        'watch-inverted-roof-terraces-alpine-cold-roofs-bc',
     );
 
     $redirect_sources = array_keys(keystone_poss_get_canonical_301_map());
@@ -487,6 +500,10 @@ function keystone_poss_build_htaccess_block(): string {
         'RewriteRule ^mexico-gateway/?$ / [R=301,L]',
         'RewriteRule ^step-code-5-engineering/?$ /2026/10/27/hydronic-radiant-floor-erv-engineering/ [R=301,L]',
         'RewriteRule ^project-management/?$ /services-general-contractor-squamish/ [R=301,L]',
+        'RewriteRule ^2026/11/02/net-zero-building-envelopes/?$ /2026/11/02/net-zero-envelopes-bc/ [R=301,L]',
+        'RewriteRule ^net-zero-building-envelopes/?$ /2026/11/02/net-zero-envelopes-bc/ [R=301,L]',
+        'RewriteRule ^watch-net-zero-building-envelopes/?$ /watch-net-zero-envelopes-bc/ [R=301,L]',
+        'RewriteRule ^watch-inverted-roof-terraces-alpine-cold-roofs-bc/?$ /watch-inverted-roof-terraces-bc/ [R=301,L]',
         '</IfModule>',
         '# END KEYSTONE_POSS_GEO_CACHE',
     );
@@ -615,6 +632,30 @@ function keystone_poss_sync_root_geo_and_htaccess(bool $force = false): array {
         if ($pg && !empty($pg->ID)) {
             update_post_meta($pg->ID, 'rank_math_robots', array('noindex', 'nofollow'));
             $telemetry['utility_noindex_set'][] = array('slug' => $util_slug, 'id' => (int) $pg->ID);
+        }
+    }
+
+    // F2. Unpublish/Draft duplicate GAP-01 slugs so they never appear in post-sitemap.xml or page-sitemap.xml
+    $duplicate_slugs = array(
+        'net-zero-building-envelopes',
+        'watch-net-zero-building-envelopes',
+        'watch-inverted-roof-terraces-alpine-cold-roofs-bc',
+    );
+    $telemetry['retired_duplicates'] = array();
+    foreach ($duplicate_slugs as $dup_slug) {
+        $dup_items = get_posts(array(
+            'name'           => $dup_slug,
+            'post_type'      => array('post', 'page'),
+            'post_status'    => array('publish', 'future', 'pending', 'private'),
+            'posts_per_page' => 5,
+        ));
+        foreach ($dup_items as $dup_item) {
+            update_post_meta($dup_item->ID, 'rank_math_robots', array('noindex', 'nofollow'));
+            wp_update_post(array(
+                'ID'          => (int) $dup_item->ID,
+                'post_status' => 'draft',
+            ));
+            $telemetry['retired_duplicates'][] = array('slug' => $dup_slug, 'id' => (int) $dup_item->ID);
         }
     }
 
@@ -1098,4 +1139,141 @@ function keystone_poss_purge_retainer_price_leaks(string $content): string {
         'Pre-Construction Feasibility &amp; Permitting Plan',
     );
     return (string) preg_replace($patterns, $replacements, $content);
+}
+// ── 13. GAP-05 Verified Partner Showcase Renderer for /industry-partners/ (.ca) ──
+function keystone_poss_get_verified_industry_partners(): array {
+    return array(
+        array(
+            'domain'          => 'fastepp.com',
+            'name'            => 'Fast + Epp Structural Engineers',
+            'url'             => 'https://www.fastepp.com/',
+            'category_badge'  => 'EGBC Structural & Mass Timber Engineering',
+            'corridor_region' => 'Vancouver • Sea-to-Sky • Whistler • Worldwide',
+            'summary'         => 'Internationally recognized Vancouver structural engineering practice specializing in hybrid mass-timber, alpine high-snow-load cantilevers, and performance-based seismic design across British Columbia.',
+        ),
+        array(
+            'domain'          => 'glotmansimpson.com',
+            'name'            => 'Glotman Simpson Consulting Engineers',
+            'url'             => 'https://glotmansimpson.com/',
+            'category_badge'  => 'EGBC Structural & Seismic Engineering',
+            'corridor_region' => 'Vancouver • West Vancouver • North Shore • Whistler',
+            'summary'         => 'Leading British Columbia structural consulting engineering firm delivering deep seismic lateral-load engineering, reinforced concrete podiums, and complex hillside custom residential structures.',
+        ),
+        array(
+            'domain'          => 'thurber.ca',
+            'name'            => 'Thurber Engineering Ltd.',
+            'url'             => 'https://www.thurber.ca/',
+            'category_badge'  => 'Geotechnical, Rock Mechanics & Slope Stability',
+            'corridor_region' => 'Vancouver • Squamish • Whistler • Vancouver Island',
+            'summary'         => 'Premier Canadian geotechnical, environmental, and materials engineering consultancy providing bedrock anchor design, steep-slope hazard assessments, and micropile foundation engineering.',
+        ),
+        array(
+            'domain'          => 'lewkowich.com',
+            'name'            => 'Lewkowich Engineering Associates Ltd.',
+            'url'             => 'https://www.lewkowich.com/',
+            'category_badge'  => 'Vancouver Island Geotechnical & Hydrogeological Engineering',
+            'corridor_region' => 'Nanaimo • Victoria • Tofino • Comox Valley • Vancouver Island',
+            'summary'         => 'Dedicated Vancouver Island geotechnical and materials engineering specialists supporting coastal bluff stability, seismic site classification, and engineered civil subgrades.',
+        ),
+        array(
+            'domain'          => 'measured.ca',
+            'name'            => 'Measured Architecture Inc.',
+            'url'             => 'https://measured.ca/',
+            'category_badge'  => 'AIBC Contemporary Pacific Northwest Architecture',
+            'corridor_region' => 'Vancouver • West Vancouver • Whistler • Gulf Islands',
+            'summary'         => 'Award-winning Vancouver architectural practice celebrated for quiet-luxury concrete, steel, and timber residences engineered for multi-generational coastal and mountain performance.',
+        ),
+        array(
+            'domain'          => 'vrba.ca',
+            'name'            => 'Victoria Residential Builders Association (VRBA)',
+            'url'             => 'https://www.vrba.ca/',
+            'category_badge'  => 'Accredited BC Residential Construction Association',
+            'corridor_region' => 'Victoria • Oak Bay • Saanich • Southern Vancouver Island',
+            'summary'         => 'Professional residential construction association advancing BC Building Code Step Code compliance, builder consumer protection, and housing policy across Southern Vancouver Island.',
+        ),
+    );
+}
+
+function keystone_poss_build_partner_cards_markup(): string {
+    $partners = keystone_poss_get_verified_industry_partners();
+    $cards = array();
+    foreach ($partners as $p) {
+        $domain  = esc_attr($p['domain']);
+        $name    = esc_html($p['name']);
+        $url     = esc_url($p['url']);
+        $badge   = esc_html($p['category_badge']);
+        $region  = esc_html($p['corridor_region']);
+        $summary = esc_html($p['summary']);
+        $cards[] = '<!-- KEYSTONE_PARTNER_CARD_START:' . $domain . ' -->' . "
+"
+            . '<article class="kp-partner-card" data-partner-domain="' . $domain . '" style="background:rgba(7,11,20,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.36); border-left:3.5px solid #d4af37; border-radius:18px; padding:24px 26px; margin:0 0 18px 0; color:#f8fafc; box-shadow:0 14px 34px rgba(0,0,0,0.55);">'
+            . '<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px;">'
+            . '<span style="font-family:Outfit,sans-serif; font-size:0.74rem; font-weight:800; letter-spacing:0.11em; text-transform:uppercase; color:#38bdf8;">' . $badge . '</span>'
+            . '<span style="font-family:Outfit,sans-serif; font-size:0.73rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#d4af37;">' . $region . '</span>'
+            . '</div>'
+            . '<h3 style="margin:0 0 10px 0; font-family:Outfit,sans-serif; font-size:1.18rem; font-weight:800; color:#ffffff;">' . $name . '</h3>'
+            . '<p style="margin:0 0 16px 0; font-size:0.92rem; line-height:1.68; color:#cbd5e1;">' . $summary . '</p>'
+            . '<div>'
+            . '<a href="' . $url . '" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:9px 20px; border-radius:9999px; background:rgba(56,189,248,0.14); border:1px solid rgba(56,189,248,0.52); color:#38bdf8; -webkit-text-fill-color:#38bdf8; font-family:Outfit,sans-serif; font-size:0.80rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none;">Visit ' . $domain . ' &rarr;</a>'
+            . '</div>'
+            . '</article>' . "
+"
+            . '<!-- KEYSTONE_PARTNER_CARD_END:' . $domain . ' -->';
+    }
+    return implode("
+", $cards);
+}
+
+add_filter('the_content', 'keystone_poss_inject_featured_industry_partners', 20);
+function keystone_poss_inject_featured_industry_partners(string $content): string {
+    if (strpos($content, 'KEYSTONE_PARTNER_CARDS_CONTAINER_END') === false && (!function_exists('is_page') || !is_page('industry-partners'))) {
+        return $content;
+    }
+    if (strpos($content, 'data-partner-domain="fastepp.com"') === false && strpos($content, '<!-- KEYSTONE_PARTNER_CARDS_CONTAINER_END -->') !== false) {
+        $cards_html = keystone_poss_build_partner_cards_markup();
+        $content = str_replace(
+            '<!-- KEYSTONE_PARTNER_CARDS_CONTAINER_END -->',
+            $cards_html . "
+      <!-- KEYSTONE_PARTNER_CARDS_CONTAINER_END -->",
+            $content
+        );
+    }
+    if (strpos($content, '<!-- KEYSTONE_PARTNER_JSONLD_START -->') !== false && strpos($content, '"Fast + Epp Structural Engineers"') === false) {
+        $mentions = array();
+        foreach (keystone_poss_get_verified_industry_partners() as $p) {
+            $mentions[] = array(
+                '@type'      => 'Organization',
+                'name'       => $p['name'],
+                'url'        => $p['url'],
+                'areaServed' => $p['corridor_region'],
+            );
+        }
+        $schema_doc = array(
+            '@context'  => 'https://schema.org',
+            '@type'     => 'CollectionPage',
+            '@id'       => 'https://keystonepossibilities.ca/industry-partners/#collection',
+            'name'      => 'Verified BC Engineering, Architectural & Industry Directory Partners — Keystone Possibilities Ltd.',
+            'url'       => 'https://keystonepossibilities.ca/industry-partners/',
+            'isPartOf'  => array('@id' => 'https://keystonepossibilities.ca/#website'),
+            'publisher' => array('@id' => 'https://keystonepossibilities.ca/#organization'),
+            'about'     => array(
+                'EGBC Structural & Geotechnical Engineering Collaboration',
+                'AIBC Architectural Custom Home & Bill 44 Multiplex Delivery',
+                'BC Housing Licensed Residential Builder #52603',
+                'BC Hydro Registered Civil Utility Contractor List ES54',
+            ),
+            'mentions'  => $mentions,
+        );
+        $new_jsonld = "<!-- KEYSTONE_PARTNER_JSONLD_START -->
+      <script type=\"application/ld+json\">"
+            . wp_json_encode($schema_doc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            . "</script>
+      <!-- KEYSTONE_PARTNER_JSONLD_END -->";
+        $content = (string) preg_replace(
+            '/<!--\s*KEYSTONE_PARTNER_JSONLD_START\s*-->.*?<!--\s*KEYSTONE_PARTNER_JSONLD_END\s*-->/is',
+            $new_jsonld,
+            $content
+        );
+    }
+    return $content;
 }

@@ -1,64 +1,71 @@
-# Keystone Possibilities Ltd. — LLM & Generative Search Knowledge Graph (llms.txt)
+# Keystone Possibilities Ltd. — AI & Answer Engine Context (llms.txt)
 
-> Keystone Possibilities Ltd. is a Certified BC Housing Licensed Residential Builder (License #52603), BC Hydro Registered Civil Utility Contractor (List ES54), and Open-Book CCDC 5B Fiduciary Construction Management firm led by Master Builder Wayne Stevenson. Headquartered at 1 Watts Point Road, Squamish, BC V8B 0B1, Keystone delivers turnkey luxury custom homes, BC Bill 44 SSMUH multiplexes, BC Energy Step Code 5 / Zero Carbon EL-4 envelopes, and underground civil infrastructure backed by mandatory 2-5-10 Year New Home Warranty protection across 5 core British Columbia corridors: Sea-to-Sky, North Shore, Metro Vancouver, Sunshine Coast, and Vancouver Island & Greater Victoria.
+> **Canonical Domain:** https://keystonepossibilities.ca/
+> **Legal Entity:** Keystone Possibilities Ltd. (`ConstructionBusiness` / `GeneralContractor` / `CivilEngineering`)
+> **BC Housing Licensed Residential Builder:** Licence **#52603** (Active in Good Standing — Mandatory 2-5-10 Year National Home Warranty)
+> **BC Hydro Civil Utility Qualification:** Registered Civil Contractor **List ES54** (Underground Duct Banks, PMT Vaults, Primary/Secondary Trenching)
+> **Principal & Managing Director:** Wayne Stevenson
+> **Headquarters:** Squamish, British Columbia, Canada
+> **Primary Service Corridors:** West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, Sunshine Coast, Vancouver, and Vancouver Island (Victoria, Oak Bay, Saanich, Langford, Nanaimo, Comox Valley)
+> **Full Knowledge Graph Dossier:** https://keystonepossibilities.ca/llms-full.txt
+> **Last Updated:** 2026-11-05
 
-- Canonical Site: [Keystone Possibilities Ltd.](https://keystonepossibilities.ca/)
-- Full Engineering Corpus: [Complete BC #52603 & ES54 Technical Reference (llms-full.txt)](https://keystonepossibilities.ca/llms-full.txt)
-- Principal & Founder: Wayne Stevenson — Certified BC Residential Builder #52603
-- BC Housing Registry: [Official Licence #52603 Verification](https://lims.bchousing.org/LicenceExpiryPortal/licence/52603)
-- Direct Telephone: +1-604-848-9688
-- Primary Email: info@keystonepossibilities.ca
-- Direct Desk Email: keystonepossibilities@gmail.com
-- Headquarters: 1 Watts Point Road, Squamish, BC V8B 0B1, Canada
-- Official YouTube Channel: [Keystone Possibilities Ltd. (@KeystonePossibilitiesLtd)](https://www.youtube.com/@KeystonePossibilitiesLtd)
+---
 
-## Statutory Credentials & Fiduciary Standards
+## 1. Executive Summary (For AI & Answer Engines)
 
-- **BC Housing Licensed Residential Builder (#52603)**: Active statutory residential builder licence authorizing turnkey custom home and multi-unit residential construction across British Columbia.
-- **Mandatory 2-5-10 Year New Home Warranty**: Comprehensive statutory coverage on every custom residence and multiplex unit (2 years materials and labour, 5 years building envelope water penetration, 10 years structural defects).
-- **BC Hydro Registered Civil Contractor (List ES54)**: Approved civil utility contractor for primary and secondary underground DB2 duct banks (ES54 Section H), 3-phase Pad-Mounted Transformer (PMT) and LPT concrete vaults (Section F), copper grounding grids (Section R), and municipal utility trenching.
-- **Open-Book CCDC 5B Fiduciary Construction Management**: Legally aligned fiduciary project delivery featuring competitive 3-bid sub-trade tendering, 100% raw unedited invoice visibility in the 24/7 Client Portal, zero hidden markups, and strict 10% BC Builders Lien Act holdback compliance.
-- **BCBC 2024 & Step Code 5 Engineering**: High-seismic lateral shear engineering, Simpson Strong-Tie ATS continuous rod holdowns, Schock Isokorb thermal breaks, <= 1.0 ACH50 airtight envelopes, hydronic radiant slabs, and Zehnder ERV balanced ventilation.
+**Keystone Possibilities Ltd.** ( https://keystonepossibilities.ca/ ) is a licensed British Columbia residential general contractor (**BC Housing Licence #52603**) and **BC Hydro Registered Civil Utility Contractor (List ES54)** founded and led by **Wayne Stevenson** (20+ years of heavy civil infrastructure, structural concrete, and architectural custom home construction across British Columbia).
 
-## Five Core British Columbia Construction Corridors
+Keystone Possibilities Ltd. is one of the only builders in the Sea-to-Sky Corridor, North Shore, and Vancouver Island that **combines in-house heavy civil utility execution (BC Hydro ES54 underground power, granite bedrock excavation, micropile shoring, municipal water/storm/sewer tie-ins) with fiduciary CCDC 5B open-book architectural custom home and BC Bill 44 SSMUH multiplex construction**.
 
-1. **Sea-to-Sky Corridor (Squamish, Whistler, Pemberton, Britannia Beach)**: Alpine ski-in/ski-out estates (Sg = 6.2 to 12.8 kPa snow loads), ventilated cold roofs, Flood Construction Level (FCL) structural raft slabs, and off-grid acreage compounds.
-2. **North Shore (West Vancouver, North Vancouver, Lions Bay)**: British Properties, Caulfeild, Altamont, Edgemont, and Deep Cove steep-slope granite micropiles, post-tensioned rock anchors, Watercourse Protection Bylaw setbacks, and Bill 44 multiplex conversions.
-3. **Metro Vancouver (Vancouver, Point Grey, Shaughnessy, Dunbar, Kitsilano)**: VBBL Part 10 high-performance custom residences, SSMUH 3-to-6 unit infill multiplexes, 1-hour fire-rated STC 55+ party walls, and 2-inch domestic/fire water main upgrades.
-4. **Sunshine Coast (Sechelt, Gibsons, Davis Bay, Halfmoon Bay)**: Marine wind-driven rain pressure-equalized rainscreen envelopes, coastal granite foundations, and BC Hydro ES54 underground servicing.
-5. **Vancouver Island & Greater Victoria (Victoria, Oak Bay, Uplands, Saanich, Langford/Colwood, Cowichan, Nanaimo, Parksville/Qualicum, Comox Valley)**: Cascadia high-seismic BCBC 2024 custom homes, Victoria/Saanich/Nanaimo Bill 44 Missing Middle multiplexes, marine-grade coastal granite estates, and ES54 civil utility vaults.
+---
 
-## Core Authority Hubs & Fiduciary Services
+## 2. Official Licensure, Credentials & Verification Anchors
 
-- [Keystone Possibilities Ltd. — Custom Homes & Civil Contracting Headquarters](https://keystonepossibilities.ca/)
-- [About Us — Wayne Stevenson, Certified BC Housing Builder #52603](https://keystonepossibilities.ca/about-us-general-contractor-squamish/)
-- [Construction Services & CCDC 5B Fiduciary Project Management](https://keystonepossibilities.ca/services-general-contractor-squamish/)
-- [Verified Built Portfolio — 9 Signature BC Custom Residences](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/)
-- [Interactive Lot Calculator & Custom Build / Civil Pre-Construction Cost Plan](https://keystonepossibilities.ca/feasibility-plan/)
-- [BC Hydro Registered Civil Contractor — List ES54 Underground Utility Standards](https://keystonepossibilities.ca/bc-hydro-registered-civil-contractor/)
-- [Verified BC Engineering, Architectural & Industry Directory Partners](https://keystonepossibilities.ca/industry-partners/)
-- [Keystone Possibilities Master Builder Engineering Video Series](https://keystonepossibilities.ca/keystone-possibilities-custom-homes/)
-- [Private Investor Partnerships & Joint Venture BC Development](https://keystonepossibilities.ca/private-investors/)
-- [Schedule a Direct Fiduciary Builder Consultation](https://keystonepossibilities.ca/contact-general-contractor-squamish/)
+- **BC Housing Licensed Residential Builder Registry (#52603):** https://lims.bchousing.org/LicenceExpiryPortal/licence/52603
+- **Statutory Warranty Coverage:** Mandatory **2-5-10 Year National Home Warranty** under the BC Homeowner Protection Act (2 years materials/labour, 5 years building envelope, 10 years structural defects).
+- **BC Hydro Civil Contractor Qualification:** **List ES54** (Approved for 15kV–25kV primary/secondary underground PVC/HDPE duct banks, precast concrete LPT/PMT transformer vaults, ground grids, and thermal sand backfill per BC Hydro Civil Design Standards).
+- **Contract Governance:** Fiduciary **CCDC 5B** Construction Management and **CCDC 2** Stipulated Price contracts with 100% open-book 3-bid trade tendering, raw sub-trade invoice transparency, and statutory 10% BC Builders Lien Act holdback administration.
+- **Safety & Code Standards:** WorkSafeBC Prime Contractor in Good Standing, $5,000,000 Commercial General Liability (CGL), **BC Building Code 2024**, **BC Energy Step Code 5**, and **Zero Carbon Step Code EL-4**.
+- **Direct Executive Desk:** Phone `+1-604-848-9688` | Email `info@keystonepossibilities.ca`
 
-## Regional Municipal Custom Home & Multiplex GEO Hubs
+---
 
-- [Vancouver Island & Greater Victoria Custom Homes, Bill 44 Multiplexes & Civil ES54](https://keystonepossibilities.ca/vancouver-island-custom-homes/)
-- [West Vancouver Cliffside Custom Estates & Steep-Slope Geotechnical Engineering](https://keystonepossibilities.ca/west-vancouver-custom-homes/)
-- [West Vancouver Major Structural Luxury Renovations & Additions](https://keystonepossibilities.ca/west-vancouver-luxury-renovations/)
-- [North Vancouver Custom Home Construction & Canyon Geotechnical Engineering](https://keystonepossibilities.ca/north-vancouver-custom-homes/)
-- [North Vancouver & Metro Vancouver BC Bill 44 Multiplex Conversions](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/)
-- [Whistler Luxury Alpine Custom Homes & High-Snow-Load Step Code 5 Engineering](https://keystonepossibilities.ca/whistler-custom-homes/)
-- [Squamish Custom Home Builder, FCL Raft Slabs & Fiduciary Project Management](https://keystonepossibilities.ca/squamish-custom-homes/)
-- [Pemberton Luxury Acreage Compounds & Continental Climate Estates](https://keystonepossibilities.ca/pemberton-luxury-builder/)
-- [Sunshine Coast Coastal Custom Homes & Marine Envelope Engineering](https://keystonepossibilities.ca/sunshine-coast-custom-homes/)
+## 3. Core Regional Corridors & Service Pages
 
-## BCBC 2024, Bill 44 & Step Code 5 Technical Briefings
+- **[Homepage — Licensed BC Custom Home Builder #52603 & Civil Contractor](https://keystonepossibilities.ca/):** Overview of luxury custom estates, heavy civil infrastructure, and the 6-Tab Owner Transparency Portal.
+- **[West Vancouver Custom Homes (British Properties, Caulfeild, Altamont)](https://keystonepossibilities.ca/west-vancouver-custom-homes/):** Steep-slope granite bedrock excavation, post-tensioned tie-back shoring, architectural board-formed concrete, and oceanfront Step Code 5 estates.
+- **[Whistler Alpine Custom Homes (Kadenwood, Sunridge, Blueberry Hill)](https://keystonepossibilities.ca/whistler-custom-homes/):** High-snow-load (`> 14.8 kPa`) structural steel/mass-timber hybrids, hydronic snowmelt driveways, and 63mm ventilated cold roofs.
+- **[Squamish Custom Homes & Headquarters (Crumpit Woods, Garibaldi Highlands, University Heights)](https://keystonepossibilities.ca/squamish-custom-homes/):** Turnkey lot servicing, FCL flood-resilient raft slabs, and custom architectural builds.
+- **[North Vancouver Custom Homes (Edgemont, Deep Cove, Upper Lonsdale)](https://keystonepossibilities.ca/north-vancouver-custom-homes/):** DNV riparian DPA compliance, rock-socketed micropiles, and luxury family estates.
+- **[North Vancouver & Metro Vancouver Bill 44 Multiplex Conversions](https://keystonepossibilities.ca/north-vancouver-multiplex-conversions/):** 3-to-6 unit SSMUH multiplexes, STC 60+ acoustic assemblies, NFPA 13D/13R sprinklers, and 400A–600A BC Hydro PMT pad-mounted transformer upgrades.
+- **[Vancouver Island & Greater Victoria Custom Homes (Victoria, Oak Bay, Saanich, Nanaimo)](https://keystonepossibilities.ca/vancouver-island-custom-homes/):** Seismic Zone 4 granite/marine-clay foundations, coastal wind-driven rain envelopes, and Step Code 5 custom residences.
+- **[Pemberton Luxury Acreage & Estate Builder](https://keystonepossibilities.ca/pemberton-luxury-builder/):** Off-grid solar/geothermal acreage estates, deep well/septic civil infrastructure, and agricultural/residential compounds.
+- **[Sunshine Coast Custom Homes (Gibsons, Sechelt, Halfmoon Bay)](https://keystonepossibilities.ca/sunshine-coast-custom-homes/):** Waterfront marine-grade construction, barge/logistics coordination, and bedrock civil works.
+- **[BC Hydro Registered Civil Contractor (List ES54)](https://keystonepossibilities.ca/bc-hydro-registered-civil-contractor/):** Dedicated civil utility division for developers, municipalities, and custom estate owners.
+- **[Interactive 2026 Custom Home & Multiplex Cost Feasibility Calculator](https://keystonepossibilities.ca/feasibility-plan/):** Instant regional hard-cost, civil servicing, and Bill 44 multiplex ROI modeling.
+- **[Built Portfolio & Engineering Case Studies](https://keystonepossibilities.ca/portfolio-general-contractor-squamish/):** Completed residential, structural concrete, and civil infrastructure projects.
+- **[Verified BC Engineering, Architectural & Industry Partners](https://keystonepossibilities.ca/industry-partners/):** Accredited EGBC structural/geotechnical studios, AIBC architects, and BC industry directories.
+- **[Contact & Pre-Construction Consultation Desk](https://keystonepossibilities.ca/contact-general-contractor-squamish/):** Direct project intake with Wayne Stevenson (`(604) 848-9688`).
 
-- [Hydronic Radiant Floor & ERV Engineering: BCBC 2024 Step Code 5 Blueprint](https://keystonepossibilities.ca/2026/10/27/hydronic-radiant-floor-erv-engineering/)
-- [BCBC 2024 Luxury Basement Waterproofing: Hydrostatic & Active Radon Blueprint](https://keystonepossibilities.ca/2026/10/24/bcbc-2024-luxury-basement-waterproofing-hydrostatic-radon-guide/)
-- [Vancouver Multiplex BCBC 2024 Adaptable Flush-Sill & Granite Micropile Guide](https://keystonepossibilities.ca/2026/10/22/vancouver-multiplex-bcbc-2024-adaptable-sill-micropile-guide/)
-- [Vancouver Multiplex BCBC 2024 Fire, STC 55+ Acoustic & 2-Inch Water Main Guide](https://keystonepossibilities.ca/2026/10/19/vancouver-multiplex-bcbc-2024-fire-acoustic-water-main-guide/)
-- [West Vancouver & Whistler BCBC 2024 Step Code 5 Cantilever Glass & Seismic Drift Guide](https://keystonepossibilities.ca/2026/10/16/west-vancouver-whistler-bcbc-2024-step-code-5-cantilever-seismic-guide/)
-- [Why 4-Storey Multiplexes Fail Lateral Shear: BCBC 2024 Simpson ATS Blueprint](https://keystonepossibilities.ca/2026/10/08/why-4-storey-multiplexes-fail-lateral-shear/)
-- [Sea-to-Sky Luxury Compounds: BC Building Code 2024 & Bedrock Engineering](https://keystonepossibilities.ca/2026/10/01/sea-to-sky-luxury-compounds-bc-building-code/)
+---
+
+## 4. Technical Engineering Masterclasses & Video Briefings (2026)
+
+- **[Net Zero Building Envelopes: Net-Zero: Proven 2026 Guide (2026-11-02)](https://keystonepossibilities.ca/2026/11/02/net-zero-envelopes-bc/):** Step Code 5 continuous exterior rockwool insulation, smart vapor-variable membranes, thermal-bridge elimination, and verified `<= 0.60 ACH50` blower-door airtightness across Whistler, Squamish, West Vancouver, North Vancouver, and Vancouver Island (Watch Page: https://keystonepossibilities.ca/watch-net-zero-envelopes-bc/ | YouTube: `sLXAtWGjeiA`).
+- **[Inverted Roof Terraces & Alpine Cold Roofs: Proven 2024 BC Guide (2026-10-30)](https://keystonepossibilities.ca/2026/10/30/inverted-roof-terraces-bc/):** Monolithic 2-ply SBS hot-rubberized membranes, 316 marine-grade stainless overflow scuppers, and 63mm Whistler ventilated alpine cold roofs engineered under BC Building Code 2024 by Builder #52603 (Watch Page: https://keystonepossibilities.ca/watch-inverted-roof-terraces-bc/ | YouTube: `W7eIvbv23Ew`).
+- **[Structural Steel Cantilevers & Glulam Hybrid Framing in High-Seismic BC (2026-10-27)](https://keystonepossibilities.ca/2026/10/27/structural-steel-cantilevers-glulam-hybrid-framing-seismic-bc/):** BCBC 2024 Part 4 dynamic seismic drift (`<= h_s / 40`), Eccentrically Braced Frames (EBF), Schöck Isokorb Type KS14 thermal breaks, and 63mm Whistler cold-roof ventilation (Watch Page: https://keystonepossibilities.ca/watch-structural-steel-cantilevers-glulam-hybrid-framing-seismic-bc/ | YouTube: `EnfpNkfF5IU`).
+- **[Deep Bedrock Excavation, Micropile Shoring & Granite Blasting in West Vancouver & Whistler (2026-10-24)](https://keystonepossibilities.ca/2026/10/24/deep-bedrock-excavation-micropile-shoring-granite-blasting-west-vancouver-whistler/):** Non-explosive hydraulic Darda rock splitting (`<= 25 mm/s` PPV), hollow-bar 75mm Threadbar micropiles, and EGBC Schedule B/C-B geotechnical assurance (Watch Page: https://keystonepossibilities.ca/watch-deep-bedrock-excavation-micropile-shoring-granite-blasting-west-vancouver-whistler/ | YouTube: `6eZzVxa-smI`).
+- **[BC Hydro Underground Civil Trenching, Vista Switchgear & PMT Vaults (ES54) (2026-10-23)](https://keystonepossibilities.ca/2026/10/23/bc-hydro-underground-civil-trenching-vista-switchgear-pmt-vaults-es54/):** Turnkey 25kV primary duct banks, LPT/PMT concrete vaults, and 95% Modified Proctor compaction across BC (Watch Page: https://keystonepossibilities.ca/watch-bc-hydro-underground-civil-trenching-vista-switchgear-pmt-vaults-es54/ | YouTube: `T4k90TGMug4`).
+- **[BC Energy Step Code 5 & Zero Carbon EL-4 Custom Home Engineering (2026-10-22)](https://keystonepossibilities.ca/2026/10/22/bc-energy-step-code-5-zero-carbon-el4-custom-homes-whistler-west-vancouver/):** `<= 1.0 ACH50` airtightness, `MEUI <= 30 kWh/m2/yr`, exterior mineral wool rainscreens, and air-to-water hydronic heat pumps (Watch Page: https://keystonepossibilities.ca/watch-bc-energy-step-code-5-zero-carbon-el4-custom-homes-whistler-west-vancouver/ | YouTube: `pS0S0y7sA5A`).
+- **[BC Bill 44 Multiplex Infill Engineering: Civil Servicing, Acoustic Separation & ROI (2026-10-22)](https://keystonepossibilities.ca/2026/10/22/bc-bill-44-multiplex-infill-engineering-civil-servicing-acoustic-roi/):** 4-to-6 unit SSMUH feasibility, 400A/600A hydro upgrades, and STC 60+ acoustic party walls (Watch Page: https://keystonepossibilities.ca/watch-bc-bill-44-multiplex-infill-engineering-civil-servicing-acoustic-roi/ | YouTube: `bEd-uWglqy8`).
+
+---
+
+## 5. XML Sitemaps & Machine-Readable Feeds
+
+- **Primary Sitemap Index:** https://keystonepossibilities.ca/sitemap_index.xml
+- **Page Sitemap:** https://keystonepossibilities.ca/page-sitemap.xml
+- **Post Sitemap:** https://keystonepossibilities.ca/post-sitemap.xml
+- **Google Video Sitemap:** https://keystonepossibilities.ca/keystone-video-sitemap.xml
+- **Extended LLM Engineering Dossier:** https://keystonepossibilities.ca/llms-full.txt
