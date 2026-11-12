@@ -1,0 +1,483 @@
+/**
+ * Keystone Possibilities v3.0 — Flagship Front-Page Quiet Luxury Architecture
+ * Split Hero, Quick Lot Audit Card, Cinema Briefing Facade, Portfolio Reel #1,
+ * 17-Certificate Museum Reel #2, Interactive Lot & Cost Engine, Client Portal Showcase
+ */
+
+/* =========================================================================
+   1. SPLIT ASYMMETRIC FLAGSHIP HERO
+   ========================================================================= */
+.kp-hero-section,
+.hero-flagship {
+  position: relative;
+  padding: clamp(28px, 4vw, 52px) 0 clamp(44px, 5vw, 68px);
+  border-bottom: 1px solid var(--gold-hairline);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(212, 175, 55, 0.08) 0%, transparent 44%),
+    radial-gradient(circle at 82% 24%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+    var(--bg-obsidian);
+}
+
+.kp-hero-grid,
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  gap: clamp(22px, 3vw, 38px);
+  align-items: start;
+}
+
+.kp-hero-copy {
+  min-width: 0;
+}
+
+/* Quick Lot Feasibility Intake Card inside Hero */
+.kp-quick-intake-card,
+.hero-intake-card {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: var(--radius-card);
+  background: linear-gradient(160deg, rgba(13, 21, 38, 0.95), rgba(4, 7, 13, 0.98));
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  box-shadow: var(--shadow-luxury);
+}
+
+.kp-intake-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kp-intake-row .kp-input {
+  flex: 1 1 220px;
+}
+
+.kp-sample-chips,
+.sample-parcel-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.kp-sample-chip,
+.sample-chip {
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  font-size: 0.71rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.kp-sample-chip:hover,
+.sample-chip:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+/* Right Column: Cinema Watch Player + 4 Clickable Clip Chapters + Principal Inset */
+.kp-hero-cinema-col,
+.hero-watch-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kp-cinema-frame,
+.cinema-player-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #02050b;
+  border: 1px solid rgba(212, 175, 55, 0.44);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.82), 0 0 28px rgba(212, 175, 55, 0.14);
+}
+
+.kp-cinema-poster,
+.cinema-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.04) brightness(0.84);
+  transition: transform 0.45s ease;
+}
+
+.kp-cinema-frame:hover .kp-cinema-poster,
+.cinema-player-frame:hover .cinema-poster-img {
+  transform: scale(1.03);
+}
+
+.kp-cinema-play-btn,
+.cinema-center-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 10px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--gold-light);
+  background: rgba(4, 7, 13, 0.86);
+  backdrop-filter: blur(12px);
+  color: var(--text-ivory);
+  cursor: pointer;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.80), 0 0 24px rgba(212, 175, 55, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kp-cinema-play-btn:hover,
+.cinema-center-play:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.88), 0 0 32px rgba(212, 175, 55, 0.44);
+}
+
+.kp-play-orb,
+.play-orb {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3d98b 0%, #d4af37 52%, #9e7b18 100%);
+  color: #04070d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.94rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.kp-clip-chapters,
+.clip-moments-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.kp-clip-btn,
+.clip-pill-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border-radius: 11px;
+  background: rgba(13, 21, 38, 0.86);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+  transition: all 0.18s ease;
+}
+
+.kp-clip-btn:hover,
+.kp-clip-btn.is-active,
+.clip-pill-btn:hover,
+.clip-pill-btn.active {
+  border-color: var(--gold-primary);
+  background: linear-gradient(145deg, rgba(212, 175, 55, 0.18), rgba(13, 21, 38, 0.95));
+  color: var(--text-ivory);
+}
+
+.kp-wayne-inset,
+.wayne-blueprints-inset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 15px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(13, 21, 38, 0.92), rgba(4, 7, 13, 0.96));
+  border: 1px solid var(--gold-hairline);
+}
+
+.kp-wayne-inset-thumb,
+.wayne-inset-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1.5px solid var(--gold-primary);
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   2. SIGNATURE PORTFOLIO REEL CARDS (9 RESIDENCES + 2 CIVIL)
+   ========================================================================= */
+.kp-portfolio-card,
+.portfolio-card {
+  flex: 0 0 408px;
+  max-width: calc(100vw - 40px);
+  scroll-snap-align: start;
+  background: linear-gradient(170deg, rgba(13, 21, 38, 0.95), rgba(4, 7, 13, 0.99));
+  border: 1px solid var(--gold-hairline);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.kp-portfolio-card[hidden],
+.portfolio-card[hidden] {
+  display: none !important;
+}
+
+.kp-portfolio-card:hover,
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.78), 0 0 22px rgba(212, 175, 55, 0.16);
+}
+
+.kp-portfolio-media,
+.portfolio-media {
+  position: relative;
+  height: 244px;
+  overflow: hidden;
+  background: #04070d;
+}
+
+.kp-portfolio-media img,
+.portfolio-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.kp-portfolio-card:hover .kp-portfolio-media img,
+.portfolio-card:hover .portfolio-media > img {
+  transform: scale(1.04);
+}
+
+.kp-portfolio-corridor-badge,
+.portfolio-corridor-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  background: rgba(4, 7, 13, 0.86);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--gold-hairline);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.kp-portfolio-count-badge,
+.portfolio-photo-count {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(7, 11, 20, 0.86);
+  border: 1px solid var(--cyan-hairline);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--cyan-light);
+}
+
+.kp-portfolio-body,
+.portfolio-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+
+.kp-portfolio-title,
+.portfolio-title {
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  font-weight: 700;
+  color: var(--text-ivory);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.kp-portfolio-loc,
+.portfolio-loc {
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  color: var(--cyan-light);
+}
+
+.kp-portfolio-summary,
+.portfolio-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.54;
+  flex: 1;
+}
+
+.kp-tag-row,
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.kp-spec-chip,
+.spec-tag-chip {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(212, 175, 55, 0.10);
+  border: 1px solid rgba(212, 175, 55, 0.26);
+  color: var(--gold-light);
+}
+
+/* =========================================================================
+   3. MUSEUM CREDENTIAL CARDS (17 VERIFIED CERTIFICATES)
+   ========================================================================= */
+.kp-cert-card,
+.museum-cert-card {
+  flex: 0 0 352px;
+  max-width: calc(100vw - 40px);
+  scroll-snap-align: start;
+  background: linear-gradient(165deg, #0d1526 0%, #060a13 100%);
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.68);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.kp-cert-card[hidden],
+.museum-cert-card[hidden] {
+  display: none !important;
+}
+
+.kp-cert-card:hover,
+.museum-cert-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-light);
+}
+
+.kp-cert-mat,
+.museum-glass-mat {
+  height: 224px;
+  padding: 12px;
+  border-radius: 13px;
+  background: radial-gradient(circle at 50% 45%, rgba(247, 236, 208, 0.14), rgba(13, 21, 38, 0.86) 88%);
+  border: 1px solid var(--gold-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.kp-cert-mat img,
+.museum-glass-mat img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+}
+
+/* =========================================================================
+   4. 9-CORRIDOR LOT & COST FEASIBILITY ENGINE + CCDC 5B SLIDER
+   ========================================================================= */
+.kp-engine-grid,
+.engine-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 26px;
+  margin-top: 26px;
+  align-items: start;
+}
+
+.kp-corridor-grid-9 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.kp-corridor-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-radius: var(--radius-card);
+  background: linear-gradient(168deg, rgba(13, 21, 38, 0.94), rgba(4, 7, 13, 0.98));
+  border: 1px solid var(--gold-hairline);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.kp-corridor-tile:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-primary);
+}
+
+/* Client Portal Preview Showcase */
+.kp-portal-showcase-grid,
+.portal-showcase-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 54fr) minmax(0, 46fr);
+  gap: 28px;
+  margin-top: 24px;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .kp-hero-grid,
+  .hero-split-grid,
+  .kp-engine-grid,
+  .engine-grid,
+  .kp-portal-showcase-grid,
+  .portal-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kp-corridor-grid-9 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .kp-clip-chapters,
+  .clip-moments-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kp-corridor-grid-9 {
+    grid-template-columns: 1fr;
+  }
+
+  .kp-wayne-inset,
+  .wayne-blueprints-inset {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -16,18 +16,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// ── 1. Redirect /client-portal-demo/ and /client-portal/ directly to the Login Portal (/client-login/) ─
-add_action('template_redirect', 'keystone_possibilities_handle_client_portal_demo_route', 1);
-function keystone_possibilities_handle_client_portal_demo_route() {
-    $uri = $_SERVER['REQUEST_URI'] ?? '';
-    $path = parse_url($uri, PHP_URL_PATH) ?? '';
-    if (preg_match('#^/client-portal(-demo|-2)?/?$#i', $path)) {
-        wp_safe_redirect(home_url('/client-login/'), 301);
-        exit;
-    }
-}
+// Note: Legacy /client-portal-demo/ -> /client-login/ 301 redirect is handled centrally in inc/redirects-410.php.
 
-// ── 2. Shortcode: [keystone_client_portal_demo] ──────────────────────────────
+// ── Shortcode: [keystone_client_portal_demo] ──────────────────────────────
 add_shortcode('keystone_client_portal_demo', 'keystone_possibilities_client_portal_demo_shortcode');
 function keystone_possibilities_client_portal_demo_shortcode($atts) {
     ob_start();
@@ -36,9 +27,9 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
         
         <!-- Hero Header -->
         <div style="text-align: center; margin-bottom: 2.5rem; padding: 1rem;">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.4); padding: 5px 16px; border-radius: 9999px; margin-bottom: 14px;">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #00f0ff; box-shadow: 0 0 10px #00f0ff;"></span>
-                <span style="color: #00f0ff; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Radical Transparency • Client Portal Demo</span>
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); padding: 5px 16px; border-radius: 9999px; margin-bottom: 14px;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></span>
+                <span style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Radical Transparency • Client Portal Demo</span>
             </div>
             <h1 style="font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 0.75rem 0; background: linear-gradient(135deg, #ffffff 40%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Live Virtual Jobsite &amp; Portal Tour
@@ -52,7 +43,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
         <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 12px; padding: 1.25rem 1.75rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
                 <span style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Demonstration Project:</span>
-                <div style="color: #00f0ff; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem;">The Highland Estate — Lot 42, Squamish, BC</div>
+                <div style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem;">The Highland Estate — Lot 42, Squamish, BC</div>
             </div>
             <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
                 <div>
@@ -72,7 +63,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
 
         <!-- Navigation Tabs -->
         <div style="display: flex; gap: 8px; margin-bottom: 1.5rem; overflow-x: auto; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
-            <button class="kp-portal-tab active" data-target="kp-tab-360" style="background: rgba(0, 240, 255, 0.15); border: 1px solid #00f0ff; color: #00f0ff; padding: 10px 20px; border-radius: 9999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
+            <button class="kp-portal-tab active" data-target="kp-tab-360" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 10px 20px; border-radius: 9999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
                 📸 360° Pre-Drywall Scan
             </button>
             <button class="kp-portal-tab" data-target="kp-tab-logs" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 10px 20px; border-radius: 9999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
@@ -88,7 +79,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
 
         <!-- TAB 1: 360° PRE-DRYWALL DIGITAL SCAN VIEWER -->
         <div id="kp-tab-360" class="kp-portal-pane" style="display: block;">
-            <div style="background: #000000; border: 1px solid rgba(0, 240, 255, 0.4); border-radius: 12px; overflow: hidden; position: relative; height: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+            <div style="background: #000000; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; position: relative; height: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
                 
                 <!-- Simulated 360 Pre-Drywall Canvas / Pan Container -->
                 <div id="kp-360-viewport" style="width: 100%; height: 100%; background: radial-gradient(circle at center, #1e293b 0%, #020617 100%); position: relative; cursor: grab; display: flex; align-items: center; justify-content: center; overflow: hidden; user-select: none;">
@@ -114,8 +105,8 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                         </div>
 
                         <!-- Central Mechanical Room / HVAC -->
-                        <div style="width: 320px; height: 600px; border: 2px dashed rgba(0,240,255,0.4); border-radius: 8px; padding: 1rem; position: relative; background: rgba(15,23,42,0.8);">
-                            <span style="color:#00f0ff; font-family:'Outfit'; font-weight:700; font-size:0.8rem;">MEP HUB: HRV &amp; HEAT PUMP</span>
+                        <div style="width: 320px; height: 600px; border: 2px dashed rgba(56,189,248,0.4); border-radius: 8px; padding: 1rem; position: relative; background: rgba(15,23,42,0.8);">
+                            <span style="color:#38bdf8; font-family:'Outfit'; font-weight:700; font-size:0.8rem;">MEP HUB: HRV &amp; HEAT PUMP</span>
                             <div style="position: absolute; top: 140px; left: 30px; background: rgba(56,189,248,0.25); border: 1.5px solid #38bdf8; border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; color: #38bdf8;">
                                 🌿 Zehnder ComfoAir Q350 HRV (84% SRE)
                             </div>
@@ -133,7 +124,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                             <div style="position: absolute; top: 180px; left: 20px; background: rgba(56,189,248,0.25); border: 1px solid #38bdf8; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #38bdf8;">
                                 🧱 4" Continuous Exterior Rockwool (R-16.8)
                             </div>
-                            <div style="position: absolute; top: 280px; left: 30px; background: rgba(0,240,255,0.25); border: 1px solid #00f0ff; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #67e8f9;">
+                            <div style="position: absolute; top: 280px; left: 30px; background: rgba(56,189,248,0.25); border: 1px solid #38bdf8; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; color: #67e8f9;">
                                 🪟 Innotech Triple-Glazed Argon Rough-In
                             </div>
                         </div>
@@ -143,13 +134,13 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                     <!-- Overlay Controls -->
                     <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(4,7,13,0.85); border: 1px solid rgba(212,175,55,0.4); border-radius: 9999px; padding: 6px 18px; display: flex; gap: 12px; align-items: center; z-index: 10;">
                         <span style="font-size: 0.8rem; color: #94a3b8;">Click &amp; Drag to Pan 360° Scan</span>
-                        <button id="kp-360-left" style="background: none; border: none; color: #00f0ff; font-size: 1.2rem; cursor: pointer;">◀</button>
+                        <button id="kp-360-left" style="background: none; border: none; color: #38bdf8; font-size: 1.2rem; cursor: pointer;">◀</button>
                         <button id="kp-360-reset" style="background: none; border: none; color: #d4af37; font-size: 0.8rem; cursor: pointer; text-transform: uppercase; font-weight: 700;">Reset</button>
-                        <button id="kp-360-right" style="background: none; border: none; color: #00f0ff; font-size: 1.2rem; cursor: pointer;">▶</button>
+                        <button id="kp-360-right" style="background: none; border: none; color: #38bdf8; font-size: 1.2rem; cursor: pointer;">▶</button>
                     </div>
 
                     <!-- Scan Stamp Badge -->
-                    <div style="position: absolute; top: 16px; left: 16px; background: rgba(4,7,13,0.85); border: 1px solid rgba(0,240,255,0.5); border-radius: 9999px; padding: 6px 14px; font-size: 0.78rem; color: #00f0ff; z-index: 10;">
+                    <div style="position: absolute; top: 16px; left: 16px; background: rgba(4,7,13,0.85); border: 1px solid rgba(56,189,248,0.5); border-radius: 9999px; padding: 6px 14px; font-size: 0.78rem; color: #38bdf8; z-index: 10;">
                         ● LIDAR / Matterport Scan ID: KP-360-PRE-202609
                     </div>
                 </div>
@@ -170,11 +161,11 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                 </div>
 
                 <!-- Log Entry 1 -->
-                <div style="border-left: 2px solid #00f0ff; padding-left: 1.25rem; margin-bottom: 1.5rem; position: relative;">
-                    <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #00f0ff;"></div>
+                <div style="border-left: 2px solid #38bdf8; padding-left: 1.25rem; margin-bottom: 1.5rem; position: relative;">
+                    <div style="position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #38bdf8;"></div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.82rem; color: #94a3b8;">
                         <span>September 18, 2026 • 15:45 PST</span>
-                        <span style="color: #00f0ff; font-weight: 700;">Supervisor: Wayne Stevenson (#52603)</span>
+                        <span style="color: #38bdf8; font-weight: 700;">Supervisor: Wayne Stevenson (#52603)</span>
                     </div>
                     <h4 style="font-size: 1rem; color: #ffffff; margin: 0 0 6px 0; font-family: 'Outfit', sans-serif;">Pre-Drywall Rough-In Municipality Sign-Off</h4>
                     <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin: 0 0 8px 0;">
@@ -196,7 +187,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                     <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin: 0 0 8px 0;">
                         Independent lab break tests for 35 MPa foundation wall pour returned 39.2 MPa at 28 days, exceeding structural engineer specifications by 12%. Sub-slab radon membrane inspection signed off.
                     </p>
-                    <div style="display: inline-block; background: rgba(0,240,255,0.15); border: 1px solid #00f0ff; border-radius: 9999px; padding: 3px 12px; font-size: 0.75rem; color: #00f0ff;">
+                    <div style="display: inline-block; background: rgba(56,189,248,0.15); border: 1px solid #38bdf8; border-radius: 9999px; padding: 3px 12px; font-size: 0.75rem; color: #38bdf8;">
                         ✓ GeoTechnical Lab Certificate #CG-4912 Archived
                     </div>
                 </div>
@@ -275,8 +266,8 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
 
         <!-- TAB 4: 2-5-10 WARRANTY & COMPLIANCE VAULT -->
         <div id="kp-tab-vault" class="kp-portal-pane" style="display: none;">
-            <div style="background: #0a0f19; border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 12px; padding: 1.5rem;">
-                <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; text-transform: uppercase; color: #00f0ff; margin: 0 0 1.25rem 0;">
+            <div style="background: #0a0f19; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 1.5rem;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; text-transform: uppercase; color: #38bdf8; margin: 0 0 1.25rem 0;">
                     Certified Builder Credentials &amp; Warranty Vault
                 </h3>
                 
@@ -289,9 +280,9 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                         <span style="color: #38bdf8; font-size: 0.78rem; font-weight: 700;">✓ Active &amp; In Good Standing</span>
                     </div>
 
-                    <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: 8px; padding: 1.25rem;">
+                    <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; padding: 1.25rem;">
                         <div style="font-size: 1.8rem; margin-bottom: 6px;">🛡️</div>
-                        <h4 style="font-size: 1rem; color: #00f0ff; margin: 0 0 4px 0; font-family: 'Outfit', sans-serif;">2-5-10 Home Warranty</h4>
+                        <h4 style="font-size: 1rem; color: #38bdf8; margin: 0 0 4px 0; font-family: 'Outfit', sans-serif;">2-5-10 Home Warranty</h4>
                         <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">Pacific Home Warranty #PHW-52603<br>2 Yr Labour/Material | 5 Yr Envelope | 10 Yr Structure</p>
                         <span style="color: #38bdf8; font-size: 0.78rem; font-weight: 700;">✓ Bound &amp; Registered</span>
                     </div>
@@ -308,7 +299,7 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
         </div>
 
         <!-- CTA Action Footer -->
-        <div style="margin-top: 2.5rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(0, 240, 255, 0.15) 100%); border: 1.5px solid #d4af37; border-radius: 12px; padding: 2rem; text-align: center;">
+        <div style="margin-top: 2.5rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(56, 189, 248, 0.15) 100%); border: 1.5px solid #d4af37; border-radius: 12px; padding: 2rem; text-align: center;">
             <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: #f8fafc; margin: 0 0 0.5rem 0;">
                 Ready for Radical Transparency on Your Build?
             </h3>
@@ -338,9 +329,9 @@ function keystone_possibilities_client_portal_demo_shortcode($atts) {
                 });
                 panes.forEach(function (p) { p.style.display = 'none'; });
 
-                this.style.background = 'rgba(0, 240, 255, 0.15)';
-                this.style.borderColor = '#00f0ff';
-                this.style.color = '#00f0ff';
+                this.style.background = 'rgba(56, 189, 248, 0.15)';
+                this.style.borderColor = '#38bdf8';
+                this.style.color = '#38bdf8';
 
                 const target = document.getElementById(this.getAttribute('data-target'));
                 if (target) target.style.display = 'block';

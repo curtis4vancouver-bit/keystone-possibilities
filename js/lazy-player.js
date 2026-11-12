@@ -1,76 +1,103 @@
 /**
- * Keystone Possibilities - High-Performance Quiet Luxury Media Facade Engine
- * Completely bypasses heavy third-party initial script payloads to secure 100 Mobile PageSpeed rankings.
- * Utilizes native browser APIs, CSS hardware acceleration transitions, and dynamic DOM cleanup.
- *
- * @package KeystonePossibilitiesChild
- * @since 2.1.0
+ * Keystone Possibilities v3.0 — Zero-CLS Click-to-Play YouTube-Nocookie Facade & Chapter Seeker
+ * Supports [keystone_video] shortcodes, .keystone-lazy-video facades, and Cinema Chapter Players.
  */
+(function () {
+  'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const initVideoFacades = () => {
-        // Query all premium video placeholders on the page
-        const facades = document.querySelectorAll('.luxury-video-facade');
-        
-        facades.forEach(facade => {
-            // Register isolated play click trigger
-            facade.addEventListener('click', function handlePlayClick(event) {
-                event.preventDefault();
-                
-                const videoId = this.getAttribute('data-video-id');
-                const videoType = (this.getAttribute('data-video-type') || 'youtube').toLowerCase();
-                
-                if (!videoId) return;
-                
-                let targetSrc = '';
-                
-                // Configure parameters to guarantee immediate autoplay within standard browser policy controls
-                if (videoType === 'youtube') {
-                    // YouTube optimized no-cookie domain with strict relational constraints
-                    targetSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&rel=0&start=0&enablejsapi=1`;
-                } else if (videoType === 'vimeo') {
-                    targetSrc = `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1`;
-                } else if (videoType === 'spotify') {
-                    // Spotify video podcast embed format with deep-link time mapping
-                    targetSrc = `https://open.spotify.com/embed/episode/${videoId}?utm_source=generator&t=0`;
-                }
-                
-                if (targetSrc) {
-                    const iframe = document.createElement('iframe');
-                    iframe.setAttribute('src', targetSrc);
-                    iframe.setAttribute('frameborder', '0');
-                    iframe.setAttribute('allowfullscreen', 'true');
-                    iframe.setAttribute('title', 'Keystone Video Player');
-                    
-                    // Hardware accelerated browser capability authorizations
-                    iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
-                    
-                    // Remove current click handler to prevent double execution triggers
-                    this.removeEventListener('click', handlePlayClick);
-                    
-                    // Fade background elements out gently to prevent visual transition stutter
-                    const background = this.querySelector('.facade-background');
-                    const button = this.querySelector('.play-button');
-                    const overlay = this.querySelector('.facade-overlay');
-                    
-                    if (background) background.style.opacity = '0';
-                    if (button) button.style.opacity = '0';
-                    if (overlay) overlay.style.opacity = '0';
-                    
-                    // Mount dynamic iframe structure
-                    this.appendChild(iframe);
-                    
-                    // Clean up and destroy unneeded DOM nodes after fade animation is finished
-                    setTimeout(() => {
-                        if (background) background.remove();
-                        if (button) button.remove();
-                        if (overlay) overlay.remove();
-                        console.log('[Keystone Player] Lazy media elements destroyed successfully.');
-                    }, 600);
-                }
-            });
+  function buildEmbedIframe(videoId, title, startSec) {
+    var cleanId = String(videoId || '').replace(/[^a-zA-Z0-9_-]/g, '');
+    if (!cleanId) {
+      return null;
+    }
+    var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    if (startSec && Number(startSec) > 0) {
+      params += '&start=' + Math.floor(Number(startSec));
+    }
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + cleanId + '?' + params;
+    iframe.title = title || 'Keystone Possibilities Engineering Briefing';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.inset = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    return iframe;
+  }
+
+  function mountVideo(container, startSec) {
+    var videoId = container.getAttribute('data-video-id') || container.getAttribute('data-kp-youtube-id');
+    var videoType = container.getAttribute('data-video-type') || 'youtube';
+    var title = container.getAttribute('data-video-title') || 'Keystone Possibilities Engineering Briefing';
+
+    if (videoType === 'mp4') {
+      var src = container.getAttribute('data-video-src') || videoId;
+      if (!src) {
+        return;
+      }
+      var video = document.createElement('video');
+      video.src = src;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      container.innerHTML = '';
+      container.appendChild(video);
+      return;
+    }
+
+    var targetStage = container.querySelector('.keystone-lazy-video__ratio, .luxury-video-theater__ratio') || container;
+    var iframe = buildEmbedIframe(videoId, title, startSec || 0);
+    if (!iframe) {
+      return;
+    }
+    targetStage.innerHTML = '';
+    targetStage.appendChild(iframe);
+    container.classList.add('is-playing');
+  }
+
+  function initLazyPlayers() {
+    document.querySelectorAll('.keystone-lazy-video, [data-kp-youtube-id]').forEach(function (facade) {
+      if (facade.dataset.kpLazyBound === '1') {
+        return;
+      }
+      facade.dataset.kpLazyBound = '1';
+
+      var playTrigger = facade.querySelector('.keystone-lazy-video__play, .kp-cinema-play-btn, .cinema-center-play') || facade;
+      playTrigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        mountVideo(facade, 0);
+      });
+    });
+
+    // Clickable clip chapters ([data-kp-seek="42"] targeting #hero-cinema-frame or closest cinema block)
+    document.querySelectorAll('[data-kp-seek]').forEach(function (chapterBtn) {
+      chapterBtn.addEventListener('click', function () {
+        var sec = parseInt(chapterBtn.getAttribute('data-kp-seek'), 10) || 0;
+        var targetId = chapterBtn.getAttribute('data-kp-player');
+        var player = targetId
+          ? document.getElementById(targetId)
+          : (chapterBtn.closest('section, .kp-hero-cinema-col, .hero-watch-col') &&
+             chapterBtn.closest('section, .kp-hero-cinema-col, .hero-watch-col').querySelector('[data-kp-youtube-id], .keystone-lazy-video'));
+        if (!player) {
+          return;
+        }
+        var group = chapterBtn.parentElement ? chapterBtn.parentElement.querySelectorAll('[data-kp-seek]') : [];
+        group.forEach(function (b) {
+          b.classList.toggle('is-active', b === chapterBtn);
+          b.classList.toggle('active', b === chapterBtn);
         });
-    };
-    
-    initVideoFacades();
-});
+        mountVideo(player, sec);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLazyPlayers);
+  } else {
+    initLazyPlayers();
+  }
+})();

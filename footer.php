@@ -1,155 +1,125 @@
 <?php
 /**
- * The Master Luxury Footer for Keystone Possibilities Child Theme.
- * Certified BC Housing Builder #52603 — Architectural Dark Quiet Luxury
- * Deep Obsidian #04070D Color Continuity Standard
+ * Sovereign Quiet-Luxury Site Footer & Accessible Asset Lightbox — Keystone Possibilities v3.0
  *
  * @package KeystonePossibilitiesChild
- * @version 2.7.0
+ * @version 3.0.0
  */
 
 declare(strict_types=1);
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit;
 }
-global $kp_master_footer_rendered;
+
+$kp_logos       = function_exists('kp_get_official_logos') ? kp_get_official_logos() : array();
+$kp_full_lockup = $kp_logos['full_lockup'] ?? 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_full_logo_gold_transparent.png';
+$kp_corridors   = function_exists('kp_get_corridors') ? kp_get_corridors() : array();
 ?>
-    </div><!-- #content -->
+</main><!-- #primary -->
 
-<?php if ( empty( $kp_master_footer_rendered ) ) : $kp_master_footer_rendered = true; ?>
-    <!-- WAYNE'S MASTER LUXURY FOOTER (Unified Obsidian #04070D Standard) -->
-    <footer id="kp-master-luxury-footer" class="kp-master-luxury-footer wayne-preferred-footer" style="background-color: #04070D !important; border-top: 1px solid rgba(212, 175, 55, 0.25); padding: 48px 20px calc(5rem + env(safe-area-inset-bottom, 0px)) 20px; color: #94A3B8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 0.84rem; text-align: center; position: relative; z-index: 10; width: 100%; box-sizing: border-box; overflow-x: clip;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            
-            <!-- A. Centered Social Matrix & YouTube Subscribe Directing -->
-            <div style="margin-bottom: 24px;">
-                <div style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px;">
-                    
-                    <!-- Facebook Page -->
-                    <a href="https://www.facebook.com/profile.php?id=61554185128555" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="Facebook Page" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-
-                    <!-- Instagram Account -->
-                    <a href="https://www.instagram.com/keystonepossibilities" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="Instagram Account" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.13-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-
-                    <!-- YouTube Official Channel -->
-                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd" target="_blank" rel="noopener noreferrer" class="kp-social-icon-btn" aria-label="YouTube Official Channel" style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 50%; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(212, 175, 55, 0.35); color: #f6d365; display: inline-flex; align-items: center; justify-content: center; text-decoration: none !important; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
-
-                    <!-- High-Converting YouTube Channel Subscribe Pill -->
-                    <a href="https://www.youtube.com/@KeystonePossibilitiesLtd?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="kp-subscribe-direct-btn kp-btn-sovereign-gold" style="display: inline-flex; align-items: center; gap: 9px; min-height: 48px; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid #d4af37 !important; padding: 10px 24px; border-radius: 9999px; text-decoration: none !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.85), 0 0 16px rgba(212, 175, 55, 0.24), inset 0 0 16px rgba(212, 175, 55, 0.14); transition: all 0.25s ease;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37" style="filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important;">SUBSCRIBE &bull; @KeystonePossibilitiesLtd</span>
-                    </a>
-
-                </div>
-            </div>
-
-            <!-- B. Centered High-End Copyright & Credentials -->
-            <div data-nosnippet style="margin-bottom: 32px; line-height: 1.6;">
-                <p style="margin: 0 0 6px 0; color: #CBD5E1; font-weight: 500; font-size: 0.86rem; letter-spacing: 0.02em;">
-                    Copyright &copy; 2023–2026 Keystone Possibilities Ltd &bull; All Rights Reserved.
+<footer class="kp-site-footer" id="kp-master-luxury-footer">
+    <div class="kp-container">
+        <div class="kp-footer-grid">
+            <!-- Column 1: Full Gold Transparent Lockup + Squamish HQ -->
+            <div>
+                <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="Keystone Possibilities Ltd. Home">
+                    <img src="<?php echo esc_url($kp_full_lockup); ?>" alt="Keystone Possibilities Ltd. — Licensed BC Residential Builder #52603" class="kp-footer-lockup-img" width="126" height="115" loading="lazy" decoding="async">
+                </a>
+                <p style="margin:0;font-size:0.84rem;line-height:1.6;color:var(--text-secondary);">
+                    Principal-supervised architectural custom residences, Bill 44 SSMUH multiplexes, and self-performed BC Hydro ES54 underground civil infrastructure under 100% open-book CCDC 5B contracts.
                 </p>
-                <p style="margin: 0; color: #c5a059; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;">
-                    Certified BC Housing Residential Builder #52603 &bull; Fiduciary CCDC 5B Construction Management
-                </p>
+                <div class="kp-footer-hq-meta">
+                    <span><strong style="color:var(--text-ivory);">Squamish HQ:</strong> 1 Watts Point Road, Squamish, BC V8B 0B1</span>
+                    <span><strong style="color:var(--text-ivory);">Direct Line:</strong> <a href="tel:+16048489688">(604) 848-9688</a></span>
+                    <span><strong style="color:var(--text-ivory);">Desk Email:</strong> <a href="mailto:info@keystonepossibilities.ca">info@keystonepossibilities.ca</a></span>
+                </div>
+                <a href="https://www.youtube.com/@KeystonePossibilitiesLtd" target="_blank" rel="noopener noreferrer" class="kp-footer-yt-pill">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>@KeystonePossibilitiesLtd</span>
+                </a>
             </div>
 
-            <!-- C. Regional Divisions & Specialized Services 4-Column Mesh (Unified Obsidian & Gold) -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; margin-bottom: 12px; text-align: left;">
-                <div style="color: #d4af37; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 16px; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center;">
-                    <span>🏛️</span> KEYSTONE POSSIBILITIES — REGIONAL DIVISIONS &amp; SPECIALIZED SERVICES
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; line-height: 1.6;">
-                    <div>
-                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Sea-to-Sky Corridor:</strong>
-                        <a href="/squamish-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Squamish Custom Home Builder</a>
-                        <a href="/whistler-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Whistler Luxury Estate Builder</a>
-                        <a href="/pemberton-luxury-builder/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Pemberton Acreage Builder</a>
-                    </div>
-                    <div>
-                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Metro Vancouver:</strong>
-                        <a href="/north-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North Vancouver Luxury Builder</a>
-                        <a href="/west-vancouver-custom-homes/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• North &amp; West Vancouver Custom Homes</a>
-                        <a href="/west-vancouver-luxury-renovations/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• West Vancouver Steep Slope Builds</a>
-                    </div>
-                    <div>
-                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Civil &amp; Fiduciary PM:</strong>
-                        <a href="/bc-hydro-registered-civil-contractor/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• BC Hydro Civil Utility Contractor</a>
-                        <a href="/feasibility-plan/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Custom Build &amp; Cost Plan</a>
-                        <a href="/private-investors/" style="color: #94a3b8; text-decoration: none !important; display: block; margin-bottom: 5px; transition: color 0.2s ease;">• Private Investor Joint Ventures</a>
-                    </div>
-                    <div>
-                        <strong style="color: #ffffff; display: block; margin-bottom: 8px; font-size: 0.85rem;">Direct Authority &amp; Contact:</strong>
-                        <span style="color: #94a3b8; display: block; margin-bottom: 4px;">BC Housing License #52603</span>
-                        <a href="tel:+16048489688" style="color: #f6d365; text-decoration: none !important; font-weight: 700; display: block; margin-bottom: 6px; font-size: 0.90rem;">📞 (604) 848-9688</a>
-                        <a href="/contact-general-contractor-squamish/" style="color: #94a3b8; text-decoration: none !important; display: block; transition: color 0.2s ease;">• Schedule Fiduciary Consultation</a>
-                    </div>
-                </div>
+            <!-- Column 2: All 9 BC Construction Corridors -->
+            <div>
+                <h3 class="kp-footer-col-title">9 BC Service Corridors</h3>
+                <ul class="kp-footer-list">
+                    <?php foreach ($kp_corridors as $corridor) : ?>
+                        <li>
+                            <a href="<?php echo esc_url(home_url((string) $corridor['url'])); ?>">
+                                <?php echo esc_html((string) $corridor['short_name']); ?> Custom Homes
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
 
+            <!-- Column 3: Technical, Feasibility & Partner Hubs -->
+            <div>
+                <h3 class="kp-footer-col-title">Technical &amp; Partner Hubs</h3>
+                <ul class="kp-footer-list">
+                    <li><a href="<?php echo esc_url(home_url('/feasibility-plan/')); ?>">48-Hr Lot &amp; Cost Feasibility Plan</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/realtor-architect-desk/')); ?>">Realtor &amp; Architect Desk (Rule 5-11)</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/bc-developer-portal/')); ?>">BC Bill 44 &amp; Step Code 5 Portal</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/bc-hydro-registered-civil-contractor/')); ?>">BC Hydro ES54 Civil Contracting</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/portfolio-general-contractor-squamish/')); ?>">Signature 9-Residence Portfolio</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/about-us-general-contractor-squamish/')); ?>">Wayne Stevenson &amp; 17 Credentials</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/industry-partners/')); ?>">Verified EGBC &amp; AIBC Partners</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/videos/')); ?>">Engineering Video Briefings</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/client-login/')); ?>">24/7 Client Portal Login</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Statutory Standing & Keystone Empire Sister Credit -->
+            <div>
+                <h3 class="kp-footer-col-title">Statutory Registrations</h3>
+                <ul class="kp-footer-list" style="margin-bottom:18px;">
+                    <li>BC Housing Licensed Builder <strong style="color:var(--text-ivory);">#52603</strong></li>
+                    <li>BC Hydro Civil Registry <strong style="color:var(--text-ivory);">List ES54</strong></li>
+                    <li>WorkSafeBC Clearance <strong style="color:var(--text-ivory);">#201703481</strong></li>
+                    <li>Statutory 2-5-10 Home Warranty</li>
+                    <li>Open-Book CCDC 5B Fiduciary Ledger</li>
+                </ul>
+
+                <div class="kp-empire-card">
+                    <h4>Keystone Empire Ecosystem</h4>
+                    <p>Explore our sister evidence-based performance &amp; sovereign engineering division.</p>
+                    <a href="https://keystonerecomposition.com/" target="_blank" rel="noopener" class="kp-empire-link">
+                        Keystone Recomposition &rarr;
+                    </a>
+                </div>
+            </div>
         </div>
-    </footer>
-    <a href="tel:+16048489688" id="kp-floating-phone" class="keystone-mobile-call-bar" aria-label="Call Keystone Possibilities (604) 848-9688">
-        <span>📞 (604) 848-9688</span>
-    </a>
-<?php endif; ?>
 
-    <!-- MOBILE STICKY FLOATING BOTTOM DOCK -->
-    <div class="mobile-floating-dock">
-        <a href="tel:+16048489688" class="dock-btn dock-btn-call">
-            <span>📞 Call Builder</span>
-        </a>
-        <a href="<?php echo esc_url( home_url( '/feasibility-plan/' ) ); ?>" class="dock-btn dock-btn-plan">
-            <span>📐 Cost &amp; Build Plan</span>
-        </a>
+        <div class="kp-footer-bottom">
+            <span>&copy; 2023&ndash;<?php echo esc_html(gmdate('Y')); ?> Keystone Possibilities Ltd. All Rights Reserved.</span>
+            <span>Principal Superintendent: Wayne Stevenson &middot; BC Housing #52603 &middot; Squamish, British Columbia</span>
+        </div>
     </div>
+</footer>
 
-</div><!-- #page -->
+<!-- Shared Accessible High-Resolution Asset & Gallery Lightbox Modal -->
+<div class="kp-lightbox-backdrop" id="kpLightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="kpLightboxTitle">
+    <div class="kp-lightbox-dialog">
+        <div class="kp-lightbox-topbar">
+            <div>
+                <h3 class="kp-lightbox-title" id="kpLightboxTitle" data-kp-lightbox-title>Keystone Possibilities — Verified Asset</h3>
+                <p class="kp-lightbox-sub" data-kp-lightbox-sub></p>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <button type="button" class="kp-reel-arrow" data-kp-lightbox-prev aria-label="Previous image" style="display:none;">&larr;</button>
+                <button type="button" class="kp-reel-arrow" data-kp-lightbox-next aria-label="Next image" style="display:none;">&rarr;</button>
+                <button type="button" class="kp-lightbox-close" data-kp-lightbox-close aria-label="Close modal">&times;</button>
+            </div>
+        </div>
+        <div class="kp-lightbox-stage">
+            <img src="" alt="" data-kp-lightbox-img loading="lazy" decoding="async">
+        </div>
+        <div class="kp-lightbox-thumbs" data-kp-lightbox-thumbs style="display:none;"></div>
+    </div>
+</div>
 
-<script id="kp-v470-global-footer-canonical-engine">
-(function() {
-  function initKeystonePage1CanonicalStandard() {
-    if (!document.getElementById('kp-v470-head-styles')) {
-      var st = document.createElement('style');
-      st.id = 'kp-v470-head-styles';
-      st.textContent = [
-        '#rank-math-analytics-stats-wrapper, #rank-math-analytic-bar, .rank-math-analytics-stats-bar, #wpadminbar, #ast-scroll-top, .ast-scroll-top-icon { display: none !important; height: 0 !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }',
-        'html, html.wp-toolbar { margin-top: 0 !important; padding-top: 0 !important; }',
-        '@keyframes ksButtonWordWave { 0% { background-position: 220% 50%; } 100% { background-position: 0% 50%; } }',
-        'h1.kp-canonical-hero-h1 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; font-size: clamp(2.05rem, 3.2vw, 3.02rem) !important; font-weight: 800 !important; line-height: 1.18 !important; letter-spacing: -0.02em !important; text-transform: none !important; color: #FFFFFF !important; max-width: 1120px !important; margin: 0 auto 20px auto !important; text-align: center !important; border: none !important; }',
-        'h1.kp-canonical-hero-h1::after, h1.kp-canonical-hero-h1::before, .entry-content h2::after, .entry-content h2::before, .entry-content h3::after, .entry-content h3::before, .entry-content h4::after, .entry-content h4::before { display: none !important; content: none !important; background: none !important; border: none !important; height: 0 !important; width: 0 !important; }',
-        'h1.kp-canonical-hero-h1 .kp-h1-line1-white { display: block !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
-        'h1.kp-canonical-hero-h1 .kp-h1-line2-gold { display: inline-block !important; background: linear-gradient(90deg, #f8fafc 0%, #fef3c7 14%, #f6d365 36%, #d4af37 72%, #c59b27 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }',
-        '.entry-content h2, .entry-content h3, .entry-content h4, main h2, main h3, main h4 { font-family: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif !important; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; text-transform: none !important; letter-spacing: -0.015em !important; font-weight: 800 !important; border: none !important; }',
-        '.entry-content h2 span, .entry-content h3 span, main h2 span, main h3 span { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; background: none !important; }',
-        'html body .kp-btn-sovereign-gold, html body a.kp-btn-sovereign-gold, html body button.kp-btn-sovereign-gold, html body .kp-subscribe-direct-btn, html body a.kp-subscribe-direct-btn { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 48px !important; padding: 10px 26px !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.84) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; font-family: "Outfit", "Plus Jakarta Sans", sans-serif !important; font-size: 0.83rem !important; font-weight: 800 !important; letter-spacing: 0.05em !important; text-decoration: none !important; box-shadow: 0 8px 22px rgba(0,0,0,0.85), inset 0 0 14px rgba(212,175,55,0.10) !important; box-sizing: border-box !important; cursor: pointer !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
-        'html body .kp-geo-pill, html body a.kp-geo-pill { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 38px !important; min-height: 38px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; background-color: #04070d !important; background-image: none !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; text-decoration: none !important; box-shadow: 0 6px 18px rgba(0,0,0,0.80) !important; box-sizing: border-box !important; transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important; }',
-        'html body .kp-kicker-pill-gold { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; height: 34px !important; padding: 0 18px !important; white-space: nowrap !important; background: #04070d !important; border: 1.5px solid rgba(212,175,55,0.75) !important; border-radius: 9999px !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.78) !important; }',
-        'html body .ks-wave-text { display: inline-block !important; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background-image: none !important; background-color: transparent !important; animation: none !important; text-decoration: none !important; }',
-        'html body .kp-btn-ico { display: inline-block !important; color: #f6d365 !important; -webkit-text-fill-color: initial !important; flex-shrink: 0 !important; }',
-        'html body .kp-btn-sovereign-gold:hover, html body .kp-subscribe-direct-btn:hover, html body .kp-geo-pill:hover, html body .kp-kicker-pill-gold:hover { background: #04070d !important; background-image: none !important; border-color: #f6d365 !important; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.92), 0 0 22px rgba(212, 175, 55, 0.62) !important; transform: translateY(-1.5px) !important; }',
-        'html body .kp-btn-sovereign-gold:hover .ks-wave-text, html body .kp-subscribe-direct-btn:hover .ks-wave-text, html body .kp-geo-pill:hover .ks-wave-text, html body .kp-kicker-pill-gold:hover .ks-wave-text { background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 14%, #f6d365 28%, #ffd700 40%, #ffffff 52%, #d4af37 66%, #ffd700 78%, #ffffff 92%, #ffffff 100%) !important; background-size: 220% auto !important; background-repeat: repeat !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; animation: ksButtonWordWave 1.15s linear infinite !important; }'
-      ].join(' ');
-      document.head.appendChild(st);
-    }
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initKeystonePage1CanonicalStandard);
-  } else {
-    initKeystonePage1CanonicalStandard();
-  }
-})();
-</script>
-
-<?php 
-do_action( 'keystone_footer_rendered' );
-wp_footer(); 
-?>
+<?php wp_footer(); ?>
 </body>
 </html>

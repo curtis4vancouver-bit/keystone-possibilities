@@ -1,153 +1,89 @@
 <?php
 /**
- * Template Name: Contact
- * Template Post Type: page
+ * Template Name: Direct Contact Desk
  *
- * Description: Executive Contact & Feasibility Consultation page.
- * Upgraded with Dark Quiet Luxury tokens (#04070d, #d4af37, #38bdf8), Bill 44 Estimator & Lead Form.
+ * 2-column Principal dispatch: (604) 848-9688, 1 Watts Point Road, Squamish, BC V8B 0B1,
+ * Sea-to-Sky & Greater Vancouver service-corridor map card, and WCAG lead-intake-form.php.
  *
  * @package KeystonePossibilitiesChild
- * @version 2.8.0
+ * @version 3.0.0
  */
 
-declare(strict_types=1);
-
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 get_header();
+
+$kp_badge_logo = 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
 ?>
 
-<div id="primary" class="site-main keystone-contact-template" style="background-color: #04070d; color: #f8fafc; min-height: 100vh; padding: 40px 20px 80px;">
-	<div class="keystone-container" style="max-width: 1100px; margin: 0 auto;">
+<main id="primary" class="kp-v3-page">
+	<section style="padding:clamp(36px,5.5vw,74px) 0;background:radial-gradient(circle at 80% 12%,rgba(212,175,55,0.12),transparent 46%),#04070d;">
+		<div style="width:min(1340px,calc(100% - 32px));margin:0 auto;display:grid;grid-template-columns:0.92fr 1.08fr;gap:clamp(24px,4vw,44px);align-items:start;" class="kp-contact-grid">
+			<style>
+				@media (max-width: 960px) { .kp-contact-grid { grid-template-columns: 1fr !important; } }
+			</style>
 
-		<header class="page-header" style="text-align: center; margin-bottom: 40px;">
-			<div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 175, 55, 0.12); border: 1px solid #d4af37; padding: 6px 18px; border-radius: 9999px; font-size: 0.80rem; color: #f6d365; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 18px;">
-				<span>📬 EXECUTIVE CONSULTATION &amp; ADVISORY</span>
+			<div style="display:flex;flex-direction:column;gap:18px;">
+				<div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;background:#0a101d;border:1px solid rgba(212,175,55,0.36);border-radius:999px;padding:6px 14px 6px 8px;">
+					<img src="<?php echo esc_url( $kp_badge_logo ); ?>" alt="Keystone Possibilities Shield" width="26" height="26" style="border-radius:6px;object-fit:contain;" />
+					<span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:700;color:#d4af37;">DIRECT PRINCIPAL DISPATCH · SQUAMISH HQ</span>
+				</div>
+
+				<h1 style="font-family:'Outfit',sans-serif;font-size:clamp(1.85rem,3.6vw,2.85rem);font-weight:800;line-height:1.12;color:#f8fafc;margin:0;">
+					Speak Directly With Superintendent Wayne Stevenson.
+				</h1>
+
+				<p style="font-size:0.96rem;line-height:1.64;color:#cbd5e1;margin:0;">
+					Every custom estate, Bill 44 multiplex, and BC Hydro ES54 civil inquiry is reviewed personally by Wayne Stevenson—never routed through call centres or junior estimators.
+				</p>
+
+				<div style="background:#0a101d;border:1px solid rgba(212,175,55,0.34);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;">
+					<div>
+						<div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#94a3b8;text-transform:uppercase;">Direct Principal Line</div>
+						<a href="tel:+16048489688" style="font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;color:#d4af37;text-decoration:none;">(604) 848-9688</a>
+					</div>
+					<div>
+						<div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#94a3b8;text-transform:uppercase;">Operations Headquarters</div>
+						<div style="font-size:0.95rem;font-weight:700;color:#f8fafc;">1 Watts Point Road, Squamish, BC V8B 0B1</div>
+					</div>
+					<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;font-size:0.82rem;color:#cbd5e1;line-height:1.55;">
+						<strong>Statutory Standing:</strong> BC Housing Licensed Builder #52603 &bull; BC Hydro ES54 Registered Civil Contractor &bull; WorkSafeBC #201703481 &bull; Mandatory 2-5-10 Warranty
+					</div>
+				</div>
+
+				<div style="background:#0a101d;border:1px solid rgba(212,175,55,0.28);border-radius:18px;overflow:hidden;">
+					<iframe
+						title="Keystone Possibilities Ltd. — 1 Watts Point Road, Squamish, BC Service Corridor Map"
+						src="https://www.google.com/maps?q=1+Watts+Point+Road,+Squamish,+BC+V8B+0B1&output=embed"
+						width="100%"
+						height="250"
+						style="border:0;display:block;filter:invert(90%) hue-rotate(180deg) contrast(92%);"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+					></iframe>
+					<div style="padding:12px 16px;font-size:0.78rem;color:#cbd5e1;">
+						Active Build Corridors: West Vancouver &bull; Whistler &bull; Squamish HQ &bull; North Vancouver &bull; Vancouver R1-1 &bull; Coquitlam &bull; Sunshine Coast &bull; Pemberton &bull; Vancouver Island
+					</div>
+				</div>
 			</div>
-			<h1 class="page-title" style="font-family: 'Outfit', sans-serif; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900; color: #ffffff; margin-bottom: 16px;">
-				Initiate Advisory &amp;<br>
-				<span style="background: linear-gradient(135deg, #d4af37 0%, #f6d365 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Retainer Consultation</span>
-			</h1>
-			<p class="lead" style="font-size: 1.15rem; line-height: 1.7; color: #94a3b8; max-width: 840px; margin: 0 auto;">
-				Connect directly with Wayne Stevenson and the Keystone Possibilities advisory desk for property feasibility audits, municipal zoning analysis, or high-performance residential development oversight.
-			</p>
-		</header>
 
-		<!-- 2-Column Contact Grid -->
-		<section class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin: 2.5rem 0;">
-			<!-- Column 1: Headquarters & Licensing -->
-			<div class="contact-info-card" style="background: rgba(10, 15, 25, 0.85); padding: 2.2rem; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
-				<span style="color: #38bdf8; font-weight: 800; font-size: 0.80rem; letter-spacing: 0.05em; text-transform: uppercase;">HEADQUARTERS &amp; LICENSING</span>
-				<h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: #ffffff; margin-top: 0.6rem; margin-bottom: 16px;">Keystone Possibilities Ltd</h2>
-				
-				<div style="margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
-					<strong style="color: #f6d365; display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px;">BC Housing Builder Licence:</strong>
-					<span style="color: #cbd5e1; font-size: 0.95rem;">#52603 (Nominee: Wayne Stevenson)</span>
-				</div>
-
-				<div style="margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
-					<strong style="color: #f6d365; display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px;">Home Warranty Protection:</strong>
-					<span style="color: #cbd5e1; font-size: 0.95rem;">Mandatory 2-5-10 WBI Home Warranty Insurance</span>
-				</div>
-
-				<div style="margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
-					<strong style="color: #f6d365; display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px;">Primary Service Corridor:</strong>
-					<span style="color: #cbd5e1; font-size: 0.95rem;">Metro Vancouver, West Vancouver, North Vancouver, Squamish, and Whistler, BC</span>
-				</div>
-
-				<div style="margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
-					<strong style="color: #f6d365; display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px;">Pre-Construction Advisory:</strong>
-					<span style="color: #cbd5e1; font-size: 0.95rem;">Turnkey Land &amp; Construction Feasibility Audit</span>
-				</div>
-
-				<div>
-					<strong style="color: #f6d365; display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px;">Direct Registry Verification:</strong>
-					<a href="https://lims.bchousing.org/LicenceExpiryPortal/licence/52603" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline; font-size: 0.88rem;">BC Housing Public Registry #52603</a>
-				</div>
+			<div>
+				<?php
+				get_template_part(
+					'template-parts/lead-intake-form',
+					null,
+					array(
+						'embed_only'       => true,
+						'default_corridor' => 'squamish',
+					)
+				);
+				?>
 			</div>
-
-			<!-- Column 2: Advisory Request Form -->
-			<div class="contact-form-card" style="background: linear-gradient(135deg, rgba(10, 15, 25, 0.95), rgba(4, 7, 13, 0.98)); padding: 2.2rem; border: 1.5px solid #d4af37; border-radius: 18px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);">
-				<span style="color: #d4af37; font-weight: 800; font-size: 0.80rem; letter-spacing: 0.05em; text-transform: uppercase;">DIRECT ADVISORY INTAKE</span>
-				<h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: #ffffff; margin-top: 0.6rem; margin-bottom: 16px;">Request Consultation</h2>
-
-				<form method="POST" action="/wp-json/keystone/v1/lead" data-project-type="Executive Contact Consultation" class="keystone-contact-form">
-					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-						<div>
-							<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">First Name *</label>
-							<input type="text" name="first_name" required placeholder="First Name" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-						</div>
-						<div>
-							<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Surname *</label>
-							<input type="text" name="surname" required placeholder="Surname" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-						</div>
-					</div>
-
-					<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-						<div>
-							<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Email Address *</label>
-							<input type="email" name="client_email" required placeholder="name@domain.com" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-						</div>
-						<div>
-							<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Phone Number *</label>
-							<input type="tel" name="client_phone" required placeholder="(604) 000-0000" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-						</div>
-					</div>
-
-					<div style="margin-bottom: 14px;">
-						<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Site Address or Parcel PID *</label>
-						<input type="text" name="lot_address" required placeholder="e.g. 1234 Marine Drive, West Vancouver or PID" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-					</div>
-
-					<div style="margin-bottom: 14px;">
-						<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Service Interest</label>
-						<select name="service_interest" style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box;">
-							<option value="retainer">Turnkey Land &amp; Construction Feasibility Audit</option>
-							<option value="multiplex">Bill 44 SSMUH Multiplex Development (3–6 Units)</option>
-							<option value="luxury">Luxury Custom Home / Step Code 5 Estate</option>
-							<option value="investor">Developer / Realtor Feasibility Syndication</option>
-						</select>
-					</div>
-
-					<div style="margin-bottom: 20px;">
-						<label style="display: block; font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Project Description</label>
-						<textarea name="project_scope" rows="3" placeholder="Target square footage, unit count, or development timeline..." style="width: 100%; padding: 12px; background: rgba(5, 8, 14, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 0.92rem; box-sizing: border-box; resize: vertical;"></textarea>
-					</div>
-
-					<button type="submit" style="width: 100%; background: linear-gradient(135deg, #d4af37, #f6d365); color: #04070d; border: none; padding: 14px 24px; border-radius: 9999px; font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);">
-						Submit Advisory Inquiry &rarr;
-					</button>
-				</form>
-			</div>
-		</section>
-
-		<!-- Estimator Embed -->
-		<section style="margin: 3.5rem 0;">
-			<div style="text-align: center; margin-bottom: 24px;">
-				<span style="color: #38bdf8; font-family: 'Outfit', sans-serif; font-size: 0.80rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 6px;">
-					INSTANT PRO-FORMA SIZING
-				</span>
-				<h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: #ffffff; margin: 0;">
-					Bill 44 Multiplex &amp; Construction Estimator
-				</h2>
-			</div>
-			<?php echo do_shortcode( '[keystone_bill44_estimator]' ); ?>
-		</section>
-
-		<!-- Entry Content Loop -->
-		<div class="entry-content" style="margin: 2rem 0;">
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				the_content();
-			endwhile;
-			?>
 		</div>
-
-	</div>
-</div>
+	</section>
+</main>
 
 <?php
 get_footer();

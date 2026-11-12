@@ -1,1327 +1,545 @@
 <?php
 /**
- * Keystone Possibilities Child Theme - SEO & ParentOrganization Schema Engine
- * Keystone Empire Network — Master Authority Schema & Footer Cross-Link Mesh
- * 
+ * Master JSON-LD Knowledge Graph, Corridor Service/FAQ Schema, VideoObject & OG:Video Engine — v3.0
+ *
+ * Strictly validated against Google Rich Results & Keystone Adversarial Schema Suite:
+ * - Primary entity @type: ["ConstructionBusiness", "GeneralContractor", "HomeAndConstructionBusiness"]
+ * - Statutory credentials: BC Housing #52603, BC Hydro ES54, 2-5-10 Warranty, WorkSafeBC #201703481
+ * - Parent Organization cross-domain bridge (`https://keystonerecomposition.com`)
+ * - Founder Person entity (`Wayne Stevenson`, 20+ yrs structural & heavy-civil leadership incl. Kiewit)
+ * - Dynamic Corridor `Service` + `FAQPage` + `BreadcrumbList` + `VideoObject` nodes
+ * - Rank Math duplicate entity deduplicator (`keystone_possibilities_dedup_rank_math_schema`)
+ *
  * @package KeystonePossibilitiesChild
- * @version 2.5.0
+ * @version 3.0.0
  */
 
+declare(strict_types=1);
+
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    exit;
 }
 
-// ── 1. Master JSON-LD Schema Injection (Local GEO + ParentOrganization Schema) ──
-add_action('wp_head', 'keystone_possibilities_inject_master_schema', 1);
-function keystone_possibilities_inject_master_schema() {
-    // Only inject on frontend
-    if (is_admin()) return;
-
-    $canonical_credentials = array(
-        array(
-            "@type" => "EducationalOccupationalCredential",
-            "name" => "BC Housing Licensed Residential Builder #52603",
-            "credentialCategory" => "Professional License",
-            "recognizedBy" => array(
-                "@type" => "GovernmentOrganization",
-                "name" => "BC Housing Licensing and Consumer Services",
-                "url" => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
-            ),
-            "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
+/**
+ * Slot A — Canonical 3-Entity Knowledge Graph Registry shared across .ca and .com.
+ * Future external citations (Google Maps CID, Wikidata Q-ID, ISNI, Houzz, VRBA) plug in
+ * here or via `add_filter('kp_empire_entity_registry', ...)` with zero template edits.
+ *
+ * @return array<string, mixed>
+ */
+function kp_get_empire_entity_registry(): array
+{
+    $registry = array(
+        'kp_org_sameas' => array(
+            'https://www.youtube.com/@KeystonePossibilitiesLtd',
+            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603',
+            'https://www.bchydro.com/work-with-us/alliance/contractors/civil-contractors.html',
+            'https://www.facebook.com/profile.php?id=61554185128555',
+            'https://www.instagram.com/keystonepossibilities',
         ),
-        array(
-            "@type" => "EducationalOccupationalCredential",
-            "name" => "2-5-10 National Home Warranty",
-            "credentialCategory" => "Statutory New Home Warranty Protection"
+        'person_sameas' => array(
+            'https://keystonerecomposition.com/#person',
+            'https://keystonerecomposition.com/founder/',
+            'https://keystonepossibilities.ca/about-us-general-contractor-squamish/',
+            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603',
+            'https://www.linkedin.com/in/wayne-stevenson',
+            'https://www.youtube.com/@KeystonePossibilitiesLtd',
+            'https://www.youtube.com/@KeyStoneRecomposition',
+            'https://www.youtube.com/@KeystoneAIProtocols',
+            'https://www.musixmatch.com/artist/Wayne-Stevenson',
         ),
-        array(
-            "@type" => "EducationalOccupationalCredential",
-            "name" => "BC Hydro Registered Civil Contractor List ES54",
-            "credentialCategory" => "Civil Utility Contracting Certification"
-        )
+        'person_disambiguation' => 'Canadian BC Housing Licensed Residential Builder (#52603), former 20-year Peter Kiewit & Sons heavy-civil superintendent based in Squamish, British Columbia, autonomous AI systems architect, and founder of Keystone Possibilities Ltd. and Keystone Recomposition.',
     );
 
-    $master_schema = array(
-        "@context" => "https://schema.org",
-        "@graph" => array(
-            // Primary Business Entity
+    return (array) apply_filters('kp_empire_entity_registry', $registry);
+}
+
+/**
+ * Resolves YouTube video metadata for the current post/page (supports `/videos/[slug]/` Watch Pages,
+ * legacy `/watch-[slug]/` slugs, and embedded `[keystone_video]` / YouTube iframes).
+ *
+ * @param WP_Post|null $post Current post object.
+ * @return array<string, mixed>|null
+ */
+function kp_resolve_post_video_metadata(?WP_Post $post): ?array
+{
+    if (!$post instanceof WP_Post) {
+        return null;
+    }
+
+    $slug    = strtolower((string) $post->post_name);
+    $content = (string) $post->post_content;
+
+    // 1. Check Curated 11-Video Watch Registry first (matches /videos/[slug]/ and /watch-[slug]/)
+    if (function_exists('kp_get_curated_watch_videos_registry')) {
+        $normalized_slug = strpos($slug, 'watch-') === 0 ? str_replace('watch-', '', $slug) : $slug;
+        foreach (kp_get_curated_watch_videos_registry() as $yt_id => $meta) {
+            if (($meta['slug'] ?? '') === $normalized_slug) {
+                $secs = (int) ($meta['duration'] ?? 168);
+                $mins = intdiv($secs, 60);
+                $rem  = $secs % 60;
+                return array(
+                    'youtube_id'   => (string) $yt_id,
+                    'title'        => (string) $meta['title'],
+                    'description'  => (string) $meta['description'],
+                    'duration_sec' => $secs,
+                    'duration_iso' => sprintf('PT%dM%dS', $mins, $rem),
+                    'upload_date'  => (string) ($meta['pub_date'] ?? get_the_date('c', $post)),
+                );
+            }
+        }
+    }
+
+    // 2. Legacy watch-* companion post lookup fallback
+    $source_content = $content;
+    if (strpos($post->post_name, 'watch-') === 0) {
+        $companion_slug = str_replace('watch-', '', $post->post_name);
+        $companions     = get_posts(array(
+            'name'        => $companion_slug,
+            'post_type'   => array('post', 'page'),
+            'post_status' => 'publish',
+            'numberposts' => 1,
+        ));
+        if (!empty($companions) && $companions[0] instanceof WP_Post) {
+            $source_content .= "\n" . $companions[0]->post_content;
+        }
+    }
+
+    // 3. Extract YouTube ID from [keystone_video] shortcode or youtube/youtube-nocookie embed/watch URL
+    $youtube_id = '';
+    if (preg_match('/\[keystone_video[^\]]*id=["\']([A-Za-z0-9_-]{11})["\']/i', $source_content, $m)) {
+        $youtube_id = $m[1];
+    } elseif (preg_match('/youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=|shorts\/)([A-Za-z0-9_-]{11})/i', $source_content, $m)) {
+        $youtube_id = $m[1];
+    } elseif (preg_match('/youtu\.be\/([A-Za-z0-9_-]{11})/i', $source_content, $m)) {
+        $youtube_id = $m[1];
+    }
+
+    if ($youtube_id === '') {
+        return null;
+    }
+
+    $raw_title   = get_the_title($post);
+    $clean_ex    = wp_strip_all_tags($post->post_excerpt ?: wp_trim_words($source_content, 36, '...'));
+    $upload_date = get_the_date('c', $post) ?: '2026-10-01T16:00:00+00:00';
+
+    return array(
+        'youtube_id'   => $youtube_id,
+        'title'        => $raw_title !== '' ? $raw_title : 'Keystone Possibilities Engineering Briefing',
+        'description'  => $clean_ex !== '' ? $clean_ex : 'BC Building Code 2024, Step Code 5, and ES54 civil engineering briefing by Wayne Stevenson (#52603).',
+        'duration_sec' => 168,
+        'duration_iso' => 'PT2M48S',
+        'upload_date'  => $upload_date,
+    );
+}
+
+/**
+ * Injects the unified @graph JSON-LD Knowledge Graph in <head> at priority 1.
+ */
+function keystone_possibilities_inject_master_schema(): void
+{
+    if (is_admin() || is_feed()) {
+        return;
+    }
+
+    $entity_reg  = kp_get_empire_entity_registry();
+    $logos       = function_exists('kp_get_official_logos') ? kp_get_official_logos() : array();
+    $logo_url    = $logos['full_lockup'] ?? 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_full_logo_gold_transparent.png';
+    $badge_url   = $logos['header_badge'] ?? 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
+    $current_url = is_front_page() ? 'https://keystonepossibilities.ca/' : (string) get_permalink();
+    if ($current_url === '') {
+        $current_url = 'https://keystonepossibilities.ca/';
+    }
+
+    // 1. Primary Business Entity (ConstructionBusiness + GeneralContractor + HomeAndConstructionBusiness)
+    $primary_org = array(
+        "@type"        => array("ConstructionBusiness", "GeneralContractor", "HomeAndConstructionBusiness"),
+        "@id"          => "https://keystonepossibilities.ca/#organization",
+        "name"         => "Keystone Possibilities Ltd",
+        "legalName"    => "Keystone Possibilities Ltd.",
+        "url"          => "https://keystonepossibilities.ca/",
+        "logo"         => array(
+            "@type"  => "ImageObject",
+            "@id"    => "https://keystonepossibilities.ca/#logo",
+            "url"    => $logo_url,
+            "width"  => 1295,
+            "height" => 1182,
+        ),
+        "image"        => array(
+            $logo_url,
+            $badge_url,
+            "https://keystonepossibilities.ca/wp-content/uploads/2023/12/screenshot-2023-12-04-at-3.57.48-pm.png",
+        ),
+        "telephone"    => "+1-604-848-9688",
+        "email"        => "info@keystonepossibilities.ca",
+        "priceRange"   => "$$$$",
+        "slogan"       => "Open-Book CCDC 5B Custom Homes, Bill 44 Multiplexes & BC Hydro ES54 Civil Infrastructure",
+        "address"      => array(
+            "@type"           => "PostalAddress",
+            "streetAddress"   => "1 Watts Point Road",
+            "addressLocality" => "Squamish",
+            "addressRegion"   => "BC",
+            "postalCode"      => "V8B 0B1",
+            "addressCountry"  => "CA",
+        ),
+        "geo"          => array(
+            "@type"     => "GeoCoordinates",
+            "latitude"  => "49.6767",
+            "longitude" => "-123.1508",
+        ),
+        "parentOrganization" => array(
+            "@id" => "https://keystonepossibilities.ca/#parent-organization",
+        ),
+        "founder"      => array(
+            "@id" => "https://keystonepossibilities.ca/#founder",
+        ),
+        "sameAs"       => array_values((array) ($entity_reg['kp_org_sameas'] ?? array(
+            "https://www.youtube.com/@KeystonePossibilitiesLtd",
+            "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
+        ))),
+        "hasCredential" => array(
             array(
-                "@type" => array("ConstructionBusiness", "GeneralContractor", "HomeAndConstructionBusiness"),
-                "@id" => "https://keystonepossibilities.ca/#organization",
-                "name" => "Keystone Possibilities Ltd",
-                "legalName" => "Keystone Possibilities Ltd.",
-                "url" => "https://keystonepossibilities.ca",
-                "logo" => array(
-                    "@type" => "ImageObject",
-                    "@id" => "https://keystonepossibilities.ca/#logo",
-                    "url" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
-                    "contentUrl" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
-                    "caption" => "Keystone Possibilities Ltd — BC Builder License #52603"
+                "@type"              => "EducationalOccupationalCredential",
+                "name"               => "BC Housing Licensed Residential Builder",
+                "credentialCategory" => "BC Housing Builder License",
+                "identifier"         => "52603",
+                "url"                => "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search",
+                "recognizedBy"       => array(
+                    "@type" => "GovernmentOrganization",
+                    "name"  => "BC Housing Licensing & Consumer Services",
                 ),
-                "image" => "https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png",
-                "description" => "Certified BC Housing Licensed Residential Builder (License #52603) and BC Hydro Civil Utility Contractor (ES54) specializing in start-to-finish luxury custom home construction, BC Bill 44 SSMUH multiplexes, 2-5-10 National Home Warranty builds, underground civil infrastructure, and fiduciary CCDC 5B project management across West Vancouver, Whistler, Squamish, North Vancouver, Pemberton, Vancouver, Sunshine Coast, and Vancouver Island (Victoria, Oak Bay, Saanich, Nanaimo, and Comox Valley).",
-                "telephone" => "+1-604-848-9688",
-                "email" => "info@keystonepossibilities.ca",
-                "priceRange" => "$$$$",
-                "currenciesAccepted" => "CAD",
-                "paymentAccepted" => "Bank Transfer, Check, Financing",
-                "hasCredential" => $canonical_credentials,
-                "identifier" => array(
-                    array(
-                        "@type" => "PropertyValue",
-                        "propertyID" => "BC Housing Licensed Residential Builder",
-                        "name" => "BC Housing Builder License",
-                        "value" => "52603",
-                        "url" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603"
-                    ),
-                    array(
-                        "@type" => "PropertyValue",
-                        "propertyID" => "BC Hydro Civil Utility Registered Contractor",
-                        "name" => "BC Hydro Civil Utility Standard",
-                        "value" => "ES54"
-                    ),
-                    array(
-                        "@type" => "PropertyValue",
-                        "propertyID" => "Mandatory Home Warranty Protection",
-                        "name" => "New Home Warranty Protection",
-                        "value" => "2-5-10 Year Mandatory Home Warranty Protection (WBI / National Home Warranty)"
-                    )
-                ),
-                "license" => "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
-                "address" => array(
-                    "@type" => "PostalAddress",
-                    "streetAddress" => "1 Watts Point Road",
-                    "addressLocality" => "Squamish",
-                    "addressRegion" => "BC",
-                    "postalCode" => "V8B 0B1",
-                    "addressCountry" => "CA"
-                ),
-                "geo" => array(
-                    "@type" => "GeoCoordinates",
-                    "latitude" => 49.6767,
-                    "longitude" => -123.1508
-                ),
-                "areaServed" => array(
-                    array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
-                    array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
-                    array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
-                    array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
-                    array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
-                    array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
-                    array("@type" => "AdministrativeArea", "name" => "British Properties, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3458, "longitude" => -123.1425)),
-                    array("@type" => "AdministrativeArea", "name" => "Caulfeild, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3512, "longitude" => -123.2389)),
-                    array("@type" => "AdministrativeArea", "name" => "Altamont, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3421, "longitude" => -123.2085)),
-                    array("@type" => "AdministrativeArea", "name" => "Dundarave, West Vancouver", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.3338, "longitude" => -123.1812)),
-                    array("@type" => "AdministrativeArea", "name" => "Sunridge Plateau, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1163, "longitude" => -122.9574)),
-                    array("@type" => "AdministrativeArea", "name" => "Kadenwood, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.0987, "longitude" => -122.9754)),
-                    array("@type" => "AdministrativeArea", "name" => "Alta Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1121, "longitude" => -122.9812)),
-                    array("@type" => "AdministrativeArea", "name" => "Green Lake, Whistler", "geo" => array("@type" => "GeoCoordinates", "latitude" => 50.1450, "longitude" => -122.9410)),
-                    array("@type" => "AdministrativeArea", "name" => "The Heights, Squamish", "geo" => array("@type" => "GeoCoordinates", "latitude" => 49.7350, "longitude" => -123.1320)),
-                    array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
-                    array("@type" => "City", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach"),
-                    array("@type" => "AdministrativeArea", "name" => "Vancouver Island", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver_Island"),
-                    array("@type" => "City", "name" => "Victoria", "sameAs" => "https://en.wikipedia.org/wiki/Victoria,_British_Columbia"),
-                    array("@type" => "AdministrativeArea", "name" => "Oak Bay", "sameAs" => "https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia"),
-                    array("@type" => "AdministrativeArea", "name" => "Saanich", "sameAs" => "https://en.wikipedia.org/wiki/Saanich,_British_Columbia"),
-                    array("@type" => "City", "name" => "Nanaimo", "sameAs" => "https://en.wikipedia.org/wiki/Nanaimo"),
-                    array("@type" => "AdministrativeArea", "name" => "Comox Valley", "sameAs" => "https://en.wikipedia.org/wiki/Comox_Valley"),
-                    array("@type" => "AdministrativeArea", "name" => "Sunshine Coast", "sameAs" => "https://en.wikipedia.org/wiki/Sunshine_Coast_(British_Columbia)")
-                ),
-                "knowsAbout" => array(
-                    "Start-to-Finish Luxury Custom Home Construction (BC Housing License #52603)",
-                    "2-5-10 National Home Warranty Protection",
-                    "BC Hydro ES54 Civil Underground Ducting and Servicing",
-                    "BC Building Code 2024",
-                    "BC Energy Step Code 4 and Step Code 5",
-                    "Passive House High-Performance Envelopes",
-                    "Whistler Alpine Heavy Timber & High Snow Load Engineering",
-                    "Granite Bedrock Micropile and Post-Tensioned Rock Anchors",
-                    "District of West Vancouver Watercourse Protection Bylaw 4364",
-                    "Simpson Strong-Tie ATS Continuous Rod Tie-Down Systems",
-                    "High-Seismic Structural Engineering (Sa=0.94g)"
-                ),
-                "hasOfferCatalog" => array(
-                    "@type" => "OfferCatalog",
-                    "name" => "Keystone Possibilities Custom Home, Multiplex & Civil Construction Services",
-                    "itemListElement" => array(
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "BC Bill 44 Multiplex Feasibility & Construction",
-                                "description" => "Turnkey 3-to-6 unit BC Bill 44 SSMUH multiplex feasibility, BC Building Code 2024 Section 9.10 fire & ASTC 47 acoustic engineering, and licensed general contracting across Metro Vancouver and Sea-to-Sky."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Custom Luxury Home Construction",
-                                "description" => "Turnkey start-to-finish luxury custom home and estate contracting (BC Housing License #52603) with mandatory 2-5-10 Year Home Warranty, Step Code 5 energy performance, and alpine/coastal engineering across West Vancouver, Whistler, Squamish, North Vancouver, and Vancouver Island."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Fiduciary Project Management & Owner Representation",
-                                "description" => "100% transparent CCDC 5B cost-plus accounting, trade bidding oversight, municipal permit acceleration, and owner advocacy."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "BC Hydro Registered Civil Contracting (List ES54)",
-                                "description" => "ES54 certified underground utility trenching, 200A–600A+ primary/secondary ducting, pad-mounted transformer (PMT) vaults, civil excavation, and municipal infrastructure connections."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Construction Feasibility Studies & Land Due Diligence",
-                                "description" => "Pre-acquisition parcel due diligence, zoning & OCP verification, geotechnical bedrock & 30m RAPR riparian review, BC Hydro ES54 civil utility cost modeling, and DP/BP critical-path scheduling."
-                            )
-                        ),
-                        array(
-                            "@type" => "Offer",
-                            "itemOffered" => array(
-                                "@type" => "Service",
-                                "name" => "Major Custom Renovations, Carriage Homes & Multi-Generational Builds",
-                                "description" => "Full-gut structural retrofits, architectural additions, carriage homes, and custom multi-generational builds."
-                            )
-                        )
-                    )
-                ),
-                "parentOrganization" => array(
-                    "@id" => "https://keystonepossibilities.ca/#parent-organization"
-                ),
-                "sameAs" => array(
-                    "https://www.facebook.com/profile.php?id=61554185128555",
-                    "https://www.youtube.com/@KeystonePossibilitiesLtd",
-                    "https://www.instagram.com/keystonepossibilities",
-                    "https://www.tiktok.com/@keystone.possibil",
-                    "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
-                    "https://www.bchousing.org/licensing-consumer-disclosure/licencee-search"
-                ),
-                "founder" => array(
-                    "@type" => "Person",
-                    "@id" => "https://keystonepossibilities.ca/#founder",
-                    "name" => "Wayne Stevenson",
-                    "jobTitle" => "Certified BC Residential Builder & Fiduciary Project Manager",
-                    "url" => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
-                    "sameAs" => array(
-                        "https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y",
-                        "https://musicbrainz.org/artist/1a30328b-20b2-48bd-8e56-2884d3b040c0",
-                        "https://www.musixmatch.com/artist/Wayne-Stevenson",
-                        "https://www.youtube.com/@KeyStoneRecomposition",
-                        "https://www.youtube.com/@KeystoneAIProtocols",
-                        "https://www.youtube.com/@KeystonePossibilitiesLtd",
-                        "https://lims.bchousing.org/LicenceExpiryPortal/licence/52603",
-                        "https://keystonerecomposition.com/founder/"
-                    ),
-                    "hasCredential" => $canonical_credentials,
-                    "knowsAbout" => array(
-                        "Luxury Custom Home Building (BC Housing #52603)",
-                        "2-5-10 National Home Warranty Standards",
-                        "BC Hydro ES54 Civil Utility Contracting",
-                        "Step Code 5 Net-Zero Custom Homes",
-                        "Fiduciary CCDC 5B Cost-Plus Project Management",
-                        "BC Building Code 2024"
-                    )
-                )
             ),
-            // ParentOrganization Node connecting Keystone Empire Network
+            array(
+                "@type"              => "EducationalOccupationalCredential",
+                "name"               => "BC Hydro Civil Utility Registered Contractor",
+                "credentialCategory" => "BC Hydro Civil Utility Standard",
+                "identifier"         => "ES54",
+                "recognizedBy"       => array(
+                    "@type" => "Organization",
+                    "name"  => "BC Hydro",
+                ),
+            ),
+            array(
+                "@type"              => "EducationalOccupationalCredential",
+                "name"               => "2-5-10 Year Mandatory Home Warranty Protection (WBI / National Home Warranty)",
+                "credentialCategory" => "Mandatory Home Warranty Protection",
+                "identifier"         => "2-5-10",
+            ),
+            array(
+                "@type"              => "EducationalOccupationalCredential",
+                "name"               => "WorkSafeBC Registration & Good Standing Clearance",
+                "credentialCategory" => "Statutory Workplace Safety Clearance",
+                "identifier"         => "201703481 / C135925638",
+            ),
+        ),
+        "areaServed"   => array(
+            array("@type" => "City", "name" => "Squamish", "sameAs" => "https://en.wikipedia.org/wiki/Squamish,_British_Columbia"),
+            array("@type" => "City", "name" => "Whistler", "sameAs" => "https://en.wikipedia.org/wiki/Whistler,_British_Columbia"),
+            array("@type" => "City", "name" => "Pemberton", "sameAs" => "https://en.wikipedia.org/wiki/Pemberton,_British_Columbia"),
+            array("@type" => "City", "name" => "West Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/West_Vancouver"),
+            array("@type" => "City", "name" => "North Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/North_Vancouver_(city)"),
+            array("@type" => "City", "name" => "Vancouver", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver"),
+            array("@type" => "City", "name" => "Lions Bay", "sameAs" => "https://en.wikipedia.org/wiki/Lions_Bay"),
+            array("@type" => "Place", "name" => "Britannia Beach", "sameAs" => "https://en.wikipedia.org/wiki/Britannia_Beach"),
+            array("@type" => "City", "name" => "Coquitlam", "sameAs" => "https://en.wikipedia.org/wiki/Coquitlam"),
+            array("@type" => "City", "name" => "Sechelt", "sameAs" => "https://en.wikipedia.org/wiki/Sechelt"),
+            array("@type" => "AdministrativeArea", "name" => "Vancouver Island", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver_Island"),
+        ),
+        "hasOfferCatalog" => array(
+            "@type"           => "OfferCatalog",
+            "name"            => "Keystone Possibilities Construction & Civil Engineering Services",
+            "itemListElement" => array(
+                array(
+                    "@type"       => "Offer",
+                    "itemOffered" => array(
+                        "@type" => "Service",
+                        "name"  => "BC Bill 44 Multiplex Feasibility & Construction",
+                        "url"   => "https://keystonepossibilities.ca/vancouver-r1-1-multiplex-builder/",
+                    ),
+                ),
+                array(
+                    "@type"       => "Offer",
+                    "itemOffered" => array(
+                        "@type" => "Service",
+                        "name"  => "Custom Luxury Home Construction",
+                        "url"   => "https://keystonepossibilities.ca/keystone-possibilities-custom-homes/",
+                    ),
+                ),
+                array(
+                    "@type"       => "Offer",
+                    "itemOffered" => array(
+                        "@type" => "Service",
+                        "name"  => "Fiduciary Project Management & Owner Representation",
+                        "url"   => "https://keystonepossibilities.ca/feasibility-plan/",
+                    ),
+                ),
+                array(
+                    "@type"       => "Offer",
+                    "itemOffered" => array(
+                        "@type" => "Service",
+                        "name"  => "BC Hydro Registered Civil Contracting",
+                        "url"   => "https://keystonepossibilities.ca/bc-hydro-registered-civil-contractor/",
+                    ),
+                ),
+                array(
+                    "@type"       => "Offer",
+                    "itemOffered" => array(
+                        "@type" => "Service",
+                        "name"  => "Construction Feasibility Studies & Land Due Diligence",
+                        "url"   => "https://keystonepossibilities.ca/feasibility-plan/",
+                    ),
+                ),
+            ),
+        ),
+    );
+
+    // 2. Parent Organization Cross-Domain Entity Bridge
+    $parent_org = array(
+        "@type"           => "Organization",
+        "@id"             => "https://keystonepossibilities.ca/#parent-organization",
+        "name"            => "Keystone Empire",
+        "alternateName"   => "Keystone Group",
+        "url"             => "https://keystonepossibilities.ca/",
+        "subOrganization" => array(
+            array("@id" => "https://keystonepossibilities.ca/#organization"),
             array(
                 "@type" => "Organization",
-                "@id" => "https://keystonepossibilities.ca/#parent-organization",
-                "name" => "Keystone Empire",
-                "alternateName" => "Keystone Group",
-                "url" => "https://keystonerecomposition.com",
-                "founder" => array("@id" => "https://keystonepossibilities.ca/#founder"),
-                "subOrganization" => array(
-                    array("@id" => "https://keystonepossibilities.ca/#organization"),
-                    array(
-                        "@type" => "Organization",
-                        "@id" => "https://keystonerecomposition.com/#organization",
-                        "name" => "Keystone Recomposition",
-                        "url" => "https://keystonerecomposition.com"
-                    )
-                )
+                "@id"   => "https://keystonerecomposition.com/#organization",
+                "name"  => "Keystone Recomposition",
+                "url"   => "https://keystonerecomposition.com",
             ),
-            // WebSite Node with SearchAction
-            array(
-                "@type" => "WebSite",
-                "@id" => "https://keystonepossibilities.ca/#website",
-                "url" => "https://keystonepossibilities.ca",
-                "name" => "Keystone Possibilities Ltd",
-                "publisher" => array("@id" => "https://keystonepossibilities.ca/#organization"),
-                "potentialAction" => array(
-                    "@type" => "SearchAction",
-                    "target" => "https://keystonepossibilities.ca/?s={search_term_string}",
-                    "query-input" => "required name=search_term_string"
-                )
-            )
-        )
+        ),
     );
 
-    if (is_front_page()) {
-        $master_schema["@graph"][] = array(
-            "@type" => "FAQPage",
-            "@id" => "https://keystonepossibilities.ca/#faq",
-            "mainEntity" => array(
-                array(
-                    "@type" => "Question",
-                    "name" => "How does CCDC 5B Open-Book Construction Management protect my capital better than a fixed-price contract?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "In custom alpine and coastal construction, fixed-price builders embed 18% to 28% hidden risk contingencies into the base price and charge punitive markups on owner selections or geotechnical adjustments. Under CCDC 5B Construction Management, Keystone Possibilities acts as your legally aligned fiduciary: every trade division is competitively tendered to 3 pre-qualified subcontractors, you see raw unedited bids and invoices in our 24/7 Client Portal, 100% of trade discounts are passed directly to you, and you have the contractual option to lock a Guaranteed Maximum Price (GMP) once drawings and rock excavation are finalized."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "Why does hiring a builder who is also a BC Hydro ES54 Registered Civil Contractor save 4–8 months?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "Modern luxury estates with heated driveways, air-to-water heat pump plants, elevators, and multi-EV chargers routinely require 400A to 1200A+ primary power with on-site pad-mounted transformers (PMDFs) or Vista switchgear. Because Keystone Possibilities is a BC Hydro ES54 Registered Civil Contractor, we execute underground primary duct banks (ES54 Section H), concrete transformer pads (Section F), and copper grounding grids (Section R) concurrently with foundation excavation—compressing your critical path by 4 to 8 months."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "How do you achieve BCBC 2024 Step Code 5 & Zero Carbon EL-4 with floor-to-ceiling ocean or mountain glass?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "We integrate Schöck Isokorb structural thermal breaks at all slab cantilevers, specify triple-pane thermally broken European curtain walls positioned inside the continuous exterior mineral-wool insulation plane, and engineer concealed Eccentrically Braced Steel Frames (EBF) that satisfy BC Building Code 2024 Division B Part 4 seismic drift limits (<= 0.025 hs) without obstructing panoramic sightlines."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "Who actually supervises my job site day-to-day?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "We strictly limit our active project volume so founder and licensed Master Builder Wayne Stevenson (BC Housing License #52603) provides direct on-site superintendence across every structural pour, envelope tie-in, and civil utility inspection."
-                    )
-                )
-            )
-        );
-    }
+    // 3. Founder & Principal Superintendent Person Entity (E-E-A-T + Cross-Domain Knowledge Panel Mesh)
+    $founder_person = array(
+        "@type"                     => "Person",
+        "@id"                       => "https://keystonepossibilities.ca/#founder",
+        "name"                      => "Wayne Stevenson",
+        "url"                       => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
+        "mainEntityOfPage"          => "https://keystonepossibilities.ca/about-us-general-contractor-squamish/",
+        "jobTitle"                  => "Certified BC Residential Builder & Fiduciary Project Manager",
+        "description"               => "Licensed BC Residential Builder (#52603) and BC Hydro Registered Civil Contractor (List ES54) with 20+ years of structural concrete, steep-slope bedrock, and heavy-civil infrastructure leadership including Peter Kiewit Sons Co.",
+        "disambiguatingDescription" => (string) ($entity_reg['person_disambiguation'] ?? ''),
+        "sameAs"                    => array_values((array) ($entity_reg['person_sameas'] ?? array())),
+        "worksFor"                  => array(
+            "@id" => "https://keystonepossibilities.ca/#organization",
+        ),
+        "knowsAbout"                => array(
+            "BC Building Code 2024 Part 9 & Part 4 Structural Execution",
+            "BC Energy Step Code 5 & Zero Carbon Step Plan EL-4",
+            "BC Hydro ES54 Underground Primary/Secondary Duct Banks & PMT Vaults",
+            "Steep-Slope Granite Micropiles & Post-Tensioned Rock Anchors",
+            "CCDC 5B Open-Book Construction Management & BC Bill 44 SSMUH Multiplexes",
+        ),
+    );
 
-    if (function_exists('is_page') && is_page('vancouver-island-custom-homes')) {
-        $master_schema["@graph"][] = array(
-            "@type" => "Service",
-            "@id" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/#service",
-            "name" => "Vancouver Island & Greater Victoria Custom Home, Bill 44 Multiplex & BC Hydro ES54 Civil Construction",
-            "serviceType" => "Licensed BC Residential Builder #52603 & BC Hydro ES54 Civil Contracting",
-            "url" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/",
-            "provider" => array("@id" => "https://keystonepossibilities.ca/#organization"),
-            "areaServed" => array(
-                array("@type" => "AdministrativeArea", "name" => "Vancouver Island", "sameAs" => "https://en.wikipedia.org/wiki/Vancouver_Island"),
-                array("@type" => "City", "name" => "Victoria", "sameAs" => "https://en.wikipedia.org/wiki/Victoria,_British_Columbia"),
-                array("@type" => "AdministrativeArea", "name" => "Oak Bay", "sameAs" => "https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia"),
-                array("@type" => "AdministrativeArea", "name" => "Saanich", "sameAs" => "https://en.wikipedia.org/wiki/Saanich,_British_Columbia"),
-                array("@type" => "AdministrativeArea", "name" => "Uplands, Oak Bay"),
-                array("@type" => "City", "name" => "Langford", "sameAs" => "https://en.wikipedia.org/wiki/Langford,_British_Columbia"),
-                array("@type" => "City", "name" => "Colwood", "sameAs" => "https://en.wikipedia.org/wiki/Colwood,_British_Columbia"),
-                array("@type" => "AdministrativeArea", "name" => "Cowichan Valley", "sameAs" => "https://en.wikipedia.org/wiki/Cowichan_Valley"),
-                array("@type" => "City", "name" => "Nanaimo", "sameAs" => "https://en.wikipedia.org/wiki/Nanaimo"),
-                array("@type" => "City", "name" => "Parksville", "sameAs" => "https://en.wikipedia.org/wiki/Parksville,_British_Columbia"),
-                array("@type" => "AdministrativeArea", "name" => "Qualicum Beach", "sameAs" => "https://en.wikipedia.org/wiki/Qualicum_Beach"),
-                array("@type" => "AdministrativeArea", "name" => "Comox Valley", "sameAs" => "https://en.wikipedia.org/wiki/Comox_Valley")
-            ),
-            "description" => "Turnkey luxury custom homes, BC Bill 44 SSMUH 3-to-6 unit multiplexes, Cascadia high-seismic Simpson Strong-Tie ATS engineering, BC Energy Step Code 5 & EL-4 hydronic envelopes, and BC Hydro ES54 underground civil utility servicing across Greater Victoria and Vancouver Island."
-        );
-        $master_schema["@graph"][] = array(
-            "@type" => "FAQPage",
-            "@id" => "https://keystonepossibilities.ca/vancouver-island-custom-homes/#faq",
-            "mainEntity" => array(
-                array(
-                    "@type" => "Question",
-                    "name" => "How does BC Bill 44 SSMUH multiplex zoning apply across Victoria, Oak Bay, Saanich, and Nanaimo?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "Under British Columbia Bill 44 Small-Scale Multi-Unit Housing mandates and local bylaws such as City of Victoria Missing Middle housing, District of Saanich, District of Oak Bay, and City of Nanaimo SSMUH zoning, qualifying single-family parcels permit 3 to 6 strata or rental dwelling units. Keystone Possibilities (BC Housing #52603) models lot coverage, parking variances, 1-hour fire-rated STC 55+ party walls, adaptable flush-sill entries, and 2-inch domestic/fire water main upgrades prior to permit submission."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "Why are Simpson Strong-Tie ATS continuous rod holdowns critical for Greater Victoria and Vancouver Island seismic zones?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "Greater Victoria, Oak Bay, Saanich, and coastal Vancouver Island sit directly within the Cascadia Subduction Zone high-seismic hazard envelope under BC Building Code 2024 Division B Part 4 and Part 9. Multi-storey oceanfront custom homes and 3-to-4 storey Bill 44 multiplexes experience extreme overturning and lateral shear loads; we engineer Eccentrically Braced Steel Frames (EBF) paired with continuous Simpson Strong-Tie Anchor Tiedown Systems (ATS) socketed into rock-anchored micropile or reinforced raft foundations to prevent cumulative wood-shrinkage drift."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "What advantage does a BC Hydro ES54 Registered Civil Contractor bring to Vancouver Island custom estates and multiplexes?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "All-electric Step Code 5 estates and 4-to-6 unit multiplexes on Vancouver Island frequently require 400A to 600A+ underground primary/secondary servicing, Pad-Mounted Transformer (PMT) or LPT concrete vaults (ES54 Section F), DB2 PVC duct banks (Section H), and copper grounding grids (Section R). As an approved BC Hydro ES54 Civil Contractor, Keystone executes civil utility trenching and vault installation concurrently with bedrock foundation excavation."
-                    )
-                ),
-                array(
-                    "@type" => "Question",
-                    "name" => "How does Open-Book CCDC 5B Fiduciary Construction Management work for Vancouver Island builds?",
-                    "acceptedAnswer" => array(
-                        "@type" => "Answer",
-                        "text" => "Under CCDC 5B Construction Management led by Master Builder Wayne Stevenson (BC Housing License #52603), every Vancouver Island and Victoria trade package is competitively tendered across pre-qualified local Island and coastal subcontractors. Owners review 100% of raw unedited sub-trade bids, invoices, 10% BC Builders Lien Act statutory holdbacks, and 360-degree pre-drywall LiDAR scans inside our 24/7 Client Portal, backed by mandatory 2-5-10 Year New Home Warranty protection."
-                    )
-                )
-            )
-        );
-    }
+    // 4. WebSite Node
+    $website_node = array(
+        "@type"      => "WebSite",
+        "@id"        => "https://keystonepossibilities.ca/#website",
+        "url"        => "https://keystonepossibilities.ca/",
+        "name"       => "Keystone Possibilities Ltd.",
+        "publisher"  => array("@id" => "https://keystonepossibilities.ca/#organization"),
+        "inLanguage" => "en-CA",
+    );
 
-    echo "\n<!-- Keystone Possibilities 2026 Master Authority Schema -->\n";
-    echo '<script type="application/ld+json">' . json_encode($master_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
-}
+    $graph = array($primary_org, $parent_org, $founder_person, $website_node);
 
-// ── 2. Automatic Google-Compliant VideoObject Schema Injector (Fallback when Rank Math inactive) ──
-add_filter('rank_math/snippet/rich_snippet_video', '__return_false');
-add_filter('rank_math/schema/video', '__return_empty_array');
-add_filter('rank_math/snippet/rich_snippet_videoobject_entity', '__return_false');
-
-add_action('wp_head', 'keystone_possibilities_inject_video_schema', 2);
-function keystone_possibilities_inject_video_schema() {
-    if (is_admin() || class_exists('RankMath')) return;
-    
+    // 5. ProfilePage Entity Home on /about-us-general-contractor-squamish/ + Dynamic Corridor Nodes
     global $post;
-    if (!$post) return;
-
-    $is_watch_page = ('page' === $post->post_type && 0 === strpos($post->post_name, 'watch-'));
-    if (!is_singular('post') && !$is_watch_page) return;
-
-    $post_id = $post->ID;
-    if ($is_watch_page) {
-        $slug = str_replace('watch-', '', $post->post_name);
-        $parent_posts = get_posts(array(
-            'name'        => $slug,
-            'post_type'   => 'post',
-            'post_status' => 'publish',
-            'numberposts' => 1
-        ));
-        if (!empty($parent_posts)) {
-            $post_id = $parent_posts[0]->ID;
-        }
-    }
-
-    $video_id = keystone_possibilities_extract_youtube_id_helper($post_id);
-    if (!empty($video_id)) {
-        $video_title = get_post_meta($post_id, 'video_title', true);
-        if (empty($video_title)) {
-            $video_title = wp_strip_all_tags(html_entity_decode(get_the_title($post_id), ENT_QUOTES, 'UTF-8'));
-        }
-
-        $video_desc = get_post_meta($post_id, 'video_description', true);
-        if (empty($video_desc)) {
-            $video_desc = wp_strip_all_tags(html_entity_decode(get_the_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words($post->post_content, 35), ENT_QUOTES, 'UTF-8'));
-        }
-        if (empty($video_desc)) {
-            $video_desc = $video_title . ' - Certified BC Builder #52603 multiplex and construction consulting.';
-        }
-
-        $duration_iso = keystone_possibilities_resolve_positive_duration_iso($post_id);
-        $upload_date = get_the_date('c', $post_id);
-
-        $video_schema = array(
-            "@context" => "https://schema.org",
-            "@type" => "VideoObject",
-            "@id" => trailingslashit(get_permalink($post_id)) . "#videoobject",
-            "name" => esc_attr($video_title),
-            "description" => esc_attr($video_desc),
-            "thumbnailUrl" => array(
-                "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
-                "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
+    $req_slug = $post instanceof WP_Post ? strtolower((string) $post->post_name) : trim((string) parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH), '/');
+    if ($req_slug === 'about-us-general-contractor-squamish' || (function_exists('is_page') && is_page('about-us-general-contractor-squamish'))) {
+        $about_url = 'https://keystonepossibilities.ca/about-us-general-contractor-squamish/';
+        $graph[] = array(
+            "@type"        => "ProfilePage",
+            "@id"          => $about_url . "#profilepage",
+            "url"          => $about_url,
+            "name"         => "Wayne Stevenson — Principal Superintendent & BC Licensed Builder #52603",
+            "dateCreated"  => "2024-03-01T08:00:00-08:00",
+            "dateModified" => $post instanceof WP_Post ? get_the_modified_date('c', $post) : gmdate('c'),
+            "mainEntity"   => array(
+                "@id" => "https://keystonepossibilities.ca/#founder",
             ),
-            "uploadDate" => $upload_date,
-            "duration" => esc_attr($duration_iso),
-            "contentUrl" => "https://www.youtube.com/watch?v={$video_id}",
-            "embedUrl" => "https://www.youtube-nocookie.com/embed/{$video_id}",
-            "inLanguage" => "en-CA",
-            "isFamilyFriendly" => true,
-            "publisher" => array(
-                "@id" => "https://keystonepossibilities.ca/#organization"
-            )
+            "about"        => array(
+                "@id" => "https://keystonepossibilities.ca/#organization",
+            ),
         );
-        echo "\n<!-- Keystone Possibilities Dynamic VideoObject Schema -->\n";
-        echo '<script type="application/ld+json">' . wp_json_encode($video_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . "</script>\n";
     }
-}
 
-function keystone_possibilities_resolve_positive_duration_iso($post_id) {
-    $video_duration = get_post_meta($post_id, 'video_duration', true);
-    if (empty($video_duration)) {
-        $video_duration = get_post_meta($post_id, 'keystone_video_duration', true);
-    }
-    $default_iso = 'PT5M30S';
-    if (empty($video_duration)) {
-        return $default_iso;
-    }
-    $video_duration = strtoupper(trim((string) $video_duration));
-    if (in_array($video_duration, array('0', 'P0D', 'PT0S', 'PT0M', 'PT0M0S', '00:00', '0:00', '00:00:00'), true)) {
-        return $default_iso;
-    }
-    if (strpos($video_duration, 'PT') === 0) {
-        if (preg_match('/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/', $video_duration, $m)) {
-            $h = !empty($m[1]) ? intval($m[1]) : 0;
-            $min = !empty($m[2]) ? intval($m[2]) : 0;
-            $s = !empty($m[3]) ? intval($m[3]) : 0;
-            if (($h * 3600 + $min * 60 + $s) <= 0) {
-                return $default_iso;
+    if ($post instanceof WP_Post && function_exists('kp_get_corridor')) {
+        $corridor = kp_get_corridor((string) $post->post_name);
+        if (is_array($corridor)) {
+            $corridor_url = home_url((string) $corridor['url']);
+            $graph[] = array(
+                "@type"       => "Service",
+                "@id"         => $corridor_url . "#service",
+                "name"        => (string) $corridor['name'],
+                "description" => (string) $corridor['lead'],
+                "url"         => $corridor_url,
+                "provider"    => array("@id" => "https://keystonepossibilities.ca/#organization"),
+                "areaServed"  => array(
+                    "@type"  => "Place",
+                    "name"   => (string) $corridor['short_name'],
+                    "sameAs" => (string) $corridor['wiki_url'],
+                ),
+            );
+
+            if (!empty($corridor['faqs']) && is_array($corridor['faqs'])) {
+                $faq_entities = array();
+                foreach ($corridor['faqs'] as $faq) {
+                    if (!empty($faq['q']) && !empty($faq['a'])) {
+                        $faq_entities[] = array(
+                            "@type"          => "Question",
+                            "name"           => (string) $faq['q'],
+                            "acceptedAnswer" => array(
+                                "@type" => "Answer",
+                                "text"  => (string) $faq['a'],
+                            ),
+                        );
+                    }
+                }
+                if (!empty($faq_entities)) {
+                    $graph[] = array(
+                        "@type"      => "FAQPage",
+                        "@id"        => $corridor_url . "#faq",
+                        "mainEntity" => $faq_entities,
+                    );
+                }
             }
-            return $video_duration;
+
+            $graph[] = array(
+                "@type"           => "BreadcrumbList",
+                "@id"             => $corridor_url . "#breadcrumb",
+                "itemListElement" => array(
+                    array(
+                        "@type"    => "ListItem",
+                        "position" => 1,
+                        "name"     => "Home",
+                        "item"     => "https://keystonepossibilities.ca/",
+                    ),
+                    array(
+                        "@type"    => "ListItem",
+                        "position" => 2,
+                        "name"     => (string) $corridor['short_name'],
+                        "item"     => $corridor_url,
+                    ),
+                ),
+            );
         }
-        return $default_iso;
     }
-    if (is_numeric($video_duration)) {
-        $s = intval($video_duration);
-        if ($s <= 0) return $default_iso;
-        $h = floor($s / 3600);
-        $m = floor(($s / 60) % 60);
-        $sec = $s % 60;
-        return 'PT' . ($h > 0 ? $h . 'H' : '') . ($m > 0 ? $m . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
+
+    // 6. Dynamic VideoObject Node on Watch Pages & Video Briefing Posts
+    if (is_singular() && $post instanceof WP_Post) {
+        $vid_meta = kp_resolve_post_video_metadata($post);
+        if (is_array($vid_meta) && !empty($vid_meta['youtube_id'])) {
+            $youtube_id   = (string) $vid_meta['youtube_id'];
+            $video_title  = (string) $vid_meta['title'];
+            $video_desc   = (string) $vid_meta['description'];
+            $duration_iso = (string) $vid_meta['duration_iso'];
+
+            // Safe HTML-attribute escaping available for meta/DOM consumers alongside JSON-LD
+            $safe_title_attr = esc_attr($video_title);
+            $safe_desc_attr  = esc_attr($video_desc);
+            $safe_dur_attr   = esc_attr($duration_iso);
+            $safe_yt_attr    = esc_attr($youtube_id);
+
+            $graph[] = array(
+                "@type" => "VideoObject",
+                "@id"              => $current_url . "#video",
+                "name"             => $safe_title_attr !== '' ? $video_title : 'Keystone Possibilities Briefing',
+                "description"      => $safe_desc_attr !== '' ? $video_desc : '',
+                "thumbnailUrl"     => array(
+                    "https://i.ytimg.com/vi/" . $safe_yt_attr . "/maxresdefault.jpg",
+                    "https://i.ytimg.com/vi/" . $safe_yt_attr . "/hqdefault.jpg",
+                ),
+                "uploadDate"       => (string) $vid_meta['upload_date'],
+                "duration"         => $safe_dur_attr,
+                "contentUrl"       => "https://www.youtube.com/watch?v=" . $safe_yt_attr,
+                "embedUrl"         => "https://www.youtube-nocookie.com/embed/" . $safe_yt_attr,
+                "inLanguage"       => "en-CA",
+                "isFamilyFriendly" => true,
+                "publisher"        => array(
+                    "@id" => "https://keystonepossibilities.ca/#organization",
+                ),
+            );
+        }
     }
-    if (preg_match('/^(?:(\d+):)?(\d+):(\d+)$/', $video_duration, $m)) {
-        $h = isset($m[1]) && $m[1] !== '' ? intval($m[1]) : 0;
-        $min = intval($m[2]);
-        $sec = intval($m[3]);
-        if (($h * 3600 + $min * 60 + $sec) <= 0) return $default_iso;
-        return 'PT' . ($h > 0 ? $h . 'H' : '') . ($min > 0 ? $min . 'M' : '') . ($sec > 0 ? $sec . 'S' : '');
-    }
-    return $default_iso;
+
+    $schema = array(
+        "@context" => "https://schema.org",
+        "@graph" => array(
+            ...$graph,
+        ),
+    );
+
+    echo "\n" . '<script type="application/ld+json" id="keystone-master-schema">' . "\n";
+    echo json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG);
+    echo "\n" . '</script>' . "\n";
 }
+add_action('wp_head', 'keystone_possibilities_inject_master_schema', 1);
 
-// ── 2.5 OpenGraph Video Meta Tags (Google Video Indexing Engine) ─────────────
-add_action('wp_head', 'keystone_possibilities_inject_og_video', 5);
-function keystone_possibilities_inject_og_video() {
-    if (is_admin()) return;
+/**
+ * Injects OpenGraph & Yandex Video player tags on singular Watch Pages / Video Briefing Posts.
+ */
+function keystone_possibilities_inject_og_video(): void
+{
+    if (!is_singular() || is_admin()) {
+        return;
+    }
+
     global $post;
-    if (!$post) return;
-    $is_watch_page = ('page' === $post->post_type && 0 === strpos($post->post_name, 'watch-'));
-    if (!is_singular('post') && !$is_watch_page && !is_singular('page')) return;
-
-    $post_id = $post->ID;
-    if ($is_watch_page) {
-        $slug = str_replace('watch-', '', $post->post_name);
-        $parent_posts = get_posts(array(
-            'name'        => $slug,
-            'post_type'   => 'post',
-            'post_status' => 'publish',
-            'numberposts' => 1
-        ));
-        if (!empty($parent_posts)) {
-            $post_id = $parent_posts[0]->ID;
-        }
+    $vid_meta = kp_resolve_post_video_metadata($post instanceof WP_Post ? $post : null);
+    if (!is_array($vid_meta) || empty($vid_meta['youtube_id'])) {
+        return;
     }
 
-    $youtube_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-    if (empty($youtube_id)) {
-        $video_url = get_post_meta($post_id, 'video_url', true);
-        if (!empty($video_url) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $video_url, $m)) {
-            $youtube_id = $m[1];
-        }
-    }
-    if (empty($youtube_id)) {
-        $content = $post->post_content;
-        if (preg_match('/\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]{11})["\']/i', $content, $m)) {
-            $youtube_id = $m[1];
-        } elseif (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $content, $m)) {
-            $youtube_id = $m[1];
-        }
-    }
-    if (empty($youtube_id)) return;
+    $youtube_id = esc_attr((string) $vid_meta['youtube_id']);
+    $embed_url  = 'https://www.youtube-nocookie.com/embed/' . $youtube_id;
 
-    $embed_url = 'https://www.youtube-nocookie.com/embed/' . esc_attr($youtube_id);
-    echo "\n<!-- Keystone Possibilities OpenGraph Video Meta Tags -->\n";
-    echo '<meta property="og:video" content="' . $embed_url . '" />' . "\n";
-    echo '<meta property="og:video:secure_url" content="' . $embed_url . '" />' . "\n";
+    echo '<meta property="og:video" content="' . esc_url($embed_url) . '" />' . "\n";
+    echo '<meta property="og:video:secure_url" content="' . esc_url($embed_url) . '" />' . "\n";
     echo '<meta property="og:video:type" content="text/html" />' . "\n";
     echo '<meta property="og:video:width" content="1280" />' . "\n";
     echo '<meta property="og:video:height" content="720" />' . "\n";
     echo '<meta property="ya:ovs:allow_embed" content="true" />' . "\n";
-    echo "<!-- End Keystone Possibilities OpenGraph Video -->\n";
 }
-
-// ── 2.8 Rank Math Video Sitemap Integration ──────────────────────────────────
-add_filter('rank_math/sitemap/video/post', 'keystone_possibilities_rank_math_video_sitemap', 10, 2);
-function keystone_possibilities_rank_math_video_sitemap($video, $post_id) {
-    if (!is_array($video)) return $video;
-    $youtube_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-    if (empty($youtube_id)) {
-        $p = get_post($post_id);
-        if ($p && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i', $p->post_content, $m)) {
-            $youtube_id = $m[1];
-        }
-    }
-    if (!empty($youtube_id)) {
-        $video['thumbnail_loc'] = "https://img.youtube.com/vi/{$youtube_id}/maxresdefault.jpg";
-        $video['title']         = get_the_title($post_id);
-        $video['player_loc']    = "https://www.youtube-nocookie.com/embed/{$youtube_id}";
-        $video['uploader']      = "Keystone Possibilities Ltd.";
-        $video['uploader_info'] = "https://keystonepossibilities.ca/";
-    }
-    return $video;
-}
+add_action('wp_head', 'keystone_possibilities_inject_og_video', 5);
 
 /**
- * Sanitize a single JSON-LD node (Organization / Person / ImageObject) in Rank Math output.
+ * Deduplicates Rank Math JSON-LD graph nodes so Organization, Person, and VideoObject
+ * never conflict with our canonical Keystone Master Schema.
+ *
+ * @param array<string, mixed> $data    Rank Math JSON-LD array.
+ * @param mixed                $jsonld  Rank Math JsonLD instance.
+ * @return array<string, mixed>
  */
-function keystone_possibilities_sanitize_schema_node(&$node) {
-    if (!is_array($node)) {
-        return;
-    }
-
-    $canonical_logo_url = 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
-    $canonical_credentials = array(
-        array(
-            '@type' => 'EducationalOccupationalCredential',
-            'name' => 'BC Housing Licensed Residential Builder #52603',
-            'credentialCategory' => 'Professional License'
-        ),
-        array(
-            '@type' => 'EducationalOccupationalCredential',
-            'name' => '2-5-10 National Home Warranty',
-            'credentialCategory' => 'Statutory New Home Warranty Protection'
-        ),
-        array(
-            '@type' => 'EducationalOccupationalCredential',
-            'name' => 'BC Hydro Registered Civil Contractor List ES54',
-            'credentialCategory' => 'Civil Utility Contracting Certification'
-        )
-    );
-    $canonical_areas = array(
-        array('@type' => 'City', 'name' => 'West Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/West_Vancouver'),
-        array('@type' => 'City', 'name' => 'North Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/North_Vancouver_(city)'),
-        array('@type' => 'City', 'name' => 'Whistler', 'sameAs' => 'https://en.wikipedia.org/wiki/Whistler,_British_Columbia'),
-        array('@type' => 'City', 'name' => 'Squamish', 'sameAs' => 'https://en.wikipedia.org/wiki/Squamish,_British_Columbia'),
-        array('@type' => 'City', 'name' => 'Pemberton', 'sameAs' => 'https://en.wikipedia.org/wiki/Pemberton,_British_Columbia'),
-        array('@type' => 'City', 'name' => 'Vancouver', 'sameAs' => 'https://en.wikipedia.org/wiki/Vancouver'),
-        array('@type' => 'AdministrativeArea', 'name' => 'Vancouver Island', 'sameAs' => 'https://en.wikipedia.org/wiki/Vancouver_Island'),
-        array('@type' => 'City', 'name' => 'Victoria', 'sameAs' => 'https://en.wikipedia.org/wiki/Victoria,_British_Columbia'),
-        array('@type' => 'AdministrativeArea', 'name' => 'Oak Bay', 'sameAs' => 'https://en.wikipedia.org/wiki/Oak_Bay,_British_Columbia'),
-        array('@type' => 'AdministrativeArea', 'name' => 'Saanich', 'sameAs' => 'https://en.wikipedia.org/wiki/Saanich,_British_Columbia'),
-        array('@type' => 'City', 'name' => 'Nanaimo', 'sameAs' => 'https://en.wikipedia.org/wiki/Nanaimo')
+function keystone_possibilities_dedup_rank_math_schema(array $data, $jsonld): array
+{
+    $duplicate_types = array(
+        'Organization',
+        'LocalBusiness',
+        'ConstructionBusiness',
+        'GeneralContractor',
+        'HomeAndConstructionBusiness',
+        'Person',
+        'ProfilePage',
+        'VideoObject',
     );
 
-    if (isset($node['name']) && $node['name'] === 'Wayne') {
-        $node['name'] = 'Wayne Stevenson';
-    }
-
-    $types = isset($node['@type']) ? (array) $node['@type'] : array();
-
-    if (in_array('Person', $types, true)) {
-        if (empty($node['name']) || $node['name'] === 'Wayne' || stripos($node['name'], 'Wayne') !== false || stripos($node['name'], 'Keystone') !== false) {
-            $node['name'] = 'Wayne Stevenson';
-        }
-        $node['jobTitle'] = 'Certified BC Residential Builder & Fiduciary Project Manager';
-        $node['url'] = 'https://keystonepossibilities.ca/about-us-general-contractor-squamish/';
-        $node['hasCredential'] = $canonical_credentials;
-        $node['sameAs'] = array(
-            'https://open.spotify.com/artist/52v3Qe6Jo0hg764driOl5Y',
-            'https://musicbrainz.org/artist/1a30328b-20b2-48bd-8e56-2884d3b040c0',
-            'https://www.musixmatch.com/artist/Wayne-Stevenson',
-            'https://www.youtube.com/@KeyStoneRecomposition',
-            'https://www.youtube.com/@KeystoneAIProtocols',
-            'https://www.youtube.com/@KeystonePossibilitiesLtd',
-            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603',
-            'https://keystonerecomposition.com/founder/'
-        );
-    }
-
-    if (array_intersect($types, array('Organization', 'LocalBusiness', 'ConstructionBusiness', 'GeneralContractor', 'HomeAndConstructionBusiness'))) {
-        $node['@type'] = array('ConstructionBusiness', 'GeneralContractor', 'Organization');
-        $node['name'] = 'Keystone Possibilities Ltd';
-        $node['legalName'] = 'Keystone Possibilities Ltd.';
-        $node['url'] = 'https://keystonepossibilities.ca';
-        $node['email'] = 'info@keystonepossibilities.ca';
-        $node['telephone'] = '+1-604-848-9688';
-        $node['hasCredential'] = $canonical_credentials;
-        $node['areaServed'] = $canonical_areas;
-        $node['sameAs'] = array(
-            'https://www.facebook.com/profile.php?id=61554185128555',
-            'https://www.youtube.com/@KeystonePossibilitiesLtd',
-            'https://www.instagram.com/keystonepossibilities',
-            'https://www.tiktok.com/@keystone.possibil',
-            'https://lims.bchousing.org/LicenceExpiryPortal/licence/52603'
-        );
-        if (isset($node['logo']) && is_array($node['logo'])) {
-            $node['logo']['url'] = $canonical_logo_url;
-            $node['logo']['contentUrl'] = $canonical_logo_url;
-            $node['logo']['caption'] = 'Keystone Possibilities Ltd — BC Builder License #52603';
-        } else {
-            $node['logo'] = array(
-                '@type' => 'ImageObject',
-                '@id' => 'https://keystonepossibilities.ca/#logo',
-                'url' => $canonical_logo_url,
-                'contentUrl' => $canonical_logo_url,
-                'caption' => 'Keystone Possibilities Ltd — BC Builder License #52603'
-            );
-        }
-        $node['image'] = $canonical_logo_url;
-    }
-
-    if (in_array('ImageObject', $types, true)) {
-        if (isset($node['@id']) && strpos($node['@id'], '#logo') !== false) {
-            $node['url'] = $canonical_logo_url;
-            $node['contentUrl'] = $canonical_logo_url;
-            $node['caption'] = 'Keystone Possibilities Ltd — BC Builder License #52603';
-        }
-    }
-
-    foreach ($node as $k => &$child) {
-        if (is_array($child)) {
-            keystone_possibilities_sanitize_schema_node($child);
-        }
-    }
-}
-
-// ── 2.9 Google-Compliant Watch Page & VideoObject Schema Injection in Rank Math ────
-add_filter('rank_math/json_ld', 'keystone_possibilities_dedup_rank_math_schema', 999, 2);
-function keystone_possibilities_dedup_rank_math_schema($data, $jsonld) {
-    return keystone_possibilities_rank_math_watch_page_schema($data, $jsonld);
-}
-function keystone_possibilities_rank_math_watch_page_schema($data, $jsonld) {
-    if (!is_array($data) || is_admin()) {
-        return $data;
-    }
-
-    $canonical_logo_url = 'https://keystonepossibilities.ca/wp-content/uploads/2026/09/keystone_real_logo_badge_bold.png';
-
-    // 1. Sanitize legacy staging URLs, personal emails, screenshot logos, and old handles across ALL pages
-    array_walk_recursive($data, function(&$item, $key) use ($canonical_logo_url) {
-        if (!is_string($item)) {
-            return;
-        }
-        if (strpos($item, 'staging-a826-keystonepossibilities.wpcomstaging.com') !== false) {
-            $item = str_replace('https://staging-a826-keystonepossibilities.wpcomstaging.com', 'https://keystonepossibilities.ca', $item);
-        }
-        if (strpos($item, 'keystonepossibilities.wordpress.com') !== false) {
-            $item = str_replace(
-                array('https://keystonepossibilities.wordpress.com', 'http://keystonepossibilities.wordpress.com'),
-                'https://keystonepossibilities.ca',
-                $item
-            );
-        }
-        if (stripos($item, 'curtis4vancouver@gmail.com') !== false) {
-            $item = str_ireplace('curtis4vancouver@gmail.com', 'info@keystonepossibilities.ca', $item);
-        }
-        if (preg_match('#/@KeystonePossibilities(?!Ltd)#i', $item)) {
-            $item = preg_replace('#/@KeystonePossibilities(?!Ltd)#i', '/@KeystonePossibilitiesLtd', $item);
-        }
-        if (stripos($item, 'screenshot-2023-') !== false || strpos($item, '/wp-content/uploads/logo.png') !== false) {
-            $item = $canonical_logo_url;
-        }
-        if (strpos($item, 'keystonerecomposition.com/about') !== false) {
-            $item = 'https://keystonerecomposition.com/founder/';
-        }
-        if ($key === 'name' && $item === 'Wayne') {
-            $item = 'Wayne Stevenson';
-        }
-    });
-
-    // 2. Enrich & sanitize all Person nodes in Rank Math graph on ALL pages
-    keystone_possibilities_sanitize_schema_node($data);
-
-    // 2.5 Deduplicate #organization, #website, and #place (keystone_possibilities_inject_master_schema is the single authoritative emitter)
-    $dedup_types = array('organization', 'constructionbusiness', 'generalcontractor', 'localbusiness', 'homeandconstructionbusiness', 'website', 'place');
-    foreach (array_keys($data) as $top_key) {
-        if ($top_key === '@graph' || !is_array($data[$top_key])) {
+    foreach ($data as $key => $node) {
+        if (!is_array($node) || !isset($node['@type'])) {
             continue;
         }
-        $node_id = isset($data[$top_key]['@id']) ? strtolower((string) $data[$top_key]['@id']) : '';
-        $node_types = isset($data[$top_key]['@type']) ? array_map('strtolower', array_map('strval', (array) $data[$top_key]['@type'])) : array();
-        if (
-            strpos($node_id, '#organization') !== false ||
-            strpos($node_id, '#website') !== false ||
-            strpos($node_id, '#place') !== false ||
-            !empty(array_intersect($node_types, $dedup_types))
-        ) {
-            unset($data[$top_key]);
-        }
-    }
-    if (isset($data['@graph']) && is_array($data['@graph'])) {
-        $filtered_graph = array();
-        foreach ($data['@graph'] as $g_node) {
-            if (!is_array($g_node)) {
-                continue;
-            }
-            $gid = isset($g_node['@id']) ? strtolower((string) $g_node['@id']) : '';
-            $gtypes = isset($g_node['@type']) ? array_map('strtolower', array_map('strval', (array) $g_node['@type'])) : array();
-            if (
-                strpos($gid, '#organization') !== false ||
-                strpos($gid, '#website') !== false ||
-                strpos($gid, '#place') !== false ||
-                !empty(array_intersect($gtypes, $dedup_types))
-            ) {
-                continue;
-            }
-            $filtered_graph[] = $g_node;
-        }
-        $data['@graph'] = $filtered_graph;
-    }
-
-    global $post;
-    if (!$post) return $data;
-    $is_watch_page = ('page' === $post->post_type && 0 === strpos((string) $post->post_name, 'watch-'));
-    if (!is_singular('post') && !$is_watch_page) {
-        return $data;
-    }
-
-    $video_id = keystone_possibilities_extract_youtube_id_helper($post);
-    if (empty($video_id)) {
-        return $data;
-    }
-
-    $permalink     = get_permalink($post);
-    $video_node_id = trailingslashit($permalink) . '#videoobject';
-    $post_title    = wp_strip_all_tags(html_entity_decode(get_the_title($post), ENT_QUOTES, 'UTF-8'));
-    $excerpt       = wp_strip_all_tags(html_entity_decode(get_the_excerpt($post), ENT_QUOTES, 'UTF-8'));
-    if (empty($excerpt)) {
-        $excerpt = wp_trim_words(wp_strip_all_tags(html_entity_decode($post->post_content, ENT_QUOTES, 'UTF-8')), 35, '...');
-    }
-
-    // High-res YouTube 16:9 thumbnails (zero Jetpack Photon &#038;ssl=1 corruption)
-    $thumbnails = array(
-        "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg",
-        "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg"
-    );
-
-    $duration_iso = keystone_possibilities_resolve_positive_duration_iso($post->ID);
-
-    // Construct Compliant Single VideoObject Node
-    $video_object = array(
-        '@type'            => 'VideoObject',
-        '@id'              => $video_node_id,
-        'name'             => $post_title,
-        'description'      => $excerpt,
-        'uploadDate'       => get_the_date('c', $post),
-        'duration'         => $duration_iso,
-        'thumbnailUrl'     => $thumbnails,
-        'embedUrl'         => "https://www.youtube-nocookie.com/embed/{$video_id}",
-        'contentUrl'       => "https://www.youtube.com/watch?v={$video_id}",
-        'inLanguage'       => 'en-CA',
-        'isFamilyFriendly' => true,
-        'mainEntityOfPage' => array('@id' => $permalink),
-        'publisher'        => array('@id' => home_url('/#organization'))
-    );
-
-    // Strip any Rank Math auto-detected or custom schema-* VideoObject / duplicate BlogPosting keys
-    $seen_article = false;
-    foreach (array_keys($data) as $key) {
-        if ($key === '@graph' || !is_array($data[$key])) {
-            continue;
-        }
-        $type = isset($data[$key]['@type']) ? (array)$data[$key]['@type'] : array();
-        foreach ($type as $t) {
-            $tl = strtolower((string)$t);
-            if ($tl === 'videoobject') {
+        $types = is_array($node['@type']) ? $node['@type'] : array($node['@type']);
+        foreach ($types as $t) {
+            if (in_array((string) $t, $duplicate_types, true)) {
                 unset($data[$key]);
                 break;
             }
-            if (in_array($tl, array('article', 'blogposting', 'techarticle', 'newsarticle'), true)) {
-                if ($seen_article) {
-                    unset($data[$key]);
-                } else {
-                    $seen_article = true;
-                    $data[$key]['author'] = array('@id' => 'https://keystonepossibilities.ca/#founder');
-                    $data[$key]['video']  = array('@id' => $video_node_id);
-                }
-                break;
-            }
         }
-    }
-
-    // Inject canonical VideoObject directly into Rank Math graph
-    $data['VideoObject'] = $video_object;
-
-    if (isset($data['WebPage']) && is_array($data['WebPage'])) {
-        $data['WebPage']['video'] = array('@id' => $video_node_id);
-    }
-
-    // Also sanitize @graph array if already assembled
-    if (isset($data['@graph']) && is_array($data['@graph'])) {
-        $clean_graph = array();
-        $graph_seen_article = false;
-        foreach ($data['@graph'] as $node) {
-            $type = isset($node['@type']) ? (array)$node['@type'] : array();
-            $types_lower = array_map('strtolower', array_map('strval', $type));
-            if (in_array('videoobject', $types_lower, true)) {
-                continue; // Strip Rank Math P0D / duplicate VideoObject nodes
-            }
-            if (array_intersect($types_lower, array('article', 'blogposting', 'techarticle', 'newsarticle'))) {
-                if ($graph_seen_article) {
-                    continue; // Strip duplicate BlogPosting node
-                }
-                $graph_seen_article = true;
-                $node['author'] = array('@id' => 'https://keystonepossibilities.ca/#founder');
-                $node['video']  = array('@id' => $video_node_id);
-            }
-            if (in_array('webpage', $types_lower, true)) {
-                $node['video'] = array('@id' => $video_node_id);
-            }
-            $clean_graph[] = $node;
-        }
-        $clean_graph[] = $video_object;
-        $data['@graph'] = $clean_graph;
     }
 
     return $data;
 }
-
-// ── 3. Keystone Empire Network Standardized Footer Bar (Deprecated / Disabled to prevent duplicate footers) ──
-function keystone_possibilities_render_empire_footer() {
-    return;
-}
-
-// ── 4. Rank Math XML Sitemap Sanitizer & Cache Bypass ────────────────────────
-add_filter( 'rank_math/sitemap/enable_caching', '__return_false' );
-add_filter( 'rank_math/sitemap/exclude_taxonomy', function( $exclude, $taxonomy ) {
-    if ( in_array( $taxonomy, array( 'category', 'post_tag', 'post_format' ), true ) ) {
-        return true;
-    }
-    return $exclude;
-}, 10, 2 );
-
-add_filter( 'rank_math/sitemap/entry', function( $url, $type = '', $object = null ) {
-    if ( empty( $url ) || ! is_array( $url ) || empty( $url['loc'] ) ) return $url;
-    $loc = (string) $url['loc'];
-    $excluded_patterns = array(
-        '/tag/', '/author/', '/date/', 'sample-page', '/test/', '/demo/', 'wp-admin',
-        'locations.kml', 'locations-sitemap', 'category-sitemap', 'post_tag-sitemap',
-        '/client-login', '/client-portal-demo/', '/project-management-wp', '__trashed', '/trash/',
-        'purge_all_caches', 'gsc_ping_all', 'keystone_video_sitemap'
-    );
-    foreach ( $excluded_patterns as $pat ) {
-        if ( stripos( $loc, $pat ) !== false ) {
-            return false;
-        }
-    }
-    if ( is_object( $object ) && isset( $object->ID ) ) {
-        $post_id = (int) $object->ID;
-        if ( 'publish' !== get_post_status( $post_id ) ) {
-            return false;
-        }
-        $robots = get_post_meta( $post_id, 'rank_math_robots', true );
-        if ( ( is_array( $robots ) && in_array( 'noindex', $robots, true ) ) || ( is_string( $robots ) && stripos( $robots, 'noindex' ) !== false ) ) {
-            return false;
-        }
-        if ( ! empty( get_post_meta( $post_id, 'rank_math_redirection_id', true ) ) || ! empty( get_post_meta( $post_id, 'rank_math_redirection_url', true ) ) ) {
-            return false;
-        }
-    }
-    return $url;
-}, 10, 3 );
-
-// ── 5. Sanitize robots.txt & Expose AI Crawler Directives (/llms.txt & /llms-full.txt) ─
-add_filter( 'robots_txt', function( $output, $public ) {
-    if ( function_exists( 'keystone_poss_build_clean_robots_txt' ) ) {
-        return keystone_poss_build_clean_robots_txt();
-    }
-    $custom = "User-agent: *\nDisallow: /wp-admin/\nDisallow: /client-login/\nDisallow: /project-management-wp/\nDisallow: /*?share=\nAllow: /wp-admin/admin-ajax.php\nAllow: /wp-content/uploads/\nAllow: /wp-content/themes/\nAllow: /wp-includes/\nAllow: /llms.txt\nAllow: /llms-full.txt\n\n# AI Search Engine Crawlers\nUser-agent: GPTBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: ClaudeBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: PerplexityBot\nAllow: /\nAllow: /llms.txt\nAllow: /llms-full.txt\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://keystonepossibilities.ca/sitemap_index.xml\nSitemap: https://keystonepossibilities.ca/keystone-video-sitemap.xml\n";
-    return $custom;
-}, 999999, 2 );
-
-// ── 6. Custom XML Video Sitemap Engine (/keystone-video-sitemap.xml & /video-sitemap.xml) ─
-add_action('init', 'keystone_possibilities_register_video_sitemap_rewrite', 5);
-function keystone_possibilities_register_video_sitemap_rewrite() {
-    if (isset($_GET['keystone_ls_purge'])) {
-        header('X-LiteSpeed-Purge: *');
-        header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
-        header('X-LiteSpeed-Cache-Control: no-cache');
-        delete_transient('keystone_video_sitemap_xml_cache');
-        delete_transient('rank_math_sitemap_cache');
-        if (class_exists('\\RankMath\\Sitemap\\Cache')) {
-            \RankMath\Sitemap\Cache::invalidate_storage();
-        }
-        wp_cache_flush();
-        status_header(200);
-        echo 'KEYSTONE_POSSIBILITIES_CACHE_PURGED_ALL_13_VIDEOS';
-        exit;
-    }
-    add_rewrite_rule('^keystone-video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top');
-    add_rewrite_rule('^video-sitemap\.xml$', 'index.php?keystone_video_sitemap=1', 'top');
-}
-
-add_filter('query_vars', 'keystone_possibilities_video_sitemap_query_vars');
-function keystone_possibilities_video_sitemap_query_vars($vars) {
-    $vars[] = 'keystone_video_sitemap';
-    $vars[] = 'video_sitemap';
-    return $vars;
-}
-
-add_action('template_redirect', 'keystone_possibilities_serve_video_sitemap', 0);
-function keystone_possibilities_serve_video_sitemap() {
-    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
-    if (preg_match('#/(?:keystone-)?video-sitemap(?:[0-9]+)?\.xml(\.gz)?#i', (string) $request_uri) === 1 || get_query_var('keystone_video_sitemap') || get_query_var('video_sitemap') || isset($_GET['keystone_video_sitemap']) || isset($_GET['video_sitemap'])) {
-        keystone_possibilities_render_video_sitemap_xml();
-        exit;
-    }
-}
-
-add_filter('rank_math/sitemap/video/content', '__return_empty_string', 999);
-
-function keystone_possibilities_render_video_sitemap_xml() {
-    if (!defined('DONOTCACHEPAGE')) define('DONOTCACHEPAGE', true);
-    if (!defined('DONOTCACHEDB'))   define('DONOTCACHEDB', true);
-    if (!defined('DONOTMINIFY'))    define('DONOTMINIFY', true);
-
-    status_header(200);
-    header('Content-Type: application/xml; charset=utf-8');
-    header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
-    header('Pragma: no-cache');
-    header('Expires: 0');
-    header('X-LiteSpeed-Cache-Control: no-cache');
-    header('X-Robots-Tag: index, follow', true);
-
-    echo keystone_possibilities_generate_video_sitemap_markup();
-    exit;
-}
-
-add_action('save_post', 'keystone_possibilities_invalidate_video_sitemap');
-add_action('deleted_post', 'keystone_possibilities_invalidate_video_sitemap');
-function keystone_possibilities_invalidate_video_sitemap($post_id) {
-    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) {
-        return;
-    }
-    delete_transient('keystone_video_sitemap_xml_cache');
-    delete_transient('rank_math_sitemap_cache');
-}
-
-add_filter('rank_math/sitemap/index', 'keystone_possibilities_inject_video_sitemap_into_rank_math', 99);
-function keystone_possibilities_inject_video_sitemap_into_rank_math($xml) {
-    header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
-    header('X-LiteSpeed-Cache-Control: no-cache');
-    $sitemap_url = esc_url(home_url('/keystone-video-sitemap.xml'));
-    $lastmod = gmdate('Y-m-d\TH:i:s+00:00');
-
-    // Remove any existing keystone-video-sitemap entry before appending fresh v=3 entry
-    $xml = preg_replace('/<sitemap>\s*<loc>[^<]*keystone-video-sitemap\.xml[^<]*<\/loc>.*?<\/sitemap>\s*/is', '', (string) $xml);
-
-    $custom_node  = "\t<sitemap>\n";
-    $custom_node .= "\t\t<loc>" . $sitemap_url . "</loc>\n";
-    $custom_node .= "\t\t<lastmod>" . esc_html($lastmod) . "</lastmod>\n";
-    $custom_node .= "\t</sitemap>\n";
-
-    return $xml . $custom_node;
-}
-
-function keystone_possibilities_extract_youtube_id_helper($post) {
-    if (is_numeric($post)) {
-        $post = get_post($post);
-    }
-    if (!$post) return false;
-
-    $post_id = (int) $post->ID;
-    if ('page' === $post->post_type && 0 === strpos((string) $post->post_name, 'watch-')) {
-        $meta_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-        if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id))) {
-            return trim($meta_id);
-        }
-        $slug = substr((string) $post->post_name, 6);
-        $parent_posts = get_posts(array('name' => $slug, 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1));
-        if (!empty($parent_posts)) {
-            $post = $parent_posts[0];
-            $post_id = (int) $post->ID;
-        }
-    }
-
-    // Canonical 1-to-1 video mapping for all 6 active @KeystonePossibilitiesLtd episodes (prevents crosslink collisions)
-    $default_post_videos = array(
-        1953 => 'nPXnGzAEY6k', // BCBC 2024 Luxury Basement Waterproofing, Hydrostatic & Radon Guide
-        1907 => 'SIHMOJ5AOyw', // Vancouver Multiplex BCBC 2024 Adaptable Sill & Micropile Guide
-        1848 => 'eV_Oo5ekaWc', // Vancouver Multiplex BCBC 2024 Fire Acoustic & 2-Inch Water Main
-        1771 => 'kLsNyKvQswg', // West Vancouver Whistler BCBC 2024 Step Code 5 Cantilever Seismic
-        1760 => 'kLsNyKvQswg', // Alias ID guard
-        1697 => 'JwtaaZlrFeE', // Why 4-Storey Multiplexes Fail Lateral Shear
-        1679 => 'ERD0DiVkgYg', // Sea to Sky Luxury Compounds BC Building Code
-    );
-
-    if (isset($default_post_videos[$post_id])) {
-        return $default_post_videos[$post_id];
-    }
-
-    $meta_id = get_post_meta($post_id, 'keystone_youtube_id', true);
-    if (!empty($meta_id) && preg_match('/^[a-zA-Z0-9_-]{11}$/', trim($meta_id)) && trim($meta_id) !== 'maxresdefau') {
-        return trim($meta_id);
-    }
-
-    $video_url = get_post_meta($post_id, 'video_url', true);
-    if (!empty($video_url) && preg_match('/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $video_url, $m)) {
-        if ($m[1] !== 'maxresdefau') return $m[1];
-    }
-
-    $content = (string) $post->post_content;
-    if (!empty($content)) {
-        if (preg_match('/\[keystone_video[^\]]*id=["\']([a-zA-Z0-9_-]{11})["\']/i', $content, $m)) {
-            if ($m[1] !== 'maxresdefau') return $m[1];
-        }
-        if (preg_match('/youtube-nocookie\.com\/embed\/([a-zA-Z0-9_-]{11})/i', $content, $m)) {
-            if ($m[1] !== 'maxresdefau') return $m[1];
-        }
-        if (preg_match('/(?:youtube\.com\/(?:[^\/\s]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/i', $content, $m)) {
-            if ($m[1] !== 'maxresdefau') return $m[1];
-        }
-    }
-
-    return false;
-}
-
-// Auto-create dedicated /watch-{slug}/ theater watch page whenever a Possibilities video post is published/updated
-add_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10, 3);
-function keystone_possibilities_auto_create_watch_page($new_status, $old_status, $post) {
-    if ('publish' !== $new_status || 'post' !== $post->post_type) {
-        return;
-    }
-    $youtube_id = keystone_possibilities_extract_youtube_id_helper($post);
-    if (empty($youtube_id)) {
-        return;
-    }
-    update_post_meta($post->ID, 'keystone_youtube_id', $youtube_id);
-    $post_slug = !empty($post->post_name) ? sanitize_title($post->post_name) : sanitize_title($post->post_title);
-    $watch_slug = 'watch-' . $post_slug;
-    $blog_permalink = get_permalink($post->ID);
-    $clean_title = wp_strip_all_tags(html_entity_decode($post->post_title, ENT_QUOTES, 'UTF-8'));
-
-    $theater_content = '<div class="watch-theater-embed" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; margin: 0 auto 26px auto; border-radius: 18px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.55); box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85); background: #04070d;"><iframe src="https://www.youtube-nocookie.com/embed/' . esc_attr($youtube_id) . '?rel=0&modestbranding=1" title="' . esc_attr($clean_title) . '" style="width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="eager"></iframe></div>' . "\n\n";
-    $theater_content .= '<p class="wp-block-paragraph" style="text-align:center; margin-top:28px; margin-bottom:36px;"><a href="' . esc_url($blog_permalink) . '" style="background: linear-gradient(135deg, #f6d365 0%, #d4af37 55%, #aa820a 100%); color: #04070d; padding: 15px 32px; border-radius: 9999px; text-decoration: none; font-weight: 900; display: inline-block; text-transform: uppercase; letter-spacing: 0.06em;">Read the Full BC Builder #52603 Engineering Blueprint &rarr;</a></p>';
-
-    remove_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10);
-    $page_by_path = get_page_by_path($watch_slug, OBJECT, 'page');
-    if ($page_by_path && !empty($page_by_path->ID)) {
-        wp_update_post(array(
-            'ID'           => (int) $page_by_path->ID,
-            'post_title'   => 'Watch: ' . $clean_title,
-            'post_name'    => $watch_slug,
-            'post_content' => $theater_content,
-            'post_status'  => 'publish',
-        ));
-        $page_id = (int) $page_by_path->ID;
-    } else {
-        $page_id = wp_insert_post(array(
-            'post_title'   => 'Watch: ' . $clean_title,
-            'post_name'    => $watch_slug,
-            'post_content' => $theater_content,
-            'post_status'  => 'publish',
-            'post_type'    => 'page',
-            'post_author'  => $post->post_author,
-        ));
-    }
-    if (!is_wp_error($page_id) && $page_id > 0) {
-        update_post_meta($page_id, 'keystone_youtube_id', $youtube_id);
-    }
-    add_action('transition_post_status', 'keystone_possibilities_auto_create_watch_page', 10, 3);
-}
-
-function keystone_possibilities_generate_video_sitemap_markup() {
-    $posts = get_posts(array(
-        'numberposts'      => 100,
-        'post_type'        => array('post'),
-        'post_status'      => 'publish',
-        'orderby'          => 'date',
-        'order'            => 'DESC',
-        'suppress_filters' => false,
-        'no_found_rows'    => true,
-    ));
-
-    $entries = array();
-    $seen_vids = array();
-    $seen_locs = array();
-
-    foreach ($posts as $p) {
-        $video_id = keystone_possibilities_extract_youtube_id_helper($p);
-        if (!$video_id || isset($seen_vids[$video_id])) {
-            continue;
-        }
-
-        // Map to dedicated /watch-{slug}/ page if present, else canonical post permalink
-        $watch_slug = 'watch-' . $p->post_name;
-        $watch_page = get_page_by_path($watch_slug, OBJECT, 'page');
-        if ($watch_page && 'publish' === $watch_page->post_status) {
-            $loc = esc_url(get_permalink($watch_page->ID));
-        } else {
-            $loc = esc_url(get_permalink($p->ID));
-        }
-
-        if (isset($seen_locs[$loc])) {
-            continue;
-        }
-        $seen_vids[$video_id] = true;
-        $seen_locs[$loc]      = true;
-
-        $pub_date = get_the_date('c', $p->ID);
-        $thumb    = "https://img.youtube.com/vi/{$video_id}/maxresdefault.jpg";
-
-        $raw_title = get_post_meta($p->ID, 'video_title', true);
-        $title     = !empty($raw_title) ? $raw_title : get_the_title($p->ID);
-        $title     = htmlspecialchars(wp_strip_all_tags(html_entity_decode($title, ENT_QUOTES, 'UTF-8')), ENT_XML1, 'UTF-8');
-        if (mb_strlen($title) > 100) {
-            $title = mb_substr($title, 0, 97) . '...';
-        }
-
-        $raw_desc = get_post_meta($p->ID, 'video_description', true);
-        if (empty($raw_desc)) {
-            $raw_desc = get_the_excerpt($p->ID);
-        }
-        if (empty($raw_desc)) {
-            $raw_desc = wp_trim_words($p->post_content, 35);
-        }
-        $desc = htmlspecialchars(mb_strimwidth(wp_strip_all_tags(html_entity_decode($raw_desc, ENT_QUOTES, 'UTF-8')), 0, 2040, '...'), ENT_XML1, 'UTF-8');
-
-        $entries[] = array(
-            'loc'        => $loc,
-            'thumb'      => $thumb,
-            'title'      => $title,
-            'desc'       => $desc,
-            'player_loc' => "https://www.youtube-nocookie.com/embed/{$video_id}",
-            'pub_date'   => $pub_date,
-            'duration'   => 330,
-            'video_id'   => $video_id,
-        );
-    }
-
-    $out  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-    $out .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' . "\n";
-    $out .= '        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">' . "\n";
-
-    foreach ($entries as $e) {
-        $out .= "\t<url>\n";
-        $out .= "\t\t<loc>{$e['loc']}</loc>\n";
-        $out .= "\t\t<video:video>\n";
-        $out .= "\t\t\t<video:thumbnail_loc>{$e['thumb']}</video:thumbnail_loc>\n";
-        $out .= "\t\t\t<video:title>{$e['title']}</video:title>\n";
-        $out .= "\t\t\t<video:description>{$e['desc']}</video:description>\n";
-        $out .= "\t\t\t<video:player_loc allow_embed=\"yes\">{$e['player_loc']}</video:player_loc>\n";
-        $out .= "\t\t\t<video:duration>{$e['duration']}</video:duration>\n";
-        $out .= "\t\t\t<video:publication_date>{$e['pub_date']}</video:publication_date>\n";
-        $out .= "\t\t\t<video:family_friendly>yes</video:family_friendly>\n";
-        $out .= "\t\t\t<video:uploader info=\"https://keystonepossibilities.ca/\">Keystone Possibilities Ltd.</video:uploader>\n";
-        $out .= "\t\t</video:video>\n";
-        $out .= "\t</url>\n";
-    }
-
-    $out .= '</urlset>';
-    return $out;
-}
-/**
- * 16. IndexNow Instant Search & AI Crawler Batch Ping (Bing, Copilot, ChatGPT Search, Yandex, Seznam, Naver)
- * Serves verification key at /8f4b2e9a1c6d7e3f5a0b9c8d7e6f5a4b.txt and fires batch pings via ?keystone_indexnow_ping=1
- * or automatically whenever a post/page is published.
- */
-if (!defined('KEYSTONE_POSSIBILITIES_INDEXNOW_KEY')) {
-    define('KEYSTONE_POSSIBILITIES_INDEXNOW_KEY', '8f4b2e9a1c6d7e3f5a0b9c8d7e6f5a4b');
-}
-
-add_action('init', 'keystone_possibilities_handle_indexnow_endpoints', 0);
-function keystone_possibilities_handle_indexnow_endpoints() {
-    $req_uri = $_SERVER['REQUEST_URI'] ?? '';
-    $path = strtok((string) $req_uri, '?');
-    $key = KEYSTONE_POSSIBILITIES_INDEXNOW_KEY;
-
-    // 1. Serve IndexNow Key Verification File (/8f4b2e9a1c6d7e3f5a0b9c8d7e6f5a4b.txt)
-    if ($path === '/' . $key . '.txt' || isset($_GET['keystone_indexnow_key'])) {
-        status_header(200);
-        header('Content-Type: text/plain; charset=utf-8');
-        header('Cache-Control: public, max-age=86400');
-        echo $key;
-        exit;
-    }
-
-    // 2. On-Demand Batch Ping (?keystone_indexnow_ping=1)
-    if (isset($_GET['keystone_indexnow_ping'])) {
-        $result = keystone_possibilities_execute_indexnow_batch_ping();
-        status_header(200);
-        header('Content-Type: application/json; charset=utf-8');
-        header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
-        echo wp_json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-        exit;
-    }
-}
-
-function keystone_possibilities_execute_indexnow_batch_ping($specific_urls = array()) {
-    $key = KEYSTONE_POSSIBILITIES_INDEXNOW_KEY;
-    $host = wp_parse_url(home_url(), PHP_URL_HOST);
-    $key_location = home_url('/' . $key . '.txt');
-
-    $url_list = array();
-    if (!empty($specific_urls)) {
-        $url_list = array_values(array_unique($specific_urls));
-    } else {
-        $url_list[] = home_url('/');
-        $url_list[] = home_url('/keystone-possibilities-custom-homes/');
-        $url_list[] = home_url('/sitemap_index.xml');
-        $url_list[] = home_url('/keystone-video-sitemap.xml');
-
-        $posts = get_posts(array(
-            'post_type'   => array('post', 'page'),
-            'post_status' => 'publish',
-            'numberposts' => 100,
-        ));
-        foreach ($posts as $p) {
-            $permalink = get_permalink($p->ID);
-            if ($permalink) {
-                $url_list[] = $permalink;
-            }
-        }
-
-        // Include retired legacy URLs so IndexNow engines immediately process their 301 redirects
-        $retired_slugs = array(
-            '/vancouver-bill-44-multiplex-infill-guide/',
-            '/step-code-4-5-envelope-engineering-bc/',
-            '/ccdc-5b-construction-management-fiduciary-control/',
-            '/squamish-whistler-mountain-modern-custom-homes/',
-            '/bc-housing-licensed-builder-52603-standards/',
-            '/heavy-civil-site-prep-rock-anchoring-sea-to-sky/',
-            '/multiplex-pro-forma-feasibility-vancouver-lots/',
-            '/mass-timber-icf-hybrid-structural-systems/',
-            '/2026-bc-building-code-seismic-lateral-bracing/',
-            '/watch-vancouver-bill-44-multiplex-infill-guide/',
-            '/watch-step-code-4-5-envelope-engineering-bc/',
-            '/watch-ccdc-5b-construction-management-fiduciary-control/',
-            '/watch-squamish-whistler-mountain-modern-custom-homes/',
-            '/watch-bc-housing-licensed-builder-52603-standards/',
-            '/watch-heavy-civil-site-prep-rock-anchoring-sea-to-sky/',
-            '/watch-multiplex-pro-forma-feasibility-vancouver-lots/',
-            '/watch-mass-timber-icf-hybrid-structural-systems/',
-            '/watch-2026-bc-building-code-seismic-lateral-bracing/',
-        );
-        foreach ($retired_slugs as $slug) {
-            $url_list[] = home_url($slug);
-        }
-        $url_list = array_values(array_unique($url_list));
-    }
-
-    $payload = array(
-        'host'        => $host,
-        'key'         => $key,
-        'keyLocation' => $key_location,
-        'urlList'     => $url_list,
-    );
-
-    $response = wp_remote_post('https://api.indexnow.org/indexnow', array(
-        'headers' => array('Content-Type' => 'application/json; charset=utf-8'),
-        'body'    => wp_json_encode($payload),
-        'timeout' => 15,
-    ));
-
-    $http_code = is_wp_error($response) ? 0 : (int) wp_remote_retrieve_response_code($response);
-    $body_text = is_wp_error($response) ? $response->get_error_message() : wp_remote_retrieve_body($response);
-
-    return array(
-        'domain'          => $host,
-        'engine'          => 'https://api.indexnow.org/indexnow',
-        'http_code'       => $http_code,
-        'accepted'        => in_array($http_code, array(200, 202), true),
-        'key_location'    => $key_location,
-        'submitted_count' => count($url_list),
-        'response_body'   => $body_text,
-        'url_list'        => $url_list,
-    );
-}
-
-add_action('transition_post_status', 'keystone_possibilities_auto_ping_indexnow_on_publish', 20, 3);
-function keystone_possibilities_auto_ping_indexnow_on_publish($new_status, $old_status, $post) {
-    if ('publish' !== $new_status || !in_array($post->post_type, array('post', 'page'), true)) {
-        return;
-    }
-    $urls = array(get_permalink($post->ID), home_url('/'), home_url('/sitemap_index.xml'), home_url('/keystone-video-sitemap.xml'));
-    keystone_possibilities_execute_indexnow_batch_ping($urls);
-}
+add_filter('rank_math/json_ld', 'keystone_possibilities_dedup_rank_math_schema', 999, 2);
